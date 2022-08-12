@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Loader 0.4.0 and the winds of Spring | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Loader 0.4.0 and the winds of Spring" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I know blog posts (and development) has slowed down recently. I suppose it is fair to attribute this to a burnout on my - asie’s, that is - side. Keeping up a consistent development pace on a hobby project is very difficult, and it appears I reached my breaking point for a while." />
+<meta property="og:description" content="I know blog posts (and development) has slowed down recently. I suppose it is fair to attribute this to a burnout on my - asie’s, that is - side. Keeping up a consistent development pace on a hobby project is very difficult, and it appears I reached my breaking point for a while." />
+<link rel="canonical" href="http://fabricmc.net/2019/04/07/loader-04.html" />
+<meta property="og:url" content="http://fabricmc.net/2019/04/07/loader-04.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Loader 0.4.0 and the winds of Spring" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2019/04/07/loader-04.html"},"description":"I know blog posts (and development) has slowed down recently. I suppose it is fair to attribute this to a burnout on my - asie’s, that is - side. Keeping up a consistent development pace on a hobby project is very difficult, and it appears I reached my breaking point for a while.","url":"http://fabricmc.net/2019/04/07/loader-04.html","@type":"BlogPosting","headline":"Loader 0.4.0 and the winds of Spring","dateModified":"2019-04-07T00:00:00+00:00","datePublished":"2019-04-07T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Loader 0.4.0 and the winds of Spring</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-04-07T00:00:00+00:00" itemprop="datePublished">Apr 7, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I know blog posts (and development) has slowed down recently. I suppose it is fair to attribute this to a burnout on my - asie’s, that is - side. Keeping up a consistent development pace on a hobby project is very
+difficult, and it appears I reached my breaking point for a while.</p>
+
+<p>However, today I have finally dusted off old changes and am ready to release the not-perfect-but-nonetheless-good Loader 0.4.0.</p>
+
+<p>The changes are numerous, but include:</p>
+
+<ul>
+  <li><a href="https://fabricmc.net/wiki/format:modjson">New, formalized mod metadata schema format!</a>
+    <ul>
+      <li>Now with a proper modder-side API!</li>
+      <li>Actual versioning and dependency resolution!</li>
+      <li>More powerful entrypoint system to replace initiailizers! Provide static fields and even method handles!</li>
+    </ul>
+  </li>
+  <li>Nested JARs, cooperating with said dependency resolution to allow you to provide any dependency you want - leave the rest to the mod loader!</li>
+  <li>Support for a <em>lot</em> of Minecraft versions. For now, we support:
+    <ul>
+      <li>All vanilla client and server versions, from 0.0.11 all the way to 19w14b - and beyond!</li>
+      <li>All versions of Risguami’s ModLoader*,</li>
+      <li>Versions of Forge for 1.2.5 and below*.</li>
+    </ul>
+  </li>
+  <li>Mixin reference maps are now remapped at runtime in development environment dependencies.
+    <ul>
+      <li>This removes a bunch of Loom-side hackery, and finally fixes Accessor/Invoker support in this scenario!</li>
+    </ul>
+  </li>
+  <li>Major refactors in Knot, our default class loader.
+    <ul>
+      <li>Stub providing of Package/CodeSource objects - fixing a few crashes here and there.</li>
+    </ul>
+  </li>
+  <li>The server .JAR filename is now stored in a properties file - this is useful for better interop with many existing server hosting systems.</li>
+</ul>
+
+<p>Please note that the ModLoader/Forge support (a) requires enabling a flag for a “compatibility” class loader mode, (b) does not yet allow you to mixin non-Fabric mods themselves. However, it <em>does</em> work on Java 9+!</p>
+
+<p>As for mod compatibility, most mods should work just fine - there is a decent amount of 0.3.x compatibility. However, there are some exceptions we’re aware of:</p>
+
+<ul>
+  <li><strong>Mod Menu</strong> may run into issues during gameplay, but basic functionality works fine.</li>
+  <li><strong>plugin-loader</strong> does not work with 0.4.x! Disable it in your instance and encourage your local mod author to adopt entrypoints in its place - they’re as good if not better.</li>
+</ul>
+
+<p>With regards to modders, there are some scribbled notes on updating to Loader 0.4.x <a href="https://fabricmc.net/wiki/tutorial:loader04x">right here</a>.</p>
+
+<p>I hope you will enjoy the new, long-awaited features in Loader! What’s coming next?</p>
+
+<ul>
+  <li>Loom 0.3.0 is still being worked on. It probably won’t come out in a day or two, but should be out soon-ish. As a stop-gap, Loom 0.2.1 is being worked on by modmuss50 to add nested JAR functionality to your existing development environments.</li>
+  <li>There is renewed debate and implementation work on the configuration system. Hopefully, it will make it to Loader 0.5.0.</li>
+  <li>There are discussions on the future of Fabric’s API component - nothing concrete to announce as of yet. We are aware of its mild stagnation, don’t worry!</li>
+</ul>
+
+<p>PS. How’s Yarn doing?</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Yarn 19w07a.13</th>
+      <th>Yarn 19w14b.4</th>
+      <th>Total Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Classes</td>
+      <td>90.99%</td>
+      <td>94.23%</td>
+      <td><strong>+3.24%</strong></td>
+    </tr>
+    <tr>
+      <td>Fields</td>
+      <td>74.53%</td>
+      <td>82.33%</td>
+      <td><strong>+7.80%</strong></td>
+    </tr>
+    <tr>
+      <td>Methods</td>
+      <td>70.85%</td>
+      <td>73.26%</td>
+      <td><strong>+2.41%</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div><a class="u-url" href="/2019/04/07/loader-04.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

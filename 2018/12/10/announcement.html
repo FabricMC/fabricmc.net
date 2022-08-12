@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric Announcement | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric Announcement" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="… Hello world? Is this working? One, two, three, one, two, one, two. Alright. Ahem." />
+<meta property="og:description" content="… Hello world? Is this working? One, two, three, one, two, one, two. Alright. Ahem." />
+<link rel="canonical" href="http://fabricmc.net/2018/12/10/announcement.html" />
+<meta property="og:url" content="http://fabricmc.net/2018/12/10/announcement.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-10T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric Announcement" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2018/12/10/announcement.html"},"description":"… Hello world? Is this working? One, two, three, one, two, one, two. Alright. Ahem.","url":"http://fabricmc.net/2018/12/10/announcement.html","@type":"BlogPosting","headline":"Fabric Announcement","dateModified":"2018-12-10T00:00:00+00:00","datePublished":"2018-12-10T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric Announcement</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-10T00:00:00+00:00" itemprop="datePublished">Dec 10, 2018
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>… Hello world? Is this working? One, two, three, one, two, one, two. Alright. <em>Ahem</em>.</p>
+
+<p>It is my honor today to announce a project long in the making: the Fabric modding toolchain for Minecraft 1.14 and above.</p>
+
+<p>What does it consist of?</p>
+
+<ul>
+  <li><strong>Yarn</strong>, a code mapping allowing modders to make sense of the game’s logic under a permissive license and with an Enigma-powered interface for contributing and editing,</li>
+  <li><strong>Intermediary</strong>, a collection of compatible mappings allowing mods to continue working across obfuscation changes, as well as matches (powered by Matcher, a tool created by Player) to track changes in Minecraft versions (and even update your own mappings),</li>
+  <li><strong>Loom</strong>, a simple Gradle build system used by our projects,</li>
+  <li><strong>Fabric Loader</strong>, a simple Mixin/Intermediary-powered mod loader facility with minimal dependencies on the game engine,</li>
+  <li><strong>Fabric</strong>, a core library for the most common hooks and intercompatibility measures required by mods,</li>
+  <li>A fork of Cuchaz’s <strong>Enigma</strong>, a GUI-based mapping tool we use for Yarn, introducing new features <del>and bugs</del>,</li>
+  <li>Many smaller tools, including but not limited to tiny-remapper (efficient parallel class remapper) and Stitch/Weave (mapping processing tools).</li>
+</ul>
+
+<p>Although we have decided to reveal it to the public now, it has been in the making for a long time. So, what does it offer?</p>
+
+<p>As a user, the following might interest you:</p>
+
+<ul>
+  <li>Currently, Fabric is targetting <strong>Minecraft 18w49a</strong>. We’re tracking snapshots as they release (our record update time, from 18w48b to 18w49a, was <strong>25 minutes</strong> from Mojang uploading it), allowing modders to develop alongside Minecraft updates and - hopefully - release their polished mods on the same day the stable vanilla version of 1.14 comes out!</li>
+</ul>
+
+<p>For interested modders, I’d like to point out the following:</p>
+
+<ul>
+  <li>The ecosystem is lean, lightweight and modular - as such, it’s very quick to update. In addition, it allows updates to be worked on collaboratively by many modders. On top of that, we’re striving to make sure the means in which all the small parts connect together to provide modders and users with the tools they need are documented and approachable.</li>
+  <li>All of the ecosystem is under FOSS licenses. There is no part of it exempt, there are no additional distribution rules (within the scope of what we own, of course) other than the terms of well-known and well-understood free software licenses.</li>
+  <li>The modularity additionally allows you to re-use parts as you see fit. Want to use Fabric with different mappings? Want to use our mappings with a different mod loader? Want to use our loader to build a total conversion mod? While we will focus on building a mod ecosystem that plays nicely with each other for modpacks, we are more than happy to let you pick and choose whichever parts you need for your dream project.</li>
+  <li>Mixins are a first-class citizen - this means both that patches are done in a clean organized manner and that you get access to exactly the same mechanisms to extend and modify the game that we use.</li>
+</ul>
+
+<p>Additionally, we are very receptive to communication on our <a href="/discuss">community spaces</a>. If you have a question, would like to make a mod, a modpack or are having trouble - <strong>do not hesitate!</strong> Contact us, and we’ll help as soon as we can!</p>
+
+<p>What <em>isn’t</em> Fabric, though?</p>
+
+<ul>
+  <li>All-encompassing! While we will do everything we can to allow mods to be built on Fabric with ease and performance, there may be certain niche areas which Fabric as a project won’t cover. This is what the mixins are for, though - no point in adding an expensive hook to the API for just one mod. In addition, things like non-critical bugfixes, performance patches or behaviour changes are a better fit in separate mods.</li>
+  <li>Complete! While the API module already provides many crucial features and is allowing mods to be built on top, many areas of it are still bare-bones. All I’m saying is - what Fabric is providing now is <em>not</em> everything it hopes to provide. (If you’re an early adopter, we encourage you to discuss the features you need, possibly even temporarily add them with mixins - that way, we can all learn more about the problem domain before adding it to the API proper.)</li>
+</ul>
+
+<p>Keep in mind that we’re aiming for a stable release alongside the release of Minecraft 1.14. As such, while we feel it’s sufficiently stable for adventurous modders and early adopters (<a href="https://www.youtube.com/watch?v=tyneiz9FRMw">this</a> might give you an idea of the atmosphere in the development chatroom right now), it might be somewhat unwise to go out there and build a modpack already. (We won’t stop you if you try, though, and we’ll even help out!) Even as a modder, keep in mind documentation is being written as we speak - don’t hesitate to ask questions or point out omissions - it helps us make the project better, and we’re willing to listen.</p>
+
+<p>Now, you might be asking yourself “what mods will I be able to play on Fabric”? Well, we are on snapshot versions and development is a bit early, however, if you’re looking for mods, some should be popping up as we speak on <a href="https://minecraft.curseforge.com/mc-mods?filter-game-version=2020709689%3A7133&amp;filter-sort=2">CurseForge</a> and our community spaces - but here’s some teasers of things which are either about to be released, or perhaps are yet to come. (Note that most CurseForge-uploaded mods rely on Fabric’s API module, which might not be approved yet - you can find a working version <a href="http://maven.modmuss50.me/net/fabricmc/fabric/0.1.0.36/fabric-0.1.0.36.jar">here</a> until then.)</p>
+
+<p><img src="https://img.asie.pl/TeLw" alt="ModMenu by ProfessorProspector" /></p>
+
+<p><img src="https://i.imgur.com/q6D5d1u.png" alt="To get this far takes quite a traversal." /></p>
+
+<p><img src="https://i.imgur.com/K9F8L1G.png" alt="How well-assembled!" /></p>
+
+<p><img src="https://i.imgur.com/lurTAgQ.png" alt="Logical..." /></p>
+
+<p>Many smaller “tweak” mods are much further ahead and will be popping up very shortly.</p>
+
+<p>We will be posting regular updates showcasing the progress of both the Fabric mod toolchain and the mod ecosystem building around it. See you soon!</p>
+
+<p>Finally, I would like to use this space to thank everyone who helped Fabric grow along its journey, in no particular order and not limited to:</p>
+
+<p>3TUSK, b0undarybreaker, copygirl, DragoonAethis, fewizz, GreaseMonkey, jamierocks, kashike, liach, magik6000, marcin212, Matrix89, maxpowa, modmuss50, Nedelosk, NikkyAi, ProfessorProspector, sfPlayer1, shadowfacts, SquidDev, Thog, unascribed, Vexatos,</p>
+
+<p>the creator of Enigma, Cuchaz, and all contributors to that project, everyone who supported us through the long hours of development, everyone who gave input and advice, as well as the giants whose shoulders we stand on, too numerous to list. Finally, I would like to thank the Mojang development team for continuing to make large strides in the friendliness and quality on in-game engine code.</p>
+
+<p>If you’d like to learn more, check out the links in the header above - particularly the <a href="/discuss">discussion spaces and chatrooms</a> list, but also the <a href="/use">downloads</a> and the <a href="/wiki">wiki</a>. If you’re a developer, you might also want to check out our <a href="https://github.com/FabricMC">GitHub repositories</a>!</p>
+
+<p>asie, on behalf of the Fabric development team</p>
+
+  </div><a class="u-url" href="/2018/12/10/announcement.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

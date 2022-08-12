@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.18 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.18" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The home of the Fabric mod development toolchain." />
+<meta property="og:description" content="The home of the Fabric mod development toolchain." />
+<link rel="canonical" href="http://fabricmc.net/2021/11/30/118.html" />
+<meta property="og:url" content="http://fabricmc.net/2021/11/30/118.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-11-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.18" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2021/11/30/118.html"},"description":"The home of the Fabric mod development toolchain.","url":"http://fabricmc.net/2021/11/30/118.html","@type":"BlogPosting","headline":"Fabric for Minecraft 1.18","dateModified":"2021-11-30T00:00:00+00:00","datePublished":"2021-11-30T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.18</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-11-30T00:00:00+00:00" itemprop="datePublished">Nov 30, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="/assets/cliffs.png" alt="Cliffs" /></p>
+
+<p>Minecraft 1.18: <em>Caves &amp; Cliffs, Part 2</em> is now released, and along with it, updates for Fabric itself and many mods already.</p>
+
+<p>The release of Fabric for Minecraft 1.17 was almost 6 months ago. Since then, we have updated to all 7 experimental snapshots, 8 snapshots, 8 pre-releases, 4 release candidates, and the final release version of Minecraft 1.18.</p>
+
+<p>This blog post will go over what the 1.18 update means for both players and developers.</p>
+
+<h2 id="for-players">For Players</h2>
+
+<p>Players should use Fabric Installer 0.9.0 and Fabric Loader 0.12.5 (at the time of writing) to play on Minecraft 1.18.</p>
+
+<p>Hundreds of mods have already been updated to support 1.18 and we expect there will be many new and updated mods being released soon. We kindly ask that you be patient as mod developers update their mods.</p>
+
+<h3 id="all-of-fabric-5-modpack">All of Fabric 5 Modpack</h3>
+
+<p><img src="/assets/aof5.png" alt="AOF 5" /></p>
+
+<p>The fifth edition of the All of Fabric modpack will be available on CurseForge very soon.</p>
+
+<p>AOF5 includes a wide selection of 1.18 Fabric mods. It will continue to receive updates as mods get ported, and new mods get created.</p>
+
+<h2 id="for-mod-developers">For Mod Developers</h2>
+
+<p>Various technical changes have been made in both Minecraft and Fabric that will affect mod development for 1.18.</p>
+
+<p>As always, you can use <a href="https://fabricmc.net/versions.html">the versions page</a> to determine the recommended versions of Yarn, Fabric Loader, Fabric API, and Loom for any version of Minecraft.</p>
+
+<h3 id="java-17">Java 17</h3>
+
+<p>Once again, Minecraft has updated its Java version, this time to Java 17. This means mods can be compiled for Java 17 and use the latest features.</p>
+
+<p>While not as large a step up as the previous move to Java 16 made in 1.17, Java 17 still provides some new features that can be used, such as Sealed Classes.</p>
+
+<p>To set up a development environment you will need to use Java 17, Loom 0.10, and Gradle 7.3 or higher. If you need some help getting set up, please go to <code class="language-plaintext highlighter-rouge">#mod-dev-gradle-ides</code> on the <a href="https://discord.gg/v6v4pMv">official Discord server</a>.</p>
+
+<p>See <a href="https://github.com/FabricMC/fabric-example-mod/commit/57e84b576d24f1b80e1701d4759773234b1ee8ba">this commit</a> for an example of how the example mod was updated to accomodate this change.</p>
+
+<h3 id="fabric-api">Fabric API</h3>
+
+<p>Fabric API has been fully updated to Java 17 and 1.18.</p>
+
+<p>Since 1.17 released, we have added a number of new APIs that can be used:</p>
+<ul>
+  <li>Fluid and Item Transfer API. (Technici4n)</li>
+  <li>Tag Factory API, allows making tags for any registry (deirn)</li>
+  <li>Add sleeping events. (Juuxel)</li>
+  <li>Add flattening, stripping and tilling registries. (Juuxel)</li>
+  <li>Add a Game Test API to allow the use of Mojang’s testing framework. (modmuss50)</li>
+  <li>Add tag-based mining level API, fix and deprecate FabricBlockSetting.breakByTool. (Juuxel)</li>
+  <li>Add event phases to allow ordering between listeners. (Technici4n)</li>
+  <li>Add DimensionRenderingRegistry to register custom renderers for the sky or weather. (Waterpicker)</li>
+  <li>Add custom fluid renderers and enhanced vanilla fluid renderer customisation. (FoxShadew)</li>
+  <li>Add elytra flight API (Technici4n)</li>
+  <li>Add Oxidizable and Waxable Blocks registries (Shnupbups)</li>
+  <li>a variety of smaller or more focused additions and enhancements (<a href="https://github.com/FabricMC/fabric/commits/1.18">see GitHub</a>)</li>
+</ul>
+
+<p>Most of these new features have also been added to the 1.17 version of Fabric API.</p>
+
+<h3 id="world-generation">World Generation</h3>
+
+<p>Minecraft 1.18 overhauls many systems used in world generation. Any mods that include world generation will, as a result, need to adjust to these changes.</p>
+
+<p>If you need some help with these changes, please go to <code class="language-plaintext highlighter-rouge">#mod-dev-worldgen</code> on the <a href="https://discord.gg/v6v4pMv">official Discord server</a>.</p>
+
+<h3 id="yarn">Yarn</h3>
+
+<p>Since 1.17.1, there have been almost 200 commits to Yarn from many contributors, all working to improve coverage and quality.</p>
+
+<p>Trying to document the Minecraft codebase is a massive job, especially as it is constantly evolving. Improving the documentation provided by Yarn is an ongoing effort by all of the contributors.</p>
+
+<p>You can view the online Javadoc for 1.18 Release Candidate 4 <a href="https://maven.fabricmc.net/docs/yarn-1.18-rc4+build.1/">here</a> or inline with the decompiled and named Minecraft sources directly attached in your IDE.</p>
+
+  </div><a class="u-url" href="/2021/11/30/118.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

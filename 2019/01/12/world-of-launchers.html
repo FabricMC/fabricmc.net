@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Status Update - 19w02a and the world of launchers | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Status Update - 19w02a and the world of launchers" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I am glad to report that Fabric’s development is moving steadily." />
+<meta property="og:description" content="I am glad to report that Fabric’s development is moving steadily." />
+<link rel="canonical" href="http://fabricmc.net/2019/01/12/world-of-launchers.html" />
+<meta property="og:url" content="http://fabricmc.net/2019/01/12/world-of-launchers.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-01-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Status Update - 19w02a and the world of launchers" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2019/01/12/world-of-launchers.html"},"description":"I am glad to report that Fabric’s development is moving steadily.","url":"http://fabricmc.net/2019/01/12/world-of-launchers.html","@type":"BlogPosting","headline":"Status Update - 19w02a and the world of launchers","dateModified":"2019-01-12T00:00:00+00:00","datePublished":"2019-01-12T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Status Update - 19w02a and the world of launchers</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-01-12T00:00:00+00:00" itemprop="datePublished">Jan 12, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I am glad to report that Fabric’s development is moving steadily.</p>
+
+<p>Despite a few minor hiccups, we have updated to 19w02a within a few hours of release. Simple mods worked fine after the update, but - as the “container/inventory” system was refactored - most mods adding
+machine/storage blocks required an update.</p>
+
+<p>There have also been some interesting mod releases worth highlighting:</p>
+
+<ul>
+  <li><a href="https://minecraft.curseforge.com/projects/roughly-enough-items">Roughly Enough Items</a> serves as a TMI/NEI/JEI replacement for the community as it currently stands,</li>
+  <li><a href="https://minecraft.curseforge.com/projects/clothesline-fabric">Clothesline</a> is a port of a niche and interesting <del>item transport mod</del>,</li>
+  <li><a href="https://minecraft.curseforge.com/projects/infraredstone-fabric">InfraRedstone</a> is a different take on extending the vanilla redstone system,</li>
+  <li><a href="https://minecraft.curseforge.com/projects/sewingkit">SewingKit</a> is a barebones port of CraftTweaker,</li>
+  <li><a href="https://minecraft.curseforge.com/projects/loading-spice">Loading Spice</a> is a mod which adds loading progress information to the game!</li>
+</ul>
+
+<p>However, what I’d like to talk about in this blog post is our progress regarding launcher compatibility. As you know, there are many launchers available for the game. For now, let’s
+look at where we are, one month after launch - as you might remember, back then the only viable option was a MultiMC instance.</p>
+
+<h2 id="local-launchers">Local Launchers</h2>
+
+<p>First, I shall start with “local launchers”. Those are launchers which generally aim to be used for playing the game and building your own personal modpacks.</p>
+
+<h3 id="multimc">MultiMC</h3>
+
+<p>MultiMC, due to its widespread usage among the modding community and powerful “patches” system, has been the first publicly available solution, based on the download of a “template” modpack providing a given version of
+the Fabric Loader. It is not an ideal solution (updating Fabric Loader requires manually editing the .JSON, replacing it, or creating a new modpack and copying mods over), but it is sufficiently intuitive for now.</p>
+
+<h3 id="vanilla">Vanilla</h3>
+
+<p>Many users, however, prefer to load the game using the official “vanilla” launcher. While it took us some time, an installer for creating vanilla profiles of Fabric has been availble for a while now! It works in a
+similar way to how vanilla profile installers usually work, so there’s nothing unexpected here.</p>
+
+<h3 id="magic-launcher">Magic Launcher</h3>
+
+<p>haha no</p>
+
+<h2 id="remote-launchers">Remote Launchers</h2>
+
+<p>Next up, “remote launchers”, or ones which are commonly used for installing and updating remotely maintained modpacks.</p>
+
+<h3 id="mcupdater">MCUpdater</h3>
+
+<p><a href="https://mcupdater.com/">MCUpdater</a>’s philosophy and longevity prepared it for being supported by just about any mod loader configuration possible, and Fabric was no exception. As such, it is very easy
+to create an MCUpdater modpack utilizing Fabric (<a href="https://fabricmc.net/wiki/modpack:mcupdater">tutorial</a>) and I can highly recommend it.</p>
+
+<p>While the current support is “second-class”, a development branch contains built-in support for building a Fabric modpack directly in FastPack without any further XML editing. Stay tuned!</p>
+
+<h3 id="skcraft-launcher">SKCraft Launcher</h3>
+
+<p>It appears that SKCraft’s Launcher should not require any further modification, however its 1.13+ support is <a href="https://github.com/SKCraft/Launcher/pull/270">still pending</a>. As such, it is
+not yet supported.</p>
+
+<h3 id="technic-launcher-solder">Technic Launcher (Solder)</h3>
+
+<p>A similar approach to SKCraft can be used to build Fabric modpacks using Solder, however the Technic team is not planning to support snapshot releases of Minecraft - as such, we will
+only find out if that’s the case when 1.14 stabilizes.</p>
+
+<h3 id="atlauncher">ATLauncher</h3>
+
+<p>Unfortunately, I do not know the specifics of ATLauncher’s modpack format, and my attempt at approaching the team about it has failed. As such, it is currently not supported.</p>
+
+<h3 id="twitch-launcher">Twitch Launcher</h3>
+
+<p>Being the launcher with by far the largest “mindshare”, its support of Fabric is a <a href="https://twitch.uservoice.com/forums/915910-game-mods-curseforge/suggestions/36229021-more-modloader-support-across-curse-without-being#comments">common request</a> among the community,
+with some even going as far as to attempt unofficial solutions (not unlike Meddle did back in the day). According to the UserVoice page’s administration, the issue is being looked into officially, but that is all we know right now.</p>
+
+<h2 id="other-tools">Other Tools</h2>
+
+<p>There are also modpack creation tools which don’t quite fit in any of those categories, but are worth a mention.</p>
+
+<h3 id="voodoo">Voodoo</h3>
+
+<p><a href="https://github.com/elytra/Voodoo">Voodoo</a> is a tool allowing you to programatically create and automate modpack building using Kotlin-based definition files.</p>
+
+<p>As far as I know, Nikky is interested in adding Fabric support to Voodoo - stay tuned!</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>The situation right now is as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Launcher</th>
+      <th>Usable</th>
+      <th>Compatible in theory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>MultiMC</td>
+      <td><strong>Yes</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>Vanilla</td>
+      <td><strong>Yes</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>MCUpdater</td>
+      <td><strong>Yes</strong></td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>SKCraft</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>Technic/Solder</td>
+      <td>No</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>ATLauncher</td>
+      <td>No</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <td>Twitch</td>
+      <td>No</td>
+      <td>Unknown</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It is likely that SKCraft will receive compatibility as soon as the relevant pull request is merged, whereas Technic/Solder should be supported as soon as a stable release of 1.14 is out.
+Whether or not ATLauncher or the Twitch Launcher will be fully supported currently remains unknown.</p>
+
+<p>If you’re a launcher developer who would like to ensure Fabric works with their system, don’t hesitate to contact us via one of the <a href="/discuss">community spaces</a>! We’ll be glad to help.
+In addition, you might want to study the list of <a href="/wiki/modpack:endpoints">existing download endpoints</a>.</p>
+
+  </div><a class="u-url" href="/2019/01/12/world-of-launchers.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

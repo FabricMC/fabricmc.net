@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric Loader 0.12 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric Loader 0.12" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily." />
+<meta property="og:description" content="This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily." />
+<link rel="canonical" href="http://fabricmc.net/2021/10/03/loader-0120.html" />
+<meta property="og:url" content="http://fabricmc.net/2021/10/03/loader-0120.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-03T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric Loader 0.12" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2021/10/03/loader-0120.html"},"description":"This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily.","url":"http://fabricmc.net/2021/10/03/loader-0120.html","@type":"BlogPosting","headline":"Fabric Loader 0.12","dateModified":"2021-10-03T00:00:00+00:00","datePublished":"2021-10-03T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric Loader 0.12</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-10-03T00:00:00+00:00" itemprop="datePublished">Oct 3, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily.</p>
+
+<p>Fabric Loader 0.12 is not yet available through the normal means, see below for how to get it.</p>
+
+<h4 id="changelog">Changelog</h4>
+<ul>
+  <li>added support for the bundler based server distribution introduced by the MC snapshot 21w39a (Player)</li>
+  <li>added support for global access wideners (shartte)</li>
+  <li>added ObjectShare mechanism for mods to interact indirectly (Player)</li>
+  <li>changed package structure for clear api/implementation split, may break some mods that use internals beyond what is now provided by legacy support API (Player)</li>
+  <li>changed project structure to isolate MC specific code, runtime test dependencies and legacy API (modmuss50)</li>
+  <li>fixed mod dependency inspection API and made it more useful (Player)</li>
+  <li>updated Mixin (modmuss50, Player)</li>
+  <li>added Mixin backwards compatibility mechanism, Mixin behavior will depend on the minimum fabricloader version requested by the mod’s dependency definition (Player)</li>
+  <li>changed mod discovery for better reliability, speed and memory efficiency (Player)</li>
+  <li>added <code class="language-plaintext highlighter-rouge">fabric.addMods</code> system property and argument to configure additional mod sources: individual jar files, directories containing jars, directories representing an extracted mod or <code class="language-plaintext highlighter-rouge">@</code>-prefixed files listing the previous one line at a time (Player)</li>
+  <li>changed mod resolution to gracefully handle multiple instances of the same mod, produce better errors, give mod dependency issue guidance, handle nested jars properly and allow for more customization (Player)</li>
+  <li>changed mod load order to be random in-dev (see <code class="language-plaintext highlighter-rouge">fabric.debug.disableModShuffle</code> system property) and explicitly sorted by mod id in production (not a specification, may change without notice) (Player)</li>
+  <li>added system property <code class="language-plaintext highlighter-rouge">fabric.debug.loadLate</code> to work around mod load order bugs (Player)</li>
+  <li>added <code class="language-plaintext highlighter-rouge">fabric.debug.throwDirectly</code> system property to let errorneous entrypoints fail immediately, helps debugging them through isolation (Player)</li>
+  <li>changed exposing the game and its libraries to be as late as possible to prevent accidental too-early accesses (Player)</li>
+  <li>dropped most library dependencies to avoid conflicts with the game (modmuss50, Player)</li>
+  <li>added exception display to the error screen and made it show for crashes too early for MC to normally display by itself (Chocohead)</li>
+  <li>added error screen support for MacOS (Player)</li>
+  <li>fixed various MacOS error screen issues including the dock icon, title, dark mode, stuck on close (modmuss50)</li>
+  <li>fixed normalization of special MC versions like combat test, april fools or experimental releases (Chocohead)</li>
+  <li>various smaller changes and fixes</li>
+</ul>
+
+<h2 id="how-to-test">How to test</h2>
+
+<p>Due to the size of the changes we are releasing this version in stages, once we are happy everything is working we will release it to everyone. If you do find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabric-loader/issues">Github Repository</a>.</p>
+
+<p>Initially the installer won’t offer Loader 0.12 by itself, it has to be installed as follows:</p>
+
+<ol>
+  <li>Go to <a href="https://fabricmc.net/use/">https://fabricmc.net/use/</a>.</li>
+  <li>Click “Show other versions” and select <code class="language-plaintext highlighter-rouge">0.8.0</code>, download the installer</li>
+  <li>Download Fabric Loader 0.12.0 from here: <a href="https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.12.0/fabric-loader-0.12.0.jar">fabric-loader-0.12.0.jar</a></li>
+  <li>Run the installer and go to the Client or Server tab as desired</li>
+  <li>Select the desired Minecraft version as usual</li>
+  <li>Select <code class="language-plaintext highlighter-rouge">(select custom)</code> at the very bottom of the Loader Version list</li>
+  <li>Configure anything else as desired and start the install as usual by using the Install button</li>
+  <li>The installer will now ask for the Fabric Loader JAR, provide it with the one downloaded in step 3</li>
+</ol>
+
+<p>A Fabric Installer version older than 0.8.0 will not support this procedure.</p>
+
+<h4 id="mod-developers">Mod Developers</h4>
+
+<ol>
+  <li>Ensure you are using Loom 0.7 or higher. Loom 0.10 is required to use transitive access wideners and develop on 1.18 snapshots.</li>
+  <li>Change your loader version in <code class="language-plaintext highlighter-rouge">gradle.properties</code> to be <code class="language-plaintext highlighter-rouge">0.12.0</code> and reload your gradle project.</li>
+</ol>
+
+<h2 id="mod-resolution-changes">Mod resolution changes</h2>
+
+<p>Fabric Loader 0.12.0 will no longer refuse multiple versions of the same mod, some but not all of these may even have unmet dependencies. It will select the latest compatible version if more than one option is present.</p>
+
+<p>If mod resolution fails due to unmet dependencies Loader will now try to compute a possible solution in addition to only stating what the issue was. It also tries to come up with a much better error message than before, unhelpful “empty clause” errors should be gone.</p>
+
+<h2 id="fabricdebugloadlate"><code class="language-plaintext highlighter-rouge">fabric.debug.loadLate</code></h2>
+
+<p>Sometimes mods make false assumptions about the load order of mods, which limits their compatibility unintentionally. Mod load order is not specified and depends on implementation details that may change with a Fabric Loader release. Version 0.12 is one of these and it is impractical to emulate the old behavior.</p>
+
+<p>We have added a workaround for load order bugs in the form of the <code class="language-plaintext highlighter-rouge">fabric.debug.loadLate</code> system property, which will delay the specified mods to load later than all other mods. For example, if <code class="language-plaintext highlighter-rouge">someMod</code> required a block from another mod that’s being created in the same startup phase, adding <code class="language-plaintext highlighter-rouge">-Dfabric.debug.loadLate=someMod</code> moves <code class="language-plaintext highlighter-rouge">someMod</code> behind all other mods, including the one supplying the block it needs.</p>
+
+<h2 id="fabricaddmods"><code class="language-plaintext highlighter-rouge">fabric.addMods</code></h2>
+
+<p>Fabric Loader normally loads mods from the mods directory, the <code class="language-plaintext highlighter-rouge">fabric.addMods</code> system property or game argument allows specifying more. It takes a list of paths separated by the operation system specific path separator (<code class="language-plaintext highlighter-rouge">;</code> on Windows, <code class="language-plaintext highlighter-rouge">:</code> elsewhere).</p>
+
+<p>Supported options for the paths are:</p>
+<ul>
+  <li>mod jar location</li>
+  <li>directory location containing mod jars (searched recursively)</li>
+  <li>directory location containing an unpacked mod (for development purposes, detected by the presence of fabric.mod.json)</li>
+  <li>mod list file location prefixed by <code class="language-plaintext highlighter-rouge">@</code>, e.g. <code class="language-plaintext highlighter-rouge">-Dfabric.addMods=@/path/to/extraMods.txt</code></li>
+</ul>
+
+<p>A mod list file contains any of the above supported paths except another mod list file, one per line.</p>
+
+<p>Paths can be absolute or relative to the working directory.</p>
+
+<h2 id="mixin-compatibility">Mixin compatibility</h2>
+
+<p>Mixin has been changing its implementation in such a way that mixins that are correct and working on one version may no longer work correctly or at all in a newer version. This was necessary to fix bugs in its local variable detection logic.</p>
+
+<p>Fabric adds a mechanism to emulate the Mixin behavior bundled with the least Loader version a mod depends upon. If the mod requires an old Loader version (or none at all), its Mixins will be processed in line with the old Mixin behavior. If it however depends on Loader 0.12.0, which comes with Fabric Mixin 0.10.2+mixin.0.8.4, it’ll use the native behavior that comes with that release and currently represents the latest&amp;greatest.</p>
+
+<p>Mods are highly encouraged to declare the minimum Fabric Loader dependency to reflect the minimum version they were tested against. If they need the latest Mixin behavior and fixes, they also need to depend on the latest fabricloader version explicitly.</p>
+
+<p>For Fabric Loader 0.12.0 this can be done as follows:</p>
+
+<ol>
+  <li>In the <code class="language-plaintext highlighter-rouge">fabric.mod.json</code> add the following dependency</li>
+</ol>
+
+<pre><code class="language-json=">"depends": {
+   "fabricloader": "&gt;=0.12.0"
+}
+</code></pre>
+
+<p>The lack of suitable dependency declaration will always force-enable legacy behavior for the respective mod! This is undesirable for newly developed mods, but keeps older mods working.</p>
+
+<h2 id="objectshare"><code class="language-plaintext highlighter-rouge">ObjectShare</code></h2>
+
+<p>The object share is very similar to a String-indexed Java <code class="language-plaintext highlighter-rouge">Map</code> with arbitrary values. It offers the usual <code class="language-plaintext highlighter-rouge">get</code>/<code class="language-plaintext highlighter-rouge">put</code>/<code class="language-plaintext highlighter-rouge">putIfAbsent</code>/<code class="language-plaintext highlighter-rouge">remove</code> operations and additionally <code class="language-plaintext highlighter-rouge">whenAvailable</code> to listen for additions in cases without clear ordering.</p>
+
+<p>Its primary purpose is inter-mod communication. One mod can put some data into it, another mod can pull it back out. Active interactions are possible by publishing and using objects with interfaces like <code class="language-plaintext highlighter-rouge">Function</code> or <code class="language-plaintext highlighter-rouge">Consumer</code>.</p>
+
+<p>Contrary to any regular API the object share allows mod interaction without even a compile time dependency, removing friction for simple purposes. This case requires commonly available types/interfaces like the ones provided by Java, Minecraft or Fabric API (String, Integer, List, Map, Identifier, NbtCompound, Event, …). Custom types are of course still possible, but don’t carry these benefits.</p>
+
+  </div><a class="u-url" href="/2021/10/03/loader-0120.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

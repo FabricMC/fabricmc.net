@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>June Status Update | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="June Status Update" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The home of the Fabric mod development toolchain." />
+<meta property="og:description" content="The home of the Fabric mod development toolchain." />
+<link rel="canonical" href="http://fabricmc.net/2020/06/08/jun-status-update.html" />
+<meta property="og:url" content="http://fabricmc.net/2020/06/08/jun-status-update.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-06-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="June Status Update" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2020/06/08/jun-status-update.html"},"description":"The home of the Fabric mod development toolchain.","url":"http://fabricmc.net/2020/06/08/jun-status-update.html","@type":"BlogPosting","headline":"June Status Update","dateModified":"2020-06-08T00:00:00+00:00","datePublished":"2020-06-08T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">June Status Update</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2020-06-08T00:00:00+00:00" itemprop="datePublished">Jun 8, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><img src="https://i.imgur.com/B3zWLoL.jpg" alt="" /></p>
+
+<p>1.16 pre-releases have begun, and with it comes a new wave of updates for the Fabric toolchain. There are several new key things you should be aware of, including breaking changes from the base game, new Fabric API features, and faster versions of developer tools.</p>
+
+<p>Now is a great time to start thinking about updating your mods to the 1.16 pre-releases as it will allow a fast and smooth transition to the full 1.16 release.</p>
+
+<p>A more player-focused blog post will be released alongside the Minecraft 1.16 official release. In the meanwhile feel free to join the <a href="https://discord.gg/v6v4pMv">Discord Server</a> to see some of the awesome mods and creations people are making!</p>
+
+<h2 id="improvements">Improvements</h2>
+
+<p>Fabric has received a large number of improvements and bug fixes over the last few months, which will greatly improve the developer experience. Most of these contributions came from members of the community via pull requests.</p>
+
+<h3 id="loom">Loom</h3>
+
+<p>Loom is the Gradle plugin used by all fabric mods to make setting up a development environment easier, and building a releasable  jar as painless as possible</p>
+
+<p>Loom 0.4 brings performance improvements, new features, and bug fixes to the table. One of the greatest improvements to Loom from the past few months is support for multi-threading in several operations, which greatly improves speed. A test on medium-tier hardware<sup>1</sup> reveals a 600%+ speed improvement on <code class="language-plaintext highlighter-rouge">genSources</code> between Loom <code class="language-plaintext highlighter-rouge">0.2.7-SNAPSHOT</code>, which took 3m4s, and the most recent version, <code class="language-plaintext highlighter-rouge">0.4-SNAPSHOT</code>, which took an incredible 27s.</p>
+
+<p>Improvements were also made with startup times: all dependencies are now remapped at once instead of one by one. This saved over 30 seconds during testing and was made possible through improvements to <a href="https://github.com/FabricMC/tiny-remapper">tiny-remapper</a>.</p>
+
+<h4 id="updating-loom">Updating Loom</h4>
+
+<p>Updating your projects to use a newer version of Loom is easy! Locate the area at the top of your <code class="language-plaintext highlighter-rouge">build.gradle</code> file where you pull Fabric Loom as a plugin:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s1">'fabric-loom'</span> <span class="n">version</span> <span class="s1">'0.2.7-SNAPSHOT'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Replace the existing version with your target version. In this example, we will update to <code class="language-plaintext highlighter-rouge">0.4-SNAPSHOT</code>:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plugins</span> <span class="o">{</span>
+    <span class="n">id</span> <span class="s1">'fabric-loom'</span> <span class="n">version</span> <span class="s1">'0.4-SNAPSHOT'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can view how the <a href="https://github.com/FabricMC/fabric-example-mod">Fabric Example Mod</a> was updated <a href="https://github.com/FabricMC/fabric-example-mod/commit/8d952c922d566bd386d76108c222baa2e2cc5d33">here</a>.</p>
+
+<hr />
+
+<h3 id="yarn">Yarn</h3>
+
+<p><a href="https://github.com/FabricMC/yarn">Yarn</a> has continued to progress at a rapid rate throughout the 1.16 snapshot cycle and grows ever closer to 100% mapping coverage. As of 1.16-pre2, yarn statistics are as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Progress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Classes</td>
+      <td>100%</td>
+    </tr>
+    <tr>
+      <td>Methods</td>
+      <td>95.71%</td>
+    </tr>
+    <tr>
+      <td>Fields</td>
+      <td>95.54%</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="big-renames">Big Renames</h4>
+
+<p>Based on developer feedback, some larger-scale class renames have been applied to 1.16 yarn:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Previous Name</th>
+      <th>New Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>BasicInventory</td>
+      <td><a href="https://github.com/FabricMC/yarn/pull/1364">SimpleInventory</a></td>
+    </tr>
+    <tr>
+      <td>Container</td>
+      <td><a href="https://github.com/FabricMC/yarn/pull/1106">ScreenHandler</a></td>
+    </tr>
+    <tr>
+      <td>ContainerScreen</td>
+      <td><a href="https://github.com/FabricMC/yarn/pull/1106/files">HandledScreen</a></td>
+    </tr>
+    <tr>
+      <td>IWorld</td>
+      <td><a href="https://github.com/FabricMC/yarn/pulls?q=is%3Apr+is%3Aclosed+WorldAccess">WorldAccess</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>You can automatically update your mods source code to the new names using Loom’s <code class="language-plaintext highlighter-rouge">migrateMappings</code> task. You can contribute to yarn by visiting the <a href="https://github.com/FabricMC/yarn">GitHub repository</a>.</p>
+
+<p>A big thanks goes out to over 30 contributors who have helped create these mappings since the first 1.16 snapshot!</p>
+
+<hr />
+
+<h3 id="fabric-api">Fabric (API)</h3>
+
+<p><a href="https://github.com/FabricMC/fabric">Fabric API</a>, the core library that powers a lot of Fabric mods, has received numerous updates over the past 6 months. It has been updated weekly since the beginning of February for the 1.16 snapshots, covering 16 snapshot versions and 2 pre-releases, as of the start of June. A lot of the mentioned changes below are also in the 1.14 and 1.15 builds.</p>
+
+<h4 id="villager-profession-api">Villager Profession API</h4>
+
+<p><a href="https://github.com/FabricMC/fabric/pull/493">i509VCB’s Villager Profession API</a>, which eases the creation of Villager Professions and Point of Interests, was recently merged into Fabric API.</p>
+
+<h4 id="object-builders">Object Builders</h4>
+
+<p>The Object Builders module has successfully transitioned from <a href="https://github.com/FabricMC/fabric/pull/537">v0 to v1</a> thanks to the efforts of i509VCB and others, paving the way for more API utilities in the future.</p>
+
+<h4 id="nether-biome-api">Nether Biome API</h4>
+
+<p>The first 1.16 snapshot, 20w06a, which was released on February 5th, was quickly followed by <a href="https://github.com/FabricMC/fabric/pull/496">SuperCoder7979’s Nether Biome API</a> on the 6th. This API allows developers to easily add their custom biomes to the Nether.</p>
+
+<h4 id="improved-commands-api">Improved Commands API</h4>
+
+<p>The original API used to add commands was one of the oldest modules in fabric and was due a refresh to bring it upto date. Thanks to i509VCB <a href="https://github.com/FabricMC/fabric/pull/539">Fabric Command API v1</a> was added while maintaining backwards compatibility for existing mods.</p>
+
+<h4 id="tool-attributes">Tool Attributes</h4>
+
+<p>The new <a href="https://github.com/FabricMC/fabric/pull/460">tool attribute</a> module is designed to replace the old mining level module. As with the other modules backwards compatibility was kept for older mods. Thanks to Boundarybreaker and shedaniel for helping with this.</p>
+
+<h4 id="other-changes">Other Changes</h4>
+
+<p>There are too many changes to list in detail, bellow are links to some smaller changes that are also included:</p>
+
+<ul>
+  <li><a href="https://github.com/FabricMC/fabric/pull/640">Various Indigo fixes</a> (grondag)</li>
+  <li><a href="https://github.com/FabricMC/fabric/pull/601">Model predicate provider registry</a> (liach)</li>
+  <li><a href="https://github.com/FabricMC/fabric/pull/593">Restart testmods</a> (modmuss50)</li>
+  <li><a href="https://github.com/FabricMC/fabric/pull/563/">Builtin item renderer registry</a> (Juuxel)</li>
+  <li><a href="https://github.com/FabricMC/fabric/pull/525">Improvements to the registry sync</a> (modmuss50)</li>
+  <li><a href="https://github.com/FabricMC/fabric/pull/568">Entity attribute registry</a> (liach)</li>
+</ul>
+
+<h4 id="breaking-changes">Breaking Changes</h4>
+
+<p>Despite our best efforts, some parts of Fabric API will be broken with the 1.16 update. The most notable change is in <strong><code class="language-plaintext highlighter-rouge">FabricDimensionType</code></strong> due to the conversion of dimensions and dimension types to being data-driven. We are not currently sure what can be kept and what must be removed. <code class="language-plaintext highlighter-rouge">fabric-climbable-api-v1</code> has also been removed, as it was purely a backport of 1.16’s <code class="language-plaintext highlighter-rouge">minecraft:climbable</code> tag.</p>
+
+<p>Some of the modules originally developed targeting 1.16 have already been backported to 1.15, like the new version 1 of Fabric Object Builders.</p>
+
+<hr />
+
+<h3 id="enigma">Enigma</h3>
+
+<p><a href="https://github.com/FabricMC/enigma">Enigma</a> is the tool that is used to map out the Minecraft codebase. Over the last few months, members of the community have worked hard to improve it in <em>many</em> areas.</p>
+
+<h4 id="gui-improvements">GUI Improvements</h4>
+
+<p>2xsaiko has worked hard to bring one of the most requested features to Enigma: <a href="https://github.com/FabricMC/Enigma/pull/238">Tab support</a>! You can now open multiple files at the same time, resulting in faster workflows and an overall better experience.</p>
+
+<p><img src="https://i.imgur.com/7iTKHzs.png" alt="" /></p>
+
+<h4 id="multiplayer">Multiplayer</h4>
+
+<p>Earthcomputer worked on a fun <a href="https://github.com/FabricMC/Enigma/pull/221">pull request to add multiplayer support</a>, or as he puts it, “<del>battle royale</del> real-time collab support”.</p>
+
+<p>To access this feature, open a jar in Enigma, and click the <em>Collab</em> option at the top of the screen:</p>
+
+<p><img src="https://i.imgur.com/CedYVnt.png" alt="" /></p>
+
+<h4 id="modularity">Modularity</h4>
+
+<p>Runemoro <a href="https://github.com/FabricMC/Enigma/pull/242">split the code base of Enigma</a> into 4 distinct sections. The new 4 modules of Enigma include <code class="language-plaintext highlighter-rouge">enigma</code>, <code class="language-plaintext highlighter-rouge">enigma-swing</code>, <code class="language-plaintext highlighter-rouge">enigma-server</code>, and <code class="language-plaintext highlighter-rouge">enigma-cli</code>. This will make it easier to continue to improve enigma as well as write tools that use parts of it.</p>
+
+<h2 id="modfest">ModFest</h2>
+
+<p>The 1.15 <a href="https://modfest.net/1.15/entries/">ModFest</a> event, which ran from March 28<sup>th</sup> to April 5<sup>th</sup>, will be followed by another ModFest centered around 1.16. ModFest 1.16 runs from <strong>June 12<sup>th</sup></strong> and <strong>June 21<sup>st</sup></strong>, 2020. You can stay up to date on ModFest news by joining the <a href="https://discord.gg/gn543Ee">ModFest Discord server</a>. The player blog post, which will arrive in the near future, will further document the results of the ModFest 1.15.</p>
+
+<h3 id="notes">Notes</h3>
+<ol>
+  <li>Tests were performed on an RX 590 with a Ryzen 3600 and 16GB allocated to IntelliJ IDEA under standard conditions.</li>
+</ol>
+
+  </div><a class="u-url" href="/2020/06/08/jun-status-update.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

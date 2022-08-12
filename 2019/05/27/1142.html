@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.14.2 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.14.2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Fabric is out for Minecraft 1.14.2, giving us access to more performance improvements and bugfixes! (However, Mojang has already confirmed that this is not their final word on the matter.)" />
+<meta property="og:description" content="Fabric is out for Minecraft 1.14.2, giving us access to more performance improvements and bugfixes! (However, Mojang has already confirmed that this is not their final word on the matter.)" />
+<link rel="canonical" href="http://fabricmc.net/2019/05/27/1142.html" />
+<meta property="og:url" content="http://fabricmc.net/2019/05/27/1142.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.14.2" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2019/05/27/1142.html"},"description":"Fabric is out for Minecraft 1.14.2, giving us access to more performance improvements and bugfixes! (However, Mojang has already confirmed that this is not their final word on the matter.)","url":"http://fabricmc.net/2019/05/27/1142.html","@type":"BlogPosting","headline":"Fabric for Minecraft 1.14.2","dateModified":"2019-05-27T00:00:00+00:00","datePublished":"2019-05-27T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.14.2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2019-05-27T00:00:00+00:00" itemprop="datePublished">May 27, 2019
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Fabric is out for Minecraft 1.14.2, giving us access to more performance improvements and bugfixes! (However, Mojang has already confirmed that this is not <a href="https://twitter.com/slicedlime/status/1132210996582506496">their final word on the matter</a>.)</p>
+
+<p>Apologies for the post being a little rushed, I’m rather busy today - but here are the highlights of Fabric development so far!</p>
+
+<h2 id="users">Users</h2>
+
+<h3 id="mods">Mods</h3>
+
+<p>1.14.1 -&gt; 1.14.2 is a much less invasive update than 1.14 -&gt; 1.14.1 was, so most mods should either already be updated or just work with their 1.14.1/1.14.2-pre builds.</p>
+
+<h2 id="developers">Developers</h2>
+
+<p>I’ve already touched on the developer-side improvements to Loom and Loader in <a href="https://fabricmc.net/2019/05/24/loader-048.html">the previous blog post</a>, so I’ll refrain from repeating myself here.</p>
+
+<h3 id="fabric-api-030">Fabric API 0.3.0</h3>
+
+<p>Finally - after way too long, we’re marking Fabric API 0.3.0 as a non-test build. What are the changes, from Fabric API 0.2.x?</p>
+
+<p>The biggest one is <em>modularization</em>. In short, instead of being one big blob of patches, the API is now a collection of small, purpose-specific patch submodules. For now, this means that it’s easier to replace and update them as needed and that mods with small requirements can just bundle the submodules they need - but there is more we want to achieve with this functionality, especially come the 1.15 cycle. Stay tuned! (It should also help maintain the speed of the snapshot cycle as the API grows.)</p>
+
+<p>The second biggest feature is <em>the renderer API</em>. It is our response to the need for extending the powers of static block and item rendering, and after long weeks of consulting and improvements it has finally made it into the “core”.</p>
+
+<p>What does it let you do? In general, it allows a “renderer” to be registered and mods to interface with it using an API that extends the vanilla model/static rendering system. This way, the “renderer” can process and handle modded quads and models in the most efficient and optimal manner for itself, while mods can use a common API without fear of incompatibilities. There are currently two renderers available:</p>
+
+<ul>
+  <li>Indigo; this one is bundled with Fabric. It’s designed for being minimally invasive (OptiFine almost didn’t break it) and trying to expose exactly what vanilla’s engine allows for.</li>
+  <li>Canvas; this is a third-party renderer by Grondag, which rewrites the static rendering system to use a shader pipeline. It also exposes additional functionality via an extension API called FREX, such as custom GLSL shader materials or the ability to have multiple textures applied to the same quad.</li>
+</ul>
+
+<p>However, alongside this, we have added many features and bugfixes!</p>
+
+<ul>
+  <li>[fabric-item-groups] Added translations (Bulgarian, German, Polish, Chinese).</li>
+  <li>[fabric-networking] Fixed ByteBuf buffer leaks.</li>
+  <li>[fabric-object-builders] Refactored FabricBlockSettings, added FabricMaterialBuilder for easy access to other material flags.</li>
+  <li>[fabric-rendering-fluids] New module, allowing for hooking the vanilla fluid renderer with custom texturing.</li>
+  <li>[fabric-textures] Add proper support for registering sprite registration callbacks to specific, non-block sprite atlases (such as the particle sprite atlas).</li>
+</ul>
+
+<p>There are many more modules in the pipeline, extending the available hooks in regards to biomes, particles, loot tables, registry events and more - so stay tuned!</p>
+
+  </div><a class="u-url" href="/2019/05/27/1142.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://fabricmc.net/" rel="alternate" type="text/html" /><updated>2022-08-12T10:01:58+00:00</updated><id>http://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.19</title><link href="http://fabricmc.net/2022/06/07/119.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19" /><published>2022-06-07T00:00:00+00:00</published><updated>2022-06-07T00:00:00+00:00</updated><id>http://fabricmc.net/2022/06/07/119</id><content type="html" xml:base="http://fabricmc.net/2022/06/07/119.html">&lt;p&gt;Minecraft 1.19: &lt;em&gt;The Wild Update&lt;/em&gt; is now released, and along with it, updates for Fabric itself and many mods already.&lt;/p&gt;
+
+&lt;h2 id=&quot;for-players&quot;&gt;For Players&lt;/h2&gt;
+
+&lt;p&gt;Players should use Fabric Installer 0.11.0 and Fabric Loader 0.14.6 (at the time of writing) to play on Minecraft 1.19.&lt;/p&gt;
+
+&lt;p&gt;Plenty of mods have already updated to 1.19 already, and we expect many more to be on the way. Please be patient as mod developers dedicate some of their free time to updating their mods to this new version.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes-for-mod-developers&quot;&gt;Fabric Changes For Mod Developers&lt;/h2&gt;
+
+&lt;p&gt;Developers should use Loom 0.12 (at the time of writing) to develop for Minecraft 1.19.&lt;/p&gt;
+
+&lt;p&gt;Minecraft 1.19 introduces several code changes to major developer-facing APIs. In addition, Fabric has introduced several new ways for mod developers to safely develop server-side mods without accidentally relying on client-exclusive code.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-fabric-api-features&quot;&gt;New Fabric API features&lt;/h3&gt;
+&lt;p&gt;Fabric API added many features since the last update blog post:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Data Generation: easily generate JSON files for blocks, recipes, advancements, etc… (modmuss50)&lt;/li&gt;
+  &lt;li&gt;Entity API Lookup: flexible retrieval of object instances from entities. (deirn)&lt;/li&gt;
+  &lt;li&gt;Resource Conditions: only enable select recipes, advancements, etc… when specific conditions are met. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Transitive Access Widener module: directly use many private/protected classes and methods in vanilla. (Juuxel)&lt;/li&gt;
+  &lt;li&gt;FluidVariant Attributes: define and access name, temperature, etc… of fluids. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Convention Tags: define standard tags that Fabric mods can use, and register vanilla entries to them. (dexman545)&lt;/li&gt;
+  &lt;li&gt;Loot API v2: replacement for the Loot Table API v1, with many improvements. The new version uses interface injection and transitive access wideners to implement most of its functionalities. Additionally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootTableLoadingCallback&lt;/code&gt; was replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootTableEvents.REPLACE&lt;/code&gt; event (for replacing an entire loot table) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootTableEvents.MODIFY&lt;/code&gt; event (for modifying part of a loot table). &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REPLACE&lt;/code&gt; runs before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MODIFY&lt;/code&gt;, and if one mod replaces a loot table, the callback loop will exit early and no other mod can replace the loot table. (Juuxel)&lt;/li&gt;
+  &lt;li&gt;Message API (experimental): server-side manipulation of messages sent to players. (apple502j)&lt;/li&gt;
+  &lt;li&gt;And many smaller features and bug fixes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;deprecated-fabric-api-modules&quot;&gt;Deprecated Fabric API Modules&lt;/h3&gt;
+&lt;p&gt;Fabric API modules that are deprecated (including the aforementioned Loot Table API v1, and the Command API v1) are no longer present in the default Maven artifact. Mods that wish to build against those modules must now depend on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.fabricmc.fabric-api:fabric-api-deprecated&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file for them to build successfully:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;modImplementation&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This should not impact players in any way, as the jar that is downloaded from CurseForge and Modrinth still contains all the modules.&lt;/p&gt;
+
+&lt;h3 id=&quot;class-loader-isolation-and-mixins&quot;&gt;Class Loader Isolation and Mixins&lt;/h3&gt;
+&lt;p&gt;Fabric Loader 0.14 improves class loader isolation. This allows Mixins to apply to libraries that the game uses, such as Brigadier, DataFixerUpper, or Authlib. Mods using workarounds to allow mixins to apply to such libraries should remove the workaround.&lt;/p&gt;
+
+&lt;h3 id=&quot;split-client-and-common-code&quot;&gt;Split Client And Common Code&lt;/h3&gt;
+&lt;p&gt;In Loom 0.12 and Loader 0.14, an experimental option has been added to require all client code to be moved into its own sourceset: resources and common code will be in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/main&lt;/code&gt;, while client-only code will be in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src/client&lt;/code&gt;.
+This provides a compile-time guarantee against calling client-only Minecraft code on the server. When building, Loom still produces a single jar that works on both the client and the server.&lt;/p&gt;
+
+&lt;p&gt;To enable split source sets, add the following to your mod’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;loom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;splitEnvironmentSourceSets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;mods&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;modid&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sourceSet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sourceSets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sourceSet&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sourceSets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;client&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As your mod will now be split across two sourcesets, you will need to use the new DSL to define your mod’s sourcesets. This enables Fabric Loader to group your mod’s classpath together.&lt;/p&gt;
+
+&lt;h2 id=&quot;minecraft-changes-for-mod-developers&quot;&gt;Minecraft Changes For Mod Developers&lt;/h2&gt;
+&lt;h3 id=&quot;text-changes&quot;&gt;Text Changes&lt;/h3&gt;
+
+&lt;p&gt;Text should now be created using static methods provided by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt; interface rather than by using constructors. For example:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- new LiteralText(content);
+- new TranslatableText(key, args);
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ Text.of(content);
++ Text.translatable(key, args);
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In Yarn, the old classes are now called text contents (such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TranslatableTextContent&lt;/code&gt;) because they have been separated from the text structure (style and siblings). Mod developers will rarely need to interact with these text content classes.&lt;/p&gt;
+
+&lt;h3 id=&quot;command-changes&quot;&gt;Command Changes&lt;/h3&gt;
+
+&lt;p&gt;Command arguments have been refactored to look up registry entries using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CommandRegistryAccess&lt;/code&gt; class, a wrapper around the registry manager. The registry access is an optimization for handling missing tag references, but must be passed into arguments during command registration:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- CommandManager.argument(&quot;item&quot;, ItemStackArgumentType.itemStack())
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ CommandManager.argument(&quot;item&quot;, ItemStackArgumentType.itemStack(registryAccess))
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you use Fabric API to register commands, you should switch to the version 2 of the Fabric Command API, which contains a major breaking change to provide the registry access. Unlike most of other breaking changes, this is an entirely new API with a new package.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+&lt;/span&gt;
+- CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -&amp;gt; {
+&lt;span class=&quot;gd&quot;&gt;-    if (dedicated) {
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -&amp;gt; {
++    if (environment.dedicated) {
+&lt;/span&gt;         dispatcher.register(...);
+     }
+  });
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While version 1 of the API still exists for server-side registration, client commands functionality is no longer present in that version. If you use client commands, you must use version 2, which now uses an event for registration as well:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+&lt;/span&gt;
+- ClientCommandManager.DISPATCHER.register(...);
+&lt;span class=&quot;gi&quot;&gt;+ ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -&amp;gt; {
++     dispatcher.register(...);
++ });
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;secure-chat&quot;&gt;Secure Chat&lt;/h3&gt;
+&lt;p&gt;Mojang has introduced a feature to cryptographically sign chat messages to detect whether the server modified the sent messages. Players sign all chat messages using a Mojang-provided private key, which the server and the clients verify. If the server modifies the message unexpectedly, the message cannot be verified, and clients can opt in to hide those messages.&lt;/p&gt;
+
+&lt;p&gt;Along with this, there were several protocol changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The client now wraps the message with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;chat.type.text&lt;/code&gt; message (or the like) instead of the server. To customize this, a custom message type (called “chat type” by the game) can be registered. (See below for details.)&lt;/li&gt;
+  &lt;li&gt;Commands are sent in a separate packet, not as a slash-prefixed chat message.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This mostly impacts mods that change the chat message server-side in some ways like translating or coloring. To prevent the messages from being marked as “unverified”, the mod has to use one of the two options:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Client-side message decoration. A server can register a custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MessageType&lt;/code&gt; using a data pack (just like custom world generation), which consists of various “decorations” applied to the whole message. &lt;a href=&quot;https://misode.github.io/chat-type/&quot;&gt;Chat Type Generator&lt;/a&gt; is a third-party tool that can generate the JSON file defining custom message types easily. Then, when sending a message, the mod should pass the registry key of the message type to be used.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;RegistryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MessageType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;typeKey&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RegistryKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Registry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MESSAGE_TYPE_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;modid&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;orange&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// when sending&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPlayerManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;broadcast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;This is in orange!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;typeKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Server-side message decorator. This can be used to modify the message content itself, as well as the styling applied. Fabric API provides a way to register a custom message decorator.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ServerMessageDecoratorEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EVENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Used to provide better compatibility across mods&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;ServerMessageDecoratorEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CONTENT_PHASE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;tater&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot; :tiny_potato:&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CompletableFuture&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completedFuture&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that to sign the message produced by the message decorator, the server must enable “chat preview” by setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;previews-chat=true&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;server.properties&lt;/code&gt;. When clients join such servers, they will receive a warning that the typed message will be sent to show the preview before sending. Clients can disable the chat previews via the options, which causes the decorated part of the message to be marked as “unsigned” (but not the original message).&lt;/p&gt;
+
+&lt;p&gt;Finally, it is recommended to check the Yarn javadoc, which provides documentation on how chat messages are handled.&lt;/p&gt;
+
+&lt;h3 id=&quot;random-changes&quot;&gt;Random Changes&lt;/h3&gt;
+
+&lt;p&gt;The JDK &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;java.util.Random&lt;/code&gt; class has been replaced entirely with Mojang’s own interface, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.minecraft.util.math.random.Random&lt;/code&gt;. Several implementations are available to provide different levels of thread safety. For most use cases, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Random.create()&lt;/code&gt; should be used to create the random instance. Note that this random instance is not safe for multithreaded use. &lt;!-- Random.createThreadSafe is deprecated, maybe modders shouldn't use random across thread --&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;option-changes&quot;&gt;Option Changes&lt;/h3&gt;
+
+&lt;p&gt;Client options were completely refactored. There is a class, named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimpleOption&lt;/code&gt;, that handles everything an option needs - rendering, validation, serialization, etc. An instance holds its name, current value, default value, and a set of callbacks to provide customizable behaviors. For example, a slider-based integer option would use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ValidatingIntSliderCallbacks&lt;/code&gt;, while a button-based option would use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PotentialValuesBasedCallbacks&lt;/code&gt;. To get the value, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getValue()&lt;/code&gt;, and to set the value while validating, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setValue()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GameOptions&lt;/code&gt; class holds all options used by the vanilla game.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;GameOptions&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MinecraftClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;GraphicsMode&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;graphicsMode&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getGraphicsMode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getFov&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;80&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// setValue triggers validation, so this cannot set gamma more than the limit (1.0)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;options&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getGamma&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;5.0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;tag-changes&quot;&gt;Tag Changes&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tag&lt;/code&gt; class has been removed, after having been made largely obsolete in 1.18.2 due to the addition of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TagKey&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The inner classes, which are still in use, have been moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TagBuilder&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TagEntry&lt;/code&gt;. The remaining usages in functions now use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Collection&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TagFile&lt;/code&gt; has been added, which is used to refer to a specific tag JSON file.&lt;/p&gt;
+
+&lt;p&gt;Additionally, many vanilla tags have been added or modified in 1.19. Ensure your modded content is in all the applicable tags. For example, villager workstations should now be added to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minecraft:acquirable_job_site&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;h3 id=&quot;structure-changes&quot;&gt;Structure Changes&lt;/h3&gt;
+
+&lt;p&gt;The game no longer refers to generated structures as “configured structure features”. Yarn mapping has renamed and several structure-related classes to handle this change; for example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StructureFeature&lt;/code&gt; has been renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Structure&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;To avoid conflicts and to match the terminology used by custom world generation, the old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Structure&lt;/code&gt; class was renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StructureTemplate&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StructureManager&lt;/code&gt; is now called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StructureTemplateManager&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;seeded-sounds&quot;&gt;Seeded Sounds&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;playSound&lt;/code&gt; methods now have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;seed&lt;/code&gt; parameter. This seed is used to determine which sound is played for a sound event; as a result of this change, two players hearing the same sound event will now hear the same sound. Most mods will not need to change their code to support seeded sounds, as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;playSound&lt;/code&gt; methods are overloaded to provide a default random seed.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.19: The Wild Update is now released, and along with it, updates for Fabric itself and many mods already.</summary></entry><entry><title type="html">Fabric for Minecraft 1.18</title><link href="http://fabricmc.net/2021/11/30/118.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.18" /><published>2021-11-30T00:00:00+00:00</published><updated>2021-11-30T00:00:00+00:00</updated><id>http://fabricmc.net/2021/11/30/118</id><content type="html" xml:base="http://fabricmc.net/2021/11/30/118.html">&lt;p&gt;&lt;img src=&quot;/assets/cliffs.png&quot; alt=&quot;Cliffs&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Minecraft 1.18: &lt;em&gt;Caves &amp;amp; Cliffs, Part 2&lt;/em&gt; is now released, and along with it, updates for Fabric itself and many mods already.&lt;/p&gt;
+
+&lt;p&gt;The release of Fabric for Minecraft 1.17 was almost 6 months ago. Since then, we have updated to all 7 experimental snapshots, 8 snapshots, 8 pre-releases, 4 release candidates, and the final release version of Minecraft 1.18.&lt;/p&gt;
+
+&lt;p&gt;This blog post will go over what the 1.18 update means for both players and developers.&lt;/p&gt;
+
+&lt;h2 id=&quot;for-players&quot;&gt;For Players&lt;/h2&gt;
+
+&lt;p&gt;Players should use Fabric Installer 0.9.0 and Fabric Loader 0.12.5 (at the time of writing) to play on Minecraft 1.18.&lt;/p&gt;
+
+&lt;p&gt;Hundreds of mods have already been updated to support 1.18 and we expect there will be many new and updated mods being released soon. We kindly ask that you be patient as mod developers update their mods.&lt;/p&gt;
+
+&lt;h3 id=&quot;all-of-fabric-5-modpack&quot;&gt;All of Fabric 5 Modpack&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/aof5.png&quot; alt=&quot;AOF 5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The fifth edition of the All of Fabric modpack will be available on CurseForge very soon.&lt;/p&gt;
+
+&lt;p&gt;AOF5 includes a wide selection of 1.18 Fabric mods. It will continue to receive updates as mods get ported, and new mods get created.&lt;/p&gt;
+
+&lt;h2 id=&quot;for-mod-developers&quot;&gt;For Mod Developers&lt;/h2&gt;
+
+&lt;p&gt;Various technical changes have been made in both Minecraft and Fabric that will affect mod development for 1.18.&lt;/p&gt;
+
+&lt;p&gt;As always, you can use &lt;a href=&quot;https://fabricmc.net/versions.html&quot;&gt;the versions page&lt;/a&gt; to determine the recommended versions of Yarn, Fabric Loader, Fabric API, and Loom for any version of Minecraft.&lt;/p&gt;
+
+&lt;h3 id=&quot;java-17&quot;&gt;Java 17&lt;/h3&gt;
+
+&lt;p&gt;Once again, Minecraft has updated its Java version, this time to Java 17. This means mods can be compiled for Java 17 and use the latest features.&lt;/p&gt;
+
+&lt;p&gt;While not as large a step up as the previous move to Java 16 made in 1.17, Java 17 still provides some new features that can be used, such as Sealed Classes.&lt;/p&gt;
+
+&lt;p&gt;To set up a development environment you will need to use Java 17, Loom 0.10, and Gradle 7.3 or higher. If you need some help getting set up, please go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#mod-dev-gradle-ides&lt;/code&gt; on the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;official Discord server&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;See &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/commit/57e84b576d24f1b80e1701d4759773234b1ee8ba&quot;&gt;this commit&lt;/a&gt; for an example of how the example mod was updated to accomodate this change.&lt;/p&gt;
+
+&lt;h3 id=&quot;fabric-api&quot;&gt;Fabric API&lt;/h3&gt;
+
+&lt;p&gt;Fabric API has been fully updated to Java 17 and 1.18.&lt;/p&gt;
+
+&lt;p&gt;Since 1.17 released, we have added a number of new APIs that can be used:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fluid and Item Transfer API. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Tag Factory API, allows making tags for any registry (deirn)&lt;/li&gt;
+  &lt;li&gt;Add sleeping events. (Juuxel)&lt;/li&gt;
+  &lt;li&gt;Add flattening, stripping and tilling registries. (Juuxel)&lt;/li&gt;
+  &lt;li&gt;Add a Game Test API to allow the use of Mojang’s testing framework. (modmuss50)&lt;/li&gt;
+  &lt;li&gt;Add tag-based mining level API, fix and deprecate FabricBlockSetting.breakByTool. (Juuxel)&lt;/li&gt;
+  &lt;li&gt;Add event phases to allow ordering between listeners. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Add DimensionRenderingRegistry to register custom renderers for the sky or weather. (Waterpicker)&lt;/li&gt;
+  &lt;li&gt;Add custom fluid renderers and enhanced vanilla fluid renderer customisation. (FoxShadew)&lt;/li&gt;
+  &lt;li&gt;Add elytra flight API (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Add Oxidizable and Waxable Blocks registries (Shnupbups)&lt;/li&gt;
+  &lt;li&gt;a variety of smaller or more focused additions and enhancements (&lt;a href=&quot;https://github.com/FabricMC/fabric/commits/1.18&quot;&gt;see GitHub&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Most of these new features have also been added to the 1.17 version of Fabric API.&lt;/p&gt;
+
+&lt;h3 id=&quot;world-generation&quot;&gt;World Generation&lt;/h3&gt;
+
+&lt;p&gt;Minecraft 1.18 overhauls many systems used in world generation. Any mods that include world generation will, as a result, need to adjust to these changes.&lt;/p&gt;
+
+&lt;p&gt;If you need some help with these changes, please go to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#mod-dev-worldgen&lt;/code&gt; on the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;official Discord server&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;yarn&quot;&gt;Yarn&lt;/h3&gt;
+
+&lt;p&gt;Since 1.17.1, there have been almost 200 commits to Yarn from many contributors, all working to improve coverage and quality.&lt;/p&gt;
+
+&lt;p&gt;Trying to document the Minecraft codebase is a massive job, especially as it is constantly evolving. Improving the documentation provided by Yarn is an ongoing effort by all of the contributors.&lt;/p&gt;
+
+&lt;p&gt;You can view the online Javadoc for 1.18 Release Candidate 4 &lt;a href=&quot;https://maven.fabricmc.net/docs/yarn-1.18-rc4+build.1/&quot;&gt;here&lt;/a&gt; or inline with the decompiled and named Minecraft sources directly attached in your IDE.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Fabric Loader 0.12</title><link href="http://fabricmc.net/2021/10/03/loader-0120.html" rel="alternate" type="text/html" title="Fabric Loader 0.12" /><published>2021-10-03T00:00:00+00:00</published><updated>2021-10-03T00:00:00+00:00</updated><id>http://fabricmc.net/2021/10/03/loader-0120</id><content type="html" xml:base="http://fabricmc.net/2021/10/03/loader-0120.html">&lt;p&gt;This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily.&lt;/p&gt;
+
+&lt;p&gt;Fabric Loader 0.12 is not yet available through the normal means, see below for how to get it.&lt;/p&gt;
+
+&lt;h4 id=&quot;changelog&quot;&gt;Changelog&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;added support for the bundler based server distribution introduced by the MC snapshot 21w39a (Player)&lt;/li&gt;
+  &lt;li&gt;added support for global access wideners (shartte)&lt;/li&gt;
+  &lt;li&gt;added ObjectShare mechanism for mods to interact indirectly (Player)&lt;/li&gt;
+  &lt;li&gt;changed package structure for clear api/implementation split, may break some mods that use internals beyond what is now provided by legacy support API (Player)&lt;/li&gt;
+  &lt;li&gt;changed project structure to isolate MC specific code, runtime test dependencies and legacy API (modmuss50)&lt;/li&gt;
+  &lt;li&gt;fixed mod dependency inspection API and made it more useful (Player)&lt;/li&gt;
+  &lt;li&gt;updated Mixin (modmuss50, Player)&lt;/li&gt;
+  &lt;li&gt;added Mixin backwards compatibility mechanism, Mixin behavior will depend on the minimum fabricloader version requested by the mod’s dependency definition (Player)&lt;/li&gt;
+  &lt;li&gt;changed mod discovery for better reliability, speed and memory efficiency (Player)&lt;/li&gt;
+  &lt;li&gt;added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.addMods&lt;/code&gt; system property and argument to configure additional mod sources: individual jar files, directories containing jars, directories representing an extracted mod or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt;-prefixed files listing the previous one line at a time (Player)&lt;/li&gt;
+  &lt;li&gt;changed mod resolution to gracefully handle multiple instances of the same mod, produce better errors, give mod dependency issue guidance, handle nested jars properly and allow for more customization (Player)&lt;/li&gt;
+  &lt;li&gt;changed mod load order to be random in-dev (see &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.debug.disableModShuffle&lt;/code&gt; system property) and explicitly sorted by mod id in production (not a specification, may change without notice) (Player)&lt;/li&gt;
+  &lt;li&gt;added system property &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.debug.loadLate&lt;/code&gt; to work around mod load order bugs (Player)&lt;/li&gt;
+  &lt;li&gt;added &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.debug.throwDirectly&lt;/code&gt; system property to let errorneous entrypoints fail immediately, helps debugging them through isolation (Player)&lt;/li&gt;
+  &lt;li&gt;changed exposing the game and its libraries to be as late as possible to prevent accidental too-early accesses (Player)&lt;/li&gt;
+  &lt;li&gt;dropped most library dependencies to avoid conflicts with the game (modmuss50, Player)&lt;/li&gt;
+  &lt;li&gt;added exception display to the error screen and made it show for crashes too early for MC to normally display by itself (Chocohead)&lt;/li&gt;
+  &lt;li&gt;added error screen support for MacOS (Player)&lt;/li&gt;
+  &lt;li&gt;fixed various MacOS error screen issues including the dock icon, title, dark mode, stuck on close (modmuss50)&lt;/li&gt;
+  &lt;li&gt;fixed normalization of special MC versions like combat test, april fools or experimental releases (Chocohead)&lt;/li&gt;
+  &lt;li&gt;various smaller changes and fixes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;how-to-test&quot;&gt;How to test&lt;/h2&gt;
+
+&lt;p&gt;Due to the size of the changes we are releasing this version in stages, once we are happy everything is working we will release it to everyone. If you do find an issue please make sure to report it on our &lt;a href=&quot;https://github.com/FabricMC/fabric-loader/issues&quot;&gt;Github Repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Initially the installer won’t offer Loader 0.12 by itself, it has to be installed as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Go to &lt;a href=&quot;https://fabricmc.net/use/&quot;&gt;https://fabricmc.net/use/&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Click “Show other versions” and select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.8.0&lt;/code&gt;, download the installer&lt;/li&gt;
+  &lt;li&gt;Download Fabric Loader 0.12.0 from here: &lt;a href=&quot;https://maven.fabricmc.net/net/fabricmc/fabric-loader/0.12.0/fabric-loader-0.12.0.jar&quot;&gt;fabric-loader-0.12.0.jar&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Run the installer and go to the Client or Server tab as desired&lt;/li&gt;
+  &lt;li&gt;Select the desired Minecraft version as usual&lt;/li&gt;
+  &lt;li&gt;Select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(select custom)&lt;/code&gt; at the very bottom of the Loader Version list&lt;/li&gt;
+  &lt;li&gt;Configure anything else as desired and start the install as usual by using the Install button&lt;/li&gt;
+  &lt;li&gt;The installer will now ask for the Fabric Loader JAR, provide it with the one downloaded in step 3&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;A Fabric Installer version older than 0.8.0 will not support this procedure.&lt;/p&gt;
+
+&lt;h4 id=&quot;mod-developers&quot;&gt;Mod Developers&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Ensure you are using Loom 0.7 or higher. Loom 0.10 is required to use transitive access wideners and develop on 1.18 snapshots.&lt;/li&gt;
+  &lt;li&gt;Change your loader version in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gradle.properties&lt;/code&gt; to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.12.0&lt;/code&gt; and reload your gradle project.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;mod-resolution-changes&quot;&gt;Mod resolution changes&lt;/h2&gt;
+
+&lt;p&gt;Fabric Loader 0.12.0 will no longer refuse multiple versions of the same mod, some but not all of these may even have unmet dependencies. It will select the latest compatible version if more than one option is present.&lt;/p&gt;
+
+&lt;p&gt;If mod resolution fails due to unmet dependencies Loader will now try to compute a possible solution in addition to only stating what the issue was. It also tries to come up with a much better error message than before, unhelpful “empty clause” errors should be gone.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabricdebugloadlate&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.debug.loadLate&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Sometimes mods make false assumptions about the load order of mods, which limits their compatibility unintentionally. Mod load order is not specified and depends on implementation details that may change with a Fabric Loader release. Version 0.12 is one of these and it is impractical to emulate the old behavior.&lt;/p&gt;
+
+&lt;p&gt;We have added a workaround for load order bugs in the form of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.debug.loadLate&lt;/code&gt; system property, which will delay the specified mods to load later than all other mods. For example, if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;someMod&lt;/code&gt; required a block from another mod that’s being created in the same startup phase, adding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Dfabric.debug.loadLate=someMod&lt;/code&gt; moves &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;someMod&lt;/code&gt; behind all other mods, including the one supplying the block it needs.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabricaddmods&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.addMods&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Fabric Loader normally loads mods from the mods directory, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.addMods&lt;/code&gt; system property or game argument allows specifying more. It takes a list of paths separated by the operation system specific path separator (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;;&lt;/code&gt; on Windows, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:&lt;/code&gt; elsewhere).&lt;/p&gt;
+
+&lt;p&gt;Supported options for the paths are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;mod jar location&lt;/li&gt;
+  &lt;li&gt;directory location containing mod jars (searched recursively)&lt;/li&gt;
+  &lt;li&gt;directory location containing an unpacked mod (for development purposes, detected by the presence of fabric.mod.json)&lt;/li&gt;
+  &lt;li&gt;mod list file location prefixed by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt;, e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-Dfabric.addMods=@/path/to/extraMods.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;A mod list file contains any of the above supported paths except another mod list file, one per line.&lt;/p&gt;
+
+&lt;p&gt;Paths can be absolute or relative to the working directory.&lt;/p&gt;
+
+&lt;h2 id=&quot;mixin-compatibility&quot;&gt;Mixin compatibility&lt;/h2&gt;
+
+&lt;p&gt;Mixin has been changing its implementation in such a way that mixins that are correct and working on one version may no longer work correctly or at all in a newer version. This was necessary to fix bugs in its local variable detection logic.&lt;/p&gt;
+
+&lt;p&gt;Fabric adds a mechanism to emulate the Mixin behavior bundled with the least Loader version a mod depends upon. If the mod requires an old Loader version (or none at all), its Mixins will be processed in line with the old Mixin behavior. If it however depends on Loader 0.12.0, which comes with Fabric Mixin 0.10.2+mixin.0.8.4, it’ll use the native behavior that comes with that release and currently represents the latest&amp;amp;greatest.&lt;/p&gt;
+
+&lt;p&gt;Mods are highly encouraged to declare the minimum Fabric Loader dependency to reflect the minimum version they were tested against. If they need the latest Mixin behavior and fixes, they also need to depend on the latest fabricloader version explicitly.&lt;/p&gt;
+
+&lt;p&gt;For Fabric Loader 0.12.0 this can be done as follows:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric.mod.json&lt;/code&gt; add the following dependency&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-json=&quot;&gt;&quot;depends&quot;: {
+   &quot;fabricloader&quot;: &quot;&amp;gt;=0.12.0&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The lack of suitable dependency declaration will always force-enable legacy behavior for the respective mod! This is undesirable for newly developed mods, but keeps older mods working.&lt;/p&gt;
+
+&lt;h2 id=&quot;objectshare&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ObjectShare&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;The object share is very similar to a String-indexed Java &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Map&lt;/code&gt; with arbitrary values. It offers the usual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;get&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;put&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;putIfAbsent&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remove&lt;/code&gt; operations and additionally &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;whenAvailable&lt;/code&gt; to listen for additions in cases without clear ordering.&lt;/p&gt;
+
+&lt;p&gt;Its primary purpose is inter-mod communication. One mod can put some data into it, another mod can pull it back out. Active interactions are possible by publishing and using objects with interfaces like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Function&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Consumer&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Contrary to any regular API the object share allows mod interaction without even a compile time dependency, removing friction for simple purposes. This case requires commonly available types/interfaces like the ones provided by Java, Minecraft or Fabric API (String, Integer, List, Map, Identifier, NbtCompound, Event, …). Custom types are of course still possible, but don’t carry these benefits.&lt;/p&gt;</content><author><name></name></author><summary type="html">This release is a major overhaul of the core features in Fabric Loader, including everything that deals with finding and choosing mods. Users should benefit from greatly improved error messages and quite a few options to customize their install. Mods have several new tools to achieve their goals more easily.</summary></entry><entry><title type="html">Fabric for Minecraft 1.17</title><link href="http://fabricmc.net/2021/06/08/117.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.17" /><published>2021-06-08T00:00:00+00:00</published><updated>2021-06-08T00:00:00+00:00</updated><id>http://fabricmc.net/2021/06/08/117</id><content type="html" xml:base="http://fabricmc.net/2021/06/08/117.html">&lt;p&gt;Minecraft 1.17: &lt;em&gt;Caves &amp;amp; Cliffs, Part 1&lt;/em&gt; is now released, and along with it, Fabric itself and many mods already.&lt;/p&gt;
+
+&lt;p&gt;The release of &lt;a href=&quot;https://fabricmc.net/2020/06/23/116.html&quot;&gt;Fabric for Minecraft 1.16&lt;/a&gt; was almost a year ago. Since then, we have updated to all 48 snapshot and release versions of Minecraft. We recently released a &lt;a href=&quot;https://fabricmc.net/2021/05/27/117-for-developers.html&quot;&gt;blog post&lt;/a&gt; covering what the 1.17 update means for mod developers.&lt;/p&gt;
+
+&lt;h2 id=&quot;all-of-fabric-4-modpack&quot;&gt;All Of Fabric 4 Modpack&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/aof4.png&quot; alt=&quot;AOF 4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The fourth edition of the All Of Fabric modpack will available on Curseforge very soon.&lt;/p&gt;
+
+&lt;p&gt;AOF4 includes a wide slection of 1.17 Fabric mods. It will continue to receive updates as mods get ported, and new mods get created.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17: Caves &amp;amp; Cliffs, Part 1 is now released, and along with it, Fabric itself and many mods already.</summary></entry><entry><title type="html">Minecraft 1.17 for Mod Developers</title><link href="http://fabricmc.net/2021/05/27/117-for-developers.html" rel="alternate" type="text/html" title="Minecraft 1.17 for Mod Developers" /><published>2021-05-27T00:00:00+00:00</published><updated>2021-05-27T00:00:00+00:00</updated><id>http://fabricmc.net/2021/05/27/117-for-developers</id><content type="html" xml:base="http://fabricmc.net/2021/05/27/117-for-developers.html">&lt;p&gt;Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.&lt;/p&gt;
+
+&lt;p&gt;The pre-releases are a great time to start updating your mods in preparation for the final release. In the past most mods updated during the pre-release stage kept working on the final stable release with few or no further changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/goat.png&quot; alt=&quot;A goat in a geode&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;java-16&quot;&gt;Java 16&lt;/h2&gt;
+
+&lt;p&gt;Minecraft 1.17 is now built against Java 16; this is a big step up from Java 8 and will affect modders. To set up a development environment you will need to use Java 16, Gradle 7 and fabric-loom 0.8 or higher. In most cases this will not break your existing code (excluding the normal porting procedure). There is a 1.17 branch of the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/tree/1.17&quot;&gt;fabric-example-mod&lt;/a&gt; that should help get you started. Look at the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/compare/29c522536fc16233833221e22eed3f106c0726bc...1.17&quot;&gt;1.17+Java 16 migration changes&lt;/a&gt; which should apply similarly to most mods. We have created a specific channel named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#mod-dev-gradle-ides&lt;/code&gt; on the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;official Discord server&lt;/a&gt; if you need some help with getting setup.&lt;/p&gt;
+
+&lt;p&gt;We have used this opportunity to migrate most of the modder- and contributor-facing tools to Java 16. Player-facing projects only use Java 16 if Minecraft doesn’t require it anyway in all relevant scenarios. The Fabric Loader and Installer, and their dependency libraries, will still target Java 8 as they are cross-version.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-api&quot;&gt;Fabric API&lt;/h2&gt;
+
+&lt;p&gt;Fabric API has been fully updated to Java 16 and 1.17. It doesn’t use any Java 16 features yet, nor will it break compatibility to adopt any. New or updated modules may introduce records and other features into the API where it makes sense, the implementation is expected to use Java 16 features where it doesn’t harm necessary backporting too much.&lt;/p&gt;
+
+&lt;p&gt;Since 1.16 released, we have added a number of new APIs that can be used:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Reworked networking API, closer to what the vanilla network protocol allows (i509VCB, liach)&lt;/li&gt;
+  &lt;li&gt;World Renderer events for a variety of hooks to render custom world content outside the usual facilities and some behavior modification opportunities to e.g. customize block outlines (grondag)&lt;/li&gt;
+  &lt;li&gt;Screen API with many events to react to or influence behavior in GUIs (i509VCB)&lt;/li&gt;
+  &lt;li&gt;Client Side Commands to use command input for client purposes like visual config changes (Juuxel)&lt;/li&gt;
+  &lt;li&gt;API Lookup API to obtain API references without having to attach interfaces to classes directly and help with context binding, a building block for universal APIs like Fluid I/O (Technici4n)&lt;/li&gt;
+  &lt;li&gt;a variety of smaller or more focused additions and enhancements (see GitHub)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;yarn&quot;&gt;Yarn&lt;/h2&gt;
+
+&lt;h3 id=&quot;constants&quot;&gt;Constants&lt;/h3&gt;
+
+&lt;p&gt;In 1.17, Mojang no longer strips out unused code including the constant fields that are inlined by the Java compiler. We have seamlessly integrated &lt;a href=&quot;https://github.com/FabricMC/unpick&quot;&gt;unpick&lt;/a&gt; (created by Daomephsta) into the Fabric toolchain to undo some of this inlining. Once you have updated your development environment to 1.17, you can also use these constants in your mod code just like you would with any other field.&lt;/p&gt;
+
+&lt;h4 id=&quot;before&quot;&gt;Before&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;Note the hard to understand flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;26&lt;/code&gt; passed into the last parameter of setBlockState&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java=&quot;&gt;protected boolean place(ItemPlacementContext context, BlockState state) {
+   return context.getWorld().setBlockState(context.getBlockPos(), state, 26);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;after&quot;&gt;After&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;In 1.17 this has been simplified to clearly show the true meaning of this flag.&lt;/em&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-java=&quot;&gt;protected boolean place(ItemPlacementContext context, BlockState state) {
+   return context.getWorld().setBlockState(context.getBlockPos(), state, Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD | Block.FORCE_STATE);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;names&quot;&gt;Names&lt;/h3&gt;
+
+&lt;p&gt;During the 1.17 snapshot season, some important classes have been renamed in Yarn.&lt;/p&gt;
+
+&lt;p&gt;The most notable instance is the rename of all NBT-related classes thanks to contributor &lt;a href=&quot;https://github.com/LambdAurora&quot;&gt;@LambdAurora&lt;/a&gt;. This is to prevent confusion between the data-driven &lt;a href=&quot;https://minecraft.fandom.com/wiki/Tag&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.minecraft.tag.Tag&lt;/code&gt;s&lt;/a&gt; and NBT tag interface &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.minecraft.nbt.Tag&lt;/code&gt;, which is now named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtElement&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;p&gt;You can use the automated &lt;a href=&quot;https://fabricmc.net/wiki/tutorial:migratemappings&quot;&gt;migrateMappings&lt;/a&gt; task in Loom to transition to the new names efficiently. Since 1.16.5, there have been over 500 commits to Yarn, all working to improve coverage and quality. Major class renames will be paused when 1.17 is released; these will be done in the 1.18 snapshots instead.&lt;/p&gt;
+
+&lt;h3 id=&quot;documentation&quot;&gt;Documentation&lt;/h3&gt;
+
+&lt;p&gt;Trying to document the Minecraft codebase is a massive job, especially as it is constantly evolving. Improving the documentation provided by Yarn is an ongoing effort by all of the contributors. You can view the online Javadoc for 1.17 pre-release 1 &lt;a href=&quot;https://maven.fabricmc.net/docs/yarn-1.17-pre1+build.1/index.html&quot;&gt;here&lt;/a&gt; or inline with the decompiled and named Minecraft sources directly attached in your IDE.&lt;/p&gt;
+
+&lt;h2 id=&quot;curseforge&quot;&gt;CurseForge&lt;/h2&gt;
+
+&lt;p&gt;CurseForge have recently announced in their &lt;a href=&quot;https://mailchi.mp/844b51b9bdf1/whats-new-with-overwolf-curseforge-may2-edited&quot;&gt;May Updates blog post&lt;/a&gt; that they will be adding native Fabric support to their client. In preparation for this, they have asked all mod developers to ensure that uploaded files are correctly tagged against the relevant mod loader. The linked blog post contains details on how to do this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.</summary></entry><entry><title type="html">Fabric for Minecraft 1.16.2</title><link href="http://fabricmc.net/2020/08/11/1162.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.16.2" /><published>2020-08-11T00:00:00+00:00</published><updated>2020-08-11T00:00:00+00:00</updated><id>http://fabricmc.net/2020/08/11/1162</id><content type="html" xml:base="http://fabricmc.net/2020/08/11/1162.html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/b8LYWAM.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Fabric for Minecraft 1.16.2 has been released! The 1.16.2 update is a larger than expected as it includes new features and major refactors to parts of the code.&lt;/p&gt;
+
+&lt;p&gt;Biomes were at the center of these changes, thus any mod adding biomes may require a significant amount of work to update. Due to these changes, Fabric API’s biome module was removed. We plan to work with mod developers to create an updated biome api as the requirements become clear.&lt;/p&gt;
+
+&lt;p&gt;Due to a number of other smaller changes we expect most mods will require an update to 1.16.2.&lt;/p&gt;
+
+&lt;p&gt;If you want to read more about the 1.16 update please see our &lt;a href=&quot;https://fabricmc.net/2020/06/23/116.html&quot;&gt;Fabric for Minecraft 1.16&lt;/a&gt; blog post. If you wish to discuss the update our &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;Discord server&lt;/a&gt; is a good place to do so.&lt;/p&gt;
+
+&lt;h2 id=&quot;for-the-mod-developers&quot;&gt;For the mod developers&lt;/h2&gt;
+
+&lt;p&gt;Fabric API has gained a few new features during the last round of snapshots:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A new lifecycle events module:
+    &lt;ul&gt;
+      &lt;li&gt;This contains new events such as a chunk and world (un)load event for both the client and server.&lt;/li&gt;
+      &lt;li&gt;This replaces the old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-events-lifecycle-v0&lt;/code&gt; module.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;An api to register custom game rules
+    &lt;ul&gt;
+      &lt;li&gt;Game rules registered using this api appear in the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Edit Game Rules&lt;/code&gt; screen.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;An api to register additional things to be rendered on an entity
+    &lt;ul&gt;
+      &lt;li&gt;This makes rendering things like hats on entities much easier to implement.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Many smaller bug fixes and improvements&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Fabric for Minecraft 1.16</title><link href="http://fabricmc.net/2020/06/23/116.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.16" /><published>2020-06-23T00:00:00+00:00</published><updated>2020-06-23T00:00:00+00:00</updated><id>http://fabricmc.net/2020/06/23/116</id><content type="html" xml:base="http://fabricmc.net/2020/06/23/116.html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/tJ98rRc.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The long anticipated Minecraft 1.16 update has arrived, and along with it, Fabric!&lt;/p&gt;
+
+&lt;p&gt;It has been almost &lt;strong&gt;a year and a half&lt;/strong&gt; since we &lt;a href=&quot;https://fabricmc.net/2018/12/10/announcement.html&quot;&gt;initially unveiled Fabric on the 10th of December, 2018&lt;/a&gt;. Since then, the world has changed in many ways, and so has Fabric. Since the Minecraft 1.15 update over six months ago, Fabric has:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Updated to every single snapshot along the way to allow developers to explore the new versions&lt;/li&gt;
+  &lt;li&gt;Continued to add many new APIs allowing for easier mod making and mod inter-compatibility&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Developers, make sure to check out our &lt;a href=&quot;https://fabricmc.net/2020/06/08/jun-status-update.html&quot;&gt;June Status Update&lt;/a&gt; from a couple weeks ago to learn more about how Fabric has progressed internally over the past six months.&lt;/p&gt;
+
+&lt;h2 id=&quot;community-&quot;&gt;Community &lt;!-- Player oriented, so maybe tell them where to grab fresh mods! --&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;all-of-fabric-modpack&quot;&gt;All of Fabric Modpack&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/c1tcdOF.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;AOF is back for the 3rd time with &lt;a href=&quot;https://www.curseforge.com/minecraft/modpacks/all-of-fabric-3&quot;&gt;All of Fabric 3&lt;/a&gt; running on 1.16! It’ll be available on Curseforge short after this Blog Post is released.&lt;/p&gt;
+
+&lt;p&gt;All of Fabric 3 currently offers over 60 mods to play around with. It will continue to receive constant updates throughout the next couple of weeks offering the latest &amp;amp; best of Fabric on 1.16.&lt;/p&gt;
+
+&lt;h3 id=&quot;mods&quot;&gt;Mods&lt;/h3&gt;
+&lt;p&gt;There are almost 1,000 mods &lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods?filter-game-version=2020709689%3A7499&amp;amp;filter-sort=4&quot;&gt;available for Fabric on CurseForge&lt;/a&gt;, with &lt;em&gt;over 400&lt;/em&gt; of those mods being available for the 1.16 snapshots. The community has created a vast amount of content for the snapshots and has also worked together to port mods from previous versions up. Here are a few of the blog team’s top highlights:&lt;/p&gt;
+
+&lt;h4 id=&quot;art-of-alchemy&quot;&gt;Art of Alchemy&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/pz5mT84.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/art-of-alchemy&quot;&gt;Art of Alchemy&lt;/a&gt;, written by SynthRose, is a brand new mod centered around transmutation. The mod provides several devices that you, the alchemist, can utilize as you progress through the mod. The mod’s fantastic textures, intriguing lore, and fancy materials are the perfect ingredients for any magical world.&lt;/p&gt;
+
+&lt;h4 id=&quot;sandwichable&quot;&gt;Sandwichable&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/viKG7DN.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/sandwichable&quot;&gt;Sandwichable&lt;/a&gt; is a mod written by FoundationGames that allows you to create fully customizable sandwiches in Minecraft. It provides kitchen essentials such as cutting boards, toasters, and knives, while also introducing new crops to use in your sandwiches. Cheese lovers will appreciate the variety of cheese choices available and bask in the abundance of grilled cheese varieties.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/cRVdDPv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;world-gen-tweaker&quot;&gt;World Gen Tweaker&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/sTuVw8x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/world-gen-tweaker&quot;&gt;World Gen Tweaker&lt;/a&gt; by SuperCoder79 allows users to modify vanilla and mod biomes through a scripting language.&lt;/p&gt;
+
+&lt;h4 id=&quot;lil-tater-reloaded&quot;&gt;Lil Tater Reloaded&lt;/h4&gt;
+
+&lt;p&gt;Lil Tater is back with force in &lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/lil-tater-reloaded&quot;&gt;&lt;em&gt;Lil Tater Reloaded&lt;/em&gt;&lt;/a&gt;, a mod written by Yoghurt4C. Players can customize their &lt;em&gt;very own&lt;/em&gt; Lil Tater with a variety of options, including skins, rotations &amp;amp; transforms, and equipment.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Pictured: a tater making his favorite cheese n’ potato sandwich.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/ayqTPsU.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;modfest&quot;&gt;ModFest&lt;/h3&gt;
+&lt;p&gt;ModFest is a modding event that tries to push modding forward and create new mods as new Minecraft releases arrive. As of the time of writing this is ModFest 1.16 and still ongoing. If you want new mods for a new Minecraft, make sure to check out &lt;a href=&quot;https://modfest.net/1.16/&quot;&gt;ModFest’s website&lt;/a&gt;!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Statement on the Yarn DMCA takedown</title><link href="http://fabricmc.net/2020/06/23/dmca.html" rel="alternate" type="text/html" title="Statement on the Yarn DMCA takedown" /><published>2020-06-23T00:00:00+00:00</published><updated>2020-06-23T00:00:00+00:00</updated><id>http://fabricmc.net/2020/06/23/dmca</id><content type="html" xml:base="http://fabricmc.net/2020/06/23/dmca.html">&lt;h2 id=&quot;update-2462020&quot;&gt;Update 24/6/2020&lt;/h2&gt;
+
+&lt;p&gt;The Yarn repository has been restored! This wouldn’t have been possible without Dinnerbone and the staff at Mojang who have stepped up to help us quickly resolve the issue, as well as the community who supported us throughout the turmoil. Thank you - we owe so much to you.&lt;/p&gt;
+
+&lt;p&gt;The following information is no longer relevant to Fabric’s current operations, but preserved as part of the historical record.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;The following announcement has been posted initially on our Discord yesterday. It has been updated with additional information.&lt;/p&gt;
+
+&lt;p&gt;Yesterday, we received a &lt;a href=&quot;https://github.com/github/dmca/blob/master/2020/06/2020-06-22-modcoderpack.md&quot;&gt;DMCA takedown request&lt;/a&gt; for the GitHub repository of Yarn from someone impersonating “Mojang AB” and the “Mod Coder Pack” project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What does this mean?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This means that the Yarn repository has become unavailable effective June 23rd, and will remain so until the issue is resolved.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/9LGFDTd.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Note that this does not impact the Maven server, used for distributing Fabric to end users and mod developers. This involves only the development repository for Yarn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Is there any truth to the claims?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;In our understanding, they are false. We have asked all alleged claimants; they responded stating that no DMCA request on the Fabric project has been filed by them or on their behalf. As such, we believe on good authority that the notice is fraudulent in nature.&lt;/p&gt;
+
+&lt;blockquote class=&quot;twitter-tweet&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;It was pointed out to me that there is a DMCA claim against a community project filed under &lt;a href=&quot;https://t.co/htmFmpDZq6&quot;&gt;https://t.co/htmFmpDZq6&lt;/a&gt;&lt;br /&gt;The only person who fits that description would be me, but I did not file the claim. I think DMCA does more harm than good, so I would not use it in the first place&lt;/p&gt;&amp;mdash; Searge (@SeargeDP) &lt;a href=&quot;https://twitter.com/SeargeDP/status/1275498219678687234?ref_src=twsrc%5Etfw&quot;&gt;June 23, 2020&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;strong&gt;Does this impact me?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If you’re a Fabric user or mod developer, it does not impact you in any way.&lt;/p&gt;
+
+&lt;p&gt;If you’re a contributor to Yarn, you may need to delay your contributions until the issue is resolved. Other Fabric projects and repositories are not affected.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What are your immediate plans?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Transparency has always been a strong value held by the Fabric project. In its spirit, we are letting the Fabric community know about the incident. We are also going to follow the legal procedures. Even then, the Yarn repository may remain unavailable for as long as 2-3 weeks. There is, unfortunately, nothing we can do to speed this process up.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Does this impact the upcoming 1.16 update?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It has not - Fabric is already out for 1.16.&lt;/p&gt;
+
+&lt;p&gt;We understand that this is a sudden and troublesome situation. We do not take fraudulent takedown notices lightly, and we’ll do everything we possibly can to ensure this incident has no impact on the project going forward.&lt;/p&gt;</content><author><name></name></author><summary type="html">Update 24/6/2020</summary></entry><entry><title type="html">June Status Update</title><link href="http://fabricmc.net/2020/06/08/jun-status-update.html" rel="alternate" type="text/html" title="June Status Update" /><published>2020-06-08T00:00:00+00:00</published><updated>2020-06-08T00:00:00+00:00</updated><id>http://fabricmc.net/2020/06/08/jun-status-update</id><content type="html" xml:base="http://fabricmc.net/2020/06/08/jun-status-update.html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/B3zWLoL.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;1.16 pre-releases have begun, and with it comes a new wave of updates for the Fabric toolchain. There are several new key things you should be aware of, including breaking changes from the base game, new Fabric API features, and faster versions of developer tools.&lt;/p&gt;
+
+&lt;p&gt;Now is a great time to start thinking about updating your mods to the 1.16 pre-releases as it will allow a fast and smooth transition to the full 1.16 release.&lt;/p&gt;
+
+&lt;p&gt;A more player-focused blog post will be released alongside the Minecraft 1.16 official release. In the meanwhile feel free to join the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;Discord Server&lt;/a&gt; to see some of the awesome mods and creations people are making!&lt;/p&gt;
+
+&lt;h2 id=&quot;improvements&quot;&gt;Improvements&lt;/h2&gt;
+
+&lt;p&gt;Fabric has received a large number of improvements and bug fixes over the last few months, which will greatly improve the developer experience. Most of these contributions came from members of the community via pull requests.&lt;/p&gt;
+
+&lt;h3 id=&quot;loom&quot;&gt;Loom&lt;/h3&gt;
+
+&lt;p&gt;Loom is the Gradle plugin used by all fabric mods to make setting up a development environment easier, and building a releasable  jar as painless as possible&lt;/p&gt;
+
+&lt;p&gt;Loom 0.4 brings performance improvements, new features, and bug fixes to the table. One of the greatest improvements to Loom from the past few months is support for multi-threading in several operations, which greatly improves speed. A test on medium-tier hardware&lt;sup&gt;1&lt;/sup&gt; reveals a 600%+ speed improvement on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;genSources&lt;/code&gt; between Loom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.2.7-SNAPSHOT&lt;/code&gt;, which took 3m4s, and the most recent version, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.4-SNAPSHOT&lt;/code&gt;, which took an incredible 27s.&lt;/p&gt;
+
+&lt;p&gt;Improvements were also made with startup times: all dependencies are now remapped at once instead of one by one. This saved over 30 seconds during testing and was made possible through improvements to &lt;a href=&quot;https://github.com/FabricMC/tiny-remapper&quot;&gt;tiny-remapper&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;updating-loom&quot;&gt;Updating Loom&lt;/h4&gt;
+
+&lt;p&gt;Updating your projects to use a newer version of Loom is easy! Locate the area at the top of your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file where you pull Fabric Loom as a plugin:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fabric-loom'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.2.7-SNAPSHOT'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Replace the existing version with your target version. In this example, we will update to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.4-SNAPSHOT&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fabric-loom'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.4-SNAPSHOT'&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;You can view how the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod&quot;&gt;Fabric Example Mod&lt;/a&gt; was updated &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/commit/8d952c922d566bd386d76108c222baa2e2cc5d33&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;yarn&quot;&gt;Yarn&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn&quot;&gt;Yarn&lt;/a&gt; has continued to progress at a rapid rate throughout the 1.16 snapshot cycle and grows ever closer to 100% mapping coverage. As of 1.16-pre2, yarn statistics are as follows:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Category&lt;/th&gt;
+      &lt;th&gt;Progress&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Classes&lt;/td&gt;
+      &lt;td&gt;100%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Methods&lt;/td&gt;
+      &lt;td&gt;95.71%&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Fields&lt;/td&gt;
+      &lt;td&gt;95.54%&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;big-renames&quot;&gt;Big Renames&lt;/h4&gt;
+
+&lt;p&gt;Based on developer feedback, some larger-scale class renames have been applied to 1.16 yarn:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Previous Name&lt;/th&gt;
+      &lt;th&gt;New Name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BasicInventory&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1364&quot;&gt;SimpleInventory&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Container&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1106&quot;&gt;ScreenHandler&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ContainerScreen&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1106/files&quot;&gt;HandledScreen&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;IWorld&lt;/td&gt;
+      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pulls?q=is%3Apr+is%3Aclosed+WorldAccess&quot;&gt;WorldAccess&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You can automatically update your mods source code to the new names using Loom’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;migrateMappings&lt;/code&gt; task. You can contribute to yarn by visiting the &lt;a href=&quot;https://github.com/FabricMC/yarn&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A big thanks goes out to over 30 contributors who have helped create these mappings since the first 1.16 snapshot!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;fabric-api&quot;&gt;Fabric (API)&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric&quot;&gt;Fabric API&lt;/a&gt;, the core library that powers a lot of Fabric mods, has received numerous updates over the past 6 months. It has been updated weekly since the beginning of February for the 1.16 snapshots, covering 16 snapshot versions and 2 pre-releases, as of the start of June. A lot of the mentioned changes below are also in the 1.14 and 1.15 builds.&lt;/p&gt;
+
+&lt;h4 id=&quot;villager-profession-api&quot;&gt;Villager Profession API&lt;/h4&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/493&quot;&gt;i509VCB’s Villager Profession API&lt;/a&gt;, which eases the creation of Villager Professions and Point of Interests, was recently merged into Fabric API.&lt;/p&gt;
+
+&lt;h4 id=&quot;object-builders&quot;&gt;Object Builders&lt;/h4&gt;
+
+&lt;p&gt;The Object Builders module has successfully transitioned from &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/537&quot;&gt;v0 to v1&lt;/a&gt; thanks to the efforts of i509VCB and others, paving the way for more API utilities in the future.&lt;/p&gt;
+
+&lt;h4 id=&quot;nether-biome-api&quot;&gt;Nether Biome API&lt;/h4&gt;
+
+&lt;p&gt;The first 1.16 snapshot, 20w06a, which was released on February 5th, was quickly followed by &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/496&quot;&gt;SuperCoder7979’s Nether Biome API&lt;/a&gt; on the 6th. This API allows developers to easily add their custom biomes to the Nether.&lt;/p&gt;
+
+&lt;h4 id=&quot;improved-commands-api&quot;&gt;Improved Commands API&lt;/h4&gt;
+
+&lt;p&gt;The original API used to add commands was one of the oldest modules in fabric and was due a refresh to bring it upto date. Thanks to i509VCB &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/539&quot;&gt;Fabric Command API v1&lt;/a&gt; was added while maintaining backwards compatibility for existing mods.&lt;/p&gt;
+
+&lt;h4 id=&quot;tool-attributes&quot;&gt;Tool Attributes&lt;/h4&gt;
+
+&lt;p&gt;The new &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/460&quot;&gt;tool attribute&lt;/a&gt; module is designed to replace the old mining level module. As with the other modules backwards compatibility was kept for older mods. Thanks to Boundarybreaker and shedaniel for helping with this.&lt;/p&gt;
+
+&lt;h4 id=&quot;other-changes&quot;&gt;Other Changes&lt;/h4&gt;
+
+&lt;p&gt;There are too many changes to list in detail, bellow are links to some smaller changes that are also included:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/640&quot;&gt;Various Indigo fixes&lt;/a&gt; (grondag)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/601&quot;&gt;Model predicate provider registry&lt;/a&gt; (liach)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/593&quot;&gt;Restart testmods&lt;/a&gt; (modmuss50)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/563/&quot;&gt;Builtin item renderer registry&lt;/a&gt; (Juuxel)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/525&quot;&gt;Improvements to the registry sync&lt;/a&gt; (modmuss50)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/568&quot;&gt;Entity attribute registry&lt;/a&gt; (liach)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;breaking-changes&quot;&gt;Breaking Changes&lt;/h4&gt;
+
+&lt;p&gt;Despite our best efforts, some parts of Fabric API will be broken with the 1.16 update. The most notable change is in &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricDimensionType&lt;/code&gt;&lt;/strong&gt; due to the conversion of dimensions and dimension types to being data-driven. We are not currently sure what can be kept and what must be removed. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-climbable-api-v1&lt;/code&gt; has also been removed, as it was purely a backport of 1.16’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minecraft:climbable&lt;/code&gt; tag.&lt;/p&gt;
+
+&lt;p&gt;Some of the modules originally developed targeting 1.16 have already been backported to 1.15, like the new version 1 of Fabric Object Builders.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;enigma&quot;&gt;Enigma&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/enigma&quot;&gt;Enigma&lt;/a&gt; is the tool that is used to map out the Minecraft codebase. Over the last few months, members of the community have worked hard to improve it in &lt;em&gt;many&lt;/em&gt; areas.&lt;/p&gt;
+
+&lt;h4 id=&quot;gui-improvements&quot;&gt;GUI Improvements&lt;/h4&gt;
+
+&lt;p&gt;2xsaiko has worked hard to bring one of the most requested features to Enigma: &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/238&quot;&gt;Tab support&lt;/a&gt;! You can now open multiple files at the same time, resulting in faster workflows and an overall better experience.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/7iTKHzs.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;multiplayer&quot;&gt;Multiplayer&lt;/h4&gt;
+
+&lt;p&gt;Earthcomputer worked on a fun &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/221&quot;&gt;pull request to add multiplayer support&lt;/a&gt;, or as he puts it, “&lt;del&gt;battle royale&lt;/del&gt; real-time collab support”.&lt;/p&gt;
+
+&lt;p&gt;To access this feature, open a jar in Enigma, and click the &lt;em&gt;Collab&lt;/em&gt; option at the top of the screen:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/CedYVnt.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;modularity&quot;&gt;Modularity&lt;/h4&gt;
+
+&lt;p&gt;Runemoro &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/242&quot;&gt;split the code base of Enigma&lt;/a&gt; into 4 distinct sections. The new 4 modules of Enigma include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-swing&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-server&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-cli&lt;/code&gt;. This will make it easier to continue to improve enigma as well as write tools that use parts of it.&lt;/p&gt;
+
+&lt;h2 id=&quot;modfest&quot;&gt;ModFest&lt;/h2&gt;
+
+&lt;p&gt;The 1.15 &lt;a href=&quot;https://modfest.net/1.15/entries/&quot;&gt;ModFest&lt;/a&gt; event, which ran from March 28&lt;sup&gt;th&lt;/sup&gt; to April 5&lt;sup&gt;th&lt;/sup&gt;, will be followed by another ModFest centered around 1.16. ModFest 1.16 runs from &lt;strong&gt;June 12&lt;sup&gt;th&lt;/sup&gt;&lt;/strong&gt; and &lt;strong&gt;June 21&lt;sup&gt;st&lt;/sup&gt;&lt;/strong&gt;, 2020. You can stay up to date on ModFest news by joining the &lt;a href=&quot;https://discord.gg/gn543Ee&quot;&gt;ModFest Discord server&lt;/a&gt;. The player blog post, which will arrive in the near future, will further document the results of the ModFest 1.15.&lt;/p&gt;
+
+&lt;h3 id=&quot;notes&quot;&gt;Notes&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Tests were performed on an RX 590 with a Ryzen 3600 and 16GB allocated to IntelliJ IDEA under standard conditions.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Fabric for Minecraft 1.15.2</title><link href="http://fabricmc.net/2020/01/21/1152.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.15.2" /><published>2020-01-21T00:00:00+00:00</published><updated>2020-01-21T00:00:00+00:00</updated><id>http://fabricmc.net/2020/01/21/1152</id><content type="html" xml:base="http://fabricmc.net/2020/01/21/1152.html">&lt;h1 id=&quot;fabric-for-minecraft-1152&quot;&gt;Fabric for Minecraft 1.15.2&lt;/h1&gt;
+
+&lt;p&gt;Fabric for Minecraft 1.15.2 has been released, the first update of the new year!&lt;/p&gt;
+
+&lt;p&gt;A few mods may need updating mainly due to some minor item rendering changes, and minor sapling generation changes. However the majority of mods should work just fine.&lt;/p&gt;
+
+&lt;p&gt;If you want to find out more about the 1.15 update please read the &lt;a href=&quot;https://fabricmc.net/2019/12/10/115.html&quot;&gt;Fabric for 1.15 announcement&lt;/a&gt;. Feel free to join our &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;Discord&lt;/a&gt; server if you want to discuss the update.&lt;/p&gt;</content><author><name></name></author><summary type="html">Fabric for Minecraft 1.15.2</summary></entry></feed>

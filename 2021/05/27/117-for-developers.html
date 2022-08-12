@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Minecraft 1.17 for Mod Developers | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Minecraft 1.17 for Mod Developers" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers." />
+<meta property="og:description" content="Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers." />
+<link rel="canonical" href="http://fabricmc.net/2021/05/27/117-for-developers.html" />
+<meta property="og:url" content="http://fabricmc.net/2021/05/27/117-for-developers.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Minecraft 1.17 for Mod Developers" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2021/05/27/117-for-developers.html"},"description":"Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.","url":"http://fabricmc.net/2021/05/27/117-for-developers.html","@type":"BlogPosting","headline":"Minecraft 1.17 for Mod Developers","dateModified":"2021-05-27T00:00:00+00:00","datePublished":"2021-05-27T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Minecraft 1.17 for Mod Developers</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2021-05-27T00:00:00+00:00" itemprop="datePublished">May 27, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.</p>
+
+<p>The pre-releases are a great time to start updating your mods in preparation for the final release. In the past most mods updated during the pre-release stage kept working on the final stable release with few or no further changes.</p>
+
+<p><img src="/assets/goat.png" alt="A goat in a geode" /></p>
+
+<h2 id="java-16">Java 16</h2>
+
+<p>Minecraft 1.17 is now built against Java 16; this is a big step up from Java 8 and will affect modders. To set up a development environment you will need to use Java 16, Gradle 7 and fabric-loom 0.8 or higher. In most cases this will not break your existing code (excluding the normal porting procedure). There is a 1.17 branch of the <a href="https://github.com/FabricMC/fabric-example-mod/tree/1.17">fabric-example-mod</a> that should help get you started. Look at the <a href="https://github.com/FabricMC/fabric-example-mod/compare/29c522536fc16233833221e22eed3f106c0726bc...1.17">1.17+Java 16 migration changes</a> which should apply similarly to most mods. We have created a specific channel named <code class="language-plaintext highlighter-rouge">#mod-dev-gradle-ides</code> on the <a href="https://discord.gg/v6v4pMv">official Discord server</a> if you need some help with getting setup.</p>
+
+<p>We have used this opportunity to migrate most of the modder- and contributor-facing tools to Java 16. Player-facing projects only use Java 16 if Minecraft doesn’t require it anyway in all relevant scenarios. The Fabric Loader and Installer, and their dependency libraries, will still target Java 8 as they are cross-version.</p>
+
+<h2 id="fabric-api">Fabric API</h2>
+
+<p>Fabric API has been fully updated to Java 16 and 1.17. It doesn’t use any Java 16 features yet, nor will it break compatibility to adopt any. New or updated modules may introduce records and other features into the API where it makes sense, the implementation is expected to use Java 16 features where it doesn’t harm necessary backporting too much.</p>
+
+<p>Since 1.16 released, we have added a number of new APIs that can be used:</p>
+
+<ul>
+  <li>Reworked networking API, closer to what the vanilla network protocol allows (i509VCB, liach)</li>
+  <li>World Renderer events for a variety of hooks to render custom world content outside the usual facilities and some behavior modification opportunities to e.g. customize block outlines (grondag)</li>
+  <li>Screen API with many events to react to or influence behavior in GUIs (i509VCB)</li>
+  <li>Client Side Commands to use command input for client purposes like visual config changes (Juuxel)</li>
+  <li>API Lookup API to obtain API references without having to attach interfaces to classes directly and help with context binding, a building block for universal APIs like Fluid I/O (Technici4n)</li>
+  <li>a variety of smaller or more focused additions and enhancements (see GitHub)</li>
+</ul>
+
+<h2 id="yarn">Yarn</h2>
+
+<h3 id="constants">Constants</h3>
+
+<p>In 1.17, Mojang no longer strips out unused code including the constant fields that are inlined by the Java compiler. We have seamlessly integrated <a href="https://github.com/FabricMC/unpick">unpick</a> (created by Daomephsta) into the Fabric toolchain to undo some of this inlining. Once you have updated your development environment to 1.17, you can also use these constants in your mod code just like you would with any other field.</p>
+
+<h4 id="before">Before</h4>
+
+<p><em>Note the hard to understand flag <code class="language-plaintext highlighter-rouge">26</code> passed into the last parameter of setBlockState</em></p>
+
+<pre><code class="language-java=">protected boolean place(ItemPlacementContext context, BlockState state) {
+   return context.getWorld().setBlockState(context.getBlockPos(), state, 26);
+}
+</code></pre>
+
+<h4 id="after">After</h4>
+
+<p><em>In 1.17 this has been simplified to clearly show the true meaning of this flag.</em></p>
+
+<pre><code class="language-java=">protected boolean place(ItemPlacementContext context, BlockState state) {
+   return context.getWorld().setBlockState(context.getBlockPos(), state, Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD | Block.FORCE_STATE);
+}
+</code></pre>
+
+<h3 id="names">Names</h3>
+
+<p>During the 1.17 snapshot season, some important classes have been renamed in Yarn.</p>
+
+<p>The most notable instance is the rename of all NBT-related classes thanks to contributor <a href="https://github.com/LambdAurora">@LambdAurora</a>. This is to prevent confusion between the data-driven <a href="https://minecraft.fandom.com/wiki/Tag"><code class="language-plaintext highlighter-rouge">net.minecraft.tag.Tag</code>s</a> and NBT tag interface <code class="language-plaintext highlighter-rouge">net.minecraft.nbt.Tag</code>, which is now named <code class="language-plaintext highlighter-rouge">NbtElement</code> instead.</p>
+
+<p>You can use the automated <a href="https://fabricmc.net/wiki/tutorial:migratemappings">migrateMappings</a> task in Loom to transition to the new names efficiently. Since 1.16.5, there have been over 500 commits to Yarn, all working to improve coverage and quality. Major class renames will be paused when 1.17 is released; these will be done in the 1.18 snapshots instead.</p>
+
+<h3 id="documentation">Documentation</h3>
+
+<p>Trying to document the Minecraft codebase is a massive job, especially as it is constantly evolving. Improving the documentation provided by Yarn is an ongoing effort by all of the contributors. You can view the online Javadoc for 1.17 pre-release 1 <a href="https://maven.fabricmc.net/docs/yarn-1.17-pre1+build.1/index.html">here</a> or inline with the decompiled and named Minecraft sources directly attached in your IDE.</p>
+
+<h2 id="curseforge">CurseForge</h2>
+
+<p>CurseForge have recently announced in their <a href="https://mailchi.mp/844b51b9bdf1/whats-new-with-overwolf-curseforge-may2-edited">May Updates blog post</a> that they will be adding native Fabric support to their client. In preparation for this, they have asked all mod developers to ensure that uploaded files are correctly tagged against the relevant mod loader. The linked blog post contains details on how to do this.</p>
+
+  </div><a class="u-url" href="/2021/05/27/117-for-developers.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
