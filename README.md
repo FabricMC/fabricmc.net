@@ -13,7 +13,7 @@ The contents of this website, unless otherwise indicated, are licensed under a [
 Install Docker and VSCode on the host, no need to install NodeJS or Ruby on the host.
 
 * Open dev container with vscode
-* Run `bundle install && bundler exec jekyll serve` in a terminal
+* Run `bundle install && bundle exec jekyll serve` in a terminal
 * In a second terminal, run: `cd scripts`, `npm i`, `npm run dev`
 * http://localhost:4000/
 
