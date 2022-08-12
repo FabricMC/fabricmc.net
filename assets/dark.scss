@@ -11,7 +11,7 @@ $fabric-download-color: #1f6feb;
 @import "{{ site.theme }}";
 @import "fabric";
 
-code, select, pre {
+code, select, pre, input {
     background-color: $background-color;
     color: $text-color;
 }

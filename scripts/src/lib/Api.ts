@@ -43,6 +43,10 @@ export async function getYarnVersions() {
     return getJson<YarnVersion[]>("https://meta.fabricmc.net/v2/versions/yarn");
 }
 
+export async function getMinecraftYarnVersions(minecraftVersion: string) {
+    return getJson<YarnVersion[]>("https://meta.fabricmc.net/v2/versions/yarn/" + minecraftVersion);
+}
+
 export async function getLauncherProfile(minecraftVersion: string, loaderVersion: string) {
     return getJson<any>(`https://meta.fabricmc.net/v2/versions/loader/${minecraftVersion}/${loaderVersion}/profile/json`);
 }
@@ -57,8 +61,16 @@ export async function getLatestYarnVersion(gameVersion: string): Promise<YarnVer
     ))[0];
 }
 
-export async function getApiVersions(): Promise<string[]> {
-    let metadata = await getText("https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
+export function getApiVersions(): Promise<string[]> {
+    return getMavenVersions("https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
+}
+
+export function getKotlinAdapterVersions(): Promise<string[]> {
+    return getMavenVersions("https://maven.fabricmc.net/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
+}
+
+export async function getMavenVersions(path: string): Promise<string[]> {
+    let metadata = await getText(path);
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(metadata, "text/xml");
     let versions = Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)

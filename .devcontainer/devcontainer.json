@@ -5,6 +5,7 @@
 		3000
 	],
 	"extensions": [
-		"svelte.svelte-vscode"
+		"svelte.svelte-vscode",
+		"shadowtime2000.eta-vscode"
 	]
 }
