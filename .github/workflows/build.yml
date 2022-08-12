@@ -1,0 +1,56 @@
+name: Build
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      ImageOS: ubuntu22
+    steps:
+      - uses: actions/checkout@v2
+      # Maintain timestamps of previously published files
+      - uses: actions/checkout@v2
+        with:
+          ref: static
+          path: _site
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7.4'
+      # Jekyll 4 fails to create the .jekyll-cache directory, but if we pre-create it, it works
+      - run: mkdir -p .jekyll-cache
+      - run: bundler install --deployment && bundler exec jekyll build
+      - run: npm i
+        working-directory: ./scripts
+      - run: npm run check
+        working-directory: ./scripts
+      - run: npm run build
+        working-directory: ./scripts
+      # Upload the static content as a workflow artifact when not publishing the site (non-main branches)
+      - name: Archive site
+        uses: actions/upload-artifact@v2
+        with:
+          name: site
+          path: _site
+          retention-days: 2
+
+  # Separate job so it doesn't run inside the jekyll container
+  publish:
+    needs: build
+    runs-on: ubuntu-22.04
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: site
+          path: _site
+      # Publish to GH pages on main branch
+      - name: Push to GH pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: static
+          FOLDER: _site
+          CLEAN: true

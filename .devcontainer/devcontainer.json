@@ -1,0 +1,10 @@
+{
+    "build": { "dockerfile": "../Dockerfile" },
+	"forwardPorts": [
+		4000,
+		3000
+	],
+	"extensions": [
+		"svelte.svelte-vscode"
+	]
+}

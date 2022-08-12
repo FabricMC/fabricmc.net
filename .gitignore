@@ -1,0 +1,12 @@
+_site/
+
+javascript/node_modules/
+javascript/public/build/
+
+.idea
+.bundle
+.jekyll-cache
+.sass-cache
+vendor
+
+.DS_Store

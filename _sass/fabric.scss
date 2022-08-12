@@ -1,0 +1,111 @@
+.site-header-logo a:hover {
+	text-decoration: none;
+}
+
+.site-header-logo {
+	font-weight: bold;
+}
+
+.site-header-logo img {
+	margin: 12px 6px;
+}
+
+.page-content {
+	padding: 0;
+}
+
+.site-header, .site-footer {
+	border-top: 0;
+	border-bottom: 0;
+}
+
+.post-content {
+	text-align: justify;
+}
+
+.post-title {
+	font-weight: 400;
+	font-size: 32px;
+}
+
+.hidden {
+	display: none;
+}
+#fabricDownloadForm {
+	font-family: sans-serif;
+}
+#fabricDownloadForm .button-bar {
+	display: inline-block;
+}
+#fabricDownloadForm .button-bar small {
+	font-size: 9px;
+}
+#fabricDownloadForm .button-bar .button {
+	background-color: #ddd;
+	padding: 8px 20px;
+	display: inline-block;
+	cursor: pointer;
+}
+#fabricDownloadForm .button-bar .button-active {
+	background-color: #bbb;
+	border: 2px solid #333;
+	cursor: default;
+}
+#fabricDownloadForm .show-expert {
+	color: #cc0000;
+}
+
+.page-link-download {
+	background-color: $fabric-download-color;
+	border: none;
+	color: white !important;
+	padding: 5px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+  
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	border-radius: 5px;
+
+	&:hover, &:focus {
+		background-color: darken($fabric-download-color, 10%);
+		text-decoration: none;
+		color: white;
+	  }
+}
+
+.button, button, .button:visited {
+  background-color: $fabric-download-color;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 5px;
+}
+
+.button:hover, button:hover, .button:focus, button:focus {
+  background-color: darken($fabric-download-color, 10%);
+  text-decoration: none;
+  color: white;
+}
+
+.button:active, button:active {
+  background-color: #2a7ae2;
+}
+
+.download {
+  text-align: center;
+}
+
+.form-line {
+  margin-bottom: 1rem;
+  & > label {
+    display: block;
+  }
+}
