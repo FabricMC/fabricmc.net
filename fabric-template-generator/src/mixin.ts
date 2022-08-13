@@ -1,10 +1,9 @@
-import type JSZip from "jszip";
 import { renderTemplate } from "./eta";
-import type { ComputedOptions } from "./TemplateGenerator";
+import type { ComputedConfiguration, TemplateWriter } from ".";
 
 import mixinTemplate from './templates/mixin/Mixin.java.eta?raw';
 
-export function generateMixin(zip: JSZip, options: ComputedOptions) : string[] {
+export async function generateMixin(writer: TemplateWriter, options: ComputedConfiguration) {
     const packageName = options.packageName + ".mixin";
     const className = "ExampleMixin"
 
@@ -23,11 +22,9 @@ export function generateMixin(zip: JSZip, options: ComputedOptions) : string[] {
         }
     };
 
-    zip.file(`src/main/resources/${options.modid}.mixin.json`, JSON.stringify(mixinJson, null, "\t"));
-    zip.file(`src/main/java/${packageName.replace(".", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
+    await writer.write(`src/main/resources/${options.modid}.mixin.json`, JSON.stringify(mixinJson, null, "\t"));
+    await writer.write(`src/main/java/${packageName.replace(".", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
         className,
         packageName
     }));
-
-    return [];
 }

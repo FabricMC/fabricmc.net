@@ -1,6 +1,10 @@
 <script lang="ts">
+    import JSZip from "jszip";
+    import { getGameVersions } from "fabric-template-generator/api";
+    import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { getGameVersions } from "./Api";
+
+    import gradleWrapperUrl from "./template/wrapper/gradle-wrapper.jar?url";
 
     let minecraftVersion: string;
     let projectName = "Mod Name";
@@ -23,9 +27,9 @@
 
     async function generate() {
         loading = true;
-        const generator = await import("./generator/TemplateGenerator");
 
-        await generator.generateTemplate({
+        const generator = await import("fabric-template-generator");
+        const config = {
             minecraftVersion,
             projectName,
             packageName,
@@ -33,13 +37,39 @@
             dataGeneration,
             githubActions,
             splitSources,
+        };
+
+        const zip = new JSZip();
+
+        await generator.generateTemplate({
+            config,
+            writer: {
+                write: async (path, content) => {
+                    zip.file(path, content);
+                },
+            },
+            gradleWrapperLoader: loadGradleWrapper,
         });
+
+        FileSaver.saveAs(
+            await zip.generateAsync({ type: "blob" }),
+            `fabric-mod-template-${config.minecraftVersion}.zip`
+        );
 
         loading = false;
     }
 
     function clickShowAdancedOptions() {
         showAdancedOptions = true;
+    }
+
+    async function loadGradleWrapper(): Promise<ArrayBuffer> {
+        try {
+            const res = await fetch(gradleWrapperUrl);
+            return await res.arrayBuffer();
+        } catch (error) {
+            throw new Error(`Unable to request gradle-wrapper.jar: ${error}`);
+        }
     }
 </script>
 
@@ -108,9 +138,9 @@
         </div>
 
         {#if loading}
-        <a class="button" href={""}>
-            <DownloadIcon /> Generating...
-        </a>
+            <a class="button" href={""}>
+                <DownloadIcon /> Generating...
+            </a>
         {:else}
             <a class="button" href={""} on:click|preventDefault={generate}>
                 <DownloadIcon /> Download Template (.ZIP)

@@ -1,6 +1,5 @@
-import type JSZip from "jszip";
 import { renderTemplate } from "./eta";
-import type { ComputedOptions } from "./TemplateGenerator";
+import type { ComputedConfiguration, TemplateWriter } from ".";
 
 import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?raw';
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
@@ -11,7 +10,7 @@ interface ClassOptions {
     path: string // com/example/ExampleClass
 }
 
-export function generateEntrypoint(zip: JSZip, options: ComputedOptions): any {
+export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
     const className = "ExampleMod"; // TODO base of mod name.
 
     const classOptions: ClassOptions = {
@@ -21,14 +20,14 @@ export function generateEntrypoint(zip: JSZip, options: ComputedOptions): any {
     }
 
     if (options.kotlin) {
-        return generateKotlinEntrypoint(zip, classOptions);
+        return await generateKotlinEntrypoint(writer, classOptions);
+    } else {
+        return await generateJavaEntrypoint(writer, classOptions);
     }
-
-    return generateJavaEntrypoint(zip, classOptions);
 }
 
-function generateJavaEntrypoint(zip: JSZip, options: ClassOptions): any {
-    zip.file("src/main/java/" + options.path + ".java", renderTemplate(javaEntrypointTemplate, options))
+async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOptions): Promise<unknown> {
+    await writer.write("src/main/java/" + options.path + ".java", renderTemplate(javaEntrypointTemplate, options))
 
     return {
         "main": [
@@ -37,8 +36,8 @@ function generateJavaEntrypoint(zip: JSZip, options: ClassOptions): any {
     }
 }
 
-function generateKotlinEntrypoint(zip: JSZip, options: ClassOptions): any {
-    zip.file("src/main/kotlin/" + options.path + ".kt", renderTemplate(kotlinEntrypointTemplate, options))
+async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOptions): Promise<unknown> {
+    await writer.write("src/main/kotlin/" + options.path + ".kt", renderTemplate(kotlinEntrypointTemplate, options))
 
     return {
         "main": [

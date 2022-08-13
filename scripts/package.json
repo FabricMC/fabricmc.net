@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "eta": "^1.12.3",
+    "fabric-template-generator": "file:../fabric-template-generator",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1"
   }
