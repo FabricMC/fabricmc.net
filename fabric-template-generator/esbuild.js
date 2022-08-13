@@ -4,6 +4,10 @@ import rawPlugin from "esbuild-plugin-raw";
 import path from "path";
 
 /**
+ * Because eta ships a version that only works in Node by default, we'll use a custom plugin to
+ * change the import path to just use the browser version. We don't use any Node specific features
+ * so we might as well reduce our bundle size.
+ * 
  * @type {import("esbuild").Plugin}
  */
 const etaPlugin = {
@@ -28,6 +32,8 @@ esbuild
   })
   .catch(() => process.exit(1));
 
+// Not strictly necessary, but otherwise the frontend would have to have some duplicate code that
+// already exists in the library.
 esbuild
   .build({
     entryPoints: ["src/api.ts"],
