@@ -2,6 +2,7 @@ import { renderTemplate } from "./eta";
 import type { ComputedConfiguration, TemplateWriter } from ".";
 
 import mixinTemplate from './templates/mixin/Mixin.java.eta?raw';
+import { getJavaVersion } from "./java";
 
 export async function generateMixin(writer: TemplateWriter, options: ComputedConfiguration) {
     const packageName = options.packageName + ".mixin";
@@ -11,7 +12,7 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
         "required": true,
         "minVersion": "0.8",
         "package": packageName,
-        "compatibilityLevel": "JAVA_17", // TODO pass this in based on the target mc ver.
+        "compatibilityLevel": getJavaVersion(options.minecraftVersion).mixin,
         "mixins": [
         ],
         "client": [
