@@ -1,3 +1,5 @@
+import { parseStringPromise } from "xml2js";
+
 export interface GameVersion {
     version: string;
     stable: boolean;
@@ -71,10 +73,8 @@ export function getKotlinAdapterVersions(): Promise<string[]> {
 
 export async function getMavenVersions(path: string): Promise<string[]> {
     let metadata = await getText(path);
-    let parser = new DOMParser();
-    let xmlDoc = parser.parseFromString(metadata, "text/xml");
-    let versions = Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
-    return versions;
+    const xml = await parseStringPromise(metadata);
+    return xml.metadata.versioning[0].versions[0].version;
 }
 
 async function getJson<T>(url: string) {
