@@ -1,5 +1,5 @@
 import { renderTemplate } from "./eta";
-import type { ComputedConfiguration, TemplateWriter } from ".";
+import { ComputedConfiguration, nameToModId, TemplateWriter } from ".";
 
 import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?raw';
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
@@ -7,7 +7,8 @@ import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?r
 interface ClassOptions {
     package: string, // com.example
     className: string, // ExampleClass
-    path: string // com/example/ExampleClass
+    path: string, // com/example/ExampleClass
+    modid: string
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -16,7 +17,8 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
     const classOptions: ClassOptions = {
         package: options.packageName,
         className,
-        path: options.packageName.replace(".", "/") + "/" + className
+        path: options.packageName.replace(".", "/") + "/" + className,
+        modid: options.modid
     }
 
     if (options.kotlin) {

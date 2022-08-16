@@ -6,14 +6,12 @@ org.gradle.jvmargs=-Xmx1G
 minecraft_version=<%= it.minecraftVersion %>
 yarn_mappings=<%= it.yarnVersion %>
 loader_version=<%= it.loaderVersion %>
-<% if (it.kotlin) { %>
-fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
+<% if (it.kotlin) { %>fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } %>
-
 # Mod Properties
 mod_version=1.0.0
 maven_group=<%= it.packageName %>
 archives_base_name=<%= it.modid %>
 
 # Dependencies
-fabric_version=0.58.6+1.19.2
+fabric_version=<%= it.fabricVersion %>

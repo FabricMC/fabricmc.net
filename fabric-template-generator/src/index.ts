@@ -1,6 +1,6 @@
 import { addGradleWrapper } from './gradlewrapper';
 import { addGroovyGradle } from './gradlegroovy';
-import { getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from './api';
+import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from './api';
 import { addModJson } from './modjson';
 
 export * as api from "./api";
@@ -36,6 +36,7 @@ export interface KotlinConfiguration {
 export interface ComputedConfiguration extends Configuration {
 	modid: string,
 	loaderVersion: string,
+	fabricVersion: string,
 	yarnVersion: string,
 	kotlin: KotlinConfiguration | undefined
 }
@@ -65,6 +66,7 @@ async function computeConfig(options: Configuration): Promise<ComputedConfigurat
 		...options,
 		modid: nameToModId(options.projectName),
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
+		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
 		kotlin: await computeKotlinOptions(options)
 	};
@@ -76,7 +78,7 @@ async function computeKotlinOptions(options: Configuration): Promise<KotlinConfi
 	}
 
 	const kotlinVersions = await getKotlinAdapterVersions();
-	const fabricKotlinAdapterVersion = kotlinVersions[0]; // 1.8.2+kotlin.1.7.10
+	const fabricKotlinAdapterVersion = kotlinVersions.pop()!; // 1.8.2+kotlin.1.7.10
 	const kotlinVersion = fabricKotlinAdapterVersion.split("+kotlin.")[1];
 
 	return {

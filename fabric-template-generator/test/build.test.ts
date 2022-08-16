@@ -5,6 +5,12 @@ import { Configuration, generateTemplate, TemplateWriter } from '../src';
 
 const basePath = "./testdata";
 
+/*
+Running test projects:
+find testdata -name "**build.gradle" -execdir chmod +x gradlew \;
+find testdata -name "**build.gradle" -execdir ./gradlew build \;
+*/
+
 async function generate(name: string, config: Configuration) {
   const dir = `${basePath}/${name}`;
 
