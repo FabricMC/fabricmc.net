@@ -15,12 +15,6 @@ export interface Options {
 	 * this might be directly to the filesystem or to a zip file.
 	 */
 	writer: TemplateWriter,
-	/**
-	 * Because the Gradle wrapper is a huge file we don't want to bundle it in our JavaScript so
-	 * we need to load it somehow. Depending on the platform how we load it will vary, so we'll
-	 * leave it up to the user to give us the file.
-	 */
-	gradleWrapperLoader: () => Promise<ArrayBufferLike>,
 }
 
 export interface Configuration {

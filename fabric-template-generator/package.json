@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "check": "tsc --noEmit",
-    "build": "tsc && node esbuild.js"
+    "build": "tsc && node esbuild.js",
+    "test": "vitest"
   },
   "types": "dist/index.d.ts",
   "exports": {
@@ -16,9 +17,11 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^18.7.6",
     "esbuild": "^0.14.54",
     "esbuild-plugin-raw": "^0.1.6",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "vitest": "^0.22.0"
   },
   "dependencies": {
     "eta": "^1.12.3"
