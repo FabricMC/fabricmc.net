@@ -20,8 +20,8 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
     "license": "CC0-1.0",
     "icon": "assets/modid/icon.png", // TODO add an icon to the zip.
     "environment": "*",
-    "entrypoints": generateEntrypoint(writer, config),
-    "mixins": generateMixin(writer, config),
+    "entrypoints": await generateEntrypoint(writer, config),
+    "mixins": await generateMixin(writer, config),
     "depends": {
       "fabricloader": ">=" + config.loaderVersion,
       "fabric": "*",

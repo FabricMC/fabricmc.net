@@ -3,12 +3,14 @@ import { ComputedConfiguration, nameToModId, TemplateWriter } from ".";
 
 import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?raw';
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
+import { getMinorMinecraftVersion } from "./java";
 
 interface ClassOptions {
     package: string, // com.example
     className: string, // ExampleClass
     path: string, // com/example/ExampleClass
-    modid: string
+    modid: string,
+    slf4j: boolean
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -18,7 +20,8 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         package: options.packageName,
         className,
         path: options.packageName.replace(".", "/") + "/" + className,
-        modid: options.modid
+        modid: options.modid,
+        slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18
     }
 
     if (options.kotlin) {

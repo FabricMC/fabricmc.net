@@ -4,7 +4,7 @@ import type { ComputedConfiguration, TemplateWriter } from ".";
 import mixinTemplate from './templates/mixin/Mixin.java.eta?raw';
 import { getJavaVersion } from "./java";
 
-export async function generateMixin(writer: TemplateWriter, options: ComputedConfiguration) {
+export async function generateMixin(writer: TemplateWriter, options: ComputedConfiguration) : Promise<unknown> {
     const packageName = options.packageName + ".mixin";
     const className = "ExampleMixin"
 
@@ -23,9 +23,12 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
         }
     };
 
-    await writer.write(`src/main/resources/${options.modid}.mixin.json`, JSON.stringify(mixinJson, null, "\t"));
+    const mixinJsonName = `${options.modid}.mixin.json`;
+    await writer.write(`src/main/resources/${mixinJsonName}`, JSON.stringify(mixinJson, null, "\t"));
     await writer.write(`src/main/java/${packageName.replace(".", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
         className,
         packageName
     }));
+
+    return [mixinJsonName]
 }
