@@ -27,6 +27,7 @@ export interface YarnVersion {
     stable: boolean;
 }
 
+// Do not use these fallback servers to interact with our web services. They can and will be unavailable at times and only support limited throughput.
 const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"];
 const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
 
