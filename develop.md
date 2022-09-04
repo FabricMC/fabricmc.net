@@ -25,5 +25,5 @@ This page contains a range of resources to help you create a new mod or maintain
 <noscript style="color:red">You need Javascript to show the documentation links</noscript>
 <div class="fabric-component" data-component="Documentation"></div>
 
-<script type="text/javascript" src="/scripts/main.js"></script>
+<script type="module" src="/scripts/main.js"></script>
 <link href="/scripts/style.css" rel="stylesheet">
