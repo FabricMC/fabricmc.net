@@ -139,7 +139,7 @@ function ce(l, e) {
     "1.18_experimental"
   ].forEach((a) => {
     e.startsWith(a) && (s = a);
-  }), e.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : e.startsWith("22w") ? s = "1.19" : e.startsWith("1.18.2") ? s = "1.18.2" : e.startsWith("1.19.1") ? s = "1.19.1" : e.startsWith("1.19.2") ? s = "1.19.2" : e.startsWith("21w") ? s = "1.18" : e.startsWith("20w") ? s = "1.17" : (e.startsWith("19w") || e.startsWith("18w")) && (s = "1.14"), l.endsWith("-" + s) || l.endsWith("+" + s);
+  }), e.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : e.startsWith("22w") ? s = "1.19.3" : e.startsWith("1.18.2") ? s = "1.18.2" : e.startsWith("1.19.1") ? s = "1.19.1" : e.startsWith("1.19.2") ? s = "1.19.2" : e.startsWith("21w") ? s = "1.18" : e.startsWith("20w") ? s = "1.17" : (e.startsWith("19w") || e.startsWith("18w")) && (s = "1.14"), l.endsWith("-" + s) || l.endsWith("+" + s);
 }
 function _e(l, e, s) {
   let i, a, o, r, n = ie().then((b) => (s(0, i = b.find((v) => v.stable).version), b.map((v) => v.version)));
