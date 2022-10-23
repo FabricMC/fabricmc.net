@@ -45,7 +45,7 @@
         if (mcVersion.startsWith("22w13oneblockatatime")) {
             branch = "22w13oneblockatatime"
         } else if (mcVersion.startsWith("22w")) {
-            branch = "1.19"
+            branch = "1.19.3"
         } else if (mcVersion.startsWith("1.18.2")) {
             branch = "1.18.2"
         } else if (mcVersion.startsWith("1.19.1")) {
