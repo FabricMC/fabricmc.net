@@ -3,6 +3,7 @@
     import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
+import { nameToModId } from "./template/template";
 
     let minecraftVersion: string;
     let projectName = "Mod Name";
@@ -14,6 +15,8 @@
 
     let showAdancedOptions = false;
     let loading = false;
+
+    $: modid = nameToModId(projectName)
 
     const versions = Promise.all([getGameVersions()]).then(([gameVersions]) => {
         const game = gameVersions.filter((v) => v.stable);
@@ -45,7 +48,7 @@
                 write: async (path, content) => {
                     zip.file(path, content);
                 },
-            }
+            },
         });
 
         FileSaver.saveAs(
@@ -61,29 +64,30 @@
     }
 </script>
 
-<div />
-
 {#await versions}
-    <p>Loading versions..</p>
+    <p>Loading data..</p>
 {:then data}
-    <div class="download">
+    <div class="template">
         <div class="form-line">
-            <h4 for="project-name">Mod Name:</h4>
-            <p>Choose a name for your new mod.</p>
-            <input id="project-name" value={projectName} />
+            <h3 for="project-name">Mod Name</h3>
+            <hr />
+            <p>Choose a name for your new mod. The modid will be `{modid}`.</p>
+            <input id="project-name" bind:value={projectName} />
         </div>
 
         <div class="form-line">
-            <h4 for="package-name">Package Name:</h4>
+            <h3 for="package-name">Package Name:</h3>
+            <hr />
             <p>
                 Choose a unique package name for your new mod. The package name
                 should be unique to you.
             </p>
-            <input id="package-name" value={packageName} />
+            <input id="package-name" bind:value={packageName} />
         </div>
 
         <div class="form-line">
-            <h4 for="minecraft-version">Minecraft Version:</h4>
+            <h3 for="minecraft-version">Minecraft Version:</h3>
+            <hr />
             <p>
                 Select the version of Minecraft that you wish to use for your
                 mod.
@@ -101,7 +105,7 @@
 
         <div class="form-line">
             {#if showAdancedOptions}
-                <h4>Adavanced Options:</h4>
+                <h3>Additional Options:</h3>
                 <label>
                     <input type="checkbox" bind:checked={useKotlin} />
                     Kotlin
@@ -120,17 +124,21 @@
                 </label>
             {:else}
                 <a href={"#"} on:click|preventDefault={clickShowAdancedOptions}
-                    >Show Adavanced Options</a
+                    >Show Additional Options</a
                 >
             {/if}
         </div>
 
         {#if loading}
-            <a class="button" href={""}>
+            <a class="button download-button" href={""}>
                 <DownloadIcon /> Generating...
             </a>
         {:else}
-            <a class="button" href={""} on:click|preventDefault={generate}>
+            <a
+                class="button download-button"
+                href={""}
+                on:click|preventDefault={generate}
+            >
                 <DownloadIcon /> Download Template (.ZIP)
             </a>
         {/if}
@@ -143,3 +151,14 @@
         groups.
     </p>
 {/await}
+
+<style lang="scss">
+    .template {
+        h3 {
+            margin-bottom: 0;
+        }
+        .download-button {
+            text-align: center;
+        }
+    }
+</style>

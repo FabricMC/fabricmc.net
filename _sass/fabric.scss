@@ -14,7 +14,8 @@
 	padding: 0;
 }
 
-.site-header, .site-footer {
+.site-header,
+.site-footer {
 	border-top: 0;
 	border-bottom: 0;
 }
@@ -31,26 +32,32 @@
 .hidden {
 	display: none;
 }
+
 #fabricDownloadForm {
 	font-family: sans-serif;
 }
+
 #fabricDownloadForm .button-bar {
 	display: inline-block;
 }
+
 #fabricDownloadForm .button-bar small {
 	font-size: 9px;
 }
+
 #fabricDownloadForm .button-bar .button {
 	background-color: #ddd;
 	padding: 8px 20px;
 	display: inline-block;
 	cursor: pointer;
 }
+
 #fabricDownloadForm .button-bar .button-active {
 	background-color: #bbb;
 	border: 2px solid #333;
 	cursor: default;
 }
+
 #fabricDownloadForm .show-expert {
 	color: #cc0000;
 }
@@ -63,49 +70,75 @@
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-  
+
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 	border-radius: 5px;
 
-	&:hover, &:focus {
+	&:hover,
+	&:focus {
 		background-color: darken($fabric-download-color, 10%);
 		text-decoration: none;
 		color: white;
-	  }
+	}
 }
 
-.button, button, .button:visited {
-  background-color: $fabric-download-color;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 700;
+.button,
+button,
+.button:visited {
+	background-color: $fabric-download-color;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: 700;
 
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	border-radius: 5px;
 }
 
-.button:hover, button:hover, .button:focus, button:focus {
-  background-color: darken($fabric-download-color, 10%);
-  text-decoration: none;
-  color: white;
+.button:hover,
+button:hover,
+.button:focus,
+button:focus {
+	background-color: darken($fabric-download-color, 10%);
+	text-decoration: none;
+	color: white;
 }
 
-.button:active, button:active {
-  background-color: #2a7ae2;
+.button:active,
+button:active {
+	background-color: #2a7ae2;
 }
 
 .download {
-  text-align: center;
+	text-align: center;
 }
 
 .form-line {
-  margin-bottom: 1rem;
-  & > label {
-    display: block;
-  }
+	margin-bottom: 1rem;
+
+	&>label {
+		display: block;
+	}
+}
+
+body {
+	input, select {
+		padding: 5px 12px;
+		font-size: 14px;
+		line-height: 20px;
+		vertical-align: middle;
+		background-color: lighten($background-color, 4%);
+		border: 1px solid $grey-color-very-dark;
+		border-radius: 6px;
+	}
+
+	hr {
+		border: none;
+    	height: 1px;
+		background-color: $grey-color-very-dark;
+	}
 }

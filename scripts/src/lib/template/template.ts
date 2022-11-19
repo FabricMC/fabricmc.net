@@ -56,7 +56,7 @@ export async function generateTemplate(options: Options) {
 }
 
 export function nameToModId(name: string) {
-	return name; // TODO
+	return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-za-z0-9-_]/, "");
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {

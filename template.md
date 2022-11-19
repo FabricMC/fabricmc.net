@@ -1,6 +1,6 @@
 ---
 layout: page
-title: generator
+title: mod generator (beta)
 permalink: /develop/template
 topnav: false
 ---
