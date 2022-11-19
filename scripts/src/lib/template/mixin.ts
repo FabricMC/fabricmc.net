@@ -25,7 +25,7 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
 
     const mixinJsonName = `${options.modid}.mixin.json`;
     await writer.write(`src/main/resources/${mixinJsonName}`, JSON.stringify(mixinJson, null, "\t"));
-    await writer.write(`src/main/java/${packageName.replace(".", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
+    await writer.write(`src/main/java/${packageName.replace("\.", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
         className,
         packageName
     }));

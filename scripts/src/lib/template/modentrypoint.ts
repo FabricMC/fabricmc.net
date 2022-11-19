@@ -3,14 +3,18 @@ import type { ComputedConfiguration, TemplateWriter } from "./template";
 
 import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?raw';
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
+import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.java.eta?raw';
+import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
 import { getMinorMinecraftVersion } from "./java";
 
 interface ClassOptions {
     package: string, // com.example
     className: string, // ExampleClass
+    classFullName: string, // com.example.ExampleClass
     path: string, // com/example/ExampleClass
     modid: string,
-    slf4j: boolean
+    slf4j: boolean,
+    clientEntrypoint: boolean,
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -19,9 +23,11 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
     const classOptions: ClassOptions = {
         package: options.packageName,
         className,
+        classFullName: options.packageName + "." + className,
         path: options.packageName.replace(".", "/") + "/" + className,
         modid: options.modid,
-        slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18
+        slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18,
+        clientEntrypoint: options.splitSources
     }
 
     if (options.kotlin) {
@@ -32,24 +38,53 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
 }
 
 async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOptions): Promise<unknown> {
-    await writer.write("src/main/java/" + options.path + ".java", renderTemplate(javaEntrypointTemplate, options))
-
-    return {
+    var entrypoints: any = {
         "main": [
-            options.className
+            options.classFullName
         ]
+    };
+
+    await writer.write(`src/main/java/${options.path}.java`, renderTemplate(javaEntrypointTemplate, options))
+
+    if (options.clientEntrypoint) {
+        await writer.write(`src/client/java/${options.path}Client.java`, renderTemplate(javaEntrypointClientTemplate, {...options, className: options.className + "Client"}));
+
+        entrypoints = {
+            ...entrypoints,
+            "client": [
+                options.classFullName + "Client"
+            ]
+        }
     }
+
+    return entrypoints;
 }
 
 async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOptions): Promise<unknown> {
-    await writer.write("src/main/kotlin/" + options.path + ".kt", renderTemplate(kotlinEntrypointTemplate, options))
-
-    return {
+    var entrypoints: any =  {
         "main": [
             {
-                "value": options.className + "::init",
+                "value": options.classFullName,
                 "adapter": "kotlin",
             }
         ]
+    };
+
+    await writer.write(`src/main/kotlin/${options.path}.kt`, renderTemplate(kotlinEntrypointTemplate, options))
+
+    if (options.clientEntrypoint) {
+        await writer.write(`src/client/kotlin/${options.path}Client.kt`, renderTemplate(kotlinEntrypointClientTemplate, {...options, className: options.className + "Client"}))
+
+        entrypoints = {
+            ...entrypoints,
+            "client": [
+                {
+                    "value": options.classFullName + "Client",
+                    "adapter": "kotlin",
+                }
+            ]
+        }
     }
+
+    return entrypoints;
 }

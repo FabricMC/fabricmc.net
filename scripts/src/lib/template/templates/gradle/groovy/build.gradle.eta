@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.12-SNAPSHOT'
+	id 'fabric-loom' version '1.0-SNAPSHOT'
 	id 'maven-publish'
 	<% if (it.kotlin) { %>id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"<% } %>
 }
@@ -18,7 +18,18 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 }
+<% if (it.splitSources) { %>
+loom {
+   splitEnvironmentSourceSets()
 
+    mods {
+        modid {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+ }
+<% } %>
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
