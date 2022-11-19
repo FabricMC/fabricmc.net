@@ -1,4 +1,4 @@
-import type { ComputedConfiguration, TemplateWriter } from ".";
+import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 

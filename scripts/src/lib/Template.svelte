@@ -1,10 +1,8 @@
 <script lang="ts">
     import JSZip from "jszip";
-    import { getGameVersions } from "fabric-template-generator/api";
+    import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-
-    import gradleWrapperUrl from "./template/wrapper/gradle-wrapper.jar?url";
 
     let minecraftVersion: string;
     let projectName = "Mod Name";
@@ -28,7 +26,7 @@
     async function generate() {
         loading = true;
 
-        const generator = await import("fabric-template-generator");
+        const generator = await import("./template/template");
         const config = {
             minecraftVersion,
             projectName,
@@ -47,8 +45,7 @@
                 write: async (path, content) => {
                     zip.file(path, content);
                 },
-            },
-            gradleWrapperLoader: loadGradleWrapper,
+            }
         });
 
         FileSaver.saveAs(
@@ -61,15 +58,6 @@
 
     function clickShowAdancedOptions() {
         showAdancedOptions = true;
-    }
-
-    async function loadGradleWrapper(): Promise<ArrayBuffer> {
-        try {
-            const res = await fetch(gradleWrapperUrl);
-            return await res.arrayBuffer();
-        } catch (error) {
-            throw new Error(`Unable to request gradle-wrapper.jar: ${error}`);
-        }
     }
 </script>
 

@@ -1,4 +1,4 @@
-import type { ComputedConfiguration, TemplateWriter } from '.';
+import type { ComputedConfiguration, TemplateWriter } from './template';
 import { renderTemplate } from './eta';
 
 import gradlePropertiesTemplate from './templates/gradle/groovy/gradle.properties.eta?raw';

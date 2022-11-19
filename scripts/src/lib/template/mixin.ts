@@ -1,5 +1,5 @@
 import { renderTemplate } from "./eta";
-import type { ComputedConfiguration, TemplateWriter } from ".";
+import type { ComputedConfiguration, TemplateWriter } from "./template";
 
 import mixinTemplate from './templates/mixin/Mixin.java.eta?raw';
 import { getJavaVersion } from "./java";

@@ -1,9 +1,7 @@
 import { addGradleWrapper } from './gradlewrapper';
 import { addGroovyGradle } from './gradlegroovy';
-import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from './api';
+import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
-
-export * as api from "./api";
 
 export interface Options {
 	/**

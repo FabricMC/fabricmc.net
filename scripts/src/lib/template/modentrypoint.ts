@@ -1,5 +1,5 @@
 import { renderTemplate } from "./eta";
-import { ComputedConfiguration, nameToModId, TemplateWriter } from ".";
+import type { ComputedConfiguration, TemplateWriter } from "./template";
 
 import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?raw';
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
