@@ -27,20 +27,24 @@ export interface YarnVersion {
     stable: boolean;
 }
 
+// Do not use these fallback servers to interact with our web services. They can and will be unavailable at times and only support limited throughput.
+const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"];
+const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
+
 export async function getInstallerVersions() {
-    return getJson<InstallerVersion[]>("https://meta.fabricmc.net/v2/versions/installer");
+    return getJson<InstallerVersion[]>(META, "/v2/versions/installer");
 }
 
 export async function getGameVersions() {
-    return getJson<GameVersion[]>("https://meta.fabricmc.net/v2/versions/game");
+    return getJson<GameVersion[]>(META, "/v2/versions/game");
 }
 
 export async function getLoaderVersions() {
-    return getJson<LoaderVersion[]>("https://meta.fabricmc.net/v2/versions/loader");
+    return getJson<LoaderVersion[]>(META, "/v2/versions/loader");
 }
 
 export async function getYarnVersions() {
-    return getJson<YarnVersion[]>("https://meta.fabricmc.net/v2/versions/yarn");
+    return getJson<YarnVersion[]>(META, "/v2/versions/yarn");
 }
 
 export async function getMinecraftYarnVersions(minecraftVersion: string) {
@@ -48,16 +52,16 @@ export async function getMinecraftYarnVersions(minecraftVersion: string) {
 }
 
 export async function getLauncherProfile(minecraftVersion: string, loaderVersion: string) {
-    return getJson<any>(`https://meta.fabricmc.net/v2/versions/loader/${minecraftVersion}/${loaderVersion}/profile/json`);
+    return getJson<any>(META, `/v2/versions/loader/${minecraftVersion}/${loaderVersion}/profile/json`);
 }
 
 export async function getJavadocList() {
-    return getText("https://maven.fabricmc.net/jdlist.txt").then((list) => list.split("\n"))
+    return getText(MAVEN, "/jdlist.txt").then((list) => list.split("\n"))
 }
 
 export async function getLatestYarnVersion(gameVersion: string): Promise<YarnVersion | undefined> {
     return (await getJson<YarnVersion[]>(
-        `https://meta.fabricmc.net/v2/versions/yarn/${gameVersion}?limit=1`
+        META, `/v2/versions/yarn/${gameVersion}?limit=1`
     ))[0];
 }
 
@@ -70,29 +74,37 @@ export function getKotlinAdapterVersions(): Promise<string[]> {
 }
 
 export async function getMavenVersions(path: string): Promise<string[]> {
-    let metadata = await getText(path);
+    let metadata = await getText(MAVEN, path);
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(metadata, "text/xml");
     let versions = Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
     return versions;
 }
 
-async function getJson<T>(url: string) {
-    const response = await fetch(url);
-
-    if (response.ok) {
-        return (await response.json()) as T;
-    } else {
-        throw new Error(`Failed to fetch versions (Code: ${response.status})`);
-    }
+async function getJson<T>(hostnames: string[], path: string) {
+    const response = await fetchFallback(hostnames, path);
+    return (await response.json()) as T;
 }
 
-async function getText(url: string): Promise<string> {
-    const response = await fetch(url);
+async function getText(hostnames: string[], path: string): Promise<string> {
+    const response = await fetchFallback(hostnames, path);
+    return await response.text();
+}
 
-    if (response.ok) {
-        return (await response.text());
-    } else {
-        throw new Error(`Failed to fetch versions (Code: ${response.status})`);
+async function fetchFallback(hostnames: string[], path: string) : Promise<Response> {
+    for (var hostname of hostnames) {
+        try {
+            const response = await fetch(hostname + path);
+
+            if (response.ok) {
+                return response;
+            }
+
+            console.error(await response.text());
+        } catch (e) {
+            console.error(e);
+        }
     }
+
+    throw new Error(`Failed to fetch: ${hostnames[0] + path}`);
 }

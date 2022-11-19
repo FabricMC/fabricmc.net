@@ -45,7 +45,7 @@
         if (mcVersion.startsWith("22w13oneblockatatime")) {
             branch = "22w13oneblockatatime"
         } else if (mcVersion.startsWith("22w")) {
-            branch = "1.19"
+            branch = "1.19.3"
         } else if (mcVersion.startsWith("1.18.2")) {
             branch = "1.18.2"
         } else if (mcVersion.startsWith("1.19.1")) {
@@ -106,7 +106,7 @@ fabric_version={apiVersion}
 
 <h4>Loom</h4>
 
-<p>The recommended loom version is <srong>0.12-SNAPSHOT</srong>. This is usually defined near the top of your  build.gradle file.</p>
+<p>The recommended loom version is <strong>1.0-SNAPSHOT</strong>. This is usually defined near the top of your  build.gradle file.</p>
 
 <style>
     .copy-code {
