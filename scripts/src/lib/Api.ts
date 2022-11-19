@@ -48,7 +48,7 @@ export async function getYarnVersions() {
 }
 
 export async function getMinecraftYarnVersions(minecraftVersion: string) {
-    return getJson<YarnVersion[]>("https://meta.fabricmc.net/v2/versions/yarn/" + minecraftVersion);
+    return getJson<YarnVersion[]>(META, "/v2/versions/yarn/" + minecraftVersion);
 }
 
 export async function getLauncherProfile(minecraftVersion: string, loaderVersion: string) {
