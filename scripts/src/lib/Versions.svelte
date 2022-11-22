@@ -52,7 +52,9 @@
             branch = "1.19.1"
         } else if (mcVersion.startsWith("1.19.2")) {
             branch = "1.19.2"
-        }  else if (mcVersion.startsWith("21w")) {
+        } else if (mcVersion.startsWith("1.19.3")) {
+            branch = "1.19.3"
+        } else if (mcVersion.startsWith("21w")) {
             branch = "1.18"
         } else if (mcVersion.startsWith("20w")) {
             branch = "1.17"
