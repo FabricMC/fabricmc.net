@@ -1,10 +1,10 @@
 import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
+import { getJavaVersion } from "./java"
 
 export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {
-  // TODO add more options to help fill this out some more.
-  const fabricModJson = {
+  var fabricModJson : any = {
     "schemaVersion": 1,
     "id": config.modid,
     "version": "${version}",
@@ -17,8 +17,6 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
       "homepage": "https://fabricmc.net/",
       "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
-    "license": "CC0-1.0",
-    "icon": "assets/modid/icon.png", // TODO add an icon to the zip.
     "environment": "*",
     "entrypoints": await generateEntrypoint(writer, config),
     "mixins": await generateMixin(writer, config),
@@ -26,10 +24,17 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
       "fabricloader": ">=" + config.loaderVersion,
       "fabric": "*",
       "minecraft": "~" + config.minecraftVersion,
-      "java": ">=17" // TODO
+      "java": ">=" + getJavaVersion(config.minecraftVersion).release
     },
     "suggests": {
       "another-mod": "*"
+    }
+  }
+
+  if (config.kotlin) {
+    fabricModJson.depends = {
+      ...fabricModJson.depends,
+      "fabric-language-kotlin": ">=" + config.kotlin.kotlinVersion
     }
   }
 

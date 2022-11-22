@@ -50,7 +50,7 @@
 
         FileSaver.saveAs(
             await zip.generateAsync({ type: "blob" }),
-            `fabric-mod-template-${config.minecraftVersion}.zip`
+            `${modid}-template-${config.minecraftVersion}.zip`
         );
 
         loading = false;
