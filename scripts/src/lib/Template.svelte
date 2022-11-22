@@ -3,20 +3,18 @@
     import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-import { nameToModId } from "./template/template";
+    import { nameToModId } from "./template/template";
 
     let minecraftVersion: string;
     let projectName = "Mod Name";
     let packageName = "com.example";
     let useKotlin = false;
     let dataGeneration = false;
-    let githubActions = false;
     let splitSources = false;
 
-    let showAdancedOptions = false;
     let loading = false;
 
-    $: modid = nameToModId(projectName)
+    $: modid = nameToModId(projectName);
 
     const versions = Promise.all([getGameVersions()]).then(([gameVersions]) => {
         const game = gameVersions.filter((v) => v.stable);
@@ -36,7 +34,6 @@ import { nameToModId } from "./template/template";
             packageName,
             useKotlin,
             dataGeneration,
-            githubActions,
             splitSources,
         };
 
@@ -59,8 +56,8 @@ import { nameToModId } from "./template/template";
         loading = false;
     }
 
-    function clickShowAdancedOptions() {
-        showAdancedOptions = true;
+    function formatPackageName() {
+        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9-_\.]/, "")
     }
 </script>
 
@@ -80,9 +77,9 @@ import { nameToModId } from "./template/template";
             <hr />
             <p>
                 Choose a unique package name for your new mod. The package name
-                should be unique to you.
+                should be unique to you. If you are unsure about this use "name.modid".
             </p>
-            <input id="package-name" bind:value={packageName} />
+            <input id="package-name" on:keyup={formatPackageName} bind:value={packageName} />
         </div>
 
         <div class="form-line">
@@ -103,31 +100,44 @@ import { nameToModId } from "./template/template";
             </select>
         </div>
 
-        <div class="form-line">
-            {#if showAdancedOptions}
-                <h3>Additional Options:</h3>
-                <label>
-                    <input type="checkbox" bind:checked={useKotlin} />
-                    Kotlin
-                </label>
-                <label>
-                    <input type="checkbox" bind:checked={dataGeneration} />
-                    Data Generation
-                </label>
-                <label>
-                    <input type="checkbox" bind:checked={githubActions} />
-                    Github Actions
-                </label>
-                <label>
-                    <input type="checkbox" bind:checked={splitSources} />
-                    Split client and common sources
-                </label>
-            {:else}
-                <a href={"#"} on:click|preventDefault={clickShowAdancedOptions}
-                    >Show Additional Options</a
-                >
-            {/if}
+        <hr>
+        <br>
+
+        <h4>Advanced Options:</h4>
+
+        <div>
+            <div class="option-container">
+                <input id="kotlin" type="checkbox" class="option-input" bind:checked={useKotlin} />
+                <label for="kotlin" class="option-label">Kotlin Programming Lanuage</label>
+            </div>
+            <p class="option-body">
+                <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
+                The <a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.
+            </p>
         </div>
+
+        <div>
+            <div class="option-container">
+                <input id="datagen" type="checkbox" class="option-input" bind:checked={dataGeneration} />
+                <label for="datagen" class="option-label">Data Generation</label>
+            </div>
+            <p class="option-body">
+                This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.
+            </p>
+        </div>
+
+        <div>
+            <div class="option-container">
+                <input id="splitSources" type="checkbox" class="option-input" bind:checked={splitSources} />
+                <label for="splitSources" class="option-label">Split client and common sources</label>
+            </div>
+            <p class="option-body">
+                A common source of server crashes comes from calling client only code when installed on a server.
+                This option configures your mod to be built from two source sets, client and main.
+                This enforces a clear seperation between the client and server code.
+            </p>
+        </div>
+
 
         {#if loading}
             <a class="button download-button" href={""}>
@@ -154,11 +164,38 @@ import { nameToModId } from "./template/template";
 
 <style lang="scss">
     .template {
+        * {
+            text-align: left;
+        }
+
         h3 {
             margin-bottom: 0;
         }
         .download-button {
             text-align: center;
+        }
+    }
+
+    .option {
+        &-container {
+            display: flex; 
+            align-items: center; 
+        }
+
+        &-input {
+            width: 1rem; 
+            height: 1rem; 
+        }
+
+        &-label {
+            margin-left: 0.5rem; 
+        }
+
+        &-body {
+            display: block; 
+            padding-left: 1rem; 
+            margin-top: 0.25rem; 
+            margin-left: 1rem;  
         }
     }
 </style>

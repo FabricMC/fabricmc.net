@@ -21,7 +21,6 @@ export interface Configuration {
 	packageName: string,
 	useKotlin: boolean,
 	dataGeneration: boolean,
-	githubActions: boolean,
 	splitSources: boolean,
 }
 
