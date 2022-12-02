@@ -5,6 +5,8 @@ import javaEntrypointTemplate from './templates/entrypoint/Entrypoint.java.eta?r
 import kotlinEntrypointTemplate from './templates/entrypoint/Entrypoint.kt.eta?raw';
 import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.java.eta?raw';
 import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
+import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
+import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
 import { getMinorMinecraftVersion } from "./java";
 
 interface ClassOptions {
@@ -15,6 +17,7 @@ interface ClassOptions {
     modid: string,
     slf4j: boolean,
     clientEntrypoint: boolean,
+    dataEntrypoint: boolean,
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -27,7 +30,8 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         path: options.packageName.replace(".", "/") + "/" + className,
         modid: options.modid,
         slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18,
-        clientEntrypoint: options.splitSources
+        clientEntrypoint: options.splitSources,
+        dataEntrypoint: options.dataGeneration
     }
 
     if (options.kotlin) {
@@ -57,6 +61,17 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
         }
     }
 
+    if (options.dataEntrypoint) {
+        await writer.write(`src/main/java/${options.path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
+
+        entrypoints = {
+            ...entrypoints,
+            "fabric-datagen": [
+                options.classFullName + "DataGenerator"
+            ]
+        }
+    }
+
     return entrypoints;
 }
 
@@ -80,6 +95,20 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
             "client": [
                 {
                     "value": options.classFullName + "Client",
+                    "adapter": "kotlin",
+                }
+            ]
+        }
+    }
+
+    if (options.dataEntrypoint) {
+        await writer.write(`src/main/kotlin/${options.path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
+
+        entrypoints = {
+            ...entrypoints,
+            "fabric-datagen": [
+                {
+                    "value": options.classFullName + "DataGenerator",
                     "adapter": "kotlin",
                 }
             ]

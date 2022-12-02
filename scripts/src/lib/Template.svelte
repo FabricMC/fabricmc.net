@@ -4,6 +4,7 @@
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
     import { nameToModId } from "./template/template";
+    import { getMinorMinecraftVersion } from "./template/java";
 
     let minecraftVersion: string;
     let projectName = "Mod Name";
@@ -24,6 +25,11 @@
         };
     });
 
+    $: minorMcVersion = getMinorMinecraftVersion(minecraftVersion || "1.99")
+    $: supportsDataGen = minorMcVersion >= 17;
+    $: supportsSplitSources = minorMcVersion >= 19;
+
+
     async function generate() {
         loading = true;
 
@@ -33,8 +39,8 @@
             projectName,
             packageName,
             useKotlin,
-            dataGeneration,
-            splitSources,
+            dataGeneration: dataGeneration && supportsDataGen,
+            splitSources: splitSources && supportsSplitSources,
         };
 
         const zip = new JSZip();
@@ -68,7 +74,7 @@
         <div class="form-line">
             <h3 for="project-name">Mod Name</h3>
             <hr />
-            <p>Choose a name for your new mod. The modid will be `{modid}`.</p>
+            <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>.</p>
             <input id="project-name" bind:value={projectName} />
         </div>
 
@@ -77,7 +83,7 @@
             <hr />
             <p>
                 Choose a unique package name for your new mod. The package name
-                should be unique to you. If you are unsure about this use "name.modid".
+                should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
             <input id="package-name" on:keyup={formatPackageName} bind:value={packageName} />
         </div>
@@ -116,6 +122,7 @@
             </p>
         </div>
 
+        {#if supportsDataGen}
         <div>
             <div class="option-container">
                 <input id="datagen" type="checkbox" class="option-input" bind:checked={dataGeneration} />
@@ -125,7 +132,9 @@
                 This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.
             </p>
         </div>
+        {/if}
 
+        {#if supportsSplitSources}
         <div>
             <div class="option-container">
                 <input id="splitSources" type="checkbox" class="option-input" bind:checked={splitSources} />
@@ -134,10 +143,10 @@
             <p class="option-body">
                 A common source of server crashes comes from calling client only code when installed on a server.
                 This option configures your mod to be built from two source sets, client and main.
-                This enforces a clear seperation between the client and server code.
+                This enforces a clear separation between the client and server code.
             </p>
         </div>
-
+        {/if}
 
         {#if loading}
             <a class="button download-button" href={""}>

@@ -1,7 +1,7 @@
 import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
-import { getJavaVersion } from "./java"
+import { getJavaVersion, getMinorMinecraftVersion } from "./java"
 
 export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {
   var fabricModJson : any = {
@@ -22,7 +22,6 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
     "mixins": await generateMixin(writer, config),
     "depends": {
       "fabricloader": ">=" + config.loaderVersion,
-      "fabric": "*",
       "minecraft": "~" + config.minecraftVersion,
       "java": ">=" + getJavaVersion(config.minecraftVersion).release
     },
@@ -30,6 +29,8 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
       "another-mod": "*"
     }
   }
+
+  fabricModJson.depends[getMinorMinecraftVersion(config.minecraftVersion) >= 16 ? "fabric-api" : "fabric"] = "*"
 
   if (config.kotlin) {
     fabricModJson.depends = {

@@ -18,9 +18,9 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 }
-<% if (it.splitSources) { %>
+<% if (it.dataGeneration || it.splitSources) { %>
 loom {
-   splitEnvironmentSourceSets()
+<% if (it.splitSources) { %>    splitEnvironmentSourceSets()
 
     mods {
         modid {
@@ -28,8 +28,30 @@ loom {
             sourceSet sourceSets.client
         }
     }
- }
-<% } %>
+<% } %><% if (it.dataGeneration) { %>    runs {
+        // This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
+        datagen {
+            inherit server
+            name "Data Generation"
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+            vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
+ 
+            runDir "build/datagen"
+        }
+    }<% } %>
+}
+<% } %><% if (it.dataGeneration) { %>
+// Add the generated resources to the main source set
+sourceSets {
+    main {
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}<% } %>
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
@@ -39,7 +61,6 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 	<% if (it.kotlin) { %>modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"<% } %>
-
 	// Uncomment the following line to enable the deprecated Fabric API modules. 
 	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.
 
