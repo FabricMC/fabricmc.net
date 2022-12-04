@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://fabricmc.net/" rel="alternate" type="text/html" /><updated>2022-11-24T22:30:23+00:00</updated><id>http://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.19.3</title><link href="http://fabricmc.net/2022/11/24/1193.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19.3" /><published>2022-11-24T00:00:00+00:00</published><updated>2022-11-24T00:00:00+00:00</updated><id>http://fabricmc.net/2022/11/24/1193</id><content type="html" xml:base="http://fabricmc.net/2022/11/24/1193.html">&lt;p&gt;Minecraft 1.19.3 is almost here, with big changes to game internals. Beginning with this update, &lt;a href=&quot;https://help.minecraft.net/hc/en-us/articles/9971900758413&quot;&gt;Mojang have changed their versioning scheme&lt;/a&gt; such that ‘minor’ releases like this one may contain larger changes under the hood. As such, the changes in this version affect almost all mods (not even comparable to the changes in 1.18.2, and significantly bigger than 1.19). Here are the list of all major modder-facing changes in this version.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://fabricmc.net/" rel="alternate" type="text/html" /><updated>2022-12-04T13:48:35+00:00</updated><id>http://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.19.3</title><link href="http://fabricmc.net/2022/11/24/1193.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19.3" /><published>2022-11-24T00:00:00+00:00</published><updated>2022-11-24T00:00:00+00:00</updated><id>http://fabricmc.net/2022/11/24/1193</id><content type="html" xml:base="http://fabricmc.net/2022/11/24/1193.html">&lt;p&gt;Minecraft 1.19.3 is almost here, with big changes to game internals. Beginning with this update, &lt;a href=&quot;https://help.minecraft.net/hc/en-us/articles/9971900758413&quot;&gt;Mojang have changed their versioning scheme&lt;/a&gt; such that ‘minor’ releases like this one may contain larger changes under the hood. As such, the changes in this version affect almost all mods (not even comparable to the changes in 1.18.2, and significantly bigger than 1.19). Here are the list of all major modder-facing changes in this version.&lt;/p&gt;
 
 &lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
 
@@ -43,7 +43,7 @@
 
 &lt;p&gt;Together with this change, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEY&lt;/code&gt; suffixes for registry key fields have been removed.&lt;/p&gt;
 
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- Registry.register(Registry.BLOCK, new Identifier(&quot;test&quot;, &quot;dirt&quot;), DIRT_BLOCK);
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- Registry.register(Registry.BLOCK_KEY, new Identifier(&quot;test&quot;, &quot;dirt&quot;), DIRT_BLOCK);
 &lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ Registry.register(Registries.BLOCK, new Identifier(&quot;test&quot;, &quot;dirt&quot;), DIRT_BLOCK);
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -58,6 +58,8 @@
 + import net.minecraft.registry.Registry;
 + import net.minecraft.registry.entry.RegistryEntry;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Fabric API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistrySetupCallback&lt;/code&gt; was changed to take a new context object &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryView&lt;/code&gt; instead of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryManager&lt;/code&gt;. This API allows easy registration of events, while preventing crashes caused by the misuse of previous API.&lt;/p&gt;
 
 &lt;h3 id=&quot;item-groups&quot;&gt;Item Groups&lt;/h3&gt;
 &lt;p&gt;One of the major changes in this version involve the Creative inventory screen. Items can now appear in multiple tabs and the display order no longer relies on the item registration order. Item groups got a significant refactor during this process.&lt;/p&gt;
@@ -85,14 +87,14 @@
     &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The changes also made it possible to add items at a specific position in the Creative inventory. Check the &lt;a href=&quot;https://maven.fabricmc.net/docs/fabric-api-0.67.1+1.19.3/net/fabricmc/fabric/api/itemgroup/v1/FabricItemGroupEntries.html&quot;&gt;FabricItemGroupEntries javadoc&lt;/a&gt; for details.&lt;/p&gt;
+&lt;p&gt;The changes also made it possible to add items at a specific position in the Creative inventory. Check the &lt;a href=&quot;https://maven.fabricmc.net/docs/fabric-api-0.68.1+1.19.3/net/fabricmc/fabric/api/itemgroup/v1/FabricItemGroupEntries.html&quot;&gt;FabricItemGroupEntries javadoc&lt;/a&gt; for details.&lt;/p&gt;
 
 &lt;!-- TODO update link after the FAPI release --&gt;
 
 &lt;h3 id=&quot;data-generation&quot;&gt;Data generation&lt;/h3&gt;
 &lt;p&gt;A number of breaking changes have been made to the Data Generation API.&lt;/p&gt;
 
-&lt;p&gt;Data generators now have to create a “pack” and add providers to the pack. (It’s like a resource pack - the provider generates a resource for a specific pack.) This can be done with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricDataGenerator#createPack&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Data generators now have to create a “pack” and add providers to the pack. (It’s like a resource pack - the provider generates a resource for a specific pack.) This can be done with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricDataGenerator#createPack&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createBuiltinResourcePack&lt;/code&gt; for packs loadable by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResouceManagerHelper#registerBuiltinResourcePack&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;FabricDataGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Pack&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pack&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createPack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addProvider&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;YourProvider:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -210,16 +212,30 @@
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Vec3d&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Vec3i&lt;/code&gt; are unaffected.&lt;/p&gt;
 
+&lt;h3 id=&quot;sounds&quot;&gt;Sounds&lt;/h3&gt;
+&lt;p&gt;During the pre-release phase of 1.19.3, there were changes to how sounds are referenced and played.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Introduction: there are two ways a sound is referred to - “sound asset” defined by the client and identified by sound ID, and “sound event” used by the server and registered in a registry.&lt;/li&gt;
+  &lt;li&gt;Previously, to play a registered sound event, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PlaySoundS2CPacket&lt;/code&gt; was used, and to play a custom (resource pack-defined) sound, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PlaySoundIdS2CPacket&lt;/code&gt; was used.&lt;/li&gt;
+  &lt;li&gt;References to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SoundEvent&lt;/code&gt; are mostly replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Registry&amp;lt;SoundEvent&amp;gt;&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SoundEvent&lt;/code&gt; should now be constructed using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SoundEvent.of&lt;/code&gt;, which is transitively access-widened by Fabric API.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PlaySoundIdS2CPacket&lt;/code&gt; was removed. To play a custom sound, use direct registry entry (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryEntry.of(SoundEvent)&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Biome Modification API received a breaking change to accept &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryEntry&amp;lt;SoundEvent&amp;gt;&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SoundEvent&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;h3 id=&quot;other-changes&quot;&gt;Other changes&lt;/h3&gt;
 &lt;p&gt;Here are other miscellaneous changes in 1.19.3:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Feature flags were introduced. Currently, blocks, items, and entity types can be hidden behind a flag. “Experimental” features that aren’t enabled by a feature flag are still registered in a registry, but are ignored in most methods.&lt;/li&gt;
+  &lt;li&gt;Feature flags were introduced. Currently, blocks, items, and entity types can be hidden behind a flag. “Experimental” features that aren’t enabled by a feature flag are still registered in a registry, but are ignored in most methods. Resource Condition API can now check feature flags.&lt;/li&gt;
   &lt;li&gt;For those who use the vanilla system for GUIs (instead of third-party APIs): a new grid-based GUI system is added. This can be used in place of the old way of positioning widgets, and reduces the need for hard-coded display positions.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ButtonWidget&lt;/code&gt; is now constructed using a builder.&lt;/li&gt;
   &lt;li&gt;Tooltips got a refactor to support item group related changes. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Screen#setTooltip&lt;/code&gt; methods are added; there are three overloads. They all have to be called at every render call. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setTooltip&lt;/code&gt; method is also available for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClickableWidget&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ButtonWidget.Builder&lt;/code&gt;.&lt;/li&gt;
   &lt;li&gt;Networking changes: chat preview was removed, and the game no longer requires a header packet to be sent when blocking messages. The client-side &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sendChatMessage&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sendCommand&lt;/code&gt; methods have been moved from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientPlayerEntity&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientPlayNetworkHandler&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Mobs using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; for control can now take advantage of functional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; creation. This resembles React Hooks and is replacing the previous subclass-based approach in vanilla. See &lt;a href=&quot;https://maven.fabricmc.net/docs/yarn-1.19.3-pre1+build.8/net/minecraft/entity/ai/brain/task/TaskTriggerer.html&quot;&gt;javadoc&lt;/a&gt; for examples. &lt;!-- TODO replace link --&gt;&lt;/li&gt;
+  &lt;li&gt;Mobs using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Brain&lt;/code&gt; for control can now take advantage of functional &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Task&lt;/code&gt; creation. This resembles React Hooks and is replacing the previous subclass-based approach in vanilla. See &lt;a href=&quot;https://maven.fabricmc.net/docs/yarn-1.19.3-rc1+build.2/net/minecraft/entity/ai/brain/task/TaskTriggerer.html&quot;&gt;javadoc&lt;/a&gt; for examples. &lt;!-- TODO replace link --&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack#isItemEqualIgnoreDamage&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack#areItemsEqualIgnoreDamage&lt;/code&gt; were removed. Either use standard &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isItemEqual&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;areItemsEqual&lt;/code&gt; or compare yourself.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JsonHelper#deserialize&lt;/code&gt; no longer permits &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;deserializeNullable&lt;/code&gt; instead.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;yarn-renames&quot;&gt;Yarn renames&lt;/h3&gt;

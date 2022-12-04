@@ -118,7 +118,7 @@
 
 <p>Together with this change, the <code class="language-plaintext highlighter-rouge">KEY</code> suffixes for registry key fields have been removed.</p>
 
-<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- Registry.register(Registry.BLOCK, new Identifier("test", "dirt"), DIRT_BLOCK);
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- Registry.register(Registry.BLOCK_KEY, new Identifier("test", "dirt"), DIRT_BLOCK);
 </span><span class="gi">+ Registry.register(Registries.BLOCK, new Identifier("test", "dirt"), DIRT_BLOCK);
 </span></code></pre></div></div>
 
@@ -133,6 +133,8 @@
 + import net.minecraft.registry.Registry;
 + import net.minecraft.registry.entry.RegistryEntry;
 </span></code></pre></div></div>
+
+<p>Fabric API’s <code class="language-plaintext highlighter-rouge">DynamicRegistrySetupCallback</code> was changed to take a new context object <code class="language-plaintext highlighter-rouge">DynamicRegistryView</code> instead of a <code class="language-plaintext highlighter-rouge">DynamicRegistryManager</code>. This API allows easy registration of events, while preventing crashes caused by the misuse of previous API.</p>
 
 <h3 id="item-groups">Item Groups</h3>
 <p>One of the major changes in this version involve the Creative inventory screen. Items can now appear in multiple tabs and the display order no longer relies on the item registration order. Item groups got a significant refactor during this process.</p>
@@ -160,14 +162,14 @@
     <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 </code></pre></div></div>
 
-<p>The changes also made it possible to add items at a specific position in the Creative inventory. Check the <a href="https://maven.fabricmc.net/docs/fabric-api-0.67.1+1.19.3/net/fabricmc/fabric/api/itemgroup/v1/FabricItemGroupEntries.html">FabricItemGroupEntries javadoc</a> for details.</p>
+<p>The changes also made it possible to add items at a specific position in the Creative inventory. Check the <a href="https://maven.fabricmc.net/docs/fabric-api-0.68.1+1.19.3/net/fabricmc/fabric/api/itemgroup/v1/FabricItemGroupEntries.html">FabricItemGroupEntries javadoc</a> for details.</p>
 
 <!-- TODO update link after the FAPI release -->
 
 <h3 id="data-generation">Data generation</h3>
 <p>A number of breaking changes have been made to the Data Generation API.</p>
 
-<p>Data generators now have to create a “pack” and add providers to the pack. (It’s like a resource pack - the provider generates a resource for a specific pack.) This can be done with <code class="language-plaintext highlighter-rouge">FabricDataGenerator#createPack</code>.</p>
+<p>Data generators now have to create a “pack” and add providers to the pack. (It’s like a resource pack - the provider generates a resource for a specific pack.) This can be done with <code class="language-plaintext highlighter-rouge">FabricDataGenerator#createPack</code>, or <code class="language-plaintext highlighter-rouge">createBuiltinResourcePack</code> for packs loadable by <code class="language-plaintext highlighter-rouge">ResouceManagerHelper#registerBuiltinResourcePack</code>.</p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">FabricDataGenerator</span><span class="o">.</span><span class="na">Pack</span> <span class="n">pack</span> <span class="o">=</span> <span class="n">dataGenerator</span><span class="o">.</span><span class="na">createPack</span><span class="o">();</span>
 <span class="n">pack</span><span class="o">.</span><span class="na">addProvider</span><span class="o">(</span><span class="nl">YourProvider:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
@@ -285,16 +287,30 @@
 
 <p><code class="language-plaintext highlighter-rouge">Vec3d</code> and <code class="language-plaintext highlighter-rouge">Vec3i</code> are unaffected.</p>
 
+<h3 id="sounds">Sounds</h3>
+<p>During the pre-release phase of 1.19.3, there were changes to how sounds are referenced and played.</p>
+
+<ul>
+  <li>Introduction: there are two ways a sound is referred to - “sound asset” defined by the client and identified by sound ID, and “sound event” used by the server and registered in a registry.</li>
+  <li>Previously, to play a registered sound event, <code class="language-plaintext highlighter-rouge">PlaySoundS2CPacket</code> was used, and to play a custom (resource pack-defined) sound, <code class="language-plaintext highlighter-rouge">PlaySoundIdS2CPacket</code> was used.</li>
+  <li>References to <code class="language-plaintext highlighter-rouge">SoundEvent</code> are mostly replaced with <code class="language-plaintext highlighter-rouge">Registry&lt;SoundEvent&gt;</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">SoundEvent</code> should now be constructed using <code class="language-plaintext highlighter-rouge">SoundEvent.of</code>, which is transitively access-widened by Fabric API.</li>
+  <li><code class="language-plaintext highlighter-rouge">PlaySoundIdS2CPacket</code> was removed. To play a custom sound, use direct registry entry (<code class="language-plaintext highlighter-rouge">RegistryEntry.of(SoundEvent)</code>).</li>
+  <li>Biome Modification API received a breaking change to accept <code class="language-plaintext highlighter-rouge">RegistryEntry&lt;SoundEvent&gt;</code> instead of <code class="language-plaintext highlighter-rouge">SoundEvent</code>.</li>
+</ul>
+
 <h3 id="other-changes">Other changes</h3>
 <p>Here are other miscellaneous changes in 1.19.3:</p>
 
 <ul>
-  <li>Feature flags were introduced. Currently, blocks, items, and entity types can be hidden behind a flag. “Experimental” features that aren’t enabled by a feature flag are still registered in a registry, but are ignored in most methods.</li>
+  <li>Feature flags were introduced. Currently, blocks, items, and entity types can be hidden behind a flag. “Experimental” features that aren’t enabled by a feature flag are still registered in a registry, but are ignored in most methods. Resource Condition API can now check feature flags.</li>
   <li>For those who use the vanilla system for GUIs (instead of third-party APIs): a new grid-based GUI system is added. This can be used in place of the old way of positioning widgets, and reduces the need for hard-coded display positions.</li>
   <li><code class="language-plaintext highlighter-rouge">ButtonWidget</code> is now constructed using a builder.</li>
   <li>Tooltips got a refactor to support item group related changes. <code class="language-plaintext highlighter-rouge">Screen#setTooltip</code> methods are added; there are three overloads. They all have to be called at every render call. <code class="language-plaintext highlighter-rouge">setTooltip</code> method is also available for <code class="language-plaintext highlighter-rouge">ClickableWidget</code> and <code class="language-plaintext highlighter-rouge">ButtonWidget.Builder</code>.</li>
   <li>Networking changes: chat preview was removed, and the game no longer requires a header packet to be sent when blocking messages. The client-side <code class="language-plaintext highlighter-rouge">sendChatMessage</code> and <code class="language-plaintext highlighter-rouge">sendCommand</code> methods have been moved from <code class="language-plaintext highlighter-rouge">ClientPlayerEntity</code> to <code class="language-plaintext highlighter-rouge">ClientPlayNetworkHandler</code>.</li>
-  <li>Mobs using <code class="language-plaintext highlighter-rouge">Brain</code> for control can now take advantage of functional <code class="language-plaintext highlighter-rouge">Task</code> creation. This resembles React Hooks and is replacing the previous subclass-based approach in vanilla. See <a href="https://maven.fabricmc.net/docs/yarn-1.19.3-pre1+build.8/net/minecraft/entity/ai/brain/task/TaskTriggerer.html">javadoc</a> for examples. <!-- TODO replace link --></li>
+  <li>Mobs using <code class="language-plaintext highlighter-rouge">Brain</code> for control can now take advantage of functional <code class="language-plaintext highlighter-rouge">Task</code> creation. This resembles React Hooks and is replacing the previous subclass-based approach in vanilla. See <a href="https://maven.fabricmc.net/docs/yarn-1.19.3-rc1+build.2/net/minecraft/entity/ai/brain/task/TaskTriggerer.html">javadoc</a> for examples. <!-- TODO replace link --></li>
+  <li><code class="language-plaintext highlighter-rouge">ItemStack#isItemEqualIgnoreDamage</code> and <code class="language-plaintext highlighter-rouge">ItemStack#areItemsEqualIgnoreDamage</code> were removed. Either use standard <code class="language-plaintext highlighter-rouge">isItemEqual</code>/<code class="language-plaintext highlighter-rouge">areItemsEqual</code> or compare yourself.</li>
+  <li><code class="language-plaintext highlighter-rouge">JsonHelper#deserialize</code> no longer permits <code class="language-plaintext highlighter-rouge">null</code>. Use <code class="language-plaintext highlighter-rouge">deserializeNullable</code> instead.</li>
 </ul>
 
 <h3 id="yarn-renames">Yarn renames</h3>
