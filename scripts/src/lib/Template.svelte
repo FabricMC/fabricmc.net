@@ -7,11 +7,11 @@
     import { getMinorMinecraftVersion } from "./template/java";
 
     let minecraftVersion: string;
-    let projectName = "Mod Name";
+    let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
     let dataGeneration = false;
-    let splitSources = false;
+    let splitSources = true;
 
     let loading = false;
 

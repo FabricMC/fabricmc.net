@@ -2,6 +2,7 @@ import { addGradleWrapper } from './gradlewrapper';
 import { addGroovyGradle } from './gradlegroovy';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
+import { addGitFiles } from './git';
 
 export interface Options {
 	/**
@@ -52,6 +53,7 @@ export async function generateTemplate(options: Options) {
 	await addGradleWrapper(options);
 	await addGroovyGradle(options.writer, computedConfig);
 	await addModJson(options.writer, computedConfig);
+	await addGitFiles(options.writer, computedConfig);
 }
 
 export function nameToModId(name: string) {
