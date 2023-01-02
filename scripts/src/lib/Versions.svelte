@@ -2,6 +2,7 @@
  import {
         getGameVersions,
         getYarnVersions,
+        getLoaderVersions,
         getApiVersions
     } from "./Api";
 
@@ -13,7 +14,12 @@
     let gameVersions = getGameVersions().then((versions) => {
         minecraftVersion = versions.find((v) => v.stable)!.version
         return versions.map((v) => v.version);
-    })
+    });
+
+    const loaderVersions = getLoaderVersions().then((versions) => {
+        loaderVersion = versions.find((v) => v.stable)!.version
+        return versions;
+    });
 
     const yarnVersions = getYarnVersions()
     const apiVersions = getApiVersions();
