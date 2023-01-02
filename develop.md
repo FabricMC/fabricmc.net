@@ -11,7 +11,7 @@ This page contains a range of resources to help you create a new mod or maintain
 
 * If you would like to create a new mod please see the [wiki](http://fabricmc.net/wiki/start).
 
-* An up-to date template mod can be found on [github](https://github.com/FabricMC/fabric-example-mod).
+* An up-to date template mod can be found on [github](https://github.com/FabricMC/fabric-example-mod) or you can try out the new [template mod generator](./template).
 
 * If you need some extra help we have a number of mod development channels on our [Discord](https://discord.gg/v6v4pMv).
 

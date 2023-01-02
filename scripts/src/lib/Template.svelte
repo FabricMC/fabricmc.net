@@ -157,6 +157,8 @@
         </div>
         {/if}
 
+        <br>
+
         {#if loading}
             <a class="button download-button" href={""}>
                 <DownloadIcon /> Generating...
