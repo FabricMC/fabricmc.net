@@ -1,7 +1,7 @@
 ---
 layout: page
 title: template mod generator
-permalink: /develop/template
+permalink: /develop/template/
 topnav: false
 ---
 
