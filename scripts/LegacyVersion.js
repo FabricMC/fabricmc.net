@@ -1,4 +1,4 @@
-import { S as I, i as J, s as K, h as H, e as f, t as v, a as V, o as O, c as _, j as u, q as E, u as M, n as L, d as p, f as T, g as q, m as B, p as G, l as D, b as P } from "./index.js";
+import { S as I, i as J, s as K, h as H, e as f, t as g, a as v, o as O, c as _, j as u, q as E, u as M, n as V, d as p, f as T, g as G, m as B, p as y, l as D, b as P } from "./index.js";
 import { d as Q, b as R, e as U } from "./Api.js";
 function j(o, e, t) {
   const n = o.slice();
@@ -12,14 +12,14 @@ function W(o) {
   let e, t, n = o[13].message + "", i, c, s;
   return {
     c() {
-      e = f("p"), t = v("Error: "), i = v(n), c = V(), s = f("p"), s.innerHTML = `For support please vist one of our
+      e = f("p"), t = g("Error: "), i = g(n), c = v(), s = f("p"), s.innerHTML = `For support please vist one of our
       <a href="/discuss">community discussion</a>
-      groups.`, q(e, "color", "red");
+      groups.`, G(e, "color", "red");
     },
     m(l, a) {
       _(l, e, a), u(e, t), u(e, i), _(l, c, a), _(l, s, a);
     },
-    p: L,
+    p: V,
     d(l) {
       l && p(e), l && p(c), l && p(s);
     }
@@ -31,17 +31,17 @@ function X(o) {
     s[l] = z(N(o, c, l));
   return {
     c() {
-      e = v(`Game version:
+      e = g(`Game version:
     `), t = f("select");
       for (let l = 0; l < s.length; l += 1)
         s[l].c();
-      q(t, "min-width", "200px"), o[1] === void 0 && B(() => o[7].call(t));
+      G(t, "min-width", "200px"), o[1] === void 0 && B(() => o[7].call(t));
     },
     m(l, a) {
       _(l, e, a), _(l, t, a);
       for (let r = 0; r < s.length; r += 1)
         s[r].m(t, null);
-      G(t, o[1]), n || (i = E(t, "change", o[7]), n = !0);
+      y(t, o[1]), n || (i = E(t, "change", o[7]), n = !0);
     },
     p(l, a) {
       if (a & 9) {
@@ -55,7 +55,7 @@ function X(o) {
           s[r].d(1);
         s.length = c.length;
       }
-      a & 10 && G(t, l[1]);
+      a & 10 && y(t, l[1]);
     },
     d(l) {
       l && p(e), l && p(t), D(s, l), n = !1, i();
@@ -66,12 +66,12 @@ function Y(o) {
   let e, t = o[10].version + "", n;
   return {
     c() {
-      e = f("option"), n = v(t), e.__value = o[10].version, e.value = e.__value;
+      e = f("option"), n = g(t), e.__value = o[10].version, e.value = e.__value;
     },
     m(i, c) {
       _(i, e, c), u(e, n);
     },
-    p: L,
+    p: V,
     d(i) {
       i && p(e);
     }
@@ -103,7 +103,7 @@ function Z(o) {
     m(t, n) {
       _(t, e, n);
     },
-    p: L,
+    p: V,
     d(t) {
       t && p(e);
     }
@@ -113,14 +113,14 @@ function $(o) {
   let e, t, n = o[13].message + "", i, c, s;
   return {
     c() {
-      e = f("p"), t = v("Error: "), i = v(n), c = V(), s = f("p"), s.innerHTML = `For support please vist one of our
+      e = f("p"), t = g("Error: "), i = g(n), c = v(), s = f("p"), s.innerHTML = `For support please vist one of our
       <a href="/discuss">community discussion</a>
-      groups.`, q(e, "color", "red");
+      groups.`, G(e, "color", "red");
     },
     m(l, a) {
       _(l, e, a), u(e, t), u(e, i), _(l, c, a), _(l, s, a);
     },
-    p: L,
+    p: V,
     d(l) {
       l && p(e), l && p(c), l && p(s);
     }
@@ -132,17 +132,17 @@ function x(o) {
     s[l] = A(j(o, c, l));
   return {
     c() {
-      e = v(`Loader version:
+      e = g(`Loader version:
     `), t = f("select");
       for (let l = 0; l < s.length; l += 1)
         s[l].c();
-      q(t, "min-width", "200px"), o[2] === void 0 && B(() => o[8].call(t));
+      G(t, "min-width", "200px"), o[2] === void 0 && B(() => o[8].call(t));
     },
     m(l, a) {
       _(l, e, a), _(l, t, a);
       for (let r = 0; r < s.length; r += 1)
         s[r].m(t, null);
-      G(t, o[2]), n || (i = E(t, "change", o[8]), n = !0);
+      y(t, o[2]), n || (i = E(t, "change", o[8]), n = !0);
     },
     p(l, a) {
       if (a & 16) {
@@ -156,7 +156,7 @@ function x(o) {
           s[r].d(1);
         s.length = c.length;
       }
-      a & 20 && G(t, l[2]);
+      a & 20 && y(t, l[2]);
     },
     d(l) {
       l && p(e), l && p(t), D(s, l), n = !1, i();
@@ -167,12 +167,12 @@ function A(o) {
   let e, t = o[10].version + "", n;
   return {
     c() {
-      e = f("option"), n = v(t), e.__value = o[10].version, e.value = e.__value;
+      e = f("option"), n = g(t), e.__value = o[10].version, e.value = e.__value;
     },
     m(i, c) {
       _(i, e, c), u(e, n);
     },
-    p: L,
+    p: V,
     d(i) {
       i && p(e);
     }
@@ -187,14 +187,14 @@ function ee(o) {
     m(t, n) {
       _(t, e, n);
     },
-    p: L,
+    p: V,
     d(t) {
       t && p(e);
     }
   };
 }
 function te(o) {
-  let e, t, n, i, c, s, l, a, r, h, y, g, d, m, S, F, b = {
+  let e, t, n, i, c, s, l, a, r, h, w, k, d, C, q, F, m = {
     ctx: o,
     current: null,
     token: null,
@@ -205,8 +205,8 @@ function te(o) {
     value: 9,
     error: 13
   };
-  H(o[3], b);
-  let k = {
+  H(o[3], m);
+  let b = {
     ctx: o,
     current: null,
     token: null,
@@ -217,36 +217,36 @@ function te(o) {
     value: 9,
     error: 13
   };
-  return H(o[4], k), {
+  return H(o[4], b), {
     c() {
-      e = f("main"), t = f("label"), n = f("input"), i = v(`
-    Show snapshot versions`), c = V(), s = f("br"), l = V(), a = f("br"), r = V(), b.block.c(), h = V(), y = f("br"), g = V(), d = f("br"), m = V(), k.block.c(), O(n, "type", "checkbox");
+      e = f("main"), t = f("label"), n = f("input"), i = g(`
+    Show snapshot versions`), c = v(), s = f("br"), l = v(), a = f("br"), r = v(), m.block.c(), h = v(), w = f("br"), k = v(), d = f("br"), C = v(), b.block.c(), O(n, "type", "checkbox");
     },
-    m(w, C) {
-      _(w, e, C), u(e, t), u(t, n), n.checked = o[0], u(t, i), u(e, c), u(e, s), u(e, l), u(e, a), u(e, r), b.block.m(e, b.anchor = null), b.mount = () => e, b.anchor = h, u(e, h), u(e, y), u(e, g), u(e, d), u(e, m), k.block.m(e, k.anchor = null), k.mount = () => e, k.anchor = null, S || (F = E(n, "change", o[6]), S = !0);
+    m(L, S) {
+      _(L, e, S), u(e, t), u(t, n), n.checked = o[0], u(t, i), u(e, c), u(e, s), u(e, l), u(e, a), u(e, r), m.block.m(e, m.anchor = null), m.mount = () => e, m.anchor = h, u(e, h), u(e, w), u(e, k), u(e, d), u(e, C), b.block.m(e, b.anchor = null), b.mount = () => e, b.anchor = null, q || (F = E(n, "change", o[6]), q = !0);
     },
-    p(w, [C]) {
-      o = w, C & 1 && (n.checked = o[0]), M(b, o, C), M(k, o, C);
+    p(L, [S]) {
+      o = L, S & 1 && (n.checked = o[0]), M(m, o, S), M(b, o, S);
     },
-    i: L,
-    o: L,
-    d(w) {
-      w && p(e), b.block.d(), b.token = null, b = null, k.block.d(), k.token = null, k = null, S = !1, F();
+    i: V,
+    o: V,
+    d(L) {
+      L && p(e), m.block.d(), m.token = null, m = null, b.block.d(), b.token = null, b = null, q = !1, F();
     }
   };
 }
 function le(o, e, t) {
-  let n = !1, i = "", c = "", s = Q().then((g) => {
-    var d, m;
-    return t(1, i = (m = (d = g.find((S) => S.stable || n)) == null ? void 0 : d.version) != null ? m : ""), g;
-  }), l = R().then((g) => {
-    var d, m;
-    return t(2, c = (m = (d = g[0]) == null ? void 0 : d.version) != null ? m : ""), g;
+  let n = !1, i = "", c = "", s = Q().then((k) => {
+    var d;
+    return t(1, i = ((d = k.find((C) => C.stable || n)) == null ? void 0 : d.version) ?? ""), k;
+  }), l = R().then((k) => {
+    var d;
+    return t(2, c = ((d = k[0]) == null ? void 0 : d.version) ?? ""), k;
   });
   async function a() {
-    var d, m;
+    var d;
     return {
-      yarnVersion: (m = (d = await U(i)) == null ? void 0 : d.version) != null ? m : "",
+      yarnVersion: ((d = await U(i)) == null ? void 0 : d.version) ?? "",
       loaderVersion: c,
       selectedGameVersion: i
     };
@@ -257,7 +257,7 @@ function le(o, e, t) {
   function h() {
     i = T(this), t(1, i), t(3, s);
   }
-  function y() {
+  function w() {
     c = T(this), t(2, c), t(4, l);
   }
   return [
@@ -269,7 +269,7 @@ function le(o, e, t) {
     a,
     r,
     h,
-    y
+    w
   ];
 }
 class se extends I {

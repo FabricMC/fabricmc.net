@@ -1,58 +1,78 @@
-const r = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], o = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
-async function l() {
-  return a(r, "/v2/versions/installer");
-}
-async function u() {
-  return a(r, "/v2/versions/game");
-}
-async function m() {
-  return a(r, "/v2/versions/loader");
-}
+const a = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], o = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
 async function v() {
-  return a(r, "/v2/versions/yarn");
+  return r(a, "/v2/versions/installer");
 }
-async function p(e, n) {
-  return a(r, `/v2/versions/loader/${e}/${n}/profile/json`);
+async function p() {
+  return r(a, "/v2/versions/game");
 }
-async function y() {
-  return i(o, "/jdlist.txt").then((e) => e.split(`
-`));
+async function g() {
+  return r(a, "/v2/versions/loader");
 }
-async function g(e) {
-  return (await a(
-    r,
-    `/v2/versions/yarn/${e}?limit=1`
-  ))[0];
+async function w() {
+  return r(a, "/v2/versions/yarn");
+}
+async function m(t) {
+  return r(a, "/v2/versions/yarn/" + t);
+}
+async function y(t, s) {
+  return r(a, `/v2/versions/loader/${t}/${s}/profile/json`);
 }
 async function d() {
-  let e = await i(o, "/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml"), s = new DOMParser().parseFromString(e, "text/xml");
-  return Array.from(s.getElementsByTagName("version")).map((f) => f.childNodes[0].nodeValue);
+  return l(o, "/jdlist.txt").then((t) => t.split(`
+`));
 }
-async function a(e, n) {
-  return await (await c(e, n)).json();
+async function b(t) {
+  return (await r(
+    a,
+    `/v2/versions/yarn/${t}?limit=1`
+  ))[0];
 }
-async function i(e, n) {
-  return await (await c(e, n)).text();
+function h() {
+  return c("/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
 }
-async function c(e, n) {
-  for (var s of e)
+function W() {
+  return c("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
+}
+async function x(t) {
+  return (await h()).find((n) => {
+    let e = t;
+    return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "20w14infinite", "1.18_experimental"].forEach((i) => {
+      t.startsWith(i) && (e = i);
+    }), t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("22w") ? e = "1.19" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), n.endsWith("-" + e) || n.endsWith("+" + e);
+  });
+}
+async function c(t) {
+  let s = await l(o, t), e = new DOMParser().parseFromString(s, "text/xml");
+  return Array.from(e.getElementsByTagName("version")).map((i) => i.childNodes[0].nodeValue);
+}
+async function r(t, s) {
+  return await (await f(t, s)).json();
+}
+async function l(t, s) {
+  return await (await f(t, s)).text();
+}
+async function f(t, s) {
+  for (var n of t)
     try {
-      const t = await fetch(s + n);
-      if (t.ok)
-        return t;
-      console.error(await t.text());
-    } catch (t) {
-      console.error(t);
+      const e = await fetch(n + s);
+      if (e.ok)
+        return e;
+      console.error(await e.text());
+    } catch (e) {
+      console.error(e);
     }
-  throw new Error(`Failed to fetch: ${e[0] + n}`);
+  throw new Error(`Failed to fetch: ${t[0] + s}`);
 }
 export {
-  v as a,
-  m as b,
-  l as c,
-  u as d,
-  g as e,
-  p as f,
-  y as g,
-  d as h
+  w as a,
+  g as b,
+  v as c,
+  p as d,
+  b as e,
+  y as f,
+  d as g,
+  x as h,
+  m as i,
+  W as j,
+  h as k
 };

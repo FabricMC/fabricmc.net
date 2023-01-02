@@ -13,8 +13,8 @@ function P(i) {
       <a href="/discuss">community discussion</a>
       groups.`, E(e, "color", "red");
     },
-    m(a, d) {
-      u(a, e, d), w(e, l), w(e, n), u(a, r, d), u(a, f, d);
+    m(a, p) {
+      u(a, e, p), w(e, l), w(e, n), u(a, r, p), u(a, f, p);
     },
     p: v,
     i: v,
@@ -26,33 +26,33 @@ function P(i) {
 }
 function Q(i) {
   let e, l, t, n, r, f, a;
-  function d(p, y) {
-    return p[0] ? Y : X;
+  function p(d, y) {
+    return d[0] ? Y : X;
   }
-  let c = d(i), o = c(i);
+  let c = p(i), o = c(i);
   const s = [te, le], k = [];
-  function m(p, y) {
-    return p[2] ? 0 : 1;
+  function m(d, y) {
+    return d[2] ? 0 : 1;
   }
   return r = m(i), f = k[r] = s[r](i), {
     c() {
       o.c(), e = j(), l = b("div"), t = b("p"), t.textContent = `The Minecraft and Fabric Loader versions can be selected in the installer, this download
         works for every version we support.`, n = j(), f.c(), h(l, "class", "download");
     },
-    m(p, y) {
-      o.m(p, y), u(p, e, y), u(p, l, y), w(l, t), w(l, n), k[r].m(l, null), a = !0;
+    m(d, y) {
+      o.m(d, y), u(d, e, y), u(d, l, y), w(l, t), w(l, n), k[r].m(l, null), a = !0;
     },
-    p(p, y) {
-      c === (c = d(p)) && o ? o.p(p, y) : (o.d(1), o = c(p), o && (o.c(), o.m(e.parentNode, e))), f.p(p, y);
+    p(d, y) {
+      c === (c = p(d)) && o ? o.p(d, y) : (o.d(1), o = c(d), o && (o.c(), o.m(e.parentNode, e))), f.p(d, y);
     },
-    i(p) {
+    i(d) {
       a || (C(f), a = !0);
     },
-    o(p) {
+    o(d) {
       D(f), a = !1;
     },
-    d(p) {
-      o.d(p), p && _(e), p && _(l), k[r].d();
+    d(d) {
+      o.d(d), d && _(e), d && _(l), k[r].d();
     }
   };
 }
@@ -83,7 +83,7 @@ function X(i) {
   };
 }
 function Y(i) {
-  let e, l, t, n, r, f, a, d, c = i[8], o = [];
+  let e, l, t, n, r, f, a, p, c = i[8], o = [];
   for (let s = 0; s < c.length; s += 1)
     o[s] = S(V(i, c, s));
   return {
@@ -98,15 +98,15 @@ function Y(i) {
       u(s, e, k), u(s, l, k);
       for (let m = 0; m < o.length; m += 1)
         o[m].m(l, null);
-      I(l, i[1]), u(s, t, k), u(s, n, k), u(s, r, k), u(s, f, k), a || (d = F(l, "change", i[6]), a = !0);
+      I(l, i[1]), u(s, t, k), u(s, n, k), u(s, r, k), u(s, f, k), a || (p = F(l, "change", i[6]), a = !0);
     },
     p(s, k) {
       if (k & 8) {
         c = s[8];
         let m;
         for (m = 0; m < c.length; m += 1) {
-          const p = V(s, c, m);
-          o[m] ? o[m].p(p, k) : (o[m] = S(p), o[m].c(), o[m].m(l, null));
+          const d = V(s, c, m);
+          o[m] ? o[m].p(d, k) : (o[m] = S(d), o[m].c(), o[m].m(l, null));
         }
         for (; m < o.length; m += 1)
           o[m].d(1);
@@ -115,7 +115,7 @@ function Y(i) {
       k & 10 && I(l, s[1]);
     },
     d(s) {
-      s && _(e), s && _(l), B(o, s), s && _(t), s && _(n), s && _(r), s && _(f), a = !1, d();
+      s && _(e), s && _(l), B(o, s), s && _(t), s && _(n), s && _(r), s && _(f), a = !1, p();
     }
   };
 }
@@ -133,8 +133,8 @@ function g(i) {
       u(f, e, a), t && t.m(e, null), w(e, l), n && n.m(e, null);
     },
     p(f, a) {
-      var d;
-      (d = f[12]) != null && d.stable && t.p(f, a), f[0] ? n && (n.d(1), n = null) : n ? n.p(f, a) : (n = L(f), n.c(), n.m(e, null));
+      var p;
+      (p = f[12]) != null && p.stable && t.p(f, a), f[0] ? n && (n.d(1), n = null) : n ? n.p(f, a) : (n = L(f), n.c(), n.m(e, null));
     },
     d(f) {
       f && _(e), t && t.d(), n && n.d();
@@ -190,16 +190,16 @@ function S(i) {
   };
 }
 function le(i) {
-  let e, l, t, n, r, f, a, d, c;
+  let e, l, t, n, r, f, a, p, c;
   return l = new T({}), {
     c() {
-      e = b("a"), M(l.$$.fragment), t = $(" Download installer (Universal/.JAR)"), n = j(), r = b("p"), f = b("a"), a = $("Download for Windows"), h(e, "class", "button"), h(e, "href", i[1]), h(f, "href", d = i[1].replace(".jar", ".exe"));
+      e = b("a"), M(l.$$.fragment), t = $(" Download installer (Universal/.JAR)"), n = j(), r = b("p"), f = b("a"), a = $("Download for Windows"), h(e, "class", "button"), h(e, "href", i[1]), h(f, "href", p = i[1].replace(".jar", ".exe"));
     },
     m(o, s) {
       u(o, e, s), N(l, e, null), w(e, t), u(o, n, s), u(o, r, s), w(r, f), w(f, a), c = !0;
     },
     p(o, s) {
-      (!c || s & 10) && h(e, "href", o[1]), (!c || s & 10 && d !== (d = o[1].replace(".jar", ".exe"))) && h(f, "href", d);
+      (!c || s & 10) && h(e, "href", o[1]), (!c || s & 10 && p !== (p = o[1].replace(".jar", ".exe"))) && h(f, "href", p);
     },
     i(o) {
       c || (C(l.$$.fragment, o), c = !0);
@@ -213,13 +213,13 @@ function le(i) {
   };
 }
 function te(i) {
-  let e, l, t, n, r, f, a, d, c;
+  let e, l, t, n, r, f, a, p, c;
   return l = new T({}), {
     c() {
-      e = b("a"), M(l.$$.fragment), t = $(" Download for Windows"), r = j(), f = b("p"), a = b("a"), d = $("Download universal jar"), h(e, "class", "button"), h(e, "href", n = i[1].replace(".jar", ".exe")), h(a, "href", i[1]);
+      e = b("a"), M(l.$$.fragment), t = $(" Download for Windows"), r = j(), f = b("p"), a = b("a"), p = $("Download universal jar"), h(e, "class", "button"), h(e, "href", n = i[1].replace(".jar", ".exe")), h(a, "href", i[1]);
     },
     m(o, s) {
-      u(o, e, s), N(l, e, null), w(e, t), u(o, r, s), u(o, f, s), w(f, a), w(a, d), c = !0;
+      u(o, e, s), N(l, e, null), w(e, t), u(o, r, s), u(o, f, s), w(f, a), w(a, p), c = !0;
     },
     p(o, s) {
       (!c || s & 10 && n !== (n = o[1].replace(".jar", ".exe"))) && h(e, "href", n), (!c || s & 10) && h(a, "href", o[1]);
@@ -294,11 +294,11 @@ function re(i, e, l) {
   const t = navigator.platform == "Win32";
   let n = !1, r = "", f = a();
   async function a() {
-    var k, m;
+    var k;
     const s = await K();
-    return l(1, r = (m = (k = s.find((p) => p.stable)) == null ? void 0 : k.url) != null ? m : ""), s;
+    return l(1, r = ((k = s.find((m) => m.stable)) == null ? void 0 : k.url) ?? ""), s;
   }
-  function d() {
+  function p() {
     l(0, n = !0);
   }
   async function c() {
@@ -312,7 +312,7 @@ function re(i, e, l) {
     r,
     t,
     f,
-    d,
+    p,
     c,
     o
   ];
