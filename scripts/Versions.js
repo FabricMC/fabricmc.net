@@ -1,130 +1,130 @@
-import { S as R, i as U, s as X, h as Z, a as w, e as h, c as f, u as $, n as M, d as p, f as x, t as m, g as G, j as c, m as ee, o as te, p as J, q as se, k as F, l as le } from "./index.js";
-import { d as ie, a as ne, k as oe } from "./Api.js";
+import { S as R, i as U, s as X, h as Z, a as w, e as h, c as p, u as $, n as C, d as u, f as x, t as m, g as G, j as c, m as ee, o as te, p as J, q as se, k as T, l as le } from "./index.js";
+import { d as ie, b as ne, a as oe, k as re } from "./Api.js";
 function K(l, e, s) {
   const i = l.slice();
-  return i[8] = e[s], i;
+  return i[9] = e[s], i;
 }
-function re(l) {
-  let e, s, i = l[11].message + "", a, r, o;
+function ae(l) {
+  let e, s, i = l[12].message + "", a, o, r;
   return {
     c() {
-      e = h("p"), s = m("Error: "), a = m(i), r = w(), o = h("p"), o.innerHTML = `For support please visit one of our
+      e = h("p"), s = m("Error: "), a = m(i), o = w(), r = h("p"), r.innerHTML = `For support please visit one of our
         <a href="/discuss">community discussion</a>
         groups.`, G(e, "color", "red");
     },
     m(n, k) {
-      f(n, e, k), c(e, s), c(e, a), f(n, r, k), f(n, o, k);
+      p(n, e, k), c(e, s), c(e, a), p(n, o, k), p(n, r, k);
     },
-    p: M,
+    p: C,
     d(n) {
-      n && p(e), n && p(r), n && p(o);
+      n && u(e), n && u(o), n && u(r);
     }
   };
 }
-function ae(l) {
-  let e, s, i, a, r, o, n, k, g, T, v, b, C, O, A, P, N, L, j, H, q, W, Y, B, z, E, S, V, D, y = l[4], d = [];
-  for (let t = 0; t < y.length; t += 1)
-    d[t] = Q(K(l, y, t));
+function fe(l) {
+  let e, s, i, a, o, r, n, k, y, L, b, v, M, O, A, P, N, H, V, S, j, W, Y, q, z, B, F, E, D, g = l[4], d = [];
+  for (let t = 0; t < g.length; t += 1)
+    d[t] = Q(K(l, g, t));
   return {
     c() {
       e = h("p"), s = m(`Minecraft Version:
         `), i = h("select");
       for (let t = 0; t < d.length; t += 1)
         d[t].c();
-      a = w(), r = h("div"), o = h("pre"), n = h("code"), k = m(`
-minecraft_version=`), g = m(l[0]), T = m(`
-yarn_mappings=`), v = m(l[1]), b = m(`
-loader_version=`), C = m(l[3]), O = m(`
+      a = w(), o = h("div"), r = h("pre"), n = h("code"), k = m(`
+minecraft_version=`), y = m(l[0]), L = m(`
+yarn_mappings=`), b = m(l[1]), v = m(`
+loader_version=`), M = m(l[2]), O = m(`
 
 #Fabric api
-fabric_version=`), A = m(l[2]), P = m(`
-        `), N = w(), L = h("h4"), L.textContent = "Automatically update mappings", j = w(), H = h("p"), H.innerHTML = 'Mappings can be auto updated by using the following command. See the <a href="https://fabricmc.net/wiki/tutorial:migratemappings">wiki page</a> for more help.', q = w(), W = h("code"), Y = m('gradlew migrateMappings --mappings "'), B = m(l[1]), z = m('"'), E = w(), S = h("p"), S.innerHTML = 'Note: The fabric-api version may not be the correct version for the given Minecraft version in some situations. Check the <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a> page if you run into issues.', G(i, "min-width", "200px"), l[0] === void 0 && ee(() => l[5].call(i)), G(r, "margin-bottom", "15px"), te(W, "class", "copy-code svelte-sbpww1");
+fabric_version=`), A = m(l[3]), P = m(`
+        `), N = w(), H = h("h4"), H.textContent = "Automatically update mappings", V = w(), S = h("p"), S.innerHTML = 'Mappings can be auto updated by using the following command. See the <a href="https://fabricmc.net/wiki/tutorial:migratemappings">wiki page</a> for more help.', j = w(), W = h("code"), Y = m('gradlew migrateMappings --mappings "'), q = m(l[1]), z = m('"'), B = w(), F = h("p"), F.innerHTML = 'Note: The fabric-api version may not be the correct version for the given Minecraft version in some situations. Check the <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a> page if you run into issues.', G(i, "min-width", "200px"), l[0] === void 0 && ee(() => l[5].call(i)), G(o, "margin-bottom", "15px"), te(W, "class", "copy-code svelte-sbpww1");
     },
-    m(t, u) {
-      f(t, e, u), c(e, s), c(e, i);
+    m(t, f) {
+      p(t, e, f), c(e, s), c(e, i);
       for (let _ = 0; _ < d.length; _ += 1)
         d[_].m(i, null);
-      J(i, l[0]), f(t, a, u), f(t, r, u), c(r, o), c(o, n), c(n, k), c(n, g), c(n, T), c(n, v), c(n, b), c(n, C), c(n, O), c(n, A), c(n, P), f(t, N, u), f(t, L, u), f(t, j, u), f(t, H, u), f(t, q, u), f(t, W, u), c(W, Y), c(W, B), c(W, z), f(t, E, u), f(t, S, u), V || (D = se(i, "change", l[5]), V = !0);
+      J(i, l[0]), p(t, a, f), p(t, o, f), c(o, r), c(r, n), c(n, k), c(n, y), c(n, L), c(n, b), c(n, v), c(n, M), c(n, O), c(n, A), c(n, P), p(t, N, f), p(t, H, f), p(t, V, f), p(t, S, f), p(t, j, f), p(t, W, f), c(W, Y), c(W, q), c(W, z), p(t, B, f), p(t, F, f), E || (D = se(i, "change", l[5]), E = !0);
     },
-    p(t, u) {
-      if (u & 16) {
-        y = t[4];
+    p(t, f) {
+      if (f & 16) {
+        g = t[4];
         let _;
-        for (_ = 0; _ < y.length; _ += 1) {
-          const I = K(t, y, _);
-          d[_] ? d[_].p(I, u) : (d[_] = Q(I), d[_].c(), d[_].m(i, null));
+        for (_ = 0; _ < g.length; _ += 1) {
+          const I = K(t, g, _);
+          d[_] ? d[_].p(I, f) : (d[_] = Q(I), d[_].c(), d[_].m(i, null));
         }
         for (; _ < d.length; _ += 1)
           d[_].d(1);
-        d.length = y.length;
+        d.length = g.length;
       }
-      u & 17 && J(i, t[0]), u & 1 && F(g, t[0]), u & 2 && F(v, t[1]), u & 4 && F(A, t[2]), u & 2 && F(B, t[1]);
+      f & 17 && J(i, t[0]), f & 1 && T(y, t[0]), f & 2 && T(b, t[1]), f & 4 && T(M, t[2]), f & 8 && T(A, t[3]), f & 2 && T(q, t[1]);
     },
     d(t) {
-      t && p(e), le(d, t), t && p(a), t && p(r), t && p(N), t && p(L), t && p(j), t && p(H), t && p(q), t && p(W), t && p(E), t && p(S), V = !1, D();
+      t && u(e), le(d, t), t && u(a), t && u(o), t && u(N), t && u(H), t && u(V), t && u(S), t && u(j), t && u(W), t && u(B), t && u(F), E = !1, D();
     }
   };
 }
 function Q(l) {
-  let e, s = l[8] + "", i;
+  let e, s = l[9] + "", i;
   return {
     c() {
-      e = h("option"), i = m(s), e.__value = l[8], e.value = e.__value;
+      e = h("option"), i = m(s), e.__value = l[9], e.value = e.__value;
     },
-    m(a, r) {
-      f(a, e, r), c(e, i);
+    m(a, o) {
+      p(a, e, o), c(e, i);
     },
-    p: M,
+    p: C,
     d(a) {
-      a && p(e);
+      a && u(e);
     }
   };
 }
-function fe(l) {
+function pe(l) {
   let e;
   return {
     c() {
       e = h("p"), e.textContent = "Loading versions..";
     },
     m(s, i) {
-      f(s, e, i);
+      p(s, e, i);
     },
-    p: M,
+    p: C,
     d(s) {
-      s && p(e);
+      s && u(e);
     }
   };
 }
-function pe(l) {
-  let e, s, i, a, r = {
+function ue(l) {
+  let e, s, i, a, o = {
     ctx: l,
     current: null,
     token: null,
     hasCatch: !0,
-    pending: fe,
-    then: ae,
-    catch: re,
+    pending: pe,
+    then: fe,
+    catch: ae,
     value: 4,
-    error: 11
+    error: 12
   };
-  return Z(l[4], r), {
+  return Z(l[4], o), {
     c() {
-      r.block.c(), e = w(), s = h("h4"), s.textContent = "Loom", i = w(), a = h("p"), a.innerHTML = "The recommended loom version is <strong>1.0-SNAPSHOT</strong>. This is usually defined near the top of your  build.gradle file.";
+      o.block.c(), e = w(), s = h("h4"), s.textContent = "Loom", i = w(), a = h("p"), a.innerHTML = "The recommended loom version is <strong>1.0-SNAPSHOT</strong>. This is usually defined near the top of your  build.gradle file.";
     },
-    m(o, n) {
-      r.block.m(o, r.anchor = n), r.mount = () => e.parentNode, r.anchor = e, f(o, e, n), f(o, s, n), f(o, i, n), f(o, a, n);
+    m(r, n) {
+      o.block.m(r, o.anchor = n), o.mount = () => e.parentNode, o.anchor = e, p(r, e, n), p(r, s, n), p(r, i, n), p(r, a, n);
     },
-    p(o, [n]) {
-      l = o, $(r, l, n);
+    p(r, [n]) {
+      l = r, $(o, l, n);
     },
-    i: M,
-    o: M,
-    d(o) {
-      r.block.d(o), r.token = null, r = null, o && p(e), o && p(s), o && p(i), o && p(a);
+    i: C,
+    o: C,
+    d(r) {
+      o.block.d(r), o.token = null, o = null, r && u(e), r && u(s), r && u(i), r && u(a);
     }
   };
 }
-function ue(l, e) {
+function ce(l, e) {
   if (!e)
     return !1;
   let s = e;
@@ -141,31 +141,32 @@ function ue(l, e) {
     e.startsWith(a) && (s = a);
   }), e.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : e.startsWith("22w") ? s = "1.19.3" : e.startsWith("1.18.2") ? s = "1.18.2" : e.startsWith("1.19.1") ? s = "1.19.1" : e.startsWith("1.19.2") ? s = "1.19.2" : e.startsWith("1.19.3") ? s = "1.19.3" : e.startsWith("21w") ? s = "1.18" : e.startsWith("20w") ? s = "1.17" : (e.startsWith("19w") || e.startsWith("18w")) && (s = "1.14"), l.endsWith("-" + s) || l.endsWith("+" + s);
 }
-function ce(l, e, s) {
-  let i, a, r, o, n = ie().then((v) => (s(0, i = v.find((b) => b.stable).version), v.map((b) => b.version)));
-  const k = ne(), g = oe();
-  function T() {
+function _e(l, e, s) {
+  let i, a, o, r, n = ie().then((b) => (s(0, i = b.find((v) => v.stable).version), b.map((v) => v.version)));
+  ne().then((b) => (s(2, o = b.find((v) => v.stable).version), b));
+  const k = oe(), y = re();
+  function L() {
     i = x(this), s(0, i), s(4, n);
   }
   return l.$$.update = () => {
-    l.$$.dirty & 1 && k.then((v) => {
-      var b;
-      return s(1, a = ((b = v.find((C) => C.gameVersion == i)) == null ? void 0 : b.version) || "unknown");
-    }), l.$$.dirty & 1 && g.then((v) => s(2, o = v.filter((b) => ue(b, i)).pop()));
+    l.$$.dirty & 1 && k.then((b) => {
+      var v;
+      return s(1, a = ((v = b.find((M) => M.gameVersion == i)) == null ? void 0 : v.version) || "unknown");
+    }), l.$$.dirty & 1 && y.then((b) => s(3, r = b.filter((v) => ce(v, i)).pop()));
   }, [
     i,
     a,
     o,
     r,
     n,
-    T
+    L
   ];
 }
-class he extends R {
+class de extends R {
   constructor(e) {
-    super(), U(this, e, ce, pe, X, {});
+    super(), U(this, e, _e, ue, X, {});
   }
 }
 export {
-  he as default
+  de as default
 };
