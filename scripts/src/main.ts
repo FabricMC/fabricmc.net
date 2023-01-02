@@ -16,6 +16,7 @@ const Technic = lazy("Technic");
 const Server = lazy("Server");
 const Versions = lazy("Versions");
 const Documentation = lazy("Documentation");
+const Template = lazy("Template");
 
 let Components: Record<string, () => Promise<Module>> = {
     Installer,
@@ -23,7 +24,8 @@ let Components: Record<string, () => Promise<Module>> = {
     Technic,
     Server,
     Versions,
-    Documentation
+    Documentation,
+    Template
 };
 
 function initComponents() {

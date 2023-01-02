@@ -1,0 +1,9 @@
+package <%= it.package %>
+
+import net.fabricmc.api.ClientModInitializer
+
+object <%= it.className %> : ClientModInitializer {
+	override fun onInitializeClient() {
+		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+	}
+}

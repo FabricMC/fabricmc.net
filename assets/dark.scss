@@ -5,13 +5,14 @@ $background-color: #0d1117;
 $text-color: #c9d1d9;
 $grey-color-light: #8b949e;
 $grey-color-dark: #6e7681;
+$grey-color-very-dark: #30363d;
 
 $fabric-download-color: #1f6feb;
 
 @import "{{ site.theme }}";
 @import "fabric";
 
-code, select, pre {
+code, select, pre, input {
     background-color: $background-color;
     color: $text-color;
 }
