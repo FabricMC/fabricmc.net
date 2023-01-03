@@ -12,8 +12,9 @@ This page is still in beta, many features are missing. Please submit any suggest
 <noscript style="color:red">You need Javascript to generate a mod template</noscript>
 <div class="fabric-component" data-component="Template"></div>
 
-<script type="text/javascript" src="/scripts/main.js"></script>
-<link href="/scripts/style.css" rel="stylesheet">
+{% assign cacheBust = site.time | date:'?v=%s' %}
+<script type="text/javascript" src="{{ "/scripts/main.js" | relative_url | append: cacheBust }}"></script>
+<link href="{{ "/scripts/style.css" | relative_url | append: cacheBust }}" rel="stylesheet">
 
 <br>
 For setup instructions please see the [fabric wiki page](https://fabricmc.net/wiki/tutorial:setup) that relates to the IDE that you are using.

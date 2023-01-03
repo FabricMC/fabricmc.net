@@ -25,5 +25,6 @@ This page contains a range of resources to help you create a new mod or maintain
 <noscript style="color:red">You need Javascript to show the documentation links</noscript>
 <div class="fabric-component" data-component="Documentation"></div>
 
-<script type="module" src="/scripts/main.js"></script>
-<link href="/scripts/style.css" rel="stylesheet">
+{% assign cacheBust = site.time | date:'?v=%s' %}
+<script type="text/javascript" src="{{ "/scripts/main.js" | relative_url | append: cacheBust }}"></script>
+<link href="{{ "/scripts/style.css" | relative_url | append: cacheBust }}" rel="stylesheet">

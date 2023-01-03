@@ -75,5 +75,6 @@ layout: page
     </ul>
 </div>
 
-<script type="module" src="/scripts/main.js"></script>
-<link href="/scripts/style.css" rel="stylesheet">
+{% assign cacheBust = site.time | date:'?v=%s' %}
+<script type="text/javascript" src="{{ "/scripts/main.js" | relative_url | append: cacheBust }}"></script>
+<link href="{{ "/scripts/style.css" | relative_url | append: cacheBust }}" rel="stylesheet">
