@@ -75,9 +75,7 @@ export function getKotlinAdapterVersions(): Promise<string[]> {
 
 export async function getApiVersionForMinecraft(minecraftVersion: string): Promise<string> {
     const apiVersions = await getApiVersions();
-    return apiVersions.find((apiVersion) => {
-        return isApiVersionvalidForMcVersion(apiVersion, minecraftVersion);
-    })!;
+    return apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop()!;
 }
 
 export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: string | undefined) : boolean {
