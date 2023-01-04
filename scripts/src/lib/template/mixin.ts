@@ -14,16 +14,14 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
         "package": packageName,
         "compatibilityLevel": getJavaVersion(options.minecraftVersion).mixin,
         "mixins": [
-        ],
-        "client": [
-            className // TODO need an example mixin that targets a common class.
+            className
         ],
         "injectors": {
             "defaultRequire": 1
         }
     };
 
-    const mixinJsonName = `${options.modid}.mixin.json`;
+    const mixinJsonName = `${options.modid}.mixins.json`;
     await writer.write(`src/main/resources/${mixinJsonName}`, JSON.stringify(mixinJson, null, "\t"));
     await writer.write(`src/main/java/${packageName.replaceAll("\.", "/")}/${className}.java`, renderTemplate(mixinTemplate, {
         className,
