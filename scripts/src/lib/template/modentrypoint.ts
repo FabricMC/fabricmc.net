@@ -27,7 +27,7 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         package: options.packageName,
         className,
         classFullName: options.packageName + "." + className,
-        path: options.packageName.replace(".", "/") + "/" + className,
+        path: options.packageName.replaceAll(".", "/") + "/" + className,
         modid: options.modid,
         slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18,
         clientEntrypoint: options.splitSources,
