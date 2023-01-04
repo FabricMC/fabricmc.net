@@ -1,10 +1,15 @@
 import type { ComputedConfiguration, TemplateWriter } from "./template";
-import { generateMixin } from "./mixin";
+import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 import { getJavaVersion, getMinorMinecraftVersion } from "./java"
 import { decode64 } from './utils';
 
 export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {
+  var mixins = [
+    ...await generateMixin(writer, config),
+    ...(config.splitSources ? await generateClientMixin(writer, config) : [])
+  ];
+
   var fabricModJson : any = {
     "schemaVersion": 1,
     "id": config.modid,
@@ -22,7 +27,7 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
     "icon": `assets/${config.modid}/icon.png`,
     "environment": "*",
     "entrypoints": await generateEntrypoint(writer, config),
-    "mixins": await generateMixin(writer, config),
+    "mixins": mixins,
     "depends": {
       "fabricloader": ">=" + config.loaderVersion,
       "minecraft": "~" + config.minecraftVersion,
