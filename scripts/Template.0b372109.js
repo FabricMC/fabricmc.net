@@ -3331,14 +3331,13 @@ async function Je(U, S) {
     minVersion: "0.8",
     package: s,
     compatibilityLevel: zt(S.minecraftVersion).mixin,
-    mixins: [],
-    client: [
+    mixins: [
       I
     ],
     injectors: {
       defaultRequire: 1
     }
-  }, a = `${S.modid}.mixin.json`;
+  }, a = `${S.modid}.mixins.json`;
   return await U.write(`src/main/resources/${a}`, JSON.stringify(y, null, "	")), await U.write(`src/main/java/${s.replaceAll(".", "/")}/${I}.java`, St(Oe, {
     className: I,
     packageName: s
