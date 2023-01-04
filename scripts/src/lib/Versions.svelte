@@ -3,7 +3,8 @@
         getGameVersions,
         getYarnVersions,
         getLoaderVersions,
-        getApiVersions
+        getApiVersions,
+        isApiVersionvalidForMcVersion
     } from "./Api";
 
     let minecraftVersion: string | undefined;
@@ -25,46 +26,7 @@
     const apiVersions = getApiVersions();
 
     $: yarnVersions.then(versions => yarnVersion = versions.find(v => v.gameVersion == minecraftVersion)?.version || "unknown")
-    $: apiVersions.then(versions => apiVersion = versions.filter(v => validForMcVersion(v, minecraftVersion)).pop()!)
-
-    function validForMcVersion(apiVersion: string, mcVersion: string | undefined) : boolean {
-        if (!mcVersion) {
-            return false;
-        }
-
-        let branch = mcVersion;
-
-        let versionBranches = ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "20w14infinite", "1.18_experimental"]
-
-        versionBranches.forEach((v) => {
-            if (mcVersion.startsWith(v)) {
-                branch = v;
-            }
-        })
-
-        // Very dumb but idk of a better (easy) way.
-        if (mcVersion.startsWith("22w13oneblockatatime")) {
-            branch = "22w13oneblockatatime"
-        } else if (mcVersion.startsWith("22w")) {
-            branch = "1.19.3"
-        } else if (mcVersion.startsWith("1.18.2")) {
-            branch = "1.18.2"
-        } else if (mcVersion.startsWith("1.19.1")) {
-            branch = "1.19.1"
-        } else if (mcVersion.startsWith("1.19.2")) {
-            branch = "1.19.2"
-        } else if (mcVersion.startsWith("1.19.3")) {
-            branch = "1.19.3"
-        } else if (mcVersion.startsWith("21w")) {
-            branch = "1.18"
-        } else if (mcVersion.startsWith("20w")) {
-            branch = "1.17"
-        } else if (mcVersion.startsWith("19w") || mcVersion.startsWith("18w")) {
-            branch = "1.14"
-        }
-
-        return apiVersion.endsWith("-" + branch) || apiVersion.endsWith("+" + branch);
-    }
+    $: apiVersions.then(versions => apiVersion = versions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop()!)
 </script>
 
 {#await gameVersions}
