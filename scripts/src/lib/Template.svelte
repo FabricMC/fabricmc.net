@@ -10,6 +10,7 @@
     let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
+    let useKotlinGradle = false;
     let dataGeneration = false;
     let splitSources = true;
 
@@ -48,6 +49,7 @@
             projectName,
             packageName,
             useKotlin,
+            useKotlinGradle,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
         };
@@ -128,6 +130,17 @@
             <p class="option-body">
                 <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
                 The <a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.
+            </p>
+        </div>
+
+        <div>
+            <div class="option-container">
+                <input id="kotlinGradle" type="checkbox" class="option-input" bind:checked={useKotlinGradle} />
+                <label for="kotlinGradle" class="option-label">Gradle Kotlin DSL</label>
+            </div>
+            <p class="option-body">
+                Use <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Gradle Kotlin DSL</a> instead of Groovy.
+                This will generate <code>build.gradle.kts</code> and <code>settings.gradle.kts</code> files.
             </p>
         </div>
 
