@@ -139,8 +139,7 @@
                 <label for="kotlinGradle" class="option-label">Gradle Kotlin DSL</label>
             </div>
             <p class="option-body">
-                Use <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Gradle Kotlin DSL</a> instead of Groovy.
-                This will generate <code>build.gradle.kts</code> and <code>settings.gradle.kts</code> files.
+                Use the <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Kotlin DSL</a> for the Gradle build script. This option is only reccomended for advanced users familar with Kotlin and Gradle. This may result in slower build peformance and compability issues with some IDEs.
             </p>
         </div>
 
