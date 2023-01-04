@@ -69,7 +69,7 @@ tasks {
 		inputs.property("version", project.version)
 
 		filesMatching("fabric.mod.json") {
-			expand(mapOf("version" to project.version))
+			expand("version" to project.version)
 		}
 	}
 
@@ -90,7 +90,7 @@ tasks {
 
 	jar {
 		from("LICENSE") {
-			rename { "${it}_${base.archivesName}" }
+			rename { "${it}_${base.archivesName.get()}" }
 		}
 	}
 }
