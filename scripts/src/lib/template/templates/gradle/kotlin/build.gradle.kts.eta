@@ -1,8 +1,11 @@
 plugins {
 	id("fabric-loom") version "1.0-SNAPSHOT"
-	id("maven-publish")
-	<% if (it.kotlin) { %>kotlin("jvm") version "<%= it.kotlin.kotlinVersion %>"<% } %>
+	id("maven-publish")<% if (it.kotlin) { %>
+	kotlin("jvm") version "<%= it.kotlin.kotlinVersion %>"<% } %>
 }
+
+java.sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
+java.targetCompatibility = JavaVersion.<%= it.java.compatibility %>
 
 base.archivesName.set(project.properties["archives_base_name"] as String)
 version = project.properties["mod_version"] as String
@@ -64,27 +67,21 @@ dependencies {
 tasks {
 	processResources {
 		inputs.property("version", project.version)
-		filteringCharset = "UTF-8"
 
 		filesMatching("fabric.mod.json") {
 			expand(mapOf("version" to project.version))
 		}
 	}
 
-	// Minecraft 1.18 (1.18-pre2) upwards uses Java 17.
-	val targetJavaVersion = <%= it.java.release %>
 	withType<JavaCompile> {
-		options.encoding = "UTF-8"
-		options.release.set(targetJavaVersion)
+		options.release.set(java.targetCompatibility.majorVersion.toInt())
 	}
-
-<% if (it.kotlin) { %>	withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-		kotlinOptions.jvmTarget = targetJavaVersion.toString()
-	}<% } %>
-
+<% if (it.kotlin) { %>
+	withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+		kotlinOptions.jvmTarget = java.targetCompatibility.toString()
+	}
+<% } %>
 	java {
-		toolchain.languageVersion.set(JavaLanguageVersion.of(JavaVersion.toVersion(targetJavaVersion).toString()))
-
 		// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
 		// if it is present.
 		// If you remove this line, sources will not be generated.
