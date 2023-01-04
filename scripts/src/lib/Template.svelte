@@ -72,7 +72,7 @@
     }
 
     function formatPackageName() {
-        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9-_\.]/, "")
+        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9_\.]/, "")
     }
 </script>
 
