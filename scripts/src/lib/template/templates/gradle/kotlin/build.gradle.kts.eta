@@ -23,7 +23,7 @@ loom {
 <% if (it.splitSources) { %>	splitEnvironmentSourceSets()
 
 	mods {
-		create("modid") {
+		create("<%= it.modid %>") {
 			sourceSet(sourceSets["main"])
 			sourceSet(sourceSets["client"])
 		}
