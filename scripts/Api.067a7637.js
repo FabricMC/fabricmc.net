@@ -34,7 +34,7 @@ function x() {
   return c("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
 }
 async function A(e) {
-  return (await h()).find((n) => v(n, e));
+  return (await h()).filter((n) => v(n, e)).pop();
 }
 function v(e, t) {
   if (!t)
