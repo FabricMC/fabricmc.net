@@ -43,14 +43,11 @@
 
     // Ported/adapted from Loader's MetadataVerifier
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
-        console.log(id);
         if (id == undefined) {
             return undefined;
         }
 
         let errorList : string[] = [];
-
-        console.log(id.length);
 
         if (id.length == 0) {
             return ["Modid is empty!"];
@@ -149,13 +146,13 @@
 {:then data}
     <div class="template">
         <div class="form-line">
-            <h3>Mod Name</h3>
+            <h3>Mod Name:</h3>
             <hr />
 
             {#if customModId != undefined}
                 <p>Choose a name for your new mod.</p>
             {:else}
-                <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Custom id</a></p>
+                <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
             
             <input id="project-name" bind:value={projectName} />
@@ -163,7 +160,7 @@
 
         {#if customModId != undefined}
             <div class="form-line">
-                <h3>Mod ID</h3>
+                <h3>Mod ID:</h3>
                 <hr />
                 <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
                 {#if modIdErrors != undefined} 
