@@ -2,13 +2,13 @@ import { S as fe, i as pe, s as me, h as be, b as ge, c as bt, u as ye, r as Gt,
 import { b as Se, h as Ce, i as xe, j as Ze, d as Re } from "./Api.067a7637.js";
 import ie from "./DownloadIcon.81b5365d.js";
 var xt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Nt(R) {
-  throw new Error('Could not dynamically require "' + R + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
+function Nt(E) {
+  throw new Error('Could not dynamically require "' + E + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
 var re = { exports: {} };
-(function(R, v) {
+(function(E, v) {
   (function(r) {
-    R.exports = r();
+    E.exports = r();
   })(function() {
     return function r(k, u, i) {
       function o(f, b) {
@@ -137,16 +137,16 @@ var re = { exports: {} };
         h && !a || (et.crc32 = s.crc32, et.compressedSize = s.compressedSize, et.uncompressedSize = s.uncompressedSize);
         var G = 0;
         h && (G |= 8), N || !W && !e || (G |= 2048);
-        var E = 0, $ = 0;
-        at && (E |= 16), c === "UNIX" ? ($ = 798, E |= function(M, At) {
+        var R = 0, $ = 0;
+        at && (R |= 16), c === "UNIX" ? ($ = 798, R |= function(M, At) {
           var ft = M;
           return M || (ft = At ? 16893 : 33204), (65535 & ft) << 16;
-        }(x.unixPermissions, at)) : ($ = 20, E |= function(M) {
+        }(x.unixPermissions, at)) : ($ = 20, R |= function(M) {
           return 63 & (M || 0);
         }(x.dosPermissions)), I = Y.getUTCHours(), I <<= 6, I |= Y.getUTCMinutes(), I <<= 5, I |= Y.getUTCSeconds() / 2, C = Y.getUTCFullYear() - 1980, C <<= 4, C |= Y.getUTCMonth() + 1, C <<= 5, C |= Y.getUTCDate(), W && (rt = i(1, 1) + i(b(V), 4) + L, F += "up" + i(rt.length, 2) + rt), e && (J = i(1, 1) + i(b(_), 4) + w, F += "uc" + i(J.length, 2) + J);
         var K = "";
         return K += `
-\0`, K += i(G, 2), K += T.magic, K += i(I, 2), K += i(C, 2), K += i(et.crc32, 4), K += i(et.compressedSize, 4), K += i(et.uncompressedSize, 4), K += i(V.length, 2), K += i(F.length, 2), { fileRecord: p.LOCAL_FILE_HEADER + K + V + F, dirRecord: p.CENTRAL_FILE_HEADER + i($, 2) + K + i(_.length, 2) + "\0\0\0\0" + i(E, 4) + i(d, 4) + V + F + _ };
+\0`, K += i(G, 2), K += T.magic, K += i(I, 2), K += i(C, 2), K += i(et.crc32, 4), K += i(et.compressedSize, 4), K += i(et.uncompressedSize, 4), K += i(V.length, 2), K += i(F.length, 2), { fileRecord: p.LOCAL_FILE_HEADER + K + V + F, dirRecord: p.CENTRAL_FILE_HEADER + i($, 2) + K + i(_.length, 2) + "\0\0\0\0" + i(R, 4) + i(d, 4) + V + F + _ };
       }
       var n = r("../utils"), l = r("../stream/GenericWorker"), f = r("../utf8"), b = r("../crc32"), p = r("../signature");
       function y(s, h, a, d) {
@@ -1523,7 +1523,7 @@ var re = { exports: {} };
         var X = t.state, B = X.pending;
         B > t.avail_out && (B = t.avail_out), B !== 0 && (o.arraySet(t.output, X.pending_buf, X.pending_out, B, t.next_out), t.next_out += B, X.pending_out += B, t.total_out += B, t.avail_out -= B, X.pending -= B, X.pending === 0 && (X.pending_out = 0));
       }
-      function E(t, X) {
+      function R(t, X) {
         n._tr_flush_block(t, 0 <= t.block_start ? t.block_start : -1, t.strstart - t.block_start, X), t.block_start = t.strstart, G(t.strm);
       }
       function $(t, X) {
@@ -1584,10 +1584,10 @@ var re = { exports: {} };
               t.strstart += t.match_length, t.match_length = 0, t.ins_h = t.window[t.strstart], t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + 1]) & t.hash_mask;
           else
             m = n._tr_tally(t, 0, t.window[t.strstart]), t.lookahead--, t.strstart++;
-          if (m && (E(t, !1), t.strm.avail_out === 0))
+          if (m && (R(t, !1), t.strm.avail_out === 0))
             return e;
         }
-        return t.insert = t.strstart < L - 1 ? t.strstart : L - 1, X === y ? (E(t, !0), t.strm.avail_out === 0 ? rt : J) : t.last_lit && (E(t, !1), t.strm.avail_out === 0) ? e : F;
+        return t.insert = t.strstart < L - 1 ? t.strstart : L - 1, X === y ? (R(t, !0), t.strm.avail_out === 0 ? rt : J) : t.last_lit && (R(t, !1), t.strm.avail_out === 0) ? e : F;
       }
       function st(t, X) {
         for (var B, m, A; ; ) {
@@ -1600,15 +1600,15 @@ var re = { exports: {} };
           if (B = 0, t.lookahead >= L && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + L - 1]) & t.hash_mask, B = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), t.prev_length = t.match_length, t.prev_match = t.match_start, t.match_length = L - 1, B !== 0 && t.prev_length < t.max_lazy_match && t.strstart - B <= t.w_size - _ && (t.match_length = M(t, B), t.match_length <= 5 && (t.strategy === 1 || t.match_length === L && 4096 < t.strstart - t.match_start) && (t.match_length = L - 1)), t.prev_length >= L && t.match_length <= t.prev_length) {
             for (A = t.strstart + t.lookahead - L, m = n._tr_tally(t, t.strstart - 1 - t.prev_match, t.prev_length - L), t.lookahead -= t.prev_length - 1, t.prev_length -= 2; ++t.strstart <= A && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + L - 1]) & t.hash_mask, B = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), --t.prev_length != 0; )
               ;
-            if (t.match_available = 0, t.match_length = L - 1, t.strstart++, m && (E(t, !1), t.strm.avail_out === 0))
+            if (t.match_available = 0, t.match_length = L - 1, t.strstart++, m && (R(t, !1), t.strm.avail_out === 0))
               return e;
           } else if (t.match_available) {
-            if ((m = n._tr_tally(t, 0, t.window[t.strstart - 1])) && E(t, !1), t.strstart++, t.lookahead--, t.strm.avail_out === 0)
+            if ((m = n._tr_tally(t, 0, t.window[t.strstart - 1])) && R(t, !1), t.strstart++, t.lookahead--, t.strm.avail_out === 0)
               return e;
           } else
             t.match_available = 1, t.strstart++, t.lookahead--;
         }
-        return t.match_available && (m = n._tr_tally(t, 0, t.window[t.strstart - 1]), t.match_available = 0), t.insert = t.strstart < L - 1 ? t.strstart : L - 1, X === y ? (E(t, !0), t.strm.avail_out === 0 ? rt : J) : t.last_lit && (E(t, !1), t.strm.avail_out === 0) ? e : F;
+        return t.match_available && (m = n._tr_tally(t, 0, t.window[t.strstart - 1]), t.match_available = 0), t.insert = t.strstart < L - 1 ? t.strstart : L - 1, X === y ? (R(t, !0), t.strm.avail_out === 0 ? rt : J) : t.last_lit && (R(t, !1), t.strm.avail_out === 0) ? e : F;
       }
       function ot(t, X, B, m, A) {
         this.good_length = t, this.max_lazy = X, this.nice_length = B, this.max_chain = m, this.func = A;
@@ -1647,10 +1647,10 @@ var re = { exports: {} };
           }
           t.strstart += t.lookahead, t.lookahead = 0;
           var m = t.block_start + B;
-          if ((t.strstart === 0 || t.strstart >= m) && (t.lookahead = t.strstart - m, t.strstart = m, E(t, !1), t.strm.avail_out === 0) || t.strstart - t.block_start >= t.w_size - _ && (E(t, !1), t.strm.avail_out === 0))
+          if ((t.strstart === 0 || t.strstart >= m) && (t.lookahead = t.strstart - m, t.strstart = m, R(t, !1), t.strm.avail_out === 0) || t.strstart - t.block_start >= t.w_size - _ && (R(t, !1), t.strm.avail_out === 0))
             return e;
         }
-        return t.insert = 0, X === y ? (E(t, !0), t.strm.avail_out === 0 ? rt : J) : (t.strstart > t.block_start && (E(t, !1), t.strm.avail_out), e);
+        return t.insert = 0, X === y ? (R(t, !0), t.strm.avail_out === 0 ? rt : J) : (t.strstart > t.block_start && (R(t, !1), t.strm.avail_out), e);
       }), new ot(4, 4, 8, 4, ft), new ot(4, 5, 16, 8, ft), new ot(4, 6, 32, 32, ft), new ot(4, 4, 16, 16, st), new ot(8, 16, 32, 32, st), new ot(8, 16, 128, 128, st), new ot(8, 32, 128, 256, st), new ot(32, 128, 258, 1024, st), new ot(32, 258, 258, 4096, st)], u.deflateInit = function(t, X) {
         return yt(t, X, g, 15, 8, 0);
       }, u.deflateInit2 = yt, u.deflateReset = dt, u.deflateResetKeep = lt, u.deflateSetHeader = function(t, X) {
@@ -1716,10 +1716,10 @@ var re = { exports: {} };
                   return e;
                 break;
               }
-              if (Z.match_length = 0, H = n._tr_tally(Z, 0, Z.window[Z.strstart]), Z.lookahead--, Z.strstart++, H && (E(Z, !1), Z.strm.avail_out === 0))
+              if (Z.match_length = 0, H = n._tr_tally(Z, 0, Z.window[Z.strstart]), Z.lookahead--, Z.strstart++, H && (R(Z, !1), Z.strm.avail_out === 0))
                 return e;
             }
-            return Z.insert = 0, O === y ? (E(Z, !0), Z.strm.avail_out === 0 ? rt : J) : Z.last_lit && (E(Z, !1), Z.strm.avail_out === 0) ? e : F;
+            return Z.insert = 0, O === y ? (R(Z, !0), Z.strm.avail_out === 0 ? rt : J) : Z.last_lit && (R(Z, !1), Z.strm.avail_out === 0) ? e : F;
           }(m, X) : m.strategy === 3 ? function(Z, O) {
             for (var H, j, tt, D, it = Z.window; ; ) {
               if (Z.lookahead <= P) {
@@ -1735,10 +1735,10 @@ var re = { exports: {} };
                 while (j === it[++tt] && j === it[++tt] && j === it[++tt] && j === it[++tt] && j === it[++tt] && j === it[++tt] && j === it[++tt] && j === it[++tt] && tt < D);
                 Z.match_length = P - (D - tt), Z.match_length > Z.lookahead && (Z.match_length = Z.lookahead);
               }
-              if (Z.match_length >= L ? (H = n._tr_tally(Z, 1, Z.match_length - L), Z.lookahead -= Z.match_length, Z.strstart += Z.match_length, Z.match_length = 0) : (H = n._tr_tally(Z, 0, Z.window[Z.strstart]), Z.lookahead--, Z.strstart++), H && (E(Z, !1), Z.strm.avail_out === 0))
+              if (Z.match_length >= L ? (H = n._tr_tally(Z, 1, Z.match_length - L), Z.lookahead -= Z.match_length, Z.strstart += Z.match_length, Z.match_length = 0) : (H = n._tr_tally(Z, 0, Z.window[Z.strstart]), Z.lookahead--, Z.strstart++), H && (R(Z, !1), Z.strm.avail_out === 0))
                 return e;
             }
-            return Z.insert = 0, O === y ? (E(Z, !0), Z.strm.avail_out === 0 ? rt : J) : Z.last_lit && (E(Z, !1), Z.strm.avail_out === 0) ? e : F;
+            return Z.insert = 0, O === y ? (R(Z, !0), Z.strm.avail_out === 0 ? rt : J) : Z.last_lit && (R(Z, !1), Z.strm.avail_out === 0) ? e : F;
           }(m, X) : i[m.level].func(m, X);
           if (z !== rt && z !== J || (m.status = 666), z === e || z === rt)
             return t.avail_out === 0 && (m.last_flush = -1), s;
@@ -1894,10 +1894,10 @@ var re = { exports: {} };
       u.inflateReset = C, u.inflateReset2 = x, u.inflateResetKeep = I, u.inflateInit = function(w) {
         return T(w, 15);
       }, u.inflateInit2 = T, u.inflate = function(w, W) {
-        var e, F, rt, J, at, Y, et, G, E, $, K, M, At, ft, st, ot, ut, lt, dt, yt, t, X, B, m, A = 0, S = new i.Buf8(4), U = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
+        var e, F, rt, J, at, Y, et, G, R, $, K, M, At, ft, st, ot, ut, lt, dt, yt, t, X, B, m, A = 0, S = new i.Buf8(4), U = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
         if (!w || !w.state || !w.output || !w.input && w.avail_in !== 0)
           return s;
-        (e = w.state).mode === 12 && (e.mode = 13), at = w.next_out, rt = w.output, et = w.avail_out, J = w.next_in, F = w.input, Y = w.avail_in, G = e.hold, E = e.bits, $ = Y, K = et, X = y;
+        (e = w.state).mode === 12 && (e.mode = 13), at = w.next_out, rt = w.output, et = w.avail_out, J = w.next_in, F = w.input, Y = w.avail_in, G = e.hold, R = e.bits, $ = Y, K = et, X = y;
         t:
           for (; ; )
             switch (e.mode) {
@@ -1906,13 +1906,13 @@ var re = { exports: {} };
                   e.mode = 13;
                   break;
                 }
-                for (; E < 16; ) {
+                for (; R < 16; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
                 if (2 & e.wrap && G === 35615) {
-                  S[e.check = 0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0), E = G = 0, e.mode = 2;
+                  S[e.check = 0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0), R = G = 0, e.mode = 2;
                   break;
                 }
                 if (e.flags = 0, e.head && (e.head.done = !1), !(1 & e.wrap) || (((255 & G) << 8) + (G >> 8)) % 31) {
@@ -1923,19 +1923,19 @@ var re = { exports: {} };
                   w.msg = "unknown compression method", e.mode = 30;
                   break;
                 }
-                if (E -= 4, t = 8 + (15 & (G >>>= 4)), e.wbits === 0)
+                if (R -= 4, t = 8 + (15 & (G >>>= 4)), e.wbits === 0)
                   e.wbits = t;
                 else if (t > e.wbits) {
                   w.msg = "invalid window size", e.mode = 30;
                   break;
                 }
-                e.dmax = 1 << t, w.adler = e.check = 1, e.mode = 512 & G ? 10 : 12, E = G = 0;
+                e.dmax = 1 << t, w.adler = e.check = 1, e.mode = 512 & G ? 10 : 12, R = G = 0;
                 break;
               case 2:
-                for (; E < 16; ) {
+                for (; R < 16; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
                 if (e.flags = G, (255 & e.flags) != 8) {
                   w.msg = "unknown compression method", e.mode = 30;
@@ -1945,29 +1945,29 @@ var re = { exports: {} };
                   w.msg = "unknown header flags set", e.mode = 30;
                   break;
                 }
-                e.head && (e.head.text = G >> 8 & 1), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), E = G = 0, e.mode = 3;
+                e.head && (e.head.text = G >> 8 & 1), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), R = G = 0, e.mode = 3;
               case 3:
-                for (; E < 32; ) {
+                for (; R < 32; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
-                e.head && (e.head.time = G), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, S[2] = G >>> 16 & 255, S[3] = G >>> 24 & 255, e.check = n(e.check, S, 4, 0)), E = G = 0, e.mode = 4;
+                e.head && (e.head.time = G), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, S[2] = G >>> 16 & 255, S[3] = G >>> 24 & 255, e.check = n(e.check, S, 4, 0)), R = G = 0, e.mode = 4;
               case 4:
-                for (; E < 16; ) {
+                for (; R < 16; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
-                e.head && (e.head.xflags = 255 & G, e.head.os = G >> 8), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), E = G = 0, e.mode = 5;
+                e.head && (e.head.xflags = 255 & G, e.head.os = G >> 8), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), R = G = 0, e.mode = 5;
               case 5:
                 if (1024 & e.flags) {
-                  for (; E < 16; ) {
+                  for (; R < 16; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  e.length = G, e.head && (e.head.extra_len = G), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), E = G = 0;
+                  e.length = G, e.head && (e.head.extra_len = G), 512 & e.flags && (S[0] = 255 & G, S[1] = G >>> 8 & 255, e.check = n(e.check, S, 2, 0)), R = G = 0;
                 } else
                   e.head && (e.head.extra = null);
                 e.mode = 6;
@@ -1999,51 +1999,51 @@ var re = { exports: {} };
                 e.mode = 9;
               case 9:
                 if (512 & e.flags) {
-                  for (; E < 16; ) {
+                  for (; R < 16; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
                   if (G !== (65535 & e.check)) {
                     w.msg = "header crc mismatch", e.mode = 30;
                     break;
                   }
-                  E = G = 0;
+                  R = G = 0;
                 }
                 e.head && (e.head.hcrc = e.flags >> 9 & 1, e.head.done = !0), w.adler = e.check = 0, e.mode = 12;
                 break;
               case 10:
-                for (; E < 32; ) {
+                for (; R < 32; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
-                w.adler = e.check = c(G), E = G = 0, e.mode = 11;
+                w.adler = e.check = c(G), R = G = 0, e.mode = 11;
               case 11:
                 if (e.havedict === 0)
-                  return w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = E, 2;
+                  return w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = R, 2;
                 w.adler = e.check = 1, e.mode = 12;
               case 12:
                 if (W === 5 || W === 6)
                   break t;
               case 13:
                 if (e.last) {
-                  G >>>= 7 & E, E -= 7 & E, e.mode = 27;
+                  G >>>= 7 & R, R -= 7 & R, e.mode = 27;
                   break;
                 }
-                for (; E < 3; ) {
+                for (; R < 3; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
-                switch (e.last = 1 & G, E -= 1, 3 & (G >>>= 1)) {
+                switch (e.last = 1 & G, R -= 1, 3 & (G >>>= 1)) {
                   case 0:
                     e.mode = 14;
                     break;
                   case 1:
                     if (P(e), e.mode = 20, W !== 6)
                       break;
-                    G >>>= 2, E -= 2;
+                    G >>>= 2, R -= 2;
                     break t;
                   case 2:
                     e.mode = 17;
@@ -2051,19 +2051,19 @@ var re = { exports: {} };
                   case 3:
                     w.msg = "invalid block type", e.mode = 30;
                 }
-                G >>>= 2, E -= 2;
+                G >>>= 2, R -= 2;
                 break;
               case 14:
-                for (G >>>= 7 & E, E -= 7 & E; E < 32; ) {
+                for (G >>>= 7 & R, R -= 7 & R; R < 32; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
                 if ((65535 & G) != (G >>> 16 ^ 65535)) {
                   w.msg = "invalid stored block lengths", e.mode = 30;
                   break;
                 }
-                if (e.length = 65535 & G, E = G = 0, e.mode = 15, W === 6)
+                if (e.length = 65535 & G, R = G = 0, e.mode = 15, W === 6)
                   break t;
               case 15:
                 e.mode = 16;
@@ -2077,24 +2077,24 @@ var re = { exports: {} };
                 e.mode = 12;
                 break;
               case 17:
-                for (; E < 14; ) {
+                for (; R < 14; ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
-                if (e.nlen = 257 + (31 & G), G >>>= 5, E -= 5, e.ndist = 1 + (31 & G), G >>>= 5, E -= 5, e.ncode = 4 + (15 & G), G >>>= 4, E -= 4, 286 < e.nlen || 30 < e.ndist) {
+                if (e.nlen = 257 + (31 & G), G >>>= 5, R -= 5, e.ndist = 1 + (31 & G), G >>>= 5, R -= 5, e.ncode = 4 + (15 & G), G >>>= 4, R -= 4, 286 < e.nlen || 30 < e.ndist) {
                   w.msg = "too many length or distance symbols", e.mode = 30;
                   break;
                 }
                 e.have = 0, e.mode = 18;
               case 18:
                 for (; e.have < e.ncode; ) {
-                  for (; E < 3; ) {
+                  for (; R < 3; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  e.lens[U[e.have++]] = 7 & G, G >>>= 3, E -= 3;
+                  e.lens[U[e.have++]] = 7 & G, G >>>= 3, R -= 3;
                 }
                 for (; e.have < 19; )
                   e.lens[U[e.have++]] = 0;
@@ -2105,39 +2105,39 @@ var re = { exports: {} };
                 e.have = 0, e.mode = 19;
               case 19:
                 for (; e.have < e.nlen + e.ndist; ) {
-                  for (; ot = (A = e.lencode[G & (1 << e.lenbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= E); ) {
+                  for (; ot = (A = e.lencode[G & (1 << e.lenbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= R); ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
                   if (ut < 16)
-                    G >>>= st, E -= st, e.lens[e.have++] = ut;
+                    G >>>= st, R -= st, e.lens[e.have++] = ut;
                   else {
                     if (ut === 16) {
-                      for (m = st + 2; E < m; ) {
+                      for (m = st + 2; R < m; ) {
                         if (Y === 0)
                           break t;
-                        Y--, G += F[J++] << E, E += 8;
+                        Y--, G += F[J++] << R, R += 8;
                       }
-                      if (G >>>= st, E -= st, e.have === 0) {
+                      if (G >>>= st, R -= st, e.have === 0) {
                         w.msg = "invalid bit length repeat", e.mode = 30;
                         break;
                       }
-                      t = e.lens[e.have - 1], M = 3 + (3 & G), G >>>= 2, E -= 2;
+                      t = e.lens[e.have - 1], M = 3 + (3 & G), G >>>= 2, R -= 2;
                     } else if (ut === 17) {
-                      for (m = st + 3; E < m; ) {
+                      for (m = st + 3; R < m; ) {
                         if (Y === 0)
                           break t;
-                        Y--, G += F[J++] << E, E += 8;
+                        Y--, G += F[J++] << R, R += 8;
                       }
-                      E -= st, t = 0, M = 3 + (7 & (G >>>= st)), G >>>= 3, E -= 3;
+                      R -= st, t = 0, M = 3 + (7 & (G >>>= st)), G >>>= 3, R -= 3;
                     } else {
-                      for (m = st + 7; E < m; ) {
+                      for (m = st + 7; R < m; ) {
                         if (Y === 0)
                           break t;
-                        Y--, G += F[J++] << E, E += 8;
+                        Y--, G += F[J++] << R, R += 8;
                       }
-                      E -= st, t = 0, M = 11 + (127 & (G >>>= st)), G >>>= 7, E -= 7;
+                      R -= st, t = 0, M = 11 + (127 & (G >>>= st)), G >>>= 7, R -= 7;
                     }
                     if (e.have + M > e.nlen + e.ndist) {
                       w.msg = "invalid bit length repeat", e.mode = 30;
@@ -2167,23 +2167,23 @@ var re = { exports: {} };
                 e.mode = 21;
               case 21:
                 if (6 <= Y && 258 <= et) {
-                  w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = E, l(w, K), at = w.next_out, rt = w.output, et = w.avail_out, J = w.next_in, F = w.input, Y = w.avail_in, G = e.hold, E = e.bits, e.mode === 12 && (e.back = -1);
+                  w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = R, l(w, K), at = w.next_out, rt = w.output, et = w.avail_out, J = w.next_in, F = w.input, Y = w.avail_in, G = e.hold, R = e.bits, e.mode === 12 && (e.back = -1);
                   break;
                 }
-                for (e.back = 0; ot = (A = e.lencode[G & (1 << e.lenbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= E); ) {
+                for (e.back = 0; ot = (A = e.lencode[G & (1 << e.lenbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= R); ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
                 if (ot && !(240 & ot)) {
-                  for (lt = st, dt = ot, yt = ut; ot = (A = e.lencode[yt + ((G & (1 << lt + dt) - 1) >> lt)]) >>> 16 & 255, ut = 65535 & A, !(lt + (st = A >>> 24) <= E); ) {
+                  for (lt = st, dt = ot, yt = ut; ot = (A = e.lencode[yt + ((G & (1 << lt + dt) - 1) >> lt)]) >>> 16 & 255, ut = 65535 & A, !(lt + (st = A >>> 24) <= R); ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  G >>>= lt, E -= lt, e.back += lt;
+                  G >>>= lt, R -= lt, e.back += lt;
                 }
-                if (G >>>= st, E -= st, e.back += st, e.length = ut, ot === 0) {
+                if (G >>>= st, R -= st, e.back += st, e.length = ut, ot === 0) {
                   e.mode = 26;
                   break;
                 }
@@ -2198,41 +2198,41 @@ var re = { exports: {} };
                 e.extra = 15 & ot, e.mode = 22;
               case 22:
                 if (e.extra) {
-                  for (m = e.extra; E < m; ) {
+                  for (m = e.extra; R < m; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  e.length += G & (1 << e.extra) - 1, G >>>= e.extra, E -= e.extra, e.back += e.extra;
+                  e.length += G & (1 << e.extra) - 1, G >>>= e.extra, R -= e.extra, e.back += e.extra;
                 }
                 e.was = e.length, e.mode = 23;
               case 23:
-                for (; ot = (A = e.distcode[G & (1 << e.distbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= E); ) {
+                for (; ot = (A = e.distcode[G & (1 << e.distbits) - 1]) >>> 16 & 255, ut = 65535 & A, !((st = A >>> 24) <= R); ) {
                   if (Y === 0)
                     break t;
-                  Y--, G += F[J++] << E, E += 8;
+                  Y--, G += F[J++] << R, R += 8;
                 }
                 if (!(240 & ot)) {
-                  for (lt = st, dt = ot, yt = ut; ot = (A = e.distcode[yt + ((G & (1 << lt + dt) - 1) >> lt)]) >>> 16 & 255, ut = 65535 & A, !(lt + (st = A >>> 24) <= E); ) {
+                  for (lt = st, dt = ot, yt = ut; ot = (A = e.distcode[yt + ((G & (1 << lt + dt) - 1) >> lt)]) >>> 16 & 255, ut = 65535 & A, !(lt + (st = A >>> 24) <= R); ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  G >>>= lt, E -= lt, e.back += lt;
+                  G >>>= lt, R -= lt, e.back += lt;
                 }
-                if (G >>>= st, E -= st, e.back += st, 64 & ot) {
+                if (G >>>= st, R -= st, e.back += st, 64 & ot) {
                   w.msg = "invalid distance code", e.mode = 30;
                   break;
                 }
                 e.offset = ut, e.extra = 15 & ot, e.mode = 24;
               case 24:
                 if (e.extra) {
-                  for (m = e.extra; E < m; ) {
+                  for (m = e.extra; R < m; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
-                  e.offset += G & (1 << e.extra) - 1, G >>>= e.extra, E -= e.extra, e.back += e.extra;
+                  e.offset += G & (1 << e.extra) - 1, G >>>= e.extra, R -= e.extra, e.back += e.extra;
                 }
                 if (e.offset > e.dmax) {
                   w.msg = "invalid distance too far back", e.mode = 30;
@@ -2261,30 +2261,30 @@ var re = { exports: {} };
                 break;
               case 27:
                 if (e.wrap) {
-                  for (; E < 32; ) {
+                  for (; R < 32; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G |= F[J++] << E, E += 8;
+                    Y--, G |= F[J++] << R, R += 8;
                   }
                   if (K -= et, w.total_out += K, e.total += K, K && (w.adler = e.check = e.flags ? n(e.check, rt, K, at - K) : o(e.check, rt, K, at - K)), K = et, (e.flags ? G : c(G)) !== e.check) {
                     w.msg = "incorrect data check", e.mode = 30;
                     break;
                   }
-                  E = G = 0;
+                  R = G = 0;
                 }
                 e.mode = 28;
               case 28:
                 if (e.wrap && e.flags) {
-                  for (; E < 32; ) {
+                  for (; R < 32; ) {
                     if (Y === 0)
                       break t;
-                    Y--, G += F[J++] << E, E += 8;
+                    Y--, G += F[J++] << R, R += 8;
                   }
                   if (G !== (4294967295 & e.total)) {
                     w.msg = "incorrect length check", e.mode = 30;
                     break;
                   }
-                  E = G = 0;
+                  R = G = 0;
                 }
                 e.mode = 29;
               case 29:
@@ -2299,7 +2299,7 @@ var re = { exports: {} };
               default:
                 return s;
             }
-        return w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = E, (e.wsize || K !== w.avail_out && e.mode < 30 && (e.mode < 27 || W !== 4)) && _(w, w.output, w.next_out, K - w.avail_out) ? (e.mode = 31, -4) : ($ -= w.avail_in, K -= w.avail_out, w.total_in += $, w.total_out += K, e.total += K, e.wrap && K && (w.adler = e.check = e.flags ? n(e.check, rt, K, w.next_out - K) : o(e.check, rt, K, w.next_out - K)), w.data_type = e.bits + (e.last ? 64 : 0) + (e.mode === 12 ? 128 : 0) + (e.mode === 20 || e.mode === 15 ? 256 : 0), ($ == 0 && K === 0 || W === 4) && X === y && (X = -5), X);
+        return w.next_out = at, w.avail_out = et, w.next_in = J, w.avail_in = Y, e.hold = G, e.bits = R, (e.wsize || K !== w.avail_out && e.mode < 30 && (e.mode < 27 || W !== 4)) && _(w, w.output, w.next_out, K - w.avail_out) ? (e.mode = 31, -4) : ($ -= w.avail_in, K -= w.avail_out, w.total_in += $, w.total_out += K, e.total += K, e.wrap && K && (w.adler = e.check = e.flags ? n(e.check, rt, K, w.next_out - K) : o(e.check, rt, K, w.next_out - K)), w.data_type = e.bits + (e.last ? 64 : 0) + (e.mode === 12 ? 128 : 0) + (e.mode === 20 || e.mode === 15 ? 256 : 0), ($ == 0 && K === 0 || W === 4) && X === y && (X = -5), X);
       }, u.inflateEnd = function(w) {
         if (!w || !w.state)
           return s;
@@ -2315,7 +2315,7 @@ var re = { exports: {} };
     }, { "../utils/common": 41, "./adler32": 43, "./crc32": 45, "./inffast": 48, "./inftrees": 50 }], 50: [function(r, k, u) {
       var i = r("../utils/common"), o = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0], n = [16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 16, 72, 78], l = [1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577, 0, 0], f = [16, 16, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 64, 64];
       k.exports = function(b, p, y, s, h, a, d, c) {
-        var g, I, C, x, T, N, V, L, P, _ = c.bits, w = 0, W = 0, e = 0, F = 0, rt = 0, J = 0, at = 0, Y = 0, et = 0, G = 0, E = null, $ = 0, K = new i.Buf16(16), M = new i.Buf16(16), At = null, ft = 0;
+        var g, I, C, x, T, N, V, L, P, _ = c.bits, w = 0, W = 0, e = 0, F = 0, rt = 0, J = 0, at = 0, Y = 0, et = 0, G = 0, R = null, $ = 0, K = new i.Buf16(16), M = new i.Buf16(16), At = null, ft = 0;
         for (w = 0; w <= 15; w++)
           K[w] = 0;
         for (W = 0; W < s; W++)
@@ -2335,10 +2335,10 @@ var re = { exports: {} };
           M[w + 1] = M[w] + K[w];
         for (W = 0; W < s; W++)
           p[y + W] !== 0 && (d[M[p[y + W]]++] = W);
-        if (N = b === 0 ? (E = At = d, 19) : b === 1 ? (E = o, $ -= 257, At = n, ft -= 257, 256) : (E = l, At = f, -1), w = e, T = a, at = W = G = 0, C = -1, x = (et = 1 << (J = rt)) - 1, b === 1 && 852 < et || b === 2 && 592 < et)
+        if (N = b === 0 ? (R = At = d, 19) : b === 1 ? (R = o, $ -= 257, At = n, ft -= 257, 256) : (R = l, At = f, -1), w = e, T = a, at = W = G = 0, C = -1, x = (et = 1 << (J = rt)) - 1, b === 1 && 852 < et || b === 2 && 592 < et)
           return 1;
         for (; ; ) {
-          for (V = w - at, P = d[W] < N ? (L = 0, d[W]) : d[W] > N ? (L = At[ft + d[W]], E[$ + d[W]]) : (L = 96, 0), g = 1 << w - at, e = I = 1 << J; h[T + (G >> at) + (I -= g)] = V << 24 | L << 16 | P | 0, I !== 0; )
+          for (V = w - at, P = d[W] < N ? (L = 0, d[W]) : d[W] > N ? (L = At[ft + d[W]], R[$ + d[W]]) : (L = 96, 0), g = 1 << w - at, e = I = 1 << J; h[T + (G >> at) + (I -= g)] = V << 24 | L << 16 | P | 0, I !== 0; )
             ;
           for (g = 1 << w - 1; G & g; )
             g >>= 1;
@@ -2382,7 +2382,7 @@ var re = { exports: {} };
       function G(A, S) {
         this.dyn_tree = A, this.max_code = 0, this.stat_desc = S;
       }
-      function E(A) {
+      function R(A) {
         return A < 256 ? W[A] : W[256 + (A >>> 7)];
       }
       function $(A, S) {
@@ -2433,7 +2433,7 @@ var re = { exports: {} };
       function dt(A, S, U) {
         var z, Z, O, H, j = 0;
         if (A.last_lit !== 0)
-          for (; z = A.pending_buf[A.d_buf + 2 * j] << 8 | A.pending_buf[A.d_buf + 2 * j + 1], Z = A.pending_buf[A.l_buf + j], j++, z === 0 ? M(A, Z, S) : (M(A, (O = e[Z]) + p + 1, S), (H = N[O]) !== 0 && K(A, Z -= F[O], H), M(A, O = E(--z), U), (H = V[O]) !== 0 && K(A, z -= Y[O], H)), j < A.last_lit; )
+          for (; z = A.pending_buf[A.d_buf + 2 * j] << 8 | A.pending_buf[A.d_buf + 2 * j + 1], Z = A.pending_buf[A.l_buf + j], j++, z === 0 ? M(A, Z, S) : (M(A, (O = e[Z]) + p + 1, S), (H = N[O]) !== 0 && K(A, Z -= F[O], H), M(A, O = R(--z), U), (H = V[O]) !== 0 && K(A, z -= Y[O], H)), j < A.last_lit; )
             ;
         M(A, I, S);
       }
@@ -2540,7 +2540,7 @@ var re = { exports: {} };
           X(j, j.dyn_ltree, tt - 1), X(j, j.dyn_dtree, D - 1);
         }(A, A.l_desc.max_code + 1, A.d_desc.max_code + 1, H + 1), dt(A, A.dyn_ltree, A.dyn_dtree)), st(A), z && ot(A);
       }, u._tr_tally = function(A, S, U) {
-        return A.pending_buf[A.d_buf + 2 * A.last_lit] = S >>> 8 & 255, A.pending_buf[A.d_buf + 2 * A.last_lit + 1] = 255 & S, A.pending_buf[A.l_buf + A.last_lit] = 255 & U, A.last_lit++, S === 0 ? A.dyn_ltree[2 * U]++ : (A.matches++, S--, A.dyn_ltree[2 * (e[U] + p + 1)]++, A.dyn_dtree[2 * E(S)]++), A.last_lit === A.lit_bufsize - 1;
+        return A.pending_buf[A.d_buf + 2 * A.last_lit] = S >>> 8 & 255, A.pending_buf[A.d_buf + 2 * A.last_lit + 1] = 255 & S, A.pending_buf[A.l_buf + A.last_lit] = 255 & U, A.last_lit++, S === 0 ? A.dyn_ltree[2 * U]++ : (A.matches++, S--, A.dyn_ltree[2 * (e[U] + p + 1)]++, A.dyn_dtree[2 * R(S)]++), A.last_lit === A.lit_bufsize - 1;
       }, u._tr_align = function(A) {
         K(A, 2, 3), M(A, I, _), function(S) {
           S.bi_valid === 16 ? ($(S, S.bi_buf), S.bi_buf = 0, S.bi_valid = 0) : 8 <= S.bi_valid && (S.pending_buf[S.pending++] = 255 & S.bi_buf, S.bi_buf >>= 8, S.bi_valid -= 8);
@@ -2633,7 +2633,7 @@ var re = { exports: {} };
 })(re);
 const Ee = re.exports;
 var ae = { exports: {} };
-(function(R, v) {
+(function(E, v) {
   (function(r, k) {
     k();
   })(xt, function() {
@@ -2701,12 +2701,12 @@ var ae = { exports: {} };
         }, 4e4);
       }
     });
-    o.saveAs = l.saveAs = l, R.exports = l;
+    o.saveAs = l.saveAs = l, E.exports = l;
   });
 })(ae);
 const Ge = ae.exports;
-function se(R) {
-  for (var v = window.atob(R), r = v.length, k = new Uint8Array(r), u = 0; u < r; u++)
+function se(E) {
+  for (var v = window.atob(E), r = v.length, k = new Uint8Array(r), u = 0; u < r; u++)
     k[u] = v.charCodeAt(u);
   return k.buffer;
 }
@@ -3132,16 +3132,16 @@ jobs:
         with:
           name: Artifacts
           path: build/libs/`;
-async function Fe({ writer: R }) {
-  await R.write("gradlew", Be), await R.write("gradlew.bat", Le), await R.write("gradle/wrapper/gradle-wrapper.properties", We), await R.write("gradle/wrapper/gradle-wrapper.jar", se(Ne)), await R.write(".gitignore", oe), await R.write(".github/workflows/build.yml", le);
+async function Fe({ writer: E }) {
+  await E.write("gradlew", Be), await E.write("gradlew.bat", Le), await E.write("gradle/wrapper/gradle-wrapper.properties", We), await E.write("gradle/wrapper/gradle-wrapper.jar", se(Ne)), await E.write(".gitignore", oe), await E.write(".github/workflows/build.yml", le);
 }
 const Xe = "data:application/javascript;base64,IWZ1bmN0aW9uKGUsbil7Im9iamVjdCI9PXR5cGVvZiBleHBvcnRzJiYidW5kZWZpbmVkIiE9dHlwZW9mIG1vZHVsZT9uKGV4cG9ydHMpOiJmdW5jdGlvbiI9PXR5cGVvZiBkZWZpbmUmJmRlZmluZS5hbWQ/ZGVmaW5lKFsiZXhwb3J0cyJdLG4pOm4oKGU9InVuZGVmaW5lZCIhPXR5cGVvZiBnbG9iYWxUaGlzP2dsb2JhbFRoaXM6ZXx8c2VsZikuRXRhPXt9KX0odGhpcywoZnVuY3Rpb24oZSl7InVzZSBzdHJpY3QiO2Z1bmN0aW9uIG4oZSl7dmFyIHQscixpPW5ldyBFcnJvcihlKTtyZXR1cm4gdD1pLHI9bi5wcm90b3R5cGUsT2JqZWN0LnNldFByb3RvdHlwZU9mP09iamVjdC5zZXRQcm90b3R5cGVPZih0LHIpOnQuX19wcm90b19fPXIsaX1mdW5jdGlvbiB0KGUsdCxyKXt2YXIgaT10LnNsaWNlKDAscikuc3BsaXQoL1xuLyksYT1pLmxlbmd0aCxvPWlbYS0xXS5sZW5ndGgrMTt0aHJvdyBuKGUrPSIgYXQgbGluZSAiK2ErIiBjb2wgIitvKyI6XG5cbiAgIit0LnNwbGl0KC9cbi8pW2EtMV0rIlxuICAiK0FycmF5KG8pLmpvaW4oIiAiKSsiXiIpfW4ucHJvdG90eXBlPU9iamVjdC5jcmVhdGUoRXJyb3IucHJvdG90eXBlLHtuYW1lOnt2YWx1ZToiRXRhIEVycm9yIixlbnVtZXJhYmxlOiExfX0pO3ZhciByPW5ldyBGdW5jdGlvbigicmV0dXJuIHRoaXMiKSgpLlByb21pc2U7ZnVuY3Rpb24gaShlLG4pe2Zvcih2YXIgdCBpbiBuKXI9bixpPXQsT2JqZWN0LnByb3RvdHlwZS5oYXNPd25Qcm9wZXJ0eS5jYWxsKHIsaSkmJihlW3RdPW5bdF0pO3ZhciByLGk7cmV0dXJuIGV9ZnVuY3Rpb24gYShlLG4sdCxyKXt2YXIgaSxhO3JldHVybiBBcnJheS5pc0FycmF5KG4uYXV0b1RyaW0pPyhpPW4uYXV0b1RyaW1bMV0sYT1uLmF1dG9UcmltWzBdKTppPWE9bi5hdXRvVHJpbSwodHx8ITE9PT10KSYmKGk9dCksKHJ8fCExPT09cikmJihhPXIpLGF8fGk/InNsdXJwIj09PWkmJiJzbHVycCI9PT1hP2UudHJpbSgpOigiXyI9PT1pfHwic2x1cnAiPT09aT9lPWZ1bmN0aW9uKGUpe3JldHVybiBTdHJpbmcucHJvdG90eXBlLnRyaW1MZWZ0P2UudHJpbUxlZnQoKTplLnJlcGxhY2UoL15ccysvLCIiKX0oZSk6Ii0iIT09aSYmIm5sIiE9PWl8fChlPWUucmVwbGFjZSgvXig/OlxyXG58XG58XHIpLywiIikpLCJfIj09PWF8fCJzbHVycCI9PT1hP2U9ZnVuY3Rpb24oZSl7cmV0dXJuIFN0cmluZy5wcm90b3R5cGUudHJpbVJpZ2h0P2UudHJpbVJpZ2h0KCk6ZS5yZXBsYWNlKC9ccyskLywiIil9KGUpOiItIiE9PWEmJiJubCIhPT1hfHwoZT1lLnJlcGxhY2UoLyg/OlxyXG58XG58XHIpJC8sIiIpKSxlKTplfXZhciBvPXsiJiI6IiZhbXA7IiwiPCI6IiZsdDsiLCI+IjoiJmd0OyIsJyInOiImcXVvdDsiLCInIjoiJiMzOTsifTtmdW5jdGlvbiBjKGUpe3JldHVybiBvW2VdfXZhciBzPS9gKD86XFxbXHNcU118XCR7KD86W157fV18eyg/Oltee31dfHtbXn1dKn0pKn0pKn18KD8hXCR7KVteXFxgXSkqYC9nLGw9LycoPzpcXFtcc1x3IidcXGBdfFteXG5ccidcXF0pKj8nL2csdT0vIig/OlxcW1xzXHciJ1xcYF18W15cblxyIlxcXSkqPyIvZztmdW5jdGlvbiBwKGUpe3JldHVybiBlLnJlcGxhY2UoL1suKitcLT9eJHt9KCl8W1xdXFxdL2csIlxcJCYiKX1mdW5jdGlvbiBmKGUsbil7dmFyIHI9W10saT0hMSxvPTAsYz1uLnBhcnNlO2lmKG4ucGx1Z2lucylmb3IodmFyIGY9MDtmPG4ucGx1Z2lucy5sZW5ndGg7ZisrKXsoVD1uLnBsdWdpbnNbZl0pLnByb2Nlc3NUZW1wbGF0ZSYmKGU9VC5wcm9jZXNzVGVtcGxhdGUoZSxuKSl9ZnVuY3Rpb24gZChlLHQpe2UmJihlPWEoZSxuLGksdCkpJiYoZT1lLnJlcGxhY2UoL1xcfCcvZywiXFwkJiIpLnJlcGxhY2UoL1xyXG58XG58XHIvZywiXFxuIiksci5wdXNoKGUpKX1uLnJtV2hpdGVzcGFjZSYmKGU9ZS5yZXBsYWNlKC9bXHJcbl0rL2csIlxuIikucmVwbGFjZSgvXlxzK3xccyskL2dtLCIiKSkscy5sYXN0SW5kZXg9MCxsLmxhc3RJbmRleD0wLHUubGFzdEluZGV4PTA7Zm9yKHZhciBnLGg9W2MuZXhlYyxjLmludGVycG9sYXRlLGMucmF3XS5yZWR1Y2UoKGZ1bmN0aW9uKGUsbil7cmV0dXJuIGUmJm4/ZSsifCIrcChuKTpuP3Aobik6ZX0pLCIiKSxtPW5ldyBSZWdFeHAoIihbXl0qPykiK3Aobi50YWdzWzBdKSsiKC18Xyk/XFxzKigiK2grIik/XFxzKiIsImciKSx2PW5ldyBSZWdFeHAoIid8XCJ8YHxcXC9cXCp8KFxccyooLXxfKT8iK3Aobi50YWdzWzFdKSsiKSIsImciKTtnPW0uZXhlYyhlKTspe289Z1swXS5sZW5ndGgrZy5pbmRleDt2YXIgeT1nWzFdLHg9Z1syXSxfPWdbM118fCIiO2QoeSx4KSx2Lmxhc3RJbmRleD1vO2Zvcih2YXIgdz12b2lkIDAsYj0hMTt3PXYuZXhlYyhlKTspe2lmKHdbMV0pe3ZhciBFPWUuc2xpY2Uobyx3LmluZGV4KTttLmxhc3RJbmRleD1vPXYubGFzdEluZGV4LGk9d1syXSxiPXt0Ol89PT1jLmV4ZWM/ImUiOl89PT1jLnJhdz8iciI6Xz09PWMuaW50ZXJwb2xhdGU/ImkiOiIiLHZhbDpFfTticmVha312YXIgST13WzBdO2lmKCIvKiI9PT1JKXt2YXIgUj1lLmluZGV4T2YoIiovIix2Lmxhc3RJbmRleCk7LTE9PT1SJiZ0KCJ1bmNsb3NlZCBjb21tZW50IixlLHcuaW5kZXgpLHYubGFzdEluZGV4PVJ9ZWxzZSBpZigiJyI9PT1JKXtsLmxhc3RJbmRleD13LmluZGV4LGwuZXhlYyhlKT92Lmxhc3RJbmRleD1sLmxhc3RJbmRleDp0KCJ1bmNsb3NlZCBzdHJpbmciLGUsdy5pbmRleCl9ZWxzZSBpZignIic9PT1JKXt1Lmxhc3RJbmRleD13LmluZGV4LHUuZXhlYyhlKT92Lmxhc3RJbmRleD11Lmxhc3RJbmRleDp0KCJ1bmNsb3NlZCBzdHJpbmciLGUsdy5pbmRleCl9ZWxzZSBpZigiYCI9PT1JKXtzLmxhc3RJbmRleD13LmluZGV4LHMuZXhlYyhlKT92Lmxhc3RJbmRleD1zLmxhc3RJbmRleDp0KCJ1bmNsb3NlZCBzdHJpbmciLGUsdy5pbmRleCl9fWI/ci5wdXNoKGIpOnQoInVuY2xvc2VkIHRhZyIsZSxnLmluZGV4K3kubGVuZ3RoKX1pZihkKGUuc2xpY2UobyxlLmxlbmd0aCksITEpLG4ucGx1Z2lucylmb3IoZj0wO2Y8bi5wbHVnaW5zLmxlbmd0aDtmKyspe3ZhciBUOyhUPW4ucGx1Z2luc1tmXSkucHJvY2Vzc0FTVCYmKHI9VC5wcm9jZXNzQVNUKHIsbikpfXJldHVybiByfWZ1bmN0aW9uIGQoZSxuKXt2YXIgdD1mKGUsbikscj0idmFyIHRSPScnLF9fbCxfX2xQIisobi5pbmNsdWRlPyIsaW5jbHVkZT1FLmluY2x1ZGUuYmluZChFKSI6IiIpKyhuLmluY2x1ZGVGaWxlPyIsaW5jbHVkZUZpbGU9RS5pbmNsdWRlRmlsZS5iaW5kKEUpIjoiIikrIlxuZnVuY3Rpb24gbGF5b3V0KHAsZCl7X19sPXA7X19sUD1kfVxuIisobi51c2VXaXRoPyJ3aXRoKCIrbi52YXJOYW1lKyJ8fHt9KXsiOiIiKStmdW5jdGlvbihlLG4pe3ZhciB0PTAscj1lLmxlbmd0aCxpPSIiO2Zvcig7dDxyO3QrKyl7dmFyIGE9ZVt0XTtpZigic3RyaW5nIj09dHlwZW9mIGEpe2krPSJ0Uis9JyIrYSsiJ1xuIn1lbHNle3ZhciBvPWEudCxjPWEudmFsfHwiIjsiciI9PT1vPyhuLmZpbHRlciYmKGM9IkUuZmlsdGVyKCIrYysiKSIpLGkrPSJ0Uis9IitjKyJcbiIpOiJpIj09PW8/KG4uZmlsdGVyJiYoYz0iRS5maWx0ZXIoIitjKyIpIiksbi5hdXRvRXNjYXBlJiYoYz0iRS5lKCIrYysiKSIpLGkrPSJ0Uis9IitjKyJcbiIpOiJlIj09PW8mJihpKz1jKyJcbiIpfX1yZXR1cm4gaX0odCxuKSsobi5pbmNsdWRlRmlsZT8iaWYoX19sKXRSPSIrKG4uYXN5bmM/ImF3YWl0ICI6IiIpKyJpbmNsdWRlRmlsZShfX2wsT2JqZWN0LmFzc2lnbigiK24udmFyTmFtZSsiLHtib2R5OnRSfSxfX2xQKSlcbiI6bi5pbmNsdWRlPyJpZihfX2wpdFI9Iisobi5hc3luYz8iYXdhaXQgIjoiIikrImluY2x1ZGUoX19sLE9iamVjdC5hc3NpZ24oIituLnZhck5hbWUrIix7Ym9keTp0Un0sX19sUCkpXG4iOiIiKSsiaWYoY2Ipe2NiKG51bGwsdFIpfSByZXR1cm4gdFIiKyhuLnVzZVdpdGg/In0iOiIiKTtpZihuLnBsdWdpbnMpZm9yKHZhciBpPTA7aTxuLnBsdWdpbnMubGVuZ3RoO2krKyl7dmFyIGE9bi5wbHVnaW5zW2ldO2EucHJvY2Vzc0ZuU3RyaW5nJiYocj1hLnByb2Nlc3NGblN0cmluZyhyLG4pKX1yZXR1cm4gcn12YXIgZz1uZXcoZnVuY3Rpb24oKXtmdW5jdGlvbiBlKGUpe3RoaXMuY2FjaGU9ZX1yZXR1cm4gZS5wcm90b3R5cGUuZGVmaW5lPWZ1bmN0aW9uKGUsbil7dGhpcy5jYWNoZVtlXT1ufSxlLnByb3RvdHlwZS5nZXQ9ZnVuY3Rpb24oZSl7cmV0dXJuIHRoaXMuY2FjaGVbZV19LGUucHJvdG90eXBlLnJlbW92ZT1mdW5jdGlvbihlKXtkZWxldGUgdGhpcy5jYWNoZVtlXX0sZS5wcm90b3R5cGUucmVzZXQ9ZnVuY3Rpb24oKXt0aGlzLmNhY2hlPXt9fSxlLnByb3RvdHlwZS5sb2FkPWZ1bmN0aW9uKGUpe2kodGhpcy5jYWNoZSxlKX0sZX0oKSkoe30pO3ZhciBoPXthc3luYzohMSxhdXRvRXNjYXBlOiEwLGF1dG9UcmltOlshMSwibmwiXSxjYWNoZTohMSxlOmZ1bmN0aW9uKGUpe3ZhciBuPVN0cmluZyhlKTtyZXR1cm4vWyY8PiInXS8udGVzdChuKT9uLnJlcGxhY2UoL1smPD4iJ10vZyxjKTpufSxpbmNsdWRlOmZ1bmN0aW9uKGUsdCl7dmFyIHI9dGhpcy50ZW1wbGF0ZXMuZ2V0KGUpO2lmKCFyKXRocm93IG4oJ0NvdWxkIG5vdCBmZXRjaCB0ZW1wbGF0ZSAiJytlKyciJyk7cmV0dXJuIHIodCx0aGlzKX0scGFyc2U6e2V4ZWM6IiIsaW50ZXJwb2xhdGU6Ij0iLHJhdzoifiJ9LHBsdWdpbnM6W10scm1XaGl0ZXNwYWNlOiExLHRhZ3M6WyI8JSIsIiU+Il0sdGVtcGxhdGVzOmcsdXNlV2l0aDohMSx2YXJOYW1lOiJpdCJ9O2Z1bmN0aW9uIG0oZSxuKXt2YXIgdD17fTtyZXR1cm4gaSh0LGgpLG4mJmkodCxuKSxlJiZpKHQsZSksdH1mdW5jdGlvbiB2KGUsdCl7dmFyIHI9bSh0fHx7fSksaT1yLmFzeW5jP2Z1bmN0aW9uKCl7dHJ5e3JldHVybiBuZXcgRnVuY3Rpb24oInJldHVybiAoYXN5bmMgZnVuY3Rpb24oKXt9KS5jb25zdHJ1Y3RvciIpKCl9Y2F0Y2goZSl7dGhyb3cgZSBpbnN0YW5jZW9mIFN5bnRheEVycm9yP24oIlRoaXMgZW52aXJvbm1lbnQgZG9lc24ndCBzdXBwb3J0IGFzeW5jL2F3YWl0Iik6ZX19KCk6RnVuY3Rpb247dHJ5e3JldHVybiBuZXcgaShyLnZhck5hbWUsIkUiLCJjYiIsZChlLHIpKX1jYXRjaCh0KXt0aHJvdyB0IGluc3RhbmNlb2YgU3ludGF4RXJyb3I/bigiQmFkIHRlbXBsYXRlIHN5bnRheFxuXG4iK3QubWVzc2FnZSsiXG4iK0FycmF5KHQubWVzc2FnZS5sZW5ndGgrMSkuam9pbigiPSIpKyJcbiIrZChlLHIpKyJcbiIpOnR9fWZ1bmN0aW9uIHkoZSxuKXtpZihuLmNhY2hlJiZuLm5hbWUmJm4udGVtcGxhdGVzLmdldChuLm5hbWUpKXJldHVybiBuLnRlbXBsYXRlcy5nZXQobi5uYW1lKTt2YXIgdD0iZnVuY3Rpb24iPT10eXBlb2YgZT9lOnYoZSxuKTtyZXR1cm4gbi5jYWNoZSYmbi5uYW1lJiZuLnRlbXBsYXRlcy5kZWZpbmUobi5uYW1lLHQpLHR9ZnVuY3Rpb24geChlLHQsaSxhKXt2YXIgbz1tKGl8fHt9KTtpZighby5hc3luYylyZXR1cm4geShlLG8pKHQsbyk7aWYoIWEpe2lmKCJmdW5jdGlvbiI9PXR5cGVvZiByKXJldHVybiBuZXcgcigoZnVuY3Rpb24obixyKXt0cnl7bih5KGUsbykodCxvKSl9Y2F0Y2goZSl7cihlKX19KSk7dGhyb3cgbigiUGxlYXNlIHByb3ZpZGUgYSBjYWxsYmFjayBmdW5jdGlvbiwgdGhpcyBlbnYgZG9lc24ndCBzdXBwb3J0IFByb21pc2VzIil9dHJ5e3koZSxvKSh0LG8sYSl9Y2F0Y2goZSl7cmV0dXJuIGEoZSl9fWUuY29tcGlsZT12LGUuY29tcGlsZVRvU3RyaW5nPWQsZS5jb25maWc9aCxlLmNvbmZpZ3VyZT1mdW5jdGlvbihlKXtyZXR1cm4gaShoLGUpfSxlLmRlZmF1bHRDb25maWc9aCxlLmdldENvbmZpZz1tLGUucGFyc2U9ZixlLnJlbmRlcj14LGUucmVuZGVyQXN5bmM9ZnVuY3Rpb24oZSxuLHQscil7cmV0dXJuIHgoZSxuLE9iamVjdC5hc3NpZ24oe30sdCx7YXN5bmM6ITB9KSxyKX0sZS50ZW1wbGF0ZXM9ZyxPYmplY3QuZGVmaW5lUHJvcGVydHkoZSwiX19lc01vZHVsZSIse3ZhbHVlOiEwfSl9KSk7Ci8vIyBzb3VyY2VNYXBwaW5nVVJMPWV0YS5taW4uanMubWFwCg==", ce = document.createElement("script");
 ce.src = Xe;
 document.body.append(ce);
-function St(R, v) {
+function St(E, v) {
   return Eta.configure({
     autoTrim: !1
-  }), Eta.render(R, v);
+  }), Eta.render(E, v);
 }
 const ze = `# Done to increase the memory available to gradle.
 org.gradle.jvmargs=-Xmx1G
@@ -3300,15 +3300,15 @@ publishing {
   release: 17,
   kotlinRelease: "17"
 };
-function Ft(R) {
-  const v = Xt(R);
+function Ft(E) {
+  const v = Xt(E);
   return v < 16 ? Oe : v == 16 ? Je : Ve;
 }
-function Xt(R) {
-  return Number(R.split(".")[1]);
+function Xt(E) {
+  return Number(E.split(".")[1]);
 }
-async function Ye(R, v) {
-  await R.write("gradle.properties", St(ze, v)), await R.write("build.gradle", St(Ue, { ...v, java: Ft(v.minecraftVersion) })), await R.write("settings.gradle", Te);
+async function Ye(E, v) {
+  await E.write("gradle.properties", St(ze, v)), await E.write("build.gradle", St(Ue, { ...v, java: Ft(v.minecraftVersion) })), await E.write("settings.gradle", Te);
 }
 const je = `package <%= it.packageName %>;
 
@@ -3339,7 +3339,7 @@ public class <%= it.className %> {
 		// This code is injected into the start of MinecraftClient.run()V
 	}
 }`;
-async function Me(R, v) {
+async function Me(E, v) {
   const r = v.packageName + ".mixin", k = "ExampleMixin", u = {
     required: !0,
     package: r,
@@ -3351,12 +3351,12 @@ async function Me(R, v) {
       defaultRequire: 1
     }
   }, i = `${v.modid}.mixins.json`;
-  return await R.write(`src/main/resources/${i}`, JSON.stringify(u, null, "	")), await R.write(`src/main/java/${r.replaceAll(".", "/")}/${k}.java`, St(je, {
+  return await E.write(`src/main/resources/${i}`, JSON.stringify(u, null, "	")), await E.write(`src/main/java/${r.replaceAll(".", "/")}/${k}.java`, St(je, {
     className: k,
     packageName: r
   })), [i];
 }
-async function Qe(R, v) {
+async function Qe(E, v) {
   const r = v.packageName + ".mixin.client", k = "ExampleClientMixin", u = {
     required: !0,
     package: r,
@@ -3368,7 +3368,7 @@ async function Qe(R, v) {
       defaultRequire: 1
     }
   }, i = `${v.modid}.client.mixins.json`;
-  return await R.write(`src/client/resources/${i}`, JSON.stringify(u, null, "	")), await R.write(`src/client/java/${r.replaceAll(".", "/")}/${k}.java`, St(Pe, {
+  return await E.write(`src/client/resources/${i}`, JSON.stringify(u, null, "	")), await E.write(`src/client/java/${r.replaceAll(".", "/")}/${k}.java`, St(Pe, {
     className: k,
     packageName: r
   })), [
@@ -3453,7 +3453,7 @@ object <%= it.className %> : DataGeneratorEntrypoint {
 	override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {
 	}
 }`;
-async function tn(R, v) {
+async function tn(E, v) {
   const r = "ExampleMod", k = {
     package: v.packageName,
     className: r,
@@ -3464,27 +3464,27 @@ async function tn(R, v) {
     clientEntrypoint: v.splitSources,
     dataEntrypoint: v.dataGeneration
   };
-  return v.kotlin ? await nn(R, k) : await en(R, k);
+  return v.kotlin ? await nn(E, k) : await en(E, k);
 }
-async function en(R, v) {
+async function en(E, v) {
   var r = {
     main: [
       v.classFullName
     ]
   };
-  return await R.write(`src/main/java/${v.path}.java`, St(De, v)), v.clientEntrypoint && (await R.write(`src/client/java/${v.path}Client.java`, St(He, { ...v, className: v.className + "Client" })), r = {
+  return await E.write(`src/main/java/${v.path}.java`, St(De, v)), v.clientEntrypoint && (await E.write(`src/client/java/${v.path}Client.java`, St(He, { ...v, className: v.className + "Client" })), r = {
     ...r,
     client: [
       v.classFullName + "Client"
     ]
-  }), v.dataEntrypoint && (await R.write(`src/main/java/${v.path}DataGenerator.java`, St(_e, { ...v, className: v.className + "DataGenerator" })), r = {
+  }), v.dataEntrypoint && (await E.write(`src/main/java/${v.path}DataGenerator.java`, St(_e, { ...v, className: v.className + "DataGenerator" })), r = {
     ...r,
     "fabric-datagen": [
       v.classFullName + "DataGenerator"
     ]
   }), r;
 }
-async function nn(R, v) {
+async function nn(E, v) {
   var r = {
     main: [
       {
@@ -3493,7 +3493,7 @@ async function nn(R, v) {
       }
     ]
   };
-  return await R.write(`src/main/kotlin/${v.path}.kt`, St(Ke, v)), v.clientEntrypoint && (await R.write(`src/client/kotlin/${v.path}Client.kt`, St(qe, { ...v, className: v.className + "Client" })), r = {
+  return await E.write(`src/main/kotlin/${v.path}.kt`, St(Ke, v)), v.clientEntrypoint && (await E.write(`src/client/kotlin/${v.path}Client.kt`, St(qe, { ...v, className: v.className + "Client" })), r = {
     ...r,
     client: [
       {
@@ -3501,7 +3501,7 @@ async function nn(R, v) {
         adapter: "kotlin"
       }
     ]
-  }), v.dataEntrypoint && (await R.write(`src/main/kotlin/${v.path}DataGenerator.kt`, St($e, { ...v, className: v.className + "DataGenerator" })), r = {
+  }), v.dataEntrypoint && (await E.write(`src/main/kotlin/${v.path}DataGenerator.kt`, St($e, { ...v, className: v.className + "DataGenerator" })), r = {
     ...r,
     "fabric-datagen": [
       {
@@ -3511,10 +3511,10 @@ async function nn(R, v) {
     ]
   }), r;
 }
-async function rn(R, v) {
+async function rn(E, v) {
   var r = [
-    ...await Me(R, v),
-    ...v.splitSources ? await Qe(R, v) : []
+    ...await Me(E, v),
+    ...v.splitSources ? await Qe(E, v) : []
   ], k = {
     schemaVersion: 1,
     id: v.modid,
@@ -3531,7 +3531,7 @@ async function rn(R, v) {
     license: "CC0-1.0",
     icon: `assets/${v.modid}/icon.png`,
     environment: "*",
-    entrypoints: await tn(R, v),
+    entrypoints: await tn(E, v),
     mixins: r,
     depends: {
       fabricloader: ">=" + v.loaderVersion,
@@ -3545,7 +3545,7 @@ async function rn(R, v) {
   k.depends[Xt(v.minecraftVersion) >= 16 ? "fabric-api" : "fabric"] = "*", v.kotlin && (k.depends = {
     ...k.depends,
     "fabric-language-kotlin": ">=" + v.kotlin.kotlinVersion
-  }), await R.write("src/main/resources/fabric.mod.json", JSON.stringify(k, null, "	")), await R.write(`src/main/resources/assets/${v.modid}/icon.png`, se(an));
+  }), await E.write("src/main/resources/fabric.mod.json", JSON.stringify(k, null, "	")), await E.write(`src/main/resources/assets/${v.modid}/icon.png`, se(an));
 }
 const an = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC", sn = `Creative Commons Legal Code
 
@@ -3668,27 +3668,27 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.`;
-async function on(R, v) {
-  await R.write(".gitignore", oe), await R.write(".github/workflows/build.yml", le), await R.write("LICENSE", sn);
+async function on(E, v) {
+  await E.write(".gitignore", oe), await E.write(".github/workflows/build.yml", le), await E.write("LICENSE", sn);
 }
-async function ln(R) {
-  const v = await cn(R.config);
-  await Fe(R), await Ye(R.writer, v), await rn(R.writer, v), await on(R.writer);
+async function ln(E) {
+  const v = await cn(E.config);
+  await Fe(E), await Ye(E.writer, v), await rn(E.writer, v), await on(E.writer);
 }
-function Ae(R) {
-  return R.toLowerCase().replace(/\s+/g, "-").replace(/[^a-za-z0-9-_]/, "");
+function Ae(E) {
+  return E.toLowerCase().replace(/\s+/g, "-").replace(/[^a-za-z0-9-_]/, "");
 }
-async function cn(R) {
+async function cn(E) {
   return {
-    ...R,
+    ...E,
     loaderVersion: (await Se()).find((v) => v.stable).version,
-    fabricVersion: await Ce(R.minecraftVersion),
-    yarnVersion: (await xe(R.minecraftVersion))[0].version,
-    kotlin: await An(R)
+    fabricVersion: await Ce(E.minecraftVersion),
+    yarnVersion: (await xe(E.minecraftVersion))[0].version,
+    kotlin: await An(E)
   };
 }
-async function An(R) {
-  if (!R.useKotlin)
+async function An(E) {
+  if (!E.useKotlin)
     return;
   const r = (await Ze()).pop(), k = r.split("+kotlin.")[1];
   return {
@@ -3701,16 +3701,16 @@ const dn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   generateTemplate: ln,
   nameToModId: Ae
 }, Symbol.toStringTag, { value: "Module" }));
-function Yt(R, v, r) {
-  const k = R.slice();
+function Yt(E, v, r) {
+  const k = E.slice();
   return k[26] = v[r], k;
 }
-function jt(R, v, r) {
-  const k = R.slice();
+function jt(E, v, r) {
+  const k = E.slice();
   return k[29] = v[r], k;
 }
-function un(R) {
-  let v, r, k = R[29].message + "", u, i, o;
+function un(E) {
+  let v, r, k = E[29].message + "", u, i, o;
   return {
     c() {
       v = nt("p"), r = kt("Error: "), u = kt(k), i = ct(), o = nt("p"), o.innerHTML = `For support please visit one of our
@@ -3728,39 +3728,39 @@ function un(R) {
     }
   };
 }
-function hn(R) {
-  let v, r, k, u, i, o, n, l, f, b, p, y, s, h, a, d, c, g, I, C, x, T, N, V, L, P, _, w, W, e, F, rt, J, at, Y, et, G, E, $, K, M, At, ft, st, ot, ut, lt, dt, yt, t, X;
+function hn(E) {
+  let v, r, k, u, i, o, n, l, f, b, p, y, s, h, a, d, c, g, I, C, x, T, N, V, L, P, _, w, W, e, F, rt, J, at, Y, et, G, R, $, K, M, At, ft, st, ot, ut, lt, dt, yt, t, X;
   function B(D, it) {
     return D[2] != null ? pn : fn;
   }
-  let m = B(R), A = m(R), S = R[2] != null && Pt(R), U = R[25].game, z = [];
+  let m = B(E), A = m(E), S = E[2] != null && Pt(E), U = E[25].game, z = [];
   for (let D = 0; D < U.length; D += 1)
-    z[D] = Dt(Yt(R, U, D));
-  let Z = R[10] && Kt(R), O = R[9] && Ht(R);
+    z[D] = Dt(Yt(E, U, D));
+  let Z = E[10] && Kt(E), O = E[9] && Ht(E);
   const H = [bn, mn], j = [];
   function tt(D, it) {
     return D[7] ? 0 : 1;
   }
-  return lt = tt(R), dt = j[lt] = H[lt](R), {
+  return lt = tt(E), dt = j[lt] = H[lt](E), {
     c() {
-      v = nt("div"), r = nt("div"), k = nt("h3"), k.textContent = "Mod Name", u = ct(), i = nt("hr"), o = ct(), A.c(), n = ct(), l = nt("input"), f = ct(), S && S.c(), b = ct(), p = nt("div"), y = nt("h3"), y.textContent = "Package Name:", s = ct(), h = nt("hr"), a = ct(), d = nt("p"), d.innerHTML = `Choose a unique package name for your new mod. The package name
+      v = nt("div"), r = nt("div"), k = nt("h3"), k.textContent = "Mod Name:", u = ct(), i = nt("hr"), o = ct(), A.c(), n = ct(), l = nt("input"), f = ct(), S && S.c(), b = ct(), p = nt("div"), y = nt("h3"), y.textContent = "Package Name:", s = ct(), h = nt("hr"), a = ct(), d = nt("p"), d.innerHTML = `Choose a unique package name for your new mod. The package name
                 should be unique to you. If you are unsure about this use <code class="svelte-1sr08ub">name.modid</code>.`, c = ct(), g = nt("input"), I = ct(), C = nt("div"), x = nt("h3"), x.textContent = "Minecraft Version:", T = ct(), N = nt("hr"), V = ct(), L = nt("p"), L.textContent = `Select the version of Minecraft that you wish to use for your
                 mod.`, P = ct(), _ = nt("select");
       for (let D = 0; D < z.length; D += 1)
         z[D].c();
-      w = ct(), W = nt("hr"), e = ct(), F = nt("br"), rt = ct(), J = nt("h4"), J.textContent = "Advanced Options:", at = ct(), Y = nt("div"), et = nt("div"), G = nt("input"), E = ct(), $ = nt("label"), $.textContent = "Kotlin Programming Lanuage", K = ct(), M = nt("p"), M.innerHTML = `<a href="https://kotlinlang.org/" class="svelte-1sr08ub">Kotlin</a> is a alternative programming language that can be used to develop mods.
-                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-1sr08ub">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, At = ct(), Z && Z.c(), ft = ct(), O && O.c(), st = ct(), ot = nt("br"), ut = ct(), dt.c(), q(k, "class", "svelte-1sr08ub"), q(i, "class", "svelte-1sr08ub"), q(l, "id", "project-name"), q(l, "class", "svelte-1sr08ub"), q(r, "class", "form-line svelte-1sr08ub"), q(y, "class", "svelte-1sr08ub"), q(h, "class", "svelte-1sr08ub"), q(d, "class", "svelte-1sr08ub"), q(g, "id", "package-name"), q(g, "class", "svelte-1sr08ub"), q(p, "class", "form-line svelte-1sr08ub"), q(x, "class", "svelte-1sr08ub"), q(N, "class", "svelte-1sr08ub"), q(L, "class", "svelte-1sr08ub"), q(_, "id", "minecraft-version"), Ut(_, "min-width", "200px"), q(_, "class", "svelte-1sr08ub"), R[0] === void 0 && we(() => R[21].call(_)), q(C, "class", "form-line svelte-1sr08ub"), q(W, "class", "svelte-1sr08ub"), q(F, "class", "svelte-1sr08ub"), q(J, "class", "svelte-1sr08ub"), q(G, "id", "kotlin"), q(G, "type", "checkbox"), q(G, "class", "option-input svelte-1sr08ub"), q($, "for", "kotlin"), q($, "class", "option-label svelte-1sr08ub"), q(et, "class", "option-container svelte-1sr08ub"), q(M, "class", "option-body svelte-1sr08ub"), q(Y, "class", "svelte-1sr08ub"), q(ot, "class", "svelte-1sr08ub"), q(v, "class", "template svelte-1sr08ub");
+      w = ct(), W = nt("hr"), e = ct(), F = nt("br"), rt = ct(), J = nt("h4"), J.textContent = "Advanced Options:", at = ct(), Y = nt("div"), et = nt("div"), G = nt("input"), R = ct(), $ = nt("label"), $.textContent = "Kotlin Programming Lanuage", K = ct(), M = nt("p"), M.innerHTML = `<a href="https://kotlinlang.org/" class="svelte-1sr08ub">Kotlin</a> is a alternative programming language that can be used to develop mods.
+                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-1sr08ub">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, At = ct(), Z && Z.c(), ft = ct(), O && O.c(), st = ct(), ot = nt("br"), ut = ct(), dt.c(), q(k, "class", "svelte-1sr08ub"), q(i, "class", "svelte-1sr08ub"), q(l, "id", "project-name"), q(l, "class", "svelte-1sr08ub"), q(r, "class", "form-line svelte-1sr08ub"), q(y, "class", "svelte-1sr08ub"), q(h, "class", "svelte-1sr08ub"), q(d, "class", "svelte-1sr08ub"), q(g, "id", "package-name"), q(g, "class", "svelte-1sr08ub"), q(p, "class", "form-line svelte-1sr08ub"), q(x, "class", "svelte-1sr08ub"), q(N, "class", "svelte-1sr08ub"), q(L, "class", "svelte-1sr08ub"), q(_, "id", "minecraft-version"), Ut(_, "min-width", "200px"), q(_, "class", "svelte-1sr08ub"), E[0] === void 0 && we(() => E[21].call(_)), q(C, "class", "form-line svelte-1sr08ub"), q(W, "class", "svelte-1sr08ub"), q(F, "class", "svelte-1sr08ub"), q(J, "class", "svelte-1sr08ub"), q(G, "id", "kotlin"), q(G, "type", "checkbox"), q(G, "class", "option-input svelte-1sr08ub"), q($, "for", "kotlin"), q($, "class", "option-label svelte-1sr08ub"), q(et, "class", "option-container svelte-1sr08ub"), q(M, "class", "option-body svelte-1sr08ub"), q(Y, "class", "svelte-1sr08ub"), q(ot, "class", "svelte-1sr08ub"), q(v, "class", "template svelte-1sr08ub");
     },
     m(D, it) {
-      bt(D, v, it), Q(v, r), Q(r, k), Q(r, u), Q(r, i), Q(r, o), A.m(r, null), Q(r, n), Q(r, l), Zt(l, R[1]), Q(v, f), S && S.m(v, null), Q(v, b), Q(v, p), Q(p, y), Q(p, s), Q(p, h), Q(p, a), Q(p, d), Q(p, c), Q(p, g), Zt(g, R[3]), Q(v, I), Q(v, C), Q(C, x), Q(C, T), Q(C, N), Q(C, V), Q(C, L), Q(C, P), Q(C, _);
+      bt(D, v, it), Q(v, r), Q(r, k), Q(r, u), Q(r, i), Q(r, o), A.m(r, null), Q(r, n), Q(r, l), Zt(l, E[1]), Q(v, f), S && S.m(v, null), Q(v, b), Q(v, p), Q(p, y), Q(p, s), Q(p, h), Q(p, a), Q(p, d), Q(p, c), Q(p, g), Zt(g, E[3]), Q(v, I), Q(v, C), Q(C, x), Q(C, T), Q(C, N), Q(C, V), Q(C, L), Q(C, P), Q(C, _);
       for (let pt = 0; pt < z.length; pt += 1)
         z[pt].m(_, null);
-      Vt(_, R[0]), Q(v, w), Q(v, W), Q(v, e), Q(v, F), Q(v, rt), Q(v, J), Q(v, at), Q(v, Y), Q(Y, et), Q(et, G), G.checked = R[4], Q(et, E), Q(et, $), Q(Y, K), Q(Y, M), Q(v, At), Z && Z.m(v, null), Q(v, ft), O && O.m(v, null), Q(v, st), Q(v, ot), Q(v, ut), j[lt].m(v, null), yt = !0, t || (X = [
-        wt(l, "input", R[18]),
-        wt(g, "keyup", R[14]),
-        wt(g, "input", R[20]),
-        wt(_, "change", R[21]),
-        wt(G, "change", R[22])
+      Vt(_, E[0]), Q(v, w), Q(v, W), Q(v, e), Q(v, F), Q(v, rt), Q(v, J), Q(v, at), Q(v, Y), Q(Y, et), Q(et, G), G.checked = E[4], Q(et, R), Q(et, $), Q(Y, K), Q(Y, M), Q(v, At), Z && Z.m(v, null), Q(v, ft), O && O.m(v, null), Q(v, st), Q(v, ot), Q(v, ut), j[lt].m(v, null), yt = !0, t || (X = [
+        wt(l, "input", E[18]),
+        wt(g, "keyup", E[14]),
+        wt(g, "input", E[20]),
+        wt(_, "change", E[21]),
+        wt(G, "change", E[22])
       ], t = !0);
     },
     p(D, it) {
@@ -3792,14 +3792,14 @@ function hn(R) {
     }
   };
 }
-function fn(R) {
+function fn(E) {
   let v, r, k, u, i, o, n, l;
   return {
     c() {
-      v = nt("p"), r = kt("Choose a name for your new mod. The mod ID will be "), k = nt("code"), u = kt(R[8]), i = kt(". "), o = nt("a"), o.textContent = "Custom id", q(k, "class", "svelte-1sr08ub"), q(o, "href", ""), q(o, "class", "svelte-1sr08ub"), q(v, "class", "svelte-1sr08ub");
+      v = nt("p"), r = kt("Choose a name for your new mod. The mod ID will be "), k = nt("code"), u = kt(E[8]), i = kt(". "), o = nt("a"), o.textContent = "Use custom id", q(k, "class", "svelte-1sr08ub"), q(o, "href", ""), q(o, "class", "svelte-1sr08ub"), q(v, "class", "svelte-1sr08ub");
     },
     m(f, b) {
-      bt(f, v, b), Q(v, r), Q(v, k), Q(k, u), Q(v, i), Q(v, o), n || (l = wt(o, "click", Tt(R[15])), n = !0);
+      bt(f, v, b), Q(v, r), Q(v, k), Q(k, u), Q(v, i), Q(v, o), n || (l = wt(o, "click", Tt(E[15])), n = !0);
     },
     p(f, b) {
       b[0] & 256 && $t(u, f[8]);
@@ -3809,7 +3809,7 @@ function fn(R) {
     }
   };
 }
-function pn(R) {
+function pn(E) {
   let v;
   return {
     c() {
@@ -3824,16 +3824,16 @@ function pn(R) {
     }
   };
 }
-function Pt(R) {
-  let v, r, k, u, i, o, n, l, f, b, p, y, s, h = R[11] != null && Mt(R);
+function Pt(E) {
+  let v, r, k, u, i, o, n, l, f, b, p, y, s, h = E[11] != null && Mt(E);
   return {
     c() {
-      v = nt("div"), r = nt("h3"), r.textContent = "Mod ID", k = ct(), u = nt("hr"), i = ct(), o = nt("p"), n = kt("Enter the modid you wish to use for your mod. "), l = nt("a"), l.textContent = "Use default", f = ct(), h && h.c(), b = ct(), p = nt("input"), q(r, "class", "svelte-1sr08ub"), q(u, "class", "svelte-1sr08ub"), q(l, "href", ""), q(l, "class", "svelte-1sr08ub"), q(o, "class", "svelte-1sr08ub"), q(p, "id", "mod-id"), q(p, "class", "svelte-1sr08ub"), q(v, "class", "form-line svelte-1sr08ub");
+      v = nt("div"), r = nt("h3"), r.textContent = "Mod ID:", k = ct(), u = nt("hr"), i = ct(), o = nt("p"), n = kt("Enter the modid you wish to use for your mod. "), l = nt("a"), l.textContent = "Use default", f = ct(), h && h.c(), b = ct(), p = nt("input"), q(r, "class", "svelte-1sr08ub"), q(u, "class", "svelte-1sr08ub"), q(l, "href", ""), q(l, "class", "svelte-1sr08ub"), q(o, "class", "svelte-1sr08ub"), q(p, "id", "mod-id"), q(p, "class", "svelte-1sr08ub"), q(v, "class", "form-line svelte-1sr08ub");
     },
     m(a, d) {
-      bt(a, v, d), Q(v, r), Q(v, k), Q(v, u), Q(v, i), Q(v, o), Q(o, n), Q(o, l), Q(v, f), h && h.m(v, null), Q(v, b), Q(v, p), Zt(p, R[2]), y || (s = [
-        wt(l, "click", Tt(R[16])),
-        wt(p, "input", R[19])
+      bt(a, v, d), Q(v, r), Q(v, k), Q(v, u), Q(v, i), Q(v, o), Q(o, n), Q(o, l), Q(v, f), h && h.m(v, null), Q(v, b), Q(v, p), Zt(p, E[2]), y || (s = [
+        wt(l, "click", Tt(E[16])),
+        wt(p, "input", E[19])
       ], y = !0);
     },
     p(a, d) {
@@ -3844,10 +3844,10 @@ function Pt(R) {
     }
   };
 }
-function Mt(R) {
-  let v, r, k = R[11], u = [];
+function Mt(E) {
+  let v, r, k = E[11], u = [];
   for (let i = 0; i < k.length; i += 1)
-    u[i] = Qt(jt(R, k, i));
+    u[i] = Qt(jt(E, k, i));
   return {
     c() {
       for (let i = 0; i < u.length; i += 1)
@@ -3877,8 +3877,8 @@ function Mt(R) {
     }
   };
 }
-function Qt(R) {
-  let v, r = R[29] + "", k;
+function Qt(E) {
+  let v, r = E[29] + "", k;
   return {
     c() {
       v = nt("li"), k = kt(r), Ut(v, "color", "red"), q(v, "class", "svelte-1sr08ub");
@@ -3894,11 +3894,11 @@ function Qt(R) {
     }
   };
 }
-function Dt(R) {
-  let v, r = R[26].version + "", k;
+function Dt(E) {
+  let v, r = E[26].version + "", k;
   return {
     c() {
-      v = nt("option"), k = kt(r), v.__value = R[26].version, v.value = v.__value, q(v, "class", "svelte-1sr08ub");
+      v = nt("option"), k = kt(r), v.__value = E[26].version, v.value = v.__value, q(v, "class", "svelte-1sr08ub");
     },
     m(u, i) {
       bt(u, v, i), Q(v, k);
@@ -3909,14 +3909,14 @@ function Dt(R) {
     }
   };
 }
-function Kt(R) {
+function Kt(E) {
   let v, r, k, u, i, o, n, l, f;
   return {
     c() {
       v = nt("div"), r = nt("div"), k = nt("input"), u = ct(), i = nt("label"), i.textContent = "Data Generation", o = ct(), n = nt("p"), n.innerHTML = 'This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup" class="svelte-1sr08ub">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.', q(k, "id", "datagen"), q(k, "type", "checkbox"), q(k, "class", "option-input svelte-1sr08ub"), q(i, "for", "datagen"), q(i, "class", "option-label svelte-1sr08ub"), q(r, "class", "option-container svelte-1sr08ub"), q(n, "class", "option-body svelte-1sr08ub"), q(v, "class", "svelte-1sr08ub");
     },
     m(b, p) {
-      bt(b, v, p), Q(v, r), Q(r, k), k.checked = R[5], Q(r, u), Q(r, i), Q(v, o), Q(v, n), l || (f = wt(k, "change", R[23]), l = !0);
+      bt(b, v, p), Q(v, r), Q(r, k), k.checked = E[5], Q(r, u), Q(r, i), Q(v, o), Q(v, n), l || (f = wt(k, "change", E[23]), l = !0);
     },
     p(b, p) {
       p[0] & 32 && (k.checked = b[5]);
@@ -3926,7 +3926,7 @@ function Kt(R) {
     }
   };
 }
-function Ht(R) {
+function Ht(E) {
   let v, r, k, u, i, o, n, l, f;
   return {
     c() {
@@ -3935,7 +3935,7 @@ function Ht(R) {
                 This enforces a clear separation between the client and server code.`, q(k, "id", "splitSources"), q(k, "type", "checkbox"), q(k, "class", "option-input svelte-1sr08ub"), q(i, "for", "splitSources"), q(i, "class", "option-label svelte-1sr08ub"), q(r, "class", "option-container svelte-1sr08ub"), q(n, "class", "option-body svelte-1sr08ub"), q(v, "class", "svelte-1sr08ub");
     },
     m(b, p) {
-      bt(b, v, p), Q(v, r), Q(r, k), k.checked = R[6], Q(r, u), Q(r, i), Q(v, o), Q(v, n), l || (f = wt(k, "change", R[24]), l = !0);
+      bt(b, v, p), Q(v, r), Q(r, k), k.checked = E[6], Q(r, u), Q(r, i), Q(v, o), Q(v, n), l || (f = wt(k, "change", E[24]), l = !0);
     },
     p(b, p) {
       p[0] & 64 && (k.checked = b[6]);
@@ -3945,14 +3945,14 @@ function Ht(R) {
     }
   };
 }
-function mn(R) {
+function mn(E) {
   let v, r, k, u, i, o;
   return r = new ie({}), {
     c() {
       v = nt("a"), te(r.$$.fragment), k = kt(" Download Template (.ZIP)"), q(v, "class", "button download-button svelte-1sr08ub"), q(v, "href", "");
     },
     m(n, l) {
-      bt(n, v, l), ee(r, v, null), Q(v, k), u = !0, i || (o = wt(v, "click", Tt(R[13])), i = !0);
+      bt(n, v, l), ee(r, v, null), Q(v, k), u = !0, i || (o = wt(v, "click", Tt(E[13])), i = !0);
     },
     p: It,
     i(n) {
@@ -3966,7 +3966,7 @@ function mn(R) {
     }
   };
 }
-function bn(R) {
+function bn(E) {
   let v, r, k, u;
   return r = new ie({}), {
     c() {
@@ -3987,7 +3987,7 @@ function bn(R) {
     }
   };
 }
-function gn(R) {
+function gn(E) {
   let v;
   return {
     c() {
@@ -4004,9 +4004,9 @@ function gn(R) {
     }
   };
 }
-function yn(R) {
+function yn(E) {
   let v, r, k = {
-    ctx: R,
+    ctx: E,
     current: null,
     token: null,
     hasCatch: !0,
@@ -4017,7 +4017,7 @@ function yn(R) {
     error: 29,
     blocks: [, , ,]
   };
-  return be(R[12], k), {
+  return be(E[12], k), {
     c() {
       v = ge(), k.block.c();
     },
@@ -4025,7 +4025,7 @@ function yn(R) {
       bt(u, v, i), k.block.m(u, k.anchor = i), k.mount = () => v.parentNode, k.anchor = v, r = !0;
     },
     p(u, i) {
-      R = u, ye(k, R, i);
+      E = u, ye(k, E, i);
     },
     i(u) {
       r || (Gt(k.block), r = !0);
@@ -4042,17 +4042,17 @@ function yn(R) {
     }
   };
 }
-function vn(R) {
-  if (console.log(R), R == null)
+function vn(E) {
+  if (E == null)
     return;
   let v = [];
-  if (console.log(R.length), R.length == 0)
+  if (E.length == 0)
     return ["Modid is empty!"];
-  R.length == 1 ? v.push("Modid is only a single character! (It must be at least 2 characters long)!") : R.length > 64 && v.push("Modid has more than 64 characters!");
-  const r = R.charAt(0);
+  E.length == 1 ? v.push("Modid is only a single character! (It must be at least 2 characters long)!") : E.length > 64 && v.push("Modid has more than 64 characters!");
+  const r = E.charAt(0);
   (r < "a" || r > "z") && v.push("Modid starts with an invalid character '" + r + "' (it must belowercase a-z)");
-  for (var k = null, u = 1; u < R.length; u++) {
-    var i = R.charAt(u);
+  for (var k = null, u = 1; u < E.length; u++) {
+    var i = E.charAt(u);
     i == "-" || i == "_" || "0" <= i && i <= "9" || "a" <= i && i <= "z" || (k == null && (k = []), k.push(i));
   }
   if (k != null) {
@@ -4062,7 +4062,7 @@ function vn(R) {
   if (v.length != 0)
     return v;
 }
-function wn(R, v, r) {
+function wn(E, v, r) {
   let k, u, i, o, n, l, f = "Template Mod", b = "com.example", p = !1, y = !1, s = !0, h, a = !1;
   const d = Promise.all([Re()]).then(([w]) => {
     const W = w.filter((e) => e.stable).filter((e) => {
@@ -4123,8 +4123,8 @@ function wn(R, v, r) {
   function _() {
     s = this.checked, r(6, s);
   }
-  return R.$$.update = () => {
-    R.$$.dirty[0] & 2 && r(8, k = Ae(f)), R.$$.dirty[0] & 1 && r(17, u = Xt(l || "1.99")), R.$$.dirty[0] & 131072 && r(10, i = u >= 17), R.$$.dirty[0] & 131072 && r(9, o = u >= 19), R.$$.dirty[0] & 4 && r(11, n = vn(h));
+  return E.$$.update = () => {
+    E.$$.dirty[0] & 2 && r(8, k = Ae(f)), E.$$.dirty[0] & 1 && r(17, u = Xt(l || "1.99")), E.$$.dirty[0] & 131072 && r(10, i = u >= 17), E.$$.dirty[0] & 131072 && r(9, o = u >= 19), E.$$.dirty[0] & 4 && r(11, n = vn(h));
   }, [
     l,
     f,
