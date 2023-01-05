@@ -5,6 +5,7 @@
     import DownloadIcon from "./DownloadIcon.svelte";
     import { nameToModId } from "./template/template";
     import { getMinorMinecraftVersion } from "./template/java";
+    import { licenses, licensesMap } from "./template/license";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -12,6 +13,7 @@
     let useKotlin = false;
     let dataGeneration = false;
     let splitSources = true;
+    let license = "MIT License";
 
     let customModId: string | undefined;
     let loading = false;
@@ -107,6 +109,7 @@
             useKotlin,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
+            license: licensesMap.get(license)!,
         };
 
         const zip = new JSZip();
@@ -199,6 +202,23 @@
                 {#each data.game as version}
                     <option value={version.version}>{version.version}</option>
                 {/each}
+            </select>
+        </div>
+
+        <div class="form-line">
+            <h3>Mod License:</h3>
+            <hr />
+            <p>
+                Select the license you wish to use for your mod. For help with choosing a license please visit GitHub's <a href="https://choosealicense.com/" target="_blank" rel="noopener noreferrer">https://choosealicense.com/</a> website.
+            </p>
+            <select
+                id="license"
+                bind:value={license}
+                style="width: 200px"
+            >
+            {#each licenses as license}
+                <option value={license.name}>{license.name}</option>
+            {/each}
             </select>
         </div>
 

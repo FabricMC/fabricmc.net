@@ -21,6 +21,7 @@
   "dependencies": {
     "eta": "^1.12.3",
     "file-saver": "^2.0.5",
+    "front-matter": "^4.0.2",
     "jszip": "^3.10.1"
   }
 }

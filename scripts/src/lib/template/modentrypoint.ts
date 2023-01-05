@@ -8,6 +8,7 @@ import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypo
 import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
 import { getMinorMinecraftVersion } from "./java";
+import { applyHeader, type License } from './license';
 
 interface ClassOptions {
     package: string, // com.example
@@ -18,6 +19,7 @@ interface ClassOptions {
     slf4j: boolean,
     clientEntrypoint: boolean,
     dataEntrypoint: boolean,
+    license: License,
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -31,7 +33,8 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         modid: options.modid,
         slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18,
         clientEntrypoint: options.splitSources,
-        dataEntrypoint: options.dataGeneration
+        dataEntrypoint: options.dataGeneration,
+        license: options.license
     }
 
     if (options.kotlin) {
@@ -48,10 +51,10 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
         ]
     };
 
-    await writer.write(`src/main/java/${options.path}.java`, renderTemplate(javaEntrypointTemplate, options))
+    await writer.write(`src/main/java/${options.path}.java`, renderSource(javaEntrypointTemplate, options))
 
     if (options.clientEntrypoint) {
-        await writer.write(`src/client/java/${options.path}Client.java`, renderTemplate(javaEntrypointClientTemplate, {...options, className: options.className + "Client"}));
+        await writer.write(`src/client/java/${options.path}Client.java`, renderSource(javaEntrypointClientTemplate, {...options, className: options.className + "Client"}));
 
         entrypoints = {
             ...entrypoints,
@@ -62,7 +65,7 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
     }
 
     if (options.dataEntrypoint) {
-        await writer.write(`src/main/java/${options.path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
+        await writer.write(`src/main/java/${options.path}DataGenerator.java`, renderSource(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
 
         entrypoints = {
             ...entrypoints,
@@ -85,10 +88,10 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
         ]
     };
 
-    await writer.write(`src/main/kotlin/${options.path}.kt`, renderTemplate(kotlinEntrypointTemplate, options))
+    await writer.write(`src/main/kotlin/${options.path}.kt`, renderSource(kotlinEntrypointTemplate, options))
 
     if (options.clientEntrypoint) {
-        await writer.write(`src/client/kotlin/${options.path}Client.kt`, renderTemplate(kotlinEntrypointClientTemplate, {...options, className: options.className + "Client"}))
+        await writer.write(`src/client/kotlin/${options.path}Client.kt`, renderSource(kotlinEntrypointClientTemplate, {...options, className: options.className + "Client"}))
 
         entrypoints = {
             ...entrypoints,
@@ -102,7 +105,7 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
     }
 
     if (options.dataEntrypoint) {
-        await writer.write(`src/main/kotlin/${options.path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
+        await writer.write(`src/main/kotlin/${options.path}DataGenerator.kt`, renderSource(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
 
         entrypoints = {
             ...entrypoints,
@@ -116,4 +119,8 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
     }
 
     return entrypoints;
+}
+
+function renderSource(template: string, options: ClassOptions): string {
+    return applyHeader(renderTemplate(template, options), options.license);
 }

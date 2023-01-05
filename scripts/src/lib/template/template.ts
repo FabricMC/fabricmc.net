@@ -3,6 +3,7 @@ import { addGroovyGradle } from './gradlegroovy';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
+import { addLicense, type License } from './license';
 
 export interface Options {
 	/**
@@ -24,6 +25,7 @@ export interface Configuration {
 	useKotlin: boolean,
 	dataGeneration: boolean,
 	splitSources: boolean,
+	license: License
 }
 
 export interface KotlinConfiguration {
@@ -55,6 +57,7 @@ export async function generateTemplate(options: Options) {
 	await addGroovyGradle(options.writer, computedConfig);
 	await addModJson(options.writer, computedConfig);
 	await addGitFiles(options.writer, computedConfig);
+	await addLicense(options.writer, computedConfig);
 }
 
 export function nameToModId(name: string) {
