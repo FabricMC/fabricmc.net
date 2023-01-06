@@ -210,7 +210,7 @@
         <div>
             <div class="option-container">
                 <input id="kotlin" type="checkbox" class="option-input" bind:checked={useKotlin} />
-                <label for="kotlin" class="option-label">Kotlin Programming Lanuage</label>
+                <label for="kotlin" class="option-label">Kotlin Programming Language</label>
             </div>
             <p class="option-body">
                 <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
