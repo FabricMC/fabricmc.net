@@ -18,6 +18,7 @@ export interface Options {
 }
 
 export interface Configuration {
+	modid: string,
 	minecraftVersion: string,
 	projectName: string,
 	packageName: string,
@@ -69,7 +70,6 @@ export function nameToModId(name: string) {
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {
 	return {
 		...options,
-		modid: nameToModId(options.projectName),
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
 		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,

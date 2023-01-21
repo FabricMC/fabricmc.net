@@ -14,6 +14,7 @@
     let dataGeneration = false;
     let splitSources = true;
 
+    let customModId: string | undefined;
     let loading = false;
 
     $: modid = nameToModId(projectName);
@@ -39,12 +40,68 @@
     $: supportsDataGen = minorMcVersion >= 17;
     $: supportsSplitSources = minorMcVersion >= 19;
 
+    $: modIdErrors = computeModIdErrors(customModId);
+
+    // Ported/adapted from Loader's MetadataVerifier
+    function computeModIdErrors(id: string | undefined) : string[] | undefined {
+        if (id == undefined) {
+            return undefined;
+        }
+
+        let errorList : string[] = [];
+
+        if (id.length == 0) {
+            return ["Modid is empty!"];
+        } else if (id.length == 1) {
+            errorList.push("Modid is only a single character! (It must be at least 2 characters long)!");
+        } else if (id.length > 64) {
+            errorList.push("Modid has more than 64 characters!");
+        }
+
+        const first = id.charAt(0);
+
+        if (first < 'a' || first > 'z') {
+            errorList.push("Modid starts with an invalid character '" + first + "' (it must belowercase a-z)");
+        }
+
+        var invalidChars: string[] | null = null;
+
+        for (var i = 1; i < id.length; i++) {
+            var c = id.charAt(i);
+
+            if (c == '-' || c == '_' || ('0' <= c && c <= '9') || ('a' <= c && c <= 'z')) {
+                continue;
+            }
+
+            if (invalidChars == null) {
+                invalidChars = [];
+            }
+
+            invalidChars.push(c);
+        }
+
+        if (invalidChars != null) {
+            var error = "Modid contains invalid characters: " + invalidChars.map(value => "'" + value + "'").join(", ") + "!";
+            errorList.push(error + "!");
+        }
+
+        if (errorList.length == 0) {
+            return undefined;
+        }
+
+        return errorList;
+    }
 
     async function generate() {
+        if (modIdErrors != undefined) {
+            return;
+        }
+
         loading = true;
 
         const generator = await import("./template/template");
         const config = {
+            modid: customModId ?? modid,
             minecraftVersion,
             projectName,
             packageName,
@@ -74,7 +131,15 @@
     }
 
     function formatPackageName() {
-        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9-_\.]/, "")
+        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9_\.]/, "")
+    }
+
+    function useCustomModId() {
+        customModId = modid;
+    }
+
+    function useDefaultModId() {
+        customModId = undefined;
     }
 </script>
 
@@ -83,14 +148,36 @@
 {:then data}
     <div class="template">
         <div class="form-line">
-            <h3 for="project-name">Mod Name</h3>
+            <h3>Mod Name:</h3>
             <hr />
-            <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>.</p>
+
+            {#if customModId != undefined}
+                <p>Choose a name for your new mod.</p>
+            {:else}
+                <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
+            {/if}
+            
             <input id="project-name" bind:value={projectName} />
         </div>
 
+        {#if customModId != undefined}
+            <div class="form-line">
+                <h3>Mod ID:</h3>
+                <hr />
+                <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
+                {#if modIdErrors != undefined} 
+                    {#each modIdErrors as error}
+                        <li style="color: red">{error}</li>
+                    {/each}
+                    <br>
+                {/if}
+
+                <input id="mod-id" bind:value={customModId} />
+            </div>
+        {/if}
+
         <div class="form-line">
-            <h3 for="package-name">Package Name:</h3>
+            <h3>Package Name:</h3>
             <hr />
             <p>
                 Choose a unique package name for your new mod. The package name
@@ -100,7 +187,7 @@
         </div>
 
         <div class="form-line">
-            <h3 for="minecraft-version">Minecraft Version:</h3>
+            <h3>Minecraft Version:</h3>
             <hr />
             <p>
                 Select the version of Minecraft that you wish to use for your
@@ -125,7 +212,7 @@
         <div>
             <div class="option-container">
                 <input id="kotlin" type="checkbox" class="option-input" bind:checked={useKotlin} />
-                <label for="kotlin" class="option-label">Kotlin Programming Lanuage</label>
+                <label for="kotlin" class="option-label">Kotlin Programming Language</label>
             </div>
             <p class="option-body">
                 <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
