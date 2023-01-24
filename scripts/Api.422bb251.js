@@ -1,29 +1,29 @@
-const s = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], o = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
+const n = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], o = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
 async function p() {
-  return r(s, "/v2/versions/installer");
+  return r(n, "/v2/versions/installer");
 }
 async function g() {
-  return r(s, "/v2/versions/game");
+  return r(n, "/v2/versions/game");
 }
 async function w() {
-  return r(s, "/v2/versions/loader");
+  return r(n, "/v2/versions/loader");
 }
 async function y() {
-  return r(s, "/v2/versions/yarn");
+  return r(n, "/v2/versions/yarn");
 }
 async function d(e) {
-  return r(s, "/v2/versions/yarn/" + e);
+  return r(n, "/v2/versions/yarn/" + e);
 }
 async function m(e, t) {
-  return r(s, `/v2/versions/loader/${e}/${t}/profile/json`);
+  return r(n, `/v2/versions/loader/${e}/${t}/profile/json`);
 }
-async function b() {
+async function W() {
   return f(o, "/jdlist.txt").then((e) => e.split(`
 `));
 }
-async function W(e) {
+async function b(e) {
   return (await r(
-    s,
+    n,
     `/v2/versions/yarn/${e}?limit=1`
   ))[0];
 }
@@ -34,15 +34,15 @@ function x() {
   return c("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
 }
 async function A(e) {
-  return (await h()).filter((n) => v(n, e)).pop();
+  return (await h()).filter((s) => v(s, e)).pop();
 }
 function v(e, t) {
   if (!t)
     return !1;
-  let n = t;
+  let s = t;
   return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "20w14infinite", "1.18_experimental"].forEach((i) => {
-    t.startsWith(i) && (n = i);
-  }), t.startsWith("22w13oneblockatatime") ? n = "22w13oneblockatatime" : t.startsWith("22w") ? n = "1.19.3" : t.startsWith("1.18.2") ? n = "1.18.2" : t.startsWith("1.19.1") ? n = "1.19.1" : t.startsWith("1.19.2") ? n = "1.19.2" : t.startsWith("1.19.3") ? n = "1.19.3" : t.startsWith("21w") ? n = "1.18" : t.startsWith("20w") ? n = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (n = "1.14"), e.endsWith("-" + n) || e.endsWith("+" + n);
+    t.startsWith(i) && (s = i);
+  }), t.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : t.startsWith("23w") ? s = "1.19.4" : t.startsWith("22w") ? s = "1.19.3" : t.startsWith("1.18.2") ? s = "1.18.2" : t.startsWith("1.19.1") ? s = "1.19.1" : t.startsWith("1.19.2") ? s = "1.19.2" : t.startsWith("1.19.3") ? s = "1.19.3" : t.startsWith("1.19.4") ? s = "1.19.4" : t.startsWith("21w") ? s = "1.18" : t.startsWith("20w") ? s = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (s = "1.14"), e.endsWith("-" + s) || e.endsWith("+" + s);
 }
 async function c(e) {
   let t = await f(o, e), a = new DOMParser().parseFromString(t, "text/xml");
@@ -55,9 +55,9 @@ async function f(e, t) {
   return await (await l(e, t)).text();
 }
 async function l(e, t) {
-  for (var n of e)
+  for (var s of e)
     try {
-      const a = await fetch(n + t);
+      const a = await fetch(s + t);
       if (a.ok)
         return a;
       console.error(await a.text());
@@ -71,9 +71,9 @@ export {
   w as b,
   p as c,
   g as d,
-  W as e,
+  b as e,
   m as f,
-  b as g,
+  W as g,
   A as h,
   d as i,
   x as j,

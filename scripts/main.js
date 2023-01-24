@@ -5,7 +5,7 @@ const s = (e, o) => {
   });
 };
 function n(e) {
-  return () => s(/* @__PURE__ */ Object.assign({ "./lib/Documentation.svelte": () => import("./Documentation.e9ddf087.js"), "./lib/DownloadIcon.svelte": () => import("./DownloadIcon.81b5365d.js"), "./lib/Installer.svelte": () => import("./Installer.de4abba9.js"), "./lib/LegacyVersion.svelte": () => import("./LegacyVersion.ab959e25.js"), "./lib/MCUpdater.svelte": () => import("./MCUpdater.62275dc1.js"), "./lib/Server.svelte": () => import("./Server.91b981da.js"), "./lib/Technic.svelte": () => import("./Technic.353467c3.js"), "./lib/Template.svelte": () => import("./Template.5eb71177.js"), "./lib/Versions.svelte": () => import("./Versions.862bd644.js") }), `./lib/${e}.svelte`);
+  return () => s(/* @__PURE__ */ Object.assign({ "./lib/Documentation.svelte": () => import("./Documentation.05bc3973.js"), "./lib/DownloadIcon.svelte": () => import("./DownloadIcon.81b5365d.js"), "./lib/Installer.svelte": () => import("./Installer.26f0abf7.js"), "./lib/LegacyVersion.svelte": () => import("./LegacyVersion.7b5da65d.js"), "./lib/MCUpdater.svelte": () => import("./MCUpdater.33bd21e9.js"), "./lib/Server.svelte": () => import("./Server.be103d36.js"), "./lib/Technic.svelte": () => import("./Technic.ae15b201.js"), "./lib/Template.svelte": () => import("./Template.86f28144.js"), "./lib/Versions.svelte": () => import("./Versions.0f33e146.js") }), `./lib/${e}.svelte`);
 }
 const c = n("Installer"), l = n("MCUpdater"), a = n("Technic"), m = n("Server"), p = n("Versions"), u = n("Documentation"), v = n("Template");
 let b = {
