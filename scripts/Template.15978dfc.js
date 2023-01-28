@@ -3161,7 +3161,7 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_version=<%= it.fabricVersion %>`, Ue = `plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'maven-publish'
 	<% if (it.kotlin) { %>id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"<% } %>
 }
