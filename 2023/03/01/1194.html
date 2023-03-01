@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.19.4 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.19.4" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted previously, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility." />
+<meta property="og:description" content="Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted previously, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility." />
+<link rel="canonical" href="http://fabricmc.net/2023/03/01/1194.html" />
+<meta property="og:url" content="http://fabricmc.net/2023/03/01/1194.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-03-01T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.19.4" />
+<script type="application/ld+json">
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://fabricmc.net/2023/03/01/1194.html"},"description":"Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted previously, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility.","url":"http://fabricmc.net/2023/03/01/1194.html","@type":"BlogPosting","headline":"Fabric for Minecraft 1.19.4","dateModified":"2023-03-01T00:00:00+00:00","datePublished":"2023-03-01T00:00:00+00:00","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1677684687">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1677684687"><link type="application/atom+xml" rel="alternate" href="http://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.19.4</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-03-01T00:00:00+00:00" itemprop="datePublished">Mar 1, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted <a href="/2022/11/24/1193.html">previously</a>, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility.</p>
+
+<p>As usual, we ask players to be patient, and give mod developers time to update to this new version.</p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.1 (at the time of writing) to develop for Minecraft 1.19.4. Players should install the latest stable version of Fabric Loader (currently 0.14.14) to play 1.19.4.</p>
+
+<p>After the release of 1.19.4, Fabric API for 1.19.3 will no longer be updated. 1.19.2 will receive some backported features, and 1.18.2 will continue to receive critical bug fixes.</p>
+
+<h3 id="new-fabric-api-features">New Fabric API features</h3>
+<p>Fabric API added many features since the last update blog post:</p>
+
+<ul>
+  <li>Language files provided by mods are now loaded on the server. (Teddy Li)</li>
+  <li>Recipe API: add custom <code class="language-plaintext highlighter-rouge">Ingredient</code>s. (Technici4n)</li>
+  <li>Data Generation: support resource conditions in <code class="language-plaintext highlighter-rouge">BlockLootTableGenerator</code>.</li>
+  <li>GameTest: improve structure loading to support both NBT and SNBT-based structures. (apple502j)</li>
+  <li>Resource Conditions: add <code class="language-plaintext highlighter-rouge">registry_contains</code> condition. (Technici4n)</li>
+  <li>Added Client Message Events (Kevin, Juuz, Sideroo)</li>
+  <li>Other small additions to various APIs, such as Object Builder and Renderer API</li>
+</ul>
+
+<h3 id="breaking-changes-and-deprecations">Breaking changes and deprecations</h3>
+<p>In addition to changes described below, Transfer API received two breaking changes (applicable to 1.19.4):</p>
+
+<ul>
+  <li>Mods now need to handle <code class="language-plaintext highlighter-rouge">null</code> directions in <code class="language-plaintext highlighter-rouge">FluidStorage</code> and <code class="language-plaintext highlighter-rouge">ItemStorage</code>, which indicate full inventory without side restriction.</li>
+  <li><code class="language-plaintext highlighter-rouge">exactView</code> method with <code class="language-plaintext highlighter-rouge">transaction</code> parameter, deprecated for removal, is removed. Use the transactionless method instead.</li>
+</ul>
+
+<p>In Registry Sync, <code class="language-plaintext highlighter-rouge">FabricRegistryBuilder</code> no longer requires the type class to be passed - just the registry key. The old methods were deprecated.</p>
+
+<p>In Block Render Layer API, <code class="language-plaintext highlighter-rouge">BlockRenderLayerMap</code>’s useless item-related methods were deprecated for removal.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+
+<p>Minecraft 1.19.4 introduces some breaking changes to major developer-facing APIs.</p>
+
+<h3 id="item-groups">Item groups</h3>
+<p><code class="language-plaintext highlighter-rouge">ItemGroup</code> registration changed again. Callback passed to <code class="language-plaintext highlighter-rouge">ItemGroup.Builder#entries</code> now takes two arguments, instead of three. Enabled features and operator permission flag are now passed via the context object.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(new Identifier(MOD_ID, "test_group"))
+</span>    .icon(() -&gt; new ItemStack(Items.DIAMOND))
+<span class="gd">-   .entries((enabledFeatures, entries, operatorEnabled) -&gt; {
+</span><span class="gi">+   .entries((context, entries) -&gt; {
+</span>       entries.add(TEST_ITEM);
+    })
+    .build();
+</code></pre></div></div>
+
+<h3 id="damage-types">Damage types</h3>
+<p>With the addition of <code class="language-plaintext highlighter-rouge">/damage</code>, damage related code has been refactored.</p>
+
+<p>Damage types can now be defined using a dynamic registry, with data packs. This also removed the constant <code class="language-plaintext highlighter-rouge">DamageSource</code>s. The <code class="language-plaintext highlighter-rouge">DamageSources</code> class holds several methods to get instances of <code class="language-plaintext highlighter-rouge">DamageSource</code> with or without an attacker:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- targetEntity.damage(DamageSource.MAGIC, 4.0F);
+- anotherEntity.damage(DamageSource.anvil(attacker), 1.0F);
+</span><span class="gi">+ targetEntity.damage(world.getDamageSources().magic(), 4.0F);
++ anotherEntity.damage(world.getDamageSources().fallingAnvil(attacker), 1.0F);
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">getDamageSources</code> method also exists in <code class="language-plaintext highlighter-rouge">Entity</code> as a shortcut.</p>
+
+<p>To check if damage is of a certain type, tags should be used. Several data pack predicates related to damages have changed to reflect this.</p>
+
+<p>Many damage related checks previously hardcoded in the game, such as fall damage-immune mobs (via <code class="language-plaintext highlighter-rouge">handleFallDamage</code> override), are now handled using entity and damage type tags.</p>
+
+<h3 id="block-set-types">Block set types</h3>
+<p>Sounds of various blocks, such as doors, trapdoors, buttons, pressure plates, etc. are now configured by passing an instance of a new class, <code class="language-plaintext highlighter-rouge">BlockSetType</code>, to the respective block constructors. <code class="language-plaintext highlighter-rouge">BlockSetType</code>s can be created and registered using Object Builder API’s <code class="language-plaintext highlighter-rouge">BlockSetTypeRegistry</code>.</p>
+
+<p>Similarly, signs and fence gates use the class <code class="language-plaintext highlighter-rouge">WoodType</code> to determine their sounds and sign textures. <code class="language-plaintext highlighter-rouge">WoodType</code>s require a <code class="language-plaintext highlighter-rouge">BlockSetType</code>, and can be registered using <code class="language-plaintext highlighter-rouge">WoodTypeRegistry</code>.</p>
+
+<h3 id="biome">Biome</h3>
+<p>Biome precipitation is now a boolean. Whether it rains or snows is now entirely dependent on temperature and is positional; if the temperature is below <code class="language-plaintext highlighter-rouge">0.15</code>, it snows. Biome Modification API’s <code class="language-plaintext highlighter-rouge">setPrecipitation</code> method now takes a boolean to reflect this, and <code class="language-plaintext highlighter-rouge">Biome#getPrecipitation</code> and <code class="language-plaintext highlighter-rouge">hasPrecipitation</code> methods were added to reflect this. <code class="language-plaintext highlighter-rouge">Biome#isHot</code> is removed and replaced with tags for specific usecases.</p>
+
+<p>Biome JSON files should now have a boolean <code class="language-plaintext highlighter-rouge">has_precipitation</code> field, not enum <code class="language-plaintext highlighter-rouge">precipitation</code> field.</p>
+
+<h3 id="guis-and-rendering">GUIs and rendering</h3>
+<p><code class="language-plaintext highlighter-rouge">RenderSystem#enableTexture</code> and <code class="language-plaintext highlighter-rouge">disableTexture</code> has been removed. They are no longer necessary.</p>
+
+<p>Most rendering methods now take <code class="language-plaintext highlighter-rouge">MatrixStack</code> if they did not already. With this, <code class="language-plaintext highlighter-rouge">DrawableHelper#getZOffset</code> is now gone, and all <code class="language-plaintext highlighter-rouge">DrawableHelper</code> methods have turned into static methods, along with some Yarn renames:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">drawCenteredText</code> -&gt; <code class="language-plaintext highlighter-rouge">drawCenteredTextWithShadow</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawStringWithShadow</code>/<code class="language-plaintext highlighter-rouge">drawWithShadow</code> -&gt; <code class="language-plaintext highlighter-rouge">drawTextWithShadow</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">ModelTransformation.Mode</code> is replaced with <code class="language-plaintext highlighter-rouge">ModelTransformationMode</code> (notice the lack of dot). <code class="language-plaintext highlighter-rouge">TextRenderer</code> methods now take <code class="language-plaintext highlighter-rouge">TextLayerType</code>, instead of boolean <code class="language-plaintext highlighter-rouge">seeThrough</code>.</p>
+
+<p>GUI code has received changes to support new keyboard navigation. After each keyboard navigation, the game recalculates the focused element; it creates a tree of elements, making sure only one element is focused at a time. <code class="language-plaintext highlighter-rouge">Screen</code> implementations should call <code class="language-plaintext highlighter-rouge">setInitialFocus</code> within the <code class="language-plaintext highlighter-rouge">init</code> method.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ScreenHandlerType</code> now requires a required feature set to be passed. This is usually <code class="language-plaintext highlighter-rouge">FeatureFlags.VANILLA_FEATURES</code>.</p>
+
+<h3 id="recipes">Recipes</h3>
+<p>Many recipe related methods now require a <code class="language-plaintext highlighter-rouge">DynamicRegistryManager</code> instance to be passed.</p>
+
+<h3 id="entities">Entities</h3>
+<p><code class="language-plaintext highlighter-rouge">Entity#stepHeight</code> is now private. This must now be set using <code class="language-plaintext highlighter-rouge">setStepHeight</code>. The getter <code class="language-plaintext highlighter-rouge">getStepHeight</code> is added as well.</p>
+
+<p>References to “scoreboard tag” (<code class="language-plaintext highlighter-rouge">/tag</code>) are now renamed to “command tag”.</p>
+
+<p><code class="language-plaintext highlighter-rouge">getCausingEntity</code>/<code class="language-plaintext highlighter-rouge">setCausingEntity</code> and other owner-related methods have been merged into <code class="language-plaintext highlighter-rouge">getOwner</code> and <code class="language-plaintext highlighter-rouge">setOwner</code>.</p>
+
+<p>Several changes have been made to vehicles. <code class="language-plaintext highlighter-rouge">ItemSteerable</code> methods are moved to <code class="language-plaintext highlighter-rouge">LivingEntity</code>, and <code class="language-plaintext highlighter-rouge">SaddledComponent</code> fields are now private. The following methods were added to <code class="language-plaintext highlighter-rouge">LivingEntity</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tickControlled</code>, which is called every tick if the entity is being ridden and controlled by other entity. Set the entity rotation and call <code class="language-plaintext highlighter-rouge">SaddledComponent#tickBoost</code> here.</li>
+  <li><code class="language-plaintext highlighter-rouge">travelControlled</code>, from <code class="language-plaintext highlighter-rouge">ItemSteerable#travel</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">getControlledMovementSpeed</code>, which calculates the velocity from the user input.</li>
+  <li><code class="language-plaintext highlighter-rouge">getSaddledSpeed</code>, which calculates the velocity of the entity. Multiply the value with <code class="language-plaintext highlighter-rouge">SaddledComponent#getSpeed</code> and return here.</li>
+</ul>
+
+<p>Additionally, <code class="language-plaintext highlighter-rouge">LivingEntity#getOffGroundSpeed</code> was added. This controls the entity velocity when it is falling or flying.</p>
+
+<h3 id="equipment">Equipment</h3>
+<p><code class="language-plaintext highlighter-rouge">Wearable</code> is renamed to <code class="language-plaintext highlighter-rouge">Equipment</code>, and is now implemented by shields. <code class="language-plaintext highlighter-rouge">Equipment</code> items must now also implement <code class="language-plaintext highlighter-rouge">getSlotType</code> method.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ArmorItem</code> constructor now takes an <code class="language-plaintext highlighter-rouge">ArmorItem.ArmorType</code> instead of an <code class="language-plaintext highlighter-rouge">EquipmentSlot</code>.</p>
+
+<h3 id="blockpos-changes">BlockPos changes</h3>
+<p><code class="language-plaintext highlighter-rouge">Vec3i</code> and <code class="language-plaintext highlighter-rouge">BlockPos</code> constructors that take <code class="language-plaintext highlighter-rouge">double</code> or <code class="language-plaintext highlighter-rouge">Position</code> (such as <code class="language-plaintext highlighter-rouge">Vec3d</code>) are moved to <code class="language-plaintext highlighter-rouge">ofFloored</code> method. This makes it clear which rounding mode is used.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- BlockPos pos = new BlockPos(3.14, 0.0, 3.14);
+- BlockPos pos2 = new BlockPos(entity.getPos());
+</span><span class="gi">+ BlockPos pos = BlockPos.ofFloored(3.14, 0.0, 3.14);
++ BlockPos pos2 = BlockPos.ofFloored(entity.getPos());
+</span></code></pre></div></div>
+
+<h3 id="texts">Texts</h3>
+<p><code class="language-plaintext highlighter-rouge">TranslatableTextContent</code> now supports text fallbacks, used when no matching translation is found. To construct texts with fallbacks, use <code class="language-plaintext highlighter-rouge">Text#translatableWithFallback</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ScreenTexts</code> received <code class="language-plaintext highlighter-rouge">CONTINUE</code> and <code class="language-plaintext highlighter-rouge">SPACE</code> predefined texts, as well as a <code class="language-plaintext highlighter-rouge">space</code> method for chaining; for example <code class="language-plaintext highlighter-rouge">space().append(text)</code>.</p>
+
+<h3 id="data-fixers">Data fixers</h3>
+<p>The library that powers serialization codecs and world file updates, DataFixerUpper, received major performance improvements both in startup and update time.</p>
+
+<p>The library update and corresponding Minecraft changes are as follows:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update</code> methods in <code class="language-plaintext highlighter-rouge">NbtHelper</code> are moved to <code class="language-plaintext highlighter-rouge">DataFixTypes</code>.</li>
+  <li>There is now a method to update <code class="language-plaintext highlighter-rouge">Dynamic</code>s that aren’t NBT.</li>
+  <li><code class="language-plaintext highlighter-rouge">getDataVersion</code> and <code class="language-plaintext highlighter-rouge">putDataVersion</code> methods were added to <code class="language-plaintext highlighter-rouge">NbtHelper</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">DataResult#error</code> now expects a <code class="language-plaintext highlighter-rouge">Supplier&lt;String&gt;</code>, to lazy-evaluate the error message.</li>
+  <li><code class="language-plaintext highlighter-rouge">Util#getBootstrapExecutor</code> is removed, because its only use was off-thread DataFixerUpper optimization (which is no longer off-thread). Use <code class="language-plaintext highlighter-rouge">getMainWorkerExecutor</code> instead.</li>
+</ul>
+
+  </div><a class="u-url" href="/2023/03/01/1194.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

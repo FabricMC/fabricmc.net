@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-01-28T13:09:52+00:00</updated><id>http://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.19.3</title><link href="http://fabricmc.net/2022/11/24/1193.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19.3" /><published>2022-11-24T00:00:00+00:00</published><updated>2022-11-24T00:00:00+00:00</updated><id>http://fabricmc.net/2022/11/24/1193</id><content type="html" xml:base="http://fabricmc.net/2022/11/24/1193.html">&lt;p&gt;Minecraft 1.19.3 is almost here, with big changes to game internals. Beginning with this update, &lt;a href=&quot;https://help.minecraft.net/hc/en-us/articles/9971900758413&quot;&gt;Mojang have changed their versioning scheme&lt;/a&gt; such that ‘minor’ releases like this one may contain larger changes under the hood. As such, the changes in this version affect almost all mods (not even comparable to the changes in 1.18.2, and significantly bigger than 1.19). Here are the list of all major modder-facing changes in this version.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="http://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-03-01T15:31:27+00:00</updated><id>http://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.19.4</title><link href="http://fabricmc.net/2023/03/01/1194.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19.4" /><published>2023-03-01T00:00:00+00:00</published><updated>2023-03-01T00:00:00+00:00</updated><id>http://fabricmc.net/2023/03/01/1194</id><content type="html" xml:base="http://fabricmc.net/2023/03/01/1194.html">&lt;p&gt;Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted &lt;a href=&quot;/2022/11/24/1193.html&quot;&gt;previously&lt;/a&gt;, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility.&lt;/p&gt;
+
+&lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
+&lt;p&gt;Developers should use Loom 1.1 (at the time of writing) to develop for Minecraft 1.19.4. Players should install the latest stable version of Fabric Loader (currently 0.14.14) to play 1.19.4.&lt;/p&gt;
+
+&lt;p&gt;After the release of 1.19.4, Fabric API for 1.19.3 will no longer be updated. 1.19.2 will receive some backported features, and 1.18.2 will continue to receive critical bug fixes.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-fabric-api-features&quot;&gt;New Fabric API features&lt;/h3&gt;
+&lt;p&gt;Fabric API added many features since the last update blog post:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Language files provided by mods are now loaded on the server. (Teddy Li)&lt;/li&gt;
+  &lt;li&gt;Recipe API: add custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ingredient&lt;/code&gt;s. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Data Generation: support resource conditions in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockLootTableGenerator&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;GameTest: improve structure loading to support both NBT and SNBT-based structures. (apple502j)&lt;/li&gt;
+  &lt;li&gt;Resource Conditions: add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;registry_contains&lt;/code&gt; condition. (Technici4n)&lt;/li&gt;
+  &lt;li&gt;Added Client Message Events (Kevin, Juuz, Sideroo)&lt;/li&gt;
+  &lt;li&gt;Other small additions to various APIs, such as Object Builder and Renderer API&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;breaking-changes-and-deprecations&quot;&gt;Breaking changes and deprecations&lt;/h3&gt;
+&lt;p&gt;In addition to changes described below, Transfer API received two breaking changes (applicable to 1.19.4):&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mods now need to handle &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; directions in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FluidStorage&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStorage&lt;/code&gt;, which indicate full inventory without side restriction.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exactView&lt;/code&gt; method with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transaction&lt;/code&gt; parameter, deprecated for removal, is removed. Use the transactionless method instead.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In Registry Sync, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricRegistryBuilder&lt;/code&gt; no longer requires the type class to be passed - just the registry key. The old methods were deprecated.&lt;/p&gt;
+
+&lt;p&gt;In Block Render Layer API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockRenderLayerMap&lt;/code&gt;’s useless item-related methods were deprecated for removal.&lt;/p&gt;
+
+&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
+
+&lt;p&gt;Minecraft 1.19.4 introduces some breaking changes to major developer-facing APIs.&lt;/p&gt;
+
+&lt;h3 id=&quot;item-groups&quot;&gt;Item groups&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemGroup&lt;/code&gt; registration changed again. Callback passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemGroup.Builder#entries&lt;/code&gt; now takes two arguments, instead of three. Enabled features and operator permission flag are now passed via the context object.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;private static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(new Identifier(MOD_ID, &quot;test_group&quot;))
+&lt;/span&gt;    .icon(() -&amp;gt; new ItemStack(Items.DIAMOND))
+&lt;span class=&quot;gd&quot;&gt;-   .entries((enabledFeatures, entries, operatorEnabled) -&amp;gt; {
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+   .entries((context, entries) -&amp;gt; {
+&lt;/span&gt;       entries.add(TEST_ITEM);
+    })
+    .build();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;damage-types&quot;&gt;Damage types&lt;/h3&gt;
+&lt;p&gt;With the addition of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/damage&lt;/code&gt;, damage related code has been refactored.&lt;/p&gt;
+
+&lt;p&gt;Damage types can now be defined using a dynamic registry, with data packs. This also removed the constant &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DamageSource&lt;/code&gt;s. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DamageSources&lt;/code&gt; class holds several methods to get instances of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DamageSource&lt;/code&gt; with or without an attacker:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- targetEntity.damage(DamageSource.MAGIC, 4.0F);
+- anotherEntity.damage(DamageSource.anvil(attacker), 1.0F);
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ targetEntity.damage(world.getDamageSources().magic(), 4.0F);
++ anotherEntity.damage(world.getDamageSources().fallingAnvil(attacker), 1.0F);
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDamageSources&lt;/code&gt; method also exists in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Entity&lt;/code&gt; as a shortcut.&lt;/p&gt;
+
+&lt;p&gt;To check if damage is of a certain type, tags should be used. Several data pack predicates related to damages have changed to reflect this.&lt;/p&gt;
+
+&lt;p&gt;Many damage related checks previously hardcoded in the game, such as fall damage-immune mobs (via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;handleFallDamage&lt;/code&gt; override), are now handled using entity and damage type tags.&lt;/p&gt;
+
+&lt;h3 id=&quot;block-set-types&quot;&gt;Block set types&lt;/h3&gt;
+&lt;p&gt;Sounds of various blocks, such as doors, trapdoors, buttons, pressure plates, etc. are now configured by passing an instance of a new class, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetType&lt;/code&gt;, to the respective block constructors. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetType&lt;/code&gt;s can be created and registered using Object Builder API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetTypeRegistry&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Similarly, signs and fence gates use the class &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodType&lt;/code&gt; to determine their sounds and sign textures. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodType&lt;/code&gt;s require a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetType&lt;/code&gt;, and can be registered using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodTypeRegistry&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;biome&quot;&gt;Biome&lt;/h3&gt;
+&lt;p&gt;Biome precipitation is now a boolean. Whether it rains or snows is now entirely dependent on temperature and is positional; if the temperature is below &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.15&lt;/code&gt;, it snows. Biome Modification API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setPrecipitation&lt;/code&gt; method now takes a boolean to reflect this, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Biome#getPrecipitation&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasPrecipitation&lt;/code&gt; methods were added to reflect this. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Biome#isHot&lt;/code&gt; is removed and replaced with tags for specific usecases.&lt;/p&gt;
+
+&lt;p&gt;Biome JSON files should now have a boolean &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;has_precipitation&lt;/code&gt; field, not enum &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;precipitation&lt;/code&gt; field.&lt;/p&gt;
+
+&lt;h3 id=&quot;guis-and-rendering&quot;&gt;GUIs and rendering&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RenderSystem#enableTexture&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;disableTexture&lt;/code&gt; has been removed. They are no longer necessary.&lt;/p&gt;
+
+&lt;p&gt;Most rendering methods now take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MatrixStack&lt;/code&gt; if they did not already. With this, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawableHelper#getZOffset&lt;/code&gt; is now gone, and all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DrawableHelper&lt;/code&gt; methods have turned into static methods, along with some Yarn renames:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawCenteredText&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawCenteredTextWithShadow&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawStringWithShadow&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawWithShadow&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawTextWithShadow&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelTransformation.Mode&lt;/code&gt; is replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelTransformationMode&lt;/code&gt; (notice the lack of dot). &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TextRenderer&lt;/code&gt; methods now take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TextLayerType&lt;/code&gt;, instead of boolean &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;seeThrough&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;GUI code has received changes to support new keyboard navigation. After each keyboard navigation, the game recalculates the focused element; it creates a tree of elements, making sure only one element is focused at a time. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Screen&lt;/code&gt; implementations should call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setInitialFocus&lt;/code&gt; within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ScreenHandlerType&lt;/code&gt; now requires a required feature set to be passed. This is usually &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureFlags.VANILLA_FEATURES&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;recipes&quot;&gt;Recipes&lt;/h3&gt;
+&lt;p&gt;Many recipe related methods now require a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryManager&lt;/code&gt; instance to be passed.&lt;/p&gt;
+
+&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Entity#stepHeight&lt;/code&gt; is now private. This must now be set using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setStepHeight&lt;/code&gt;. The getter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getStepHeight&lt;/code&gt; is added as well.&lt;/p&gt;
+
+&lt;p&gt;References to “scoreboard tag” (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tag&lt;/code&gt;) are now renamed to “command tag”.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getCausingEntity&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setCausingEntity&lt;/code&gt; and other owner-related methods have been merged into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getOwner&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setOwner&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Several changes have been made to vehicles. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemSteerable&lt;/code&gt; methods are moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LivingEntity&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SaddledComponent&lt;/code&gt; fields are now private. The following methods were added to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LivingEntity&lt;/code&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickControlled&lt;/code&gt;, which is called every tick if the entity is being ridden and controlled by other entity. Set the entity rotation and call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SaddledComponent#tickBoost&lt;/code&gt; here.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;travelControlled&lt;/code&gt;, from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemSteerable#travel&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getControlledMovementSpeed&lt;/code&gt;, which calculates the velocity from the user input.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSaddledSpeed&lt;/code&gt;, which calculates the velocity of the entity. Multiply the value with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SaddledComponent#getSpeed&lt;/code&gt; and return here.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Additionally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LivingEntity#getOffGroundSpeed&lt;/code&gt; was added. This controls the entity velocity when it is falling or flying.&lt;/p&gt;
+
+&lt;h3 id=&quot;equipment&quot;&gt;Equipment&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Wearable&lt;/code&gt; is renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Equipment&lt;/code&gt;, and is now implemented by shields. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Equipment&lt;/code&gt; items must now also implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSlotType&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArmorItem&lt;/code&gt; constructor now takes an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArmorItem.ArmorType&lt;/code&gt; instead of an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EquipmentSlot&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;blockpos-changes&quot;&gt;BlockPos changes&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Vec3i&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockPos&lt;/code&gt; constructors that take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;double&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Position&lt;/code&gt; (such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Vec3d&lt;/code&gt;) are moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ofFloored&lt;/code&gt; method. This makes it clear which rounding mode is used.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- BlockPos pos = new BlockPos(3.14, 0.0, 3.14);
+- BlockPos pos2 = new BlockPos(entity.getPos());
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ BlockPos pos = BlockPos.ofFloored(3.14, 0.0, 3.14);
++ BlockPos pos2 = BlockPos.ofFloored(entity.getPos());
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;texts&quot;&gt;Texts&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TranslatableTextContent&lt;/code&gt; now supports text fallbacks, used when no matching translation is found. To construct texts with fallbacks, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text#translatableWithFallback&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ScreenTexts&lt;/code&gt; received &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONTINUE&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SPACE&lt;/code&gt; predefined texts, as well as a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;space&lt;/code&gt; method for chaining; for example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;space().append(text)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-fixers&quot;&gt;Data fixers&lt;/h3&gt;
+&lt;p&gt;The library that powers serialization codecs and world file updates, DataFixerUpper, received major performance improvements both in startup and update time.&lt;/p&gt;
+
+&lt;p&gt;The library update and corresponding Minecraft changes are as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;update&lt;/code&gt; methods in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtHelper&lt;/code&gt; are moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataFixTypes&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;There is now a method to update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dynamic&lt;/code&gt;s that aren’t NBT.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDataVersion&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;putDataVersion&lt;/code&gt; methods were added to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtHelper&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataResult#error&lt;/code&gt; now expects a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Supplier&amp;lt;String&amp;gt;&lt;/code&gt;, to lazy-evaluate the error message.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Util#getBootstrapExecutor&lt;/code&gt; is removed, because its only use was off-thread DataFixerUpper optimization (which is no longer off-thread). Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMainWorkerExecutor&lt;/code&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Minecraft 1.19.4 is almost here, with a number of changes that impact most mods. As noted previously, ‘minor’ releases starting from 1.19.3 can include major changes, and neither mod authors nor players should assume compatibility.</summary></entry><entry><title type="html">Fabric for Minecraft 1.19.3</title><link href="http://fabricmc.net/2022/11/24/1193.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.19.3" /><published>2022-11-24T00:00:00+00:00</published><updated>2022-11-24T00:00:00+00:00</updated><id>http://fabricmc.net/2022/11/24/1193</id><content type="html" xml:base="http://fabricmc.net/2022/11/24/1193.html">&lt;p&gt;Minecraft 1.19.3 is almost here, with big changes to game internals. Beginning with this update, &lt;a href=&quot;https://help.minecraft.net/hc/en-us/articles/9971900758413&quot;&gt;Mojang have changed their versioning scheme&lt;/a&gt; such that ‘minor’ releases like this one may contain larger changes under the hood. As such, the changes in this version affect almost all mods (not even comparable to the changes in 1.18.2, and significantly bigger than 1.19). Here are the list of all major modder-facing changes in this version.&lt;/p&gt;
 
 &lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
 
@@ -815,182 +961,4 @@ This provides a compile-time guarantee against calling client-only Minecraft cod
 
 &lt;p&gt;It has not - Fabric is already out for 1.16.&lt;/p&gt;
 
-&lt;p&gt;We understand that this is a sudden and troublesome situation. We do not take fraudulent takedown notices lightly, and we’ll do everything we possibly can to ensure this incident has no impact on the project going forward.&lt;/p&gt;</content><author><name></name></author><summary type="html">Update 24/6/2020</summary></entry><entry><title type="html">June Status Update</title><link href="http://fabricmc.net/2020/06/08/jun-status-update.html" rel="alternate" type="text/html" title="June Status Update" /><published>2020-06-08T00:00:00+00:00</published><updated>2020-06-08T00:00:00+00:00</updated><id>http://fabricmc.net/2020/06/08/jun-status-update</id><content type="html" xml:base="http://fabricmc.net/2020/06/08/jun-status-update.html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/B3zWLoL.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;1.16 pre-releases have begun, and with it comes a new wave of updates for the Fabric toolchain. There are several new key things you should be aware of, including breaking changes from the base game, new Fabric API features, and faster versions of developer tools.&lt;/p&gt;
-
-&lt;p&gt;Now is a great time to start thinking about updating your mods to the 1.16 pre-releases as it will allow a fast and smooth transition to the full 1.16 release.&lt;/p&gt;
-
-&lt;p&gt;A more player-focused blog post will be released alongside the Minecraft 1.16 official release. In the meanwhile feel free to join the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;Discord Server&lt;/a&gt; to see some of the awesome mods and creations people are making!&lt;/p&gt;
-
-&lt;h2 id=&quot;improvements&quot;&gt;Improvements&lt;/h2&gt;
-
-&lt;p&gt;Fabric has received a large number of improvements and bug fixes over the last few months, which will greatly improve the developer experience. Most of these contributions came from members of the community via pull requests.&lt;/p&gt;
-
-&lt;h3 id=&quot;loom&quot;&gt;Loom&lt;/h3&gt;
-
-&lt;p&gt;Loom is the Gradle plugin used by all fabric mods to make setting up a development environment easier, and building a releasable  jar as painless as possible&lt;/p&gt;
-
-&lt;p&gt;Loom 0.4 brings performance improvements, new features, and bug fixes to the table. One of the greatest improvements to Loom from the past few months is support for multi-threading in several operations, which greatly improves speed. A test on medium-tier hardware&lt;sup&gt;1&lt;/sup&gt; reveals a 600%+ speed improvement on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;genSources&lt;/code&gt; between Loom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.2.7-SNAPSHOT&lt;/code&gt;, which took 3m4s, and the most recent version, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.4-SNAPSHOT&lt;/code&gt;, which took an incredible 27s.&lt;/p&gt;
-
-&lt;p&gt;Improvements were also made with startup times: all dependencies are now remapped at once instead of one by one. This saved over 30 seconds during testing and was made possible through improvements to &lt;a href=&quot;https://github.com/FabricMC/tiny-remapper&quot;&gt;tiny-remapper&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;updating-loom&quot;&gt;Updating Loom&lt;/h4&gt;
-
-&lt;p&gt;Updating your projects to use a newer version of Loom is easy! Locate the area at the top of your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;build.gradle&lt;/code&gt; file where you pull Fabric Loom as a plugin:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fabric-loom'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.2.7-SNAPSHOT'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Replace the existing version with your target version. In this example, we will update to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0.4-SNAPSHOT&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;plugins&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'fabric-loom'&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;version&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'0.4-SNAPSHOT'&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;You can view how the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod&quot;&gt;Fabric Example Mod&lt;/a&gt; was updated &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/commit/8d952c922d566bd386d76108c222baa2e2cc5d33&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;yarn&quot;&gt;Yarn&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn&quot;&gt;Yarn&lt;/a&gt; has continued to progress at a rapid rate throughout the 1.16 snapshot cycle and grows ever closer to 100% mapping coverage. As of 1.16-pre2, yarn statistics are as follows:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Category&lt;/th&gt;
-      &lt;th&gt;Progress&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Classes&lt;/td&gt;
-      &lt;td&gt;100%&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Methods&lt;/td&gt;
-      &lt;td&gt;95.71%&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Fields&lt;/td&gt;
-      &lt;td&gt;95.54%&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&quot;big-renames&quot;&gt;Big Renames&lt;/h4&gt;
-
-&lt;p&gt;Based on developer feedback, some larger-scale class renames have been applied to 1.16 yarn:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Previous Name&lt;/th&gt;
-      &lt;th&gt;New Name&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;BasicInventory&lt;/td&gt;
-      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1364&quot;&gt;SimpleInventory&lt;/a&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Container&lt;/td&gt;
-      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1106&quot;&gt;ScreenHandler&lt;/a&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;ContainerScreen&lt;/td&gt;
-      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pull/1106/files&quot;&gt;HandledScreen&lt;/a&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;IWorld&lt;/td&gt;
-      &lt;td&gt;&lt;a href=&quot;https://github.com/FabricMC/yarn/pulls?q=is%3Apr+is%3Aclosed+WorldAccess&quot;&gt;WorldAccess&lt;/a&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;You can automatically update your mods source code to the new names using Loom’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;migrateMappings&lt;/code&gt; task. You can contribute to yarn by visiting the &lt;a href=&quot;https://github.com/FabricMC/yarn&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;A big thanks goes out to over 30 contributors who have helped create these mappings since the first 1.16 snapshot!&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;fabric-api&quot;&gt;Fabric (API)&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric&quot;&gt;Fabric API&lt;/a&gt;, the core library that powers a lot of Fabric mods, has received numerous updates over the past 6 months. It has been updated weekly since the beginning of February for the 1.16 snapshots, covering 16 snapshot versions and 2 pre-releases, as of the start of June. A lot of the mentioned changes below are also in the 1.14 and 1.15 builds.&lt;/p&gt;
-
-&lt;h4 id=&quot;villager-profession-api&quot;&gt;Villager Profession API&lt;/h4&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/493&quot;&gt;i509VCB’s Villager Profession API&lt;/a&gt;, which eases the creation of Villager Professions and Point of Interests, was recently merged into Fabric API.&lt;/p&gt;
-
-&lt;h4 id=&quot;object-builders&quot;&gt;Object Builders&lt;/h4&gt;
-
-&lt;p&gt;The Object Builders module has successfully transitioned from &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/537&quot;&gt;v0 to v1&lt;/a&gt; thanks to the efforts of i509VCB and others, paving the way for more API utilities in the future.&lt;/p&gt;
-
-&lt;h4 id=&quot;nether-biome-api&quot;&gt;Nether Biome API&lt;/h4&gt;
-
-&lt;p&gt;The first 1.16 snapshot, 20w06a, which was released on February 5th, was quickly followed by &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/496&quot;&gt;SuperCoder7979’s Nether Biome API&lt;/a&gt; on the 6th. This API allows developers to easily add their custom biomes to the Nether.&lt;/p&gt;
-
-&lt;h4 id=&quot;improved-commands-api&quot;&gt;Improved Commands API&lt;/h4&gt;
-
-&lt;p&gt;The original API used to add commands was one of the oldest modules in fabric and was due a refresh to bring it upto date. Thanks to i509VCB &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/539&quot;&gt;Fabric Command API v1&lt;/a&gt; was added while maintaining backwards compatibility for existing mods.&lt;/p&gt;
-
-&lt;h4 id=&quot;tool-attributes&quot;&gt;Tool Attributes&lt;/h4&gt;
-
-&lt;p&gt;The new &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/460&quot;&gt;tool attribute&lt;/a&gt; module is designed to replace the old mining level module. As with the other modules backwards compatibility was kept for older mods. Thanks to Boundarybreaker and shedaniel for helping with this.&lt;/p&gt;
-
-&lt;h4 id=&quot;other-changes&quot;&gt;Other Changes&lt;/h4&gt;
-
-&lt;p&gt;There are too many changes to list in detail, bellow are links to some smaller changes that are also included:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/640&quot;&gt;Various Indigo fixes&lt;/a&gt; (grondag)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/601&quot;&gt;Model predicate provider registry&lt;/a&gt; (liach)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/593&quot;&gt;Restart testmods&lt;/a&gt; (modmuss50)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/563/&quot;&gt;Builtin item renderer registry&lt;/a&gt; (Juuxel)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/525&quot;&gt;Improvements to the registry sync&lt;/a&gt; (modmuss50)&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://github.com/FabricMC/fabric/pull/568&quot;&gt;Entity attribute registry&lt;/a&gt; (liach)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;breaking-changes&quot;&gt;Breaking Changes&lt;/h4&gt;
-
-&lt;p&gt;Despite our best efforts, some parts of Fabric API will be broken with the 1.16 update. The most notable change is in &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricDimensionType&lt;/code&gt;&lt;/strong&gt; due to the conversion of dimensions and dimension types to being data-driven. We are not currently sure what can be kept and what must be removed. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-climbable-api-v1&lt;/code&gt; has also been removed, as it was purely a backport of 1.16’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minecraft:climbable&lt;/code&gt; tag.&lt;/p&gt;
-
-&lt;p&gt;Some of the modules originally developed targeting 1.16 have already been backported to 1.15, like the new version 1 of Fabric Object Builders.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;enigma&quot;&gt;Enigma&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://github.com/FabricMC/enigma&quot;&gt;Enigma&lt;/a&gt; is the tool that is used to map out the Minecraft codebase. Over the last few months, members of the community have worked hard to improve it in &lt;em&gt;many&lt;/em&gt; areas.&lt;/p&gt;
-
-&lt;h4 id=&quot;gui-improvements&quot;&gt;GUI Improvements&lt;/h4&gt;
-
-&lt;p&gt;2xsaiko has worked hard to bring one of the most requested features to Enigma: &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/238&quot;&gt;Tab support&lt;/a&gt;! You can now open multiple files at the same time, resulting in faster workflows and an overall better experience.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/7iTKHzs.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;multiplayer&quot;&gt;Multiplayer&lt;/h4&gt;
-
-&lt;p&gt;Earthcomputer worked on a fun &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/221&quot;&gt;pull request to add multiplayer support&lt;/a&gt;, or as he puts it, “&lt;del&gt;battle royale&lt;/del&gt; real-time collab support”.&lt;/p&gt;
-
-&lt;p&gt;To access this feature, open a jar in Enigma, and click the &lt;em&gt;Collab&lt;/em&gt; option at the top of the screen:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/CedYVnt.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;modularity&quot;&gt;Modularity&lt;/h4&gt;
-
-&lt;p&gt;Runemoro &lt;a href=&quot;https://github.com/FabricMC/Enigma/pull/242&quot;&gt;split the code base of Enigma&lt;/a&gt; into 4 distinct sections. The new 4 modules of Enigma include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-swing&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-server&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;enigma-cli&lt;/code&gt;. This will make it easier to continue to improve enigma as well as write tools that use parts of it.&lt;/p&gt;
-
-&lt;h2 id=&quot;modfest&quot;&gt;ModFest&lt;/h2&gt;
-
-&lt;p&gt;The 1.15 &lt;a href=&quot;https://modfest.net/1.15/entries/&quot;&gt;ModFest&lt;/a&gt; event, which ran from March 28&lt;sup&gt;th&lt;/sup&gt; to April 5&lt;sup&gt;th&lt;/sup&gt;, will be followed by another ModFest centered around 1.16. ModFest 1.16 runs from &lt;strong&gt;June 12&lt;sup&gt;th&lt;/sup&gt;&lt;/strong&gt; and &lt;strong&gt;June 21&lt;sup&gt;st&lt;/sup&gt;&lt;/strong&gt;, 2020. You can stay up to date on ModFest news by joining the &lt;a href=&quot;https://discord.gg/gn543Ee&quot;&gt;ModFest Discord server&lt;/a&gt;. The player blog post, which will arrive in the near future, will further document the results of the ModFest 1.15.&lt;/p&gt;
-
-&lt;h3 id=&quot;notes&quot;&gt;Notes&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;Tests were performed on an RX 590 with a Ryzen 3600 and 16GB allocated to IntelliJ IDEA under standard conditions.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;We understand that this is a sudden and troublesome situation. We do not take fraudulent takedown notices lightly, and we’ll do everything we possibly can to ensure this incident has no impact on the project going forward.&lt;/p&gt;</content><author><name></name></author><summary type="html">Update 24/6/2020</summary></entry></feed>
