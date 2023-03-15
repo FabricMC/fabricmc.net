@@ -35,7 +35,7 @@ export interface KotlinConfiguration {
 export interface ComputedConfiguration extends Configuration {
 	modid: string,
 	loaderVersion: string,
-	fabricVersion: string,
+	fabricApiVersion: string,
 	yarnVersion: string,
 	kotlin: KotlinConfiguration | undefined
 }
@@ -65,7 +65,7 @@ async function computeConfig(options: Configuration): Promise<ComputedConfigurat
 	return {
 		...options,
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
-		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
+		fabricApiVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
 		kotlin: await computeKotlinOptions(options)
 	};
