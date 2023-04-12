@@ -1,7 +1,7 @@
 ---
 layout: page
 ---
-Fabric is a lightweight, experimental modding toolchain for Minecraft.
+Fabric is a lightweight modding toolchain for Minecraft.
 
 ## design
 
@@ -16,6 +16,8 @@ To install Fabric, you need the **Fabric Loader**, which you can <a class="page-
 In addition, most mods depend on an API mod, containing commonly used hooks. They can be found here:
 
 * [Fabric API for Minecraft 1.14 and above](https://minecraft.curseforge.com/projects/fabric/files)
+
+It is recommended that you read the <a href="https://fabricmc.net/wiki/faq:user">Frequently Asked Questions for users.</a> Modding-friendly alternative launchers such as MultiMC are recommended over Minecraft Launcher. 
 
 ## projects
 
