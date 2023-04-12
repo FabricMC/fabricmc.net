@@ -17,7 +17,7 @@ In addition, most mods depend on an API mod, containing commonly used hooks. The
 
 * [Fabric API for Minecraft 1.14 and above](https://minecraft.curseforge.com/projects/fabric/files)
 
-It is recommended that you read the <a href="https://fabricmc.net/wiki/faq:user">Frequently Asked Questions for users.</a> Modding-friendly alternative launchers such as MultiMC are recommended over Minecraft Launcher. 
+It is recommended that you read the <a href="https://fabricmc.net/wiki/faq:user">Frequently Asked Questions for users.</a> 
 
 ## projects
 
