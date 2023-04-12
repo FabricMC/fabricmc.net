@@ -40,9 +40,9 @@ function v(e, t) {
   if (!t)
     return !1;
   let s = t;
-  return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "20w14infinite", "1.18_experimental"].forEach((i) => {
+  return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"].forEach((i) => {
     t.startsWith(i) && (s = i);
-  }), t.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : t.startsWith("23w") ? s = "1.19.4" : t.startsWith("22w") ? s = "1.19.3" : t.startsWith("1.18.2") ? s = "1.18.2" : t.startsWith("1.19.1") ? s = "1.19.1" : t.startsWith("1.19.2") ? s = "1.19.2" : t.startsWith("1.19.3") ? s = "1.19.3" : t.startsWith("1.19.4") ? s = "1.19.4" : t.startsWith("21w") ? s = "1.18" : t.startsWith("20w") ? s = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (s = "1.14"), e.endsWith("-" + s) || e.endsWith("+" + s);
+  }), t.startsWith("22w13oneblockatatime") ? s = "22w13oneblockatatime" : t.startsWith("23w") ? s = "1.20" : t.startsWith("22w") ? s = "1.19.3" : t.startsWith("1.18.2") ? s = "1.18.2" : t.startsWith("1.19.1") ? s = "1.19.1" : t.startsWith("1.19.2") ? s = "1.19.2" : t.startsWith("1.19.3") ? s = "1.19.3" : t.startsWith("1.19.4") ? s = "1.19.4" : t.startsWith("21w") ? s = "1.18" : t.startsWith("20w") ? s = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (s = "1.14"), e.endsWith("-" + s) || e.endsWith("+" + s);
 }
 async function c(e) {
   let t = await f(o, e), a = new DOMParser().parseFromString(t, "text/xml");
