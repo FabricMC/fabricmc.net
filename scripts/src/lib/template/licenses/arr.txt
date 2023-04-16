@@ -1,0 +1,6 @@
+---
+title: All Rights Reserved / None
+spdx-id: ARR
+---
+
+All Rights Reserved
