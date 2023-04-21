@@ -114,14 +114,14 @@
         await generator.generateTemplate({
             config,
             writer: {
-                write: async (path, content) => {
-                    zip.file(path, content);
+                write: async (path, content, options) => {
+                    zip.file(path, content, options);
                 },
             },
         });
 
         FileSaver.saveAs(
-            await zip.generateAsync({ type: "blob" }),
+            await zip.generateAsync({ type: "blob", platform: "UNIX" }),
             `${modid}-template-${config.minecraftVersion}.zip`
         );
 
