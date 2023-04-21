@@ -6,12 +6,12 @@ plugins {
   <%_ } %>
 }
 
-sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
-targetCompatibility = JavaVersion.<%= it.java.compatibility %>
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -92,6 +92,9 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
+	targetCompatibility = JavaVersion.<%= it.java.compatibility %>
 }
 
 jar {
