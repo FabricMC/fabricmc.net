@@ -13,9 +13,12 @@ Fabric is a lightweight modding toolchain for Minecraft.
 
 To install Fabric, you need the **Fabric Loader**, which you can <a class="page-link page-link-download" href="/use">download here</a>
 
-In addition, most mods depend on an API mod, containing commonly used hooks. They can be found here:
+You should also read the [Fabric Wiki installation instructions](https://fabricmc.net/wiki/install)!
 
-* [Fabric API for Minecraft 1.14 and above](https://minecraft.curseforge.com/projects/fabric/files)
+In addition, most mods depend on the Fabric API mod, containing commonly used hooks. It must be added to your mods folder. Download Fabric API for Minecraft 1.14 and above from here:
+
+* [CurseForge download for Fabric API](https://minecraft.curseforge.com/projects/fabric/files)
+* [Modrinth download for Fabric API](https://modrinth.com/mod/fabric-api/versions)
 
 It is recommended that you read the <a href="https://fabricmc.net/wiki/faq:user">Frequently Asked Questions for users.</a> 
 
