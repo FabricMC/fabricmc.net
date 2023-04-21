@@ -15,10 +15,9 @@ To install Fabric, you need the **Fabric Loader**, which you can <a class="page-
 
 You can also read the [installation instructions on the Fabric Wiki](https://fabricmc.net/wiki/install)!
 
-In addition, most mods depend on the Fabric API mod, containing commonly used hooks. It must be added to your mods folder. Download Fabric API for Minecraft 1.14 and above from here:
+In addition, most mods depend on the Fabric API mod, containing commonly used hooks. It must be added to your mods folder. It can be found here:
 
-* [CurseForge download for Fabric API](https://minecraft.curseforge.com/projects/fabric/files)
-* [Modrinth download for Fabric API](https://modrinth.com/mod/fabric-api/versions)
+* [Fabric API for Minecraft 1.14 and above](https://minecraft.curseforge.com/projects/fabric/files)
 
 It is recommended that you read the <a href="https://fabricmc.net/wiki/faq:user">Frequently Asked Questions for users.</a> 
 
