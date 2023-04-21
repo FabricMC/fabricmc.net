@@ -92,7 +92,7 @@
     }
 
     async function generate() {
-        if (modIdErrors != undefined) {
+        if (modIdErrors != undefined || modid === "") {
             return;
         }
 
@@ -156,6 +156,10 @@
             {/if}
             
             <input id="project-name" bind:value={projectName} />
+            
+            {#if modid === ""}
+              <p style="color: red">The Modname can not be empty!</p>
+            {/if}
         </div>
 
         {#if customModId != undefined}
