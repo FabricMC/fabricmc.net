@@ -1,7 +1,9 @@
 plugins {
 	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'maven-publish'
-	<%_ if (it.kotlin) { %>id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"<% } %>
+	<%_ if (it.kotlin) { %>
+  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
+  <%_ } %>
 }
 
 sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
