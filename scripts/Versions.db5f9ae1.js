@@ -109,7 +109,7 @@ function ce(l) {
   };
   return Z(l[4], i), {
     c() {
-      i.block.c(), t = V(), o = d("h4"), o.textContent = "Loom", n = V(), c = d("p"), c.innerHTML = "The recommended loom version is <strong>1.1-SNAPSHOT</strong>. This is usually defined near the top of your  build.gradle file.";
+      i.block.c(), t = V(), o = d("h4"), o.textContent = "Loom", n = V(), c = d("p"), c.innerHTML = "The recommended loom version is <strong>1.2-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
     },
     m(r, s) {
       i.block.m(r, i.anchor = s), i.mount = () => t.parentNode, i.anchor = t, p(r, t, s), p(r, o, s), p(r, n, s), p(r, c, s);
