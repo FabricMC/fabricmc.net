@@ -4,6 +4,7 @@ import { addKotlinGradle } from './gradlekotlin';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
+import type { JSZipFileOptions } from 'jszip';
 
 export interface Options {
 	/**
@@ -47,7 +48,7 @@ export interface TemplateOptions {
 }
 
 export interface TemplateWriter {
-	write(path: string, content: string | ArrayBufferLike): Promise<void>
+	write(path: string, content: string | ArrayBufferLike, options?: JSZipFileOptions): Promise<void>
 }
 
 export async function generateTemplate(options: Options) {
@@ -64,7 +65,7 @@ export async function generateTemplate(options: Options) {
 }
 
 export function nameToModId(name: string) {
-	return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-za-z0-9-_]/, "");
+	return name.toLowerCase().replaceAll(/\s+/g, '-').replaceAll(/[^a-za-z0-9-_]/g, "");
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {

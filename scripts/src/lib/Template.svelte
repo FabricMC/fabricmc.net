@@ -40,23 +40,32 @@
     $: supportsDataGen = minorMcVersion >= 17;
     $: supportsSplitSources = minorMcVersion >= 19;
 
-    $: modIdErrors = computeModIdErrors(customModId);
+    $: modIdErrors = computeModIdErrors(modid);
+    $: customIdErrors = computeCustomModIdErrors(customModId);
+
+
+    function sharedModIdChecks(id: string, isId: boolean): string[] | undefined {
+      let errorList : string[] = [];
+
+      const type = isId ? "Modid" : "Mod Name";
+      if (id.length == 0) {
+          return [`${type} is empty!`];
+      } else if (id.length == 1) {
+          errorList.push(`${type} is only a single character! (It must be at least 2 characters long)!`);
+      } else if (id.length > 64) {
+          errorList.push(`${type} has more than 64 characters!`);
+      }
+
+      return errorList.length === 0 ? undefined : errorList;
+    }
 
     // Ported/adapted from Loader's MetadataVerifier
-    function computeModIdErrors(id: string | undefined) : string[] | undefined {
-        if (id == undefined) {
-            return undefined;
+    function computeCustomModIdErrors(id: string | undefined): string[] | undefined {
+        if (id === undefined) {
+          return undefined;
         }
 
-        let errorList : string[] = [];
-
-        if (id.length == 0) {
-            return ["Modid is empty!"];
-        } else if (id.length == 1) {
-            errorList.push("Modid is only a single character! (It must be at least 2 characters long)!");
-        } else if (id.length > 64) {
-            errorList.push("Modid has more than 64 characters!");
-        }
+        let errorList = sharedModIdChecks(id, true) ?? [];
 
         const first = id.charAt(0);
 
@@ -64,10 +73,10 @@
             errorList.push("Modid starts with an invalid character '" + first + "' (it must belowercase a-z)");
         }
 
-        var invalidChars: string[] | null = null;
+        let invalidChars: string[] | null = null;
 
-        for (var i = 1; i < id.length; i++) {
-            var c = id.charAt(i);
+        for (let i = 1; i < id.length; i++) {
+            let c = id.charAt(i);
 
             if (c == '-' || c == '_' || ('0' <= c && c <= '9') || ('a' <= c && c <= 'z')) {
                 continue;
@@ -81,7 +90,7 @@
         }
 
         if (invalidChars != null) {
-            var error = "Modid contains invalid characters: " + invalidChars.map(value => "'" + value + "'").join(", ") + "!";
+            let error = "Modid contains invalid characters: " + invalidChars.map(value => "'" + value + "'").join(", ") + "!";
             errorList.push(error + "!");
         }
 
@@ -92,8 +101,16 @@
         return errorList;
     }
 
+    function computeModIdErrors(id: string | undefined) : string[] | undefined {
+      if (id === undefined) {
+        return undefined;
+      }
+
+      return sharedModIdChecks(id, customModId === undefined);
+    }
+
     async function generate() {
-        if (modIdErrors != undefined) {
+        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined)) {
             return;
         }
 
@@ -116,14 +133,14 @@
         await generator.generateTemplate({
             config,
             writer: {
-                write: async (path, content) => {
-                    zip.file(path, content);
+                write: async (path, content, options) => {
+                    zip.file(path, content, options);
                 },
             },
         });
 
         FileSaver.saveAs(
-            await zip.generateAsync({ type: "blob" }),
+            await zip.generateAsync({ type: "blob", platform: "UNIX" }),
             `${modid}-template-${config.minecraftVersion}.zip`
         );
 
@@ -158,6 +175,13 @@
             {/if}
             
             <input id="project-name" bind:value={projectName} />
+            
+            {#if modIdErrors != undefined} 
+            {#each modIdErrors as error}
+                <li style="color: red">{error}</li>
+            {/each}
+            <br>
+        {/if}
         </div>
 
         {#if customModId != undefined}
@@ -165,11 +189,11 @@
                 <h3>Mod ID:</h3>
                 <hr />
                 <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
-                {#if modIdErrors != undefined} 
-                    {#each modIdErrors as error}
+                {#if customIdErrors != undefined} 
+                    {#each customIdErrors as error}
                         <li style="color: red">{error}</li>
                     {/each}
-                    <br>
+                    <br />
                 {/if}
 
                 <input id="mod-id" bind:value={customModId} />

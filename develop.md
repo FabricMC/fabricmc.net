@@ -9,7 +9,7 @@ This page contains a range of resources to help you create a new mod or maintain
 
 ### Getting started
 
-* If you would like to create a new mod please see the [wiki](http://fabricmc.net/wiki/start).
+* If you would like to create a new mod please see the [wiki](https://fabricmc.net/wiki/start).
 
 * An up-to date template mod can be found on [github](https://github.com/FabricMC/fabric-example-mod) or you can try out the new [template mod generator](./template).
 

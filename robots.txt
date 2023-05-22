@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fabricmc.net/wiki/doku.php?do=sitemap
+Sitemap: https://fabricmc.net/sitemap.xml
