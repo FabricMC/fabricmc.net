@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.20 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.20" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.20 is almost here, again with a number of changes that impact many mods." />
+<meta property="og:description" content="Minecraft 1.20 is almost here, again with a number of changes that impact many mods." />
+<link rel="canonical" href="https://fabricmc.net/2023/05/25/120.html" />
+<meta property="og:url" content="https://fabricmc.net/2023/05/25/120.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.20" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.20","dateModified":"2023-05-25T00:00:00+00:00","datePublished":"2023-05-25T00:00:00+00:00","description":"Minecraft 1.20 is almost here, again with a number of changes that impact many mods.","url":"https://fabricmc.net/2023/05/25/120.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2023/05/25/120.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1685016725">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1685016725"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.20</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-05-25T00:00:00+00:00" itemprop="datePublished">May 25, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.20 is almost here, again with a number of changes that impact many mods.</p>
+
+<p>As usual, we ask players to be patient, and give mod developers time to update to this new version.</p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.2 (at the time of writing) to develop for Minecraft 1.20. Players should install the latest stable version of Fabric Loader (currently 0.14.19) to play 1.20.</p>
+
+<h3 id="loom-12">Loom 1.2</h3>
+<p>Loom 1.2 is a small update focused on game library handling improvements and official Windows ARM native support. <strong>Loom 1.2 requires Gradle 8.1.</strong></p>
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+<p>Fabric API added many features since the last update blog post:</p>
+
+<!-- maybe sort alphabetically from now on? -->
+
+<ul>
+  <li>Data Generation: add codec data provider. (ErrorCraft)</li>
+  <li>Interaction Events: provide fake player API. (Technici4n)</li>
+  <li>Networking: add packet-based API similar to vanilla networking system. See <a href="https://gist.github.com/apple502j/9c6b9e5e8dec37cbf6f3916472a79d57">the gist</a> for migration tips. Note that the existing API is not deprecated in any way. (apple502j)</li>
+  <li>Renderer API: add material inspection and glint material property, remove texture indices. (PepperCode1, Technici4n)</li>
+  <li>Transfer API: add slotted storage and non-empty iterator. (Technici4n)</li>
+  <li>Other small additions to various APIs, such as Convention Tag and Object Builder</li>
+</ul>
+
+<h3 id="breaking-changes-and-deprecations">Breaking changes and deprecations</h3>
+<p>Aside from changes related to Minecraft code changes (which are discussed below), no breaking change to the API was introduced.</p>
+
+<p>During one of the code refactors, one bug related to the Registry Sync was “accidentally” fixed. The bug previously allowed clients with Fabric API (but without content mods) to join a server with modded contents, despite the mod being missing on the client. The refactor was merged to both 1.19.4 and 1.20 snapshot branches; however, the bug was reintroduced to 1.19.4 only to prevent unexpected breakage. If you have previously relied on the bug, make sure to have users install the mods on the client.</p>
+
+<p>A few rarely-used APIs within <code class="language-plaintext highlighter-rouge">EventFactory</code> were deprecated. They were intended to be used for profiling events; however, the standard Java profiler provides a better result.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">invalidate</code> method was terminally deprecated, to be removed in future versions.</li>
+  <li><code class="language-plaintext highlighter-rouge">isProfilingEnabled</code> method was deprecated and now always returns <code class="language-plaintext highlighter-rouge">true</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">getHandlerName</code> method was also deprecated.</li>
+</ul>
+
+<h4 id="fabric-rendering-api-deprecations">Fabric Rendering API deprecations</h4>
+<p>Many methods of the renderer API had an <code class="language-plaintext highlighter-rouge">int spriteIndex</code> parameter that was always 0. It was removed, and the naming of some methods was improved in the process. The boolean <code class="language-plaintext highlighter-rouge">disableAo</code> material property was also replaced by a more flexible TriState for <code class="language-plaintext highlighter-rouge">ambientOcclusion</code>.</p>
+
+<p>The old methods are now deprecated, here are a few examples of migrating away from them:</p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  MaterialFinder finder = ...;
+<span class="gd">- materialFinder.blendMode(0, &lt;blend mode&gt;);
+</span><span class="gi">+ materialFinder.blendMode(&lt;blend mode&gt;);
+</span><span class="gd">- materialFinder.disableAo(0, true);
+</span><span class="gi">+ materialFinder.ambientOcclusion(TriState.FALSE);
+</span>
+  QuadView quadView = ...;
+<span class="gd">- quadView.spriteColor(0, -1, -1, -1, -1);
+</span><span class="gi">+ quadView.color(-1, -1, -1, -1);
+</span></code></pre></div></div>
+
+<p>The full list of renames can be found <a href="https://github.com/FabricMC/fabric/pull/3044">in the pull request description</a>.</p>
+
+<p>The new methods do not have a default implementation in 1.20. This does not affect mods using the Renderer API, however third-party renderers such as Canvas or Indium must add support for them.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+<p>Minecraft 1.20 introduces some breaking changes to major developer-facing APIs.</p>
+
+<h3 id="material-or-the-lack-thereof">Material (or the lack thereof)</h3>
+<p><code class="language-plaintext highlighter-rouge">Material</code> was a class that indicated the type of blocks, such as plant or metal. This class no longer exists:</p>
+
+<ul>
+  <li>To specify the properties, such as the map color and whether the block is replaceable, use the block settings.
+One note on the new <code class="language-plaintext highlighter-rouge">solid</code> and <code class="language-plaintext highlighter-rouge">notSolid</code> block settings: These two methods override the default solid block check. If a block is not specified as solid or not solid explicitly, then the game checks whether the shape’s average side length is more than 0.73 OR whether the block is taller than 1 block. If either is true, the block is solid.</li>
+  <li>To get those values, use <code class="language-plaintext highlighter-rouge">BlockState</code> methods. (You may need to refactor your code if your method takes <code class="language-plaintext highlighter-rouge">Block</code> instead of <code class="language-plaintext highlighter-rouge">BlockState</code>.)</li>
+  <li>To check if a block is of a certain type, use block tags or <code class="language-plaintext highlighter-rouge">instanceof</code>.</li>
+</ul>
+
+<p>Related changes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">BlockSetType</code> now has <code class="language-plaintext highlighter-rouge">canOpenByHand</code> field, used by doors and trapdoors.</li>
+  <li><code class="language-plaintext highlighter-rouge">Block#canMobSpawnInside</code> now takes a <code class="language-plaintext highlighter-rouge">BlockState</code>. Previously it took no arguments.</li>
+  <li><code class="language-plaintext highlighter-rouge">BlockState#blocksMovement</code>, which returns <code class="language-plaintext highlighter-rouge">true</code> for all solid blocks except cobwebs and bamboo shoots, was added.</li>
+  <li><code class="language-plaintext highlighter-rouge">Block.Settings#of</code> method was renamed to <code class="language-plaintext highlighter-rouge">create</code>. Fabric API’s <code class="language-plaintext highlighter-rouge">FabricBlockSettings#of</code> was renamed as well, and the old method was deprecated.</li>
+  <li>Fabric API: <code class="language-plaintext highlighter-rouge">FabricMaterialBuilder</code> was removed.</li>
+</ul>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- new Block(AbstractBlock.Settings.of(Material.PLANT, MapColor.GREEN))
+</span><span class="gi">+ new Block(AbstractBlock.Settings.create().mapColor(MapColor.GREEN).pistonBehavior(PistonBehavior.DESTROY))
+</span></code></pre></div></div>
+
+<h3 id="world-changes">World changes</h3>
+<p>One of the biggest, yet subtle changes in this version is that <code class="language-plaintext highlighter-rouge">Entity#world</code> is now private. Use <code class="language-plaintext highlighter-rouge">Entity#getWorld</code> or <code class="language-plaintext highlighter-rouge">Entity#getServerWorld</code>:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- World world = player.world;
+</span><span class="gi">+ World world = player.getWorld();
+</span></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">RedstoneView</code> provides redstone-related methods that previously existed in <code class="language-plaintext highlighter-rouge">World</code>.</p>
+
+<h3 id="screen-and-rendering-changes">Screen and rendering changes</h3>
+<p><code class="language-plaintext highlighter-rouge">DrawableHelper</code>, a utility that is frequently used by subclassing it, turned into an object passed to rendering methods: <code class="language-plaintext highlighter-rouge">DrawContext</code>. This replaces the various <code class="language-plaintext highlighter-rouge">MatrixStack matrices</code> parameters. You usually do not need to construct one yourself.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public void render(MatrixStack matrices) {
+-   RenderSystem.setShaderTexture(0, TEXTURE);
+-   drawTexture(matrices, ...);
+</span><span class="gi">+ public void render(DrawContext context) {
++   context.drawTexture(TEXTURE, ...); // texture ID is now specified here
+</span></code></pre></div></div>
+
+<p>The following new methods were added to <code class="language-plaintext highlighter-rouge">DrawContext</code>, replacing other methods in various places:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">setShaderColor</code> (wraps <code class="language-plaintext highlighter-rouge">RenderSystem</code> one, which still exists)</li>
+  <li><code class="language-plaintext highlighter-rouge">drawTextWithShadow</code> (replaces <code class="language-plaintext highlighter-rouge">TextRenderer#drawWithShadow</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">drawText</code> (wraps <code class="language-plaintext highlighter-rouge">TextRenderer#draw</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">drawTextWrapped</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawItem</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawItemWithoutEntity</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawItemInSlot</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawItemTooltip</code></li>
+  <li><code class="language-plaintext highlighter-rouge">drawTooltip</code> (replaces <code class="language-plaintext highlighter-rouge">Screen#renderTooltip</code>)</li>
+  <li><code class="language-plaintext highlighter-rouge">drawHoverEvent</code></li>
+</ul>
+
+<p>In addition, various rendering methods now take <code class="language-plaintext highlighter-rouge">DrawContext</code> instead of <code class="language-plaintext highlighter-rouge">MatrixStack</code>. If you still somehow need the matrix stack, you can use <code class="language-plaintext highlighter-rouge">DrawContext#getMatrices</code>.</p>
+
+<p>Fabric API changes related to this:</p>
+
+<ul>
+  <li>Rendering API’s <code class="language-plaintext highlighter-rouge">HudRenderCallback</code>, Screen API’s <code class="language-plaintext highlighter-rouge">ScreenEvents.beforeRender</code>, and <code class="language-plaintext highlighter-rouge">ScreenEvents.beforeRender</code> now take <code class="language-plaintext highlighter-rouge">DrawContext</code> instead of <code class="language-plaintext highlighter-rouge">MatrixStack</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Screens.getItemRenderer</code> is removed. This can be easily replaced with <code class="language-plaintext highlighter-rouge">MinecraftClient#getItemRenderer</code>, although this is usually not necessary.</li>
+</ul>
+
+<p>And one unrelated change: <code class="language-plaintext highlighter-rouge">Screen#passEvents</code> was removed, therefore screens can no longer pass events.</p>
+
+<h3 id="item-group-changes">Item group changes</h3>
+<p><code class="language-plaintext highlighter-rouge">ItemGroup</code>s are now registered in a registry. This means that the vanilla game tracks them using identifiers, just like blocks and items - and it is registered in the same way as those.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public static final ItemGroup ITEM_GROUP = FabricItemGroup.builder(new Identifier(MOD_ID, "example"))
+-   .icon(() -&gt; new ItemStack(Items.DIAMOND_PICKAXE))
+-   .displayName(Text.translatable("example-mod.group.example"))
+-   .build();
+</span><span class="gi">+ public static final RegistryKey&lt;ItemGroup&gt; ITEM_GROUP = RegistryKey.of(RegistryKeys.ITEM_GROUP, new Identifier(MOD_ID, "example"));
++
++ @Override
++ public void onInitialize() {
++   Registry.register(Registries.ITEM_GROUP, ITEM_GROUP, FabricItemGroup.builder()
++       .icon(() -&gt; new ItemStack(Items.DIAMOND_PICKAXE))
++       .displayName(Text.translatable("example-mod.group.example"))
++       .build()); // build() no longer registers by itself
++ }
+</span></code></pre></div></div>
+
+<p>Notice that <code class="language-plaintext highlighter-rouge">FabricItemGroup#builder</code> takes no arguments now, since the ID is assigned by the registry. Note, <strong>you must now call <code class="language-plaintext highlighter-rouge">displayName</code> manually or it will crash!</strong></p>
+
+<p><code class="language-plaintext highlighter-rouge">ItemGroupEvents.modifyEntriesEvent</code> will now take <code class="language-plaintext highlighter-rouge">RegistryKey&lt;ItemGroup&gt;</code> instead of <code class="language-plaintext highlighter-rouge">ItemGroup</code> or <code class="language-plaintext highlighter-rouge">Identifier</code>. Note that vanilla <code class="language-plaintext highlighter-rouge">ItemGroups</code> fields are now registry keys, so code using those just needs to be recompiled. And with the game now providing the identifier, <code class="language-plaintext highlighter-rouge">IdentifiableItemGroup</code> is removed.</p>
+
+<p>Finally, one small breaking change to Data Generation: <code class="language-plaintext highlighter-rouge">FabricLanguageProvider.TranslationBuilder#add</code> will now take <code class="language-plaintext highlighter-rouge">RegistryKey&lt;ItemGroup&gt;</code> instead of <code class="language-plaintext highlighter-rouge">ItemGroup</code>.</p>
+
+<h3 id="itemstack-changes">ItemStack changes</h3>
+<p>Code modifying <code class="language-plaintext highlighter-rouge">ItemStack</code> should now use the combined methods (such as <code class="language-plaintext highlighter-rouge">copyWithCount</code>) instead of 2 method calls (such as <code class="language-plaintext highlighter-rouge">copy</code> + <code class="language-plaintext highlighter-rouge">setCount</code>) to properly handle empty stacks. <code class="language-plaintext highlighter-rouge">ItemStack#copyAndEmpty</code> was added to move the contents of one stack into a new copy.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- ItemStack copy = stack.copy();
+- copy.setCount(1);
+</span><span class="gi">+ ItemStack copy = stack.copyWithCount(1);
+</span></code></pre></div></div>
+
+<p>A couple of equality methods in <code class="language-plaintext highlighter-rouge">ItemStack</code> were removed:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ItemStack#isItemEqual</code>: use the static <code class="language-plaintext highlighter-rouge">areItemsEqual()</code> method instead.</li>
+  <li><code class="language-plaintext highlighter-rouge">ItemStack#areNbtEqual</code>: use <code class="language-plaintext highlighter-rouge">canCombine</code> (which also checks for items) or compare NBT yourself instead.</li>
+</ul>
+
+<h3 id="loot-changes">Loot changes</h3>
+<p>Predicates and item modifiers (or, in legacy terms, loot conditions and loot functions) are now managed by <code class="language-plaintext highlighter-rouge">LootManager</code>. They are identified using <code class="language-plaintext highlighter-rouge">LootDataKey</code>, similar to <code class="language-plaintext highlighter-rouge">RegistryKey</code>. <code class="language-plaintext highlighter-rouge">getTable</code> is renamed to <code class="language-plaintext highlighter-rouge">getLootTable</code>, and <code class="language-plaintext highlighter-rouge">getElement</code> can be used to get loot tables, predicates, or item modifiers.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LootContext.Builder</code> is moved to <code class="language-plaintext highlighter-rouge">LootContextParameterSet.Builder</code> and its <code class="language-plaintext highlighter-rouge">parameter</code> method was renamed to <code class="language-plaintext highlighter-rouge">add</code>. The <code class="language-plaintext highlighter-rouge">putDrop</code> method was renamed to <code class="language-plaintext highlighter-rouge">addDynamicDrop</code>. The <code class="language-plaintext highlighter-rouge">getNullable</code> method was renamed to <code class="language-plaintext highlighter-rouge">getOptional</code> for consistency. The loot inventory seed is now given via <code class="language-plaintext highlighter-rouge">supplyInventory</code>.</p>
+
+<h3 id="other-small-but-noteworthy-changes">Other small, but noteworthy changes</h3>
+<ul>
+  <li>Fabric Content Registries’ <code class="language-plaintext highlighter-rouge">VillagerPlantableRegistry</code> was replaced with <code class="language-plaintext highlighter-rouge">ItemTags.VILLAGER_PLANTABLE_SEEDS</code> (data pack tags).</li>
+  <li>Herobrine was removed.</li>
+  <li><code class="language-plaintext highlighter-rouge">RecipeProvider#offerWoolDyeingRecipe</code> and similar methods were merged to <code class="language-plaintext highlighter-rouge">offerDyeableRecipes</code> (which also offers re-coloring).</li>
+  <li>Ingredients can now be <code class="language-plaintext highlighter-rouge">minecraft:air</code> to indicate an empty slot. If your code uses <code class="language-plaintext highlighter-rouge">Ingredient#fromJson</code>, then it will automatically allow air ingredients. <strong>To keep old behavior</strong> of disallowing air ingredients (which you probably want), use the <code class="language-plaintext highlighter-rouge">fromJson</code> overload with the boolean param set to <code class="language-plaintext highlighter-rouge">false</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ServerCommandSource#sendFeedback</code> now takes <code class="language-plaintext highlighter-rouge">Supplier&lt;Text&gt;</code> instead of <code class="language-plaintext highlighter-rouge">Text</code> for performance reasons. Add <code class="language-plaintext highlighter-rouge">() -&gt;</code> and it should be good to go.</li>
+</ul>
+
+  </div><a class="u-url" href="/2023/05/25/120.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
