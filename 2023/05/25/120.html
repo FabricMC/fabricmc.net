@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.2.0" />
 <meta property="og:title" content="Fabric for Minecraft 1.20" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Minecraft 1.20 is almost here, again with a number of changes that impact many mods." />
-<meta property="og:description" content="Minecraft 1.20 is almost here, again with a number of changes that impact many mods." />
+<meta name="description" content="Minecraft 1.20 - the Trails and Tales Update - releases on June 7th 2023, again with a number of changes that impact many mods." />
+<meta property="og:description" content="Minecraft 1.20 - the Trails and Tales Update - releases on June 7th 2023, again with a number of changes that impact many mods." />
 <link rel="canonical" href="https://fabricmc.net/2023/05/25/120.html" />
 <meta property="og:url" content="https://fabricmc.net/2023/05/25/120.html" />
 <meta property="og:site_name" content="Fabric" />
@@ -17,11 +17,11 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Fabric for Minecraft 1.20" />
 <script type="application/ld+json">
-{"headline":"Fabric for Minecraft 1.20","dateModified":"2023-05-25T00:00:00+00:00","datePublished":"2023-05-25T00:00:00+00:00","description":"Minecraft 1.20 is almost here, again with a number of changes that impact many mods.","url":"https://fabricmc.net/2023/05/25/120.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2023/05/25/120.html"},"@context":"https://schema.org"}</script>
+{"headline":"Fabric for Minecraft 1.20","dateModified":"2023-05-25T00:00:00+00:00","datePublished":"2023-05-25T00:00:00+00:00","description":"Minecraft 1.20 - the Trails and Tales Update - releases on June 7th 2023, again with a number of changes that impact many mods.","url":"https://fabricmc.net/2023/05/25/120.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2023/05/25/120.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1685021031">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1685021031"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1685116121">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1685116121"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -74,7 +74,7 @@
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <p>Minecraft 1.20 is almost here, again with a number of changes that impact many mods.</p>
+    <p>Minecraft 1.20 - the Trails and Tales Update - <a href="https://www.minecraft.net/en-us/article/trails-tales-update-coming">releases on June 7th 2023</a>, again with a number of changes that impact many mods.</p>
 
 <p>As usual, we ask players to be patient, and give mod developers time to update to this new version.</p>
 
@@ -198,7 +198,7 @@ One note on the new <code class="language-plaintext highlighter-rouge">solid</co
 <p>Fabric API changes related to this:</p>
 
 <ul>
-  <li>Rendering API’s <code class="language-plaintext highlighter-rouge">HudRenderCallback</code>, Screen API’s <code class="language-plaintext highlighter-rouge">ScreenEvents.beforeRender</code>, and <code class="language-plaintext highlighter-rouge">ScreenEvents.beforeRender</code> now take <code class="language-plaintext highlighter-rouge">DrawContext</code> instead of <code class="language-plaintext highlighter-rouge">MatrixStack</code>.</li>
+  <li>Rendering API’s <code class="language-plaintext highlighter-rouge">HudRenderCallback</code>, Screen API’s <code class="language-plaintext highlighter-rouge">ScreenEvents.beforeRender</code>, and <code class="language-plaintext highlighter-rouge">ScreenEvents.afterRender</code> now take <code class="language-plaintext highlighter-rouge">DrawContext</code> instead of <code class="language-plaintext highlighter-rouge">MatrixStack</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">Screens.getItemRenderer</code> is removed. This can be easily replaced with <code class="language-plaintext highlighter-rouge">MinecraftClient#getItemRenderer</code>, although this is usually not necessary.</li>
 </ul>
 
@@ -253,7 +253,6 @@ One note on the new <code class="language-plaintext highlighter-rouge">solid</co
   <li>Fabric Content Registries’ <code class="language-plaintext highlighter-rouge">VillagerPlantableRegistry</code> was replaced with <code class="language-plaintext highlighter-rouge">ItemTags.VILLAGER_PLANTABLE_SEEDS</code> (data pack tags).</li>
   <li>Herobrine was removed.</li>
   <li><code class="language-plaintext highlighter-rouge">RecipeProvider#offerWoolDyeingRecipe</code> and similar methods were merged to <code class="language-plaintext highlighter-rouge">offerDyeableRecipes</code> (which also offers re-coloring).</li>
-  <li>Ingredients can now be <code class="language-plaintext highlighter-rouge">minecraft:air</code> to indicate an empty slot. If your code uses <code class="language-plaintext highlighter-rouge">Ingredient#fromJson</code>, then it will automatically allow air ingredients. <strong>To keep old behavior</strong> of disallowing air ingredients (which you probably want), use the <code class="language-plaintext highlighter-rouge">fromJson</code> overload with the boolean param set to <code class="language-plaintext highlighter-rouge">false</code>.</li>
   <li><code class="language-plaintext highlighter-rouge">ServerCommandSource#sendFeedback</code> now takes <code class="language-plaintext highlighter-rouge">Supplier&lt;Text&gt;</code> instead of <code class="language-plaintext highlighter-rouge">Text</code> for performance reasons. Add <code class="language-plaintext highlighter-rouge">() -&gt;</code> and it should be good to go.</li>
 </ul>
 
