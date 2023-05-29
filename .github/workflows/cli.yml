@@ -1,0 +1,27 @@
+name: Build CLI
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: "1.34.0"
+      - run: npm i
+        working-directory: ./scripts
+      - run: npm run check
+        working-directory: ./scripts
+      - run: npm run buildLib
+        working-directory: ./scripts
+      - run: make compile
+        working-directory: ./cli
+      - name: CLI binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: CLI binaries
+          path: ./cli/out
