@@ -250,7 +250,7 @@
                 <label for="kotlinGradle" class="option-label">Gradle Kotlin DSL</label>
             </div>
             <p class="option-body">
-                Use the <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Kotlin DSL</a> for the Gradle build script. This option is only reccomended for advanced users familar with Kotlin and Gradle. This may result in slower build peformance and compability issues with some IDEs.
+                Use the <a href="https://docs.gradle.org/current/userguide/kotlin_dsl.html">Kotlin DSL</a> for the Gradle build script. This option is only recommended for advanced users familiar with Kotlin and Gradle. This may result in slower build performance and compatibility issues with some IDEs.
             </p>
         </div>
 
