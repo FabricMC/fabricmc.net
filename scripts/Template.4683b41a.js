@@ -3374,35 +3374,35 @@ repositories {
 loom {
 <% if (it.splitSources) { %>    splitEnvironmentSourceSets()
 
-    mods {
-        "<%= it.modid %>" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
+	mods {
+		"<%= it.modid %>" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
 <% } %><% if (it.dataGeneration) { %>    runs {
-        // This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
-        datagen {
-            inherit server
-            name "Data Generation"
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=\${file("src/main/generated")}"
-            vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
+		datagen {
+			inherit server
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=\${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
  
-            runDir "build/datagen"
-        }
-    }<% } %>
+			runDir "build/datagen"
+		}
+	}<% } %>
 }
 <% } %><% if (it.dataGeneration) { %>
 // Add the generated resources to the main source set
 sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    'src/main/generated'
-            ]
-        }
-    }
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
 }<% } %>
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -3469,14 +3469,14 @@ publishing {
 		// retrieving dependencies.
 	}
 }`, Me = `pluginManagement {
-    repositories {
-        maven {
-            name = 'Fabric'
-            url = 'https://maven.fabricmc.net/'
-        }
-        mavenCentral()
-        gradlePluginPortal()
-    }
+	repositories {
+		maven {
+			name = 'Fabric'
+			url = 'https://maven.fabricmc.net/'
+		}
+		mavenCentral()
+		gradlePluginPortal()
+	}
 }`, We = {
   compatibility: "VERSION_1_8",
   mixin: "JAVA_8",
@@ -3582,19 +3582,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 <% } %>
 public class <%= it.className %> implements ModInitializer {
-    // This logger is used to write text to the console and the log file.
-    // It is considered best practice to use your mod id as the logger's name.
-    // That way, it's clear which mod wrote info, warnings, and errors.
+	// This logger is used to write text to the console and the log file.
+	// It is considered best practice to use your mod id as the logger's name.
+	// That way, it's clear which mod wrote info, warnings, and errors.
 <% if (it.slf4j) { %>    public static final Logger LOGGER = LoggerFactory.getLogger("<%= it.modid %>");
 <% } else { %>    public static final Logger LOGGER = LogManager.getLogger("<%= it.modid %>");<% } %>
-    @Override
-    public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
+	@Override
+	public void onInitialize() {
+		// This code runs as soon as Minecraft is in a mod-load-ready state.
+		// However, some things (like resources) may still be uninitialized.
+		// Proceed with mild caution.
 
-        LOGGER.info("Hello Fabric world!");
-    }
+		LOGGER.info("Hello Fabric world!");
+	}
 }`, _e = `package <%= it.package %>
 
 import net.fabricmc.api.ModInitializer
@@ -3603,39 +3603,39 @@ import net.fabricmc.api.ModInitializer
 object <%= it.className %> : ModInitializer {
 <% if (it.slf4j) { %>    private val logger = LoggerFactory.getLogger("<%= it.modid %>")
 <% } else { %>    private val logger = LogManager.getLogger("<%= it.modid %>")<% } %>
-    override fun onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
-        logger.info("Hello Fabric world!")
-    }
+	override fun onInitialize() {
+		// This code runs as soon as Minecraft is in a mod-load-ready state.
+		// However, some things (like resources) may still be uninitialized.
+		// Proceed with mild caution.
+		logger.info("Hello Fabric world!")
+	}
 }`, $e = `package <%= it.package %>;
 
 import net.fabricmc.api.ClientModInitializer;
 
 public class <%= it.className %> implements ClientModInitializer {
-    @Override
-    public void onInitializeClient() {
-        // This entrypoint is suitable for setting up client-specific logic, such as rendering.
-    }
+	@Override
+	public void onInitializeClient() {
+		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+	}
 }`, tn = `package <%= it.package %>
 
 import net.fabricmc.api.ClientModInitializer
 
 object <%= it.className %> : ClientModInitializer {
-    override fun onInitializeClient() {
-        // This entrypoint is suitable for setting up client-specific logic, such as rendering.
-    }
+	override fun onInitializeClient() {
+		// This entrypoint is suitable for setting up client-specific logic, such as rendering.
+	}
 }`, en = `package <%= it.package %>;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 public class <%= it.className %> implements DataGeneratorEntrypoint {
-    @Override
-    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+	@Override
+	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 
-    }
+	}
 }
 `, nn = `package <%= it.package %>
 
@@ -3643,8 +3643,8 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 
 object <%= it.className %> : DataGeneratorEntrypoint {
-    override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {
-    }
+	override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {
+	}
 }`;
 async function rn(B, m) {
   const i = "ExampleMod", y = {
