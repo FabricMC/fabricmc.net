@@ -6,6 +6,9 @@ COMPILE_FILE_NAME=fabric-template-generator
 run:
 	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT)
 
+bundle:
+	deno run --allow-env --allow-read --allow-net --allow-write bundle.ts
+
 compile: compile_windows compile_macos compile_linux
 
 compile_windows:
