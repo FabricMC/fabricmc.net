@@ -10,7 +10,7 @@ import workflow from './templates/git/workflow.yml?raw'
 
 export async function addGradleWrapper({ writer }: Options) {
 	await writer.write('gradlew', gradlew, {
-    unixPermissions: "774"
+    unixPermissions: 774
   });
 	await writer.write('gradlew.bat', gradlewBat);
 	await writer.write('gradle/wrapper/gradle-wrapper.properties', gradleWrapperProperties);

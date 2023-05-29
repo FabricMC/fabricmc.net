@@ -1,2 +1,6 @@
-/out
-/temp
+# Ignore everything
+/*
+
+!/.vscode
+!main.ts
+!Makefile
