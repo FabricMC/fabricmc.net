@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite build --watch -m development",
     "build": "npm run check && vite build",
+    "buildLib": "BUILD_LIB=true vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
   "dependencies": {
     "eta": "^2.0.1",
     "file-saver": "^2.0.5",
-    "jszip": "^3.10.1"
+    "jszip": "^3.10.1",
+    "vite-plugin-dts": "^2.3.0"
   }
 }

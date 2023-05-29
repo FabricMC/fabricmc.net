@@ -121,12 +121,19 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
     return apiVersion.endsWith("-" + branch) || apiVersion.endsWith("+" + branch);
 }
 
+let xmlVersionParser = (xml: string): string[]  => {
+    let parser = new DOMParser();
+    let xmlDoc = parser.parseFromString(xml, "text/xml");
+    return Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
+}
+
+export function setXmlVersionParser(parser: (xml: string) => string[]) {
+    xmlVersionParser = parser
+}
+
 export async function getMavenVersions(path: string): Promise<string[]> {
     let metadata = await getText(MAVEN, path);
-    let parser = new DOMParser();
-    let xmlDoc = parser.parseFromString(metadata, "text/xml");
-    let versions = Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
-    return versions;
+    return xmlVersionParser(metadata);
 }
 
 async function getJson<T>(hostnames: string[], path: string) {

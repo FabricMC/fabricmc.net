@@ -3,7 +3,6 @@ import { addGroovyGradle } from './gradlegroovy';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
-import type { JSZipFileOptions } from 'jszip';
 
 export interface Options {
 	/**
@@ -45,8 +44,12 @@ export interface TemplateOptions {
 	minecraftVersion: string, loaderVersion: string, yarnVersion: string
 }
 
+export interface FileOptions {
+	unixPermissions?: number;
+}
+
 export interface TemplateWriter {
-	write(path: string, content: string | ArrayBufferLike, options?: JSZipFileOptions): Promise<void>
+	write(path: string, content: string | ArrayBufferLike, options?: FileOptions): Promise<void>
 }
 
 export async function generateTemplate(options: Options) {
