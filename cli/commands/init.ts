@@ -35,7 +35,6 @@ async function generate(
   outputDirName: string | undefined,
 ) {
   const outputDir = await getAndPrepareOutputDir(outputDirName);
-  console.log(outputDir);
 
   const isTargetEmpty = await utils.isDirEmpty(outputDir);
   if (!isTargetEmpty) {

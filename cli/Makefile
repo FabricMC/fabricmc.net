@@ -10,5 +10,5 @@ test:
 check:
 	deno check $(ENTRYPOINT)
 
-bundle: check
+build: check
 	deno run --allow-env --allow-read --allow-net --allow-write bundle.ts
