@@ -3,5 +3,6 @@
 
 !/.vscode
 !main.ts
+!/commands
 !Makefile
 !bundle.ts

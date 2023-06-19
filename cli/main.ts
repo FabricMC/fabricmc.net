@@ -4,7 +4,7 @@
 import * as generator from "../scripts/dist/fabric-template-generator.js";
 import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
 import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
-import { initCommand } from "./init.ts";
+import { initCommand } from "./commands/init.ts";
 
 // Set the XML parser as we do not have DomParser here.
 generator.setXmlVersionParser((xml) => {
