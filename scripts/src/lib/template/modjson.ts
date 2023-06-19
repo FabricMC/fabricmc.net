@@ -1,7 +1,8 @@
 import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
-import { getJavaVersion, getMinorMinecraftVersion } from "./java"
+import { getJavaVersion } from "./java"
+import { getMinorMinecraftVersion } from "./minecraft"
 import { decode64 } from './utils';
 
 export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {

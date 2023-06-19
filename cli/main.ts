@@ -23,29 +23,3 @@ const cmd = await new Command()
   .command("init", initCommand());
 
 await cmd.parse();
-
-async function requestPermissions(outputDir: string) {
-  const permissions: Deno.PermissionDescriptor[] = [
-    {
-      name: "write",
-      path: outputDir,
-    },
-    {
-      name: "net",
-      host: "meta.fabricmc.net",
-    },
-    {
-      name: "net",
-      host: "maven.fabricmc.net",
-    },
-  ];
-
-  for (const permission of permissions) {
-    const status = await Deno.permissions.request(permission);
-
-    if (status.state != "granted") {
-      console.log("Permission not granted");
-      Deno.exit(1);
-    }
-  }
-}

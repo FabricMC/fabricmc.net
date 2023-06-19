@@ -6,3 +6,4 @@
 !/commands
 !Makefile
 !bundle.ts
+!utils.ts

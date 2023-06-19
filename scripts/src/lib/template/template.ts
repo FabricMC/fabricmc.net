@@ -61,10 +61,6 @@ export async function generateTemplate(options: Options) {
 	await addGitFiles(options.writer, computedConfig);
 }
 
-export function nameToModId(name: string) {
-	return name.toLowerCase().replaceAll(/\s+/g, '-').replaceAll(/[^a-za-z0-9-_]/g, "");
-}
-
 export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 	let versions = await getGameVersions()
 	return versions.filter((v) => v.stable).filter((v) => {

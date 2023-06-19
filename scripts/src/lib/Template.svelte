@@ -1,10 +1,9 @@
 <script lang="ts">
     import JSZip from "jszip";
-    import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { getTemplateGameVersions, nameToModId } from "./template/template";
-    import { getMinorMinecraftVersion } from "./template/java";
+    import { getTemplateGameVersions } from "./template/template";
+    import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -26,70 +25,11 @@
         };
     });
 
-    $: minorMcVersion = getMinorMinecraftVersion(minecraftVersion || "1.99")
-    $: supportsDataGen = minorMcVersion >= 17;
-    $: supportsSplitSources = minorMcVersion >= 19;
+    $: supportsDataGen = minecraftSupportsDataGen(minecraftVersion || "1.99");
+    $: supportsSplitSources = minecraftSupportsSplitSources(minecraftVersion || "1.99");
 
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
-
-
-    function sharedModIdChecks(id: string, isId: boolean): string[] | undefined {
-      let errorList : string[] = [];
-
-      const type = isId ? "Modid" : "Mod Name";
-      if (id.length == 0) {
-          return [`${type} is empty!`];
-      } else if (id.length == 1) {
-          errorList.push(`${type} is only a single character! (It must be at least 2 characters long)!`);
-      } else if (id.length > 64) {
-          errorList.push(`${type} has more than 64 characters!`);
-      }
-
-      return errorList.length === 0 ? undefined : errorList;
-    }
-
-    // Ported/adapted from Loader's MetadataVerifier
-    function computeCustomModIdErrors(id: string | undefined): string[] | undefined {
-        if (id === undefined) {
-          return undefined;
-        }
-
-        let errorList = sharedModIdChecks(id, true) ?? [];
-
-        const first = id.charAt(0);
-
-        if (first < 'a' || first > 'z') {
-            errorList.push("Modid starts with an invalid character '" + first + "' (it must belowercase a-z)");
-        }
-
-        let invalidChars: string[] | null = null;
-
-        for (let i = 1; i < id.length; i++) {
-            let c = id.charAt(i);
-
-            if (c == '-' || c == '_' || ('0' <= c && c <= '9') || ('a' <= c && c <= 'z')) {
-                continue;
-            }
-
-            if (invalidChars == null) {
-                invalidChars = [];
-            }
-
-            invalidChars.push(c);
-        }
-
-        if (invalidChars != null) {
-            let error = "Modid contains invalid characters: " + invalidChars.map(value => "'" + value + "'").join(", ") + "!";
-            errorList.push(error + "!");
-        }
-
-        if (errorList.length == 0) {
-            return undefined;
-        }
-
-        return errorList;
-    }
 
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
       if (id === undefined) {
@@ -136,8 +76,8 @@
         loading = false;
     }
 
-    function formatPackageName() {
-        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9_\.]/, "")
+    function doFormatPackageName() {
+        packageName = formatPackageName(packageName)
     }
 
     function useCustomModId() {
@@ -196,7 +136,7 @@
                 Choose a unique package name for your new mod. The package name
                 should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
-            <input id="package-name" on:keyup={formatPackageName} bind:value={packageName} />
+            <input id="package-name" on:keyup={doFormatPackageName} bind:value={packageName} />
         </div>
 
         <div class="form-line">
