@@ -35,7 +35,7 @@ jobs:
         working-directory: ./scripts
       - run: make build
         working-directory: ./cli
-      - run: cp cli/bundle.ts _site/cli
+      - run: cp ./cli/bundled.ts ./_site/cli
       # Upload the static content as a workflow artifact when not publishing the site (non-main branches)
       - name: Archive site
         uses: actions/upload-artifact@v2
