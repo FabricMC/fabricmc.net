@@ -1,6 +1,6 @@
 import { addGradleWrapper } from './gradlewrapper';
 import { addGroovyGradle } from './gradlegroovy';
-import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
+import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
 
@@ -63,6 +63,20 @@ export async function generateTemplate(options: Options) {
 
 export function nameToModId(name: string) {
 	return name.toLowerCase().replaceAll(/\s+/g, '-').replaceAll(/[^a-za-z0-9-_]/g, "");
+}
+
+export async function getTemplateGameVersions(): Promise<GameVersion[]> {
+	let versions = await getGameVersions()
+	return versions.filter((v) => v.stable).filter((v) => {
+		const version = v.version;
+
+		if (version.startsWith("1.14") && version != "1.14.4") {
+			// Hide pre 1.14.4 MC versions as they require using V1 yarn.
+			return false;
+		}
+
+		return true;
+	});
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {

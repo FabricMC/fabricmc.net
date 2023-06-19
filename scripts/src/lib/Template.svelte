@@ -3,7 +3,7 @@
     import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { nameToModId } from "./template/template";
+    import { getTemplateGameVersions, nameToModId } from "./template/template";
     import { getMinorMinecraftVersion } from "./template/java";
 
     let minecraftVersion: string;
@@ -18,17 +18,8 @@
 
     $: modid = nameToModId(projectName);
 
-    const versions = Promise.all([getGameVersions()]).then(([gameVersions]) => {
-        const game = gameVersions.filter((v) => v.stable).filter((v) => {
-            const version = v.version;
-
-            if (version.startsWith("1.14") && version != "1.14.4") {
-                // Hide pre 1.14.4 MC versions as they require using V1 yarn.
-                return false;
-            }
-
-            return true;
-        });
+    const versions = Promise.all([getTemplateGameVersions()]).then(([gameVersions]) => {
+        const game = gameVersions;
         minecraftVersion = game[0].version;
         return {
             game,
