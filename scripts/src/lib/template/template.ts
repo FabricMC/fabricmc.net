@@ -45,7 +45,7 @@ export interface TemplateOptions {
 }
 
 export interface FileOptions {
-	unixPermissions?: number;
+	executable: boolean;
 }
 
 export interface TemplateWriter {

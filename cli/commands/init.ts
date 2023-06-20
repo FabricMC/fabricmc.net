@@ -185,7 +185,7 @@ async function writeFile(
   await tryMkdirs(path.dirname(output));
 
   const writeOptions: Deno.WriteFileOptions = {
-    mode: options?.unixPermissions,
+    mode: options?.executable ? 0o744 : undefined,
   };
 
   // is there a cleaner way to do this?

@@ -63,7 +63,9 @@
             config,
             writer: {
                 write: async (path, content, options) => {
-                    zip.file(path, content, options);
+                    zip.file(path, content, {
+                        unixPermissions: options?.executable ? "774": undefined
+                    });
                 },
             },
         });
