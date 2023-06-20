@@ -9647,6 +9647,7 @@ class UpdateProvider extends Provider {
         const args = [
             "install",
             "--force",
+            "--reload",
             "--quiet",
             "-A",
             "--name",
@@ -9654,8 +9655,7 @@ class UpdateProvider extends Provider {
             UPGRADE_URL
         ];
         const command = new Deno.Command(Deno.execPath(), {
-            args,
-            stdout: "piped"
+            args
         });
         const { success , stderr  } = await command.output();
         if (!success) {
@@ -9691,7 +9691,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-06-20 19:42:53").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-06-20 19:52:04").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand());
