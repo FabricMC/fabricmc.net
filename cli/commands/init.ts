@@ -73,7 +73,7 @@ async function getAndPrepareOutputDir(
   const outputDir = path.resolve(outputDirName!);
 
   if (!(await utils.pathExists(outputDir))) {
-    Deno.mkdir(outputDir, { recursive: true });
+    await Deno.mkdir(outputDir, { recursive: true });
   }
 
   return outputDir;
@@ -189,15 +189,15 @@ async function writeFile(
   };
 
   // is there a cleaner way to do this?
-  if (content instanceof String) {
+  if (content instanceof ArrayBuffer) {
+    const data = new Uint8Array(content);
+    await Deno.writeFile(output, data, writeOptions);
+  } else {
     await Deno.writeTextFile(
       output,
       content as string,
       writeOptions,
     );
-  } else {
-    const data = new Uint8Array(content as ArrayBufferLike);
-    await Deno.writeFile(output, data, writeOptions);
   }
 }
 
