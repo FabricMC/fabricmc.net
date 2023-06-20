@@ -30,6 +30,7 @@ class UpdateProvider extends Provider {
     const args = [
       "install",
       "--force",
+      "--reload",
       "--quiet",
       "-A",
       "--name",
