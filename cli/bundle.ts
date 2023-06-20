@@ -1,4 +1,5 @@
 import { bundle } from "https://deno.land/x/emit@0.22.0/mod.ts";
+import { format } from "https://deno.land/std@0.91.0/datetime/mod.ts";
 
 const result = await bundle(
   new URL("./main.ts", import.meta.url),
@@ -11,4 +12,9 @@ const header = `/**
 */
 `;
 
-await Deno.writeTextFile("bundled.ts", header + result.code);
+const code = result.code.replace(
+  "%__VERSION__%",
+  format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+);
+
+await Deno.writeTextFile("bundled.ts", header + code);
