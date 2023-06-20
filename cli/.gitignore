@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+
+!/.vscode
+!main.ts
+!/commands
+!Makefile
+!bundle.ts
+!utils.ts
