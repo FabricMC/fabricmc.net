@@ -1,6 +1,6 @@
-import { S as g, i as $, s as h, e as p, w as b, a as y, c as v, x as w, j as m, q as C, r as x, v as T, d as k, y as A, A as P } from "./index.1b882cd4.js";
-import { f as S } from "./Api.49950f8b.js";
-import V from "./LegacyVersion.dfd9b889.js";
+import { S as g, i as $, s as h, e as p, w as b, a as y, c as v, x as w, j as m, q as C, r as x, v as T, d as k, y as A, A as P } from "./index.61dc58cf.js";
+import { e as S } from "./Api.7336f415.js";
+import V from "./LegacyVersion.2516af3d.js";
 function j(i) {
   let t, e, o, c, u, l, n, r, s, d = {};
   return e = new V({ props: d }), i[2](e), {
@@ -8,7 +8,12 @@ function j(i) {
       t = p("main"), b(e.$$.fragment), o = y(), c = p("br"), u = y(), l = p("button"), l.textContent = "Download bin/version.json file";
     },
     m(a, f) {
-      v(a, t, f), w(e, t, null), m(t, o), m(t, c), m(t, u), m(t, l), n = !0, r || (s = C(l, "click", i[1]), r = !0);
+      v(a, t, f), w(e, t, null), m(t, o), m(t, c), m(t, u), m(t, l), n = !0, r || (s = C(
+        l,
+        "click",
+        /*downloadJson*/
+        i[1]
+      ), r = !0);
     },
     p(a, [f]) {
       const _ = {};

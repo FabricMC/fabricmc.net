@@ -1,6 +1,6 @@
-import { S as _, i as $, s as b, e as u, w as C, a as f, c as I, x as h, j as p, q as v, r as w, v as U, d as V, y as x, A as R } from "./index.1b882cd4.js";
-import S from "./LegacyVersion.dfd9b889.js";
-import "./Api.49950f8b.js";
+import { S as _, i as $, s as b, e as u, w as C, a as f, c as I, x as h, j as p, q as v, r as w, v as U, d as V, y as x, A as R } from "./index.61dc58cf.js";
+import S from "./LegacyVersion.2516af3d.js";
+import "./Api.7336f415.js";
 function k(o) {
   let t, e, a, c, l, n, s, i, m, g = {};
   return e = new S({ props: g }), o[2](e), {
@@ -8,7 +8,12 @@ function k(o) {
       t = u("main"), C(e.$$.fragment), a = f(), c = u("br"), l = f(), n = u("button"), n.textContent = "Copy MCUpdater Import entry";
     },
     m(r, d) {
-      I(r, t, d), h(e, t, null), p(t, a), p(t, c), p(t, l), p(t, n), s = !0, i || (m = v(n, "click", o[1]), i = !0);
+      I(r, t, d), h(e, t, null), p(t, a), p(t, c), p(t, l), p(t, n), s = !0, i || (m = v(
+        n,
+        "click",
+        /*copyImportEntry*/
+        o[1]
+      ), i = !0);
     },
     p(r, [d]) {
       const y = {};

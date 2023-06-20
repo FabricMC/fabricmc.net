@@ -3,19 +3,19 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Installation for Technic | Fabric</title>
+<title>Fabric command line tools | Fabric</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Installation for Technic" />
+<meta property="og:title" content="Fabric command line tools" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="The home of the Fabric mod development toolchain." />
 <meta property="og:description" content="The home of the Fabric mod development toolchain." />
-<link rel="canonical" href="https://fabricmc.net/use/technic/" />
-<meta property="og:url" content="https://fabricmc.net/use/technic/" />
+<link rel="canonical" href="https://fabricmc.net/develop/cli/" />
+<meta property="og:url" content="https://fabricmc.net/develop/cli/" />
 <meta property="og:site_name" content="Fabric" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Installation for Technic" />
+<meta property="twitter:title" content="Fabric command line tools" />
 <script type="application/ld+json">
-{"headline":"Installation for Technic","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/use/technic/","@type":"WebPage","@context":"https://schema.org"}</script>
+{"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
   <link rel="stylesheet" href="/assets/main.css?v=1687289626">
@@ -65,87 +65,50 @@
         <article class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Installation for Technic</h1>
+    <h1 class="post-title">Fabric command line tools</h1>
   </header>
 
   <div class="post-content">
-    
+    <p>The Fabric command line tools (CLI) can be used to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
 
+<h2 id="installation">Installation</h2>
 
-<noscript style="color:red">You need Javascript to show the download options</noscript>
+<p>The Fabric CLI tools require the <a href="https://deno.com/runtime">deno runtime</a> to be installed on your system. Deno is a cross platform JavaScript runtime that allows us to use one code base between the web and desktop. After following the <a href="https://deno.com/manual/getting_started/installation">deno installation</a> instructions, run the following command to globally install the fabric CLI tools:</p>
 
-<div class="fabric-component" data-component="Technic"></div>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno install -A -n fabric https://fabricmc.net/cli
+</code></pre></div></div>
 
-<p>
-    Make sure to follow the
-    <a href="https://fabricmc.net/wiki/install">installation instructions!</a>
-</p>
-<p>
-    <strong>
-        Most mods will also require you to install
-        <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api">
-            Fabric API
-        </a>
-        into the mods folder.
-    </strong>
-</p>
-<div>
-    <u>Other installation options:</u>
-    <br />
-    <ul>
-        <li>
-            <a href="/use/installer/">
-                Minecraft Launcher
-            </a>
-        </li>
-        <li>
-            <a href="/use/server/">Minecraft Server</a>
-        </li>
-        <li>
-            <a href="https://fabricmc.net/wiki/player:tutorials:install_multimc:windows">
-                MultiMC
-            </a>
-        </li>
-        <li>
-            <a href="https://www.curseforge.com/minecraft/mc-mods?filter-game-version=2020709689%3A7499&filter-sort=4">
-                CurseForge
-            </a>
-        </li>
-        <li>
-            <a href="https://gdevs.io/">
-                GDLauncher
-            </a>
-        </li>
-        <li>
-            <a href=https://atlauncher.com/>
-                ATLauncher
-            </a>
-            (Modpack Dev)
-        </li>
-        <li>
-            <a href="/use/mcupdater/">MCUpdater</a>
-            (Modpack Dev)
-        </li>
-        <li>
-            <a href="/use/technic/">Technic</a>
-            (Modpack Dev)
-        </li>
-        <li>
-            <a href="https://github.com/mindstorm38/portablemc">portablemc</a>
-            (Command Line)
-        </li>
-        <li>
-            <a href="https://github.com/FabricMC/fabric-meta#fabric-meta">
-                Metadata API
-            </a>
-            (Launcher Dev)
-        </li>
-    </ul>
-</div>
+<p>To update the Fabric command line tools run:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric upgrade
+</code></pre></div></div>
 
+<p>If you wish to remove the Fabric CLI tools run:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno uninstall fabric
+</code></pre></div></div>
 
-<script type="text/javascript" src="/scripts/main.js?v=1687289626"></script>
-<link href="/scripts/style.css?v=1687289626" rel="stylesheet">
+<h2 id="usage">Usage</h2>
+<p>The Fabric CLI tools currently offer one main sub-command, <code class="language-plaintext highlighter-rouge">init</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">init</code> sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init
+</code></pre></div></div>
+
+<p>You can optionally pass a directory path, if the directory does not exist it will be created.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init MyCoolMod
+</code></pre></div></div>
+
+<p>If you wish to accept all of the default values you can pass the <code class="language-plaintext highlighter-rouge">-y</code> argument. The directory name is then used to infulence the mod name.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init MyCoolMod -y
+</code></pre></div></div>
+
+<h3 id="run-without-installing">Run without installing</h3>
+
+<p>If you do not wish to install the Fabric CLI tools to your system, you can use deno to run it directly like so:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno run https://fabricmc.net/cli init
+</code></pre></div></div>
+
+<p>Deno is secure by default, so will ask for <a href="https://deno.land/manual/basics/permissions">permission</a> before making any changes to your system.</p>
 
   </div>
 
