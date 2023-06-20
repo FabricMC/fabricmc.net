@@ -1,10 +1,10 @@
 ---
 layout: page
 title: "Fabric command line tools"
-permalink: /use/cli/
+permalink: /develop/cli/
 ---
 
-The Fabric command line tools (CLI) can be used to generate new mods right from your terminal.
+The Fabric command line tools (CLI) can be used to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
 
 ## Installation
 
@@ -25,9 +25,9 @@ deno uninstall fabric
 ```
 
 ## Usage
-The Fabric CLI tools currently offer one sub command, `init`. In the future we may expand the range of tools offered. If you find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
+The Fabric CLI tools currently offer one main sub-command, `init`.
 
-The `init` sub command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:
+The `init` sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:
 ```
 fabric init
 ```
@@ -41,3 +41,13 @@ If you wish to accept all of the default values you can pass the `-y` argument. 
 ```
 fabric init MyCoolMod -y
 ```
+
+### Run without installing
+
+If you do not wish to install the Fabric CLI tools to your system, you can use deno to run it directly like so:
+
+```
+deno run https://fabricmc.net/cli init
+```
+
+Deno is secure by default, so will ask for [permission](https://deno.land/manual/basics/permissions) before making any changes to your system.
