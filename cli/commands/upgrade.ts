@@ -39,7 +39,6 @@ class UpdateProvider extends Provider {
 
     const command = new Deno.Command(Deno.execPath(), {
       args,
-      stdout: "piped",
     });
 
     const { success, stderr } = await command.output();
