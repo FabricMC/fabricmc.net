@@ -4,7 +4,7 @@ title: "Fabric command line tools"
 permalink: /develop/cli/
 ---
 
-The Fabric command line tools (CLI) can be used to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
+The Fabric command line tools (CLI) can be used by mod developers to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
 
 ## Installation
 
