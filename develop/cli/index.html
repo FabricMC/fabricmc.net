@@ -18,8 +18,8 @@
 {"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1687290692">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1687290692"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1687424891">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1687424891"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -69,44 +69,67 @@
   </header>
 
   <div class="post-content">
-    <p>The Fabric command line tools (CLI) can be used by mod developers to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
+    <style type="text/css">
+  code.command {
+    display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    user-select: all;
+  }
+</style>
+
+<p>The Fabric command line tools (CLI) can be used by mod developers to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
 
 <h2 id="installation">Installation</h2>
 
 <p>The Fabric CLI tools require the <a href="https://deno.com/runtime">deno runtime</a> to be installed on your system. Deno is a cross platform JavaScript runtime that allows us to use one code base between the web and desktop. After following the <a href="https://deno.com/manual/getting_started/installation">deno installation</a> instructions, run the following command to globally install the fabric CLI tools:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno install -A -n fabric https://fabricmc.net/cli
-</code></pre></div></div>
+<p><code class="command">
+deno install -A -n fabric https://fabricmc.net/cli
+</code></p>
 
 <p>To update the Fabric command line tools run:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric upgrade
-</code></pre></div></div>
+
+<p><code class="command">
+fabric upgrade
+</code></p>
 
 <p>If you wish to remove the Fabric CLI tools run:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno uninstall fabric
-</code></pre></div></div>
+
+<p><code class="command">
+deno uninstall fabric
+</code></p>
 
 <h2 id="usage">Usage</h2>
 <p>The Fabric CLI tools currently offer one main sub-command, <code class="language-plaintext highlighter-rouge">init</code>.</p>
 
 <p>The <code class="language-plaintext highlighter-rouge">init</code> sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init
-</code></pre></div></div>
+
+<p><code class="command">
+fabric init
+</code></p>
 
 <p>You can optionally pass a directory path, if the directory does not exist it will be created.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init MyCoolMod
-</code></pre></div></div>
+
+<p><code class="command">
+fabric init MyCoolMod
+</code></p>
 
 <p>If you wish to accept all of the default values you can pass the <code class="language-plaintext highlighter-rouge">-y</code> argument. The directory name is then used to infulence the mod name.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fabric init MyCoolMod -y
-</code></pre></div></div>
+
+<p><code class="command">
+fabric init MyCoolMod -y
+</code></p>
 
 <h3 id="run-without-installing">Run without installing</h3>
 
 <p>If you do not wish to install the Fabric CLI tools to your system, you can use deno to run it directly like so:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>deno run https://fabricmc.net/cli init
-</code></pre></div></div>
+<p><code class="command">
+deno run https://fabricmc.net/cli init
+</code></p>
 
 <p>Deno is secure by default, so will ask for <a href="https://deno.land/manual/basics/permissions">permission</a> before making any changes to your system.</p>
 
