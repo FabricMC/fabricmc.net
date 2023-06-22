@@ -39,7 +39,7 @@ async function generate(
 
   const isTargetEmpty = await utils.isDirEmpty(outputDir);
   if (!isTargetEmpty) {
-    console.log(error("The target directory must be empty"));
+    console.error(error("The target directory must be empty"));
     Deno.exit(1);
   }
 
@@ -240,7 +240,7 @@ async function requestPermissions(outputDir: string) {
     const status = await Deno.permissions.request(permission);
 
     if (status.state != "granted") {
-      console.log(error("Permission not granted"));
+      console.error(error("Permission not granted"));
       Deno.exit(1);
     }
   }
