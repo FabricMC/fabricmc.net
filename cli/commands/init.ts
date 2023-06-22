@@ -10,6 +10,7 @@ import {
 import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
+import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -72,9 +73,7 @@ async function getAndPrepareOutputDir(
   await requestPermissions(outputDirName);
   const outputDir = path.resolve(outputDirName!);
 
-  if (!(await utils.pathExists(outputDir))) {
-    await Deno.mkdir(outputDir, { recursive: true });
-  }
+  ensureDir(outputDir);
 
   return outputDir;
 }
