@@ -73,7 +73,7 @@ async function getAndPrepareOutputDir(
   await requestPermissions(outputDirName);
   const outputDir = path.resolve(outputDirName!);
 
-  ensureDir(outputDir);
+  await ensureDir(outputDir);
 
   return outputDir;
 }
