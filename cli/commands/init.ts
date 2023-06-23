@@ -10,6 +10,7 @@ import {
 import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
+import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -26,7 +27,7 @@ export function initCommand() {
     .option("-y, --defaultOptions", "Generate a mod with default options")
     .arguments("[dir:file]")
     .action(async ({ defaultOptions }, dir: string | undefined) => {
-      await generate(defaultOptions == true, dir);
+      await generate(defaultOptions, dir);
     });
 }
 
@@ -38,7 +39,7 @@ async function generate(
 
   const isTargetEmpty = await utils.isDirEmpty(outputDir);
   if (!isTargetEmpty) {
-    console.log(error("The target directory must be empty"));
+    console.error(error("The target directory must be empty"));
     Deno.exit(1);
   }
 
@@ -72,9 +73,7 @@ async function getAndPrepareOutputDir(
   await requestPermissions(outputDirName);
   const outputDir = path.resolve(outputDirName!);
 
-  if (!(await utils.pathExists(outputDir))) {
-    await Deno.mkdir(outputDir, { recursive: true });
-  }
+  await ensureDir(outputDir);
 
   return outputDir;
 }
@@ -241,7 +240,7 @@ async function requestPermissions(outputDir: string) {
     const status = await Deno.permissions.request(permission);
 
     if (status.state != "granted") {
-      console.log(error("Permission not granted"));
+      console.error(error("Permission not granted"));
       Deno.exit(1);
     }
   }
