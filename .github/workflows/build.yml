@@ -1,6 +1,5 @@
 name: Build
-on:
-  push:
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -48,7 +47,7 @@ jobs:
   publish:
     needs: build
     runs-on: ubuntu-22.04
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
     steps:
       - uses: actions/download-artifact@v2
         with:

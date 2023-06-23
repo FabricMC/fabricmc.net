@@ -27,7 +27,7 @@ export function initCommand() {
     .option("-y, --defaultOptions", "Generate a mod with default options")
     .arguments("[dir:file]")
     .action(async ({ defaultOptions }, dir: string | undefined) => {
-      await generate(defaultOptions, dir);
+      await generate(defaultOptions == true, dir);
     });
 }
 
