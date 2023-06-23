@@ -9434,24 +9434,31 @@ function factory2(stack = []) {
     colors._stack = stack;
     return colors;
 }
-async function pathExists(path) {
-    try {
-        await Deno.stat(path);
-        return true;
-    } catch (error) {
-        if (error instanceof Deno.errors.NotFound) {
-            return false;
-        } else {
-            throw error;
-        }
-    }
-}
 async function isDirEmpty(outputDir) {
     const contents = Deno.readDir(outputDir);
     for await (const _ of contents){
         return false;
     }
     return true;
+}
+function getFileInfoType(fileInfo) {
+    return fileInfo.isFile ? "file" : fileInfo.isDirectory ? "dir" : fileInfo.isSymlink ? "symlink" : undefined;
+}
+async function ensureDir(dir) {
+    try {
+        const fileInfo = await Deno.lstat(dir);
+        if (!fileInfo.isDirectory) {
+            throw new Error(`Ensure path exists, expected 'dir', got '${getFileInfoType(fileInfo)}'`);
+        }
+    } catch (err) {
+        if (err instanceof Deno.errors.NotFound) {
+            await Deno.mkdir(dir, {
+                recursive: true
+            });
+            return;
+        }
+        throw err;
+    }
 }
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -9468,7 +9475,7 @@ async function generate(useDefaultOptions, outputDirName) {
     const outputDir = await getAndPrepareOutputDir(outputDirName);
     const isTargetEmpty = await isDirEmpty(outputDir);
     if (!isTargetEmpty) {
-        console.log(error("The target directory must be empty"));
+        console.error(error("The target directory must be empty"));
         Deno.exit(1);
     }
     const config = await (useDefaultOptions ? defaultOptions(basename5(outputDir)) : promptUser(basename5(outputDir)));
@@ -9491,11 +9498,7 @@ async function getAndPrepareOutputDir(outputDirName) {
     }
     await requestPermissions(outputDirName);
     const outputDir = resolve5(outputDirName);
-    if (!await pathExists(outputDir)) {
-        await Deno.mkdir(outputDir, {
-            recursive: true
-        });
-    }
+    await ensureDir(outputDir);
     return outputDir;
 }
 async function promptUser(startingName) {
@@ -9625,7 +9628,7 @@ async function requestPermissions(outputDir) {
     for (const permission of permissions){
         const status = await Deno.permissions.request(permission);
         if (status.state != "granted") {
-            console.log(error("Permission not granted"));
+            console.error(error("Permission not granted"));
             Deno.exit(1);
         }
     }
@@ -9691,7 +9694,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-06-22 09:08:48").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-06-23 09:24:31").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand());
