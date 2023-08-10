@@ -1,6 +1,6 @@
 import { S as ve, i as ye, s as we, h as ke, b as Se, c as bt, u as Ee, r as Ot, v as Gt, d as vt, f as xe, e as rt, t as St, a as ut, g as Zt, j as _, n as xt, o as $, m as Ce, C as Ft, p as Yt, q as kt, D as Ie, E as Fe, l as Wt, B as re, k as jt, z as Dt, w as ie, x as ae, y as se } from "./index.61dc58cf.js";
 import oe from "./DownloadIcon.214b8f5e.js";
-import { d as Re, b as Oe, h as Ge, i as ze, j as Be } from "./Api.7336f415.js";
+import { d as Re, b as Oe, h as Ge, i as ze, j as Be } from "./Api.380e8059.js";
 var Et = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function le(O) {
   return O && O.__esModule && Object.prototype.hasOwnProperty.call(O, "default") ? O.default : O;
@@ -3068,7 +3068,7 @@ if "%OS%"=="Windows_NT" endlocal\r
 :omega\r
 `, We = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.2-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.2.1-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
