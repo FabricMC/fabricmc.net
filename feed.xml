@@ -1,4 +1,189 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-08-10T08:20:21+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20</title><link href="https://fabricmc.net/2023/05/25/120.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20" /><published>2023-05-25T00:00:00+00:00</published><updated>2023-05-25T00:00:00+00:00</updated><id>https://fabricmc.net/2023/05/25/120</id><content type="html" xml:base="https://fabricmc.net/2023/05/25/120.html">&lt;p&gt;Minecraft 1.20 - the Trails and Tales Update - &lt;a href=&quot;https://www.minecraft.net/en-us/article/trails-tales-update-coming&quot;&gt;releases on June 7th 2023&lt;/a&gt;, again with a number of changes that impact many mods.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-09-12T13:38:43+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20.2</title><link href="https://fabricmc.net/2023/09/12/1202.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.2" /><published>2023-09-12T00:00:00+00:00</published><updated>2023-09-12T00:00:00+00:00</updated><id>https://fabricmc.net/2023/09/12/1202</id><content type="html" xml:base="https://fabricmc.net/2023/09/12/1202.html">&lt;p&gt;Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.&lt;/p&gt;
+
+&lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
+&lt;p&gt;Developers should use Loom 1.3 (at the time of writing) to develop mods for Minecraft 1.20.2. Players should install the latest stable version of Fabric Loader (currently 0.14.22) to play 1.20.2.&lt;/p&gt;
+
+&lt;h3 id=&quot;loom-13&quot;&gt;Loom 1.3&lt;/h3&gt;
+&lt;p&gt;Loom 1.3 includes fixes to debugging, Kotlin 1.9.0 support, reproducable builds by default and many other smaller fixes and improvements.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-fabric-api-changes&quot;&gt;New Fabric API changes&lt;/h3&gt;
+&lt;p&gt;With the help of many contributors, Fabric API has received several new features since the last update blog post:&lt;/p&gt;
+
+&lt;!-- yeah, sort it (alphabetical of module name) --&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Client Tags: add support for partially synced client tags. (dexman545)&lt;/li&gt;
+  &lt;li&gt;Particles v1: add event for preventing particle tinting for colored blocks. (Juxxel)&lt;/li&gt;
+  &lt;li&gt;Registry Sync: add dynamic registry API (Juxxel)&lt;/li&gt;
+  &lt;li&gt;Transitive Access Wideners: some more TAWs for block creation and block loot tables (Shnupbups)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;breaking-changes-and-deprecations&quot;&gt;Breaking changes and deprecations&lt;/h3&gt;
+&lt;p&gt;The following deprecated APIs were removed:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-networking-v0&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-loot-tables-v1&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootEntryTypeRegistry&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-content-registries-v0&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CriterionRegistry&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-object-builder-api-v1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In addition, there were some module-wide deprecations. Deprecated modules were previously removed from the JAR used by developers by default, while still being distributed to all players. We have not previously classified this as a breaking change, since the deprecation has no effect on players.&lt;/p&gt;
+
+&lt;p&gt;This opt-in system, however, caused great confusion among developers during the Models API deprecation process. For this reason, &lt;strong&gt;deprecated modules are now available by default&lt;/strong&gt; in the development environment.&lt;/p&gt;
+
+&lt;p&gt;To restore the old behavior and &lt;strong&gt;disable deprecated modules&lt;/strong&gt;, use the following:&lt;/p&gt;
+
+&lt;div class=&quot;language-groovy highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;modImplementation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;net.fabricmc.fabric-api:fabric-api:0.88.2+1.20.2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+   &lt;span class=&quot;n&quot;&gt;exclude&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;fabric-api-deprecated&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;breaking-change-custom-registry-tags&quot;&gt;Breaking change: custom registry tags&lt;/h4&gt;
+&lt;p&gt;Tags for static custom registry entries (created with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricRegistryBuilder&lt;/code&gt;) must now be placed under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/registry_namespace/registry_path/&lt;/code&gt;, instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/registry_path/&lt;/code&gt;. For example, if the registry is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_mod:tiny_potato&lt;/code&gt;, the tags should be placed under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/my_mod/tiny_potato/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;This matches the behavior for custom dynamic registries that is recently introduced to Fabric API. &lt;strong&gt;This does not affect vanilla tags&lt;/strong&gt; like blocks, items, or entity types.&lt;/p&gt;
+
+&lt;h4 id=&quot;blocksettype-and-woodtype&quot;&gt;BlockSetType and WoodType&lt;/h4&gt;
+&lt;p&gt;To make the API easier to use, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetTypeRegistry&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodTypeRegistry&lt;/code&gt; are now replaced with builders, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetTypeBuilder&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodTypeBuilder&lt;/code&gt;. The registries were deprecated.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- BlockSetTypeRegistry.registerWood(TEAL_TYPE_ID);
+- WoodTypeRegistry.register(TEAL_TYPE_ID, TEAL_BLOCK_SET_TYPE);
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ BlockSetTypeBuilder.copyOf(BlockSetType.OAK).build(TEAL_TYPE_ID);
++ WoodTypeBuilder.copyOf(WoodType.OAK).build(TEAL_TYPE_ID, TEAL_BLOCK_SET_TYPE);
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;transfer-api&quot;&gt;Transfer API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Storage#exactView&lt;/code&gt; was deprecated for removal due to lack of use and its complexity.&lt;/p&gt;
+
+&lt;p&gt;Two methods from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Storage&lt;/code&gt; moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StorageUtil&lt;/code&gt;. They are: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;simulateInsert&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;simulateExtract&lt;/code&gt;. The methods in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Storage&lt;/code&gt; are now deprecated for removal. This allows &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;simulateExtract&lt;/code&gt; to work on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StorageView&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;models-api-replacement&quot;&gt;Models API replacement&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;This section is currently incomplete. Please check back later!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;rendering-data-attachments-replacement&quot;&gt;Rendering Data Attachments replacement&lt;/h4&gt;
+&lt;p&gt;&lt;em&gt;This section is currently incomplete. Please check back later!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
+&lt;p&gt;Minecraft 1.20.2 introduces some breaking changes to major developer-facing APIs.&lt;/p&gt;
+
+&lt;h3 id=&quot;networking&quot;&gt;Networking&lt;/h3&gt;
+&lt;p&gt;While the developer-facing breaking changes to Networking API were minimum, the API’s implementation was rewritten to use the new configuration stage, between login and play stages. This change hopefully resolves the longstanding issue with proxy servers.&lt;/p&gt;
+
+&lt;p&gt;However, some mods need to change the code to utilize the configuration stage. Here is the summary of the changes; those who work on the raw networking stack (to develop cross-platform APIs or proxies) should read &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/3244&quot;&gt;the protocol proposal&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Mods that use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerPlayNetworking&lt;/code&gt;, for non-configuration purposes, are likely unaffected.&lt;/strong&gt; Mods that use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerLoginNetworking&lt;/code&gt;, or implement configuration syncing/mod version checking feature, should check the note below.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Before 1.20.2, most of the server-client communication took place during gameplay, via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerPlayNetworking&lt;/code&gt;. Mods who wanted to communicate before the player joined had to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerLoginNetworking&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;In 1.20.2, after the player authenticates, but before the player joins the world (and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerPlayerEntity&lt;/code&gt; instance is created), there exist a phase where the client and the server can communicate to configure each other. This is the “configuration stage”.&lt;/li&gt;
+  &lt;li&gt;During this stage, the server executes “tasks” one by one. For example, you can define a task that queries the client’s mod version and disconnects the client if the versions differ.&lt;/li&gt;
+  &lt;li&gt;Once all tasks are completed, the player joins the world.&lt;/li&gt;
+  &lt;li&gt;Importantly, the code allows the server to force a player back to the configuration stage. This feature is not used in vanilla. For example, a minigame server might use this feature to move players between the lobby and the minigames.&lt;/li&gt;
+  &lt;li&gt;Configuration stage is designed to allow mods to reliably exchange packets before the player joins. If you previously have used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerLoginNetworking&lt;/code&gt;, it is highly recommended to switch to configuration stage, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerConfigurationNetworking&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Example of implementing one-way syncing, from server to client:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// define ConfigS2CPacket; see https://gist.github.com/apple502j/9c6b9e5e8dec37cbf6f3916472a79d57&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;ServerConfigurationConnectionEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CONFIGURE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;ServerConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConfigS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;data&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Client side:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ClientConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registerGlobalReceiver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// do something with packet&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Example of sending a packet to, and receiving a packet from, a client:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// define ConfigC2SPacket, which is sent as a response to S2CPacket&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConfigTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServerPlayerConfigurationTask&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServerPlayerConfigurationTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServerPlayerConfigurationTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;my_mod_id:my_mod_config&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ServerPlayerConfigurationTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Key&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sendPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Consumer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;accept&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ServerConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConfigS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;ServerConfigurationConnectionEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CONFIGURE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// This if block is required! Otherwise the client gets stuck in connection screen&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// if the client cannot handle the packet.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ServerConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;canSend&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConfigS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConfigTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;config&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Optional; if you want to require certain mods, disconnect the client.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;disconnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;You need to install Tiny Potato Mod!&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;ServerConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registerGlobalReceiver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigC2SPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Check packet here&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Warning: if you do not call completeTask, the client gets stuck!&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;handler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;completeTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigTask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Client side:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ClientConfigurationNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registerGlobalReceiver&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ConfigS2CPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;packet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// do something with packet&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// send a response&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConfigC2SPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;response&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There is one breaking change to Networking API: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientPlayNetworking#createC2SPacket&lt;/code&gt; now returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet&amp;lt;ServerCommonPacketListener&amp;gt;&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet&amp;lt;ServerPlayPacketListener&amp;gt;&lt;/code&gt; (and similar changes with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;createS2CPacket&lt;/code&gt; as well.)&lt;/p&gt;
+
+&lt;h3 id=&quot;status-effects&quot;&gt;Status effects&lt;/h3&gt;
+&lt;p&gt;Status effects are now stored using string ID, instead of integer ID. &lt;strong&gt;Fabric does not migrate the data by itself.&lt;/strong&gt; We expect someone to make a mod for data conversion.&lt;/p&gt;
+
+&lt;p&gt;This change also meant that Registry Sync module no longer has to keep track of the raw IDs of registry entries on disk. The tracker file will NOT be automatically deleted. API-wise, this means &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryAttribute#PERSISTED&lt;/code&gt; is gone.&lt;/p&gt;
+
+&lt;h3 id=&quot;recipes-and-advancements&quot;&gt;Recipes and advancements&lt;/h3&gt;
+&lt;p&gt;Recipe and advancement code was refactored to use records. In addition, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecipeEntry&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AdvancementEntry&lt;/code&gt; is used in many places where a raw recipe or advancement is used previously. As the name suggests, this is a pair of the ID and the value. If you want to get the recipe/advancement itself, call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.value()&lt;/code&gt;. In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecipeProvider&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exporter&lt;/code&gt; is now of type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecipeExporter&lt;/code&gt;, not &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Consumer&amp;lt;RecipeJsonProvider&amp;gt;&lt;/code&gt;. The usage remains the same; to output a recipe, call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accept&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Recipes and ingredients are serialized to and from the disk using Codecs. Fabric API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomIngredientSerializer&lt;/code&gt; now has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;codec&lt;/code&gt; method that returns codec, instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; taking &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JsonObject&lt;/code&gt;. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; taking &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt; still exists.) To make the migration easier, you can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codecs#fromJsonSerializer&lt;/code&gt; - though this is deprecated.&lt;/p&gt;
+
+&lt;p&gt;Yarn mapping received a couple of renames. Most significantly, “input” and “output” are now called “ingredient” and “result”.&lt;/p&gt;
+
+&lt;h3 id=&quot;trading&quot;&gt;Trading&lt;/h3&gt;
+&lt;p&gt;A new experiment for rebalancing villager and wandering trader trades is added. While this is labeled as an experiment, it is an officially-supported feature that can be enabled in a release.&lt;/p&gt;
+
+&lt;p&gt;While the internal changes to villagers were minimum, there were substantial changes to how wandering trader offers are picked in the experiment.&lt;/p&gt;
+
+&lt;p&gt;Previously, the trades were selected in a similar way to villagers, where level 0 indicated common items and level 1 indicated rare items. The experiment replaces this with a pool-based method; there are several pools, and from each pool the game picks certain numbers of offers.&lt;/p&gt;
+
+&lt;p&gt;We are currently designing an API that supports the experiment. For now, the current code works for existing worlds and newly created worlds without the experiment.&lt;/p&gt;
+
+&lt;h3 id=&quot;gui&quot;&gt;GUI&lt;/h3&gt;
+&lt;p&gt;Two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Screen&lt;/code&gt; related changes: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMouseScrolled&lt;/code&gt; method now takes both horizontal and vertical scroll amount. Most mouses do not support horizontal scrolling, so use that feature with caution. Another change is that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;renderBackground&lt;/code&gt; method now takes mouse positions and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickDelta&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntryListWidget#mouseClicked&lt;/code&gt;, the mouse button is now automatically checked. Override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isSelectButton&lt;/code&gt; to allow right-clicking entries to select one. The checks in individual entries are now redundant.&lt;/p&gt;
+
+&lt;p&gt;Texture rendering methods have changed; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawTexture&lt;/code&gt; calls should be replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;drawGuiTexture&lt;/code&gt;. Note that since the game no longer uses atlases in GUI textures, there is no need to specify UV.&lt;/p&gt;
+
+&lt;h3 id=&quot;miscellaneous-changes&quot;&gt;Miscellaneous changes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MessageDecorator&lt;/code&gt; is now synchronous.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeleeAttackGoal#canAttack&lt;/code&gt; was added. This is checked inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attack&lt;/code&gt; method.&lt;/li&gt;
+  &lt;li&gt;In Yarn, several classes relating to session, player reporting, and telemetry were moved to a new package, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client.session&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.</summary></entry><entry><title type="html">Fabric for Minecraft 1.20</title><link href="https://fabricmc.net/2023/05/25/120.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20" /><published>2023-05-25T00:00:00+00:00</published><updated>2023-05-25T00:00:00+00:00</updated><id>https://fabricmc.net/2023/05/25/120</id><content type="html" xml:base="https://fabricmc.net/2023/05/25/120.html">&lt;p&gt;Minecraft 1.20 - the Trails and Tales Update - &lt;a href=&quot;https://www.minecraft.net/en-us/article/trails-tales-update-coming&quot;&gt;releases on June 7th 2023&lt;/a&gt;, again with a number of changes that impact many mods.&lt;/p&gt;
 
 &lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
 
@@ -1043,59 +1228,4 @@ This provides a compile-time guarantee against calling client-only Minecraft cod
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;Many smaller bug fixes and improvements&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Fabric for Minecraft 1.16</title><link href="https://fabricmc.net/2020/06/23/116.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.16" /><published>2020-06-23T00:00:00+00:00</published><updated>2020-06-23T00:00:00+00:00</updated><id>https://fabricmc.net/2020/06/23/116</id><content type="html" xml:base="https://fabricmc.net/2020/06/23/116.html">&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/tJ98rRc.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The long anticipated Minecraft 1.16 update has arrived, and along with it, Fabric!&lt;/p&gt;
-
-&lt;p&gt;It has been almost &lt;strong&gt;a year and a half&lt;/strong&gt; since we &lt;a href=&quot;https://fabricmc.net/2018/12/10/announcement.html&quot;&gt;initially unveiled Fabric on the 10th of December, 2018&lt;/a&gt;. Since then, the world has changed in many ways, and so has Fabric. Since the Minecraft 1.15 update over six months ago, Fabric has:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Updated to every single snapshot along the way to allow developers to explore the new versions&lt;/li&gt;
-  &lt;li&gt;Continued to add many new APIs allowing for easier mod making and mod inter-compatibility&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Developers, make sure to check out our &lt;a href=&quot;https://fabricmc.net/2020/06/08/jun-status-update.html&quot;&gt;June Status Update&lt;/a&gt; from a couple weeks ago to learn more about how Fabric has progressed internally over the past six months.&lt;/p&gt;
-
-&lt;h2 id=&quot;community-&quot;&gt;Community &lt;!-- Player oriented, so maybe tell them where to grab fresh mods! --&gt;&lt;/h2&gt;
-
-&lt;h3 id=&quot;all-of-fabric-modpack&quot;&gt;All of Fabric Modpack&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/c1tcdOF.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;AOF is back for the 3rd time with &lt;a href=&quot;https://www.curseforge.com/minecraft/modpacks/all-of-fabric-3&quot;&gt;All of Fabric 3&lt;/a&gt; running on 1.16! It’ll be available on Curseforge short after this Blog Post is released.&lt;/p&gt;
-
-&lt;p&gt;All of Fabric 3 currently offers over 60 mods to play around with. It will continue to receive constant updates throughout the next couple of weeks offering the latest &amp;amp; best of Fabric on 1.16.&lt;/p&gt;
-
-&lt;h3 id=&quot;mods&quot;&gt;Mods&lt;/h3&gt;
-&lt;p&gt;There are almost 1,000 mods &lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods?filter-game-version=2020709689%3A7499&amp;amp;filter-sort=4&quot;&gt;available for Fabric on CurseForge&lt;/a&gt;, with &lt;em&gt;over 400&lt;/em&gt; of those mods being available for the 1.16 snapshots. The community has created a vast amount of content for the snapshots and has also worked together to port mods from previous versions up. Here are a few of the blog team’s top highlights:&lt;/p&gt;
-
-&lt;h4 id=&quot;art-of-alchemy&quot;&gt;Art of Alchemy&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/pz5mT84.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/art-of-alchemy&quot;&gt;Art of Alchemy&lt;/a&gt;, written by SynthRose, is a brand new mod centered around transmutation. The mod provides several devices that you, the alchemist, can utilize as you progress through the mod. The mod’s fantastic textures, intriguing lore, and fancy materials are the perfect ingredients for any magical world.&lt;/p&gt;
-
-&lt;h4 id=&quot;sandwichable&quot;&gt;Sandwichable&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/viKG7DN.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/sandwichable&quot;&gt;Sandwichable&lt;/a&gt; is a mod written by FoundationGames that allows you to create fully customizable sandwiches in Minecraft. It provides kitchen essentials such as cutting boards, toasters, and knives, while also introducing new crops to use in your sandwiches. Cheese lovers will appreciate the variety of cheese choices available and bask in the abundance of grilled cheese varieties.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/cRVdDPv.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;world-gen-tweaker&quot;&gt;World Gen Tweaker&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/sTuVw8x.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/world-gen-tweaker&quot;&gt;World Gen Tweaker&lt;/a&gt; by SuperCoder79 allows users to modify vanilla and mod biomes through a scripting language.&lt;/p&gt;
-
-&lt;h4 id=&quot;lil-tater-reloaded&quot;&gt;Lil Tater Reloaded&lt;/h4&gt;
-
-&lt;p&gt;Lil Tater is back with force in &lt;a href=&quot;https://www.curseforge.com/minecraft/mc-mods/lil-tater-reloaded&quot;&gt;&lt;em&gt;Lil Tater Reloaded&lt;/em&gt;&lt;/a&gt;, a mod written by Yoghurt4C. Players can customize their &lt;em&gt;very own&lt;/em&gt; Lil Tater with a variety of options, including skins, rotations &amp;amp; transforms, and equipment.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Pictured: a tater making his favorite cheese n’ potato sandwich.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/ayqTPsU.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;modfest&quot;&gt;ModFest&lt;/h3&gt;
-&lt;p&gt;ModFest is a modding event that tries to push modding forward and create new mods as new Minecraft releases arrive. As of the time of writing this is ModFest 1.16 and still ongoing. If you want new mods for a new Minecraft, make sure to check out &lt;a href=&quot;https://modfest.net/1.16/&quot;&gt;ModFest’s website&lt;/a&gt;!&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

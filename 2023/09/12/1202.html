@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.20.2 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.20.2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods." />
+<meta property="og:description" content="Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods." />
+<link rel="canonical" href="https://fabricmc.net/2023/09/12/1202.html" />
+<meta property="og:url" content="https://fabricmc.net/2023/09/12/1202.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-09-12T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.20.2" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.20.2","dateModified":"2023-09-12T00:00:00+00:00","datePublished":"2023-09-12T00:00:00+00:00","description":"Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.","url":"https://fabricmc.net/2023/09/12/1202.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2023/09/12/1202.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1694525923">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1694525923"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.20.2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2023-09-12T00:00:00+00:00" itemprop="datePublished">Sep 12, 2023
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.</p>
+
+<p>As usual, we ask players to be patient, and give mod developers time to update to this new version.</p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.3 (at the time of writing) to develop mods for Minecraft 1.20.2. Players should install the latest stable version of Fabric Loader (currently 0.14.22) to play 1.20.2.</p>
+
+<h3 id="loom-13">Loom 1.3</h3>
+<p>Loom 1.3 includes fixes to debugging, Kotlin 1.9.0 support, reproducable builds by default and many other smaller fixes and improvements.</p>
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+<p>With the help of many contributors, Fabric API has received several new features since the last update blog post:</p>
+
+<!-- yeah, sort it (alphabetical of module name) -->
+
+<ul>
+  <li>Client Tags: add support for partially synced client tags. (dexman545)</li>
+  <li>Particles v1: add event for preventing particle tinting for colored blocks. (Juxxel)</li>
+  <li>Registry Sync: add dynamic registry API (Juxxel)</li>
+  <li>Transitive Access Wideners: some more TAWs for block creation and block loot tables (Shnupbups)</li>
+</ul>
+
+<h3 id="breaking-changes-and-deprecations">Breaking changes and deprecations</h3>
+<p>The following deprecated APIs were removed:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fabric-networking-v0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">fabric-loot-tables-v1</code></li>
+  <li><code class="language-plaintext highlighter-rouge">LootEntryTypeRegistry</code> from <code class="language-plaintext highlighter-rouge">fabric-content-registries-v0</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CriterionRegistry</code> from <code class="language-plaintext highlighter-rouge">fabric-object-builder-api-v1</code></li>
+</ul>
+
+<p>In addition, there were some module-wide deprecations. Deprecated modules were previously removed from the JAR used by developers by default, while still being distributed to all players. We have not previously classified this as a breaking change, since the deprecation has no effect on players.</p>
+
+<p>This opt-in system, however, caused great confusion among developers during the Models API deprecation process. For this reason, <strong>deprecated modules are now available by default</strong> in the development environment.</p>
+
+<p>To restore the old behavior and <strong>disable deprecated modules</strong>, use the following:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">modImplementation</span><span class="o">(</span><span class="s2">"net.fabricmc.fabric-api:fabric-api:0.88.2+1.20.2"</span><span class="o">)</span> <span class="o">{</span>
+   <span class="n">exclude</span><span class="o">(</span><span class="n">module</span> <span class="o">=</span> <span class="s2">"fabric-api-deprecated"</span><span class="o">)</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="breaking-change-custom-registry-tags">Breaking change: custom registry tags</h4>
+<p>Tags for static custom registry entries (created with <code class="language-plaintext highlighter-rouge">FabricRegistryBuilder</code>) must now be placed under <code class="language-plaintext highlighter-rouge">/tags/registry_namespace/registry_path/</code>, instead of <code class="language-plaintext highlighter-rouge">/tags/registry_path/</code>. For example, if the registry is <code class="language-plaintext highlighter-rouge">my_mod:tiny_potato</code>, the tags should be placed under <code class="language-plaintext highlighter-rouge">/tags/my_mod/tiny_potato/</code>.</p>
+
+<p>This matches the behavior for custom dynamic registries that is recently introduced to Fabric API. <strong>This does not affect vanilla tags</strong> like blocks, items, or entity types.</p>
+
+<h4 id="blocksettype-and-woodtype">BlockSetType and WoodType</h4>
+<p>To make the API easier to use, <code class="language-plaintext highlighter-rouge">BlockSetTypeRegistry</code> and <code class="language-plaintext highlighter-rouge">WoodTypeRegistry</code> are now replaced with builders, <code class="language-plaintext highlighter-rouge">BlockSetTypeBuilder</code> and <code class="language-plaintext highlighter-rouge">WoodTypeBuilder</code>. The registries were deprecated.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- BlockSetTypeRegistry.registerWood(TEAL_TYPE_ID);
+- WoodTypeRegistry.register(TEAL_TYPE_ID, TEAL_BLOCK_SET_TYPE);
+</span><span class="gi">+ BlockSetTypeBuilder.copyOf(BlockSetType.OAK).build(TEAL_TYPE_ID);
++ WoodTypeBuilder.copyOf(WoodType.OAK).build(TEAL_TYPE_ID, TEAL_BLOCK_SET_TYPE);
+</span></code></pre></div></div>
+
+<h4 id="transfer-api">Transfer API</h4>
+<p><code class="language-plaintext highlighter-rouge">Storage#exactView</code> was deprecated for removal due to lack of use and its complexity.</p>
+
+<p>Two methods from <code class="language-plaintext highlighter-rouge">Storage</code> moved to <code class="language-plaintext highlighter-rouge">StorageUtil</code>. They are: <code class="language-plaintext highlighter-rouge">simulateInsert</code> and <code class="language-plaintext highlighter-rouge">simulateExtract</code>. The methods in <code class="language-plaintext highlighter-rouge">Storage</code> are now deprecated for removal. This allows <code class="language-plaintext highlighter-rouge">simulateExtract</code> to work on <code class="language-plaintext highlighter-rouge">StorageView</code>.</p>
+
+<h4 id="models-api-replacement">Models API replacement</h4>
+<p><em>This section is currently incomplete. Please check back later!</em></p>
+
+<h4 id="rendering-data-attachments-replacement">Rendering Data Attachments replacement</h4>
+<p><em>This section is currently incomplete. Please check back later!</em></p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+<p>Minecraft 1.20.2 introduces some breaking changes to major developer-facing APIs.</p>
+
+<h3 id="networking">Networking</h3>
+<p>While the developer-facing breaking changes to Networking API were minimum, the API’s implementation was rewritten to use the new configuration stage, between login and play stages. This change hopefully resolves the longstanding issue with proxy servers.</p>
+
+<p>However, some mods need to change the code to utilize the configuration stage. Here is the summary of the changes; those who work on the raw networking stack (to develop cross-platform APIs or proxies) should read <a href="https://github.com/FabricMC/fabric/pull/3244">the protocol proposal</a>.</p>
+
+<p><strong>Mods that use <code class="language-plaintext highlighter-rouge">ServerPlayNetworking</code>, for non-configuration purposes, are likely unaffected.</strong> Mods that use <code class="language-plaintext highlighter-rouge">ServerLoginNetworking</code>, or implement configuration syncing/mod version checking feature, should check the note below.</p>
+
+<ul>
+  <li>Before 1.20.2, most of the server-client communication took place during gameplay, via <code class="language-plaintext highlighter-rouge">ServerPlayNetworking</code>. Mods who wanted to communicate before the player joined had to use <code class="language-plaintext highlighter-rouge">ServerLoginNetworking</code>.</li>
+  <li>In 1.20.2, after the player authenticates, but before the player joins the world (and <code class="language-plaintext highlighter-rouge">ServerPlayerEntity</code> instance is created), there exist a phase where the client and the server can communicate to configure each other. This is the “configuration stage”.</li>
+  <li>During this stage, the server executes “tasks” one by one. For example, you can define a task that queries the client’s mod version and disconnects the client if the versions differ.</li>
+  <li>Once all tasks are completed, the player joins the world.</li>
+  <li>Importantly, the code allows the server to force a player back to the configuration stage. This feature is not used in vanilla. For example, a minigame server might use this feature to move players between the lobby and the minigames.</li>
+  <li>Configuration stage is designed to allow mods to reliably exchange packets before the player joins. If you previously have used <code class="language-plaintext highlighter-rouge">ServerLoginNetworking</code>, it is highly recommended to switch to configuration stage, with <code class="language-plaintext highlighter-rouge">ServerConfigurationNetworking</code>.</li>
+</ul>
+
+<p>Example of implementing one-way syncing, from server to client:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// define ConfigS2CPacket; see https://gist.github.com/apple502j/9c6b9e5e8dec37cbf6f3916472a79d57</span>
+
+<span class="nc">ServerConfigurationConnectionEvents</span><span class="o">.</span><span class="na">CONFIGURE</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">handler</span><span class="o">,</span> <span class="n">server</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="nc">ServerConfigurationNetworking</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">handler</span><span class="o">,</span> <span class="k">new</span> <span class="nc">ConfigS2CPacket</span><span class="o">(</span><span class="s">"data"</span><span class="o">));</span>
+<span class="o">});</span>
+</code></pre></div></div>
+
+<p>Client side:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ClientConfigurationNetworking</span><span class="o">.</span><span class="na">registerGlobalReceiver</span><span class="o">(</span><span class="nc">ConfigS2CPacket</span><span class="o">.</span><span class="na">TYPE</span><span class="o">,</span> <span class="o">(</span><span class="n">packet</span><span class="o">,</span> <span class="n">sender</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="c1">// do something with packet</span>
+<span class="o">});</span>
+</code></pre></div></div>
+
+<p>Example of sending a packet to, and receiving a packet from, a client:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// define ConfigC2SPacket, which is sent as a response to S2CPacket</span>
+
+<span class="kd">public</span> <span class="n">record</span> <span class="nf">ConfigTask</span><span class="o">(</span><span class="nc">String</span> <span class="n">config</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">ServerPlayerConfigurationTask</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ServerPlayerConfigurationTask</span><span class="o">.</span><span class="na">Key</span> <span class="no">KEY</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ServerPlayerConfigurationTask</span><span class="o">.</span><span class="na">Key</span><span class="o">(</span><span class="s">"my_mod_id:my_mod_config"</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">ServerPlayerConfigurationTask</span><span class="o">.</span><span class="na">Key</span> <span class="nf">getKey</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="no">KEY</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendPacket</span><span class="o">(</span><span class="nc">Consumer</span><span class="o">&lt;</span><span class="nc">Packet</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">sender</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">sender</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="nc">ServerConfigurationNetworking</span><span class="o">.</span><span class="na">createS2CPacket</span><span class="o">(</span><span class="k">new</span> <span class="nc">ConfigS2CPacket</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">config</span><span class="o">)));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nc">ServerConfigurationConnectionEvents</span><span class="o">.</span><span class="na">CONFIGURE</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">handler</span><span class="o">,</span> <span class="n">server</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="c1">// This if block is required! Otherwise the client gets stuck in connection screen</span>
+    <span class="c1">// if the client cannot handle the packet.</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">ServerConfigurationNetworking</span><span class="o">.</span><span class="na">canSend</span><span class="o">(</span><span class="n">handler</span><span class="o">,</span> <span class="nc">ConfigS2CPacket</span><span class="o">.</span><span class="na">TYPE</span><span class="o">))</span> <span class="o">{</span>
+        <span class="n">handler</span><span class="o">.</span><span class="na">addTask</span><span class="o">(</span><span class="k">new</span> <span class="nc">ConfigTask</span><span class="o">(</span><span class="s">"config"</span><span class="o">));</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="c1">// Optional; if you want to require certain mods, disconnect the client.</span>
+        <span class="n">handler</span><span class="o">.</span><span class="na">disconnect</span><span class="o">(</span><span class="nc">Text</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"You need to install Tiny Potato Mod!"</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+<span class="nc">ServerConfigurationNetworking</span><span class="o">.</span><span class="na">registerGlobalReceiver</span><span class="o">(</span><span class="nc">ConfigC2SPacket</span><span class="o">.</span><span class="na">TYPE</span><span class="o">,</span> <span class="o">(</span><span class="n">packet</span><span class="o">,</span> <span class="n">handler</span><span class="o">,</span> <span class="n">sender</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="c1">// Check packet here</span>
+    <span class="c1">// Warning: if you do not call completeTask, the client gets stuck!</span>
+    <span class="n">handler</span><span class="o">.</span><span class="na">completeTask</span><span class="o">(</span><span class="nc">ConfigTask</span><span class="o">.</span><span class="na">KEY</span><span class="o">);</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<p>Client side:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ClientConfigurationNetworking</span><span class="o">.</span><span class="na">registerGlobalReceiver</span><span class="o">(</span><span class="nc">ConfigS2CPacket</span><span class="o">.</span><span class="na">TYPE</span><span class="o">,</span> <span class="o">(</span><span class="n">packet</span><span class="o">,</span> <span class="n">sender</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="c1">// do something with packet</span>
+    <span class="c1">// send a response</span>
+    <span class="n">sender</span><span class="o">.</span><span class="na">sendPacket</span><span class="o">(</span><span class="k">new</span> <span class="nc">ConfigC2SPacket</span><span class="o">(</span><span class="s">"response"</span><span class="o">));</span>
+<span class="o">});</span>
+</code></pre></div></div>
+
+<p>There is one breaking change to Networking API: <code class="language-plaintext highlighter-rouge">ClientPlayNetworking#createC2SPacket</code> now returns <code class="language-plaintext highlighter-rouge">Packet&lt;ServerCommonPacketListener&gt;</code> instead of <code class="language-plaintext highlighter-rouge">Packet&lt;ServerPlayPacketListener&gt;</code> (and similar changes with <code class="language-plaintext highlighter-rouge">createS2CPacket</code> as well.)</p>
+
+<h3 id="status-effects">Status effects</h3>
+<p>Status effects are now stored using string ID, instead of integer ID. <strong>Fabric does not migrate the data by itself.</strong> We expect someone to make a mod for data conversion.</p>
+
+<p>This change also meant that Registry Sync module no longer has to keep track of the raw IDs of registry entries on disk. The tracker file will NOT be automatically deleted. API-wise, this means <code class="language-plaintext highlighter-rouge">RegistryAttribute#PERSISTED</code> is gone.</p>
+
+<h3 id="recipes-and-advancements">Recipes and advancements</h3>
+<p>Recipe and advancement code was refactored to use records. In addition, <code class="language-plaintext highlighter-rouge">RecipeEntry</code> or <code class="language-plaintext highlighter-rouge">AdvancementEntry</code> is used in many places where a raw recipe or advancement is used previously. As the name suggests, this is a pair of the ID and the value. If you want to get the recipe/advancement itself, call <code class="language-plaintext highlighter-rouge">.value()</code>. In <code class="language-plaintext highlighter-rouge">RecipeProvider</code>, <code class="language-plaintext highlighter-rouge">exporter</code> is now of type <code class="language-plaintext highlighter-rouge">RecipeExporter</code>, not <code class="language-plaintext highlighter-rouge">Consumer&lt;RecipeJsonProvider&gt;</code>. The usage remains the same; to output a recipe, call <code class="language-plaintext highlighter-rouge">accept</code>.</p>
+
+<p>Recipes and ingredients are serialized to and from the disk using Codecs. Fabric API’s <code class="language-plaintext highlighter-rouge">CustomIngredientSerializer</code> now has <code class="language-plaintext highlighter-rouge">codec</code> method that returns codec, instead of <code class="language-plaintext highlighter-rouge">read</code>/<code class="language-plaintext highlighter-rouge">write</code> taking <code class="language-plaintext highlighter-rouge">JsonObject</code>. (<code class="language-plaintext highlighter-rouge">read</code>/<code class="language-plaintext highlighter-rouge">write</code> taking <code class="language-plaintext highlighter-rouge">PacketByteBuf</code> still exists.) To make the migration easier, you can use <code class="language-plaintext highlighter-rouge">Codecs#fromJsonSerializer</code> - though this is deprecated.</p>
+
+<p>Yarn mapping received a couple of renames. Most significantly, “input” and “output” are now called “ingredient” and “result”.</p>
+
+<h3 id="trading">Trading</h3>
+<p>A new experiment for rebalancing villager and wandering trader trades is added. While this is labeled as an experiment, it is an officially-supported feature that can be enabled in a release.</p>
+
+<p>While the internal changes to villagers were minimum, there were substantial changes to how wandering trader offers are picked in the experiment.</p>
+
+<p>Previously, the trades were selected in a similar way to villagers, where level 0 indicated common items and level 1 indicated rare items. The experiment replaces this with a pool-based method; there are several pools, and from each pool the game picks certain numbers of offers.</p>
+
+<p>We are currently designing an API that supports the experiment. For now, the current code works for existing worlds and newly created worlds without the experiment.</p>
+
+<h3 id="gui">GUI</h3>
+<p>Two <code class="language-plaintext highlighter-rouge">Screen</code> related changes: <code class="language-plaintext highlighter-rouge">onMouseScrolled</code> method now takes both horizontal and vertical scroll amount. Most mouses do not support horizontal scrolling, so use that feature with caution. Another change is that <code class="language-plaintext highlighter-rouge">renderBackground</code> method now takes mouse positions and <code class="language-plaintext highlighter-rouge">tickDelta</code>.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">EntryListWidget#mouseClicked</code>, the mouse button is now automatically checked. Override <code class="language-plaintext highlighter-rouge">isSelectButton</code> to allow right-clicking entries to select one. The checks in individual entries are now redundant.</p>
+
+<p>Texture rendering methods have changed; <code class="language-plaintext highlighter-rouge">drawTexture</code> calls should be replaced with <code class="language-plaintext highlighter-rouge">drawGuiTexture</code>. Note that since the game no longer uses atlases in GUI textures, there is no need to specify UV.</p>
+
+<h3 id="miscellaneous-changes">Miscellaneous changes</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MessageDecorator</code> is now synchronous.</li>
+  <li><code class="language-plaintext highlighter-rouge">MeleeAttackGoal#canAttack</code> was added. This is checked inside <code class="language-plaintext highlighter-rouge">attack</code> method.</li>
+  <li>In Yarn, several classes relating to session, player reporting, and telemetry were moved to a new package, <code class="language-plaintext highlighter-rouge">client.session</code>.</li>
+</ul>
+
+  </div><a class="u-url" href="/2023/09/12/1202.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
