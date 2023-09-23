@@ -1,4 +1,4 @@
-FROM node:18-bullseye AS BUILD
+FROM node:18-bookworm AS BUILD
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="${PATH}:$HOME/gems/bin"

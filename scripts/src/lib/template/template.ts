@@ -4,6 +4,8 @@ import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions,
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
 
+export const ICON_FONT = "Comic Relief";
+
 export interface Options {
 	/**
 	 * The configuration of the project we'd like to generate.
@@ -13,7 +15,8 @@ export interface Options {
 	 * An interface we can write the generated files to, depending on the platform we're running
 	 * this might be directly to the filesystem or to a zip file.
 	 */
-	writer: TemplateWriter,
+	writer: TemplateWriter;
+	canvas: CanvasFactory;
 }
 
 export interface Configuration {
@@ -52,12 +55,21 @@ export interface TemplateWriter {
 	write(path: string, content: string | ArrayBufferLike, options?: FileOptions): Promise<void>
 }
 
+export interface CanvasFactory {
+	create(width: number, height: number): CanvasLike | null
+}
+
+export interface CanvasLike {
+  getContext(contextId: "2d"): unknown,
+	toDataURL(): string
+}
+
 export async function generateTemplate(options: Options) {
 	const computedConfig = await computeConfig(options.config);
 
 	await addGradleWrapper(options);
 	await addGroovyGradle(options.writer, computedConfig);
-	await addModJson(options.writer, computedConfig);
+	await addModJson(options.writer, options.canvas, computedConfig);
 	await addGitFiles(options.writer, computedConfig);
 }
 

@@ -29,6 +29,7 @@ class UpdateProvider extends Provider {
   ): Promise<void> {
     const args = [
       "install",
+      "--unstable",
       "--force",
       "--reload",
       "--quiet",

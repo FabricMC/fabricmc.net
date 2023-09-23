@@ -2,7 +2,7 @@
     import JSZip from "jszip";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { getTemplateGameVersions } from "./template/template";
+    import { ICON_FONT, getTemplateGameVersions } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
 
     let minecraftVersion: string;
@@ -68,6 +68,14 @@
                     });
                 },
             },
+            canvas: {
+                create(width, height) {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = width;
+                    canvas.height = height;
+                    return canvas;
+                },
+            }
         });
 
         FileSaver.saveAs(
@@ -92,7 +100,12 @@
 </script>
 
 {#await versions}
-    <p>Loading data..</p>
+    <p>
+        Loading data
+    
+        <!-- Force the icon fonts to be loaded, https://stackoverflow.com/questions/2756575 -->
+        <span style="font-family: {ICON_FONT};">...</span>
+    </p>
 {:then data}
     <div class="template">
         <div class="form-line">
@@ -105,14 +118,14 @@
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
             
-            <input id="project-name" bind:value={projectName} />
+            <input id="project-name" bind:value={projectName}/>
             
             {#if modIdErrors != undefined} 
-            {#each modIdErrors as error}
-                <li style="color: red">{error}</li>
-            {/each}
-            <br>
-        {/if}
+                {#each modIdErrors as error}
+                    <li style="color: red">{error}</li>
+                {/each}
+                <br>
+            {/if}
         </div>
 
         {#if customModId != undefined}

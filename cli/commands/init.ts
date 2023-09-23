@@ -11,6 +11,10 @@ import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
+import {
+  createCanvas,
+  Fonts,
+} from "https://deno.land/x/skia_canvas@0.5.4/mod.ts";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -55,11 +59,31 @@ async function generate(
         await writeFile(outputDir, contentPath, content, options);
       },
     },
+    canvas: {
+      create: createCanvas,
+    },
   };
 
   console.log(progress("Generating mod template..."));
+  await loadFont();
   await generator.generateTemplate(options);
   console.log(success("Done!"));
+}
+
+async function loadFont() {
+  const host = Deno.env.get("FABRIC_HOST") ?? "https://fabricmc.net";
+
+  const response = await fetch(
+    `${host}/assets/fonts/ComicRelief-Regular.woff2`,
+  );
+
+  if (response.ok) {
+    // Needs to be read from file, using the body directly doesn't seem to work
+    const fontFile = await Deno.makeTempFile();
+    await Deno.writeFile(fontFile, response.body!);
+    Fonts.register(await Deno.readFile(fontFile), generator.ICON_FONT);
+    await Deno.remove(fontFile);
+  }
 }
 
 async function getAndPrepareOutputDir(
@@ -233,6 +257,16 @@ async function requestPermissions(outputDir: string) {
     {
       name: "net",
       host: "maven.fabricmc.net",
+    },
+    {
+      name: "net",
+      host: "fabricmc.net",
+    },
+    {
+      name: "env",
+    },
+    {
+      name: "ffi",
     },
   ];
 
