@@ -962,7 +962,7 @@ const kotlinEntrypointClientTemplate = "package <%= it.package %>\n\nimport net.
 const javaEntrypointDataGeneratorTemplate = "package <%= it.package %>;\n\nimport net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;\nimport net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;\n\npublic class <%= it.className %> implements DataGeneratorEntrypoint {\n	@Override\n	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {\n\n	}\n}\n";
 const kotlinEntrypointDataGeneratorTemplate = "package <%= it.package %>\n\nimport net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint\nimport net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator\n\nobject <%= it.className %> : DataGeneratorEntrypoint {\n	override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {\n	}\n}";
 async function generateEntrypoint(writer, options) {
-    const className = "ExampleMod";
+    const className = formatClassname(options.projectName);
     const classOptions = {
         package: options.packageName,
         className,
@@ -978,6 +978,9 @@ async function generateEntrypoint(writer, options) {
     } else {
         return await generateJavaEntrypoint(writer, classOptions);
     }
+}
+function formatClassname(projectName) {
+    return projectName.split(" ").map((s)=>s[0].toUpperCase() + s.slice(1)).join("").replace(/\W+/g, "");
 }
 async function generateJavaEntrypoint(writer, options) {
     var entrypoints = {
@@ -2447,6 +2450,12 @@ class CommandExecutableNotFoundError extends CommandError {
     constructor(name){
         super(`Command executable not found: ${name}`);
         Object.setPrototypeOf(this, CommandExecutableNotFoundError.prototype);
+    }
+}
+class UnknownCompletionCommandError extends CommandError {
+    constructor(name, commands){
+        super(`Auto-completion failed. Unknown command "${name}".${didYouMeanCommand(name, commands)}`);
+        Object.setPrototypeOf(this, UnknownCompletionCommandError.prototype);
     }
 }
 class UnknownCommandError extends ValidationError1 {
@@ -5388,6 +5397,615 @@ class Command {
 }
 function isUpgradeCommand(command) {
     return command instanceof Command && "getLatestVersion" in command;
+}
+class BashCompletionsGenerator {
+    cmd;
+    static generate(cmd) {
+        return new BashCompletionsGenerator(cmd).generate();
+    }
+    constructor(cmd){
+        this.cmd = cmd;
+    }
+    generate() {
+        const path = this.cmd.getPath();
+        const version = this.cmd.getVersion() ? ` v${this.cmd.getVersion()}` : "";
+        return `#!/usr/bin/env bash
+# bash completion support for ${path}${version}
+
+_${replaceSpecialChars(path)}() {
+  local word cur prev listFiles
+  local -a opts
+  COMPREPLY=()
+  cur="\${COMP_WORDS[COMP_CWORD]}"
+  prev="\${COMP_WORDS[COMP_CWORD-1]}"
+  cmd="_"
+  opts=()
+  listFiles=0
+
+  _${replaceSpecialChars(this.cmd.getName())}_complete() {
+    local action="$1"; shift
+    mapfile -t values < <( ${this.cmd.getName()} completions complete "\${action}" "\${@}" )
+    for i in "\${values[@]}"; do
+      opts+=("$i")
+    done
+  }
+
+  _${replaceSpecialChars(this.cmd.getName())}_expand() {
+    [ "$cur" != "\${cur%\\\\}" ] && cur="$cur\\\\"
+  
+    # expand ~username type directory specifications
+    if [[ "$cur" == \\~*/* ]]; then
+      # shellcheck disable=SC2086
+      eval cur=$cur
+      
+    elif [[ "$cur" == \\~* ]]; then
+      cur=\${cur#\\~}
+      # shellcheck disable=SC2086,SC2207
+      COMPREPLY=( $( compgen -P '~' -u $cur ) )
+      return \${#COMPREPLY[@]}
+    fi
+  }
+
+  # shellcheck disable=SC2120
+  _${replaceSpecialChars(this.cmd.getName())}_file_dir() {
+    listFiles=1
+    local IFS=$'\\t\\n' xspec #glob
+    _${replaceSpecialChars(this.cmd.getName())}_expand || return 0
+  
+    if [ "\${1:-}" = -d ]; then
+      # shellcheck disable=SC2206,SC2207,SC2086
+      COMPREPLY=( \${COMPREPLY[@]:-} $( compgen -d -- $cur ) )
+      #eval "$glob"    # restore glob setting.
+      return 0
+    fi
+  
+    xspec=\${1:+"!*.$1"}	# set only if glob passed in as $1
+    # shellcheck disable=SC2206,SC2207
+    COMPREPLY=( \${COMPREPLY[@]:-} $( compgen -f -X "$xspec" -- "$cur" ) \
+          $( compgen -d -- "$cur" ) )
+  }
+
+  ${this.generateCompletions(this.cmd).trim()}
+
+  for word in "\${COMP_WORDS[@]}"; do
+    case "\${word}" in
+      -*) ;;
+      *)
+        cmd_tmp="\${cmd}_\${word//[^[:alnum:]]/_}"
+        if type "\${cmd_tmp}" &>/dev/null; then
+          cmd="\${cmd_tmp}"
+        fi
+    esac
+  done
+
+  \${cmd}
+
+  if [[ listFiles -eq 1 ]]; then
+    return 0
+  fi
+
+  if [[ \${#opts[@]} -eq 0 ]]; then
+    # shellcheck disable=SC2207
+    COMPREPLY=($(compgen -f "\${cur}"))
+    return 0
+  fi
+
+  local values
+  values="$( printf "\\n%s" "\${opts[@]}" )"
+  local IFS=$'\\n'
+  # shellcheck disable=SC2207
+  local result=($(compgen -W "\${values[@]}" -- "\${cur}"))
+  if [[ \${#result[@]} -eq 0 ]]; then
+    # shellcheck disable=SC2207
+    COMPREPLY=($(compgen -f "\${cur}"))
+  else
+    # shellcheck disable=SC2207
+    COMPREPLY=($(printf '%q\\n' "\${result[@]}"))
+  fi
+
+  return 0
+}
+
+complete -F _${replaceSpecialChars(path)} -o bashdefault -o default ${path}`;
+    }
+    generateCompletions(command, path = "", index = 1) {
+        path = (path ? path + " " : "") + command.getName();
+        const commandCompletions = this.generateCommandCompletions(command, path, index);
+        const childCommandCompletions = command.getCommands(false).filter((subCommand)=>subCommand !== command).map((subCommand)=>this.generateCompletions(subCommand, path, index + 1)).join("");
+        return `${commandCompletions}
+
+${childCommandCompletions}`;
+    }
+    generateCommandCompletions(command, path, index) {
+        const flags = this.getFlags(command);
+        const childCommandNames = command.getCommands(false).map((childCommand)=>childCommand.getName());
+        const completionsPath = ~path.indexOf(" ") ? " " + path.split(" ").slice(1).join(" ") : "";
+        const optionArguments = this.generateOptionArguments(command, completionsPath);
+        const completionsCmd = this.generateCommandCompletionsCommand(command, completionsPath);
+        return `  __${replaceSpecialChars(path)}() {
+    opts=(${[
+            ...flags,
+            ...childCommandNames
+        ].join(" ")})
+    ${completionsCmd}
+    if [[ \${cur} == -* || \${COMP_CWORD} -eq ${index} ]] ; then
+      return 0
+    fi
+    ${optionArguments}
+  }`;
+    }
+    getFlags(command) {
+        return command.getOptions(false).map((option)=>option.flags).flat();
+    }
+    generateOptionArguments(command, completionsPath) {
+        let opts = "";
+        const options = command.getOptions(false);
+        if (options.length) {
+            opts += 'case "${prev}" in';
+            for (const option of options){
+                const flags = option.flags.map((flag)=>flag.trim()).join("|");
+                const completionsCmd = this.generateOptionCompletionsCommand(command, option.args, completionsPath, {
+                    standalone: option.standalone
+                });
+                opts += `\n      ${flags}) ${completionsCmd} ;;`;
+            }
+            opts += "\n    esac";
+        }
+        return opts;
+    }
+    generateCommandCompletionsCommand(command, path) {
+        const args = command.getArguments();
+        if (args.length) {
+            const type = command.getType(args[0].type);
+            if (type && type.handler instanceof FileType) {
+                return `_${replaceSpecialChars(this.cmd.getName())}_file_dir`;
+            }
+            return `_${replaceSpecialChars(this.cmd.getName())}_complete ${args[0].action}${path}`;
+        }
+        return "";
+    }
+    generateOptionCompletionsCommand(command, args, path, opts) {
+        if (args.length) {
+            const type = command.getType(args[0].type);
+            if (type && type.handler instanceof FileType) {
+                return `opts=(); _${replaceSpecialChars(this.cmd.getName())}_file_dir`;
+            }
+            return `opts=(); _${replaceSpecialChars(this.cmd.getName())}_complete ${args[0].action}${path}`;
+        }
+        if (opts?.standalone) {
+            return "opts=()";
+        }
+        return "";
+    }
+}
+function replaceSpecialChars(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, "_");
+}
+class BashCompletionsCommand extends Command {
+    #cmd;
+    constructor(cmd){
+        super();
+        this.#cmd = cmd;
+        return this.description(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            return `Generate shell completions for bash.
+
+To enable bash completions for this program add following line to your ${dim(italic("~/.bashrc"))}:
+
+    ${dim(italic(`source <(${baseCmd.getPath()} completions bash)`))}`;
+        }).noGlobals().action(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            console.log(BashCompletionsGenerator.generate(baseCmd));
+        });
+    }
+}
+class CompleteCommand extends Command {
+    constructor(cmd){
+        super();
+        return this.description("Get completions for given action from given command.").noGlobals().arguments("<action:string> [command...:string]").action(async (_, action, ...commandNames)=>{
+            let parent;
+            const completeCommand = commandNames?.reduce((cmd, name)=>{
+                parent = cmd;
+                const childCmd = cmd.getCommand(name, false);
+                if (!childCmd) {
+                    throw new UnknownCompletionCommandError(name, cmd.getCommands());
+                }
+                return childCmd;
+            }, cmd || this.getMainCommand()) ?? (cmd || this.getMainCommand());
+            const completion = completeCommand.getCompletion(action);
+            const result = await completion?.complete(completeCommand, parent) ?? [];
+            if (result?.length) {
+                Deno.stdout.writeSync(new TextEncoder().encode(result.join("\n")));
+            }
+        }).reset();
+    }
+}
+class FishCompletionsGenerator {
+    cmd;
+    static generate(cmd) {
+        return new FishCompletionsGenerator(cmd).generate();
+    }
+    constructor(cmd){
+        this.cmd = cmd;
+    }
+    generate() {
+        const path = this.cmd.getPath();
+        const version = this.cmd.getVersion() ? ` v${this.cmd.getVersion()}` : "";
+        return `#!/usr/bin/env fish
+# fish completion support for ${path}${version}
+
+function __fish_${replaceSpecialChars1(this.cmd.getName())}_using_command
+  set -l cmds ${getCommandFnNames(this.cmd).join(" ")}
+  set -l words (commandline -opc)
+  set -l cmd "_"
+  for word in $words
+    switch $word
+      case '-*'
+        continue
+      case '*'
+        set word (string replace -r -a '\\W' '_' $word)
+        set -l cmd_tmp $cmd"_$word"
+        if contains $cmd_tmp $cmds
+          set cmd $cmd_tmp
+        end
+    end
+  end
+  if test "$cmd" = "$argv[1]"
+    return 0
+  end
+  return 1
+end
+
+${this.generateCompletions(this.cmd).trim()}`;
+    }
+    generateCompletions(command) {
+        const parent = command.getParent();
+        let result = ``;
+        if (parent) {
+            result += "\n" + this.complete(parent, {
+                description: command.getShortDescription(),
+                arguments: command.getName()
+            });
+        }
+        const commandArgs = command.getArguments();
+        if (commandArgs.length) {
+            result += "\n" + this.complete(command, {
+                arguments: commandArgs.length ? this.getCompletionCommand(command, commandArgs[0]) : undefined
+            });
+        }
+        for (const option of command.getOptions(false)){
+            result += "\n" + this.completeOption(command, option);
+        }
+        for (const subCommand of command.getCommands(false)){
+            result += this.generateCompletions(subCommand);
+        }
+        return result;
+    }
+    completeOption(command, option) {
+        const shortOption = option.flags.find((flag)=>flag.length === 2)?.replace(/^(-)+/, "");
+        const longOption = option.flags.find((flag)=>flag.length > 2)?.replace(/^(-)+/, "");
+        return this.complete(command, {
+            description: getDescription(option.description),
+            shortOption: shortOption,
+            longOption: longOption,
+            required: true,
+            standalone: option.standalone,
+            arguments: option.args.length ? this.getCompletionCommand(command, option.args[0]) : undefined
+        });
+    }
+    complete(command, options) {
+        const cmd = [
+            "complete"
+        ];
+        cmd.push("-c", this.cmd.getName());
+        cmd.push("-n", `'__fish_${replaceSpecialChars1(this.cmd.getName())}_using_command __${replaceSpecialChars1(command.getPath())}'`);
+        options.shortOption && cmd.push("-s", options.shortOption);
+        options.longOption && cmd.push("-l", options.longOption);
+        options.standalone && cmd.push("-x");
+        cmd.push("-k");
+        cmd.push("-f");
+        if (options.arguments) {
+            options.required && cmd.push("-r");
+            cmd.push("-a", options.arguments);
+        }
+        if (options.description) {
+            const description = getDescription(options.description, true).replace(/'/g, "\\'");
+            cmd.push("-d", `'${description}'`);
+        }
+        return cmd.join(" ");
+    }
+    getCompletionCommand(cmd, arg) {
+        const type = cmd.getType(arg.type);
+        if (type && type.handler instanceof FileType) {
+            return `'(__fish_complete_path)'`;
+        }
+        return `'(${this.cmd.getName()} completions complete ${arg.action + " " + getCompletionsPath(cmd)})'`;
+    }
+}
+function getCommandFnNames(cmd, cmds = []) {
+    cmds.push(`__${replaceSpecialChars1(cmd.getPath())}`);
+    cmd.getCommands(false).forEach((command)=>{
+        getCommandFnNames(command, cmds);
+    });
+    return cmds;
+}
+function getCompletionsPath(command) {
+    return command.getPath().split(" ").slice(1).join(" ");
+}
+function replaceSpecialChars1(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, "_");
+}
+class FishCompletionsCommand extends Command {
+    #cmd;
+    constructor(cmd){
+        super();
+        this.#cmd = cmd;
+        return this.description(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            return `Generate shell completions for fish.
+
+To enable fish completions for this program add following line to your ${dim(italic("~/.config/fish/config.fish"))}:
+
+    ${dim(italic(`source (${baseCmd.getPath()} completions fish | psub)`))}`;
+        }).noGlobals().action(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            console.log(FishCompletionsGenerator.generate(baseCmd));
+        });
+    }
+}
+class ZshCompletionsGenerator {
+    cmd;
+    actions;
+    static generate(cmd) {
+        return new ZshCompletionsGenerator(cmd).generate();
+    }
+    constructor(cmd){
+        this.cmd = cmd;
+        this.actions = new Map();
+    }
+    generate() {
+        const path = this.cmd.getPath();
+        const name = this.cmd.getName();
+        const version = this.cmd.getVersion() ? ` v${this.cmd.getVersion()}` : "";
+        return `#!/usr/bin/env zsh
+# zsh completion support for ${path}${version}
+
+autoload -U is-at-least
+
+# shellcheck disable=SC2154
+(( $+functions[__${replaceSpecialChars2(name)}_complete] )) ||
+function __${replaceSpecialChars2(name)}_complete {
+  local name="$1"; shift
+  local action="$1"; shift
+  integer ret=1
+  local -a values
+  local expl lines
+  _tags "$name"
+  while _tags; do
+    if _requested "$name"; then
+      # shellcheck disable=SC2034
+      lines="$(${name} completions complete "\${action}" "\${@}")"
+      values=("\${(ps:\\n:)lines}")
+      if (( \${#values[@]} )); then
+        while _next_label "$name" expl "$action"; do
+          compadd -S '' "\${expl[@]}" "\${values[@]}"
+        done
+      fi
+    fi
+  done
+}
+
+${this.generateCompletions(this.cmd).trim()}
+
+# _${replaceSpecialChars2(path)} "\${@}"
+
+compdef _${replaceSpecialChars2(path)} ${path}`;
+    }
+    generateCompletions(command, path = "") {
+        if (!command.hasCommands(false) && !command.hasOptions(false) && !command.hasArguments()) {
+            return "";
+        }
+        path = (path ? path + " " : "") + command.getName();
+        return `# shellcheck disable=SC2154
+(( $+functions[_${replaceSpecialChars2(path)}] )) ||
+function _${replaceSpecialChars2(path)}() {` + (!command.getParent() ? `
+  local state` : "") + this.generateCommandCompletions(command, path) + this.generateSubCommandCompletions(command, path) + this.generateArgumentCompletions(command, path) + this.generateActions(command) + `\n}\n\n` + command.getCommands(false).filter((subCommand)=>subCommand !== command).map((subCommand)=>this.generateCompletions(subCommand, path)).join("");
+    }
+    generateCommandCompletions(command, path) {
+        const commands = command.getCommands(false);
+        let completions = commands.map((subCommand)=>`'${subCommand.getName()}:${subCommand.getShortDescription().replace(/'/g, "'\"'\"'")}'`).join("\n      ");
+        if (completions) {
+            completions = `
+    local -a commands
+    # shellcheck disable=SC2034
+    commands=(
+      ${completions}
+    )
+    _describe 'command' commands`;
+        }
+        if (command.hasArguments()) {
+            const completionsPath = path.split(" ").slice(1).join(" ");
+            const arg = command.getArguments()[0];
+            const action = this.addAction(arg, completionsPath);
+            if (action && command.getCompletion(arg.action)) {
+                completions += `\n    __${replaceSpecialChars2(this.cmd.getName())}_complete ${action.arg.name} ${action.arg.action} ${action.cmd}`;
+            }
+        }
+        if (completions) {
+            completions = `\n\n  function _commands() {${completions}\n  }`;
+        }
+        return completions;
+    }
+    generateSubCommandCompletions(command, path) {
+        if (command.hasCommands(false)) {
+            const actions = command.getCommands(false).map((command)=>`${command.getName()}) _${replaceSpecialChars2(path + " " + command.getName())} ;;`).join("\n      ");
+            return `\n
+  function _command_args() {
+    case "\${words[1]}" in\n      ${actions}\n    esac
+  }`;
+        }
+        return "";
+    }
+    generateArgumentCompletions(command, path) {
+        this.actions.clear();
+        const options = this.generateOptions(command, path);
+        let argIndex = 0;
+        let argsCommand = "\n\n  _arguments -w -s -S -C";
+        if (command.hasOptions()) {
+            argsCommand += ` \\\n    ${options.join(" \\\n    ")}`;
+        }
+        if (command.hasCommands(false) || command.getArguments().filter((arg)=>command.getCompletion(arg.action)).length) {
+            argsCommand += ` \\\n    '${++argIndex}:command:_commands'`;
+        }
+        if (command.hasArguments() || command.hasCommands(false)) {
+            const args = [];
+            for (const arg of command.getArguments().slice(1)){
+                const type = command.getType(arg.type);
+                if (type && type.handler instanceof FileType) {
+                    const fileCompletions = this.getFileCompletions(type);
+                    if (arg.variadic) {
+                        argIndex++;
+                        for(let i = 0; i < 5; i++){
+                            args.push(`${argIndex + i}${arg.optionalValue ? "::" : ":"}${arg.name}:${fileCompletions}`);
+                        }
+                    } else {
+                        args.push(`${++argIndex}${arg.optionalValue ? "::" : ":"}${arg.name}:${fileCompletions}`);
+                    }
+                } else {
+                    const completionsPath = path.split(" ").slice(1).join(" ");
+                    const action = this.addAction(arg, completionsPath);
+                    args.push(`${++argIndex}${arg.optionalValue ? "::" : ":"}${arg.name}:->${action.name}`);
+                }
+            }
+            argsCommand += args.map((arg)=>`\\\n    '${arg}'`).join("");
+            if (command.hasCommands(false)) {
+                argsCommand += ` \\\n    '*::sub command:->command_args'`;
+            }
+        }
+        return argsCommand;
+    }
+    generateOptions(command, path) {
+        const options = [];
+        const cmdArgs = path.split(" ");
+        cmdArgs.shift();
+        const completionsPath = cmdArgs.join(" ");
+        const excludedFlags = command.getOptions(false).map((option)=>option.standalone ? option.flags : false).flat().filter((flag)=>typeof flag === "string");
+        for (const option of command.getOptions(false)){
+            options.push(this.generateOption(command, option, completionsPath, excludedFlags));
+        }
+        return options;
+    }
+    generateOption(command, option, completionsPath, excludedOptions) {
+        let args = "";
+        for (const arg of option.args){
+            const type = command.getType(arg.type);
+            const optionalValue = arg.optionalValue ? "::" : ":";
+            if (type && type.handler instanceof FileType) {
+                const fileCompletions = this.getFileCompletions(type);
+                args += `${optionalValue}${arg.name}:${fileCompletions}`;
+            } else {
+                const action = this.addAction(arg, completionsPath);
+                args += `${optionalValue}${arg.name}:->${action.name}`;
+            }
+        }
+        const description = getDescription(option.description, true).replace(/\[/g, "\\[").replace(/]/g, "\\]").replace(/"/g, '\\"').replace(/'/g, "'\"'\"'");
+        const collect = option.collect ? "*" : "";
+        const equalsSign = option.equalsSign ? "=" : "";
+        const flags = option.flags.map((flag)=>`${flag}${equalsSign}`);
+        let result = "";
+        if (option.standalone) {
+            result += "'(- *)'";
+        } else {
+            const excludedFlags = [
+                ...excludedOptions
+            ];
+            if (option.conflicts?.length) {
+                excludedFlags.push(...option.conflicts.map((opt)=>"--" + opt.replace(/^--/, "")));
+            }
+            if (!option.collect) {
+                excludedFlags.push(...option.flags);
+            }
+            if (excludedFlags.length) {
+                result += `'(${excludedFlags.join(" ")})'`;
+            }
+        }
+        if (collect || flags.length > 1) {
+            result += `{${collect}${flags.join(",")}}`;
+        } else {
+            result += `${flags.join(",")}`;
+        }
+        return `${result}'[${description}]${args}'`;
+    }
+    getFileCompletions(type) {
+        if (!(type.handler instanceof FileType)) {
+            return "";
+        }
+        return "_files";
+    }
+    addAction(arg, cmd) {
+        const action = `${arg.name}-${arg.action}`;
+        if (!this.actions.has(action)) {
+            this.actions.set(action, {
+                arg: arg,
+                label: `${arg.name}: ${arg.action}`,
+                name: action,
+                cmd
+            });
+        }
+        return this.actions.get(action);
+    }
+    generateActions(command) {
+        let actions = [];
+        if (this.actions.size) {
+            actions = Array.from(this.actions).map(([name, action])=>`${name}) __${replaceSpecialChars2(this.cmd.getName())}_complete ${action.arg.name} ${action.arg.action} ${action.cmd} ;;`);
+        }
+        if (command.hasCommands(false)) {
+            actions.unshift(`command_args) _command_args ;;`);
+        }
+        if (actions.length) {
+            return `\n\n  case "$state" in\n    ${actions.join("\n    ")}\n  esac`;
+        }
+        return "";
+    }
+}
+function replaceSpecialChars2(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, "_");
+}
+class ZshCompletionsCommand extends Command {
+    #cmd;
+    constructor(cmd){
+        super();
+        this.#cmd = cmd;
+        return this.description(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            return `Generate shell completions for zsh.
+
+To enable zsh completions for this program add following line to your ${dim(italic("~/.zshrc"))}:
+
+    ${dim(italic(`source <(${baseCmd.getPath()} completions zsh)`))}`;
+        }).noGlobals().action(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            console.log(ZshCompletionsGenerator.generate(baseCmd));
+        });
+    }
+}
+class CompletionsCommand extends Command {
+    #cmd;
+    constructor(cmd){
+        super();
+        this.#cmd = cmd;
+        return this.description(()=>{
+            const baseCmd = this.#cmd || this.getMainCommand();
+            return `Generate shell completions.
+
+To enable shell completions for this program add the following line to your ${dim(italic("~/.bashrc"))} or similar:
+
+    ${dim(italic(`source <(${baseCmd.getPath()} completions [shell])`))}
+
+    For more information run ${dim(italic(`${baseCmd.getPath()} completions [shell] --help`))}
+`;
+        }).noGlobals().action(()=>this.showHelp()).command("bash", new BashCompletionsCommand(this.#cmd)).command("fish", new FishCompletionsCommand(this.#cmd)).command("zsh", new ZshCompletionsCommand(this.#cmd)).command("complete", new CompleteCommand(this.#cmd).hidden()).reset();
+    }
 }
 class Provider {
     maxListSize = 25;
@@ -9703,9 +10321,9 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-09-30 14:05:20").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-09-30 14:52:17").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
-    }).command("init", initCommand()).command("upgrade", upgradeCommand());
+    }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
     await cmd.parse();
 }
