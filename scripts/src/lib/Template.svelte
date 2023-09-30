@@ -78,6 +78,10 @@
         loading = false;
     }
 
+    function doFormatProjectName() {
+        projectName = projectName.trim()
+    }
+
     function doFormatPackageName() {
         packageName = formatPackageName(packageName)
     }
@@ -105,7 +109,7 @@
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
             
-            <input id="project-name" bind:value={projectName} />
+            <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
             
             {#if modIdErrors != undefined} 
             {#each modIdErrors as error}
