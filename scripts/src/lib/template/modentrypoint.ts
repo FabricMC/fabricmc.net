@@ -7,7 +7,7 @@ import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoin
 import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
 import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
-import { getMinorMinecraftVersion } from "./java";
+import { getMinorMinecraftVersion } from "./minecraft";
 
 interface ClassOptions {
     package: string, // com.example
@@ -21,7 +21,7 @@ interface ClassOptions {
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
-    const className = "ExampleMod"; // TODO base of mod name.
+    const className = formatClassname(options.projectName);
 
     const classOptions: ClassOptions = {
         package: options.packageName,
@@ -39,6 +39,13 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
     } else {
         return await generateJavaEntrypoint(writer, classOptions);
     }
+}
+
+function formatClassname(projectName: string): string {
+    return projectName.split(' ')
+        .map(s => s[0].toUpperCase() + s.slice(1))
+        .join("")
+        .replace(/\W+/g, "");
 }
 
 async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOptions): Promise<unknown> {

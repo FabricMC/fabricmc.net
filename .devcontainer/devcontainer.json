@@ -4,8 +4,12 @@
 		4000,
 		3000
 	],
-	"extensions": [
-		"svelte.svelte-vscode",
-		"shadowtime2000.eta-vscode"
-	]
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"svelte.svelte-vscode",
+				"shadowtime2000.eta-vscode"
+			]
+		}
+	}
 }

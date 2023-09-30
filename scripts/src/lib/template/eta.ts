@@ -1,9 +1,9 @@
-import * as Eta from "eta";
+import { Eta } from "eta"
+
+const eta = new Eta({
+	autoTrim: false
+})
 
 export function renderTemplate(template: string, options: object): string {
-	Eta.configure({
-		autoTrim: false
-	});
-
-	return Eta.render(template, options) as string;
+	return eta.renderString(template, options);
 }

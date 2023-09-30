@@ -1,8 +1,13 @@
 import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
-import { getJavaVersion, getMinorMinecraftVersion } from "./java"
+import { getJavaVersion } from "./java"
+import { getMinorMinecraftVersion } from "./minecraft"
 import { decode64 } from './utils';
+
+function usesNewModid(fabricVersion: string) : boolean {
+  return Number(fabricVersion.split(".")[1]) >= 59;
+}
 
 export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {
   var mixins = [
@@ -38,7 +43,7 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
     }
   }
 
-  fabricModJson.depends[getMinorMinecraftVersion(config.minecraftVersion) >= 16 ? "fabric-api" : "fabric"] = "*"
+  fabricModJson.depends[usesNewModid(config.fabricVersion) ? "fabric-api" : "fabric"] = "*"
 
   if (config.kotlin) {
     fabricModJson.depends = {
