@@ -1,11 +1,11 @@
-import { S as ve, i as ye, s as we, h as ke, b as Ee, c as bt, u as Se, r as Ft, v as Gt, d as vt, f as Be, e as rt, t as Et, a as At, g as Tt, j as q, n as Bt, o as $, m as xe, C as It, p as Jt, q as kt, D as Ce, E as Ie, l as Ut, B as re, k as Mt, z as Vt, w as ie, x as ae, y as se } from "./index.61dc58cf.js";
+import { S as ve, i as ye, s as we, h as ke, b as Ee, c as bt, u as Se, r as Ft, v as Gt, d as vt, f as Be, e as rt, t as Et, a as At, g as zt, j as q, n as Bt, o as $, m as xe, C as It, p as Jt, q as kt, D as Ce, E as Ie, l as Ut, B as re, k as Mt, z as Vt, w as ie, x as ae, y as se } from "./index.61dc58cf.js";
 import oe from "./DownloadIcon.214b8f5e.js";
 import { d as Re, b as Fe, h as Ge, i as Ne, j as Oe } from "./Api.380e8059.js";
 var St = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function le(F) {
   return F && F.__esModule && Object.prototype.hasOwnProperty.call(F, "default") ? F.default : F;
 }
-function zt(F) {
+function Lt(F) {
   throw new Error('Could not dynamically require "' + F + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
 }
 var ce = { exports: {} };
@@ -28,7 +28,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       function s(f, b) {
         if (!c[f]) {
           if (!y[f]) {
-            var g = typeof zt == "function" && zt;
+            var g = typeof Lt == "function" && Lt;
             if (!b && g)
               return g(f, !0);
             if (e)
@@ -44,7 +44,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         }
         return c[f].exports;
       }
-      for (var e = typeof zt == "function" && zt, l = 0; l < r.length; l++)
+      for (var e = typeof Lt == "function" && Lt, l = 0; l < r.length; l++)
         s(r[l]);
       return s;
     }({ 1: [function(i, y, c) {
@@ -2462,17 +2462,17 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         for (N = tt; D = A.heap[1], A.heap[1] = A.heap[A.heap_len--], dt(A, Y, 1), W = A.heap[1], A.heap[--A.heap_max] = D, A.heap[--A.heap_max] = W, Y[2 * N] = Y[2 * D] + Y[2 * W], A.depth[N] = (A.depth[D] >= A.depth[W] ? A.depth[D] : A.depth[W]) + 1, Y[2 * D + 1] = Y[2 * W + 1] = N, A.heap[1] = N++, dt(A, Y, 1), 2 <= A.heap_len; )
           ;
         A.heap[--A.heap_max] = A.heap[1], function(lt, et) {
-          var gt, yt, wt, pt, Ot, Dt, Ct = et.dyn_tree, jt = et.max_code, me = et.stat_desc.static_tree, ge = et.stat_desc.has_stree, be = et.stat_desc.extra_bits, Yt = et.stat_desc.extra_base, Rt = et.stat_desc.max_length, Lt = 0;
+          var gt, yt, wt, pt, Nt, Dt, Ct = et.dyn_tree, jt = et.max_code, me = et.stat_desc.static_tree, ge = et.stat_desc.has_stree, be = et.stat_desc.extra_bits, Yt = et.stat_desc.extra_base, Rt = et.stat_desc.max_length, Ot = 0;
           for (pt = 0; pt <= d; pt++)
             lt.bl_count[pt] = 0;
           for (Ct[2 * lt.heap[lt.heap_max] + 1] = 0, gt = lt.heap_max + 1; gt < a; gt++)
-            Rt < (pt = Ct[2 * Ct[2 * (yt = lt.heap[gt]) + 1] + 1] + 1) && (pt = Rt, Lt++), Ct[2 * yt + 1] = pt, jt < yt || (lt.bl_count[pt]++, Ot = 0, Yt <= yt && (Ot = be[yt - Yt]), Dt = Ct[2 * yt], lt.opt_len += Dt * (pt + Ot), ge && (lt.static_len += Dt * (me[2 * yt + 1] + Ot)));
-          if (Lt !== 0) {
+            Rt < (pt = Ct[2 * Ct[2 * (yt = lt.heap[gt]) + 1] + 1] + 1) && (pt = Rt, Ot++), Ct[2 * yt + 1] = pt, jt < yt || (lt.bl_count[pt]++, Nt = 0, Yt <= yt && (Nt = be[yt - Yt]), Dt = Ct[2 * yt], lt.opt_len += Dt * (pt + Nt), ge && (lt.static_len += Dt * (me[2 * yt + 1] + Nt)));
+          if (Ot !== 0) {
             do {
               for (pt = Rt - 1; lt.bl_count[pt] === 0; )
                 pt--;
-              lt.bl_count[pt]--, lt.bl_count[pt + 1] += 2, lt.bl_count[Rt]--, Lt -= 2;
-            } while (0 < Lt);
+              lt.bl_count[pt]--, lt.bl_count[pt + 1] += 2, lt.bl_count[Rt]--, Ot -= 2;
+            } while (0 < Ot);
             for (pt = Rt; pt !== 0; pt--)
               for (yt = lt.bl_count[pt]; yt !== 0; )
                 jt < (wt = lt.heap[--gt]) || (Ct[2 * wt + 1] !== pt && (lt.opt_len += (pt - Ct[2 * wt + 1]) * Ct[2 * wt], Ct[2 * wt + 1] = pt), yt--);
@@ -3600,12 +3600,12 @@ publishing {
 	}
 }`;
 function Xe(F) {
-  return Nt(F) >= 17;
+  return Tt(F) >= 17;
 }
 function He(F) {
-  return Nt(F) >= 19;
+  return Tt(F) >= 19;
 }
-function Nt(F) {
+function Tt(F) {
   return Number(F.split(".")[1]);
 }
 function fe(F, p) {
@@ -3654,7 +3654,7 @@ const $e = {
   kotlinRelease: "17"
 };
 function Zt(F) {
-  const p = Nt(F);
+  const p = Tt(F);
   return p < 16 ? $e : p == 16 ? tn : en;
 }
 async function nn(F, p) {
@@ -3810,7 +3810,7 @@ async function fn(F, p) {
     classFullName: p.packageName + "." + i,
     path: p.packageName.replaceAll(".", "/") + "/" + i,
     modid: p.modid,
-    slf4j: Nt(p.minecraftVersion) >= 18,
+    slf4j: Tt(p.minecraftVersion) >= 18,
     clientEntrypoint: p.splitSources,
     dataEntrypoint: p.dataGeneration
   };
@@ -3861,7 +3861,10 @@ async function mn(F, p) {
     ]
   }), i;
 }
-async function gn(F, p) {
+function gn(F) {
+  return Number(F.split(".")[1]) >= 59;
+}
+async function bn(F, p) {
   var i = [
     ...await sn(F, p),
     ...p.splitSources ? await on(F, p) : []
@@ -3892,12 +3895,12 @@ async function gn(F, p) {
       "another-mod": "*"
     }
   };
-  y.depends[Nt(p.minecraftVersion) >= 16 ? "fabric-api" : "fabric"] = "*", p.kotlin && (y.depends = {
+  y.depends[gn(p.fabricVersion) ? "fabric-api" : "fabric"] = "*", p.kotlin && (y.depends = {
     ...y.depends,
     "fabric-language-kotlin": ">=" + p.kotlin.kotlinVersion
-  }), await F.write("src/main/resources/fabric.mod.json", JSON.stringify(y, null, "	")), await F.write(`src/main/resources/assets/${p.modid}/icon.png`, Ae(bn));
+  }), await F.write("src/main/resources/fabric.mod.json", JSON.stringify(y, null, "	")), await F.write(`src/main/resources/assets/${p.modid}/icon.png`, Ae(vn));
 }
-const bn = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC", vn = `Creative Commons Legal Code
+const vn = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC", yn = `Creative Commons Legal Code
 
 CC0 1.0 Universal
 
@@ -4018,12 +4021,12 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.`;
-async function yn(F, p) {
-  await F.write(".gitignore", de), await F.write(".github/workflows/build.yml", he), await F.write("LICENSE", vn);
+async function wn(F, p) {
+  await F.write(".gitignore", de), await F.write(".github/workflows/build.yml", he), await F.write("LICENSE", yn);
 }
-async function wn(F) {
-  const p = await kn(F.config);
-  await Ve(F), await nn(F.writer, p), await gn(F.writer, p), await yn(F.writer);
+async function kn(F) {
+  const p = await En(F.config);
+  await Ve(F), await nn(F.writer, p), await bn(F.writer, p), await wn(F.writer);
 }
 async function pe() {
   return (await Re()).filter((p) => p.stable).filter((p) => {
@@ -4031,16 +4034,16 @@ async function pe() {
     return !(i.startsWith("1.14") && i != "1.14.4");
   });
 }
-async function kn(F) {
+async function En(F) {
   return {
     ...F,
     loaderVersion: (await Fe()).find((p) => p.stable).version,
     fabricVersion: await Ge(F.minecraftVersion),
     yarnVersion: (await Ne(F.minecraftVersion))[0].version,
-    kotlin: await En(F)
+    kotlin: await Sn(F)
   };
 }
-async function En(F) {
+async function Sn(F) {
   if (!F.useKotlin)
     return;
   const i = (await Oe()).pop(), y = i.split("+kotlin.")[1];
@@ -4049,9 +4052,9 @@ async function En(F) {
     kotlinVersion: y
   };
 }
-const Sn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Bn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  generateTemplate: wn,
+  generateTemplate: kn,
   getTemplateGameVersions: pe
 }, Symbol.toStringTag, { value: "Module" }));
 function Qt(F, p, i) {
@@ -4066,7 +4069,7 @@ function Xt(F, p, i) {
   const y = F.slice();
   return y[30] = p[i], y;
 }
-function Bn(F) {
+function xn(F) {
   let p, i, y = (
     /*error*/
     F[30].message + ""
@@ -4075,7 +4078,7 @@ function Bn(F) {
     c() {
       p = rt("p"), i = Et("Error: "), c = Et(y), r = At(), s = rt("p"), s.innerHTML = `For support please visit one of our
         <a href="/discuss">community discussion</a>
-        groups.`, Tt(p, "color", "red");
+        groups.`, zt(p, "color", "red");
     },
     m(e, l) {
       bt(e, p, l), q(p, i), q(p, c), bt(e, r, l), bt(e, s, l);
@@ -4088,12 +4091,12 @@ function Bn(F) {
     }
   };
 }
-function xn(F) {
+function Cn(F) {
   let p, i, y, c, r, s, e, l, f, b, g, v, o, h, a, d, u, w, E, G, I, M, Z, Q, z, X, nt, k, T, n, V, it, x, L, R, J, B, C, _, P, H, ot, mt, st, at, ft, dt, ct, ht, t, U, O;
   function m(et, gt) {
     return (
       /*customModId*/
-      et[2] != null ? In : Cn
+      et[2] != null ? Rn : In
     );
   }
   let A = m(F), S = A(F), D = (
@@ -4115,7 +4118,7 @@ function xn(F) {
     /*supportsSplitSources*/
     F[9] && ne(F)
   );
-  const tt = [Fn, Rn], ut = [];
+  const tt = [Gn, Fn], ut = [];
   function lt(et, gt) {
     return (
       /*loading*/
@@ -4130,7 +4133,7 @@ function xn(F) {
       for (let et = 0; et < Y.length; et += 1)
         Y[et].c();
       T = At(), n = rt("hr"), V = At(), it = rt("br"), x = At(), L = rt("h4"), L.textContent = "Advanced Options:", R = At(), J = rt("div"), B = rt("div"), C = rt("input"), _ = At(), P = rt("label"), P.textContent = "Kotlin Programming Language", H = At(), ot = rt("p"), ot.innerHTML = `<a href="https://kotlinlang.org/" class="svelte-1sr08ub">Kotlin</a> is a alternative programming language that can be used to develop mods.
-                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-1sr08ub">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, mt = At(), K && K.c(), st = At(), j && j.c(), at = At(), ft = rt("br"), dt = At(), ht.c(), $(y, "class", "svelte-1sr08ub"), $(r, "class", "svelte-1sr08ub"), $(l, "id", "project-name"), $(l, "class", "svelte-1sr08ub"), $(i, "class", "form-line svelte-1sr08ub"), $(o, "class", "svelte-1sr08ub"), $(a, "class", "svelte-1sr08ub"), $(u, "class", "svelte-1sr08ub"), $(E, "id", "package-name"), $(E, "class", "svelte-1sr08ub"), $(v, "class", "form-line svelte-1sr08ub"), $(M, "class", "svelte-1sr08ub"), $(Q, "class", "svelte-1sr08ub"), $(X, "class", "svelte-1sr08ub"), $(k, "id", "minecraft-version"), Tt(k, "min-width", "200px"), $(k, "class", "svelte-1sr08ub"), /*minecraftVersion*/
+                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-1sr08ub">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, mt = At(), K && K.c(), st = At(), j && j.c(), at = At(), ft = rt("br"), dt = At(), ht.c(), $(y, "class", "svelte-1sr08ub"), $(r, "class", "svelte-1sr08ub"), $(l, "id", "project-name"), $(l, "class", "svelte-1sr08ub"), $(i, "class", "form-line svelte-1sr08ub"), $(o, "class", "svelte-1sr08ub"), $(a, "class", "svelte-1sr08ub"), $(u, "class", "svelte-1sr08ub"), $(E, "id", "package-name"), $(E, "class", "svelte-1sr08ub"), $(v, "class", "form-line svelte-1sr08ub"), $(M, "class", "svelte-1sr08ub"), $(Q, "class", "svelte-1sr08ub"), $(X, "class", "svelte-1sr08ub"), $(k, "id", "minecraft-version"), zt(k, "min-width", "200px"), $(k, "class", "svelte-1sr08ub"), /*minecraftVersion*/
       F[0] === void 0 && xe(() => (
         /*select_change_handler*/
         F[21].call(k)
@@ -4241,7 +4244,7 @@ function xn(F) {
     }
   };
 }
-function Cn(F) {
+function In(F) {
   let p, i, y, c, r, s, e, l;
   return {
     c() {
@@ -4269,7 +4272,7 @@ function Cn(F) {
     }
   };
 }
-function In(F) {
+function Rn(F) {
   let p;
   return {
     c() {
@@ -4329,7 +4332,7 @@ function Kt(F) {
   ), y;
   return {
     c() {
-      p = rt("li"), y = Et(i), Tt(p, "color", "red"), $(p, "class", "svelte-1sr08ub");
+      p = rt("li"), y = Et(i), zt(p, "color", "red"), $(p, "class", "svelte-1sr08ub");
     },
     m(c, r) {
       bt(c, p, r), q(p, y);
@@ -4431,7 +4434,7 @@ function $t(F) {
   ), y;
   return {
     c() {
-      p = rt("li"), y = Et(i), Tt(p, "color", "red"), $(p, "class", "svelte-1sr08ub");
+      p = rt("li"), y = Et(i), zt(p, "color", "red"), $(p, "class", "svelte-1sr08ub");
     },
     m(c, r) {
       bt(c, p, r), q(p, y);
@@ -4517,7 +4520,7 @@ function ne(F) {
     }
   };
 }
-function Rn(F) {
+function Fn(F) {
   let p, i, y, c, r, s;
   return i = new oe({}), {
     c() {
@@ -4541,7 +4544,7 @@ function Rn(F) {
     }
   };
 }
-function Fn(F) {
+function Gn(F) {
   let p, i, y, c;
   return i = new oe({}), {
     c() {
@@ -4562,7 +4565,7 @@ function Fn(F) {
     }
   };
 }
-function Gn(F) {
+function Nn(F) {
   let p;
   return {
     c() {
@@ -4579,15 +4582,15 @@ function Gn(F) {
     }
   };
 }
-function Nn(F) {
+function On(F) {
   let p, i, y = {
     ctx: F,
     current: null,
     token: null,
     hasCatch: !0,
-    pending: Gn,
-    then: xn,
-    catch: Bn,
+    pending: Nn,
+    then: Cn,
+    catch: xn,
     value: 26,
     error: 30,
     blocks: [, , ,]
@@ -4621,7 +4624,7 @@ function Nn(F) {
     }
   };
 }
-function On(F, p, i) {
+function Ln(F, p, i) {
   let y, c, r, s, e, l, f = "Template Mod", b = "com.example", g = !1, v = !1, o = !0, h, a = !1;
   const d = Promise.all([pe()]).then(([T]) => {
     const n = T;
@@ -4635,7 +4638,7 @@ function On(F, p, i) {
     if (s !== void 0 || h !== void 0 && e !== void 0)
       return;
     i(8, a = !0);
-    const T = await Promise.resolve().then(() => Sn), n = {
+    const T = await Promise.resolve().then(() => Bn), n = {
       modid: h ?? y,
       minecraftVersion: l,
       projectName: f,
@@ -4720,11 +4723,11 @@ function On(F, p, i) {
     k
   ];
 }
-class Zn extends ve {
+class Dn extends ve {
   constructor(p) {
-    super(), ye(this, p, On, Nn, we, {}, null, [-1, -1]);
+    super(), ye(this, p, Ln, On, we, {}, null, [-1, -1]);
   }
 }
 export {
-  Zn as default
+  Dn as default
 };
