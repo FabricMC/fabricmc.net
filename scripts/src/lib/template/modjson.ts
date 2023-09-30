@@ -2,6 +2,7 @@ import type { ComputedConfiguration, TemplateWriter } from "./template";
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 import { getJavaVersion } from "./java"
+import { getMinorMinecraftVersion } from "./minecraft"
 import { decode64 } from './utils';
 
 function usesNewModid(fabricVersion: string) : boolean {

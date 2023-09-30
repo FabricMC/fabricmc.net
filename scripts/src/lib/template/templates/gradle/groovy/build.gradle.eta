@@ -1,15 +1,17 @@
 plugins {
-	id 'fabric-loom' version '1.0-SNAPSHOT'
+	id 'fabric-loom' version '1.3-SNAPSHOT'
 	id 'maven-publish'
-	<% if (it.kotlin) { %>id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"<% } %>
+	<%_ if (it.kotlin) { %>
+  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
+  <%_ } %>
 }
 
-sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
-targetCompatibility = JavaVersion.<%= it.java.compatibility %>
-
-archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
 
 repositories {
 	// Add repositories to retrieve artifacts from in here.
@@ -22,35 +24,35 @@ repositories {
 loom {
 <% if (it.splitSources) { %>    splitEnvironmentSourceSets()
 
-    mods {
-        modid {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
+	mods {
+		"<%= it.modid %>" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
 <% } %><% if (it.dataGeneration) { %>    runs {
-        // This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
-        datagen {
-            inherit server
-            name "Data Generation"
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-            vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
+		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
+		datagen {
+			inherit server
+			name "Data Generation"
+			vmArg "-Dfabric-api.datagen"
+			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
+			vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
  
-            runDir "build/datagen"
-        }
-    }<% } %>
+			runDir "build/datagen"
+		}
+	}<% } %>
 }
 <% } %><% if (it.dataGeneration) { %>
 // Add the generated resources to the main source set
 sourceSets {
-    main {
-        resources {
-            srcDirs += [
-                    'src/main/generated'
-            ]
-        }
-    }
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
 }<% } %>
 dependencies {
 	// To change the versions see the gradle.properties file
@@ -90,11 +92,14 @@ java {
 	// if it is present.
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
+	targetCompatibility = JavaVersion.<%= it.java.compatibility %>
 }
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${project.base.archivesName.get()}"}
 	}
 }
 

@@ -7,7 +7,7 @@ import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoin
 import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
 import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
-import { getMinorMinecraftVersion } from "./java";
+import { getMinorMinecraftVersion } from "./minecraft";
 
 interface ClassOptions {
     package: string, // com.example

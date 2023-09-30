@@ -1,3 +1,5 @@
+import { getMinorMinecraftVersion } from "./minecraft";
+
 export interface JavaVersion {
 	compatibility: string,
 	mixin: string,
@@ -36,8 +38,4 @@ export function getJavaVersion(minecraftVersion: string): JavaVersion {
 	}
 
 	return JAVA_17;
-}
-
-export function getMinorMinecraftVersion(minecraftVersion: string): number {
-	return Number(minecraftVersion.split(".")[1]);
 }

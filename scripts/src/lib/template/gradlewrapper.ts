@@ -9,7 +9,9 @@ import gitignore from './templates/git/gitignore?raw';
 import workflow from './templates/git/workflow.yml?raw'
 
 export async function addGradleWrapper({ writer }: Options) {
-	await writer.write('gradlew', gradlew);
+	await writer.write('gradlew', gradlew, {
+    executable: true
+  });
 	await writer.write('gradlew.bat', gradlewBat);
 	await writer.write('gradle/wrapper/gradle-wrapper.properties', gradleWrapperProperties);
 	await writer.write('gradle/wrapper/gradle-wrapper.jar', decode64(gradleWrapperJar));

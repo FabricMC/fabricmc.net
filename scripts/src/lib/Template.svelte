@@ -1,10 +1,9 @@
 <script lang="ts">
     import JSZip from "jszip";
-    import { getGameVersions } from "./Api";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { nameToModId } from "./template/template";
-    import { getMinorMinecraftVersion } from "./template/java";
+    import { getTemplateGameVersions } from "./template/template";
+    import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -18,81 +17,30 @@
 
     $: modid = nameToModId(projectName);
 
-    const versions = Promise.all([getGameVersions()]).then(([gameVersions]) => {
-        const game = gameVersions.filter((v) => v.stable).filter((v) => {
-            const version = v.version;
-
-            if (version.startsWith("1.14") && version != "1.14.4") {
-                // Hide pre 1.14.4 MC versions as they require using V1 yarn.
-                return false;
-            }
-
-            return true;
-        });
+    const versions = Promise.all([getTemplateGameVersions()]).then(([gameVersions]) => {
+        const game = gameVersions;
         minecraftVersion = game[0].version;
         return {
             game,
         };
     });
 
-    $: minorMcVersion = getMinorMinecraftVersion(minecraftVersion || "1.99")
-    $: supportsDataGen = minorMcVersion >= 17;
-    $: supportsSplitSources = minorMcVersion >= 19;
+    $: supportsDataGen = minecraftSupportsDataGen(minecraftVersion || "1.99");
+    $: supportsSplitSources = minecraftSupportsSplitSources(minecraftVersion || "1.99");
 
-    $: modIdErrors = computeModIdErrors(customModId);
+    $: modIdErrors = computeModIdErrors(modid);
+    $: customIdErrors = computeCustomModIdErrors(customModId);
 
-    // Ported/adapted from Loader's MetadataVerifier
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
-        if (id == undefined) {
-            return undefined;
-        }
+      if (id === undefined) {
+        return undefined;
+      }
 
-        let errorList : string[] = [];
-
-        if (id.length == 0) {
-            return ["Modid is empty!"];
-        } else if (id.length == 1) {
-            errorList.push("Modid is only a single character! (It must be at least 2 characters long)!");
-        } else if (id.length > 64) {
-            errorList.push("Modid has more than 64 characters!");
-        }
-
-        const first = id.charAt(0);
-
-        if (first < 'a' || first > 'z') {
-            errorList.push("Modid starts with an invalid character '" + first + "' (it must belowercase a-z)");
-        }
-
-        var invalidChars: string[] | null = null;
-
-        for (var i = 1; i < id.length; i++) {
-            var c = id.charAt(i);
-
-            if (c == '-' || c == '_' || ('0' <= c && c <= '9') || ('a' <= c && c <= 'z')) {
-                continue;
-            }
-
-            if (invalidChars == null) {
-                invalidChars = [];
-            }
-
-            invalidChars.push(c);
-        }
-
-        if (invalidChars != null) {
-            var error = "Modid contains invalid characters: " + invalidChars.map(value => "'" + value + "'").join(", ") + "!";
-            errorList.push(error + "!");
-        }
-
-        if (errorList.length == 0) {
-            return undefined;
-        }
-
-        return errorList;
+      return sharedModIdChecks(id, customModId === undefined);
     }
 
     async function generate() {
-        if (modIdErrors != undefined) {
+        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined)) {
             return;
         }
 
@@ -114,22 +62,24 @@
         await generator.generateTemplate({
             config,
             writer: {
-                write: async (path, content) => {
-                    zip.file(path, content);
+                write: async (path, content, options) => {
+                    zip.file(path, content, {
+                        unixPermissions: options?.executable ? "774": undefined
+                    });
                 },
             },
         });
 
         FileSaver.saveAs(
-            await zip.generateAsync({ type: "blob" }),
+            await zip.generateAsync({ type: "blob", platform: "UNIX" }),
             `${modid}-template-${config.minecraftVersion}.zip`
         );
 
         loading = false;
     }
 
-    function formatPackageName() {
-        packageName = packageName.toLocaleLowerCase().replace(/\s+/g, '_').replace(/[^a-za-z0-9_\.]/, "")
+    function doFormatPackageName() {
+        packageName = formatPackageName(packageName)
     }
 
     function useCustomModId() {
@@ -156,6 +106,13 @@
             {/if}
             
             <input id="project-name" bind:value={projectName} />
+            
+            {#if modIdErrors != undefined} 
+            {#each modIdErrors as error}
+                <li style="color: red">{error}</li>
+            {/each}
+            <br>
+        {/if}
         </div>
 
         {#if customModId != undefined}
@@ -163,11 +120,11 @@
                 <h3>Mod ID:</h3>
                 <hr />
                 <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
-                {#if modIdErrors != undefined} 
-                    {#each modIdErrors as error}
+                {#if customIdErrors != undefined} 
+                    {#each customIdErrors as error}
                         <li style="color: red">{error}</li>
                     {/each}
-                    <br>
+                    <br />
                 {/if}
 
                 <input id="mod-id" bind:value={customModId} />
@@ -181,7 +138,7 @@
                 Choose a unique package name for your new mod. The package name
                 should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
-            <input id="package-name" on:keyup={formatPackageName} bind:value={packageName} />
+            <input id="package-name" on:keyup={doFormatPackageName} bind:value={packageName} />
         </div>
 
         <div class="form-line">

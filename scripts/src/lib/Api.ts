@@ -85,7 +85,7 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
 
     let branch = mcVersion;
 
-    let versionBranches = ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "20w14infinite", "1.18_experimental"]
+    let versionBranches = ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"]
 
     versionBranches.forEach((v) => {
         if (mcVersion.startsWith(v)) {
@@ -96,6 +96,8 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
     // Very dumb but idk of a better (easy) way.
     if (mcVersion.startsWith("22w13oneblockatatime")) {
         branch = "22w13oneblockatatime"
+    } else if (mcVersion.startsWith("23w")) {
+        branch = "1.20.2"
     } else if (mcVersion.startsWith("22w")) {
         branch = "1.19.3"
     } else if (mcVersion.startsWith("1.18.2")) {
@@ -106,6 +108,12 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
         branch = "1.19.2"
     } else if (mcVersion.startsWith("1.19.3")) {
         branch = "1.19.3"
+    } else if (mcVersion.startsWith("1.19.4")) {
+        branch = "1.19.4"
+    } else if (mcVersion.startsWith("1.20.1")) {
+        branch = "1.20.1"
+    } else if (mcVersion.startsWith("1.20.2")) {
+        branch = "1.20.2"
     } else if (mcVersion.startsWith("21w")) {
         branch = "1.18"
     } else if (mcVersion.startsWith("20w")) {
@@ -117,12 +125,19 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
     return apiVersion.endsWith("-" + branch) || apiVersion.endsWith("+" + branch);
 }
 
+let xmlVersionParser = (xml: string): string[]  => {
+    let parser = new DOMParser();
+    let xmlDoc = parser.parseFromString(xml, "text/xml");
+    return Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
+}
+
+export function setXmlVersionParser(parser: (xml: string) => string[]) {
+    xmlVersionParser = parser
+}
+
 export async function getMavenVersions(path: string): Promise<string[]> {
     let metadata = await getText(MAVEN, path);
-    let parser = new DOMParser();
-    let xmlDoc = parser.parseFromString(metadata, "text/xml");
-    let versions = Array.from(xmlDoc.getElementsByTagName("version")).map((v) => v.childNodes[0].nodeValue as string)
-    return versions;
+    return xmlVersionParser(metadata);
 }
 
 async function getJson<T>(hostnames: string[], path: string) {
