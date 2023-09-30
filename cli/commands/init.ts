@@ -15,6 +15,8 @@ import {
   createCanvas,
   Fonts,
 } from "https://deno.land/x/skia_canvas@0.5.4/mod.ts";
+import fontData from "../font.ts";
+import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -65,23 +67,17 @@ async function generate(
   };
 
   console.log(progress("Generating mod template..."));
-  await loadFont();
-  await generator.generateTemplate(options);
-  console.log(success("Done!"));
-}
 
-async function loadFont() {
-  const host = Deno.env.get("FABRIC_HOST") ?? "https://fabricmc.net";
+  // Using the font data directly doesn't seem to work...
+  const fontFile = await Deno.makeTempFile();
 
-  const response = await fetch(
-    `${host}/assets/fonts/ComicRelief-Regular.woff2`,
-  );
-
-  if (response.ok) {
-    // Needs to be read from file, using the body directly doesn't seem to work
-    const fontFile = await Deno.makeTempFile();
-    await Deno.writeFile(fontFile, response.body!);
+  try {
+    await Deno.writeFile(fontFile, decodeBase64(fontData));
     Fonts.register(await Deno.readFile(fontFile), generator.ICON_FONT);
+
+    await generator.generateTemplate(options);
+    console.log(success("Done!"));
+  } finally {
     await Deno.remove(fontFile);
   }
 }

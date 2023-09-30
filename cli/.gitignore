@@ -6,4 +6,5 @@
 !/commands
 !Makefile
 !bundle.ts
+!fontgen.ts
 !utils.ts
