@@ -5,6 +5,10 @@ import { getJavaVersion } from "./java"
 import { getMinorMinecraftVersion } from "./minecraft"
 import { generateModIcon } from "./icon";
 
+function usesNewModid(fabricVersion: string) : boolean {
+  return Number(fabricVersion.split(".")[1]) >= 59;
+}
+
 export async function addModJson(writer: TemplateWriter, canvas: CanvasFactory, config: ComputedConfiguration) {
   var mixins = [
     ...await generateMixin(writer, config),
@@ -39,7 +43,7 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasFactory, 
     }
   }
 
-  fabricModJson.depends[getMinorMinecraftVersion(config.minecraftVersion) >= 16 ? "fabric-api" : "fabric"] = "*"
+  fabricModJson.depends[usesNewModid(config.fabricVersion) ? "fabric-api" : "fabric"] = "*"
 
   if (config.kotlin) {
     fabricModJson.depends = {

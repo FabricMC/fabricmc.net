@@ -3,7 +3,10 @@
 // @deno-types="../scripts/dist/fabric-template-generator.d.ts"
 import * as generator from "../scripts/dist/fabric-template-generator.js";
 import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
-import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
+import {
+  Command,
+  CompletionsCommand,
+} from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
 import { initCommand } from "./commands/init.ts";
 import { upgradeCommand } from "./commands/upgrade.ts";
 
@@ -24,7 +27,8 @@ if (import.meta.main) {
       Deno.exit(0);
     })
     .command("init", initCommand())
-    .command("upgrade", upgradeCommand());
+    .command("upgrade", upgradeCommand())
+    .command("completions", new CompletionsCommand());
 
   await cmd.parse();
 }
