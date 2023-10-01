@@ -9,6 +9,8 @@ $grey-color-very-dark: #30363d;
 
 $fabric-download-color: #1f6feb;
 
+$content-width: 1024px;
+
 @import "{{ site.theme }}";
 @import "fabric";
 

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: template mod generator
+title: Template mod generator
 permalink: /develop/template/
 topnav: false
 ---

@@ -4,7 +4,7 @@
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     <div class="site-header-logo">
-      <a class="site-title" rel="author" href="{{ "/" | relative_url }}"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+      <a class="site-title" rel="author" href="{{ "/" | relative_url }}"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
     </div>
     {%- if page_paths -%}
       <nav class="site-nav">
@@ -20,9 +20,9 @@
         <div class="trigger">
           {% for link in site.data.topnav.links %}
             {% if link.page %}
-              <a class="page-link" href="{% link {{ link.page }} %}">{{ link.title | escape }}</a>
+              <a class="page-link" href="{% link {{ link.page }} %}">{{ link.title | escape | capitalize }}</a>
             {% else %}
-              <a class="page-link" href="{{ link.url }}">{{ link.title | escape }}</a>
+              <a class="page-link" href="{{ link.url }}">{{ link.title | escape | capitalize }}</a>
             {% endif %}
           {% endfor %}
         </div>
