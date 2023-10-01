@@ -11,20 +11,28 @@ import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
-import {
-  createCanvas,
-  Fonts,
-} from "https://deno.land/x/skia_canvas@0.5.4/mod.ts";
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
+
+const canGenerateIcon = Object.hasOwn(Deno, "dlopen") &&
+  Deno.permissions.querySync({ name: "ffi" }).state == "granted";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
 
+const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
+
+interface CanvasFacade extends generator.CanvasFactory {
+  registerFont?(data: Uint8Array, alias?: string): void;
+}
+
+interface PromptedConfiguration extends generator.Configuration {
+  generateIcon: boolean;
+}
 
 export function initCommand() {
   return new Command()
@@ -54,6 +62,8 @@ async function generate(
       ? defaultOptions(path.basename(outputDir))
       : promptUser(path.basename(outputDir)));
 
+  const canvas = await resolveCanvasFacade(config.generateIcon);
+
   const options: generator.Options = {
     config,
     writer: {
@@ -61,25 +71,30 @@ async function generate(
         await writeFile(outputDir, contentPath, content, options);
       },
     },
-    canvas: {
-      create: createCanvas,
-    },
+    canvas,
   };
 
   console.log(progress("Generating mod template..."));
 
-  // Using the font data directly doesn't seem to work...
-  const fontFile = await Deno.makeTempFile();
+  const fontFile = await registerFont(canvas);
 
   try {
-    await Deno.writeFile(fontFile, decodeBase64(fontData));
-    Fonts.register(await Deno.readFile(fontFile), generator.ICON_FONT);
-
     await generator.generateTemplate(options);
     console.log(success("Done!"));
   } finally {
-    await Deno.remove(fontFile);
+    if (fontFile) await Deno.remove(fontFile);
   }
+}
+
+async function registerFont(canvas: CanvasFacade): Promise<string | null> {
+  if (!canvas.registerFont) return null;
+
+  // Using the font data directly doesn't seem to work...
+  const fontFile = await Deno.makeTempFile();
+  await Deno.writeFile(fontFile, decodeBase64(fontData));
+  canvas.registerFont(await Deno.readFile(fontFile), generator.ICON_FONT);
+
+  return fontFile;
 }
 
 async function getAndPrepareOutputDir(
@@ -98,9 +113,24 @@ async function getAndPrepareOutputDir(
   return outputDir;
 }
 
+async function resolveCanvasFacade(enabled: boolean): Promise<CanvasFacade> {
+  if (!enabled) {
+    return {
+      create: () => null,
+    };
+  }
+
+  const canvas = await import("https://deno.land/x/skia_canvas@0.5.4/mod.ts");
+
+  return {
+    create: canvas.createCanvas,
+    registerFont: canvas.Fonts.register,
+  };
+}
+
 async function promptUser(
   startingName: string,
-): Promise<generator.Configuration> {
+): Promise<PromptedConfiguration> {
   // Store a promise for now, so the request can be made while taking the other inputs.
   const minecraftVersionsPromise = generator.getTemplateGameVersions();
 
@@ -140,10 +170,11 @@ async function promptUser(
 
   const advancedOptions = await Checkbox.prompt({
     message: "Advanced options",
-    options: getAdancedOptions(minecraftVersion),
+    options: getAdvancedOptions(minecraftVersion),
   });
 
   return {
+    generateIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
     modid: modId,
     minecraftVersion: minecraftVersion,
     projectName: modName,
@@ -156,11 +187,12 @@ async function promptUser(
 
 async function defaultOptions(
   startingName: string,
-): Promise<generator.Configuration> {
+): Promise<PromptedConfiguration> {
   const minecraftVersions = await generator.getTemplateGameVersions();
   const minecraftVersion = minecraftVersions[0]!.version;
 
   return {
+    generateIcon: canGenerateIcon,
     modid: generator.nameToModId(startingName),
     minecraftVersion: minecraftVersion,
     projectName: startingName,
@@ -173,10 +205,14 @@ async function defaultOptions(
   };
 }
 
-function getAdancedOptions(minecraftVersion: string): CheckboxValueOptions {
-  const options: CheckboxValueOptions = [
-    { value: KOTLIN_ADVANCED_OPTION },
-  ];
+function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
+  const options: CheckboxValueOptions = [];
+
+  if (canGenerateIcon) {
+    options.push({ value: ICON_ADVANCED_OPTION, checked: true });
+  }
+
+  options.push({ value: KOTLIN_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
@@ -253,17 +289,7 @@ async function requestPermissions(outputDir: string) {
     {
       name: "net",
       host: "maven.fabricmc.net",
-    },
-    {
-      name: "net",
-      host: "fabricmc.net",
-    },
-    {
-      name: "env",
-    },
-    {
-      name: "ffi",
-    },
+    }
   ];
 
   for (const permission of permissions) {
