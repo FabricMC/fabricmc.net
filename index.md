@@ -5,7 +5,7 @@ layout: page
 <div class="home">
    <div class='row'>
       <div class='column'>
-         <h1>Fabric mod loader</h1>
+         <h1>What is Fabric?</h1>
          <p>Fabric provides a cohesive platform to develop and play with Minecraft mods. Fabric's lightweight and modular design allows for greater flexibility enabling releases for stable and snapshot versions of Minecraft. The Fabric toolchain is <a href="https://github.com/FabricMC">open source</a> for everyone to use, even if you only want some of it!</p>
          <br>
          <a class="page-link page-link-download" href="/use">Download</a>

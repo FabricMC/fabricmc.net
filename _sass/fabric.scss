@@ -171,6 +171,7 @@ body {
 	.column {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		flex: 1;
 		padding-left: 12px;
 		padding-right: 12px;
