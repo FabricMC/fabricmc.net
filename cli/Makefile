@@ -1,9 +1,6 @@
 ENTRYPOINT=main.ts
 DENO_PERMISSIONS=--allow-ffi --allow-net --allow-env --allow-read --allow-write
 
-fontgen:
-	deno run --allow-read --allow-write fontgen.ts
-
 run: fontgen
 	cd ../scripts; \
 		npm install; \
@@ -12,6 +9,9 @@ run: fontgen
 
 check:
 	deno check $(ENTRYPOINT)
+
+fontgen:
+	deno run --allow-read --allow-write fontgen.ts
 
 build: fontgen check
 	deno run --allow-env --allow-read --allow-net --allow-write bundle.ts
