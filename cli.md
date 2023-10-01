@@ -21,7 +21,13 @@ The Fabric command line tools (CLI) can be used by mod developers to generate ne
 The Fabric CLI tools require the [deno runtime](https://deno.com/runtime) to be installed on your system. Deno is a cross platform JavaScript runtime that allows us to use one code base between the web and desktop. After following the [deno installation](https://deno.com/manual/getting_started/installation) instructions, run the following command to globally install the fabric CLI tools:
 
 <code class="command">
-deno install --unstable -A -n fabric https://fabricmc.net/cli
+deno install -A -n fabric https://fabricmc.net/cli
+</code>
+
+By default, the CLI won't generate unique mod icon like the web version. To enable this feature, you need to enable the unstable flag:
+
+<code class="command">
+deno install --unstable -A -f -n fabric https://fabricmc.net/cli
 </code>
 
 To update the Fabric command line tools run:
@@ -63,6 +69,12 @@ If you do not wish to install the Fabric CLI tools to your system, you can use d
 
 <code class="command">
 deno run https://fabricmc.net/cli init
+</code>
+
+Or, to enable mod icon generation:
+
+<code class="command">
+deno run --unstable https://fabricmc.net/cli init
 </code>
 
 Deno is secure by default, so will ask for [permission](https://deno.land/manual/basics/permissions) before making any changes to your system.
