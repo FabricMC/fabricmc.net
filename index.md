@@ -19,17 +19,17 @@ layout: page
    <div class='row'>
       <div class='column'>
          <h4>Fabric API</h4>
-         <p class="component-body">An extenstive set of developer APIs that enable developers to create mods. Fabric API provides critical hooks to allow mods to extend and intergrate with Minecraft. </p>
+         <p class="component-body">An extensive set of developer APIs that enable developers to create mods. Fabric API provides critical hooks to allow mods to extend and integrate with Minecraft. </p>
          <a class="page-link page-link-info" href="https://minecraft.curseforge.com/projects/fabric/files">Download Fabric API</a>
       </div>
       <div class='column'>
          <h4>Fabric Loader</h4>
-         <p class="component-body">A flexible platform independent mod loader designed for Minecraft and other games and applications. Fabric loaders enables mods to make use of technology such as <a href="https://github.com/FabricMC/Mixin">Mixin</a> and <a href="https://github.com/FabricMC/intermediary">Intermediary</a>.</p>
+         <p class="component-body">A flexible platform independent mod loader designed for Minecraft and other games and applications. Fabric loader enables mods to make use of technology such as <a href="https://github.com/FabricMC/Mixin">Mixin</a> and <a href="https://github.com/FabricMC/intermediary">Intermediary</a>.</p>
          <a class="page-link page-link-info" href="https://fabricmc.net/wiki/documentation:fabric_loader">Find out more</a>
       </div>
       <div class='column'>
          <h4>Fabric Loom</h4>
-         <p class="component-body">A Gradle plugin enabling developers develop and debug mods. Fabric Loom utilises a number of Fabric developed tools such as <a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a>, <a href="https://github.com/FabricMC/mapping-io">Mapping-IO</a> and <a href="https://github.com/FabricMC/yarn">Yarn</a>.</p>
+         <p class="component-body">A Gradle plugin enabling developers to develop and debug mods. Fabric Loom utilizes a number of Fabric-developed tools such as <a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a>, <a href="https://github.com/FabricMC/mapping-io">Mapping-IO</a> and <a href="https://github.com/FabricMC/yarn">Yarn</a>.</p>
          <a class="page-link page-link-info" href="/develop">Get Started</a>
       </div>
    </div>
@@ -42,7 +42,7 @@ layout: page
             <h4>{{ post.title }}</h4>
          </a>
          <p>{{ post.content | strip_html | truncate: 310 }}</p>
-         <a class="page-link-info" href="{{ post.url }}">Contiune reading</a>
+         <a class="page-link-info" href="{{ post.url }}">Continue reading</a>
       </div>
       {% endfor %}
    </div>
