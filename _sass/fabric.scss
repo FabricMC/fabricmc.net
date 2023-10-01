@@ -171,10 +171,28 @@ body {
 	.column {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		flex: 1;
 		padding-left: 12px;
 		padding-right: 12px;
+
+		.component-body {
+			padding-bottom: 12px;
+			margin-bottom: auto;
+		}
+
+		page-link {
+			margin-top: auto;
+		}
+	}
+
+	.showcase-image-large {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img {
+			border-radius: 5px;
+		}
 	}
 
 	.row-heading {
@@ -182,13 +200,14 @@ body {
 		padding-left: 12px;
 	}
 
-	@media screen and (max-width: 1024px) {
-		.hide-large {
+	@media screen and (max-width: 765px) {
+		.showcase-image-large {
 			display: none !important;
 		}
 
-		.component-body {
-			min-height: 170px;
+		.row {
+			flex-direction: column !important;
+			gap: 24px;
 		}
 	}
 }

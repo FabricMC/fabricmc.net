@@ -6,16 +6,16 @@ layout: page
    <div class='row'>
       <div class='column'>
          <h1>What is Fabric?</h1>
-         <p>Fabric provides a cohesive platform to develop and play with Minecraft mods. Fabric's lightweight and modular design allows for greater flexibility enabling releases for stable and snapshot versions of Minecraft. The Fabric toolchain is <a href="https://github.com/FabricMC">open source</a> for everyone to use, even if you only want some of it!</p>
+         <p>Fabric provides a cohesive platform to develop and play with Minecraft mods. Fabric's lightweight and modular design allows for greater flexibility enabling releases for stable and snapshot versions of Minecraft.<br><br>The Fabric toolchain is <a href="https://github.com/FabricMC">open source</a> for everyone to use, even if you only want some of it!</p>
          <br>
          <a class="page-link page-link-download" href="/use">Download</a>
       </div>
-      <div class='column hide-large'>
+      <div class='column showcase-image-large'>
          <img src="/assets/cliffs.png" alt="">
       </div>
    </div>
    <hr>
-   <h1 class="row-heading">Core Components:</h1>
+   <h1 class="row-heading">Core Toolchain Projects</h1>
    <div class='row'>
       <div class='column'>
          <h4>Fabric API</h4>
