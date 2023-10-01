@@ -240,6 +240,11 @@
 {/await}
 
 <style lang="scss">
+    @font-face {
+    	font-family: "Comic Relief";
+	    src: url("/assets/fonts/ComicRelief-Regular.woff2");
+    }
+    
     .template {
         * {
             text-align: left;
