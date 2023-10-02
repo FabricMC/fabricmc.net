@@ -39,9 +39,21 @@ layout: default
    </section>
    <hr>
    <section>
+   <h2>Core Toolchain Projects</h2>
+   <ul>
+      <li><a herf="">Fabric Loader</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="">Yarn</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="">Fabric Loom</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="">Matcher</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="">Intermediary</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="">Mapping IO</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+   </ul>
+   </section>
+   <hr>
+   <section>
       <h2>Latest Blog Posts</h2>
       <div class="row-2">
-         {% for post in site.posts limit: 4 %}
+         {% for post in site.posts limit: 2 %}
          <article class="column">
             <a href="{{ post.url }}">
                <h3>{{ post.title }}</h3>
