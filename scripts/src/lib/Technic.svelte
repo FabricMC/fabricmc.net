@@ -39,5 +39,5 @@ import { getLauncherProfile } from "./Api";
 <main>
   <LegacyVersion bind:this={legacyVersion} />
   <br />
-  <button class="primary" on:click={downloadJson}>Download bin/version.json file</button>
+  <button class="button primary large" on:click={downloadJson}>Download bin/version.json file</button>
 </main>

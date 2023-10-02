@@ -63,21 +63,17 @@
           <DownloadIcon/> Download for Windows
         </a>
         <br>
-        or
-        <br>
-        <a class="button secondary" href={selectedVersion}>
+        <a href={selectedVersion}>
           Download universal jar
         </a>
       </p>
     {:else}
       <p>
-        <a class="button primary" href={selectedVersion}>
+        <a class="button primary large" href={selectedVersion}>
           <DownloadIcon/> Download installer (Universal/.JAR)
         </a>
         <br>
-        or
-        <br>
-        <a class="button secondary" href={selectedVersion.replace('.jar', '.exe')}>
+        <a href={selectedVersion.replace('.jar', '.exe')}>
           Download for Windows
         </a>
       </p>

@@ -67,7 +67,7 @@
     </div>
 
     <div class="download">
-      <a class="button primary" href={serverJarUrl}><DownloadIcon />Executable Server (.jar)</a>
+      <a class="button primary large" href={serverJarUrl}><DownloadIcon />Executable Server (.jar)</a>
     </div>
     <p>
       <a href={installerJarUrl}>

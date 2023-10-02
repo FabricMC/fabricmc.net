@@ -29,35 +29,6 @@
 	display: none;
 }
 
-#fabricDownloadForm {
-	font-family: sans-serif;
-}
-
-#fabricDownloadForm .button-bar {
-	display: inline-block;
-}
-
-#fabricDownloadForm .button-bar small {
-	font-size: 9px;
-}
-
-#fabricDownloadForm .button-bar .button {
-	background-color: #ddd;
-	padding: 8px 20px;
-	display: inline-block;
-	cursor: pointer;
-}
-
-#fabricDownloadForm .button-bar .button-active {
-	background-color: #bbb;
-	border: 2px solid #333;
-	cursor: default;
-}
-
-#fabricDownloadForm .show-expert {
-	color: #cc0000;
-}
-
 button, .button {
 	&.primary {
 		background-color: $button-color;
@@ -73,6 +44,7 @@ button, .button {
 	&.secondary {
 		background-color: transparent;
 		border: 2px solid $button-color;
+		color: $text-color !important;
 
 		&:hover, &:focus {
 			background-color: darken($button-color, 10%);
@@ -83,9 +55,14 @@ button, .button {
 			border-color: lighten($button-color, 5%);
 		}
 	}
+	&.large {
+		padding: 15px 32px;
+		font-size: 20px;
+		font-weight: 700;
+	}
 
 	border-radius: 5px;
-	color: $text-color !important;
+	color: white !important;
 	text-decoration: none !important;
 	padding: 5px 8px;
 	text-align: center;
