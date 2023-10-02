@@ -18,13 +18,13 @@
 {"headline":"Fabric","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/","@type":"WebSite","name":"Fabric","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1696085509">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1696085509"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1696277167">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1696277167"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><div class="site-header-logo">
-      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" width="52" height="56" alt="charset"></img> fabric</a>
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
     </div><nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
@@ -38,23 +38,23 @@
         <div class="trigger">
           
             
-              <a class="page-link" href="/use/installer/">download</a>
+              <a class="page-link" href="/use/installer/">Download</a>
             
           
             
-              <a class="page-link" href="/blog/">blog</a>
+              <a class="page-link" href="/blog/">Blog</a>
             
           
             
-              <a class="page-link" href="/develop/">develop</a>
+              <a class="page-link" href="/develop/">Develop</a>
             
           
             
-              <a class="page-link" href="/discuss/">discuss</a>
+              <a class="page-link" href="/discuss/">Discuss</a>
             
           
             
-              <a class="page-link" href="https://fabricmc.net/wiki/">wiki</a>
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
             
           
         </div>
@@ -62,82 +62,90 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post">
+        <div class="home post-content">
+   <header>
+      <div class="showcase">
+         <h1>Fabric Loader</h1>
+         <p>Fabric is a modular, lightweight mod loader for Minecraft</p>
+         <br />
+         <a class="button primary large" href="/use">Download</a>
+      </div>
+   </header>
+   <hr />
+   <section>
+      <div class="row-3">
+         <article class="column">
+            <h3>Play</h3>
+            <section>
+               <p class="component-body">The Fabric Loader download above is the bare minimum. Combine it with Fabric API to get all the important extra APIs mods use. It has to be put into the mods folder like any other mod.</p>
+            </section>
+            <a class="button secondary" href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">Download Fabric API</a>
+         </article>
+         <article class="column">
+            <h3>Develop</h3>
+            <section>
+               <p>Fabric gives you powerful tools to change the game however you like. Use the online <a href="/develop/template/">template generator</a> to get started creating a mod. You can also use the <a href="https://github.com/FabricMC/fabric-example-mod">example mod</a> repository or <a href="/develop/cli/">CLI tools</a>.</p>
+            </section>
+            <a class="button secondary" href="/develop">Develop a mod</a>
+         </article>
+         <article class="column">
+            <h3>Explore</h3>
+            <section>
+               <p>Extensive documentation is available in the Fabric wiki for both developers and players. Get additional help from the <a href="https://discord.gg/v6v4pMv">Fabric Discord server</a>, or ask a question on the <a href="https://github.com/orgs/FabricMC/discussions">Github Discussion</a> forums.</p>
+            </section>
+            <a class="button secondary" href="/wiki">Visit the wiki</a>
+         </article>
+      </div>
+   </section>
+   <hr />
+   <section>
+   <h3>Core Toolchain Projects</h3>
+   <ul>
+      <li><a herf="https://github.com/FabricMC/fabric-loader">Fabric Loader</a> A flexible platform-independent mod loader designed for Minecraft and other games and applications.</li>
+      <li><a herf="https://github.com/FabricMC/yarn">Yarn</a> Yarn is a set of open Minecraft mappings, free for everyone to use under the Creative Commons Zero license.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-loom">Fabric Loom</a> A Gradle plugin enabling developers to easily develop and debug mods.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-language-kotlin">Fabric Language Kotlin</a> This is a mod that enables usage of the Kotlin programming language for Fabric mods.</li>
+      <li><a herf="https://github.com/FabricMC/intermediary">Intermediary</a> Intermediary contains match information between different versions of Minecraft, enablding cross version mods.</li>
+      <li><a herf="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a> A tiny, efficient tool for remapping JAR files.</li>
+      <li><a herf="https://github.com/FabricMC/mapping-io">Mapping IO</a> A library for reading, manipulating and writing mapping files, with support a wide range fo formats.</li>
+   </ul>
+   </section>
+   <hr />
+   <section>
+      <h3>Latest Blog Posts</h3>
+      <div class="row-2">
+         
+         <article class="column">
+            <a href="/2023/09/12/1202.html">
+               <h4>Fabric for Minecraft 1.20.2</h4>
+            </a>
+            <section>
+               <p>Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.
 
-  <header class="post-header">
-    <h1 class="post-title"></h1>
-  </header>
+As usual, we ask players to be patient, and give mod developers time to update to this new version.
 
-  <div class="post-content">
-    <p>Fabric is a lightweight, experimental modding toolchain for Minecraft.</p>
+Here is a list of all major modder-facing changes in this version. Note that all code references are usi...</p>
+            </section>
+            <a class="button secondary" href="/2023/09/12/1202.html">Continue reading</a>
+         </article>
+         
+         <article class="column">
+            <a href="/2023/05/25/120.html">
+               <h4>Fabric for Minecraft 1.20</h4>
+            </a>
+            <section>
+               <p>Minecraft 1.20 - the Trails and Tales Update - releases on June 7th 2023, again with a number of changes that impact many mods.
 
-<h2 id="design">design</h2>
+As usual, we ask players to be patient, and give mod developers time to update to this new version.
 
-<ul>
-  <li>Fabric’s APIs are lightweight and modular, making porting faster and game instances leaner.</li>
-  <li>Fabric development targets snapshots as well as release versions, allowing earlier mod updates and more informed community planning.</li>
-  <li>The Fabric toolchain is available for everyone to use - even if you only want to use some of it!</li>
-</ul>
-
-<h2 id="installation">installation</h2>
-
-<p>To install Fabric, you need the <strong>Fabric Loader</strong>, which you can <a class="page-link page-link-download" href="/use">download here</a></p>
-
-<p>In addition, most mods depend on an API mod, containing commonly used hooks. They can be found here:</p>
-
-<ul>
-  <li><a href="https://minecraft.curseforge.com/projects/fabric/files">Fabric API for Minecraft 1.14 and above</a></li>
-</ul>
-
-<h2 id="projects">projects</h2>
-
-<h3 id="enigma">enigma</h3>
-
-<p>The Fabric project maintains a <a href="https://github.com/FabricMC/Enigma">fork</a> of <a href="https://www.cuchazinteractive.com/enigma/">Enigma</a>, a tool
-for deobfuscation of Java classes originally by Cuchaz Interactive. Our changes include countless
-bugfixes, optimizations and improvements across the codebase, as well as user experience and compatibility
-improvements.</p>
-
-<p>Downloads can be found <a href="https://maven.fabricmc.net/cuchaz/enigma/">here</a>.</p>
-
-<h3 id="tiny-remapper">tiny-remapper</h3>
-
-<p>The <a href="https://github.com/FabricMC/tiny-remapper">tiny-remapper</a> project provides a fast, optimized tool for accurately remapping .JAR files
-using the Tiny mapping format.</p>
-
-<h3 id="other-tools">other tools</h3>
-
-<ul>
-  <li><a href="https://github.com/FabricMC/intellij-fernflower">Fernflower</a>, a modified version of JetBrains’ upstream with line number mapping information exposed.</li>
-  <li><a href="https://github.com/sfPlayer1/Matcher/">Matcher</a>, sfPlayer1’s tool for tracking elements in obfuscated Java archives across releases used for updating Yarn mappings.</li>
-  <li><a href="https://github.com/FabricMC/stitch">Stitch</a> is an assortment of small tools providing various functionality used by the Fabric project in command-line form, such as
-generating and updating “intermediaries” for cross-version name stability, based on Matcher output or merging client and server Minecraft .JARs.</li>
-  <li><a href="https://github.com/FabricMC/weave">Weave</a> is an earlier iteration of Stitch and is now generally only used to export Enigma-format mappings to
-Tiny-format files.</li>
-</ul>
-
-<h3 id="libraries">libraries</h3>
-
-<ul>
-  <li><a href="https://github.com/FabricMC/Mixin">Mixin</a>, a trait/mixin framework for Java bytecode created by Mumfrey for Sponge - forked by Fabric to adapt to our use cases.</li>
-  <li><a href="https://github.com/FabricMC/tiny-mappings-parser">tiny-mappings-parser</a>, a library for processing Tiny-format mapping files.</li>
-</ul>
-
-<h3 id="components">components</h3>
-
-<ul>
-  <li><a href="https://github.com/FabricMC/intermediary">intermediary</a>, providing stable cross-version names and match information between Minecraft releases,</li>
-  <li><a href="https://github.com/FabricMC/yarn">yarn</a>, providing deobfuscated/friendly names for the most recent versions of the game based on community contributions,</li>
-  <li><a href="https://github.com/FabricMC/fabric-loom">fabric-loom</a> is our Gradle-based build system, used for developing Fabric mods.</li>
-  <li><a href="https://github.com/FabricMC/fabric-loader">fabric-loader</a> is our version-independent mod loader, providing mod loading and code patching functionality.</li>
-  <li><a href="https://github.com/FabricMC/fabric">fabric-api</a> is our “hook layer”, providing the most common hooks and interoperability required for Fabric mods,</li>
-  <li>Fabric language modules for supporting other languages: <a href="https://github.com/FabricMC/fabric-language-kotlin">Kotlin</a>, <a href="https://github.com/FabricMC/fabric-language-scala">Scala</a>.</li>
-  <li><a href="https://github.com/FabricMC/fabric-installer">fabric-installer</a>, a tool for creating Fabric-ready profiles for the official Minecraft launcher.</li>
-</ul>
-
-  </div>
-
-</article>
+Here is a list of all major modder-facing changes in this version. Note that ...</p>
+            </section>
+            <a class="button secondary" href="/2023/05/25/120.html">Continue reading</a>
+         </article>
+         
+      </div>
+   </section>
+</div>
 
       </div>
     </main><footer class="site-footer h-card">
@@ -146,7 +154,7 @@ Tiny-format files.</li>
   <div class="wrapper">
 
 <p>
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
 </p>
 
 <p style="font-size: 10px;">

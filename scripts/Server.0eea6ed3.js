@@ -1,6 +1,6 @@
-import { S as qe, i as Fe, s as Je, h as Me, e as i, c as g, u as Ue, r as Le, v as Se, d as k, f as re, t as I, a as b, g as O, j as s, n as F, w as Ge, o as _, m as oe, p as H, x as Te, q as se, k as ge, l as ae, y as ze, B as Be } from "./index.61dc58cf.js";
-import { d as De, b as Ee, c as Ae } from "./Api.380e8059.js";
-import He from "./DownloadIcon.214b8f5e.js";
+import { S as qe, i as Fe, s as Je, h as Me, e as i, c as g, u as Ue, r as Le, v as Se, d as k, f as re, t as I, a as b, g as H, j as s, n as F, w as Ge, o as _, m as oe, p as A, x as Te, q as se, k as ge, l as ae, y as ze, B as Be } from "./index.61dc58cf.js";
+import { d as De, b as Ee, c as ye } from "./Api.380e8059.js";
+import Ae from "./DownloadIcon.214b8f5e.js";
 function ke(n, e, r) {
   const o = n.slice();
   return o[11] = e[r], o;
@@ -13,7 +13,7 @@ function Ce(n, e, r) {
   const o = n.slice();
   return o[11] = e[r], o;
 }
-function Oe(n) {
+function He(n) {
   let e, r, o = (
     /*error*/
     n[18].message + ""
@@ -22,7 +22,7 @@ function Oe(n) {
     c() {
       e = i("p"), r = I("Error: "), c = I(o), a = b(), m = i("p"), m.innerHTML = `For support please visit one of our
     <a href="/discuss">community discussion</a>
-    groups.`, O(e, "color", "red");
+    groups.`, H(e, "color", "red");
     },
     m(f, h) {
       g(f, e, h), s(e, r), s(e, c), g(f, a, h), g(f, m, h);
@@ -35,8 +35,8 @@ function Oe(n) {
     }
   };
 }
-function Pe(n) {
-  let e, r, o, c, a, m, f, h, G, V, y, J, T, K, j, L, w, C, z, ie, ce, Q, P, fe, R, N, W, S, Y, ue, Z, _e, X, he, $, x, q, ee, me, te, de, B, pe, le, ve, M, ne, be, D = (
+function Oe(n) {
+  let e, r, o, c, a, m, f, h, G, V, X, J, T, K, j, L, w, C, z, ie, ce, Q, O, fe, R, N, W, S, Y, ue, Z, _e, P, he, $, x, q, ee, me, te, de, B, pe, le, ve, M, ne, be, D = (
     /*data*/
     n[10].game
   ), d = [];
@@ -48,13 +48,13 @@ function Pe(n) {
   ), p = [];
   for (let t = 0; t < E.length; t += 1)
     p[t] = je(we(n, E, t));
-  let A = (
+  let y = (
     /*data*/
     n[10].installer
   ), v = [];
-  for (let t = 0; t < A.length; t += 1)
-    v[t] = Ie(ke(n, A, t));
-  return z = new He({}), {
+  for (let t = 0; t < y.length; t += 1)
+    v[t] = Ie(ke(n, y, t));
+  return z = new Ae({}), {
     c() {
       e = i("div"), r = i("div"), o = i("label"), o.textContent = "Minecraft Version:", c = b(), a = i("select");
       for (let t = 0; t < d.length; t += 1)
@@ -62,44 +62,44 @@ function Pe(n) {
       m = b(), f = i("div"), h = i("label"), h.textContent = "Fabric Loader Version:", G = b(), V = i("select");
       for (let t = 0; t < p.length; t += 1)
         p[t].c();
-      y = b(), J = i("div"), T = i("label"), T.textContent = "Installer Version:", K = b(), j = i("select");
+      X = b(), J = i("div"), T = i("label"), T.textContent = "Installer Version:", K = b(), j = i("select");
       for (let t = 0; t < v.length; t += 1)
         v[t].c();
-      L = b(), w = i("div"), C = i("a"), Ge(z.$$.fragment), ie = I(" Executable Server (.jar)"), ce = b(), Q = i("p"), P = i("a"), fe = I("Download installer for older versions or manual installation"), R = b(), N = i("p"), N.textContent = "The executable jar is a small launcher that will start the Fabric enabled Minecraft server using the versions specified above. There is no need to use an installer when using this method.", W = b(), S = i("div"), Y = i("h4"), Y.textContent = "CLI download:", ue = b(), Z = i("p"), Z.textContent = "Use the following command to download the executable server launcher to the current directory", _e = b(), X = i("code"), he = I("curl -OJ "), $ = I(
+      L = b(), w = i("div"), C = i("a"), Ge(z.$$.fragment), ie = I("Executable Server (.jar)"), ce = b(), Q = i("p"), O = i("a"), fe = I("Download installer for older versions or manual installation"), R = b(), N = i("p"), N.textContent = "The executable jar is a small launcher that will start the Fabric enabled Minecraft server using the versions specified above. There is no need to use an installer when using this method.", W = b(), S = i("div"), Y = i("h4"), Y.textContent = "CLI download:", ue = b(), Z = i("p"), Z.textContent = "Use the following command to download the executable server launcher to the current directory", _e = b(), P = i("code"), he = I("curl -OJ "), $ = I(
         /*serverJarUrl*/
         n[5]
       ), x = b(), q = i("div"), ee = i("h4"), ee.textContent = "Launch command:", me = b(), te = i("p"), te.textContent = "Use the following command to run the executable server launcher with 2GB of ram. After a small wait the Minecraft server will be ready.", de = b(), B = i("code"), pe = I("java -Xmx2G -jar "), le = I(
         /*serverJarFilename*/
         n[4]
-      ), ve = I(" nogui"), _(o, "for", "minecraft-version"), _(a, "id", "minecraft-version"), O(a, "min-width", "200px"), /*gameVersion*/
+      ), ve = I(" nogui"), _(o, "for", "minecraft-version"), _(a, "id", "minecraft-version"), H(a, "min-width", "200px"), /*gameVersion*/
       n[0] === void 0 && oe(() => (
         /*select0_change_handler*/
         n[7].call(a)
-      )), _(r, "class", "form-line"), _(h, "for", "loader-version"), _(V, "id", "loader-version"), O(V, "min-width", "200px"), /*loaderVersion*/
+      )), _(r, "class", "form-line"), _(h, "for", "loader-version"), _(V, "id", "loader-version"), H(V, "min-width", "200px"), /*loaderVersion*/
       n[1] === void 0 && oe(() => (
         /*select1_change_handler*/
         n[8].call(V)
-      )), _(f, "class", "form-line"), _(T, "for", "installer-version"), _(j, "id", "installer-version"), O(j, "min-width", "200px"), /*installerVersion*/
+      )), _(f, "class", "form-line"), _(T, "for", "installer-version"), _(j, "id", "installer-version"), H(j, "min-width", "200px"), /*installerVersion*/
       n[2] === void 0 && oe(() => (
         /*select2_change_handler*/
         n[9].call(j)
-      )), _(J, "class", "form-line"), _(C, "class", "button"), _(
+      )), _(J, "class", "form-line"), _(C, "class", "button primary large"), _(
         C,
         "href",
         /*serverJarUrl*/
         n[5]
       ), _(w, "class", "download"), _(
-        P,
+        O,
         "href",
         /*installerJarUrl*/
         n[3]
-      ), _(e, "class", "download"), _(X, "class", "svelte-l8qzb7"), O(S, "margin-bottom", "15px"), _(B, "class", "svelte-l8qzb7"), O(q, "margin-bottom", "15px");
+      ), _(e, "class", "download"), _(P, "class", "svelte-l8qzb7"), H(S, "margin-bottom", "15px"), _(B, "class", "svelte-l8qzb7"), H(q, "margin-bottom", "15px");
     },
     m(t, u) {
       g(t, e, u), s(e, r), s(r, o), s(r, c), s(r, a);
       for (let l = 0; l < d.length; l += 1)
         d[l] && d[l].m(a, null);
-      H(
+      A(
         a,
         /*gameVersion*/
         n[0],
@@ -107,20 +107,20 @@ function Pe(n) {
       ), s(e, m), s(e, f), s(f, h), s(f, G), s(f, V);
       for (let l = 0; l < p.length; l += 1)
         p[l] && p[l].m(V, null);
-      H(
+      A(
         V,
         /*loaderVersion*/
         n[1],
         !0
-      ), s(e, y), s(e, J), s(J, T), s(J, K), s(J, j);
+      ), s(e, X), s(e, J), s(J, T), s(J, K), s(J, j);
       for (let l = 0; l < v.length; l += 1)
         v[l] && v[l].m(j, null);
-      H(
+      A(
         j,
         /*installerVersion*/
         n[2],
         !0
-      ), s(e, L), s(e, w), s(w, C), Te(z, C, null), s(C, ie), s(e, ce), s(e, Q), s(Q, P), s(P, fe), g(t, R, u), g(t, N, u), g(t, W, u), g(t, S, u), s(S, Y), s(S, ue), s(S, Z), s(S, _e), s(S, X), s(X, he), s(X, $), g(t, x, u), g(t, q, u), s(q, ee), s(q, me), s(q, te), s(q, de), s(q, B), s(B, pe), s(B, le), s(B, ve), M = !0, ne || (be = [
+      ), s(e, L), s(e, w), s(w, C), Te(z, C, null), s(C, ie), s(e, ce), s(e, Q), s(Q, O), s(O, fe), g(t, R, u), g(t, N, u), g(t, W, u), g(t, S, u), s(S, Y), s(S, ue), s(S, Z), s(S, _e), s(S, P), s(P, he), s(P, $), g(t, x, u), g(t, q, u), s(q, ee), s(q, me), s(q, te), s(q, de), s(q, B), s(B, pe), s(B, le), s(B, ve), M = !0, ne || (be = [
         se(
           a,
           "change",
@@ -156,7 +156,7 @@ function Pe(n) {
         d.length = D.length;
       }
       if (u & /*gameVersion, versions*/
-      65 && H(
+      65 && A(
         a,
         /*gameVersion*/
         t[0]
@@ -174,25 +174,25 @@ function Pe(n) {
         p.length = E.length;
       }
       if (u & /*loaderVersion, versions*/
-      66 && H(
+      66 && A(
         V,
         /*loaderVersion*/
         t[1]
       ), u & /*versions*/
       64) {
-        A = /*data*/
+        y = /*data*/
         t[10].installer;
         let l;
-        for (l = 0; l < A.length; l += 1) {
-          const U = ke(t, A, l);
+        for (l = 0; l < y.length; l += 1) {
+          const U = ke(t, y, l);
           v[l] ? v[l].p(U, u) : (v[l] = Ie(U), v[l].c(), v[l].m(j, null));
         }
         for (; l < v.length; l += 1)
           v[l].d(1);
-        v.length = A.length;
+        v.length = y.length;
       }
       u & /*installerVersion, versions*/
-      68 && H(
+      68 && A(
         j,
         /*installerVersion*/
         t[2]
@@ -204,7 +204,7 @@ function Pe(n) {
         t[5]
       ), (!M || u & /*installerJarUrl*/
       8) && _(
-        P,
+        O,
         "href",
         /*installerJarUrl*/
         t[3]
@@ -288,7 +288,7 @@ function Ie(n) {
     }
   };
 }
-function Xe(n) {
+function Pe(n) {
   let e;
   return {
     c() {
@@ -305,15 +305,15 @@ function Xe(n) {
     }
   };
 }
-function ye(n) {
+function Xe(n) {
   let e, r, o = {
     ctx: n,
     current: null,
     token: null,
     hasCatch: !0,
-    pending: Xe,
-    then: Pe,
-    catch: Oe,
+    pending: Pe,
+    then: Oe,
+    catch: He,
     value: 10,
     error: 18,
     blocks: [, , ,]
@@ -348,7 +348,7 @@ function ye(n) {
   };
 }
 function Ke(n, e, r) {
-  let o, c, a, m, f, h, G = Promise.all([De(), Ee(), Ae()]).then(([T, K, j]) => {
+  let o, c, a, m, f, h, G = Promise.all([De(), Ee(), ye()]).then(([T, K, j]) => {
     const L = {
       game: T,
       loader: K.filter((w) => {
@@ -365,7 +365,7 @@ function Ke(n, e, r) {
   function V() {
     m = re(this), r(0, m), r(6, G);
   }
-  function y() {
+  function X() {
     f = re(this), r(1, f), r(6, G);
   }
   function J() {
@@ -385,13 +385,13 @@ function Ke(n, e, r) {
     o,
     G,
     V,
-    y,
+    X,
     J
   ];
 }
 class We extends qe {
   constructor(e) {
-    super(), Fe(this, e, Ke, ye, Je, {});
+    super(), Fe(this, e, Ke, Xe, Je, {});
   }
 }
 export {

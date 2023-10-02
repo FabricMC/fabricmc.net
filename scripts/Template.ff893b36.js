@@ -4533,7 +4533,7 @@ function Gn(R) {
   let p, i, y, c, r, s;
   return i = new oe({}), {
     c() {
-      p = rt("a"), ie(i.$$.fragment), y = Et(" Download Template (.ZIP)"), $(p, "class", "button download-button svelte-1sr08ub"), $(p, "href", "");
+      p = rt("a"), ie(i.$$.fragment), y = Et(" Download Template (.ZIP)"), $(p, "class", "button primary download-button svelte-1sr08ub"), $(p, "href", "");
     },
     m(e, l) {
       bt(e, p, l), ae(i, p, null), q(p, y), c = !0, r || (s = kt(p, "click", Vt(
@@ -4557,7 +4557,7 @@ function Nn(R) {
   let p, i, y, c;
   return i = new oe({}), {
     c() {
-      p = rt("a"), ie(i.$$.fragment), y = Et(" Generating..."), $(p, "class", "button download-button svelte-1sr08ub"), $(p, "href", "");
+      p = rt("a"), ie(i.$$.fragment), y = Et(" Generating..."), $(p, "class", "button primary download-button svelte-1sr08ub"), $(p, "href", "");
     },
     m(r, s) {
       bt(r, p, s), ae(i, p, null), q(p, y), c = !0;
