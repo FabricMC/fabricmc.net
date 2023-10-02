@@ -61,7 +61,7 @@
 button, .button {
 	&.primary {
 		background-color: $button-color;
-		border-radius: 5px;
+		border: none;
 
 		&:hover, &:focus {
 			background-color: darken($button-color, 10%);
@@ -73,7 +73,6 @@ button, .button {
 	&.secondary {
 		background-color: transparent;
 		border: 2px solid $button-color;
-		border-radius: 7px;
 
 		&:hover, &:focus {
 			background-color: darken($button-color, 10%);
@@ -85,12 +84,18 @@ button, .button {
 		}
 	}
 
+	border-radius: 5px;
 	color: $text-color !important;
 	text-decoration: none !important;
 	padding: 5px 8px;
 	text-align: center;
 	display: inline-block;
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+button {
+	font-size: inherit;
+	line-height: inherit;
 }
 
 .download {

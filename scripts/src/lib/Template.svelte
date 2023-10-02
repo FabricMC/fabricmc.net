@@ -108,10 +108,10 @@
             {:else}
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
-            
+
             <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
-            
-            {#if modIdErrors != undefined} 
+
+            {#if modIdErrors != undefined}
             {#each modIdErrors as error}
                 <li style="color: red">{error}</li>
             {/each}
@@ -124,7 +124,7 @@
                 <h3>Mod ID:</h3>
                 <hr />
                 <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
-                {#if customIdErrors != undefined} 
+                {#if customIdErrors != undefined}
                     {#each customIdErrors as error}
                         <li style="color: red">{error}</li>
                     {/each}
@@ -208,12 +208,12 @@
         <br>
 
         {#if loading}
-            <a class="button download-button" href={""}>
+            <a class="button primary download-button" href={""}>
                 <DownloadIcon /> Generating...
             </a>
         {:else}
             <a
-                class="button download-button"
+                class="button primary download-button"
                 href={""}
                 on:click|preventDefault={generate}
             >
@@ -246,24 +246,24 @@
 
     .option {
         &-container {
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
         }
 
         &-input {
-            width: 1rem; 
-            height: 1rem; 
+            width: 1rem;
+            height: 1rem;
         }
 
         &-label {
-            margin-left: 0.5rem; 
+            margin-left: 0.5rem;
         }
 
         &-body {
-            display: block; 
-            padding-left: 1rem; 
-            margin-top: 0.25rem; 
-            margin-left: 1rem;  
+            display: block;
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+            margin-left: 1rem;
         }
     }
 </style>
