@@ -1,6 +1,6 @@
 ---
 layout: page
-title: discuss
+title: Discuss
 permalink: /discuss/
 topnav: true
 ---

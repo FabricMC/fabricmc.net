@@ -4,7 +4,7 @@ title: June Status Update
 ref: jun-status-update
 ---
 
-![](https://i.imgur.com/B3zWLoL.jpg)
+![](/assets/external/B3zWLoL.jpg)
 
 
 1.16 pre-releases have begun, and with it comes a new wave of updates for the Fabric toolchain. There are several new key things you should be aware of, including breaking changes from the base game, new Fabric API features, and faster versions of developer tools.
@@ -128,7 +128,7 @@ Some of the modules originally developed targeting 1.16 have already been backpo
 
 2xsaiko has worked hard to bring one of the most requested features to Enigma: [Tab support](https://github.com/FabricMC/Enigma/pull/238)! You can now open multiple files at the same time, resulting in faster workflows and an overall better experience.
 
-![](https://i.imgur.com/7iTKHzs.png)
+![](/assets/external/7iTKHzs.png)
 
 
 #### Multiplayer
@@ -137,7 +137,7 @@ Earthcomputer worked on a fun [pull request to add multiplayer support](https://
 
 To access this feature, open a jar in Enigma, and click the *Collab* option at the top of the screen:
 
-![](https://i.imgur.com/CedYVnt.png)
+![](/assets/external/CedYVnt.png)
 
 
 #### Modularity
