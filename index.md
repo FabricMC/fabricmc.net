@@ -39,7 +39,7 @@ layout: default
    </section>
    <hr>
    <section>
-   <h2>Core Toolchain Projects</h2>
+   <h3>Core Toolchain Projects</h3>
    <ul>
       <li><a herf="https://github.com/FabricMC/fabric-loader">Fabric Loader</a> A flexible platform-independent mod loader designed for Minecraft and other games and applications.</li>
       <li><a herf="https://github.com/FabricMC/yarn">Yarn</a> Yarn is a set of open Minecraft mappings, free for everyone to use under the Creative Commons Zero license.</li>
@@ -52,12 +52,12 @@ layout: default
    </section>
    <hr>
    <section>
-      <h2>Latest Blog Posts</h2>
+      <h3>Latest Blog Posts</h3>
       <div class="row-2">
          {% for post in site.posts limit: 2 %}
          <article class="column">
             <a href="{{ post.url }}">
-               <h3>{{ post.title }}</h3>
+               <h4>{{ post.title }}</h4>
             </a>
             <section>
                <p>{{ post.content | strip_html | truncate: 310 }}</p>
