@@ -17,21 +17,21 @@ layout: default
          <article class="column">
             <h3>Play</h3>
             <section>
-               <p class="component-body">Fabric API provides an extenstive set of tools that helps developers create their mods. Fabric API is a requirement for most mods, it can be installed by copying it to the mods directory.</p>
+               <p class="component-body">Fabric API provides critical hooks for core parts of the game to enable mods to be compatible with each other. Fabric API is a requirement for most mods, it can be installed by downloading it to the mods directory.</p>
             </section>
-            <a class="button secondary" href="https://minecraft.curseforge.com/projects/fabric/files">Download Fabric API</a>
+            <a class="button secondary" href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">Download Fabric API</a>
          </article>
          <article class="column">
             <h3>Develop</h3>
             <section>
-               <p>A flexible platform independent mod loader designed for Minecraft and other games and applications. Fabric loaders enables mods to make use of technology such as <a href="https://github.com/FabricMC/Mixin">Mixin</a> and <a href="https://github.com/FabricMC/intermediary">Intermediary</a>.</p>
+               <p>A flexible platform-independent mod loader designed for Minecraft and other games and applications. Fabric loaders enables mods to make use of technology such as <a href="https://github.com/FabricMC/Mixin">Mixin</a> and <a href="https://github.com/FabricMC/intermediary">Intermediary</a>.</p>
             </section>
             <a class="button secondary" href="/develop">Develop a mod</a>
          </article>
          <article class="column">
             <h3>Explore</h3>
             <section>
-               <p>A Gradle plugin enabling developers to develop and debug mods. Fabric Loom utilizes a number of Fabric-developed tools such as <a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a>, <a href="https://github.com/FabricMC/mapping-io">Mapping-IO</a> and <a href="https://github.com/FabricMC/yarn">Yarn</a>.</p>
+               <p>A Gradle plugin enabling developers to develop and debug mods. Fabric Loom utilizes a number of Fabric-developed tools such as <a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a>, <a href="https://github.com/FabricMC/mapping-io">Mapping-IO</a>, and <a href="https://github.com/FabricMC/yarn">Yarn</a>.</p>
             </section>
             <a class="button secondary" href="/wiki">Visit the wiki</a>
          </article>
@@ -41,12 +41,13 @@ layout: default
    <section>
    <h2>Core Toolchain Projects</h2>
    <ul>
-      <li><a herf="">Fabric Loader</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-      <li><a herf="">Yarn</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-      <li><a herf="">Fabric Loom</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-      <li><a herf="">Matcher</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-      <li><a herf="">Intermediary</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
-      <li><a herf="">Mapping IO</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-loader">Fabric Loader</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/yarn">Yarn</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-loom">Fabric Loom</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-language-kotlin">Fabric Language Kotlin</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/intermediary">Intermediary</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
+      <li><a herf="https://github.com/FabricMC/mapping-io">Mapping IO</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</li>
    </ul>
    </section>
    <hr>
