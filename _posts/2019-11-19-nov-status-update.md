@@ -37,7 +37,7 @@ We recommend the `1.14.x` form for most mods, a future Wiki article will explain
 
 AlexIIL contributed the beginnings of a GUI to show mod loading errors. It shows the problems directly instead of having to dig through logs. The current implementation is limited to showing missing or incompatible dependencies. Further work is planned to improve the error messages, presentation and error type coverage.
 
-![Screenshot](https://ss.modmuss50.me/javaw_2019-11-19_17-07-28.png)
+![Screenshot](/assets/external/javaw_2019-11-19_17-07-28.png)
 
 ## Mixin 0.8
 

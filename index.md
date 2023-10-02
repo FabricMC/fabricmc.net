@@ -1,58 +1,70 @@
 ---
-layout: page
+layout: default
 ---
-Fabric is a lightweight, experimental modding toolchain for Minecraft.
 
-## design
-
-* Fabric's APIs are lightweight and modular, making porting faster and game instances leaner.
-* Fabric development targets snapshots as well as release versions, allowing earlier mod updates and more informed community planning.
-* The Fabric toolchain is available for everyone to use - even if you only want to use some of it!
-
-## installation
-
-To install Fabric, you need the **Fabric Loader**, which you can <a class="page-link page-link-download" href="/use">download here</a>
-
-In addition, most mods depend on an API mod, containing commonly used hooks. They can be found here:
-
-* [Fabric API for Minecraft 1.14 and above](https://minecraft.curseforge.com/projects/fabric/files)
-
-## projects
-
-### enigma
-
-The Fabric project maintains a [fork](https://github.com/FabricMC/Enigma) of [Enigma](https://www.cuchazinteractive.com/enigma/), a tool
-for deobfuscation of Java classes originally by Cuchaz Interactive. Our changes include countless
-bugfixes, optimizations and improvements across the codebase, as well as user experience and compatibility
-improvements.
-
-Downloads can be found [here](https://maven.fabricmc.net/cuchaz/enigma/).
-
-### tiny-remapper
-
-The [tiny-remapper](https://github.com/FabricMC/tiny-remapper) project provides a fast, optimized tool for accurately remapping .JAR files
-using the Tiny mapping format.
-
-### other tools
-
-* [Fernflower](https://github.com/FabricMC/intellij-fernflower), a modified version of JetBrains' upstream with line number mapping information exposed.
-* [Matcher](https://github.com/sfPlayer1/Matcher/), sfPlayer1's tool for tracking elements in obfuscated Java archives across releases used for updating Yarn mappings.
-* [Stitch](https://github.com/FabricMC/stitch) is an assortment of small tools providing various functionality used by the Fabric project in command-line form, such as
-generating and updating "intermediaries" for cross-version name stability, based on Matcher output or merging client and server Minecraft .JARs.
-* [Weave](https://github.com/FabricMC/weave) is an earlier iteration of Stitch and is now generally only used to export Enigma-format mappings to
-Tiny-format files.
-
-### libraries
-
-* [Mixin](https://github.com/FabricMC/Mixin), a trait/mixin framework for Java bytecode created by Mumfrey for Sponge - forked by Fabric to adapt to our use cases.
-* [tiny-mappings-parser](https://github.com/FabricMC/tiny-mappings-parser), a library for processing Tiny-format mapping files.
-
-### components
-
-* [intermediary](https://github.com/FabricMC/intermediary), providing stable cross-version names and match information between Minecraft releases,
-* [yarn](https://github.com/FabricMC/yarn), providing deobfuscated/friendly names for the most recent versions of the game based on community contributions,
-* [fabric-loom](https://github.com/FabricMC/fabric-loom) is our Gradle-based build system, used for developing Fabric mods.
-* [fabric-loader](https://github.com/FabricMC/fabric-loader) is our version-independent mod loader, providing mod loading and code patching functionality.
-* [fabric-api](https://github.com/FabricMC/fabric) is our "hook layer", providing the most common hooks and interoperability required for Fabric mods,
-* Fabric language modules for supporting other languages: [Kotlin](https://github.com/FabricMC/fabric-language-kotlin), [Scala](https://github.com/FabricMC/fabric-language-scala).
-* [fabric-installer](https://github.com/FabricMC/fabric-installer), a tool for creating Fabric-ready profiles for the official Minecraft launcher.
+<div class="home post-content">
+   <header>
+      <div class="showcase">
+         <h1>Fabric Loader</h1>
+         <p>Fabric is a modular, lightweight mod loader for Minecraft</p>
+         <br>
+         <a class="button primary large" href="/use">Download</a>
+      </div>
+   </header>
+   <hr>
+   <section>
+      <div class="row-3">
+         <article class="column">
+            <h3>Play</h3>
+            <section>
+               <p class="component-body">The Fabric Loader download above is the bare minimum. Combine it with Fabric API to get all the important extra APIs mods use. It has to be put into the mods folder like any other mod.</p>
+            </section>
+            <a class="button secondary" href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">Download Fabric API</a>
+         </article>
+         <article class="column">
+            <h3>Develop</h3>
+            <section>
+               <p>Fabric gives you powerful tools to change the game however you like. Use the online <a href="/develop/template/">template generator</a> to get started creating a mod. You can also use the <a href="https://github.com/FabricMC/fabric-example-mod">example mod</a> repository or <a href="/develop/cli/">CLI tools</a>.</p>
+            </section>
+            <a class="button secondary" href="/develop">Develop a mod</a>
+         </article>
+         <article class="column">
+            <h3>Explore</h3>
+            <section>
+               <p>Extensive documentation is available in the Fabric wiki for both developers and players. Get additional help from the <a href="https://discord.gg/v6v4pMv">Fabric Discord server</a>, or ask a question on the <a href="https://github.com/orgs/FabricMC/discussions">Github Discussion</a> forums.</p>
+            </section>
+            <a class="button secondary" href="/wiki">Visit the wiki</a>
+         </article>
+      </div>
+   </section>
+   <hr>
+   <section>
+   <h3>Core Toolchain Projects</h3>
+   <ul>
+      <li><a herf="https://github.com/FabricMC/fabric-loader">Fabric Loader</a> A flexible platform-independent mod loader designed for Minecraft and other games and applications.</li>
+      <li><a herf="https://github.com/FabricMC/yarn">Yarn</a> Yarn is a set of open Minecraft mappings, free for everyone to use under the Creative Commons Zero license.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-loom">Fabric Loom</a> A Gradle plugin enabling developers to easily develop and debug mods.</li>
+      <li><a herf="https://github.com/FabricMC/fabric-language-kotlin">Fabric Language Kotlin</a> This is a mod that enables usage of the Kotlin programming language for Fabric mods.</li>
+      <li><a herf="https://github.com/FabricMC/intermediary">Intermediary</a> Intermediary contains match information between different versions of Minecraft, enablding cross version mods.</li>
+      <li><a herf="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a> A tiny, efficient tool for remapping JAR files.</li>
+      <li><a herf="https://github.com/FabricMC/mapping-io">Mapping IO</a> A library for reading, manipulating and writing mapping files, with support a wide range fo formats.</li>
+   </ul>
+   </section>
+   <hr>
+   <section>
+      <h3>Latest Blog Posts</h3>
+      <div class="row-2">
+         {% for post in site.posts limit: 2 %}
+         <article class="column">
+            <a href="{{ post.url }}">
+               <h4>{{ post.title }}</h4>
+            </a>
+            <section>
+               <p>{{ post.content | strip_html | truncate: 310 }}</p>
+            </section>
+            <a class="button secondary" href="{{ post.url }}">Continue reading</a>
+         </article>
+         {% endfor %}
+      </div>
+   </section>
+</div>

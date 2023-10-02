@@ -58,19 +58,21 @@
       </p>
 
       {#if win32}
-      <a class="button" href={selectedVersion.replace('.jar', '.exe')}>
-        <DownloadIcon/> Download for Windows
-      </a>
       <p>
+        <a class="button primary" href={selectedVersion.replace('.jar', '.exe')}>
+          <DownloadIcon/> Download for Windows
+        </a>
+        <br>
         <a href={selectedVersion}>
           Download universal jar
         </a>
       </p>
     {:else}
-      <a class="button" href={selectedVersion}>
-        <DownloadIcon/> Download installer (Universal/.JAR)
-      </a>
       <p>
+        <a class="button primary large" href={selectedVersion}>
+          <DownloadIcon/> Download installer (Universal/.JAR)
+        </a>
+        <br>
         <a href={selectedVersion.replace('.jar', '.exe')}>
           Download for Windows
         </a>

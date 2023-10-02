@@ -39,15 +39,15 @@ What *isn't* Fabric, though?
 
 Keep in mind that we're aiming for a stable release alongside the release of Minecraft 1.14. As such, while we feel it's sufficiently stable for adventurous modders and early adopters ([this](https://www.youtube.com/watch?v=tyneiz9FRMw) might give you an idea of the atmosphere in the development chatroom right now), it might be somewhat unwise to go out there and build a modpack already. (We won't stop you if you try, though, and we'll even help out!) Even as a modder, keep in mind documentation is being written as we speak - don't hesitate to ask questions or point out omissions - it helps us make the project better, and we're willing to listen.
 
-Now, you might be asking yourself "what mods will I be able to play on Fabric"? Well, we are on snapshot versions and development is a bit early, however, if you're looking for mods, some should be popping up as we speak on [CurseForge](https://minecraft.curseforge.com/mc-mods?filter-game-version=2020709689%3A7133&filter-sort=2) and our community spaces - but here's some teasers of things which are either about to be released, or perhaps are yet to come. (Note that most CurseForge-uploaded mods rely on Fabric's API module, which might not be approved yet - you can find a working version [here](http://maven.modmuss50.me/net/fabricmc/fabric/0.1.0.36/fabric-0.1.0.36.jar) until then.)
+Now, you might be asking yourself "what mods will I be able to play on Fabric"? Well, we are on snapshot versions and development is a bit early, however, if you're looking for mods, some should be popping up as we speak on [CurseForge](https://minecraft.curseforge.com/mc-mods?filter-game-version=2020709689%3A7133&filter-sort=2) and our community spaces - but here's some teasers of things which are either about to be released, or perhaps are yet to come. (Note that most CurseForge-uploaded mods rely on Fabric's API module, which might not be approved yet - you can find a working version [here](https://maven.fabricmc.net/net/fabricmc/fabric/0.1.0.36/fabric-0.1.0.36.jar) until then.)
 
-![ModMenu by ProfessorProspector](https://img.asie.pl/TeLw)
+![ModMenu by ProfessorProspector](/assets/external/TeLw.png)
 
-![To get this far takes quite a traversal.](https://i.imgur.com/q6D5d1u.png)
+![To get this far takes quite a traversal.](/assets/external/q6D5d1u.png)
 
-![How well-assembled!](https://i.imgur.com/K9F8L1G.png)
+![How well-assembled!](/assets/external/K9F8L1G.png)
 
-![Logical...](https://i.imgur.com/lurTAgQ.png)
+![Logical...](/assets/external/lurTAgQ.png)
 
 Many smaller "tweak" mods are much further ahead and will be popping up very shortly.
 

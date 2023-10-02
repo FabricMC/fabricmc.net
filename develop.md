@@ -1,6 +1,6 @@
 ---
 layout: page
-title: develop
+title: Develop
 permalink: /develop/
 topnav: true
 ---
