@@ -133,23 +133,8 @@ p {
 		font-size: 32px; /* same as h2 */
 	}
 
-	.row-showcase {
-		display: flex;
-		flex-direction: row;
-		gap: 24px;
-
-		@media screen and (max-width: 700px) {
-			flex-direction: column-reverse;
-		}
-
-		figure {
-			margin: 0;
-
-			img {
-				width: 100%;
-				height: 100%;
-			}
-		}
+	.showcase {
+		text-align: center;
 	}
 
 	@for $i from 2 through 3 {
