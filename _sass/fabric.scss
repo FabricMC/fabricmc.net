@@ -126,9 +126,11 @@ p {
 	hyphens: auto;
 }
 
-.home {
-	margin: 30px 0; /* like base layout */
+.page-content {
+	margin: 30px 0;
+}
 
+.home {
 	h1 {
 		font-size: 32px; /* same as h2 */
 	}
