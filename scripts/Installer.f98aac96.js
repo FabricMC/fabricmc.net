@@ -1,4 +1,4 @@
-import { S as T, i as z, s as A, h as S, e as h, c as d, u as W, r as C, v as D, d as m, f as H, t as y, a as $, g as q, j as k, n as v, o as w, b as J, m as R, p as g, q as E, l as U, w as F, x as M, y as N, z as B } from "./index.61dc58cf.js";
+import { S as T, i as z, s as A, h as S, e as h, c as d, u as W, r as j, v as C, d as m, f as H, t as y, a as $, g as q, j as k, n as v, o as w, b as J, m as R, p as D, q as E, l as U, w as F, x as M, y as N, z as B } from "./index.61dc58cf.js";
 import { c as G } from "./Api.96f42ec7.js";
 import O from "./DownloadIcon.214b8f5e.js";
 function I(o, e, t) {
@@ -9,59 +9,59 @@ function K(o) {
   let e, t, l = (
     /*error*/
     o[13].message + ""
-  ), n, r, s;
+  ), n, r, a;
   return {
     c() {
-      e = h("p"), t = y("Error: "), n = y(l), r = $(), s = h("p"), s.innerHTML = `For support please visit one of our
+      e = h("p"), t = y("Error: "), n = y(l), r = $(), a = h("p"), a.innerHTML = `For support please visit one of our
       <a href="/discuss">community discussion</a>
       groups.`, q(e, "color", "red");
     },
     m(u, _) {
-      d(u, e, _), k(e, t), k(e, n), d(u, r, _), d(u, s, _);
+      d(u, e, _), k(e, t), k(e, n), d(u, r, _), d(u, a, _);
     },
     p: v,
     i: v,
     o: v,
     d(u) {
-      u && m(e), u && m(r), u && m(s);
+      u && m(e), u && m(r), u && m(a);
     }
   };
 }
 function P(o) {
-  let e, t, l, n, r, s, u;
-  function _(b, j) {
+  let e, t, l, n, r, a, u;
+  function _(b, g) {
     return (
       /*expertOptions*/
       b[0] ? X : Q
     );
   }
   let p = _(o), c = p(o);
-  const i = [le, te], a = [];
-  function f(b, j) {
+  const i = [le, te], s = [];
+  function f(b, g) {
     return (
       /*win32*/
       b[2] ? 0 : 1
     );
   }
-  return r = f(o), s = a[r] = i[r](o), {
+  return r = f(o), a = s[r] = i[r](o), {
     c() {
       c.c(), e = $(), t = h("div"), l = h("p"), l.textContent = `The Minecraft and Fabric Loader versions can be selected in the installer, this download
-        works for every version we support.`, n = $(), s.c(), w(t, "class", "download");
+        works for every version we support.`, n = $(), a.c(), w(t, "class", "download");
     },
-    m(b, j) {
-      c.m(b, j), d(b, e, j), d(b, t, j), k(t, l), k(t, n), a[r].m(t, null), u = !0;
+    m(b, g) {
+      c.m(b, g), d(b, e, g), d(b, t, g), k(t, l), k(t, n), s[r].m(t, null), u = !0;
     },
-    p(b, j) {
-      p === (p = _(b)) && c ? c.p(b, j) : (c.d(1), c = p(b), c && (c.c(), c.m(e.parentNode, e))), s.p(b, j);
+    p(b, g) {
+      p === (p = _(b)) && c ? c.p(b, g) : (c.d(1), c = p(b), c && (c.c(), c.m(e.parentNode, e))), a.p(b, g);
     },
     i(b) {
-      u || (C(s), u = !0);
+      u || (j(a), u = !0);
     },
     o(b) {
-      D(s), u = !1;
+      C(a), u = !1;
     },
     d(b) {
-      c.d(b), b && m(e), b && m(t), a[r].d();
+      c.d(b), b && m(e), b && m(t), s[r].d();
     }
   };
 }
@@ -96,7 +96,7 @@ function Q(o) {
   };
 }
 function X(o) {
-  let e, t, l, n, r, s, u, _, p = (
+  let e, t, l, n, r, a, u, _, p = (
     /*data*/
     o[8]
   ), c = [];
@@ -108,51 +108,51 @@ function X(o) {
       `), t = h("select");
       for (let i = 0; i < c.length; i += 1)
         c[i].c();
-      l = $(), n = h("br"), r = $(), s = h("br"), q(t, "min-width", "200px"), /*selectedVersion*/
+      l = $(), n = h("br"), r = $(), a = h("br"), q(t, "min-width", "200px"), /*selectedVersion*/
       o[1] === void 0 && R(() => (
         /*select_change_handler*/
         o[6].call(t)
       ));
     },
-    m(i, a) {
-      d(i, e, a), d(i, t, a);
+    m(i, s) {
+      d(i, e, s), d(i, t, s);
       for (let f = 0; f < c.length; f += 1)
         c[f] && c[f].m(t, null);
-      g(
+      D(
         t,
         /*selectedVersion*/
         o[1],
         !0
-      ), d(i, l, a), d(i, n, a), d(i, r, a), d(i, s, a), u || (_ = E(
+      ), d(i, l, s), d(i, n, s), d(i, r, s), d(i, a, s), u || (_ = E(
         t,
         "change",
         /*select_change_handler*/
         o[6]
       ), u = !0);
     },
-    p(i, a) {
-      if (a & /*versions*/
+    p(i, s) {
+      if (s & /*versions*/
       8) {
         p = /*data*/
         i[8];
         let f;
         for (f = 0; f < p.length; f += 1) {
           const b = I(i, p, f);
-          c[f] ? c[f].p(b, a) : (c[f] = L(b), c[f].c(), c[f].m(t, null));
+          c[f] ? c[f].p(b, s) : (c[f] = L(b), c[f].c(), c[f].m(t, null));
         }
         for (; f < c.length; f += 1)
           c[f].d(1);
         c.length = p.length;
       }
-      a & /*selectedVersion, versions*/
-      10 && g(
+      s & /*selectedVersion, versions*/
+      10 && D(
         t,
         /*selectedVersion*/
         i[1]
       );
     },
     d(i) {
-      i && m(e), i && m(t), U(c, i), i && m(l), i && m(n), i && m(r), i && m(s), u = !1, _();
+      i && m(e), i && m(t), U(c, i), i && m(l), i && m(n), i && m(r), i && m(a), u = !1, _();
     }
   };
 }
@@ -170,17 +170,17 @@ function Z(o) {
     c() {
       e = h("p"), l && l.c(), t = $(), n && n.c();
     },
-    m(s, u) {
-      d(s, e, u), l && l.m(e, null), k(e, t), n && n.m(e, null);
+    m(a, u) {
+      d(a, e, u), l && l.m(e, null), k(e, t), n && n.m(e, null);
     },
-    p(s, u) {
+    p(a, u) {
       var _;
       /*latest*/
-      (_ = s[12]) != null && _.stable && l.p(s, u), /*expertOptions*/
-      s[0] ? n && (n.d(1), n = null) : n ? n.p(s, u) : (n = V(s), n.c(), n.m(e, null));
+      (_ = a[12]) != null && _.stable && l.p(a, u), /*expertOptions*/
+      a[0] ? n && (n.d(1), n = null) : n ? n.p(a, u) : (n = V(a), n.c(), n.m(e, null));
     },
-    d(s) {
-      s && m(e), l && l.d(), n && n.d();
+    d(a) {
+      a && m(e), l && l.d(), n && n.d();
     }
   };
 }
@@ -193,8 +193,8 @@ function x(o) {
     c() {
       e = y("Installer Version: "), l = y(t), n = y(" (Latest)");
     },
-    m(r, s) {
-      d(r, e, s), d(r, l, s), d(r, n, s);
+    m(r, a) {
+      d(r, e, a), d(r, l, a), d(r, n, a);
     },
     p: v,
     d(r) {
@@ -243,10 +243,10 @@ function L(o) {
   };
 }
 function te(o) {
-  let e, t, l, n, r, s, u, _, p, c, i;
+  let e, t, l, n, r, a, u, _, p, c, i;
   return l = new O({}), {
     c() {
-      e = h("p"), t = h("a"), F(l.$$.fragment), n = y(" Download installer (Universal/.JAR)"), r = $(), s = h("br"), u = $(), _ = h("a"), p = y("Download for Windows"), w(t, "class", "button primary large"), w(
+      e = h("p"), t = h("a"), F(l.$$.fragment), n = y(" Download installer (Universal/.JAR)"), r = $(), a = h("br"), u = $(), _ = h("a"), p = y("Download for Windows"), w(t, "class", "button primary large"), w(
         t,
         "href",
         /*selectedVersion*/
@@ -254,36 +254,36 @@ function te(o) {
       ), w(_, "href", c = /*selectedVersion*/
       o[1].replace(".jar", ".exe"));
     },
-    m(a, f) {
-      d(a, e, f), k(e, t), M(l, t, null), k(t, n), k(e, r), k(e, s), k(e, u), k(e, _), k(_, p), i = !0;
+    m(s, f) {
+      d(s, e, f), k(e, t), M(l, t, null), k(t, n), k(e, r), k(e, a), k(e, u), k(e, _), k(_, p), i = !0;
     },
-    p(a, f) {
+    p(s, f) {
       (!i || f & /*selectedVersion, versions*/
       10) && w(
         t,
         "href",
         /*selectedVersion*/
-        a[1]
+        s[1]
       ), (!i || f & /*selectedVersion, versions*/
       10 && c !== (c = /*selectedVersion*/
-      a[1].replace(".jar", ".exe"))) && w(_, "href", c);
+      s[1].replace(".jar", ".exe"))) && w(_, "href", c);
     },
-    i(a) {
-      i || (C(l.$$.fragment, a), i = !0);
+    i(s) {
+      i || (j(l.$$.fragment, s), i = !0);
     },
-    o(a) {
-      D(l.$$.fragment, a), i = !1;
+    o(s) {
+      C(l.$$.fragment, s), i = !1;
     },
-    d(a) {
-      a && m(e), N(l);
+    d(s) {
+      s && m(e), N(l);
     }
   };
 }
 function le(o) {
-  let e, t, l, n, r, s, u, _, p, c, i;
+  let e, t, l, n, r, a, u, _, p, c, i;
   return l = new O({}), {
     c() {
-      e = h("p"), t = h("a"), F(l.$$.fragment), n = y(" Download for Windows"), s = $(), u = h("br"), _ = $(), p = h("a"), c = y("Download universal jar"), w(t, "class", "button primary"), w(t, "href", r = /*selectedVersion*/
+      e = h("p"), t = h("a"), F(l.$$.fragment), n = y(" Download for Windows"), a = $(), u = h("br"), _ = $(), p = h("a"), c = y("Download universal jar"), w(t, "class", "button primary large"), w(t, "href", r = /*selectedVersion*/
       o[1].replace(".jar", ".exe")), w(
         p,
         "href",
@@ -291,28 +291,28 @@ function le(o) {
         o[1]
       );
     },
-    m(a, f) {
-      d(a, e, f), k(e, t), M(l, t, null), k(t, n), k(e, s), k(e, u), k(e, _), k(e, p), k(p, c), i = !0;
+    m(s, f) {
+      d(s, e, f), k(e, t), M(l, t, null), k(t, n), k(e, a), k(e, u), k(e, _), k(e, p), k(p, c), i = !0;
     },
-    p(a, f) {
+    p(s, f) {
       (!i || f & /*selectedVersion, versions*/
       10 && r !== (r = /*selectedVersion*/
-      a[1].replace(".jar", ".exe"))) && w(t, "href", r), (!i || f & /*selectedVersion, versions*/
+      s[1].replace(".jar", ".exe"))) && w(t, "href", r), (!i || f & /*selectedVersion, versions*/
       10) && w(
         p,
         "href",
         /*selectedVersion*/
-        a[1]
+        s[1]
       );
     },
-    i(a) {
-      i || (C(l.$$.fragment, a), i = !0);
+    i(s) {
+      i || (j(l.$$.fragment, s), i = !0);
     },
-    o(a) {
-      D(l.$$.fragment, a), i = !1;
+    o(s) {
+      C(l.$$.fragment, s), i = !1;
     },
-    d(a) {
-      a && m(e), N(l);
+    d(s) {
+      s && m(e), N(l);
     }
   };
 }
@@ -361,12 +361,12 @@ function re(o) {
       o = n, W(l, o, r);
     },
     i(n) {
-      t || (C(l.block), t = !0);
+      t || (j(l.block), t = !0);
     },
     o(n) {
       for (let r = 0; r < 3; r += 1) {
-        const s = l.blocks[r];
-        D(s);
+        const a = l.blocks[r];
+        C(a);
       }
       t = !1;
     },
@@ -377,26 +377,26 @@ function re(o) {
 }
 function oe(o, e, t) {
   const l = navigator.platform == "Win32";
-  let n = !1, r = "", s = u();
+  let n = !1, r = "", a = u();
   async function u() {
-    var a;
+    var s;
     const i = await G();
-    return t(1, r = ((a = i.find((f) => f.stable)) == null ? void 0 : a.url) ?? ""), i;
+    return t(1, r = ((s = i.find((f) => f.stable)) == null ? void 0 : s.url) ?? ""), i;
   }
   function _() {
     t(0, n = !0);
   }
   async function p() {
-    return (await s).find((i) => i.url === r);
+    return (await a).find((i) => i.url === r);
   }
   function c() {
-    r = H(this), t(1, r), t(3, s);
+    r = H(this), t(1, r), t(3, a);
   }
   return [
     n,
     r,
     l,
-    s,
+    a,
     _,
     p,
     c
