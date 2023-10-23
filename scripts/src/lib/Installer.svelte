@@ -59,7 +59,7 @@
 
       {#if win32}
       <p>
-        <a class="button primary" href={selectedVersion.replace('.jar', '.exe')}>
+        <a class="button primary large" href={selectedVersion.replace('.jar', '.exe')}>
           <DownloadIcon/> Download for Windows
         </a>
         <br>
