@@ -45,7 +45,7 @@ layout: default
       <li><a href="https://github.com/FabricMC/yarn">Yarn</a> Yarn is a set of open Minecraft mappings, free for everyone to use under the Creative Commons Zero license.</li>
       <li><a href="https://github.com/FabricMC/fabric-loom">Fabric Loom</a> A Gradle plugin enabling developers to easily develop and debug mods.</li>
       <li><a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Language Kotlin</a> This is a mod that enables usage of the Kotlin programming language for Fabric mods.</li>
-      <li><a href="https://github.com/FabricMC/intermediary">Intermediary</a> Intermediary contains match information between different versions of Minecraft, enablding cross version mods.</li>
+      <li><a href="https://github.com/FabricMC/intermediary">Intermediary</a> Intermediary contains match information between different versions of Minecraft, enabling cross version mods.</li>
       <li><a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a> A tiny, efficient tool for remapping JAR files.</li>
       <li><a href="https://github.com/FabricMC/mapping-io">Mapping IO</a> A library for reading, manipulating and writing mapping files, with support a wide range fo formats.</li>
    </ul>
