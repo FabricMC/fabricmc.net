@@ -10323,7 +10323,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-11-30 14:15:20").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-11-30 14:27:14").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
