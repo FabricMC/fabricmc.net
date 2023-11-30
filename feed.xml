@@ -1,4 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-10-27T08:52:15+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20.2</title><link href="https://fabricmc.net/2023/09/12/1202.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.2" /><published>2023-09-12T00:00:00+00:00</published><updated>2023-09-12T00:00:00+00:00</updated><id>https://fabricmc.net/2023/09/12/1202</id><content type="html" xml:base="https://fabricmc.net/2023/09/12/1202.html">&lt;p&gt;Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2023-11-30T14:14:58+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20.3</title><link href="https://fabricmc.net/2023/11/30/1203.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.3" /><published>2023-11-30T00:00:00+00:00</published><updated>2023-11-30T00:00:00+00:00</updated><id>https://fabricmc.net/2023/11/30/1203</id><content type="html" xml:base="https://fabricmc.net/2023/11/30/1203.html">&lt;p&gt;It’s only been two months since we published the last article on Minecraft updates, but here we are. Minecraft 1.20.3 is to be released in the near future with some changes affecting mod makers.&lt;/p&gt;
+
+&lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version. Given the rather short interval between updates, some authors may choose to have a rest and skip some versions; we ask everyone kindly not to pester them.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
+&lt;p&gt;Fabric is about to celebrate its 5th birthday on December 10th! As we approach this milestone, we’re thrilled to share that our team is actively working on introducing exciting new features and enhancements. The following sections outline some of these advancements.&lt;/p&gt;
+
+&lt;p&gt;Developers should use Loom 1.4 (at the time of writing) to develop mods for Minecraft 1.20.3. Players should install the latest stable version of Fabric Loader (currently 0.14.25), or the 0.15 beta if feeling adventurous (see below).&lt;/p&gt;
+
+&lt;h3 id=&quot;loader-015&quot;&gt;Loader 0.15&lt;/h3&gt;
+&lt;p&gt;Fabric Loader 0.15 has been released recently, which features built-in support for LlamaLad7’s &lt;a href=&quot;https://github.com/LlamaLad7/MixinExtras&quot;&gt;MixinExtras&lt;/a&gt; library. This version is currently in beta. Should you discover compatibility issues with mods that already bundle MixinExtras, please &lt;a href=&quot;https://github.com/FabricMC/fabric-loader/issues&quot;&gt;file a bug report&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;MixinExtras is a companion library to Mixin, providing &lt;a href=&quot;https://github.com/LlamaLad7/MixinExtras/wiki&quot;&gt;new annotations&lt;/a&gt; to write your mixins in more expressive and compatible ways. It also features an easier way of specifying local captures. Due to its usefulness, MixinExtras is currently being Jar-in-Jar’d by a large amount of mods, increasing modpack sizes. With Fabric Loader bundling it now, all mods can use the library without needing to worry about distribution.&lt;/p&gt;
+
+&lt;p&gt;Please note that Fabric Loader 0.15 went through a number of internal changes, notably the transition from &lt;a href=&quot;https://github.com/FabricMC/tiny-mappings-parser&quot;&gt;TMP&lt;/a&gt; to &lt;a href=&quot;https://github.com/FabricMC/mapping-io&quot;&gt;Mapping-IO&lt;/a&gt; and improvements to the lazy mapping loading, which reduce memory consumption. These changes do not affect most users, but mods that depend on unsupported, internal code might break with this update.&lt;/p&gt;
+
+&lt;h3 id=&quot;loom-14&quot;&gt;Loom 1.4&lt;/h3&gt;
+&lt;p&gt;Loom 1.4 includes enhancement for decompilers, support for deprecated modules in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabricApi.module&lt;/code&gt; (which allows dependencies on individual Fabric API modules), and many more bug fixes and performance improvements. Loom 1.4 requires Gradle 8.3 or later.&lt;/p&gt;
+
+&lt;p&gt;Loom now includes built-in support for the Vineflower decompiler. It’s a fork of Fernflower, but with drastically improved output quality compared to the original. CFR remains the default decompiler for the time being. To decompile with Vineflower, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;genSourcesWithVineflower&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;genSources&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;A new DSL has been introduced to make configuring data generation with best practices easier. This DSL automatically creates a run configuration and source set(?) for data generation while also excluding the cache from the built JAR:&lt;/p&gt;
+
+&lt;div class=&quot;language-gradle highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;fabricApi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;configureDataGeneration&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;new-fabric-api-changes&quot;&gt;New Fabric API changes&lt;/h3&gt;
+&lt;p&gt;With the help of many contributors, Fabric API has received some new features since the last update blog post:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Data Generation: add a method to register custom keys with priorities (ErrorCraft) &lt;!-- added after the blogpost, before 1.20.2 release --&gt;&lt;/li&gt;
+  &lt;li&gt;Loot API: add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootTableEvents.LOADED&lt;/code&gt; (LLytho)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In addition to those new features, this update also contains performance improvements for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketType&lt;/code&gt;-based networking. It now skips the serialization entirely in singleplayer, and the packet is now serialized on the network thread, not the main thread. Thanks to deirn for making these improvements!&lt;/p&gt;
+
+&lt;h3 id=&quot;breaking-changes-in-1203&quot;&gt;Breaking changes in 1.20.3&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetTypeRegistry&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WoodTypeRegistry&lt;/code&gt; of the Object Builder API, previously deprecated, were removed. Please use the builders provided in the same API.&lt;/p&gt;
+
+&lt;p&gt;The following APIs in the Transfer API module, all previously deprecated, were removed.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ContainerItemContext#withInitial&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Storage#simulateInsert&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;simulateExtract&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exactView&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
+&lt;p&gt;Minecraft 1.20.3 introduces some breaking changes to major developer-facing APIs.&lt;/p&gt;
+
+&lt;h3 id=&quot;block-codecs&quot;&gt;Block codecs&lt;/h3&gt;
+&lt;p&gt;Mojang now uses codecs to serialize blocks - specifically, instances of a particular type of block. You might need to implement the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getCodec&lt;/code&gt; method in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Block&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;p&gt;However, the block codecs are &lt;strong&gt;currently unused&lt;/strong&gt;. This means that you can return &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; or throw &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnsupportedOperationException&lt;/code&gt; in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getCodec&lt;/code&gt; method.&lt;/p&gt;
+
+&lt;p&gt;That being said, it is still recommended to familiarize yourself with using codecs, to future-proof your code and prevent potential porting pains in the future.&lt;/p&gt;
+
+&lt;h3 id=&quot;text&quot;&gt;Text&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt; also got a codec, and now is serialized using it (including when interacting with Gson). Over the network the text is now sent as an NBT.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Important change: &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text#translatable&lt;/code&gt; now expects all arguments to be numbers, boolean, strings, or other &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt;s.&lt;/strong&gt; To pass things like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockPos&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt;, which were previously implicitly converted to strings, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;stringifiedTranslatable&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;For those who have previously used &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codecs.TEXT&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;STRINGIFIED_TEXT&lt;/code&gt;, it’s time to switch to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TextCodecs.CODEC&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TextCodecs.STRINGIFIED_CODEC&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text.Serializer&lt;/code&gt; inner class was split into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Serializer&lt;/code&gt; (to use as a Gson adapter) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Serialization&lt;/code&gt; (contains static methods). The methods were also renamed; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toJson&lt;/code&gt; is now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toJsonString&lt;/code&gt; to clarify return value.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Style.Serializer&lt;/code&gt; is gone; it is now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Style.Codecs&lt;/code&gt; and holds the codec only.&lt;/li&gt;
+  &lt;li&gt;In related news, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf#readUnlimitedText&lt;/code&gt; was added; this reads an infinite amount of text with no size limit. Most S2C packets now use this.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ticks&quot;&gt;Ticks&lt;/h3&gt;
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tick&lt;/code&gt; command from the Carpet mod arrived in the vanilla game. This change affects both the server and the client. To support this functionality in your mod:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getTickManager().shouldTick()&lt;/code&gt; to check if things should tick in your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;START_WORLD_TICK&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;END_WORLD_TICK&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;START_SERVER_TICK&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;END_SERVER_TICK&lt;/code&gt; event.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TickManager&lt;/code&gt; can be obtained from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MinecraftServer#getTickManager&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;World#getTickManager&lt;/code&gt; (works with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientWorld&lt;/code&gt; as well).&lt;/li&gt;
+  &lt;li&gt;Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shouldSkipTick&lt;/code&gt; for checking if an entity should be ticked (beware, it is the inverse of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shouldTick&lt;/code&gt;).&lt;/li&gt;
+  &lt;li&gt;Note: &lt;strong&gt;You do not need to call these checks inside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Entity&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockEntity&lt;/code&gt; tick methods or events.&lt;/strong&gt; Only call inside server/world tick events.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It is also now possible for the game to run faster or slower than 50 MSPT intentionally (as opposed to through lag). Call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TickManager#getMillisPerTick()&lt;/code&gt; to determine the intended MSPT.&lt;/p&gt;
+
+&lt;h3 id=&quot;blocks&quot;&gt;Blocks&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractBlock#randomTick&lt;/code&gt; no longer calls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;scheduledTick&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockSetType&lt;/code&gt; received new fields specifying pressure plate activation conditions and button interactions with projectiles/Breezes.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ColoredFallingBlock&lt;/code&gt; was added, replacing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GravelBlock&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SandBlock&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PowderSnowCauldronBlock&lt;/code&gt; was removed; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LeveledCauldronBlock&lt;/code&gt; handles the logic now.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransparentBlock&lt;/code&gt; was split into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TranslucentBlock&lt;/code&gt;, which renders in a translucent way (like slime and ice blocks), and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransparentBlock&lt;/code&gt;, which extends &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TranslucentBlock&lt;/code&gt; and is used by grates and glass blocks. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractGlassBlock&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GlassBlock&lt;/code&gt; were removed.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FernBlock&lt;/code&gt; is renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ShortPlantBlock&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SaplingGenerator&lt;/code&gt; is now in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;block&lt;/code&gt; package, and individual generator classes were removed and replaced with fields.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractBlock#onStateReplaced&lt;/code&gt; implementations for block entities were consolidated to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemScatterer#onStateReplaced&lt;/code&gt;. Make sure to call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super&lt;/code&gt; AFTER calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemScatterer&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootableContainerBlockEntity&lt;/code&gt; logics were split into &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootableInventory&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkLootInteraction&lt;/code&gt; was renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;generateLoot&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootableContainerBlockEntity&lt;/code&gt; still implements &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootableInventory&lt;/code&gt;, but this allows other block entities like decorated pots to share the logic.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Boats, minecarts, and other player-constructed vehicles should now extend &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VehicleEntity&lt;/code&gt;. This provides the wobble effect seen when hitting that entity.&lt;/li&gt;
+  &lt;li&gt;Various non-living entities (including projectiles and TNT) received &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copyFrom&lt;/code&gt; override to copy the owner.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PersistentProjectileEntity&lt;/code&gt; and its subclasses now take the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt; in the constructor, representing the item stack form that players can pick up. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getItemStack&lt;/code&gt; returns the stack as-is, while &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;asItemStack&lt;/code&gt; returns a copy (potentially reflecting the changes like potion override).&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpawnReason&lt;/code&gt; got two methods: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isAnySpawner&lt;/code&gt; (spawner &amp;amp; trial spawner) and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isTrialSpawner&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;canSpawn&lt;/code&gt; methods should check &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isAnySpawner&lt;/code&gt;, and make the entity exempt from biome/height requirements imposed for natural spawn.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PopupScreen&lt;/code&gt; was added. This screen, unlike other screens, renders on top of an existing screen. The popup can include a message, an image, and buttons (such as “Open Link”). To create an instance, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Builder&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CheckboxWidget&lt;/code&gt; is now built using a builder.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntryListWidget&lt;/code&gt; no longer takes the bottom coordinate in the constructor. It also actually became a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Widget&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClickableWidget#render&lt;/code&gt; was made &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt; to prevent overrides of that method from not calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.render&lt;/code&gt; and preventing the tooltip from rendering. Subclasses must override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;renderWidget&lt;/code&gt; instead.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;misc&quot;&gt;Misc&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CommandManager#execute&lt;/code&gt; methods no longer return an integer return value. To get the return value, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerCommandSource#withReturnValueConsumer&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecipeProvider&lt;/code&gt; methods received some changes. Some JSON builders and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;generateCookingRecipes&lt;/code&gt; now require passing the constructor of recipe class, like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CampfireCookingRecipe::new&lt;/code&gt;. Other builders no longer require the serializer.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityType#HEROBRINE&lt;/code&gt; was removed. (Wait, was this ever added in the first place?)&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">It’s only been two months since we published the last article on Minecraft updates, but here we are. Minecraft 1.20.3 is to be released in the near future with some changes affecting mod makers.</summary></entry><entry><title type="html">Fabric for Minecraft 1.20.2</title><link href="https://fabricmc.net/2023/09/12/1202.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.2" /><published>2023-09-12T00:00:00+00:00</published><updated>2023-09-12T00:00:00+00:00</updated><id>https://fabricmc.net/2023/09/12/1202</id><content type="html" xml:base="https://fabricmc.net/2023/09/12/1202.html">&lt;p&gt;Minecraft 1.20.2 will be released in the near future, again with some changes that impact many mods.&lt;/p&gt;
 
 &lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version.&lt;/p&gt;
 
@@ -1196,36 +1313,4 @@ This provides a compile-time guarantee against calling client-only Minecraft cod
 
 &lt;h2 id=&quot;curseforge&quot;&gt;CurseForge&lt;/h2&gt;
 
-&lt;p&gt;CurseForge have recently announced in their &lt;a href=&quot;https://mailchi.mp/844b51b9bdf1/whats-new-with-overwolf-curseforge-may2-edited&quot;&gt;May Updates blog post&lt;/a&gt; that they will be adding native Fabric support to their client. In preparation for this, they have asked all mod developers to ensure that uploaded files are correctly tagged against the relevant mod loader. The linked blog post contains details on how to do this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.</summary></entry><entry><title type="html">Fabric for Minecraft 1.16.2</title><link href="https://fabricmc.net/2020/08/11/1162.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.16.2" /><published>2020-08-11T00:00:00+00:00</published><updated>2020-08-11T00:00:00+00:00</updated><id>https://fabricmc.net/2020/08/11/1162</id><content type="html" xml:base="https://fabricmc.net/2020/08/11/1162.html">&lt;p&gt;&lt;img src=&quot;/assets/external/b8LYWAM.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Fabric for Minecraft 1.16.2 has been released! The 1.16.2 update is a larger than expected as it includes new features and major refactors to parts of the code.&lt;/p&gt;
-
-&lt;p&gt;Biomes were at the center of these changes, thus any mod adding biomes may require a significant amount of work to update. Due to these changes, Fabric API’s biome module was removed. We plan to work with mod developers to create an updated biome api as the requirements become clear.&lt;/p&gt;
-
-&lt;p&gt;Due to a number of other smaller changes we expect most mods will require an update to 1.16.2.&lt;/p&gt;
-
-&lt;p&gt;If you want to read more about the 1.16 update please see our &lt;a href=&quot;https://fabricmc.net/2020/06/23/116.html&quot;&gt;Fabric for Minecraft 1.16&lt;/a&gt; blog post. If you wish to discuss the update our &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;Discord server&lt;/a&gt; is a good place to do so.&lt;/p&gt;
-
-&lt;h2 id=&quot;for-the-mod-developers&quot;&gt;For the mod developers&lt;/h2&gt;
-
-&lt;p&gt;Fabric API has gained a few new features during the last round of snapshots:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A new lifecycle events module:
-    &lt;ul&gt;
-      &lt;li&gt;This contains new events such as a chunk and world (un)load event for both the client and server.&lt;/li&gt;
-      &lt;li&gt;This replaces the old &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-events-lifecycle-v0&lt;/code&gt; module.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;An api to register custom game rules
-    &lt;ul&gt;
-      &lt;li&gt;Game rules registered using this api appear in the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Edit Game Rules&lt;/code&gt; screen.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;An api to register additional things to be rendered on an entity
-    &lt;ul&gt;
-      &lt;li&gt;This makes rendering things like hats on entities much easier to implement.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Many smaller bug fixes and improvements&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;CurseForge have recently announced in their &lt;a href=&quot;https://mailchi.mp/844b51b9bdf1/whats-new-with-overwolf-curseforge-may2-edited&quot;&gt;May Updates blog post&lt;/a&gt; that they will be adding native Fabric support to their client. In preparation for this, they have asked all mod developers to ensure that uploaded files are correctly tagged against the relevant mod loader. The linked blog post contains details on how to do this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.</summary></entry></feed>
