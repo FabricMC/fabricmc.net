@@ -10,7 +10,7 @@
     let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
-    let dataGeneration = false;
+    let dataGeneration = true;
     let splitSources = true;
 
     let customModId: string | undefined;
