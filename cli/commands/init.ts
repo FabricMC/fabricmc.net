@@ -107,9 +107,18 @@ async function promptUser(
 
   const packageName: string = await Input.prompt({
     message: "Choose a package name",
-    default: modId,
+    default: generator.formatPackageName(modId),
     transform: (value) => {
       return generator.formatPackageName(value);
+    },
+    validate: (value) => {
+      const errors = generator.computePackageNameErrors(value);
+
+      if (errors.length == 0) {
+        return true;
+      }
+
+      return errors.join(", ");
     },
   });
 
