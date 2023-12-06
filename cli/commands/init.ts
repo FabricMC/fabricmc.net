@@ -20,33 +20,74 @@ const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
 
+const ADVANCED_OPTIONS: Map<string, string> = new Map([
+  ["kotlin", KOTLIN_ADVANCED_OPTION],
+  ["datagen", DATAGEN_ADVANCED_OPTION],
+  ["splitSources", SPLIT_ADVANCED_OPTION],
+]);
+
+interface CliOptions {
+  defaultOptions?: true;
+  name?: string;
+  modid?: string;
+  packageName?: string;
+  version?: string;
+  option?: (string | true)[];
+}
+
+const optionArg = {
+  conflicts: ["defaultOptions"],
+  // TODO hidden for now, as these are in beta and may change.
+  hidden: true,
+};
+
 export function initCommand() {
   return new Command()
     .name("init")
     .description("Generate a new fabric project")
     .option("-y, --defaultOptions", "Generate a mod with default options")
+    .option("-n, --name <name:string>", "The name of the mod", optionArg)
+    .option("-m, --modid <modid:string>", "The modid of the mod", optionArg)
+    .option(
+      "-p, --packageName <packageName:string>",
+      "The package name of the mod",
+      optionArg,
+    )
+    .option(
+      "-v, --version <version:string>",
+      "The minecraft version",
+      optionArg,
+    )
+    .option(
+      "-o, --option [advancedOption:string]",
+      "Specify an advanced option, one of" +
+        Object.keys(ADVANCED_OPTIONS).join(","),
+      {
+        ...optionArg,
+        collect: true,
+      },
+    )
     .arguments("[dir:file]")
-    .action(async ({ defaultOptions }, dir: string | undefined) => {
-      await generate(defaultOptions == true, dir);
+    .action(async (options, dir: string | undefined) => {
+      await generate(options, dir);
     });
 }
 
 async function generate(
-  useDefaultOptions: boolean,
+  cli: CliOptions,
   outputDirName: string | undefined,
 ) {
   const outputDir = await getAndPrepareOutputDir(outputDirName);
 
   const isTargetEmpty = await utils.isDirEmpty(outputDir);
   if (!isTargetEmpty) {
-    console.error(error("The target directory must be empty"));
-    Deno.exit(1);
+    fatalError("The target directory must be empty");
   }
 
   const config =
-    await (useDefaultOptions
+    await (cli.defaultOptions
       ? defaultOptions(path.basename(outputDir))
-      : promptUser(path.basename(outputDir)));
+      : promptUser(path.basename(outputDir), cli));
 
   const options: generator.Options = {
     config,
@@ -80,17 +121,20 @@ async function getAndPrepareOutputDir(
 
 async function promptUser(
   startingName: string,
+  cli: CliOptions,
 ): Promise<generator.Configuration> {
   // Store a promise for now, so the request can be made while taking the other inputs.
   const minecraftVersionsPromise = generator.getTemplateGameVersions();
 
-  const modName: string = await Input.prompt({
+  validateCliOptions(cli);
+
+  const modName: string = cli.name ?? await Input.prompt({
     message: "Choose a name",
     default: startingName,
     minLength: 2,
   });
 
-  const modId: string = await Input.prompt({
+  const modId: string = cli.modid ?? await Input.prompt({
     message: "Choose a unique modid",
     default: generator.nameToModId(modName),
     minLength: 2,
@@ -105,20 +149,59 @@ async function promptUser(
     },
   });
 
-  const packageName: string = await Input.prompt({
+  const packageName: string = cli.packageName ?? await Input.prompt({
     message: "Choose a package name",
-    default: modId,
+    default: generator.formatPackageName(modId),
     transform: (value) => {
       return generator.formatPackageName(value);
     },
+    validate: (value) => {
+      const errors = generator.computePackageNameErrors(value);
+
+      if (errors.length == 0) {
+        return true;
+      }
+
+      return errors.join(", ");
+    },
   });
 
-  const minecraftVersion: string = await Select.prompt({
-    message: "Select the minecraft version",
-    options: (await minecraftVersionsPromise).map((v) => v.version),
+  const minecraftVersions = await minecraftVersionsPromise;
+  let minecraftVersion: string;
+
+  if (cli.version != undefined) {
+    minecraftVersion = cli.version;
+
+    if (!minecraftVersions.map((v) => v.version).includes(minecraftVersion)) {
+      fatalError(`The minecraft version ${minecraftVersion} does not exist.`);
+    }
+  } else {
+    minecraftVersion = await Select.prompt({
+      message: "Select the minecraft version",
+      options: minecraftVersions.map((v) => v.version),
+    });
+  }
+
+  const cliOptions = cli.option?.map((o): string => {
+    if (o === true) {
+      fatalError("Advanced options must be specified with a value");
+      return "unreachable";
+    }
+
+    const option = o as string;
+
+    if (!ADVANCED_OPTIONS.has(option)) {
+      fatalError(
+        `Unknown option ${o} must be one of: ${
+          Array.from(ADVANCED_OPTIONS.keys()).join(", ")
+        }`,
+      );
+    }
+
+    return ADVANCED_OPTIONS.get(option)!;
   });
 
-  const advancedOptions = await Checkbox.prompt({
+  const advancedOptions = cliOptions ?? await Checkbox.prompt({
     message: "Advanced options",
     options: getAdancedOptions(minecraftVersion),
   });
@@ -132,6 +215,22 @@ async function promptUser(
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
   };
+}
+
+function validateCliOptions(cli: CliOptions) {
+  if (cli.modid != undefined) {
+    const errors = generator.computeCustomModIdErrors(cli.modid);
+    if (errors != undefined) {
+      fatalError(errors.join(", "));
+    }
+  }
+
+  if (cli.packageName != undefined) {
+    const errors = generator.computePackageNameErrors(cli.packageName);
+    if (errors.length > 0) {
+      fatalError(errors.join(", "));
+    }
+  }
 }
 
 async function defaultOptions(
@@ -240,8 +339,12 @@ async function requestPermissions(outputDir: string) {
     const status = await Deno.permissions.request(permission);
 
     if (status.state != "granted") {
-      console.error(error("Permission not granted"));
-      Deno.exit(1);
+      fatalError("Permission not granted");
     }
   }
+}
+
+function fatalError(message: string) {
+  console.error(error(message));
+  Deno.exit(1);
 }

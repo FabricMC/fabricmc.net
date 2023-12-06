@@ -4,6 +4,7 @@
     import DownloadIcon from "./DownloadIcon.svelte";
     import { getTemplateGameVersions } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
+    import { computePackageNameErrors } from "./template/java"
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -30,6 +31,7 @@
 
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
+    $: packageNameErrors = computePackageNameErrors(packageName);
 
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
       if (id === undefined) {
@@ -40,7 +42,7 @@
     }
 
     async function generate() {
-        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined)) {
+        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined) || packageNameErrors.length > 0) {
             return;
         }
 
@@ -112,11 +114,11 @@
             <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
 
             {#if modIdErrors != undefined}
-            {#each modIdErrors as error}
-                <li style="color: red">{error}</li>
-            {/each}
-            <br>
-        {/if}
+                {#each modIdErrors as error}
+                    <li style="color: red">{error}</li>
+                {/each}
+                <br>
+            {/if}
         </div>
 
         {#if customModId != undefined}
@@ -143,6 +145,10 @@
                 should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
             <input id="package-name" on:keyup={doFormatPackageName} bind:value={packageName} />
+
+            {#each packageNameErrors as error}
+                <li style="color: red">{error}</li>
+            {/each}
         </div>
 
         <div class="form-line">
@@ -213,7 +219,7 @@
             </a>
         {:else}
             <a
-                class="button primary download-button"
+                class="button primary large download-button"
                 href={""}
                 on:click|preventDefault={generate}
             >

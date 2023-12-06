@@ -14,7 +14,8 @@
 
     let gameVersions = getGameVersions().then((versions) => {
         minecraftVersion = versions.find((v) => v.stable)!.version
-        return versions.map((v) => v.version);
+        const latestVersion = versions[0];
+        return versions.filter((v) => v.stable || v == latestVersion).map((v) => v.version);
     });
 
     const loaderVersions = getLoaderVersions().then((versions) => {

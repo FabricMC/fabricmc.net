@@ -20,7 +20,7 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 }
-<% if (it.dataGeneration || it.splitSources) { %>
+<% if (it.splitSources) { %>
 loom {
 <% if (it.splitSources) { %>    splitEnvironmentSourceSets()
 
@@ -30,30 +30,13 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
-<% } %><% if (it.dataGeneration) { %>    runs {
-		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"
-		datagen {
-			inherit server
-			name "Data Generation"
-			vmArg "-Dfabric-api.datagen"
-			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"
-			vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"
- 
-			runDir "build/datagen"
-		}
-	}<% } %>
+<% } %>
 }
 <% } %><% if (it.dataGeneration) { %>
-// Add the generated resources to the main source set
-sourceSets {
-	main {
-		resources {
-			srcDirs += [
-					'src/main/generated'
-			]
-		}
-	}
-}<% } %>
+fabricApi {
+	configureDataGeneration()
+}
+<% } %>
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
