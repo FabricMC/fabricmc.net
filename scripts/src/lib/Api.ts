@@ -116,6 +116,8 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
         branch = "1.20.2"
     } else if (mcVersion.startsWith("1.20.3")) {
         branch = "1.20.3"
+    } else if (mcVersion.startsWith("1.20.4")) {
+        branch = "1.20.4"
     } else if (mcVersion.startsWith("21w")) {
         branch = "1.18"
     } else if (mcVersion.startsWith("20w")) {
