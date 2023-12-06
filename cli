@@ -73,6 +73,8 @@ function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
         branch = "1.20.2";
     } else if (mcVersion.startsWith("1.20.3")) {
         branch = "1.20.3";
+    } else if (mcVersion.startsWith("1.20.4")) {
+        branch = "1.20.4";
     } else if (mcVersion.startsWith("21w")) {
         branch = "1.18";
     } else if (mcVersion.startsWith("20w")) {
@@ -785,7 +787,7 @@ function renderTemplate(template, options) {
     return eta.renderString(template, options);
 }
 const gradlePropertiesTemplate = "# Done to increase the memory available to gradle.\norg.gradle.jvmargs=-Xmx1G\norg.gradle.parallel=true\n\n# Fabric Properties\n# check these on https://fabricmc.net/develop\nminecraft_version=<%= it.minecraftVersion %>\nyarn_mappings=<%= it.yarnVersion %>\nloader_version=<%= it.loaderVersion %>\n<% if (it.kotlin) { %>fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>\n<% } %>\n# Mod Properties\nmod_version=1.0.0\nmaven_group=<%= it.packageName %>\narchives_base_name=<%= it.modid %>\n\n# Dependencies\nfabric_version=<%= it.fabricVersion %>";
-const buildGradleTemplate = 'plugins {\n	id \'fabric-loom\' version \'1.4-SNAPSHOT\'\n	id \'maven-publish\'\n	<%_ if (it.kotlin) { %>\n  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"\n  <%_ } %>\n}\n\nversion = project.mod_version\ngroup = project.maven_group\n\nbase {\n	archivesName = project.archives_base_name\n}\n\nrepositories {\n	// Add repositories to retrieve artifacts from in here.\n	// You should only use this when depending on other mods because\n	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.\n	// See https://docs.gradle.org/current/userguide/declaring_repositories.html\n	// for more information about repositories.\n}\n<% if (it.dataGeneration || it.splitSources) { %>\nloom {\n<% if (it.splitSources) { %>    splitEnvironmentSourceSets()\n\n	mods {\n		"<%= it.modid %>" {\n			sourceSet sourceSets.main\n			sourceSet sourceSets.client\n		}\n	}\n<% } %><% if (it.dataGeneration) { %>    runs {\n		// This adds a new gradle task that runs the datagen API: "gradlew runDatagen"\n		datagen {\n			inherit server\n			name "Data Generation"\n			vmArg "-Dfabric-api.datagen"\n			vmArg "-Dfabric-api.datagen.output-dir=${file("src/main/generated")}"\n			vmArg "-Dfabric-api.datagen.modid=<%= it.modid %>"\n \n			runDir "build/datagen"\n		}\n	}<% } %>\n}\n<% } %><% if (it.dataGeneration) { %>\n// Add the generated resources to the main source set\nsourceSets {\n	main {\n		resources {\n			srcDirs += [\n					\'src/main/generated\'\n			]\n		}\n	}\n}<% } %>\ndependencies {\n	// To change the versions see the gradle.properties file\n	minecraft "com.mojang:minecraft:${project.minecraft_version}"\n	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"\n	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"\n\n	// Fabric API. This is technically optional, but you probably want it anyway.\n	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"\n	<% if (it.kotlin) { %>modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"<% } %>\n	// Uncomment the following line to enable the deprecated Fabric API modules. \n	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.\n\n	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"\n}\n\nprocessResources {\n	inputs.property "version", project.version\n\n	filesMatching("fabric.mod.json") {\n		expand "version": project.version\n	}\n}\n\ntasks.withType(JavaCompile).configureEach {\n	it.options.release = <%= it.java.release %>\n}\n<% if (it.kotlin) { %>\ntasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {\n	kotlinOptions {\n		jvmTarget = <%= it.java.kotlinRelease %>\n	}\n}\n<% } %>\njava {\n	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task\n	// if it is present.\n	// If you remove this line, sources will not be generated.\n	withSourcesJar()\n\n	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>\n	targetCompatibility = JavaVersion.<%= it.java.compatibility %>\n}\n\njar {\n	from("LICENSE") {\n		rename { "${it}_${project.base.archivesName.get()}"}\n	}\n}\n\n// configure the maven publication\npublishing {\n	publications {\n		mavenJava(MavenPublication) {\n			from components.java\n		}\n	}\n\n	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.\n	repositories {\n		// Add repositories to publish to here.\n		// Notice: This block does NOT have the same function as the block in the top level.\n		// The repositories here will be used for publishing your artifact, not for\n		// retrieving dependencies.\n	}\n}';
+const buildGradleTemplate = 'plugins {\n	id \'fabric-loom\' version \'1.4-SNAPSHOT\'\n	id \'maven-publish\'\n	<%_ if (it.kotlin) { %>\n  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"\n  <%_ } %>\n}\n\nversion = project.mod_version\ngroup = project.maven_group\n\nbase {\n	archivesName = project.archives_base_name\n}\n\nrepositories {\n	// Add repositories to retrieve artifacts from in here.\n	// You should only use this when depending on other mods because\n	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.\n	// See https://docs.gradle.org/current/userguide/declaring_repositories.html\n	// for more information about repositories.\n}\n<% if (it.splitSources) { %>\nloom {\n<% if (it.splitSources) { %>    splitEnvironmentSourceSets()\n\n	mods {\n		"<%= it.modid %>" {\n			sourceSet sourceSets.main\n			sourceSet sourceSets.client\n		}\n	}\n<% } %>\n}\n<% } %><% if (it.dataGeneration) { %>\nfabricApi {\n	configureDataGeneration()\n}\n<% } %>\ndependencies {\n	// To change the versions see the gradle.properties file\n	minecraft "com.mojang:minecraft:${project.minecraft_version}"\n	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"\n	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"\n\n	// Fabric API. This is technically optional, but you probably want it anyway.\n	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"\n	<% if (it.kotlin) { %>modImplementation "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"<% } %>\n	// Uncomment the following line to enable the deprecated Fabric API modules. \n	// These are included in the Fabric API production distribution and allow you to update your mod to the latest modules at a later more convenient time.\n\n	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"\n}\n\nprocessResources {\n	inputs.property "version", project.version\n\n	filesMatching("fabric.mod.json") {\n		expand "version": project.version\n	}\n}\n\ntasks.withType(JavaCompile).configureEach {\n	it.options.release = <%= it.java.release %>\n}\n<% if (it.kotlin) { %>\ntasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {\n	kotlinOptions {\n		jvmTarget = <%= it.java.kotlinRelease %>\n	}\n}\n<% } %>\njava {\n	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task\n	// if it is present.\n	// If you remove this line, sources will not be generated.\n	withSourcesJar()\n\n	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>\n	targetCompatibility = JavaVersion.<%= it.java.compatibility %>\n}\n\njar {\n	from("LICENSE") {\n		rename { "${it}_${project.base.archivesName.get()}"}\n	}\n}\n\n// configure the maven publication\npublishing {\n	publications {\n		mavenJava(MavenPublication) {\n			from components.java\n		}\n	}\n\n	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.\n	repositories {\n		// Add repositories to publish to here.\n		// Notice: This block does NOT have the same function as the block in the top level.\n		// The repositories here will be used for publishing your artifact, not for\n		// retrieving dependencies.\n	}\n}';
 const settingsGradle = "pluginManagement {\n	repositories {\n		maven {\n			name = 'Fabric'\n			url = 'https://maven.fabricmc.net/'\n		}\n		mavenCentral()\n		gradlePluginPortal()\n	}\n}";
 function minecraftSupportsDataGen(minecraftVersion) {
     return getMinorMinecraftVersion(minecraftVersion) >= 17;
@@ -807,6 +809,9 @@ function sharedModIdChecks(id, isId) {
         errorList.push(`${type} is only a single character! (It must be at least 2 characters long)!`);
     } else if (id.length > 64) {
         errorList.push(`${type} has more than 64 characters!`);
+    }
+    if (id.toLocaleLowerCase().startsWith("fabric")) {
+        errorList.push("Mod id starts with 'fabric', which is generally reserved for Fabric itself.");
     }
     return errorList.length === 0 ? void 0 : errorList;
 }
@@ -871,6 +876,27 @@ function getJavaVersion(minecraftVersion) {
         return JAVA_16;
     }
     return JAVA_17;
+}
+const JAVA_PACKAGE_REGEX = /^[a-zA-Z]+(\.[a-zA-Z][a-zA-Z0-9]*)*$/;
+const RESERVED_PACKAGE_PREFIXES = [
+    "net.minecraft.",
+    "com.mojang.",
+    "net.fabricmc.",
+    "java."
+];
+function computePackageNameErrors(packageName) {
+    let errorList = [];
+    if (!JAVA_PACKAGE_REGEX.test(packageName)) {
+        errorList.push("Package name is not a valid Java package name!");
+    }
+    for (let prefix of RESERVED_PACKAGE_PREFIXES){
+        if (packageName.toLowerCase().startsWith(prefix)) {
+            errorList.push(`Package name starts with '${prefix}', which is reserved!`);
+        } else if (packageName.toLowerCase() + "." == prefix) {
+            errorList.push(`Package name is '${prefix}', which is reserved!`);
+        }
+    }
+    return errorList;
 }
 async function addGroovyGradle(writer, config) {
     await writer.write("gradle.properties", renderTemplate(gradlePropertiesTemplate, config));
@@ -10095,19 +10121,41 @@ const success = colors.bold.green;
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
+const ADVANCED_OPTIONS = new Map([
+    [
+        "kotlin",
+        KOTLIN_ADVANCED_OPTION
+    ],
+    [
+        "datagen",
+        DATAGEN_ADVANCED_OPTION
+    ],
+    [
+        "splitSources",
+        SPLIT_ADVANCED_OPTION
+    ]
+]);
+const optionArg = {
+    conflicts: [
+        "defaultOptions"
+    ],
+    hidden: true
+};
 function initCommand() {
-    return new Command().name("init").description("Generate a new fabric project").option("-y, --defaultOptions", "Generate a mod with default options").arguments("[dir:file]").action(async ({ defaultOptions  }, dir)=>{
-        await generate(defaultOptions == true, dir);
+    return new Command().name("init").description("Generate a new fabric project").option("-y, --defaultOptions", "Generate a mod with default options").option("-n, --name <name:string>", "The name of the mod", optionArg).option("-m, --modid <modid:string>", "The modid of the mod", optionArg).option("-p, --packageName <packageName:string>", "The package name of the mod", optionArg).option("-v, --version <version:string>", "The minecraft version", optionArg).option("-o, --option [advancedOption:string]", "Specify an advanced option, one of" + Object.keys(ADVANCED_OPTIONS).join(","), {
+        ...optionArg,
+        collect: true
+    }).arguments("[dir:file]").action(async (options, dir)=>{
+        await generate(options, dir);
     });
 }
-async function generate(useDefaultOptions, outputDirName) {
+async function generate(cli, outputDirName) {
     const outputDir = await getAndPrepareOutputDir(outputDirName);
     const isTargetEmpty = await isDirEmpty(outputDir);
     if (!isTargetEmpty) {
-        console.error(error("The target directory must be empty"));
-        Deno.exit(1);
+        fatalError("The target directory must be empty");
     }
-    const config = await (useDefaultOptions ? defaultOptions(basename5(outputDir)) : promptUser(basename5(outputDir)));
+    const config = await (cli.defaultOptions ? defaultOptions(basename5(outputDir)) : promptUser(basename5(outputDir), cli));
     const options = {
         config,
         writer: {
@@ -10130,14 +10178,15 @@ async function getAndPrepareOutputDir(outputDirName) {
     await ensureDir(outputDir);
     return outputDir;
 }
-async function promptUser(startingName) {
+async function promptUser(startingName, cli) {
     const minecraftVersionsPromise = getTemplateGameVersions();
-    const modName = await Input.prompt({
+    validateCliOptions(cli);
+    const modName = cli.name ?? await Input.prompt({
         message: "Choose a name",
         default: startingName,
         minLength: 2
     });
-    const modId = await Input.prompt({
+    const modId = cli.modid ?? await Input.prompt({
         message: "Choose a unique modid",
         default: nameToModId(modName),
         minLength: 2,
@@ -10150,18 +10199,45 @@ async function promptUser(startingName) {
             return errors.join(", ");
         }
     });
-    const packageName = await Input.prompt({
+    const packageName = cli.packageName ?? await Input.prompt({
         message: "Choose a package name",
-        default: modId,
+        default: formatPackageName(modId),
         transform: (value)=>{
             return formatPackageName(value);
+        },
+        validate: (value)=>{
+            const errors = computePackageNameErrors(value);
+            if (errors.length == 0) {
+                return true;
+            }
+            return errors.join(", ");
         }
     });
-    const minecraftVersion = await Select.prompt({
-        message: "Select the minecraft version",
-        options: (await minecraftVersionsPromise).map((v)=>v.version)
+    const minecraftVersions = await minecraftVersionsPromise;
+    let minecraftVersion;
+    if (cli.version != undefined) {
+        minecraftVersion = cli.version;
+        if (!minecraftVersions.map((v)=>v.version).includes(minecraftVersion)) {
+            fatalError(`The minecraft version ${minecraftVersion} does not exist.`);
+        }
+    } else {
+        minecraftVersion = await Select.prompt({
+            message: "Select the minecraft version",
+            options: minecraftVersions.map((v)=>v.version)
+        });
+    }
+    const cliOptions = cli.option?.map((o)=>{
+        if (o === true) {
+            fatalError("Advanced options must be specified with a value");
+            return "unreachable";
+        }
+        const option = o;
+        if (!ADVANCED_OPTIONS.has(option)) {
+            fatalError(`Unknown option ${o} must be one of: ${Array.from(ADVANCED_OPTIONS.keys()).join(", ")}`);
+        }
+        return ADVANCED_OPTIONS.get(option);
     });
-    const advancedOptions = await Checkbox.prompt({
+    const advancedOptions = cliOptions ?? await Checkbox.prompt({
         message: "Advanced options",
         options: getAdancedOptions(minecraftVersion)
     });
@@ -10174,6 +10250,20 @@ async function promptUser(startingName) {
         dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
         splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION)
     };
+}
+function validateCliOptions(cli) {
+    if (cli.modid != undefined) {
+        const errors = computeCustomModIdErrors(cli.modid);
+        if (errors != undefined) {
+            fatalError(errors.join(", "));
+        }
+    }
+    if (cli.packageName != undefined) {
+        const errors = computePackageNameErrors(cli.packageName);
+        if (errors.length > 0) {
+            fatalError(errors.join(", "));
+        }
+    }
 }
 async function defaultOptions(startingName) {
     const minecraftVersions = await getTemplateGameVersions();
@@ -10257,10 +10347,13 @@ async function requestPermissions(outputDir) {
     for (const permission of permissions){
         const status = await Deno.permissions.request(permission);
         if (status.state != "granted") {
-            console.error(error("Permission not granted"));
-            Deno.exit(1);
+            fatalError("Permission not granted");
         }
     }
+}
+function fatalError(message) {
+    console.error(error(message));
+    Deno.exit(1);
 }
 const UPGRADE_URL = "https://fabricmc.net/cli";
 const COMMAND_NAME = "fabric";
@@ -10323,7 +10416,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-11-30 19:04:18").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-12-06 17:58:20").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
