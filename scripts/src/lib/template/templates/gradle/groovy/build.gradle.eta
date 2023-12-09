@@ -33,6 +33,17 @@ loom {
 <% } %>
 }
 <% } %><% if (it.dataGeneration) { %>
+// Add the generated resources to the main source set
+sourceSets {
+	main {
+		resources {
+			srcDirs += [
+					'src/main/generated'
+			]
+		}
+	}
+}
+
 fabricApi {
 	configureDataGeneration()
 }
