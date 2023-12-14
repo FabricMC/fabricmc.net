@@ -40,13 +40,13 @@ export function getJavaVersion(minecraftVersion: string): JavaVersion {
 	return JAVA_17;
 }
 
-const JAVA_PACKAGE_REGEX = /^[a-zA-Z]+(\.[a-zA-Z][a-zA-Z0-9]*)*$/;
+const JAVA_PACKAGE_REGEX = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/;
 const RESERVED_PACKAGE_PREFIXES = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
 
 export function computePackageNameErrors(packageName: string): string[] {
 	let errorList : string[] = [];
 
-	if (!JAVA_PACKAGE_REGEX.test(packageName)) {
+	if (!JAVA_PACKAGE_REGEX.test(packageName.toLowerCase())) {
 		errorList.push("Package name is not a valid Java package name!");
 	}
 

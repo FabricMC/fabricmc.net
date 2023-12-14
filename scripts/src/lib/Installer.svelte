@@ -3,6 +3,7 @@
   import DownloadIcon from "./DownloadIcon.svelte";
 
   const win32 = navigator.platform == "Win32"
+  const showVersionSelection = false;
 
   let expertOptions = false;
   let selectedVersion = "";
@@ -38,7 +39,7 @@
 
       <br />
       <br />
-    {:else}
+    {:else if showVersionSelection}
       {#await getVersion() then latest}
         <p>
           {#if latest?.stable}Installer Version: {latest.version} (Latest){/if}
