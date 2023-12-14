@@ -1,5 +1,5 @@
-import { S as we, i as ke, s as Ee, h as Ce, b as Se, c as bt, u as xe, r as It, v as Tt, d as vt, f as Be, e as rt, t as xt, a as ht, g as Ot, j as q, n as Nt, o as tt, m as Ne, C as _t, p as Wt, q as St, D as Fe, E as _e, l as Lt, B as ae, k as Ut, z as jt, w as se, x as oe, y as le } from "./index.61dc58cf.js";
-import ce from "./DownloadIcon.214b8f5e.js";
+import { S as we, i as ke, s as Ee, h as Ce, b as Se, c as bt, u as xe, r as It, v as Tt, d as vt, f as Be, e as rt, t as xt, a as ht, g as Ot, j as q, n as Nt, o as tt, m as Ne, B as _t, p as Wt, q as St, C as Fe, D as _e, l as Lt, A as ae, k as Ut, E as jt, w as se, x as oe, y as le } from "./index.3ed5914c.js";
+import ce from "./DownloadIcon.fd237c91.js";
 import { d as Re, b as Ie, h as Te, i as Oe, j as ze } from "./Api.f22ea594.js";
 var Bt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function ue(B) {
@@ -3641,10 +3641,10 @@ function Dt(B) {
   const A = Mt(B);
   return A < 16 ? en : A == 16 ? nn : rn;
 }
-const an = /^[a-zA-Z]+(\.[a-zA-Z][a-zA-Z0-9]*)*$/, sn = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
+const an = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/, sn = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
 function on(B) {
   let A = [];
-  an.test(B) || A.push("Package name is not a valid Java package name!");
+  an.test(B.toLowerCase()) || A.push("Package name is not a valid Java package name!");
   for (let r of sn)
     B.toLowerCase().startsWith(r) ? A.push(`Package name starts with '${r}', which is reserved!`) : B.toLowerCase() + "." == r && A.push(`Package name is '${r}', which is reserved!`);
   return A;

@@ -877,7 +877,7 @@ function getJavaVersion(minecraftVersion) {
     }
     return JAVA_17;
 }
-const JAVA_PACKAGE_REGEX = /^[a-zA-Z]+(\.[a-zA-Z][a-zA-Z0-9]*)*$/;
+const JAVA_PACKAGE_REGEX = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/;
 const RESERVED_PACKAGE_PREFIXES = [
     "net.minecraft.",
     "com.mojang.",
@@ -886,7 +886,7 @@ const RESERVED_PACKAGE_PREFIXES = [
 ];
 function computePackageNameErrors(packageName) {
     let errorList = [];
-    if (!JAVA_PACKAGE_REGEX.test(packageName)) {
+    if (!JAVA_PACKAGE_REGEX.test(packageName.toLowerCase())) {
         errorList.push("Package name is not a valid Java package name!");
     }
     for (let prefix of RESERVED_PACKAGE_PREFIXES){
@@ -10416,7 +10416,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-12-07 15:39:33").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-12-14 21:54:47").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
