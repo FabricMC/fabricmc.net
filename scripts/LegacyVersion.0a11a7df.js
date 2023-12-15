@@ -16,7 +16,7 @@ function W(s) {
   return {
     c() {
       e = f("p"), t = g("Error: "), i = g(n), c = v(), o = f("p"), o.innerHTML = `For support please vist one of our
-      <a href="/discuss">community discussion</a>
+      <a href="/discuss/">community discussion</a>
       groups.`, G(e, "color", "red");
     },
     m(l, a) {
@@ -154,7 +154,7 @@ function $(s) {
   return {
     c() {
       e = f("p"), t = g("Error: "), i = g(n), c = v(), o = f("p"), o.innerHTML = `For support please vist one of our
-      <a href="/discuss">community discussion</a>
+      <a href="/discuss/">community discussion</a>
       groups.`, G(e, "color", "red");
     },
     m(l, a) {

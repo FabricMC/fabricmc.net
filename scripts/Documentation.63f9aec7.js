@@ -16,7 +16,7 @@ function R(a) {
   return {
     c() {
       t = h("p"), s = g("Error: "), r = g(n), e = k(), l = h("p"), l.innerHTML = `For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.`, N(t, "color", "red");
     },
     m(o, i) {

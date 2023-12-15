@@ -13,7 +13,7 @@ function z(a) {
   return {
     c() {
       e = b("p"), t = g("Error: "), c = g(n), s = v(), f = b("p"), f.innerHTML = `For support please visit one of our
-      <a href="/discuss">community discussion</a>
+      <a href="/discuss/">community discussion</a>
       groups.`, L(e, "color", "red");
     },
     m(u, d) {

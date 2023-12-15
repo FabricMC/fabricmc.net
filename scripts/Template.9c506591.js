@@ -4076,7 +4076,7 @@ function In(B) {
   return {
     c() {
       A = rt("p"), r = xt("Error: "), c = xt(b), n = ht(), s = rt("p"), s.innerHTML = `For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.`, Ot(A, "color", "red");
     },
     m(e, l) {

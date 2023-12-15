@@ -21,7 +21,7 @@ function He(n) {
   return {
     c() {
       e = i("p"), r = I("Error: "), c = I(o), a = b(), m = i("p"), m.innerHTML = `For support please visit one of our
-    <a href="/discuss">community discussion</a>
+    <a href="/discuss/">community discussion</a>
     groups.`, H(e, "color", "red");
     },
     m(f, h) {

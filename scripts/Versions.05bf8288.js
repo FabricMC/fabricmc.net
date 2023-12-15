@@ -12,7 +12,7 @@ function pe(l) {
   return {
     c() {
       t = b("p"), i = _("Error: "), c = _(s), o = g(), r = b("p"), r.innerHTML = `For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.`, P(t, "color", "red");
     },
     m(n, V) {
