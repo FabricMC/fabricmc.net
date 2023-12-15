@@ -98,7 +98,7 @@
   <p style="color: red">Error: {error.message}</p>
   <p>
     For support please visit one of our
-    <a href="/discuss">community discussion</a>
+    <a href="/discuss/">community discussion</a>
     groups.
   </p>
 {/await}

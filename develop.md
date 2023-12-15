@@ -9,13 +9,13 @@ This page contains a range of resources to help you create a new mod or maintain
 
 ### Getting started
 
-* If you would like to create a new mod please see the [wiki](https://fabricmc.net/wiki/start).
+* If you would like to create a new mod please see the [wiki](https://fabricmc.net/wiki/start/).
 
-* Use the online [template mod generator](./template).
+* Use the online [template mod generator](./template/).
 
 * An up-to date template mod can be found on [github](https://github.com/FabricMC/fabric-example-mod).
 
-* Install the [Fabric command line tools](./cli).
+* Install the [Fabric command line tools](./cli/).
 
 * If you need some extra help we have a number of mod development channels on our [Discord](https://discord.gg/v6v4pMv).
 
