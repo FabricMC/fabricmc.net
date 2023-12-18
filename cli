@@ -54,7 +54,7 @@ function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
     if (mcVersion.startsWith("22w13oneblockatatime")) {
         branch = "22w13oneblockatatime";
     } else if (mcVersion.startsWith("23w")) {
-        branch = "1.20.3";
+        branch = "1.20.5";
     } else if (mcVersion.startsWith("22w")) {
         branch = "1.19.3";
     } else if (mcVersion.startsWith("1.18.2")) {
@@ -75,6 +75,8 @@ function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
         branch = "1.20.3";
     } else if (mcVersion.startsWith("1.20.4")) {
         branch = "1.20.4";
+    } else if (mcVersion.startsWith("1.20.5")) {
+        branch = "1.20.5";
     } else if (mcVersion.startsWith("21w")) {
         branch = "1.18";
     } else if (mcVersion.startsWith("20w")) {
@@ -10416,7 +10418,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2023-12-15 16:19:55").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2023-12-18 19:09:31").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
