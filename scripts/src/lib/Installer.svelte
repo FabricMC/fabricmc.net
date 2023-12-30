@@ -3,7 +3,7 @@
   import DownloadIcon from "./DownloadIcon.svelte";
 
   const win32 = navigator.platform == "Win32"
-  const showVersionSelection = false;
+  const showVersionSelection = true;
 
   let expertOptions = false;
   let selectedVersion = "";
