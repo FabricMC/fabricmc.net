@@ -53,6 +53,8 @@ function isApiVersionvalidForMcVersion(apiVersion, mcVersion) {
     });
     if (mcVersion.startsWith("22w13oneblockatatime")) {
         branch = "22w13oneblockatatime";
+    } else if (mcVersion.startsWith("24w")) {
+        branch = "1.20.5";
     } else if (mcVersion.startsWith("23w")) {
         branch = "1.20.5";
     } else if (mcVersion.startsWith("22w")) {
@@ -10418,7 +10420,7 @@ setXmlVersionParser((xml)=>{
     return document.metadata.versioning.versions.version;
 });
 if (importMeta.main) {
-    const cmd = new Command().name("Fabric CLI tools").version("2024-01-09 10:43:08").description("A set of command line tools to aid Fabric mod development").action(()=>{
+    const cmd = new Command().name("Fabric CLI tools").version("2024-01-30 10:21:46").description("A set of command line tools to aid Fabric mod development").action(()=>{
         cmd.showHelp();
         Deno.exit(0);
     }).command("init", initCommand()).command("upgrade", upgradeCommand()).command("completions", new CompletionsCommand());
