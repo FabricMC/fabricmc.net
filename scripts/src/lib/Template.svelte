@@ -5,6 +5,7 @@
     import { ICON_FONT, getTemplateGameVersions } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
     import { computePackageNameErrors } from "./template/java"
+    import { decode64 } from "./template/utils";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -75,7 +76,19 @@
                     const canvas = document.createElement("canvas");
                     canvas.width = width;
                     canvas.height = height;
-                    return canvas;
+
+                    return {
+                        getContext: (id) => canvas.getContext(id),
+                        getPng: () => decode64(canvas.toDataURL().split(";base64,")[1]),
+                        measureText(ctx: CanvasRenderingContext2D, text) {
+                            const metrics = ctx.measureText(text);
+                            return {
+                                width: metrics.width,
+                                ascent: metrics.actualBoundingBoxAscent,
+                                descent: metrics.actualBoundingBoxDescent
+                            }
+                        }
+                    };
                 },
             }
         });
@@ -124,7 +137,7 @@
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
 
-            <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
+            <input id="project-name" bind:value={projectName} on:blur={doFormatProjectName} />
 
             {#if modIdErrors != undefined}
                 {#each modIdErrors as error}

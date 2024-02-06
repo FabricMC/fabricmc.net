@@ -27,12 +27,8 @@ class UpdateProvider extends Provider {
   override async upgrade(
     {}: UpgradeOptions,
   ): Promise<void> {
-    // Enable the unstable flag only if the current installation is unstable already
-    const unstable = Object.hasOwn(Deno, "dlopen") ? ["--unstable"] : [];
-
     const args = [
       "install",
-      ...unstable,
       "--force",
       "--reload",
       "--quiet",

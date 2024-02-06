@@ -13,9 +13,12 @@ import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
+import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
+import * as pureimage from "npm:pureimage@0.4.13";
+// @deno-types="npm:@types/opentype.js"
+import * as _opentype from "npm:opentype.js@1.3.4";
 
-const canGenerateIcon = Object.hasOwn(Deno, "dlopen") &&
-  Deno.permissions.querySync({ name: "ffi" }).state == "granted";
+const canGenerateIcon = true;
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -46,10 +49,6 @@ const optionArg = {
   // TODO hidden for now, as these are in beta and may change.
   hidden: true,
 };
-
-interface CanvasFacade extends generator.CanvasFactory {
-  registerFont?(data: Uint8Array, alias?: string): void;
-}
 
 interface PromptedConfiguration extends generator.Configuration {
   generateIcon: boolean;
@@ -83,12 +82,19 @@ export function initCommand() {
     )
     .arguments("[dir:file]")
     .action(async (options, dir: string | undefined) => {
-      await generate(options, dir);
+      const fontFile = await Deno.makeTempFile();
+
+      try {
+        await generate(options, fontFile, dir);
+      } finally {
+        await Deno.remove(fontFile);
+      }
     });
 }
 
 async function generate(
   cli: CliOptions,
+  fontFile: string,
   outputDirName: string | undefined,
 ) {
   const outputDir = await getAndPrepareOutputDir(outputDirName);
@@ -103,7 +109,9 @@ async function generate(
       ? defaultOptions(path.basename(outputDir))
       : promptUser(path.basename(outputDir), cli));
 
-  const canvas = await resolveCanvasFacade(config.generateIcon);
+  await Deno.writeFile(fontFile, decodeBase64(fontData));
+  const fontLoader = pureimage.registerFont(fontFile, generator.ICON_FONT);
+  await fontLoader.load();
 
   const options: generator.Options = {
     config,
@@ -112,30 +120,48 @@ async function generate(
         await writeFile(outputDir, contentPath, content, options);
       },
     },
-    canvas,
+    canvas: {
+      create(width, height) {
+        const bitmap = pureimage.make(width, height);
+
+        return {
+          getContext: (id) => bitmap.getContext(id),
+          getPng: () => {
+            const p = png.encode(bitmap.data, bitmap.width, bitmap.height);
+            return p;
+          },
+          measureText(ctx: pureimage.Context, text) {
+            const font = fontLoader.font;
+            const fontSize = ctx._font.size!;
+
+            let advance = 0;
+            let ascent = 0;
+            let descent = 0;
+
+            const glyphs = font.stringToGlyphs(text);
+
+            for (const glyph of glyphs) {
+              const metrics = glyph.getMetrics();
+              advance += glyph.advanceWidth!;
+              ascent = Math.max(ascent, metrics.yMax);
+              descent = Math.min(descent, metrics.yMin);
+            }
+
+            return {
+              width: (advance / font.unitsPerEm) * fontSize,
+              ascent: Math.abs((ascent / font.unitsPerEm) * fontSize),
+              descent: Math.abs((descent / font.unitsPerEm) * fontSize),
+            };
+          },
+        };
+      },
+    },
   };
 
   console.log(progress("Generating mod template..."));
 
-  const fontFile = await registerFont(canvas);
-
-  try {
-    await generator.generateTemplate(options);
-    console.log(success("Done!"));
-  } finally {
-    if (fontFile) await Deno.remove(fontFile);
-  }
-}
-
-async function registerFont(canvas: CanvasFacade): Promise<string | null> {
-  if (!canvas.registerFont) return null;
-
-  // Using the font data directly doesn't seem to work...
-  const fontFile = await Deno.makeTempFile();
-  await Deno.writeFile(fontFile, decodeBase64(fontData));
-  canvas.registerFont(await Deno.readFile(fontFile), generator.ICON_FONT);
-
-  return fontFile;
+  await generator.generateTemplate(options);
+  console.log(success("Done!"));
 }
 
 async function getAndPrepareOutputDir(
@@ -152,21 +178,6 @@ async function getAndPrepareOutputDir(
   await ensureDir(outputDir);
 
   return outputDir;
-}
-
-async function resolveCanvasFacade(enabled: boolean): Promise<CanvasFacade> {
-  if (!enabled) {
-    return {
-      create: () => null,
-    };
-  }
-
-  const canvas = await import("https://deno.land/x/skia_canvas@0.5.4/mod.ts");
-
-  return {
-    create: canvas.createCanvas,
-    registerFont: canvas.Fonts.register,
-  };
 }
 
 async function promptUser(
@@ -343,7 +354,7 @@ async function writeFile(
   };
 
   // is there a cleaner way to do this?
-  if (content instanceof ArrayBuffer) {
+  if (content instanceof ArrayBuffer || content instanceof Uint8Array) {
     const data = new Uint8Array(content);
     await Deno.writeFile(output, data, writeOptions);
   } else {
@@ -388,7 +399,7 @@ async function requestPermissions(outputDir: string) {
     {
       name: "net",
       host: "maven.fabricmc.net",
-    }
+    },
   ];
 
   for (const permission of permissions) {

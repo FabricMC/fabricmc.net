@@ -1,4 +1,4 @@
-import type { CanvasFactory, ComputedConfiguration, TemplateWriter } from "./template";
+import type { CanvasAdaptorFactory, ComputedConfiguration, TemplateWriter } from "./template";
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 import { getJavaVersion } from "./java"
@@ -9,13 +9,13 @@ function usesNewModid(fabricVersion: string) : boolean {
   return Number(fabricVersion.split(".")[1]) >= 59;
 }
 
-export async function addModJson(writer: TemplateWriter, canvas: CanvasFactory, config: ComputedConfiguration) {
-  var mixins = [
+export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFactory, config: ComputedConfiguration) {
+  const mixins = [
     ...await generateMixin(writer, config),
     ...(config.splitSources ? await generateClientMixin(writer, config) : [])
   ];
 
-  var fabricModJson : any = {
+  const fabricModJson : any = {
     "schemaVersion": 1,
     "id": config.modid,
     "version": "${version}",

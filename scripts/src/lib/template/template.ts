@@ -16,7 +16,7 @@ export interface Options {
 	 * this might be directly to the filesystem or to a zip file.
 	 */
 	writer: TemplateWriter;
-	canvas: CanvasFactory;
+	canvas: CanvasAdaptorFactory;
 }
 
 export interface Configuration {
@@ -55,13 +55,20 @@ export interface TemplateWriter {
 	write(path: string, content: string | ArrayBufferLike, options?: FileOptions): Promise<void>
 }
 
-export interface CanvasFactory {
-	create(width: number, height: number): CanvasLike | null
+export interface CanvasAdaptorFactory {
+	create(width: number, height: number): CanvasAdaptor | null
 }
 
-export interface CanvasLike {
-  getContext(contextId: "2d"): unknown,
-	toDataURL(): string
+export interface CanvasAdaptor {
+  getContext(contextId: "2d"): unknown
+	getPng(): ArrayBufferLike
+	measureText(ctx: unknown, text: string): TextMetricsAdaptor
+}
+
+export interface TextMetricsAdaptor {
+	width: number
+	ascent: number
+	descent: number
 }
 
 export async function generateTemplate(options: Options) {
