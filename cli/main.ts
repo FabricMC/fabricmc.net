@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --allow-net
+#!/usr/bin/env -S deno run -A
 
 // @deno-types="../scripts/dist/fabric-template-generator.d.ts"
 import * as generator from "../scripts/dist/fabric-template-generator.js";

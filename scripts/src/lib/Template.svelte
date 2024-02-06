@@ -4,6 +4,7 @@
     import DownloadIcon from "./DownloadIcon.svelte";
     import { ICON_FONT, getTemplateGameVersions } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
+    import { computePackageNameErrors } from "./template/java"
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -30,6 +31,7 @@
 
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
+    $: packageNameErrors = computePackageNameErrors(packageName);
 
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
       if (id === undefined) {
@@ -40,7 +42,7 @@
     }
 
     async function generate() {
-        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined)) {
+        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined) || packageNameErrors.length > 0) {
             return;
         }
 
@@ -121,10 +123,10 @@
             {:else}
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
-            
+
             <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
-            
-            {#if modIdErrors != undefined} 
+
+            {#if modIdErrors != undefined}
                 {#each modIdErrors as error}
                     <li style="color: red">{error}</li>
                 {/each}
@@ -137,7 +139,7 @@
                 <h3>Mod ID:</h3>
                 <hr />
                 <p>Enter the modid you wish to use for your mod. <a href={""} on:click|preventDefault={useDefaultModId}>Use default</a></p>
-                {#if customIdErrors != undefined} 
+                {#if customIdErrors != undefined}
                     {#each customIdErrors as error}
                         <li style="color: red">{error}</li>
                     {/each}
@@ -156,6 +158,10 @@
                 should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
             <input id="package-name" on:keyup={doFormatPackageName} bind:value={packageName} />
+
+            {#each packageNameErrors as error}
+                <li style="color: red">{error}</li>
+            {/each}
         </div>
 
         <div class="form-line">
@@ -221,12 +227,12 @@
         <br>
 
         {#if loading}
-            <a class="button download-button" href={""}>
+            <a class="button primary download-button" href={""}>
                 <DownloadIcon /> Generating...
             </a>
         {:else}
             <a
-                class="button download-button"
+                class="button primary large download-button"
                 href={""}
                 on:click|preventDefault={generate}
             >
@@ -238,7 +244,7 @@
     <p style="color: red">Error: {error.message}</p>
     <p>
         For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.
     </p>
 {/await}
@@ -264,24 +270,24 @@
 
     .option {
         &-container {
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
         }
 
         &-input {
-            width: 1rem; 
-            height: 1rem; 
+            width: 1rem;
+            height: 1rem;
         }
 
         &-label {
-            margin-left: 0.5rem; 
+            margin-left: 0.5rem;
         }
 
         &-body {
-            display: block; 
-            padding-left: 1rem; 
-            margin-top: 0.25rem; 
-            margin-left: 1rem;  
+            display: block;
+            padding-left: 1rem;
+            margin-top: 0.25rem;
+            margin-left: 1rem;
         }
     }
 </style>

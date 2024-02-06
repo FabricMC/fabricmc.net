@@ -22,6 +22,10 @@ export function sharedModIdChecks(id: string, isId: boolean): string[] | undefin
 		errorList.push(`${type} has more than 64 characters!`);
 	}
 
+	if (id.toLocaleLowerCase().startsWith("fabric")) {
+		errorList.push("Mod id starts with 'fabric', which is generally reserved for Fabric itself.")
+	}
+
 	return errorList.length === 0 ? undefined : errorList;
 }
 

@@ -67,7 +67,7 @@
     </div>
 
     <div class="download">
-      <a class="button" href={serverJarUrl}><DownloadIcon /> Executable Server (.jar)</a>
+      <a class="button primary large" href={serverJarUrl}><DownloadIcon />Executable Server (.jar)</a>
     </div>
     <p>
       <a href={installerJarUrl}>
@@ -98,7 +98,7 @@
   <p style="color: red">Error: {error.message}</p>
   <p>
     For support please visit one of our
-    <a href="/discuss">community discussion</a>
+    <a href="/discuss/">community discussion</a>
     groups.
   </p>
 {/await}

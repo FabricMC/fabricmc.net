@@ -3,6 +3,7 @@
   import DownloadIcon from "./DownloadIcon.svelte";
 
   const win32 = navigator.platform == "Win32"
+  const showVersionSelection = false;
 
   let expertOptions = false;
   let selectedVersion = "";
@@ -38,7 +39,7 @@
 
       <br />
       <br />
-    {:else}
+    {:else if showVersionSelection}
       {#await getVersion() then latest}
         <p>
           {#if latest?.stable}Installer Version: {latest.version} (Latest){/if}
@@ -58,19 +59,21 @@
       </p>
 
       {#if win32}
-      <a class="button" href={selectedVersion.replace('.jar', '.exe')}>
-        <DownloadIcon/> Download for Windows
-      </a>
       <p>
+        <a class="button primary large" href={selectedVersion.replace('.jar', '.exe')}>
+          <DownloadIcon/> Download for Windows
+        </a>
+        <br>
         <a href={selectedVersion}>
           Download universal jar
         </a>
       </p>
     {:else}
-      <a class="button" href={selectedVersion}>
-        <DownloadIcon/> Download installer (Universal/.JAR)
-      </a>
       <p>
+        <a class="button primary large" href={selectedVersion}>
+          <DownloadIcon/> Download installer (Universal/.JAR)
+        </a>
+        <br>
         <a href={selectedVersion.replace('.jar', '.exe')}>
           Download for Windows
         </a>
@@ -81,7 +84,7 @@
     <p style="color: red">Error: {error.message}</p>
     <p>
       For support please visit one of our
-      <a href="/discuss">community discussion</a>
+      <a href="/discuss/">community discussion</a>
       groups.
     </p>
   {/await}

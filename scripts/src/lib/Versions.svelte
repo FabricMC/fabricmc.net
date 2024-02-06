@@ -14,7 +14,8 @@
 
     let gameVersions = getGameVersions().then((versions) => {
         minecraftVersion = versions.find((v) => v.stable)!.version
-        return versions.map((v) => v.version);
+        const latestVersion = versions[0];
+        return versions.filter((v) => v.stable || v == latestVersion).map((v) => v.version);
     });
 
     const loaderVersions = getLoaderVersions().then((versions) => {
@@ -64,14 +65,14 @@ fabric_version={apiVersion}
     <p style="color: red">Error: {error.message}</p>
     <p>
         For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.
     </p>
 {/await}
 
 <h4>Loom</h4>
 
-<p>The recommended loom version is <strong>1.4-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
+<p>The recommended loom version is <strong>1.5-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
 
 <style>
     .copy-code {
