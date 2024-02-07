@@ -48,10 +48,6 @@ const optionArg = {
   hidden: true,
 };
 
-interface PromptedConfiguration extends generator.Configuration {
-  generateIcon: boolean;
-}
-
 export function initCommand() {
   return new Command()
     .name("init")
@@ -117,10 +113,7 @@ async function generate(
 
         return {
           getContext: (id) => bitmap.getContext(id),
-          getPng: () => {
-            const p = png.encode(bitmap.data, bitmap.width, bitmap.height);
-            return p;
-          },
+          getPng: () => png.encode(bitmap.data, bitmap.width, bitmap.height),
           measureText(ctx: pureimage.Context, text) {
             const font = fontLoader.font;
             const fontSize = ctx._font.size!;
@@ -174,7 +167,7 @@ async function getAndPrepareOutputDir(
 async function promptUser(
   startingName: string,
   cli: CliOptions,
-): Promise<PromptedConfiguration> {
+): Promise<generator.Configuration> {
   // Store a promise for now, so the request can be made while taking the other inputs.
   const minecraftVersionsPromise = generator.getTemplateGameVersions();
 
@@ -259,7 +252,6 @@ async function promptUser(
   });
 
   return {
-    generateIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
     modid: modId,
     minecraftVersion: minecraftVersion,
     projectName: modName,
@@ -267,6 +259,7 @@ async function promptUser(
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
+    uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
   };
 }
 
@@ -288,12 +281,11 @@ function validateCliOptions(cli: CliOptions) {
 
 async function defaultOptions(
   startingName: string,
-): Promise<PromptedConfiguration> {
+): Promise<generator.Configuration> {
   const minecraftVersions = await generator.getTemplateGameVersions();
   const minecraftVersion = minecraftVersions[0]!.version;
 
   return {
-    generateIcon: true,
     modid: generator.nameToModId(startingName),
     minecraftVersion: minecraftVersion,
     projectName: startingName,
@@ -303,6 +295,7 @@ async function defaultOptions(
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
+    uniqueModIcon: true,
   };
 }
 

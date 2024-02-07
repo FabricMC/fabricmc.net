@@ -53,5 +53,5 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
   }
 
   await writer.write("src/main/resources/fabric.mod.json", JSON.stringify(fabricModJson, null, "\t"));
-  await writer.write(`src/main/resources/assets/${config.modid}/icon.png`, generateModIcon(config.projectName, canvas));
+  await writer.write(`src/main/resources/assets/${config.modid}/icon.png`, generateModIcon(config.projectName, config.uniqueModIcon, canvas));
 }

@@ -27,6 +27,7 @@ export interface Configuration {
 	useKotlin: boolean,
 	dataGeneration: boolean,
 	splitSources: boolean,
+	uniqueModIcon: boolean
 }
 
 export interface KotlinConfiguration {
