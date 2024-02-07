@@ -14,9 +14,9 @@ import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
 import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
-import * as pureimage from "npm:pureimage@0.4.13";
-// @deno-types="npm:@types/opentype.js"
-import * as _opentype from "npm:opentype.js@1.3.4";
+import * as pureimage from "https://esm.sh/pureimage@0.4.13";
+// @deno-types="https://esm.sh/v135/@types/opentype.js@1.3.8/index.d.ts"
+import * as opentype from "https://esm.sh/opentype.js@0.4.11";
 
 const canGenerateIcon = true;
 
@@ -82,19 +82,12 @@ export function initCommand() {
     )
     .arguments("[dir:file]")
     .action(async (options, dir: string | undefined) => {
-      const fontFile = await Deno.makeTempFile();
-
-      try {
-        await generate(options, fontFile, dir);
-      } finally {
-        await Deno.remove(fontFile);
-      }
+      await generate(options, dir);
     });
 }
 
 async function generate(
   cli: CliOptions,
-  fontFile: string,
   outputDirName: string | undefined,
 ) {
   const outputDir = await getAndPrepareOutputDir(outputDirName);
@@ -109,9 +102,9 @@ async function generate(
       ? defaultOptions(path.basename(outputDir))
       : promptUser(path.basename(outputDir), cli));
 
-  await Deno.writeFile(fontFile, decodeBase64(fontData));
-  const fontLoader = pureimage.registerFont(fontFile, generator.ICON_FONT);
-  await fontLoader.load();
+  const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
+  fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
+  fontLoader.loaded = true;
 
   const options: generator.Options = {
     config,
