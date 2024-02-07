@@ -18,8 +18,6 @@ import * as pureimage from "https://esm.sh/pureimage@0.4.13";
 // @deno-types="https://esm.sh/v135/@types/opentype.js@1.3.8/index.d.ts"
 import * as opentype from "https://esm.sh/opentype.js@0.4.11";
 
-const canGenerateIcon = true;
-
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
@@ -295,7 +293,7 @@ async function defaultOptions(
   const minecraftVersion = minecraftVersions[0]!.version;
 
   return {
-    generateIcon: canGenerateIcon,
+    generateIcon: true,
     modid: generator.nameToModId(startingName),
     minecraftVersion: minecraftVersion,
     projectName: startingName,
@@ -311,10 +309,7 @@ async function defaultOptions(
 function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
   const options: CheckboxValueOptions = [];
 
-  if (canGenerateIcon) {
-    options.push({ value: ICON_ADVANCED_OPTION, checked: true });
-  }
-
+  options.push({ value: ICON_ADVANCED_OPTION, checked: true });
   options.push({ value: KOTLIN_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
