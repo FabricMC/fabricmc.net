@@ -1,5 +1,6 @@
 import { addGradleWrapper } from './gradlewrapper';
 import { addGroovyGradle } from './gradlegroovy';
+import { addKotlinGradle } from './gradlekotlin';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
@@ -22,6 +23,7 @@ export interface Configuration {
 	projectName: string,
 	packageName: string,
 	useKotlin: boolean,
+	useKotlinGradle: boolean,
 	dataGeneration: boolean,
 	splitSources: boolean,
 }
@@ -56,7 +58,11 @@ export async function generateTemplate(options: Options) {
 	const computedConfig = await computeConfig(options.config);
 
 	await addGradleWrapper(options);
-	await addGroovyGradle(options.writer, computedConfig);
+	if (options.config.useKotlinGradle) {
+		await addKotlinGradle(options.writer, computedConfig);
+	} else {
+		await addGroovyGradle(options.writer, computedConfig);
+	}
 	await addModJson(options.writer, computedConfig);
 	await addGitFiles(options.writer, computedConfig);
 }
