@@ -1,21 +1,21 @@
-import type { ComputedConfiguration, TemplateWriter } from "./template";
+import type { CanvasAdaptorFactory, ComputedConfiguration, TemplateWriter } from "./template";
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 import { getJavaVersion } from "./java"
 import { getMinorMinecraftVersion } from "./minecraft"
-import { decode64 } from './utils';
+import { generateModIcon } from "./icon";
 
 function usesNewModid(fabricVersion: string) : boolean {
   return Number(fabricVersion.split(".")[1]) >= 59;
 }
 
-export async function addModJson(writer: TemplateWriter, config: ComputedConfiguration) {
-  var mixins = [
+export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFactory, config: ComputedConfiguration) {
+  const mixins = [
     ...await generateMixin(writer, config),
     ...(config.splitSources ? await generateClientMixin(writer, config) : [])
   ];
 
-  var fabricModJson : any = {
+  const fabricModJson : any = {
     "schemaVersion": 1,
     "id": config.modid,
     "version": "${version}",
@@ -53,8 +53,5 @@ export async function addModJson(writer: TemplateWriter, config: ComputedConfigu
   }
 
   await writer.write("src/main/resources/fabric.mod.json", JSON.stringify(fabricModJson, null, "\t"));
-  await writer.write(`src/main/resources/assets/${config.modid}/icon.png`, decode64(ICON));
+  await writer.write(`src/main/resources/assets/${config.modid}/icon.png`, generateModIcon(config.projectName, config.uniqueModIcon, canvas));
 }
-
-// Todo can we generate an icon from the mod name?
-const ICON = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC";

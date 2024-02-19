@@ -2,9 +2,10 @@
     import JSZip from "jszip";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { getTemplateGameVersions } from "./template/template";
+    import { ICON_FONT, getTemplateGameVersions, type Configuration } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
     import { computePackageNameErrors } from "./template/java"
+    import { decode64 } from "./template/utils";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
@@ -49,7 +50,7 @@
         loading = true;
 
         const generator = await import("./template/template");
-        const config = {
+        const config: Configuration = {
             modid: customModId ?? modid,
             minecraftVersion,
             projectName,
@@ -57,6 +58,7 @@
             useKotlin,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
+            uniqueModIcon: true
         };
 
         const zip = new JSZip();
@@ -70,6 +72,26 @@
                     });
                 },
             },
+            canvas: {
+                create(width, height) {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    return {
+                        getContext: (id) => canvas.getContext(id),
+                        getPng: () => decode64(canvas.toDataURL().split(";base64,")[1]),
+                        measureText(ctx: CanvasRenderingContext2D, text) {
+                            const metrics = ctx.measureText(text);
+                            return {
+                                width: metrics.width,
+                                ascent: metrics.actualBoundingBoxAscent,
+                                descent: metrics.actualBoundingBoxDescent
+                            }
+                        }
+                    };
+                },
+            }
         });
 
         FileSaver.saveAs(
@@ -98,7 +120,12 @@
 </script>
 
 {#await versions}
-    <p>Loading data..</p>
+    <p>
+        Loading data
+    
+        <!-- Force the icon fonts to be loaded, https://stackoverflow.com/questions/2756575 -->
+        <span style="font-family: {ICON_FONT};">...</span>
+    </p>
 {:then data}
     <div class="template">
         <div class="form-line">
@@ -111,7 +138,7 @@
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
 
-            <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
+            <input id="project-name" bind:value={projectName} on:blur={doFormatProjectName} />
 
             {#if modIdErrors != undefined}
                 {#each modIdErrors as error}
@@ -237,6 +264,11 @@
 {/await}
 
 <style lang="scss">
+    @font-face {
+    	font-family: "Comic Relief";
+	    src: url("/assets/fonts/ComicRelief-Regular.woff2");
+    }
+    
     .template {
         * {
             text-align: left;

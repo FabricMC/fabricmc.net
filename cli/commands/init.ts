@@ -11,11 +11,18 @@ import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
+import fontData from "../font.ts";
+import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
+import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
+import * as pureimage from "https://esm.sh/pureimage@0.4.13";
+// @deno-types="https://esm.sh/v135/@types/opentype.js@1.3.8/index.d.ts"
+import * as opentype from "https://esm.sh/opentype.js@0.4.11";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
 
+const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
@@ -89,6 +96,10 @@ async function generate(
       ? defaultOptions(path.basename(outputDir))
       : promptUser(path.basename(outputDir), cli));
 
+  const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
+  fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
+  fontLoader.loaded = true;
+
   const options: generator.Options = {
     config,
     writer: {
@@ -96,9 +107,43 @@ async function generate(
         await writeFile(outputDir, contentPath, content, options);
       },
     },
+    canvas: {
+      create(width, height) {
+        const bitmap = pureimage.make(width, height);
+
+        return {
+          getContext: (id) => bitmap.getContext(id),
+          getPng: () => png.encode(bitmap.data, bitmap.width, bitmap.height),
+          measureText(ctx: pureimage.Context, text) {
+            const font = fontLoader.font;
+            const fontSize = ctx._font.size!;
+
+            let advance = 0;
+            let ascent = 0;
+            let descent = 0;
+
+            const glyphs = font.stringToGlyphs(text);
+
+            for (const glyph of glyphs) {
+              const metrics = glyph.getMetrics();
+              advance += glyph.advanceWidth!;
+              ascent = Math.max(ascent, metrics.yMax);
+              descent = Math.min(descent, metrics.yMin);
+            }
+
+            return {
+              width: (advance / font.unitsPerEm) * fontSize,
+              ascent: Math.abs((ascent / font.unitsPerEm) * fontSize),
+              descent: Math.abs((descent / font.unitsPerEm) * fontSize),
+            };
+          },
+        };
+      },
+    },
   };
 
   console.log(progress("Generating mod template..."));
+
   await generator.generateTemplate(options);
   console.log(success("Done!"));
 }
@@ -203,7 +248,7 @@ async function promptUser(
 
   const advancedOptions = cliOptions ?? await Checkbox.prompt({
     message: "Advanced options",
-    options: getAdancedOptions(minecraftVersion),
+    options: getAdvancedOptions(minecraftVersion),
   });
 
   return {
@@ -214,6 +259,7 @@ async function promptUser(
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
+    uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
   };
 }
 
@@ -249,13 +295,15 @@ async function defaultOptions(
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
+    uniqueModIcon: true,
   };
 }
 
-function getAdancedOptions(minecraftVersion: string): CheckboxValueOptions {
-  const options: CheckboxValueOptions = [
-    { value: KOTLIN_ADVANCED_OPTION },
-  ];
+function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
+  const options: CheckboxValueOptions = [];
+
+  options.push({ value: ICON_ADVANCED_OPTION, checked: true });
+  options.push({ value: KOTLIN_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
@@ -287,7 +335,7 @@ async function writeFile(
   };
 
   // is there a cleaner way to do this?
-  if (content instanceof ArrayBuffer) {
+  if (content instanceof ArrayBuffer || content instanceof Uint8Array) {
     const data = new Uint8Array(content);
     await Deno.writeFile(output, data, writeOptions);
   } else {

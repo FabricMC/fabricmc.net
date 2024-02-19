@@ -1,9 +1,6 @@
-import { bundle } from "https://deno.land/x/emit@0.22.0/mod.ts";
+import * as esbuild from "https://deno.land/x/esbuild@v0.20.0/mod.js";
+import { denoPlugins } from "https://deno.land/x/esbuild_deno_loader@0.9.0/mod.ts";
 import { format } from "https://deno.land/std@0.91.0/datetime/mod.ts";
-
-const result = await bundle(
-  new URL("./main.ts", import.meta.url),
-);
 
 const header = `/**
 * Fabric Command Line tools
@@ -12,9 +9,16 @@ const header = `/**
 */
 `;
 
-const code = result.code.replace(
-  "%__VERSION__%",
-  format(new Date(), "yyyy-MM-dd HH:mm:ss"),
-);
+await esbuild.build({
+  plugins: [...denoPlugins()],
+  entryPoints: ["./main.ts"],
+  outfile: "./bundled.ts",
+  bundle: true,
+  format: "esm",
+  target: ["deno1"],
+  minify: true,
+  banner: { js: header },
+  define: { __VERSION__: JSON.stringify(format(new Date(), "yyyy-MM-dd HH:mm:ss")) },
+});
 
-await Deno.writeTextFile("bundled.ts", header + code);
+esbuild.stop();

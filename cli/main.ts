@@ -10,6 +10,10 @@ import {
 import { initCommand } from "./commands/init.ts";
 import { upgradeCommand } from "./commands/upgrade.ts";
 
+// Replaced by esbuild.
+declare let __VERSION__: string;
+const VERSION = typeof __VERSION__ !== "undefined" ? __VERSION__ : "dev";
+
 // Set the XML parser as we do not have DomParser here.
 generator.setXmlVersionParser((xml) => {
   const document = parseXml(xml) as any;
@@ -19,7 +23,7 @@ generator.setXmlVersionParser((xml) => {
 if (import.meta.main) {
   const cmd = new Command()
     .name("Fabric CLI tools")
-    .version("%__VERSION__%") // Replaced by bundle.ts
+    .version(VERSION)
     .description("A set of command line tools to aid Fabric mod development")
     .action(() => {
       // Show the help in the default command with no args.
