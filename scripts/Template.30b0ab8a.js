@@ -3895,7 +3895,16 @@ async function Cn(B, A) {
     "fabric-language-kotlin": ">=" + A.kotlin.kotlinVersion
   }), await B.write("src/main/resources/fabric.mod.json", JSON.stringify(b, null, "	")), await B.write(`src/main/resources/assets/${A.modid}/icon.png`, de(Sn));
 }
-const Sn = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC", xn = `Creative Commons Legal Code
+const Sn = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC", xn = `#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# Linux start script should use lf
+/gradlew        text eol=lf
+
+# These are Windows script files and should use crlf
+*.bat           text eol=crlf
+
+`, Bn = `Creative Commons Legal Code
 
 CC0 1.0 Universal
 
@@ -4016,12 +4025,12 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.`;
-async function Bn(B, A) {
-  await B.write(".gitignore", fe), await B.write(".github/workflows/build.yml", pe), await B.write("LICENSE", xn);
+async function Nn(B, A) {
+  await B.write(".gitattributes", xn), await B.write(".gitignore", fe), await B.write(".github/workflows/build.yml", pe), await B.write("LICENSE", Bn);
 }
-async function Nn(B) {
-  const A = await Fn(B.config);
-  await Qe(B), await ln(B.writer, A), await Cn(B.writer, A), await Bn(B.writer);
+async function Fn(B) {
+  const A = await _n(B.config);
+  await Qe(B), await ln(B.writer, A), await Cn(B.writer, A), await Nn(B.writer);
 }
 async function ge() {
   return (await Re()).filter((A) => A.stable).filter((A) => {
@@ -4029,16 +4038,16 @@ async function ge() {
     return !(r.startsWith("1.14") && r != "1.14.4");
   });
 }
-async function Fn(B) {
+async function _n(B) {
   return {
     ...B,
     loaderVersion: (await Ie()).find((A) => A.stable).version,
     fabricVersion: await Te(B.minecraftVersion),
     yarnVersion: (await Oe(B.minecraftVersion))[0].version,
-    kotlin: await _n(B)
+    kotlin: await Rn(B)
   };
 }
-async function _n(B) {
+async function Rn(B) {
   if (!B.useKotlin)
     return;
   const r = (await ze()).pop(), b = r.split("+kotlin.")[1];
@@ -4047,9 +4056,9 @@ async function _n(B) {
     kotlinVersion: b
   };
 }
-const Rn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const In = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  generateTemplate: Nn,
+  generateTemplate: Fn,
   getTemplateGameVersions: ge
 }, Symbol.toStringTag, { value: "Module" }));
 function Zt(B, A, r) {
@@ -4068,7 +4077,7 @@ function Ht(B, A, r) {
   const b = B.slice();
   return b[32] = A[r], b;
 }
-function In(B) {
+function Tn(B) {
   let A, r, b = (
     /*error*/
     B[32].message + ""
@@ -4090,12 +4099,12 @@ function In(B) {
     }
   };
 }
-function Tn(B) {
+function On(B) {
   let A, r, b, c, n, s, e, l, f, v, m, y, o, p, a, d, u, w, E, I, R, M, V, W, z, J, nt, k, O, i, j, it, C, L, F, P, x, N, K, Y, H, ut, mt, ot, st, gt, At, pt, dt, t, D, T, g;
   function h(et, ct) {
     return (
       /*customModId*/
-      et[3] != null ? zn : On
+      et[3] != null ? Vn : zn
     );
   }
   let S = h(B), G = S(B), U = (
@@ -4123,7 +4132,7 @@ function Tn(B) {
     /*supportsSplitSources*/
     B[9] && ie(B)
   );
-  const wt = [Ln, Vn], Et = [];
+  const wt = [Un, Ln], Et = [];
   function Ct(et, ct) {
     return (
       /*loading*/
@@ -4274,7 +4283,7 @@ function Tn(B) {
     }
   };
 }
-function On(B) {
+function zn(B) {
   let A, r, b, c, n, s, e, l;
   return {
     c() {
@@ -4302,7 +4311,7 @@ function On(B) {
     }
   };
 }
-function zn(B) {
+function Vn(B) {
   let A;
   return {
     c() {
@@ -4572,7 +4581,7 @@ function ie(B) {
     }
   };
 }
-function Vn(B) {
+function Ln(B) {
   let A, r, b, c, n, s;
   return r = new ce({}), {
     c() {
@@ -4596,7 +4605,7 @@ function Vn(B) {
     }
   };
 }
-function Ln(B) {
+function Un(B) {
   let A, r, b, c;
   return r = new ce({}), {
     c() {
@@ -4617,7 +4626,7 @@ function Ln(B) {
     }
   };
 }
-function Un(B) {
+function Mn(B) {
   let A;
   return {
     c() {
@@ -4634,15 +4643,15 @@ function Un(B) {
     }
   };
 }
-function Mn(B) {
+function Dn(B) {
   let A, r, b = {
     ctx: B,
     current: null,
     token: null,
     hasCatch: !0,
-    pending: Un,
-    then: Tn,
-    catch: In,
+    pending: Mn,
+    then: On,
+    catch: Tn,
     value: 28,
     error: 32,
     blocks: [, , ,]
@@ -4676,7 +4685,7 @@ function Mn(B) {
     }
   };
 }
-function Dn(B, A, r) {
+function Gn(B, A, r) {
   let b, c, n, s, e, l, f, v = "Template Mod", m = "com.example", y = !1, o = !1, p = !0, a, d = !1;
   const u = Promise.all([ge()]).then(([j]) => {
     const it = j;
@@ -4690,7 +4699,7 @@ function Dn(B, A, r) {
     if (s !== void 0 || a !== void 0 && e !== void 0 || l.length > 0)
       return;
     r(8, d = !0);
-    const j = await Promise.resolve().then(() => Rn), it = {
+    const j = await Promise.resolve().then(() => In), it = {
       modid: a ?? b,
       minecraftVersion: f,
       projectName: v,
@@ -4781,11 +4790,11 @@ function Dn(B, A, r) {
     i
   ];
 }
-class Qn extends we {
+class Wn extends we {
   constructor(A) {
-    super(), ke(this, A, Dn, Mn, Ee, {}, null, [-1, -1]);
+    super(), ke(this, A, Gn, Dn, Ee, {}, null, [-1, -1]);
   }
 }
 export {
-  Qn as default
+  Wn as default
 };
