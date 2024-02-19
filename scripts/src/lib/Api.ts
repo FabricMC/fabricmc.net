@@ -83,6 +83,10 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
         return false;
     }
 
+    if (mcVersion == "1.18") {
+        return apiVersion == "0.44.0+1.18";
+    }
+
     let branch = mcVersion;
 
     let versionBranches = ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"]
