@@ -39,6 +39,8 @@ async function A(s) {
 function h(s, t) {
   if (!t)
     return !1;
+  if (t == "1.18")
+    return s == "0.44.0+1.18";
   let e = t;
   return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"].forEach((i) => {
     t.startsWith(i) && (e = i);

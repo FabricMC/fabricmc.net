@@ -1,6 +1,6 @@
 import { S as we, i as ke, s as Ee, h as Ce, b as Se, c as bt, u as xe, r as It, v as Tt, d as vt, f as Be, e as rt, t as xt, a as ht, g as Ot, j as q, n as Nt, o as tt, m as Ne, B as _t, p as Wt, q as St, C as Fe, D as _e, l as Lt, A as ae, k as Ut, E as jt, w as se, x as oe, y as le } from "./index.3ed5914c.js";
 import ce from "./DownloadIcon.fd237c91.js";
-import { d as Re, b as Ie, h as Te, i as Oe, j as ze } from "./Api.c2c9b908.js";
+import { d as Re, b as Ie, h as Te, i as Oe, j as ze } from "./Api.4264f72d.js";
 var Bt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function ue(B) {
   return B && B.__esModule && Object.prototype.hasOwnProperty.call(B, "default") ? B.default : B;
@@ -3020,11 +3020,11 @@ set JAVA_EXE=java.exe\r
 %JAVA_EXE% -version >NUL 2>&1\r
 if %ERRORLEVEL% equ 0 goto execute\r
 \r
-echo.\r
-echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.\r
-echo.\r
-echo Please set the JAVA_HOME variable in your environment to match the\r
-echo location of your Java installation.\r
+echo. 1>&2\r
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH. 1>&2\r
+echo. 1>&2\r
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2\r
+echo location of your Java installation. 1>&2\r
 \r
 goto fail\r
 \r
@@ -3034,11 +3034,11 @@ set JAVA_EXE=%JAVA_HOME%/bin/java.exe\r
 \r
 if exist "%JAVA_EXE%" goto execute\r
 \r
-echo.\r
-echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%\r
-echo.\r
-echo Please set the JAVA_HOME variable in your environment to match the\r
-echo location of your Java installation.\r
+echo. 1>&2\r
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME% 1>&2\r
+echo. 1>&2\r
+echo Please set the JAVA_HOME variable in your environment to match the 1>&2\r
+echo location of your Java installation. 1>&2\r
 \r
 goto fail\r
 \r
@@ -3069,7 +3069,7 @@ if "%OS%"=="Windows_NT" endlocal\r
 :omega\r
 `, je = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.5-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.6-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
@@ -3639,7 +3639,7 @@ const en = {
 };
 function Dt(B) {
   const A = Mt(B);
-  return A < 16 ? en : A == 16 ? nn : rn;
+  return A <= 16 ? en : A == 17 ? nn : rn;
 }
 const an = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/, sn = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
 function on(B) {
