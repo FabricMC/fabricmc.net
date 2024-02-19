@@ -31,9 +31,9 @@ const JAVA_17 : JavaVersion = {
 export function getJavaVersion(minecraftVersion: string): JavaVersion {
 	const minor = getMinorMinecraftVersion(minecraftVersion);
 
-	if (minor < 16) {
+	if (minor <= 16) {
 		return JAVA_8;
-	} else if (minor == 16) {
+	} else if (minor == 17) {
 		return JAVA_16;
 	}
 
