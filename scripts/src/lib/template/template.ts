@@ -24,6 +24,7 @@ export interface Configuration {
 	minecraftVersion: string,
 	projectName: string,
 	packageName: string,
+	mojmap: boolean,
 	useKotlin: boolean,
 	dataGeneration: boolean,
 	splitSources: boolean,

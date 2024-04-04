@@ -11,6 +11,7 @@
     let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
+    let mojmap = false;
     let dataGeneration = false;
     let splitSources = true;
 
@@ -56,6 +57,7 @@
             projectName,
             packageName,
             useKotlin,
+            mojmap,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
             uniqueModIcon: true
@@ -209,6 +211,16 @@
             <p class="option-body">
                 <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
                 The <a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.
+            </p>
+        </div>
+
+        <div>
+            <div class="option-container">
+                <input id="mojmap" type="checkbox" class="option-input" bind:checked={mojmap} />
+                <label for="mojmap" class="option-label">Mojang Mappings</label>
+            </div>
+            <p class="option-body">
+                Use Mojang's official mappings rather than Yarn. Note that Mojang's mappings come with a usable yet more restrictive license than Yarn. Use them at your own risk.
             </p>
         </div>
 

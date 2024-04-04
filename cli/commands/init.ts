@@ -22,6 +22,7 @@ const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
 
+const MOJMAP_ADVANCED_OPTION = "Mojang Mappings";
 const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
@@ -256,6 +257,7 @@ async function promptUser(
     minecraftVersion: minecraftVersion,
     projectName: modName,
     packageName: packageName,
+    mojmap: advancedOptions.includes(MOJMAP_ADVANCED_OPTION),
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
@@ -292,6 +294,7 @@ async function defaultOptions(
     packageName: generator.formatPackageName(
       generator.nameToModId(startingName),
     ),
+    mojmap: false,
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
@@ -304,6 +307,7 @@ function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
 
   options.push({ value: ICON_ADVANCED_OPTION, checked: true });
   options.push({ value: KOTLIN_ADVANCED_OPTION });
+  options.push({ value: MOJMAP_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
