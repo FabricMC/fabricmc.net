@@ -1,16 +1,39 @@
-import { defineConfig } from 'vite'
-import { svelte } from '@sveltejs/vite-plugin-svelte'
-import dts from 'vite-plugin-dts'
+import { defineConfig } from 'vite';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
+import dts from 'vite-plugin-dts';
+import { Eta } from 'eta';
 
 const buildLib = process.env.BUILD_LIB;
+
+/**
+ * @returns {import('vite').Plugin}
+ */
+function eta() {
+  const eta = new Eta({
+    autoTrim: false
+  });
+
+  return {
+    transform(template, id) {
+      if (id.match(/.eta$/)) return {
+        code: `
+          export default ${eta.compile(template)};
+        `
+      };
+    }
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => buildLib ? ({
   // Library for CLI
-  plugins: [dts({ rollupTypes: true })],
+  plugins: [
+    eta(),
+    dts({ rollupTypes: true })
+  ],
   build: {
     sourcemap: false,
-    minify: false,
+    minify: true,
     outDir: "./dist",
     emptyOutDir: true,
     lib: {
@@ -22,7 +45,10 @@ export default defineConfig(({ mode }) => buildLib ? ({
   }
 }) : ({
   // Web build
-  plugins: [svelte()],
+  plugins: [
+    eta(),
+    svelte()
+  ],
   build: {
     sourcemap: mode === "development",
     // Build directly into the Jekyll output directory

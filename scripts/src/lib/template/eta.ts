@@ -1,9 +1,5 @@
-import { Eta } from "eta"
+import { Eta } from "eta";
 
-const eta = new Eta({
+export const eta = new Eta({
 	autoTrim: false
-})
-
-export function renderTemplate(template: string, options: object): string {
-	return eta.renderString(template, options);
-}
+});

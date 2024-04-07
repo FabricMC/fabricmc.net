@@ -22,8 +22,8 @@ app.get(
 	})
 )
 
-app.post('/v1/generate', async (c) => c.json(await generateTemplate(c.req.json())))
-app.get('/v1/generate', async (c) => c.json(await generateTemplate({})))
+app.post('/v1/generate', async (c) => await generateTemplate(c.req.json()))
+app.get('/v1/generate', async () => await generateTemplate({}))
 app.get('/v1/minecraftVersions', async (c) => c.json(await getMinecraftVersions()))
 
 export default app
