@@ -6,9 +6,9 @@ jobs:
     env:
       ImageOS: ubuntu22
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       # Maintain timestamps of previously published files
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: static
           path: _site
@@ -37,7 +37,7 @@ jobs:
       - run: rm -rf ./_site/cli && cp ./cli/bundled.ts ./_site/cli
       # Upload the static content as a workflow artifact when not publishing the site (non-main branches)
       - name: Archive site
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: site
           path: _site
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-22.04
     if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: site
           path: _site
@@ -61,3 +61,26 @@ jobs:
           BRANCH: static
           FOLDER: _site
           CLEAN: true
+
+  build-api:
+    runs-on: ubuntu-22.04
+    env:
+      ImageOS: ubuntu22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm i
+        working-directory: ./scripts
+      - run: npm i
+        working-directory: ./template-api
+      - run: npm run buildLib
+        working-directory: ./scripts
+      - run: npm run build
+        working-directory: ./template-api
+      - uses: cloudflare/wrangler-action@v3
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: "template-api"

@@ -6,8 +6,7 @@
     "dev": "vite build --watch -m development",
     "build": "npm run check && vite build",
     "buildLib": "BUILD_LIB=true vite build",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "postinstall": "patch-package"
+    "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "2.4.1",
