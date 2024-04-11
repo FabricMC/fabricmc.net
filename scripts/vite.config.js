@@ -15,7 +15,7 @@ function eta() {
 
   return {
     transform(template, id) {
-      if (id.match(/.eta$/)) return {
+      if (id.match(/\.eta$/)) return {
         code: `
           export default ${eta.compile(template)};
         `
