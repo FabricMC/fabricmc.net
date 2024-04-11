@@ -93,11 +93,12 @@ export async function generateTemplate(body: unknown): Promise<Response> {
 	}
 	await generator.generateTemplate(options)
 	let content = await zip.generateAsync({ type: "uint8array" })
+	const filename = `${modid}-template-${minecraftVersion}.zip`
 	return new Response(content, {
 		status: 200,
 		headers: {
 			"Content-Type": "application/zip",
-			"Content-Disposition": `attachment; filename="${data.modName}.zip"`
+			"Content-Disposition": `attachment; filename="${filename}"`
 		}
 	})
 }
