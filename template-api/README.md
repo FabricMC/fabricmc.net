@@ -7,7 +7,7 @@ Returns a zip file containing the generated mod template zip
 
 ### Request:
 
-```json
+```json5
 {
     "minecraftVersion": "1.20.4", // Optional, defaults to the latest stable version
     "modName": "Example Mod", // Optional, defaults to "Example Mod"
@@ -31,7 +31,7 @@ A zip file containing the generated mod. The `Content-Disposition` header will b
 
 An human reasonable error message, e.g "Invalid package name"
 
-```json
+```json5
 {
     "error": 400,
     "message": "A message that can be shown to the user",
@@ -53,7 +53,7 @@ You should gracefully handle unknown field names.
 Returns a list of the supported Minecraft versions, older snapshots arent supported.
 
 ### Response (200):
-```json
+```json5
 {
     "versions": [
         "24w13a": {
