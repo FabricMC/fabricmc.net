@@ -20,7 +20,7 @@
     "vite": "^4.3.9"
   },
   "dependencies": {
-    "eta": "^3.0.3",
+    "eta": "^3.4.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "vite-plugin-dts": "^2.3.0"

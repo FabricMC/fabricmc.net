@@ -1,0 +1,4 @@
+name = "template-api"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
