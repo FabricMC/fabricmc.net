@@ -1,4 +1,526 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2024-04-11T10:05:50+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20.3 &amp;amp; 1.20.4</title><link href="https://fabricmc.net/2023/11/30/1203.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.3 &amp;amp; 1.20.4" /><published>2023-11-30T00:00:00+00:00</published><updated>2023-11-30T00:00:00+00:00</updated><id>https://fabricmc.net/2023/11/30/1203</id><content type="html" xml:base="https://fabricmc.net/2023/11/30/1203.html">&lt;p&gt;It’s only been two months since we published the last article on Minecraft updates, but here we are. Minecraft 1.20.3 is to be released in the near future with some changes affecting mod makers.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2024-04-19T18:29:39+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.20.5</title><link href="https://fabricmc.net/2024/04/19/1205.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.5" /><published>2024-04-19T00:00:00+00:00</published><updated>2024-04-19T00:00:00+00:00</updated><id>https://fabricmc.net/2024/04/19/1205</id><content type="html" xml:base="https://fabricmc.net/2024/04/19/1205.html">&lt;p&gt;Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers.&lt;/p&gt;
+
+&lt;p&gt;But first, we need to make this clear: &lt;strong&gt;1.20.5 is a record-breaking update.&lt;/strong&gt; This development cycle spans from December 18, 2023 to April of 2024, the longest for any “dot release”. We saw 15 snapshots, the first time it became two digits for a dot release (previous record was 1.20.3 for 8 snapshots). And no surprise: the amount of changes is also unprecedented.&lt;/p&gt;
+
+&lt;p&gt;For this reason, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version.&lt;/strong&gt; We ask everyone kindly not to pester them. 1.20.5 is expected to be the last update of the 1.20 series.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;We recommend all players to make a backup of the world.&lt;/strong&gt; For content mod users, creating a new world is recommended, as most mods do not handle world data upgrades of this magnitude.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.&lt;/p&gt;
+
+&lt;h2 id=&quot;java-21&quot;&gt;Java 21&lt;/h2&gt;
+&lt;p&gt;Minecraft 1.20.5 now requires Java 21 to run. This means mods can be compiled for Java 21 and use the latest features. This also marks the end of 32-bit support.&lt;/p&gt;
+
+&lt;p&gt;To set up a development environment you will need to use Java 21, Loom 1.6, and Gradle 8.6 or higher.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
+&lt;p&gt;Developers should use Loom 1.6 (at the time of writing) to develop mods for Minecraft 1.20.5. Players should install the latest stable version of Fabric Loader (currently 0.15.10).&lt;/p&gt;
+
+&lt;h3 id=&quot;loom-15--16&quot;&gt;Loom 1.5 &amp;amp; 1.6&lt;/h3&gt;
+&lt;p&gt;There has been two major updates to Loom since the last blogpost: 1.5 and 1.6.&lt;/p&gt;
+
+&lt;p&gt;Loom 1.5 includes several performance boosts and small bug fixes. Notably, the mixins can now be remapped using the Tiny Remapper instead of Mixin annotation processor. When enabled, the mixins are remapped in-place and the output jar no longer contains a refmap. This is currently experimental and opt-in.&lt;/p&gt;
+
+&lt;p&gt;Loom 1.6 also brought more performance improvements. Decompiler caches were added, meaning that changes to access wideners no longer cause the entire game to be decompiled. There is also an update to how Loom handles existing locks (such as when two Gradle runs occur simultaneously) - it will no longer clear the cache, instead waiting for one process to exit. The error message for locked files is now more detailed, as well.&lt;/p&gt;
+
+&lt;p&gt;Please see the &lt;a href=&quot;https://github.com/FabricMC/fabric-loom/releases/tag/1.5&quot;&gt;Loom 1.5&lt;/a&gt; and &lt;a href=&quot;https://github.com/FabricMC/fabric-loom/releases/tag/1.6&quot;&gt;Loom 1.6&lt;/a&gt; release notes for all of the changes.&lt;/p&gt;
+
+&lt;h3 id=&quot;localization&quot;&gt;Localization&lt;/h3&gt;
+&lt;p&gt;Fabric has recently moved to using Crowdin to help manage translations for our projects. This makes it much easier to contribute translations across all Fabric projects.&lt;/p&gt;
+
+&lt;p&gt;Current projects include Fabric API and installer. &lt;!-- Docs are WIP --&gt; If you are able to help translate Fabric into your language, please visit &lt;a href=&quot;https://crowdin.com/project/fabricmc&quot;&gt;the Crowdin website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;new-fabric-api-changes&quot;&gt;New Fabric API changes&lt;/h3&gt;
+&lt;p&gt;With the help of many contributors, Fabric API has received some new features since the last update blog post:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;New API: Data Attachments. This allows attaching custom data to block entities, chunks, entites, and worlds. Attached data can be saved or persisted between mob conversions. (Syst3ms)&lt;/li&gt;
+  &lt;li&gt;Interaction Events: add client after block break event (kevinthegreat1)&lt;/li&gt;
+  &lt;li&gt;GameTest API: add a system property for a custom output directory for gametest structures (ErrorCraft)&lt;/li&gt;
+  &lt;li&gt;Entity Events: add mob conversion event (Syst3ms)&lt;/li&gt;
+  &lt;li&gt;Fabric Rendering: add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AtlasSourceTypeRegistry&lt;/code&gt; (PepperCode1)&lt;/li&gt;
+  &lt;li&gt;Data Generation: add &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricCodecDataProvider&lt;/code&gt; (ErrorCraft)&lt;/li&gt;
+  &lt;li&gt;Resource Loader: significant refactors to support &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pack.mcmeta&lt;/code&gt; metadata like filters and overlays. (apple502j)&lt;/li&gt;
+  &lt;li&gt;Fabric Rendering: add support for custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ColorResolver&lt;/code&gt;s (PepperCode1)&lt;/li&gt;
+  &lt;li&gt;Fluids Rendering: expose a function for querying the non-default fluid renderer (jellysquid3)&lt;/li&gt;
+  &lt;li&gt;Lifecycle Events: add save events to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerLifecycleEvents&lt;/code&gt; (MrNavaStar)&lt;/li&gt;
+  &lt;li&gt;Item API: add enchantments API (Syst3ms)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There is one more addition for advanced developers: you can now declare Fabric API as a dependency using BOM or version catalogs. Check &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/3487&quot;&gt;the pull request&lt;/a&gt; for more details.&lt;/p&gt;
+
+&lt;h3 id=&quot;breaking-changes-and-deprecations&quot;&gt;Breaking changes and deprecations&lt;/h3&gt;
+&lt;p&gt;&lt;em&gt;Note: breaking changes related to vanilla changes are discussed below.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The following APIs were removed:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-containers-v0&lt;/code&gt; (previously deprecated)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-events-lifecycle-v0&lt;/code&gt; (previously deprecated)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-mining-level-api-v1&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ScreenRegistry&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ScreenHandlerRegistry&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModifyItemAttributeModifiersCallback&lt;/code&gt; from the Item API was removed without replacement due to code changes making it infeasible to port.&lt;/p&gt;
+
+&lt;p&gt;In Object Builder API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItemSettings&lt;/code&gt; was removed. Use vanilla &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item.Settings&lt;/code&gt; instead; interface injection provides settings added by Fabric API. Similarly, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricBlockSettings&lt;/code&gt; was deprecated and replaced with vanilla &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractBlock.Settings&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricEntityTypeBuilder&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricBlockEntityTypeBuilder&lt;/code&gt; were also deprecated; use vanilla builders instead.&lt;/p&gt;
+
+&lt;h3 id=&quot;codec-based-resource-conditions&quot;&gt;Codec-based Resource Conditions&lt;/h3&gt;
+&lt;p&gt;Unrelated to the 1.20.5 update, a significant change was made to Resource Conditions’ internal workings. This update was developed by Apollo and apple502j. The only breaking change to the JSON syntax is the removal of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(block/item/fluid)_tags_populated&lt;/code&gt; conditions, but data generation is heavily affected.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConditionJsonProvider&lt;/code&gt; interface has been removed and been replaced by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceCondition&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceCondition&lt;/code&gt; has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test&lt;/code&gt; method, for determining whether the condition should pass, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getType&lt;/code&gt;, which returns a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceConditionType&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withConditions&lt;/code&gt; methods in data providers now take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceCondition&lt;/code&gt; instances. Methods in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DefaultResourceConditions&lt;/code&gt; that created conditions have been moved to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceConditions&lt;/code&gt;. A custom &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceConditionType&lt;/code&gt; should be registered with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceConditions#register&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In addition, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric:true&lt;/code&gt; condition was added. This condition always passes.&lt;/p&gt;
+
+&lt;h3 id=&quot;convention-tag-unification&quot;&gt;Convention Tag unification&lt;/h3&gt;
+&lt;p&gt;Another significant change was made in the Convention Tags. As part of collaborative efforts with NeoForge, TelepathicGrunt has prepared (and we released) the version 2 of the tags. Version 1 is now deprecated.&lt;/p&gt;
+
+&lt;p&gt;As the changes are too long to list here, developers are encouraged to check the &lt;a href=&quot;https://github.com/FabricMC/fabric/pull/3310&quot;&gt;pull request&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
+&lt;p&gt;In short, these are the veeery major changes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Item Components. Item stacks no longer use NBT as runtime data storage, instead using predefined “components” to keep values like custom name, enchantments, or damage.&lt;/li&gt;
+  &lt;li&gt;Networking. Instead of manually processing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;, packets are now serialized using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt;s. In Fabric Networking API, the previous &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;-based APIs were removed; the newer, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricPacket&lt;/code&gt;-based API was rewritten to make use of the vanilla &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt; interface.&lt;/li&gt;
+  &lt;li&gt;Registries. Likely as a preparation for data-driven blocks and items, serialization/deserialization of most objects now require &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryWrapper.WrapperLookup&lt;/code&gt; instance. This is most noticeable in texts and data generation. In addition, loot tables are now managed by a new type of registry called “reloadable registries”.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;item-components&quot;&gt;Item Components&lt;/h3&gt;
+&lt;p&gt;We skip the general description of the item components system, which you can check in the slicedlime’s video: &lt;a href=&quot;https://www.youtube.com/watch?v=iY9OHAd4Aco&quot;&gt;News in Data Pack Version 33 (24w09a): Item Components!&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now, we begin the journey into the implementation of item components:&lt;/p&gt;
+
+&lt;p&gt;There are five main objects in the item components:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponentType&lt;/code&gt;, a type of components, serving as keys;&lt;/li&gt;
+  &lt;li&gt;Component classes (can be any object), serving as values;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMap&lt;/code&gt;, a read-only view of components;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMapImpl&lt;/code&gt;, which is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMap&lt;/code&gt; that can be modified, and internally a pair of unmodifiable base &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMap&lt;/code&gt; and the “overrides” that are modified; and&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentChanges&lt;/code&gt;, a map of component type to the changes for the value (either setting it to a specific value or removing it). This can be used as a diff applied to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt;; you apply an instance of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentChanges&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMapImpl&lt;/code&gt;, so that the overrides part of the map reflects the changes. In other parts of the code, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentChanges&lt;/code&gt; is just used as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMapImpl&lt;/code&gt; minus the base.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, how does this work?&lt;/p&gt;
+
+&lt;p&gt;Each item has the base components. In addition to the base components common to all items, like having empty &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentsComponent&lt;/code&gt;, some items provide additional base components. A notable example is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponentTypes#DAMAGE&lt;/code&gt; for armors, tools, and weapons. A component type that exists in the base has a corresponding default value; here the default damage is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;An &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt; can either 1) add an additional component not present in the base; 2) change the components from the one in the base; or 3) remove a component that exists in the base. The final components of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt;, obtainable as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMap&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack#getComponents&lt;/code&gt;, reflects all three.&lt;/p&gt;
+
+&lt;h4 id=&quot;using-item-components&quot;&gt;Using Item Components&lt;/h4&gt;
+
+&lt;p&gt;Item components on item stacks have a similar API surface to a map. Here are some common operations that can be done, using the example of an item’s custom name (note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Text&lt;/code&gt; is directly used as the component value):&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Similar to Map#get&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Similar to Map#put&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Returns the previous value, if any&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;oldName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;literal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Lorem ipsum&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Similar to Map#getOrDefault&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getOrDefault&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Similar to Map#remove&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;removedName&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Similar to Map#compute&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// In this example, we change the color of the item name&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// (Note: stack#getName already checks for custom name, so in reality this does not need apply() call.)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;formatted&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Formatting&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RED&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Getting/setting the custom data (NBT). This is useful for datapack makers and server-side modders, because custom item components (see below) need to be synced to the clients, while custom data remains an unparsed NBT.&lt;/p&gt;
+
+&lt;p&gt;Unlike the previous example, this uses a component record &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtComponent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note: &lt;strong&gt;component values are supposed to be immutable&lt;/strong&gt; - even if you can modify it, don’t. Always copy and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;NbtCompound&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nbt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...;&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;NbtComponent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;component&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NbtComponent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nbt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Setting&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Getting a copy&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Nullable&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;NbtCompound&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;copyNbt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Using NbtComponent#apply, which copies automatically, to modify the NBT&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Note: you might want to use the static method NbtComponent#set instead,&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// which makes this a bit shorter&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NbtComponent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DEFAULT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;comp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;apply&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;currentNbt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;currentNbt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;putInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;key&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Checking if a certain NBT is a subset of the stack NBT&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// (also known as: &quot;non-strict matching&quot;)&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;NbtCompound&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;requiredNbt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getOrDefault&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_DATA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NbtComponent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DEFAULT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;matches&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;requiredNbt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// use createPredicate to make Predicate&amp;lt;ItemStack&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentChanges&lt;/code&gt; to mass-modify the components of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// stack is a damageable item.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Repair the item and remove custom name.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Note that the resulting stack has no components because 0 damage is the default from the base components.&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;changes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ComponentChanges&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DAMAGE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;applyChanges&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;changes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Making an item with base components:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Settings&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CUSTOM_NAME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;literal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Hello&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Call #component multiple times for multiple base components.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Note: calling maxDamage automatically adds DAMAGE component.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Making a custom component. Note that like many registered entries, these must be present in both the client and the server.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DataComponentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;WEIRDNESS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DataComponentType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;codec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Codec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;INT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;packetCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VAR_INT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// in the initializer&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Registry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Registries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;DATA_COMPONENT_TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;example&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;weirdness&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;WEIRDNESS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;some-caveats&quot;&gt;Some caveats&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Component values should not be modified directly. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Record&lt;/code&gt; or other immutable object is highly recommended. Always copy, modify, then set.&lt;/li&gt;
+  &lt;li&gt;Setting an invalid value for a component does not cause an error immediately, but will lead to a crash during save, and possible data corruption. A common example is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NONNEGATIVE_INT&lt;/code&gt; being used for an incrementing value; when it overflows and the value is set to negatives, saving it would crash.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;blockentity-interaction-with-components&quot;&gt;BlockEntity interaction with components&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockEntity&lt;/code&gt; stores the components when placing a block item stack with components and when pick-blocking. Components are not currently used to serialize block entities themselves. A block entity that uses components, like custom containers, should override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addComponents&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readComponents&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeFromCopiedStackNbt&lt;/code&gt; methods:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addComponents&lt;/code&gt; adds the block entity’s stored data to a component builder.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readComponents&lt;/code&gt; reads the block entity data from components.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeFromCopiedStackNbt&lt;/code&gt; removes NBT keys which are now serialized using components when in item stacks. For example, a chest’s held stacks are stored under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Items&lt;/code&gt; key when the block entity itself is serialized, and stored under a component when an item stack for the block entity is serialized. To prevent double serialization, this method removes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Items&lt;/code&gt; from the item stack NBT.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootableContainerBlockEntity&lt;/code&gt; handles component changes themselves, so you do not have to reinvent the wheel if you use them.&lt;/p&gt;
+
+&lt;h3 id=&quot;item-component-related-fabric-api-changes&quot;&gt;Item Component-related Fabric API changes&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;allowNbtUpdateAnimations&lt;/code&gt; method of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItem&lt;/code&gt; was renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;allowComponentsUpdateAnimations&lt;/code&gt;.
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItem.getAttributeModifiers&lt;/code&gt; changes?
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isSuitableFor&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getFoodComponents&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItemStack&lt;/code&gt; removed/replaced with vanilla components.&lt;/p&gt;
+
+&lt;h4 id=&quot;recipe-api&quot;&gt;Recipe API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DefaultCustomIngredients#nbt&lt;/code&gt; and support for NBT ingredients were removed, as the game no longer uses NBT to store item stack-specific data.&lt;/p&gt;
+
+&lt;p&gt;To check for custom name, enchantments, etc that were previously kept inside the NBT but are now recorded in the components (see below for details), use the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;components&lt;/code&gt; ingredient. To check for custom data component (a NBT data not used by the game but can be used by data packs or commands), use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;customData&lt;/code&gt; ingredient.&lt;/p&gt;
+
+&lt;h4 id=&quot;transfer-api&quot;&gt;Transfer API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransferVariant&lt;/code&gt; (such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FluidVariant&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemVariant&lt;/code&gt;) is now a pair of the object and the components, instead of the object and NBT. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getNbt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasNbt&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;nbtMatches&lt;/code&gt; methods were replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getComponents&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hasComponents&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;componentsMatch&lt;/code&gt; methods. The following methods were removed: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copyNbt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;copyOrCreateNbt&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toNbt&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toPacket&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FluidVariant#of&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemVariant#of&lt;/code&gt; now takes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentChanges&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Nullable NbtCompound&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TransferVariant&lt;/code&gt; is now serialized using codecs and packet codecs. Therefore, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fromNbt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fromPacket&lt;/code&gt; static methods were removed.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SingleVariantStorage#writeNbt&lt;/code&gt; instance method was removed; subclasses now provide separate methods named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writeNbt&lt;/code&gt;. Both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;readNbt&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writeNbt&lt;/code&gt; now require passing a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryWrapper.WrapperLookup&lt;/code&gt; instance; they should be available in the methods from which they are called (or you can use the world’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryManager&lt;/code&gt; instance).&lt;/p&gt;
+
+&lt;h3 id=&quot;other-item-changes&quot;&gt;Other Item changes&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;As noted in the video, an empty item stack is now serialized as omitting the field or an empty object. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack#fromNbt&lt;/code&gt; now returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Optional&amp;lt;ItemStack&amp;gt;&lt;/code&gt; while &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fromNbtOrEmpty&lt;/code&gt; supports empty NBT object. Both now require passing the registries. These methods log an error when an item with ID &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minecraft:air&lt;/code&gt; is encountered.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writeNbt&lt;/code&gt; method was renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;encode&lt;/code&gt;. The one with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtCompound&lt;/code&gt; argument allows adding to the existing compound, like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;writeNbt&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;The methods in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack&lt;/code&gt; that reference &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nbt&lt;/code&gt; are generally renamed to reference &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Components&lt;/code&gt; instead.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item#isNbtSynced&lt;/code&gt; was removed, specify custom packet codecs instead.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item#getBreakSound&lt;/code&gt; was added.&lt;/li&gt;
+  &lt;li&gt;Attack damage and mining speed of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MiningToolItem&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SwordItem&lt;/code&gt; are now specified in item settings via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;attributeModifiers&lt;/code&gt; setting.&lt;/li&gt;
+  &lt;li&gt;Item tooltips are now given a “tooltip type”, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TooltipContext&lt;/code&gt; is now under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemTooltipCallback&lt;/code&gt; Fabric API event now passes the type as well. Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hide_tooltip&lt;/code&gt; item component prevents the event from being invoked.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;item-damages&quot;&gt;Item damages&lt;/h4&gt;
+&lt;p&gt;When damaging an item stack held in the hands or in the armor slots, you now pass the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EquipmentSlot&lt;/code&gt; instead of a callback:&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- stack.damage(1, entity, p -&amp;gt; p.sendToolBreakStatus(Hand.MAIN_HAND));
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ stack.damage(1, entity, EquipmentSlot.MAINHAND);
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When damaging an item stack held by non-entities (like shears in dispensers), the stack must be broken by the newly passed callback, not by checking the return value.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- if (stack.damage(1, random, null)) stack.setCount(0);
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ stack.damage(1, random, null, () -&amp;gt; stack.setCount(0));
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In Fabric API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomDamageHandler&lt;/code&gt; callback’s signature was changed from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack stack, int amount, LivingEntity entity, Consumer breakCallback&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack stack, int amount, LivingEntity entity, EquipmentSlot slot, Runnable breakCallback&lt;/code&gt;. Additionally, calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;breakCallback&lt;/code&gt; now ignores the return value and vanilla damage handler (as the item is already broken).&lt;/p&gt;
+
+&lt;h3 id=&quot;networking&quot;&gt;Networking&lt;/h3&gt;
+&lt;p&gt;Previously, networking code was simple: reading from, and writing to, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;. Although this method still works, Mojang has added an abstraction layor: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt; works like the DataFixerUpper codecs used in JSON/NBT serialization - although they are not compatible with each other. To keep it simple, &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt; is a pair of deserializers and serializers&lt;/strong&gt; - or, decoders and encoders. This change reduces bugs related to wrong read/write order - which is one of the most difficult bugs to identify.&lt;/p&gt;
+
+&lt;h4 id=&quot;how-to-create-a-packetcodec&quot;&gt;How to create a PacketCodec&lt;/h4&gt;
+&lt;p&gt;Note: A new subclass of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;, &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryByteBuf&lt;/code&gt;, is used for PLAY-phase networking&lt;/strong&gt; (the one you’re probably using). For &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConfigurationNetworking&lt;/code&gt;, use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryByteBuf&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt;s are usually stored in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public static final&lt;/code&gt; field.&lt;/p&gt;
+
+&lt;p&gt;Suppose we are serializing this record:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;VirtualHugs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Note: replaced PacketByteBuf with RegistryByteBuf&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;VirtualHugs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readVarInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Instance method&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;writeVarInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Static method, buffer-first&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VirtualHugs&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;hugs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;writeVarInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hugs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The easy method - adopting existing code&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VirtualHugs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PACKET_CODEC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Or, using static method:&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;PACKET_CODEC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ofStatic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The new method - building codecs from other codecs, like in DataFixerUpper&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// &quot;tuple&quot; is an ordered, un-keyed set of stuff.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Up to 3 fields can be serialized with vanilla method.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// The constructor always comes last.&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;CODEC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;tuple&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VAR_INT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Or, since there is only one field in VirtualHugs, this works too.&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;CODEC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VAR_INT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;xmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;VirtualHugs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;You might see some nasty casting errors in some cases. Call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.cast()&lt;/code&gt; on the codec to make it go away;&lt;/strong&gt; it’s generally safe to do so.&lt;/p&gt;
+
+&lt;h4 id=&quot;advanced-packetcodecs-examples&quot;&gt;Advanced PacketCodecs examples&lt;/h4&gt;
+&lt;p&gt;Here are some more examples:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// For a singleton (like an empty packet). Encoding something other than INSTANCE will error.&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// It does not actually touch the buffer.&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;unit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Using PacketCodec from classic API&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Text&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TextCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;decode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;TextCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;encode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Codec for Optional&amp;lt;Text&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Compatible with PacketByteBuf#readOptional&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optText&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TextCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;PacketCodecs:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;optional&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Codec for List&amp;lt;String&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;strings&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// or Set&amp;lt;String&amp;gt;, each max 16 chars&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// both work fine, compatible with PacketByteBuf#readCollection&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stringSet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toCollection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;HashSet:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;stringSet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;collection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;HashSet:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Map&amp;lt;String, BlockPos&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;positions&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;HashMap:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BlockPos&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// What? DataFixerUpper codecs?&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Nah, these are just serialized as NBTs.&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;advancement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;codec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Advancement&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Serializing NbtCompound&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nbt&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NBT_COMPOUND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Serializing a registry value (by raw ID)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Note: these require RegistryByteBuf!&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registryValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryKeys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ITEM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Or, RegistryEntry&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Biome&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;biome&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registryEntry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryKeys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BIOME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Serializing an Enum&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axis&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodecs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;indexed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Direction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;VALUES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Direction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Axis&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ordinal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;fabric-networking-api&quot;&gt;Fabric Networking API&lt;/h4&gt;
+&lt;p&gt;Networking API no longer directly uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;, except in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoginNetworking&lt;/code&gt;. Instead, you need to subclass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt; and register it. Note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt; is a vanilla interface. While this is similar to the packet object-based networking introduced recently, it is different in some ways. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketType&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricPacket&lt;/code&gt; were, therefore, removed.)&lt;/p&gt;
+
+&lt;p&gt;Compare the following, pre-snapshot packet:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;UUID&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slapped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FabricPacket&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TYPE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;SlapPacket:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketByteBuf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readUuid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;PacketByteBuf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;writeUuid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slapped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And a new one:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;record&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;UUID&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slapped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomPayload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomPayload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PACKET_ID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CustomPayload&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...));&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;PacketCodec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RegistryByteBuf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;PACKET_CODEC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Uuids&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;xmap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;SlapPacket:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;SlapPacket:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slapped&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There are three differences you will notice:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Instead of now-removed &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricPacket&lt;/code&gt;, we implement &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt; implementation has its own &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload.Id&lt;/code&gt;. Unlike &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketType&lt;/code&gt;, it lacks reference to the decoder.&lt;/li&gt;
+  &lt;li&gt;The latter does not have a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; method or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;-taking constructor. Instead, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PACKET_CODEC&lt;/code&gt; field was added. (Note, you can make your &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt; from the constructor and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; method, so don’t just remove those!)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But, you may ask, how do you get the decoder if it’s not in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id&lt;/code&gt;? Good question. The answer: &lt;strong&gt;you need to register it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModInitializer&lt;/code&gt; on both ends (sender and receiver)&lt;/strong&gt;. In fact, Fabric API will happily crash if you don’t before calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;registerGlobalReceiver&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// SlapPacket is sent during gameplay&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// from the client to the server (serverbound; C2S)&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;PayloadTypeRegistry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playC2S&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Replace with configurationS2C, playS2C, etc.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Then, you can change the receiver. Instead of long parameters, the event callback now gets only 2 parameters: the payload that was sent, and a context object. (Don’t worry, it won’t eat the RAM.)&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- ServerPlayNetworking.registerGlobalReceiver(SlapPacket.TYPE, (packet, player, sender) -&amp;gt; {
+-   var world = player.getServerWorld();
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ServerPlayNetworking.registerGlobalReceiver(SlapPacket.PACKET_ID, (payload, context) -&amp;gt; {
++   var world = context.player().getServerWorld();
+&lt;/span&gt;    var entity = world.getEntity(packet.slapped());
+&lt;span class=&quot;err&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here are the available fields in the context object:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PayloadTypeRegistry&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;Class&lt;/th&gt;
+      &lt;th&gt;Fields&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;playC2S&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerPlayNetworking&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;player&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responseSender&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;playS2C&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientPlayNetworking&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;client&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;player&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responseSender&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;configurationC2S&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerConfigurationNetworking&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;networkHandler&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responseSender&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;configurationS2C&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ClientConfigurationNetworking&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responseSender&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the field shortcuts might be added later.&lt;/p&gt;
+
+&lt;p&gt;Finally, sending the packet also uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomPayload&lt;/code&gt;. &lt;strong&gt;Remember to register the codec first&lt;/strong&gt;!&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;ClientPlayNetworking&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// for PacketSender:&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;sender&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sendPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SlapPacket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(...));&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note: &lt;strong&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketSender&lt;/code&gt; no longer provides APIs that use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;.&lt;/strong&gt; For login networking where custom payloads are not used yet, use the subinterface &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LoginPacketSender&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Some other Networking API related changes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FutureListeners&lt;/code&gt; was removed.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenericFutureListener&lt;/code&gt;-taking methods in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketSender&lt;/code&gt; were removed. Use the one taking &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCallbacks&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ServerPlayNetworking#getServer&lt;/code&gt; was removed. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;handler.player.server&lt;/code&gt; should work.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;networking-adjacent-changes-in-fabric-api&quot;&gt;Networking-adjacent changes in Fabric API&lt;/h3&gt;
+&lt;h4 id=&quot;particles-api&quot;&gt;Particles API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricParticleTypes#complex&lt;/code&gt; now requires you to pass both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codec&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt; for serializing the particle type. The string-based parser, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParticleType.Factory&lt;/code&gt;, was removed.&lt;/p&gt;
+
+&lt;h4 id=&quot;recipe-api-1&quot;&gt;Recipe API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CustomIngredientSerializer&lt;/code&gt; must now override &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPacketCodec&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt; methods were removed. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ingredient#PACKET_CODEC&lt;/code&gt; for representing another ingredient (which Fabric API patches up to also support ours).&lt;/p&gt;
+
+&lt;h4 id=&quot;screen-handler-api&quot;&gt;Screen Handler API&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExtendedScreenHandlerType&lt;/code&gt; now uses a payload object instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketByteBuf&lt;/code&gt;. In the type constructor, you now need to pass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PacketCodec&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExtendedScreenHandlerType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;OvenScreenHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;OVEN&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExtendedScreenHandlerType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;syncId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inventory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;...,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OvenData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PACKET_CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Notice that the callback got &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;buf&lt;/code&gt;, as well. Note that the payload object can be of any type, whether it be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt; or your custom record. (These don’t have to be registered in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PayloadTypeRegistry&lt;/code&gt;.)&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExtendedScreenHandlerFactory#writeScreenOpeningData&lt;/code&gt; was replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getScreenOpeningData&lt;/code&gt;. It takes the player as the sole argument and returns the data class, in this case, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OvenData&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;registries&quot;&gt;Registries&lt;/h3&gt;
+&lt;h4 id=&quot;registrywrapper--datagen&quot;&gt;RegistryWrapper &amp;amp; datagen&lt;/h4&gt;
+&lt;p&gt;Many methods for serialization now require &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryWrapper.WrapperLookup&lt;/code&gt; instance. This is used to query registries, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryManager&lt;/code&gt; instance can be used for this purpose. This change is most prominent in text and data generation-related code. This registry is used to query data-driven values during serialization.&lt;/p&gt;
+
+&lt;p&gt;Data provider constructors in Fabric API now take &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryWrapper.WrapperLookup&lt;/code&gt; as a parameter; modders should change their constructors to take the instance and pass to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super&lt;/code&gt; constructor. In addition, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricAdvancementProvider#generateAdvancement&lt;/code&gt; now also passes the instance.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;public class TestBlockLootTableProvider extends FabricBlockLootTableProvider {
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;-    private TestBlockLootTableProvider(FabricDataOutput output) {
+-        super(output);
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+    private TestBlockLootTableProvider(FabricDataOutput output, CompletableFuture&amp;lt;RegistryWrapper.WrapperLookup&amp;gt; registryLookup) {
++        super(output, registryLookup);
+&lt;/span&gt;    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;loot-registries&quot;&gt;Loot Registries&lt;/h4&gt;
+&lt;p&gt;Loot tables (including loot-adjacent stuff, namely predicates and item modifiers) are now managed by a special type of registry, called “reloadable registries”. Unlike ordinary registries, they are reloaded during &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/reload&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootDataLookup&lt;/code&gt; was removed; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReloadableRegistries.Lookup&lt;/code&gt; can be obtained from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;server.getReloadableRegistries()&lt;/code&gt;. From there, item modifiers and predicates can be looked up via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getRegistryManager&lt;/code&gt;; a shortcut exists for loot tables via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getLootTable&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Registry-ification of loot table also means that they are now identified with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey&lt;/code&gt;. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey.of(RegistryKeys.LOOT_TABLE, id)&lt;/code&gt; to get the registry key. In Fabric API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VillagerInteractionRegistries#registerGiftLootTable&lt;/code&gt; now takes the registry key, while the ID-taking method is deprecated.&lt;/p&gt;
+
+&lt;p&gt;Fabric API’s Loot API received breaking changes. For the arguments passed to events, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResourceMaanger&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootManager&lt;/code&gt; is gone. In the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOAD_ALL&lt;/code&gt; event, the loot manager was replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Registry&amp;lt;LootTable&amp;gt;&lt;/code&gt;. In all places, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt; is replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey&lt;/code&gt; as described above. In addition, because mutating registry is impossible now, the loot tables are modified before addition; this means that per-table events don’t get the table registry anymore.&lt;/p&gt;
+
+&lt;h4 id=&quot;other-changes&quot;&gt;Other changes&lt;/h4&gt;
+&lt;p&gt;A new syncing protocol is in place for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryManager&lt;/code&gt; entries. Vanilla data packs provide &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knownPackInfo&lt;/code&gt; fields, which are sent by the server on joined clients. Clients then reply with the subset of the info they understand (i.e. loaded on their side). When a registry entry is loaded from a pack with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;knownPackInfo&lt;/code&gt;, and the client has acknowledged the info for the pack, the server tells the client to refer to its own copy of the data, skipping sending the serialized entry over the network. Most importantly, &lt;strong&gt;this is currently not used by mod-provided packs&lt;/strong&gt;, so the registry entries from mods will be sent even if the client has the same mod.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimpleRegistry&lt;/code&gt; no longer supports changing the registered value post-registration (such as by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;set&lt;/code&gt; method). For this reason, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryEntryRemovedCallback&lt;/code&gt; event and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;registeyEntryRemoved&lt;/code&gt; shortcut in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DynamicRegistryView&lt;/code&gt; were removed.&lt;/p&gt;
+
+&lt;p&gt;Finally, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SculkSensorFrequencyRegistry.register&lt;/code&gt; now takes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey&amp;lt;GameEvent&amp;gt;&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GameEvent&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;blocks&quot;&gt;Blocks&lt;/h3&gt;
+&lt;p&gt;All &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AbstractBlock&lt;/code&gt; public methods to be overridden were made &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; and no longer marked as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Deprecated&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity entity, BlockHitResult hit) {
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity entity, BlockHitResult hit) {
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;enchantments&quot;&gt;Enchantments&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enchantment&lt;/code&gt; constructor now takes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enchantment.Properties&lt;/code&gt;, a record of enchantment properties. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentTarget&lt;/code&gt; enum was replaced with tags that specifies enchantment-supporting items.&lt;/p&gt;
+
+&lt;h3 id=&quot;brewing&quot;&gt;Brewing&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricBrewingRecipeRegistry&lt;/code&gt; was replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricBrewingRecipeRegistryBuilder&lt;/code&gt;. The new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricBrewingRecipeRegistryBuilder.BUILD&lt;/code&gt; event can be used to add new recipes to the brewing stand.&lt;/p&gt;
+
+&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpawnRestriction.Location&lt;/code&gt; enum was replaced with an interface, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpawnLocation&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpawnLocationTypes&lt;/code&gt; provides predefined &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SpawnLocation&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
+&lt;p&gt;In GUI, setting the initial focus of a screen is now done by overriding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setInitialFocus&lt;/code&gt;, rather than calling it in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;init&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MatrixStack&lt;/code&gt; was replaced with the actual matrix in several rendering code.&lt;/p&gt;
+
+&lt;h3 id=&quot;other&quot;&gt;Other&lt;/h3&gt;
+&lt;p&gt;DataFixerUpper was updated. This includes several breaking changes, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MapCodec&lt;/code&gt; being used in places defining extra fields. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RecordCodecBuilder#mapCodec&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;create&lt;/code&gt; in this case. Another significant change: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;optionalFieldOf&lt;/code&gt; is now strict by default. This means that a decoding error in the field value is now treated as an error, instead of being silently skipped. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;lenientOptionalFieldOf&lt;/code&gt; method restores old behavior.&lt;/p&gt;
+
+&lt;p&gt;On the Minecraft game code side, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Util#getResult&lt;/code&gt; was replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;decode(...).getOrThrow()&lt;/code&gt; method. Several methods and fields in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codecs&lt;/code&gt; were moved to the DFU itself, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;either&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;xor&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;withAlternative&lt;/code&gt; (formerly &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codecs#alternatively&lt;/code&gt;).&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers.</summary></entry><entry><title type="html">Fabric for Minecraft 1.20.3 &amp;amp; 1.20.4</title><link href="https://fabricmc.net/2023/11/30/1203.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.20.3 &amp;amp; 1.20.4" /><published>2023-11-30T00:00:00+00:00</published><updated>2023-11-30T00:00:00+00:00</updated><id>https://fabricmc.net/2023/11/30/1203</id><content type="html" xml:base="https://fabricmc.net/2023/11/30/1203.html">&lt;p&gt;It’s only been two months since we published the last article on Minecraft updates, but here we are. Minecraft 1.20.3 is to be released in the near future with some changes affecting mod makers.&lt;/p&gt;
 
 &lt;p&gt;As usual, we ask players to be patient, and give mod developers time to update to this new version. Given the rather short interval between updates, some authors may choose to have a rest and skip some versions; we ask everyone kindly not to pester them.&lt;/p&gt;
 
@@ -1248,69 +1770,4 @@ This provides a compile-time guarantee against calling client-only Minecraft cod
 
 &lt;p&gt;The fourth edition of the All Of Fabric modpack will available on Curseforge very soon.&lt;/p&gt;
 
-&lt;p&gt;AOF4 includes a wide slection of 1.17 Fabric mods. It will continue to receive updates as mods get ported, and new mods get created.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17: Caves &amp;amp; Cliffs, Part 1 is now released, and along with it, Fabric itself and many mods already.</summary></entry><entry><title type="html">Minecraft 1.17 for Mod Developers</title><link href="https://fabricmc.net/2021/05/27/117-for-developers.html" rel="alternate" type="text/html" title="Minecraft 1.17 for Mod Developers" /><published>2021-05-27T00:00:00+00:00</published><updated>2021-05-27T00:00:00+00:00</updated><id>https://fabricmc.net/2021/05/27/117-for-developers</id><content type="html" xml:base="https://fabricmc.net/2021/05/27/117-for-developers.html">&lt;p&gt;Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.&lt;/p&gt;
-
-&lt;p&gt;The pre-releases are a great time to start updating your mods in preparation for the final release. In the past most mods updated during the pre-release stage kept working on the final stable release with few or no further changes.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/goat.png&quot; alt=&quot;A goat in a geode&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;java-16&quot;&gt;Java 16&lt;/h2&gt;
-
-&lt;p&gt;Minecraft 1.17 is now built against Java 16; this is a big step up from Java 8 and will affect modders. To set up a development environment you will need to use Java 16, Gradle 7 and fabric-loom 0.8 or higher. In most cases this will not break your existing code (excluding the normal porting procedure). There is a 1.17 branch of the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/tree/1.17&quot;&gt;fabric-example-mod&lt;/a&gt; that should help get you started. Look at the &lt;a href=&quot;https://github.com/FabricMC/fabric-example-mod/compare/29c522536fc16233833221e22eed3f106c0726bc...1.17&quot;&gt;1.17+Java 16 migration changes&lt;/a&gt; which should apply similarly to most mods. We have created a specific channel named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;#mod-dev-gradle-ides&lt;/code&gt; on the &lt;a href=&quot;https://discord.gg/v6v4pMv&quot;&gt;official Discord server&lt;/a&gt; if you need some help with getting setup.&lt;/p&gt;
-
-&lt;p&gt;We have used this opportunity to migrate most of the modder- and contributor-facing tools to Java 16. Player-facing projects only use Java 16 if Minecraft doesn’t require it anyway in all relevant scenarios. The Fabric Loader and Installer, and their dependency libraries, will still target Java 8 as they are cross-version.&lt;/p&gt;
-
-&lt;h2 id=&quot;fabric-api&quot;&gt;Fabric API&lt;/h2&gt;
-
-&lt;p&gt;Fabric API has been fully updated to Java 16 and 1.17. It doesn’t use any Java 16 features yet, nor will it break compatibility to adopt any. New or updated modules may introduce records and other features into the API where it makes sense, the implementation is expected to use Java 16 features where it doesn’t harm necessary backporting too much.&lt;/p&gt;
-
-&lt;p&gt;Since 1.16 released, we have added a number of new APIs that can be used:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Reworked networking API, closer to what the vanilla network protocol allows (i509VCB, liach)&lt;/li&gt;
-  &lt;li&gt;World Renderer events for a variety of hooks to render custom world content outside the usual facilities and some behavior modification opportunities to e.g. customize block outlines (grondag)&lt;/li&gt;
-  &lt;li&gt;Screen API with many events to react to or influence behavior in GUIs (i509VCB)&lt;/li&gt;
-  &lt;li&gt;Client Side Commands to use command input for client purposes like visual config changes (Juuxel)&lt;/li&gt;
-  &lt;li&gt;API Lookup API to obtain API references without having to attach interfaces to classes directly and help with context binding, a building block for universal APIs like Fluid I/O (Technici4n)&lt;/li&gt;
-  &lt;li&gt;a variety of smaller or more focused additions and enhancements (see GitHub)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;yarn&quot;&gt;Yarn&lt;/h2&gt;
-
-&lt;h3 id=&quot;constants&quot;&gt;Constants&lt;/h3&gt;
-
-&lt;p&gt;In 1.17, Mojang no longer strips out unused code including the constant fields that are inlined by the Java compiler. We have seamlessly integrated &lt;a href=&quot;https://github.com/FabricMC/unpick&quot;&gt;unpick&lt;/a&gt; (created by Daomephsta) into the Fabric toolchain to undo some of this inlining. Once you have updated your development environment to 1.17, you can also use these constants in your mod code just like you would with any other field.&lt;/p&gt;
-
-&lt;h4 id=&quot;before&quot;&gt;Before&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;Note the hard to understand flag &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;26&lt;/code&gt; passed into the last parameter of setBlockState&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java=&quot;&gt;protected boolean place(ItemPlacementContext context, BlockState state) {
-   return context.getWorld().setBlockState(context.getBlockPos(), state, 26);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id=&quot;after&quot;&gt;After&lt;/h4&gt;
-
-&lt;p&gt;&lt;em&gt;In 1.17 this has been simplified to clearly show the true meaning of this flag.&lt;/em&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-java=&quot;&gt;protected boolean place(ItemPlacementContext context, BlockState state) {
-   return context.getWorld().setBlockState(context.getBlockPos(), state, Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD | Block.FORCE_STATE);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;names&quot;&gt;Names&lt;/h3&gt;
-
-&lt;p&gt;During the 1.17 snapshot season, some important classes have been renamed in Yarn.&lt;/p&gt;
-
-&lt;p&gt;The most notable instance is the rename of all NBT-related classes thanks to contributor &lt;a href=&quot;https://github.com/LambdAurora&quot;&gt;@LambdAurora&lt;/a&gt;. This is to prevent confusion between the data-driven &lt;a href=&quot;https://minecraft.fandom.com/wiki/Tag&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.minecraft.tag.Tag&lt;/code&gt;s&lt;/a&gt; and NBT tag interface &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;net.minecraft.nbt.Tag&lt;/code&gt;, which is now named &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NbtElement&lt;/code&gt; instead.&lt;/p&gt;
-
-&lt;p&gt;You can use the automated &lt;a href=&quot;https://fabricmc.net/wiki/tutorial:migratemappings&quot;&gt;migrateMappings&lt;/a&gt; task in Loom to transition to the new names efficiently. Since 1.16.5, there have been over 500 commits to Yarn, all working to improve coverage and quality. Major class renames will be paused when 1.17 is released; these will be done in the 1.18 snapshots instead.&lt;/p&gt;
-
-&lt;h3 id=&quot;documentation&quot;&gt;Documentation&lt;/h3&gt;
-
-&lt;p&gt;Trying to document the Minecraft codebase is a massive job, especially as it is constantly evolving. Improving the documentation provided by Yarn is an ongoing effort by all of the contributors. You can view the online Javadoc for 1.17 pre-release 1 &lt;a href=&quot;https://maven.fabricmc.net/docs/yarn-1.17-pre1+build.1/index.html&quot;&gt;here&lt;/a&gt; or inline with the decompiled and named Minecraft sources directly attached in your IDE.&lt;/p&gt;
-
-&lt;h2 id=&quot;curseforge&quot;&gt;CurseForge&lt;/h2&gt;
-
-&lt;p&gt;CurseForge have recently announced in their &lt;a href=&quot;https://mailchi.mp/844b51b9bdf1/whats-new-with-overwolf-curseforge-may2-edited&quot;&gt;May Updates blog post&lt;/a&gt; that they will be adding native Fabric support to their client. In preparation for this, they have asked all mod developers to ensure that uploaded files are correctly tagged against the relevant mod loader. The linked blog post contains details on how to do this.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17 has just entered its pre-release cycle meaning that a full stable release is only a few weeks away. When it is released we will have a player-oriented blog post, this post is aimed towards mod developers.</summary></entry></feed>
+&lt;p&gt;AOF4 includes a wide slection of 1.17 Fabric mods. It will continue to receive updates as mods get ported, and new mods get created.&lt;/p&gt;</content><author><name></name></author><summary type="html">Minecraft 1.17: Caves &amp;amp; Cliffs, Part 1 is now released, and along with it, Fabric itself and many mods already.</summary></entry></feed>

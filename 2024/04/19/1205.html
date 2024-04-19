@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.20.5 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.20.5" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers." />
+<meta property="og:description" content="Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers." />
+<link rel="canonical" href="https://fabricmc.net/2024/04/19/1205.html" />
+<meta property="og:url" content="https://fabricmc.net/2024/04/19/1205.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-04-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.20.5" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.20.5","dateModified":"2024-04-19T00:00:00+00:00","datePublished":"2024-04-19T00:00:00+00:00","description":"Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers.","url":"https://fabricmc.net/2024/04/19/1205.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/04/19/1205.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1713551379">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1713551379"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">Download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">Blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">Develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">Discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.20.5</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-04-19T00:00:00+00:00" itemprop="datePublished">Apr 19, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers.</p>
+
+<p>But first, we need to make this clear: <strong>1.20.5 is a record-breaking update.</strong> This development cycle spans from December 18, 2023 to April of 2024, the longest for any “dot release”. We saw 15 snapshots, the first time it became two digits for a dot release (previous record was 1.20.3 for 8 snapshots). And no surprise: the amount of changes is also unprecedented.</p>
+
+<p>For this reason, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We ask everyone kindly not to pester them. 1.20.5 is expected to be the last update of the 1.20 series.</p>
+
+<p><strong>We recommend all players to make a backup of the world.</strong> For content mod users, creating a new world is recommended, as most mods do not handle world data upgrades of this magnitude.</p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="java-21">Java 21</h2>
+<p>Minecraft 1.20.5 now requires Java 21 to run. This means mods can be compiled for Java 21 and use the latest features. This also marks the end of 32-bit support.</p>
+
+<p>To set up a development environment you will need to use Java 21, Loom 1.6, and Gradle 8.6 or higher.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.6 (at the time of writing) to develop mods for Minecraft 1.20.5. Players should install the latest stable version of Fabric Loader (currently 0.15.10).</p>
+
+<h3 id="loom-15--16">Loom 1.5 &amp; 1.6</h3>
+<p>There has been two major updates to Loom since the last blogpost: 1.5 and 1.6.</p>
+
+<p>Loom 1.5 includes several performance boosts and small bug fixes. Notably, the mixins can now be remapped using the Tiny Remapper instead of Mixin annotation processor. When enabled, the mixins are remapped in-place and the output jar no longer contains a refmap. This is currently experimental and opt-in.</p>
+
+<p>Loom 1.6 also brought more performance improvements. Decompiler caches were added, meaning that changes to access wideners no longer cause the entire game to be decompiled. There is also an update to how Loom handles existing locks (such as when two Gradle runs occur simultaneously) - it will no longer clear the cache, instead waiting for one process to exit. The error message for locked files is now more detailed, as well.</p>
+
+<p>Please see the <a href="https://github.com/FabricMC/fabric-loom/releases/tag/1.5">Loom 1.5</a> and <a href="https://github.com/FabricMC/fabric-loom/releases/tag/1.6">Loom 1.6</a> release notes for all of the changes.</p>
+
+<h3 id="localization">Localization</h3>
+<p>Fabric has recently moved to using Crowdin to help manage translations for our projects. This makes it much easier to contribute translations across all Fabric projects.</p>
+
+<p>Current projects include Fabric API and installer. <!-- Docs are WIP --> If you are able to help translate Fabric into your language, please visit <a href="https://crowdin.com/project/fabricmc">the Crowdin website</a>.</p>
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+<p>With the help of many contributors, Fabric API has received some new features since the last update blog post:</p>
+
+<ul>
+  <li>New API: Data Attachments. This allows attaching custom data to block entities, chunks, entites, and worlds. Attached data can be saved or persisted between mob conversions. (Syst3ms)</li>
+  <li>Interaction Events: add client after block break event (kevinthegreat1)</li>
+  <li>GameTest API: add a system property for a custom output directory for gametest structures (ErrorCraft)</li>
+  <li>Entity Events: add mob conversion event (Syst3ms)</li>
+  <li>Fabric Rendering: add <code class="language-plaintext highlighter-rouge">AtlasSourceTypeRegistry</code> (PepperCode1)</li>
+  <li>Data Generation: add <code class="language-plaintext highlighter-rouge">FabricCodecDataProvider</code> (ErrorCraft)</li>
+  <li>Resource Loader: significant refactors to support <code class="language-plaintext highlighter-rouge">pack.mcmeta</code> metadata like filters and overlays. (apple502j)</li>
+  <li>Fabric Rendering: add support for custom <code class="language-plaintext highlighter-rouge">ColorResolver</code>s (PepperCode1)</li>
+  <li>Fluids Rendering: expose a function for querying the non-default fluid renderer (jellysquid3)</li>
+  <li>Lifecycle Events: add save events to <code class="language-plaintext highlighter-rouge">ServerLifecycleEvents</code> (MrNavaStar)</li>
+  <li>Item API: add enchantments API (Syst3ms)</li>
+</ul>
+
+<p>There is one more addition for advanced developers: you can now declare Fabric API as a dependency using BOM or version catalogs. Check <a href="https://github.com/FabricMC/fabric/pull/3487">the pull request</a> for more details.</p>
+
+<h3 id="breaking-changes-and-deprecations">Breaking changes and deprecations</h3>
+<p><em>Note: breaking changes related to vanilla changes are discussed below.</em></p>
+
+<p>The following APIs were removed:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fabric-containers-v0</code> (previously deprecated)</li>
+  <li><code class="language-plaintext highlighter-rouge">fabric-events-lifecycle-v0</code> (previously deprecated)</li>
+  <li><code class="language-plaintext highlighter-rouge">fabric-mining-level-api-v1</code></li>
+  <li><code class="language-plaintext highlighter-rouge">ScreenRegistry</code> and <code class="language-plaintext highlighter-rouge">ScreenHandlerRegistry</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">ModifyItemAttributeModifiersCallback</code> from the Item API was removed without replacement due to code changes making it infeasible to port.</p>
+
+<p>In Object Builder API, <code class="language-plaintext highlighter-rouge">FabricItemSettings</code> was removed. Use vanilla <code class="language-plaintext highlighter-rouge">Item.Settings</code> instead; interface injection provides settings added by Fabric API. Similarly, <code class="language-plaintext highlighter-rouge">FabricBlockSettings</code> was deprecated and replaced with vanilla <code class="language-plaintext highlighter-rouge">AbstractBlock.Settings</code>. <code class="language-plaintext highlighter-rouge">FabricEntityTypeBuilder</code> and <code class="language-plaintext highlighter-rouge">FabricBlockEntityTypeBuilder</code> were also deprecated; use vanilla builders instead.</p>
+
+<h3 id="codec-based-resource-conditions">Codec-based Resource Conditions</h3>
+<p>Unrelated to the 1.20.5 update, a significant change was made to Resource Conditions’ internal workings. This update was developed by Apollo and apple502j. The only breaking change to the JSON syntax is the removal of <code class="language-plaintext highlighter-rouge">(block/item/fluid)_tags_populated</code> conditions, but data generation is heavily affected.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ConditionJsonProvider</code> interface has been removed and been replaced by <code class="language-plaintext highlighter-rouge">ResourceCondition</code>. <code class="language-plaintext highlighter-rouge">ResourceCondition</code> has a <code class="language-plaintext highlighter-rouge">test</code> method, for determining whether the condition should pass, and <code class="language-plaintext highlighter-rouge">getType</code>, which returns a <code class="language-plaintext highlighter-rouge">ResourceConditionType</code>. <code class="language-plaintext highlighter-rouge">withConditions</code> methods in data providers now take <code class="language-plaintext highlighter-rouge">ResourceCondition</code> instances. Methods in <code class="language-plaintext highlighter-rouge">DefaultResourceConditions</code> that created conditions have been moved to <code class="language-plaintext highlighter-rouge">ResourceConditions</code>. A custom <code class="language-plaintext highlighter-rouge">ResourceConditionType</code> should be registered with <code class="language-plaintext highlighter-rouge">ResourceConditions#register</code>.</p>
+
+<p>In addition, <code class="language-plaintext highlighter-rouge">fabric:true</code> condition was added. This condition always passes.</p>
+
+<h3 id="convention-tag-unification">Convention Tag unification</h3>
+<p>Another significant change was made in the Convention Tags. As part of collaborative efforts with NeoForge, TelepathicGrunt has prepared (and we released) the version 2 of the tags. Version 1 is now deprecated.</p>
+
+<p>As the changes are too long to list here, developers are encouraged to check the <a href="https://github.com/FabricMC/fabric/pull/3310">pull request</a>.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+<p>In short, these are the veeery major changes:</p>
+
+<ul>
+  <li>Item Components. Item stacks no longer use NBT as runtime data storage, instead using predefined “components” to keep values like custom name, enchantments, or damage.</li>
+  <li>Networking. Instead of manually processing <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>, packets are now serialized using <code class="language-plaintext highlighter-rouge">PacketCodec</code>s. In Fabric Networking API, the previous <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>-based APIs were removed; the newer, <code class="language-plaintext highlighter-rouge">FabricPacket</code>-based API was rewritten to make use of the vanilla <code class="language-plaintext highlighter-rouge">CustomPayload</code> interface.</li>
+  <li>Registries. Likely as a preparation for data-driven blocks and items, serialization/deserialization of most objects now require <code class="language-plaintext highlighter-rouge">RegistryWrapper.WrapperLookup</code> instance. This is most noticeable in texts and data generation. In addition, loot tables are now managed by a new type of registry called “reloadable registries”.</li>
+</ul>
+
+<h3 id="item-components">Item Components</h3>
+<p>We skip the general description of the item components system, which you can check in the slicedlime’s video: <a href="https://www.youtube.com/watch?v=iY9OHAd4Aco">News in Data Pack Version 33 (24w09a): Item Components!</a>.</p>
+
+<p>Now, we begin the journey into the implementation of item components:</p>
+
+<p>There are five main objects in the item components:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DataComponentType</code>, a type of components, serving as keys;</li>
+  <li>Component classes (can be any object), serving as values;</li>
+  <li><code class="language-plaintext highlighter-rouge">ComponentMap</code>, a read-only view of components;</li>
+  <li><code class="language-plaintext highlighter-rouge">ComponentMapImpl</code>, which is a <code class="language-plaintext highlighter-rouge">ComponentMap</code> that can be modified, and internally a pair of unmodifiable base <code class="language-plaintext highlighter-rouge">ComponentMap</code> and the “overrides” that are modified; and</li>
+  <li><code class="language-plaintext highlighter-rouge">ComponentChanges</code>, a map of component type to the changes for the value (either setting it to a specific value or removing it). This can be used as a diff applied to <code class="language-plaintext highlighter-rouge">ItemStack</code>; you apply an instance of <code class="language-plaintext highlighter-rouge">ComponentChanges</code> to <code class="language-plaintext highlighter-rouge">ItemStack</code>/<code class="language-plaintext highlighter-rouge">ComponentMapImpl</code>, so that the overrides part of the map reflects the changes. In other parts of the code, <code class="language-plaintext highlighter-rouge">ComponentChanges</code> is just used as <code class="language-plaintext highlighter-rouge">ComponentMapImpl</code> minus the base.</li>
+</ul>
+
+<p>So, how does this work?</p>
+
+<p>Each item has the base components. In addition to the base components common to all items, like having empty <code class="language-plaintext highlighter-rouge">EnchantmentsComponent</code>, some items provide additional base components. A notable example is <code class="language-plaintext highlighter-rouge">DataComponentTypes#DAMAGE</code> for armors, tools, and weapons. A component type that exists in the base has a corresponding default value; here the default damage is <code class="language-plaintext highlighter-rouge">0</code>.</p>
+
+<p>An <code class="language-plaintext highlighter-rouge">ItemStack</code> can either 1) add an additional component not present in the base; 2) change the components from the one in the base; or 3) remove a component that exists in the base. The final components of <code class="language-plaintext highlighter-rouge">ItemStack</code>, obtainable as <code class="language-plaintext highlighter-rouge">ComponentMap</code> from <code class="language-plaintext highlighter-rouge">ItemStack#getComponents</code>, reflects all three.</p>
+
+<h4 id="using-item-components">Using Item Components</h4>
+
+<p>Item components on item stacks have a similar API surface to a map. Here are some common operations that can be done, using the example of an item’s custom name (note that <code class="language-plaintext highlighter-rouge">Text</code> is directly used as the component value):</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Similar to Map#get</span>
+<span class="nd">@Nullable</span> <span class="nc">Text</span> <span class="n">name</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">);</span>
+
+<span class="c1">// Similar to Map#put</span>
+<span class="c1">// Returns the previous value, if any</span>
+<span class="nd">@Nullable</span> <span class="nc">Text</span> <span class="n">oldName</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">,</span> <span class="nc">Text</span><span class="o">.</span><span class="na">literal</span><span class="o">(</span><span class="s">"Lorem ipsum"</span><span class="o">));</span>
+
+<span class="c1">// Similar to Map#getOrDefault</span>
+<span class="n">name</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">,</span> <span class="nc">Text</span><span class="o">.</span><span class="na">empty</span><span class="o">());</span>
+
+<span class="c1">// Similar to Map#remove</span>
+<span class="nd">@Nullable</span> <span class="nc">Text</span> <span class="n">removedName</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">);</span>
+
+<span class="c1">// Similar to Map#compute</span>
+<span class="c1">// In this example, we change the color of the item name</span>
+<span class="c1">// (Note: stack#getName already checks for custom name, so in reality this does not need apply() call.)</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">,</span> <span class="n">stack</span><span class="o">.</span><span class="na">getName</span><span class="o">(),</span> <span class="n">current</span> <span class="o">-&gt;</span> <span class="n">current</span><span class="o">.</span><span class="na">copy</span><span class="o">().</span><span class="na">formatted</span><span class="o">(</span><span class="nc">Formatting</span><span class="o">.</span><span class="na">RED</span><span class="o">))</span>
+</code></pre></div></div>
+
+<p>Getting/setting the custom data (NBT). This is useful for datapack makers and server-side modders, because custom item components (see below) need to be synced to the clients, while custom data remains an unparsed NBT.</p>
+
+<p>Unlike the previous example, this uses a component record <code class="language-plaintext highlighter-rouge">NbtComponent</code>.</p>
+
+<p>Note: <strong>component values are supposed to be immutable</strong> - even if you can modify it, don’t. Always copy and <code class="language-plaintext highlighter-rouge">set()</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">NbtCompound</span> <span class="n">nbt</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="nc">NbtComponent</span> <span class="n">component</span> <span class="o">=</span> <span class="nc">NbtComponent</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">nbt</span><span class="o">);</span>
+<span class="c1">// Setting</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_DATA</span><span class="o">,</span> <span class="n">component</span><span class="o">);</span>
+
+<span class="c1">// Getting a copy</span>
+<span class="nd">@Nullable</span> <span class="kt">var</span> <span class="n">data</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_DATA</span><span class="o">);</span>
+
+<span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">NbtCompound</span> <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">copyNbt</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="c1">// Using NbtComponent#apply, which copies automatically, to modify the NBT</span>
+<span class="c1">// Note: you might want to use the static method NbtComponent#set instead,</span>
+<span class="c1">// which makes this a bit shorter</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_DATA</span><span class="o">,</span> <span class="nc">NbtComponent</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">,</span> <span class="n">comp</span> <span class="o">-&gt;</span> <span class="n">comp</span><span class="o">.</span><span class="na">apply</span><span class="o">(</span><span class="n">currentNbt</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="n">currentNbt</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="s">"key"</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="o">}));</span>
+
+<span class="c1">// Checking if a certain NBT is a subset of the stack NBT</span>
+<span class="c1">// (also known as: "non-strict matching")</span>
+<span class="nc">NbtCompound</span> <span class="n">requiredNbt</span> <span class="o">=</span> <span class="o">...;</span>
+<span class="kt">boolean</span> <span class="n">match</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">getOrDefault</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_DATA</span><span class="o">,</span> <span class="nc">NbtComponent</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">).</span><span class="na">matches</span><span class="o">(</span><span class="n">requiredNbt</span><span class="o">);</span>
+<span class="c1">// use createPredicate to make Predicate&lt;ItemStack&gt;</span>
+</code></pre></div></div>
+
+<p>Using <code class="language-plaintext highlighter-rouge">ComponentChanges</code> to mass-modify the components of <code class="language-plaintext highlighter-rouge">ItemStack</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// stack is a damageable item.</span>
+<span class="c1">// Repair the item and remove custom name.</span>
+<span class="c1">// Note that the resulting stack has no components because 0 damage is the default from the base components.</span>
+<span class="kt">var</span> <span class="n">changes</span> <span class="o">=</span> <span class="nc">ComponentChanges</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">DAMAGE</span><span class="o">,</span> <span class="mi">0</span><span class="o">).</span><span class="na">remove</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+<span class="n">stack</span><span class="o">.</span><span class="na">applyChanges</span><span class="o">(</span><span class="n">changes</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Making an item with base components:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Item</span><span class="o">(</span><span class="k">new</span> <span class="nc">Item</span><span class="o">.</span><span class="na">Settings</span><span class="o">().</span><span class="na">component</span><span class="o">(</span><span class="nc">DataComponentTypes</span><span class="o">.</span><span class="na">CUSTOM_NAME</span><span class="o">,</span> <span class="nc">Text</span><span class="o">.</span><span class="na">literal</span><span class="o">(</span><span class="s">"Hello"</span><span class="o">)));</span>
+<span class="c1">// Call #component multiple times for multiple base components.</span>
+<span class="c1">// Note: calling maxDamage automatically adds DAMAGE component.</span>
+</code></pre></div></div>
+
+<p>Making a custom component. Note that like many registered entries, these must be present in both the client and the server.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">DataComponentType</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="no">WEIRDNESS</span> <span class="o">=</span> <span class="nc">DataComponentType</span><span class="o">.</span><span class="na">builder</span><span class="o">().</span><span class="na">codec</span><span class="o">(</span><span class="nc">Codec</span><span class="o">.</span><span class="na">INT</span><span class="o">).</span><span class="na">packetCodec</span><span class="o">(</span><span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">VAR_INT</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+<span class="c1">// in the initializer</span>
+<span class="nc">Registry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">Registries</span><span class="o">.</span><span class="na">DATA_COMPONENT_TYPE</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Identifier</span><span class="o">(</span><span class="s">"example"</span><span class="o">,</span> <span class="s">"weirdness"</span><span class="o">),</span> <span class="no">WEIRDNESS</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h4 id="some-caveats">Some caveats</h4>
+<ul>
+  <li>Component values should not be modified directly. Using <code class="language-plaintext highlighter-rouge">Record</code> or other immutable object is highly recommended. Always copy, modify, then set.</li>
+  <li>Setting an invalid value for a component does not cause an error immediately, but will lead to a crash during save, and possible data corruption. A common example is <code class="language-plaintext highlighter-rouge">NONNEGATIVE_INT</code> being used for an incrementing value; when it overflows and the value is set to negatives, saving it would crash.</li>
+</ul>
+
+<h3 id="blockentity-interaction-with-components">BlockEntity interaction with components</h3>
+<p><code class="language-plaintext highlighter-rouge">BlockEntity</code> stores the components when placing a block item stack with components and when pick-blocking. Components are not currently used to serialize block entities themselves. A block entity that uses components, like custom containers, should override <code class="language-plaintext highlighter-rouge">addComponents</code>, <code class="language-plaintext highlighter-rouge">readComponents</code>, and <code class="language-plaintext highlighter-rouge">removeFromCopiedStackNbt</code> methods:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">addComponents</code> adds the block entity’s stored data to a component builder.</li>
+  <li><code class="language-plaintext highlighter-rouge">readComponents</code> reads the block entity data from components.</li>
+  <li><code class="language-plaintext highlighter-rouge">removeFromCopiedStackNbt</code> removes NBT keys which are now serialized using components when in item stacks. For example, a chest’s held stacks are stored under <code class="language-plaintext highlighter-rouge">Items</code> key when the block entity itself is serialized, and stored under a component when an item stack for the block entity is serialized. To prevent double serialization, this method removes <code class="language-plaintext highlighter-rouge">Items</code> from the item stack NBT.</li>
+</ul>
+
+<p>Note that <code class="language-plaintext highlighter-rouge">LootableContainerBlockEntity</code> handles component changes themselves, so you do not have to reinvent the wheel if you use them.</p>
+
+<h3 id="item-component-related-fabric-api-changes">Item Component-related Fabric API changes</h3>
+<p><code class="language-plaintext highlighter-rouge">allowNbtUpdateAnimations</code> method of <code class="language-plaintext highlighter-rouge">FabricItem</code> was renamed to <code class="language-plaintext highlighter-rouge">allowComponentsUpdateAnimations</code>.
+<code class="language-plaintext highlighter-rouge">FabricItem.getAttributeModifiers</code> changes?
+<code class="language-plaintext highlighter-rouge">isSuitableFor</code> and <code class="language-plaintext highlighter-rouge">getFoodComponents</code> of <code class="language-plaintext highlighter-rouge">FabricItemStack</code> removed/replaced with vanilla components.</p>
+
+<h4 id="recipe-api">Recipe API</h4>
+<p><code class="language-plaintext highlighter-rouge">DefaultCustomIngredients#nbt</code> and support for NBT ingredients were removed, as the game no longer uses NBT to store item stack-specific data.</p>
+
+<p>To check for custom name, enchantments, etc that were previously kept inside the NBT but are now recorded in the components (see below for details), use the new <code class="language-plaintext highlighter-rouge">components</code> ingredient. To check for custom data component (a NBT data not used by the game but can be used by data packs or commands), use the <code class="language-plaintext highlighter-rouge">customData</code> ingredient.</p>
+
+<h4 id="transfer-api">Transfer API</h4>
+<p><code class="language-plaintext highlighter-rouge">TransferVariant</code> (such as <code class="language-plaintext highlighter-rouge">FluidVariant</code> or <code class="language-plaintext highlighter-rouge">ItemVariant</code>) is now a pair of the object and the components, instead of the object and NBT. <code class="language-plaintext highlighter-rouge">getNbt</code>, <code class="language-plaintext highlighter-rouge">hasNbt</code>, and <code class="language-plaintext highlighter-rouge">nbtMatches</code> methods were replaced with <code class="language-plaintext highlighter-rouge">getComponents</code>, <code class="language-plaintext highlighter-rouge">hasComponents</code>, and <code class="language-plaintext highlighter-rouge">componentsMatch</code> methods. The following methods were removed: <code class="language-plaintext highlighter-rouge">copyNbt</code>, <code class="language-plaintext highlighter-rouge">copyOrCreateNbt</code>, <code class="language-plaintext highlighter-rouge">toNbt</code>, and <code class="language-plaintext highlighter-rouge">toPacket</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">FluidVariant#of</code> and <code class="language-plaintext highlighter-rouge">ItemVariant#of</code> now takes <code class="language-plaintext highlighter-rouge">ComponentChanges</code> instead of <code class="language-plaintext highlighter-rouge">@Nullable NbtCompound</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">TransferVariant</code> is now serialized using codecs and packet codecs. Therefore, <code class="language-plaintext highlighter-rouge">fromNbt</code> and <code class="language-plaintext highlighter-rouge">fromPacket</code> static methods were removed.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SingleVariantStorage#writeNbt</code> instance method was removed; subclasses now provide separate methods named <code class="language-plaintext highlighter-rouge">writeNbt</code>. Both <code class="language-plaintext highlighter-rouge">readNbt</code> and <code class="language-plaintext highlighter-rouge">writeNbt</code> now require passing a <code class="language-plaintext highlighter-rouge">RegistryWrapper.WrapperLookup</code> instance; they should be available in the methods from which they are called (or you can use the world’s <code class="language-plaintext highlighter-rouge">DynamicRegistryManager</code> instance).</p>
+
+<h3 id="other-item-changes">Other Item changes</h3>
+<ul>
+  <li>As noted in the video, an empty item stack is now serialized as omitting the field or an empty object. <code class="language-plaintext highlighter-rouge">ItemStack#fromNbt</code> now returns <code class="language-plaintext highlighter-rouge">Optional&lt;ItemStack&gt;</code> while <code class="language-plaintext highlighter-rouge">fromNbtOrEmpty</code> supports empty NBT object. Both now require passing the registries. These methods log an error when an item with ID <code class="language-plaintext highlighter-rouge">minecraft:air</code> is encountered.</li>
+  <li><code class="language-plaintext highlighter-rouge">writeNbt</code> method was renamed to <code class="language-plaintext highlighter-rouge">encode</code>. The one with <code class="language-plaintext highlighter-rouge">NbtCompound</code> argument allows adding to the existing compound, like <code class="language-plaintext highlighter-rouge">writeNbt</code>.</li>
+  <li>The methods in <code class="language-plaintext highlighter-rouge">ItemStack</code> that reference <code class="language-plaintext highlighter-rouge">Nbt</code> are generally renamed to reference <code class="language-plaintext highlighter-rouge">Components</code> instead.</li>
+  <li><code class="language-plaintext highlighter-rouge">Item#isNbtSynced</code> was removed, specify custom packet codecs instead.</li>
+  <li><code class="language-plaintext highlighter-rouge">Item#getBreakSound</code> was added.</li>
+  <li>Attack damage and mining speed of <code class="language-plaintext highlighter-rouge">MiningToolItem</code> and <code class="language-plaintext highlighter-rouge">SwordItem</code> are now specified in item settings via <code class="language-plaintext highlighter-rouge">attributeModifiers</code> setting.</li>
+  <li>Item tooltips are now given a “tooltip type”, and <code class="language-plaintext highlighter-rouge">TooltipContext</code> is now under <code class="language-plaintext highlighter-rouge">Item</code>. <code class="language-plaintext highlighter-rouge">ItemTooltipCallback</code> Fabric API event now passes the type as well. Note that <code class="language-plaintext highlighter-rouge">hide_tooltip</code> item component prevents the event from being invoked.</li>
+</ul>
+
+<h4 id="item-damages">Item damages</h4>
+<p>When damaging an item stack held in the hands or in the armor slots, you now pass the <code class="language-plaintext highlighter-rouge">EquipmentSlot</code> instead of a callback:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- stack.damage(1, entity, p -&gt; p.sendToolBreakStatus(Hand.MAIN_HAND));
+</span><span class="gi">+ stack.damage(1, entity, EquipmentSlot.MAINHAND);
+</span></code></pre></div></div>
+
+<p>When damaging an item stack held by non-entities (like shears in dispensers), the stack must be broken by the newly passed callback, not by checking the return value.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- if (stack.damage(1, random, null)) stack.setCount(0);
+</span><span class="gi">+ stack.damage(1, random, null, () -&gt; stack.setCount(0));
+</span></code></pre></div></div>
+
+<p>In Fabric API, <code class="language-plaintext highlighter-rouge">CustomDamageHandler</code> callback’s signature was changed from <code class="language-plaintext highlighter-rouge">ItemStack stack, int amount, LivingEntity entity, Consumer breakCallback</code> to <code class="language-plaintext highlighter-rouge">ItemStack stack, int amount, LivingEntity entity, EquipmentSlot slot, Runnable breakCallback</code>. Additionally, calling <code class="language-plaintext highlighter-rouge">breakCallback</code> now ignores the return value and vanilla damage handler (as the item is already broken).</p>
+
+<h3 id="networking">Networking</h3>
+<p>Previously, networking code was simple: reading from, and writing to, <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>. Although this method still works, Mojang has added an abstraction layor: <code class="language-plaintext highlighter-rouge">PacketCodec</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">PacketCodec</code> works like the DataFixerUpper codecs used in JSON/NBT serialization - although they are not compatible with each other. To keep it simple, <strong><code class="language-plaintext highlighter-rouge">PacketCodec</code> is a pair of deserializers and serializers</strong> - or, decoders and encoders. This change reduces bugs related to wrong read/write order - which is one of the most difficult bugs to identify.</p>
+
+<h4 id="how-to-create-a-packetcodec">How to create a PacketCodec</h4>
+<p>Note: A new subclass of <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>, <strong><code class="language-plaintext highlighter-rouge">RegistryByteBuf</code>, is used for PLAY-phase networking</strong> (the one you’re probably using). For <code class="language-plaintext highlighter-rouge">ConfigurationNetworking</code>, use <code class="language-plaintext highlighter-rouge">PacketByteBuf</code> instead of <code class="language-plaintext highlighter-rouge">RegistryByteBuf</code>. <code class="language-plaintext highlighter-rouge">PacketCodec</code>s are usually stored in a <code class="language-plaintext highlighter-rouge">public static final</code> field.</p>
+
+<p>Suppose we are serializing this record:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">VirtualHugs</span><span class="o">(</span><span class="kt">int</span> <span class="n">count</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// Note: replaced PacketByteBuf with RegistryByteBuf</span>
+    <span class="kd">public</span> <span class="nf">VirtualHugs</span><span class="o">(</span><span class="nc">RegistryByteBuf</span> <span class="n">buf</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">buf</span><span class="o">.</span><span class="na">readVarInt</span><span class="o">());</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Instance method</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">write</span><span class="o">(</span><span class="nc">RegistryByteBuf</span> <span class="n">buf</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">buf</span><span class="o">.</span><span class="na">writeVarInt</span><span class="o">(</span><span class="n">count</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Static method, buffer-first</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">write2</span><span class="o">(</span><span class="nc">RegistryByteBuf</span> <span class="n">buf</span><span class="o">,</span> <span class="nc">VirtualHugs</span> <span class="n">hugs</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">buf</span><span class="o">.</span><span class="na">writeVarInt</span><span class="o">(</span><span class="n">hugs</span><span class="o">.</span><span class="na">count</span><span class="o">())</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>The easy method - adopting existing code</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">PacketCodec</span><span class="o">&lt;</span><span class="nc">RegistryByteBuf</span><span class="o">,</span> <span class="nc">VirtualHugs</span><span class="o">&gt;</span> <span class="no">PACKET_CODEC</span> <span class="o">=</span> <span class="nc">PacketCodec</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nl">VirtualHugs:</span><span class="o">:</span><span class="n">write</span><span class="o">,</span> <span class="nl">VirtualHugs:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+
+<span class="c1">// Or, using static method:</span>
+<span class="no">PACKET_CODEC</span> <span class="o">=</span> <span class="nc">PacketCodec</span><span class="o">.</span><span class="na">ofStatic</span><span class="o">(</span><span class="nl">VirtualHugs:</span><span class="o">:</span><span class="n">write2</span><span class="o">,</span> <span class="nl">VirtualHugs:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+</code></pre></div></div>
+
+<ol>
+  <li>The new method - building codecs from other codecs, like in DataFixerUpper</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// "tuple" is an ordered, un-keyed set of stuff.</span>
+<span class="c1">// Up to 3 fields can be serialized with vanilla method.</span>
+<span class="c1">// The constructor always comes last.</span>
+<span class="no">CODEC</span> <span class="o">=</span> <span class="nc">PacketCodec</span><span class="o">.</span><span class="na">tuple</span><span class="o">(</span><span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">VAR_INT</span><span class="o">,</span> <span class="nl">VirtualHugs:</span><span class="o">:</span><span class="n">count</span><span class="o">,</span> <span class="nl">VirtualHugs:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+
+<span class="c1">// Or, since there is only one field in VirtualHugs, this works too.</span>
+<span class="no">CODEC</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">VAR_INT</span><span class="o">.</span><span class="na">xmap</span><span class="o">(</span><span class="nl">VirtualHugs:</span><span class="o">:</span><span class="k">new</span><span class="o">,</span> <span class="nl">VirtualHugs:</span><span class="o">:</span><span class="n">count</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p><strong>You might see some nasty casting errors in some cases. Call <code class="language-plaintext highlighter-rouge">.cast()</code> on the codec to make it go away;</strong> it’s generally safe to do so.</p>
+
+<h4 id="advanced-packetcodecs-examples">Advanced PacketCodecs examples</h4>
+<p>Here are some more examples:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// For a singleton (like an empty packet). Encoding something other than INSTANCE will error.</span>
+<span class="c1">// It does not actually touch the buffer.</span>
+<span class="kt">var</span> <span class="n">singleton</span> <span class="o">=</span> <span class="nc">PacketCodec</span><span class="o">.</span><span class="na">unit</span><span class="o">(</span><span class="no">INSTANCE</span><span class="o">);</span>
+
+<span class="c1">// Using PacketCodec from classic API</span>
+<span class="nc">Text</span> <span class="n">text</span> <span class="o">=</span> <span class="nc">TextCodecs</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">buf</span><span class="o">);</span>
+<span class="nc">TextCodecs</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">buf</span><span class="o">,</span> <span class="n">text</span><span class="o">);</span>
+
+<span class="c1">// Codec for Optional&lt;Text&gt;</span>
+<span class="c1">// Compatible with PacketByteBuf#readOptional</span>
+<span class="kt">var</span> <span class="n">optText</span> <span class="o">=</span> <span class="nc">TextCodecs</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nl">PacketCodecs:</span><span class="o">:</span><span class="n">optional</span><span class="o">);</span>
+
+<span class="c1">// Codec for List&lt;String&gt;</span>
+<span class="kt">var</span> <span class="n">strings</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">STRING</span><span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
+
+<span class="c1">// or Set&lt;String&gt;, each max 16 chars</span>
+<span class="c1">// both work fine, compatible with PacketByteBuf#readCollection</span>
+<span class="kt">var</span> <span class="n">stringSet</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">string</span><span class="o">(</span><span class="mi">16</span><span class="o">).</span><span class="na">collect</span><span class="o">(</span><span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">toCollection</span><span class="o">(</span><span class="nl">HashSet:</span><span class="o">:</span><span class="k">new</span><span class="o">));</span>
+<span class="n">stringSet</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">collection</span><span class="o">(</span><span class="nl">HashSet:</span><span class="o">:</span><span class="k">new</span><span class="o">,</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">string</span><span class="o">(</span><span class="mi">16</span><span class="o">));</span>
+
+<span class="c1">// Map&lt;String, BlockPos&gt;</span>
+<span class="kt">var</span> <span class="n">positions</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="nl">HashMap:</span><span class="o">:</span><span class="k">new</span><span class="o">,</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">STRING</span><span class="o">,</span> <span class="nc">BlockPos</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">);</span>
+
+<span class="c1">// What? DataFixerUpper codecs?</span>
+<span class="c1">// Nah, these are just serialized as NBTs.</span>
+<span class="kt">var</span> <span class="n">advancement</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">codec</span><span class="o">(</span><span class="nc">Advancement</span><span class="o">.</span><span class="na">CODEC</span><span class="o">);</span>
+
+<span class="c1">// Serializing NbtCompound</span>
+<span class="kt">var</span> <span class="n">nbt</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">NBT_COMPOUND</span><span class="o">;</span>
+
+<span class="c1">// Serializing a registry value (by raw ID)</span>
+<span class="c1">// Note: these require RegistryByteBuf!</span>
+<span class="nc">PacketCodecs</span><span class="o">&lt;</span><span class="nc">RegistryByteBuf</span><span class="o">,</span> <span class="nc">Item</span><span class="o">&gt;</span> <span class="n">item</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">registryValue</span><span class="o">(</span><span class="nc">RegistryKeys</span><span class="o">.</span><span class="na">ITEM</span><span class="o">);</span>
+<span class="c1">// Or, RegistryEntry</span>
+<span class="nc">PacketCodecs</span><span class="o">&lt;</span><span class="nc">RegistryByteBuf</span><span class="o">,</span> <span class="nc">Biome</span><span class="o">&gt;</span> <span class="n">biome</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">registryEntry</span><span class="o">(</span><span class="nc">RegistryKeys</span><span class="o">.</span><span class="na">BIOME</span><span class="o">);</span>
+
+<span class="c1">// Serializing an Enum</span>
+<span class="kt">var</span> <span class="n">axis</span> <span class="o">=</span> <span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">indexed</span><span class="o">(</span><span class="n">i</span> <span class="o">-&gt;</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">Axis</span><span class="o">.</span><span class="na">VALUES</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="nc">Direction</span><span class="o">.</span><span class="na">Axis</span><span class="o">::</span><span class="n">ordinal</span><span class="o">);</span>
+</code></pre></div></div>
+
+<h4 id="fabric-networking-api">Fabric Networking API</h4>
+<p>Networking API no longer directly uses <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>, except in <code class="language-plaintext highlighter-rouge">LoginNetworking</code>. Instead, you need to subclass <code class="language-plaintext highlighter-rouge">CustomPayload</code> and register it. Note that <code class="language-plaintext highlighter-rouge">CustomPayload</code> is a vanilla interface. While this is similar to the packet object-based networking introduced recently, it is different in some ways. (<code class="language-plaintext highlighter-rouge">PacketType</code> and <code class="language-plaintext highlighter-rouge">FabricPacket</code> were, therefore, removed.)</p>
+
+<p>Compare the following, pre-snapshot packet:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">SlapPacket</span><span class="o">(</span><span class="no">UUID</span> <span class="n">slapped</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">FabricPacket</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Identifier</span> <span class="no">ID</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Identifier</span><span class="o">(...);</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">PacketType</span><span class="o">&lt;</span><span class="nc">SlapPacket</span><span class="o">&gt;</span> <span class="no">TYPE</span> <span class="o">=</span> <span class="nc">PacketType</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="no">ID</span><span class="o">,</span> <span class="nl">SlapPacket:</span><span class="o">:</span><span class="k">new</span><span class="o">);</span>
+    
+    <span class="kd">public</span> <span class="nf">SlapPacket</span><span class="o">(</span><span class="nc">PacketByteBuf</span> <span class="n">buf</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">(</span><span class="n">buf</span><span class="o">.</span><span class="na">readUuid</span><span class="o">());</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">write</span><span class="o">(</span><span class="nc">PacketByteBuf</span> <span class="n">buf</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">buf</span><span class="o">.</span><span class="na">writeUuid</span><span class="o">(</span><span class="n">slapped</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>And a new one:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">SlapPacket</span><span class="o">(</span><span class="no">UUID</span> <span class="n">slapped</span><span class="o">)</span> <span class="kd">implements</span> <span class="nc">CustomPayload</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">CustomPayload</span><span class="o">.</span><span class="na">Id</span><span class="o">&lt;</span><span class="nc">SlapPacket</span><span class="o">&gt;</span> <span class="no">PACKET_ID</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CustomPayload</span><span class="o">.</span><span class="na">Id</span><span class="o">&lt;&gt;(</span><span class="k">new</span> <span class="nc">Identifier</span><span class="o">(...));</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">PacketCodec</span><span class="o">&lt;</span><span class="nc">RegistryByteBuf</span><span class="o">,</span> <span class="nc">SlapPacket</span><span class="o">&gt;</span> <span class="no">PACKET_CODEC</span> <span class="o">=</span> <span class="nc">Uuids</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">.</span><span class="na">xmap</span><span class="o">(</span><span class="nl">SlapPacket:</span><span class="o">:</span><span class="k">new</span><span class="o">,</span> <span class="nl">SlapPacket:</span><span class="o">:</span><span class="n">slapped</span><span class="o">).</span><span class="na">cast</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>There are three differences you will notice:</p>
+
+<ul>
+  <li>Instead of now-removed <code class="language-plaintext highlighter-rouge">FabricPacket</code>, we implement <code class="language-plaintext highlighter-rouge">CustomPayload</code>.</li>
+  <li>Each <code class="language-plaintext highlighter-rouge">CustomPayload</code> implementation has its own <code class="language-plaintext highlighter-rouge">CustomPayload.Id</code>. Unlike <code class="language-plaintext highlighter-rouge">PacketType</code>, it lacks reference to the decoder.</li>
+  <li>The latter does not have a <code class="language-plaintext highlighter-rouge">write</code> method or <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>-taking constructor. Instead, <code class="language-plaintext highlighter-rouge">PACKET_CODEC</code> field was added. (Note, you can make your <code class="language-plaintext highlighter-rouge">PacketCodec</code> from the constructor and the <code class="language-plaintext highlighter-rouge">write</code> method, so don’t just remove those!)</li>
+</ul>
+
+<p>But, you may ask, how do you get the decoder if it’s not in <code class="language-plaintext highlighter-rouge">Id</code>? Good question. The answer: <strong>you need to register it in <code class="language-plaintext highlighter-rouge">ModInitializer</code> on both ends (sender and receiver)</strong>. In fact, Fabric API will happily crash if you don’t before calling <code class="language-plaintext highlighter-rouge">registerGlobalReceiver</code>.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// SlapPacket is sent during gameplay</span>
+<span class="c1">// from the client to the server (serverbound; C2S)</span>
+<span class="nc">PayloadTypeRegistry</span><span class="o">.</span><span class="na">playC2S</span><span class="o">().</span><span class="na">register</span><span class="o">(</span><span class="nc">SlapPacket</span><span class="o">.</span><span class="na">PACKET_ID</span><span class="o">,</span> <span class="nc">SlapPacket</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">);</span>
+<span class="c1">// Replace with configurationS2C, playS2C, etc.</span>
+</code></pre></div></div>
+
+<p>Then, you can change the receiver. Instead of long parameters, the event callback now gets only 2 parameters: the payload that was sent, and a context object. (Don’t worry, it won’t eat the RAM.)</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- ServerPlayNetworking.registerGlobalReceiver(SlapPacket.TYPE, (packet, player, sender) -&gt; {
+-   var world = player.getServerWorld();
+</span><span class="gi">+ServerPlayNetworking.registerGlobalReceiver(SlapPacket.PACKET_ID, (payload, context) -&gt; {
++   var world = context.player().getServerWorld();
+</span>    var entity = world.getEntity(packet.slapped());
+<span class="err">});</span>
+</code></pre></div></div>
+
+<p>Here are the available fields in the context object:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">PayloadTypeRegistry</code></th>
+      <th>Class</th>
+      <th>Fields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">playC2S</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ServerPlayNetworking</code></td>
+      <td><code class="language-plaintext highlighter-rouge">player</code>, <code class="language-plaintext highlighter-rouge">responseSender</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">playS2C</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ClientPlayNetworking</code></td>
+      <td><code class="language-plaintext highlighter-rouge">client</code>, <code class="language-plaintext highlighter-rouge">player</code>, <code class="language-plaintext highlighter-rouge">responseSender</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">configurationC2S</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ServerConfigurationNetworking</code></td>
+      <td><code class="language-plaintext highlighter-rouge">networkHandler</code>, <code class="language-plaintext highlighter-rouge">responseSender</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">configurationS2C</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ClientConfigurationNetworking</code></td>
+      <td><code class="language-plaintext highlighter-rouge">responseSender</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that the field shortcuts might be added later.</p>
+
+<p>Finally, sending the packet also uses <code class="language-plaintext highlighter-rouge">CustomPayload</code>. <strong>Remember to register the codec first</strong>!</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ClientPlayNetworking</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="nc">SlapPacket</span><span class="o">.</span><span class="na">PACKET_ID</span><span class="o">,</span> <span class="k">new</span> <span class="nc">SlapPacket</span><span class="o">(...));</span>
+
+<span class="c1">// for PacketSender:</span>
+<span class="n">sender</span><span class="o">.</span><span class="na">sendPacket</span><span class="o">(</span><span class="k">new</span> <span class="nc">SlapPacket</span><span class="o">(...));</span>
+</code></pre></div></div>
+
+<p>Note: <strong><code class="language-plaintext highlighter-rouge">PacketSender</code> no longer provides APIs that use <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>.</strong> For login networking where custom payloads are not used yet, use the subinterface <code class="language-plaintext highlighter-rouge">LoginPacketSender</code>.</p>
+
+<p>Some other Networking API related changes:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FutureListeners</code> was removed.</li>
+  <li><code class="language-plaintext highlighter-rouge">GenericFutureListener</code>-taking methods in <code class="language-plaintext highlighter-rouge">PacketSender</code> were removed. Use the one taking <code class="language-plaintext highlighter-rouge">PacketCallbacks</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ServerPlayNetworking#getServer</code> was removed. <code class="language-plaintext highlighter-rouge">handler.player.server</code> should work.</li>
+</ul>
+
+<h3 id="networking-adjacent-changes-in-fabric-api">Networking-adjacent changes in Fabric API</h3>
+<h4 id="particles-api">Particles API</h4>
+<p><code class="language-plaintext highlighter-rouge">FabricParticleTypes#complex</code> now requires you to pass both <code class="language-plaintext highlighter-rouge">Codec</code> and <code class="language-plaintext highlighter-rouge">PacketCodec</code> for serializing the particle type. The string-based parser, <code class="language-plaintext highlighter-rouge">ParticleType.Factory</code>, was removed.</p>
+
+<h4 id="recipe-api-1">Recipe API</h4>
+<p><code class="language-plaintext highlighter-rouge">CustomIngredientSerializer</code> must now override <code class="language-plaintext highlighter-rouge">getPacketCodec</code>. The <code class="language-plaintext highlighter-rouge">read</code> and <code class="language-plaintext highlighter-rouge">write</code> methods were removed. Use <code class="language-plaintext highlighter-rouge">Ingredient#PACKET_CODEC</code> for representing another ingredient (which Fabric API patches up to also support ours).</p>
+
+<h4 id="screen-handler-api">Screen Handler API</h4>
+<p><code class="language-plaintext highlighter-rouge">ExtendedScreenHandlerType</code> now uses a payload object instead of <code class="language-plaintext highlighter-rouge">PacketByteBuf</code>. In the type constructor, you now need to pass <code class="language-plaintext highlighter-rouge">PacketCodec</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">ExtendedScreenHandlerType</span><span class="o">&lt;</span><span class="nc">OvenScreenHandler</span><span class="o">&gt;</span> <span class="no">OVEN</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ExtendedScreenHandlerType</span><span class="o">((</span><span class="n">syncId</span><span class="o">,</span> <span class="n">inventory</span><span class="o">,</span> <span class="n">data</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">...,</span> <span class="nc">OvenData</span><span class="o">.</span><span class="na">PACKET_CODEC</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Notice that the callback got <code class="language-plaintext highlighter-rouge">data</code> instead of <code class="language-plaintext highlighter-rouge">buf</code>, as well. Note that the payload object can be of any type, whether it be <code class="language-plaintext highlighter-rouge">Identifier</code> or your custom record. (These don’t have to be registered in <code class="language-plaintext highlighter-rouge">PayloadTypeRegistry</code>.)</p>
+
+<p><code class="language-plaintext highlighter-rouge">ExtendedScreenHandlerFactory#writeScreenOpeningData</code> was replaced with <code class="language-plaintext highlighter-rouge">getScreenOpeningData</code>. It takes the player as the sole argument and returns the data class, in this case, <code class="language-plaintext highlighter-rouge">OvenData</code>.</p>
+
+<h3 id="registries">Registries</h3>
+<h4 id="registrywrapper--datagen">RegistryWrapper &amp; datagen</h4>
+<p>Many methods for serialization now require <code class="language-plaintext highlighter-rouge">RegistryWrapper.WrapperLookup</code> instance. This is used to query registries, and <code class="language-plaintext highlighter-rouge">DynamicRegistryManager</code> instance can be used for this purpose. This change is most prominent in text and data generation-related code. This registry is used to query data-driven values during serialization.</p>
+
+<p>Data provider constructors in Fabric API now take <code class="language-plaintext highlighter-rouge">RegistryWrapper.WrapperLookup</code> as a parameter; modders should change their constructors to take the instance and pass to the <code class="language-plaintext highlighter-rouge">super</code> constructor. In addition, <code class="language-plaintext highlighter-rouge">FabricAdvancementProvider#generateAdvancement</code> now also passes the instance.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">public class TestBlockLootTableProvider extends FabricBlockLootTableProvider {
+</span><span class="gd">-    private TestBlockLootTableProvider(FabricDataOutput output) {
+-        super(output);
+</span><span class="gi">+    private TestBlockLootTableProvider(FabricDataOutput output, CompletableFuture&lt;RegistryWrapper.WrapperLookup&gt; registryLookup) {
++        super(output, registryLookup);
+</span>    }
+</code></pre></div></div>
+
+<h4 id="loot-registries">Loot Registries</h4>
+<p>Loot tables (including loot-adjacent stuff, namely predicates and item modifiers) are now managed by a special type of registry, called “reloadable registries”. Unlike ordinary registries, they are reloaded during <code class="language-plaintext highlighter-rouge">/reload</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LootDataLookup</code> was removed; <code class="language-plaintext highlighter-rouge">ReloadableRegistries.Lookup</code> can be obtained from <code class="language-plaintext highlighter-rouge">server.getReloadableRegistries()</code>. From there, item modifiers and predicates can be looked up via <code class="language-plaintext highlighter-rouge">getRegistryManager</code>; a shortcut exists for loot tables via <code class="language-plaintext highlighter-rouge">getLootTable</code>.</p>
+
+<p>Registry-ification of loot table also means that they are now identified with <code class="language-plaintext highlighter-rouge">RegistryKey</code>. Use <code class="language-plaintext highlighter-rouge">RegistryKey.of(RegistryKeys.LOOT_TABLE, id)</code> to get the registry key. In Fabric API, <code class="language-plaintext highlighter-rouge">VillagerInteractionRegistries#registerGiftLootTable</code> now takes the registry key, while the ID-taking method is deprecated.</p>
+
+<p>Fabric API’s Loot API received breaking changes. For the arguments passed to events, <code class="language-plaintext highlighter-rouge">ResourceMaanger</code> and <code class="language-plaintext highlighter-rouge">LootManager</code> is gone. In the <code class="language-plaintext highlighter-rouge">LOAD_ALL</code> event, the loot manager was replaced with <code class="language-plaintext highlighter-rouge">Registry&lt;LootTable&gt;</code>. In all places, <code class="language-plaintext highlighter-rouge">Identifier</code> is replaced with <code class="language-plaintext highlighter-rouge">RegistryKey</code> as described above. In addition, because mutating registry is impossible now, the loot tables are modified before addition; this means that per-table events don’t get the table registry anymore.</p>
+
+<h4 id="other-changes">Other changes</h4>
+<p>A new syncing protocol is in place for <code class="language-plaintext highlighter-rouge">DynamicRegistryManager</code> entries. Vanilla data packs provide <code class="language-plaintext highlighter-rouge">knownPackInfo</code> fields, which are sent by the server on joined clients. Clients then reply with the subset of the info they understand (i.e. loaded on their side). When a registry entry is loaded from a pack with <code class="language-plaintext highlighter-rouge">knownPackInfo</code>, and the client has acknowledged the info for the pack, the server tells the client to refer to its own copy of the data, skipping sending the serialized entry over the network. Most importantly, <strong>this is currently not used by mod-provided packs</strong>, so the registry entries from mods will be sent even if the client has the same mod.</p>
+
+<p><code class="language-plaintext highlighter-rouge">SimpleRegistry</code> no longer supports changing the registered value post-registration (such as by the <code class="language-plaintext highlighter-rouge">set</code> method). For this reason, the <code class="language-plaintext highlighter-rouge">RegistryEntryRemovedCallback</code> event and the <code class="language-plaintext highlighter-rouge">registeyEntryRemoved</code> shortcut in <code class="language-plaintext highlighter-rouge">DynamicRegistryView</code> were removed.</p>
+
+<p>Finally, <code class="language-plaintext highlighter-rouge">SculkSensorFrequencyRegistry.register</code> now takes <code class="language-plaintext highlighter-rouge">RegistryKey&lt;GameEvent&gt;</code> instead of <code class="language-plaintext highlighter-rouge">GameEvent</code>.</p>
+
+<h3 id="blocks">Blocks</h3>
+<p>All <code class="language-plaintext highlighter-rouge">AbstractBlock</code> public methods to be overridden were made <code class="language-plaintext highlighter-rouge">protected</code> and no longer marked as <code class="language-plaintext highlighter-rouge">@Deprecated</code>.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity entity, BlockHitResult hit) {
+</span><span class="gi">+ protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity entity, BlockHitResult hit) {
+</span><span class="err">}</span>
+</code></pre></div></div>
+
+<h3 id="enchantments">Enchantments</h3>
+<p><code class="language-plaintext highlighter-rouge">Enchantment</code> constructor now takes <code class="language-plaintext highlighter-rouge">Enchantment.Properties</code>, a record of enchantment properties. <code class="language-plaintext highlighter-rouge">EnchantmentTarget</code> enum was replaced with tags that specifies enchantment-supporting items.</p>
+
+<h3 id="brewing">Brewing</h3>
+<p><code class="language-plaintext highlighter-rouge">FabricBrewingRecipeRegistry</code> was replaced with <code class="language-plaintext highlighter-rouge">FabricBrewingRecipeRegistryBuilder</code>. The new <code class="language-plaintext highlighter-rouge">FabricBrewingRecipeRegistryBuilder.BUILD</code> event can be used to add new recipes to the brewing stand.</p>
+
+<h3 id="entities">Entities</h3>
+<p><code class="language-plaintext highlighter-rouge">SpawnRestriction.Location</code> enum was replaced with an interface, <code class="language-plaintext highlighter-rouge">SpawnLocation</code>. <code class="language-plaintext highlighter-rouge">SpawnLocationTypes</code> provides predefined <code class="language-plaintext highlighter-rouge">SpawnLocation</code>s.</p>
+
+<h3 id="client">Client</h3>
+<p>In GUI, setting the initial focus of a screen is now done by overriding <code class="language-plaintext highlighter-rouge">setInitialFocus</code>, rather than calling it in <code class="language-plaintext highlighter-rouge">init</code>. <code class="language-plaintext highlighter-rouge">MatrixStack</code> was replaced with the actual matrix in several rendering code.</p>
+
+<h3 id="other">Other</h3>
+<p>DataFixerUpper was updated. This includes several breaking changes, such as <code class="language-plaintext highlighter-rouge">MapCodec</code> being used in places defining extra fields. Use <code class="language-plaintext highlighter-rouge">RecordCodecBuilder#mapCodec</code> instead of <code class="language-plaintext highlighter-rouge">create</code> in this case. Another significant change: <code class="language-plaintext highlighter-rouge">optionalFieldOf</code> is now strict by default. This means that a decoding error in the field value is now treated as an error, instead of being silently skipped. The <code class="language-plaintext highlighter-rouge">lenientOptionalFieldOf</code> method restores old behavior.</p>
+
+<p>On the Minecraft game code side, <code class="language-plaintext highlighter-rouge">Util#getResult</code> was replaced with <code class="language-plaintext highlighter-rouge">decode(...).getOrThrow()</code> method. Several methods and fields in <code class="language-plaintext highlighter-rouge">Codecs</code> were moved to the DFU itself, such as <code class="language-plaintext highlighter-rouge">either</code>, <code class="language-plaintext highlighter-rouge">xor</code>, and <code class="language-plaintext highlighter-rouge">withAlternative</code> (formerly <code class="language-plaintext highlighter-rouge">Codecs#alternatively</code>).</p>
+
+  </div><a class="u-url" href="/2024/04/19/1205.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
