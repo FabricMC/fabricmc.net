@@ -84,12 +84,19 @@ export async function generateTemplate(options: Options) {
 
 export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 	let versions = await getGameVersions()
-	return versions.filter((v) => v.stable).filter((v) => {
+	return versions.filter((v) => {
 		const version = v.version;
 
 		if (version.startsWith("1.14") && version != "1.14.4") {
 			// Hide pre 1.14.4 MC versions as they require using V1 yarn.
 			return false;
+		}
+
+		if (!v.stable) {
+			// Hide unstable versions, other than the latest -pre or -rc version.
+			const isLatest = versions[0].version == version;
+			const isPre = version.includes("-pre") || version.includes("-rc");
+			return isLatest && isPre;
 		}
 
 		return true;

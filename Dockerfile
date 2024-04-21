@@ -15,3 +15,7 @@ ENV DENO_INSTALL="$HOME/.deno"
 ENV DENO_INSTALL_ROOT="$HOME/.deno"
 RUN curl -fsSL https://deno.land/x/install/install.sh | sh
 ENV PATH="${PATH}:$HOME/.deno/bin"
+
+ENV JAVA_HOME=/opt/java/openjdk
+COPY --from=eclipse-temurin:21 $JAVA_HOME $JAVA_HOME
+ENV PATH="${JAVA_HOME}/bin:${PATH}"

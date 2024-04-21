@@ -237,6 +237,7 @@ async function promptUser(
     minecraftVersion = await Select.prompt({
       message: "Select the minecraft version",
       options: minecraftVersions.map((v) => v.version),
+      default: minecraftVersions.find((v) => v.stable)?.version,
     });
   }
 
@@ -297,7 +298,7 @@ async function defaultOptions(
   startingName: string,
 ): Promise<generator.Configuration> {
   const minecraftVersions = await generator.getTemplateGameVersions();
-  const minecraftVersion = minecraftVersions[0]!.version;
+  const minecraftVersion = minecraftVersions.find((v) => v.stable)!.version;
 
   return {
     modid: generator.nameToModId(startingName),
