@@ -15,6 +15,10 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
     ...(config.splitSources ? await generateClientMixin(writer, config) : [])
   ];
 
+  // Format the minecraft version with any pre3, or rc1, etc. suffixes
+  const index = config.minecraftVersion.indexOf("-");
+  const minecraftVersion = config.minecraftVersion.substring(0, index === -1 ? config.minecraftVersion.length : index + 1);
+
   const fabricModJson : any = {
     "schemaVersion": 1,
     "id": config.modid,
@@ -35,7 +39,7 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
     "mixins": mixins,
     "depends": {
       "fabricloader": ">=" + config.loaderVersion,
-      "minecraft": "~" + config.minecraftVersion,
+      "minecraft": "~" + minecraftVersion,
       "java": ">=" + getJavaVersion(config.minecraftVersion).release
     },
     "suggests": {

@@ -21,10 +21,9 @@
     $: modid = nameToModId(projectName);
 
     const versions = Promise.all([getTemplateGameVersions()]).then(([gameVersions]) => {
-        const game = gameVersions;
-        minecraftVersion = game[0].version;
+        minecraftVersion = gameVersions.find((version) => version.stable)!.version;
         return {
-            game,
+            game: gameVersions,
         };
     });
 
