@@ -3,8 +3,8 @@
   import DownloadIcon from "./DownloadIcon.svelte";
 
   const win32 = navigator.platform == "Win32"
-  const showVersionSelection = false;
 
+  let showVersionSelection = false;
   let expertOptions = false;
   let selectedVersion = "";
   let versions = getDownloads();
@@ -12,6 +12,7 @@
   async function getDownloads() {
     const downloads = await getInstallerVersions();
     selectedVersion = downloads.find(v => v.stable)?.url ?? "";
+    showVersionSelection = downloads[0].stable == false;
     return downloads;
   }
 
@@ -45,7 +46,7 @@
           {#if latest?.stable}Installer Version: {latest.version} (Latest){/if}
           {#if !expertOptions}
             <a href={'#'} on:click|preventDefault={showExpertOptions}>
-              Show other versions
+              Show beta versions
             </a>
           {/if}
         </p>
