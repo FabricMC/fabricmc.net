@@ -2,6 +2,7 @@
 import {
   generateTemplate,
   getTemplateGameVersions,
+  minecraftSupportsSplitSources,
 } from "../scripts/dist/fabric-template-generator.js";
 import { getGeneratorOptions } from "./commands/init.ts";
 import { assert } from "https://deno.land/std@0.221.0/assert/mod.ts";
@@ -36,7 +37,7 @@ for (const { version } of minecraftVersions) {
             projectName: "test",
             packageName: "net.fabricmc.generator.test",
             dataGeneration: false,
-            splitSources: true,
+            splitSources: minecraftSupportsSplitSources(version),
             uniqueModIcon: true,
 
             minecraftVersion: version,
