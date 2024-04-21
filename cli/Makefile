@@ -13,6 +13,9 @@ check:
 fontgen:
 	deno run --allow-read --allow-write fontgen.ts
 
+test: fontgen check
+	deno test --allow-env --allow-read --allow-net --allow-write --allow-run test.ts
+
 build: fontgen check
 	deno run --allow-env --allow-read --allow-net --allow-write --allow-run bundle.ts
 

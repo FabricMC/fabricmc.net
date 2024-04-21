@@ -7,6 +7,7 @@ import {
   Input,
   Select,
 } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
+import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
 import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
@@ -81,27 +82,21 @@ export function initCommand() {
     });
 }
 
-async function generate(
-  cli: CliOptions,
-  outputDirName: string | undefined,
-) {
-  const outputDir = await getAndPrepareOutputDir(outputDirName);
+// Set the XML parser as we do not have DomParser here.
+generator.setXmlVersionParser((xml) => {
+  const document = parseXml(xml) as any;
+  return document.metadata.versioning.versions.version;
+});
 
-  const isTargetEmpty = await utils.isDirEmpty(outputDir);
-  if (!isTargetEmpty) {
-    fatalError("The target directory must be empty");
-  }
+const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
+fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
+fontLoader.loaded = true;
 
-  const config =
-    await (cli.defaultOptions
-      ? defaultOptions(path.basename(outputDir))
-      : promptUser(path.basename(outputDir), cli));
-
-  const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
-  fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
-  fontLoader.loaded = true;
-
-  const options: generator.Options = {
+export function getGeneratorOptions(
+  outputDir: string,
+  config: generator.Configuration,
+): generator.Options {
+  return {
     config,
     writer: {
       write: async (contentPath, content, options) => {
@@ -142,10 +137,27 @@ async function generate(
       },
     },
   };
+}
+
+async function generate(
+  cli: CliOptions,
+  outputDirName: string | undefined,
+) {
+  const outputDir = await getAndPrepareOutputDir(outputDirName);
+
+  const isTargetEmpty = await utils.isDirEmpty(outputDir);
+  if (!isTargetEmpty) {
+    fatalError("The target directory must be empty");
+  }
+
+  const config =
+    await (cli.defaultOptions
+      ? defaultOptions(path.basename(outputDir))
+      : promptUser(path.basename(outputDir), cli));
 
   console.log(progress("Generating mod template..."));
 
-  await generator.generateTemplate(options);
+  await generator.generateTemplate(getGeneratorOptions(outputDir, config));
   console.log(success("Done!"));
 }
 
