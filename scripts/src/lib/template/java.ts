@@ -57,7 +57,7 @@ export function getJavaVersion(minecraftVersion: string): JavaVersion {
 	}
 
 	// Minecraft 1.20.5 and above use Java 21
-	return JAVA_17;
+	return JAVA_21;
 }
 
 const JAVA_PACKAGE_REGEX = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/;
