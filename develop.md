@@ -22,7 +22,7 @@ If you require additional help, [the Fabric Discord server](https://discord.gg/v
             </section>
             <div class="button-group">
 							<a class="button secondary" href="https://fabricmc.net/wiki/start">Fabric Wiki</a>
-							<a class="button secondary warning" href="https://docs.fabricmc.net/">[WIP] Fabric Documentation</a>
+							<a class="button secondary" href="https://docs.fabricmc.net/">Fabric Documentation</a>
 						</div>
          </article>
          <article class="column">
