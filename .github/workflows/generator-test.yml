@@ -1,0 +1,17 @@
+name: Generator Test
+on: 
+  - workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            cd cli
+            make run test
+      - uses: actions/upload-artifact@v4
+        with:
+          path: 
+            cli/tests/1.*/**

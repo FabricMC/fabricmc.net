@@ -7,6 +7,7 @@ import {
   Input,
   Select,
 } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
+import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
 import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
@@ -22,6 +23,7 @@ const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
 
+const MOJMAP_ADVANCED_OPTION = "Mojang Mappings";
 const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
@@ -80,27 +82,21 @@ export function initCommand() {
     });
 }
 
-async function generate(
-  cli: CliOptions,
-  outputDirName: string | undefined,
-) {
-  const outputDir = await getAndPrepareOutputDir(outputDirName);
+// Set the XML parser as we do not have DomParser here.
+generator.setXmlVersionParser((xml) => {
+  const document = parseXml(xml) as any;
+  return document.metadata.versioning.versions.version;
+});
 
-  const isTargetEmpty = await utils.isDirEmpty(outputDir);
-  if (!isTargetEmpty) {
-    fatalError("The target directory must be empty");
-  }
+const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
+fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
+fontLoader.loaded = true;
 
-  const config =
-    await (cli.defaultOptions
-      ? defaultOptions(path.basename(outputDir))
-      : promptUser(path.basename(outputDir), cli));
-
-  const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
-  fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
-  fontLoader.loaded = true;
-
-  const options: generator.Options = {
+export function getGeneratorOptions(
+  outputDir: string,
+  config: generator.Configuration,
+): generator.Options {
+  return {
     config,
     writer: {
       write: async (contentPath, content, options) => {
@@ -141,10 +137,27 @@ async function generate(
       },
     },
   };
+}
+
+async function generate(
+  cli: CliOptions,
+  outputDirName: string | undefined,
+) {
+  const outputDir = await getAndPrepareOutputDir(outputDirName);
+
+  const isTargetEmpty = await utils.isDirEmpty(outputDir);
+  if (!isTargetEmpty) {
+    fatalError("The target directory must be empty");
+  }
+
+  const config =
+    await (cli.defaultOptions
+      ? defaultOptions(path.basename(outputDir))
+      : promptUser(path.basename(outputDir), cli));
 
   console.log(progress("Generating mod template..."));
 
-  await generator.generateTemplate(options);
+  await generator.generateTemplate(getGeneratorOptions(outputDir, config));
   console.log(success("Done!"));
 }
 
@@ -224,6 +237,7 @@ async function promptUser(
     minecraftVersion = await Select.prompt({
       message: "Select the minecraft version",
       options: minecraftVersions.map((v) => v.version),
+      default: minecraftVersions.find((v) => v.stable)?.version,
     });
   }
 
@@ -256,6 +270,7 @@ async function promptUser(
     minecraftVersion: minecraftVersion,
     projectName: modName,
     packageName: packageName,
+    mojmap: advancedOptions.includes(MOJMAP_ADVANCED_OPTION),
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
@@ -283,7 +298,7 @@ async function defaultOptions(
   startingName: string,
 ): Promise<generator.Configuration> {
   const minecraftVersions = await generator.getTemplateGameVersions();
-  const minecraftVersion = minecraftVersions[0]!.version;
+  const minecraftVersion = minecraftVersions.find((v) => v.stable)!.version;
 
   return {
     modid: generator.nameToModId(startingName),
@@ -292,6 +307,7 @@ async function defaultOptions(
     packageName: generator.formatPackageName(
       generator.nameToModId(startingName),
     ),
+    mojmap: false,
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
@@ -304,6 +320,7 @@ function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
 
   options.push({ value: ICON_ADVANCED_OPTION, checked: true });
   options.push({ value: KOTLIN_ADVANCED_OPTION });
+  options.push({ value: MOJMAP_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
