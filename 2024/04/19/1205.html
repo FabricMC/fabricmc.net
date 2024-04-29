@@ -20,8 +20,8 @@
 {"headline":"Fabric for Minecraft 1.20.5","dateModified":"2024-04-19T00:00:00+00:00","datePublished":"2024-04-19T00:00:00+00:00","description":"Minecraft 1.20.5 is to be released in the near future with significant changes affecting mod makers.","url":"https://fabricmc.net/2024/04/19/1205.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/04/19/1205.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1714377226">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1714377226"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1714377470">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1714377470"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -592,6 +592,9 @@
 
 <h3 id="client">Client</h3>
 <p>In GUI, setting the initial focus of a screen is now done by overriding <code class="language-plaintext highlighter-rouge">setInitialFocus</code>, rather than calling it in <code class="language-plaintext highlighter-rouge">init</code>. <code class="language-plaintext highlighter-rouge">MatrixStack</code> was replaced with the actual matrix in several rendering code.</p>
+
+<h4 id="rendering">Rendering</h4>
+<p>Some places that previously take <code class="language-plaintext highlighter-rouge">rgb</code> was updated to take <code class="language-plaintext highlighter-rouge">argb</code> instead. The new <code class="language-plaintext highlighter-rouge">DyedColorComponent</code> takes <code class="language-plaintext highlighter-rouge">argb</code>. Item color providers also take <code class="language-plaintext highlighter-rouge">argb</code> instead of <code class="language-plaintext highlighter-rouge">rgb</code>, so make sure to wrap your color with <code class="language-plaintext highlighter-rouge">ColorHelper.Argb.fullAlpha()</code> or else your item may appear transparent if it is registered to the translucent render layer. Block color providers also <code class="language-plaintext highlighter-rouge">argb</code> now, but passing <code class="language-plaintext highlighter-rouge">rgb</code> still works.</p>
 
 <h3 id="other">Other</h3>
 <p>DataFixerUpper was updated. This includes several breaking changes, such as <code class="language-plaintext highlighter-rouge">MapCodec</code> being used in places defining extra fields. Use <code class="language-plaintext highlighter-rouge">RecordCodecBuilder#mapCodec</code> instead of <code class="language-plaintext highlighter-rouge">create</code> in this case. Another significant change: <code class="language-plaintext highlighter-rouge">optionalFieldOf</code> is now strict by default. This means that a decoding error in the field value is now treated as an error, instead of being silently skipped. The <code class="language-plaintext highlighter-rouge">lenientOptionalFieldOf</code> method restores old behavior.</p>
