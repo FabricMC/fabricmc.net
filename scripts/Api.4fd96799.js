@@ -1,11 +1,11 @@
-const r = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], o = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
+const r = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], f = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
 async function v() {
   return n(r, "/v2/versions/installer");
 }
-async function w() {
+async function W() {
   return n(r, "/v2/versions/game");
 }
-async function W() {
+async function w() {
   return n(r, "/v2/versions/loader");
 }
 async function g() {
@@ -18,7 +18,7 @@ async function d(s, t) {
   return n(r, `/v2/versions/loader/${s}/${t}/profile/json`);
 }
 async function b() {
-  return l(o, "/jdlist.txt").then((s) => s.split(`
+  return l(f, "/jdlist.txt").then((s) => s.split(`
 `));
 }
 async function x(s) {
@@ -27,16 +27,16 @@ async function x(s) {
     `/v2/versions/yarn/${s}?limit=1`
   ))[0];
 }
-function u() {
-  return f("/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
+function h() {
+  return o("/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml");
 }
 function m() {
-  return f("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
+  return o("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
 }
 async function A(s) {
-  return (await u()).filter((e) => h(e, s)).pop();
+  return (await h()).filter((e) => u(e, s)).pop();
 }
-function h(s, t) {
+function u(s, t) {
   if (!t)
     return !1;
   if (t == "1.18")
@@ -44,14 +44,14 @@ function h(s, t) {
   let e = t;
   return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"].forEach((i) => {
     t.startsWith(i) && (e = i);
-  }), t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("24w") || t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
+  }), t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("24w") ? e = "1.21" : t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("1.21") ? e = "1.21" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
 }
 let p = (s) => {
   let e = new DOMParser().parseFromString(s, "text/xml");
   return Array.from(e.getElementsByTagName("version")).map((a) => a.childNodes[0].nodeValue);
 };
-async function f(s) {
-  let t = await l(o, s);
+async function o(s) {
+  let t = await l(f, s);
   return p(t);
 }
 async function n(s, t) {
@@ -74,15 +74,15 @@ async function c(s, t) {
 }
 export {
   g as a,
-  W as b,
+  w as b,
   v as c,
-  w as d,
+  W as d,
   d as e,
   x as f,
   b as g,
   A as h,
   y as i,
   m as j,
-  u as k,
-  h as l
+  h as k,
+  u as l
 };
