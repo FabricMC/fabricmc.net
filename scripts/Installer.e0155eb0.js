@@ -1,6 +1,6 @@
-import { S as T, i as z, s as A, h as S, e as h, c as m, u as W, r as j, v as C, d as b, f as H, t as y, a as $, g as q, j as k, n as w, o as v, b as J, m as R, p as D, q as E, l as U, w as F, x as M, y as N, z as B } from "./index.61dc58cf.js";
+import { S as T, i as A, s as H, h as S, e as h, c as m, u as W, o as j, p as C, d as b, q as J, t as y, a as $, f as q, g as k, n as w, k as v, b as R, r as U, l as D, m as E, j as z, v as F, w as M, x as N, y as B } from "./index.4deac2e0.js";
 import { c as G } from "./Api.d20d53e7.js";
-import O from "./DownloadIcon.214b8f5e.js";
+import O from "./DownloadIcon.39c279f6.js";
 function V(r, e, t) {
   const l = r.slice();
   return l[10] = e[t], l;
@@ -88,7 +88,7 @@ function Q(r) {
     t
   ), {
     c() {
-      e = J(), t.block.c();
+      e = R(), t.block.c();
     },
     m(l, n) {
       m(l, e, n), t.block.m(l, t.anchor = n), t.mount = () => e.parentNode, t.anchor = e;
@@ -115,7 +115,7 @@ function X(r) {
       for (let i = 0; i < f.length; i += 1)
         f[i].c();
       l = $(), n = h("br"), o = $(), s = h("br"), q(t, "min-width", "200px"), /*selectedVersion*/
-      r[2] === void 0 && R(() => (
+      r[2] === void 0 && U(() => (
         /*select_change_handler*/
         r[7].call(t)
       ));
@@ -158,7 +158,7 @@ function X(r) {
       );
     },
     d(i) {
-      i && b(e), i && b(t), U(f, i), i && b(l), i && b(n), i && b(o), i && b(s), u = !1, d();
+      i && b(e), i && b(t), z(f, i), i && b(l), i && b(n), i && b(o), i && b(s), u = !1, d();
     }
   };
 }
@@ -396,7 +396,7 @@ function oe(r, e, t) {
     return (await u).find((a) => a.url === s);
   }
   function i() {
-    s = H(this), t(2, s), t(4, u);
+    s = J(this), t(2, s), t(4, u);
   }
   return [
     n,
@@ -411,7 +411,7 @@ function oe(r, e, t) {
 }
 class fe extends T {
   constructor(e) {
-    super(), z(this, e, oe, re, A, {});
+    super(), A(this, e, oe, re, H, {});
   }
 }
 export {

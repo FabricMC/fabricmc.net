@@ -1,9 +1,9 @@
-import { S as _, i as $, s as b, e as u, w as C, a as f, o as I, c as h, x as v, j as p, q as w, r as U, v as V, d as x, y as R, A as S } from "./index.61dc58cf.js";
-import k from "./LegacyVersion.11280451.js";
+import { S as _, i as $, s as b, e as u, v as C, a as f, k as I, c as h, w as v, g as p, m as w, o as U, p as V, d as x, x as k, z as R } from "./index.4deac2e0.js";
+import S from "./LegacyVersion.46c5024a.js";
 import "./Api.d20d53e7.js";
-function q(o) {
+function L(o) {
   let t, e, a, c, l, n, s, i, m, g = {};
-  return e = new k({ props: g }), o[2](e), {
+  return e = new S({ props: g }), o[2](e), {
     c() {
       t = u("main"), C(e.$$.fragment), a = f(), c = u("br"), l = f(), n = u("button"), n.textContent = "Copy MCUpdater Import entry", I(n, "class", "button primary large");
     },
@@ -26,31 +26,31 @@ function q(o) {
       V(e.$$.fragment, r), s = !1;
     },
     d(r) {
-      r && x(t), o[2](null), R(e), i = !1, m();
+      r && x(t), o[2](null), k(e), i = !1, m();
     }
   };
 }
-function L(o, t) {
+function M(o, t) {
   return `<Import url="${`https://fabricmc.net/download/mcupdater?yarn=${encodeURIComponent(o)}&amp;loader=${encodeURIComponent(t)}`}">fabric</Import>`;
 }
-function M(o, t, e) {
+function q(o, t, e) {
   let a;
   async function c() {
-    const { yarnVersion: n, loaderVersion: s } = await a.getSelectedVersions(), i = L(n, s);
+    const { yarnVersion: n, loaderVersion: s } = await a.getSelectedVersions(), i = M(n, s);
     return navigator.clipboard.writeText(i);
   }
   function l(n) {
-    S[n ? "unshift" : "push"](() => {
+    R[n ? "unshift" : "push"](() => {
       a = n, e(0, a);
     });
   }
   return [a, c, l];
 }
-class T extends _ {
+class j extends _ {
   constructor(t) {
-    super(), $(this, t, M, q, b, {});
+    super(), $(this, t, q, L, b, {});
   }
 }
 export {
-  T as default
+  j as default
 };
