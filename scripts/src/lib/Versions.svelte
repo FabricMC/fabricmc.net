@@ -31,8 +31,10 @@
 </script>
 
 {#await gameVersions}
-    <p>Loading versions..</p>
+    <p>Loading versions...</p>
 {:then gameVersions}
+		<h2>Latest Versions</h2>
+		<p>Select a Minecraft version to get the recommended versions of Fabric Loader, Yarn, and Fabric API for your <code>gradle.properties</code> file.</p>
     <p>
         Minecraft Version:
         <select bind:value={minecraftVersion} style="min-width: 200px">
@@ -48,19 +50,25 @@ minecraft_version={minecraftVersion}
 yarn_mappings={yarnVersion}
 loader_version={loaderVersion}
 
-#Fabric api
+# Fabric API
 fabric_version={apiVersion}
         </code></pre>
+
+				<p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p>
+				<p>If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.</p> 
       </div>
+			
+			<hr />
 
-      <h4>Automatically update mappings</h4>
-      <p>Mappings can be auto updated by using the following command. See the <a href="https://fabricmc.net/wiki/tutorial:migratemappings">wiki page</a> for more help.</p>
+      <h2>Automatically Update Mappings</h2>
+			<p>Keep your project up-to-date with the correct Yarn mappings using this automatic update command:</p>
 
-      <code class="copy-code">
-        gradlew migrateMappings --mappings "{yarnVersion}"
-      </code>
+			<code class="copy-code">
+				gradlew migrateMappings --mappings "{yarnVersion}"
+			</code>
 
-      <p>Note: The fabric-api version may not be the correct version for the given Minecraft version in some situations. Check the <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a> page if you run into issues.</p>
+			<p>For more information on this command, you should refer to the <a href="https://fabricmc.net/wiki/tutorial:migratemappings">Updating Yarn Mappings</a> wiki page.</p>
+
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
     <p>
@@ -70,7 +78,9 @@ fabric_version={apiVersion}
     </p>
 {/await}
 
-<h4>Loom</h4>
+<hr />
+
+<h2>Loom</h2>
 
 <p>The recommended loom version is <strong>1.6-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
 
