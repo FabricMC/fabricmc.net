@@ -190,7 +190,7 @@ function G(o) {
 }
 function K(o, t) {
   const l = o.target.value;
-  l.includes("Select") || window.open(`https://maven.fabricmc.net/docs/${t.prefix}${l}/`, "_blank");
+  l.includes("Select") || window.location.assign(`https://maven.fabricmc.net/docs/${t.prefix}${l}/`);
 }
 function S(o, t, l) {
   return o.filter((e) => e.startsWith(t)).map((e) => e.slice(t.length)).sort((e, n) => l.indexOf(e) - l.indexOf(n));

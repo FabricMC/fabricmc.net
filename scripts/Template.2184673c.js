@@ -3932,7 +3932,7 @@ async function _n(E, d, e) {
   };
   a.depends[Rn(e.fabricVersion) ? "fabric-api" : "fabric"] = "*", e.kotlin && (a.depends = {
     ...a.depends,
-    "fabric-language-kotlin": ">=" + e.kotlin.kotlinVersion
+    "fabric-language-kotlin": "*"
   }), await E.write("src/main/resources/fabric.mod.json", JSON.stringify(a, null, "	")), await E.write(`src/main/resources/assets/${e.modid}/icon.png`, In(e.projectName, e.uniqueModIcon, d));
 }
 const Nn = `#
