@@ -5,6 +5,9 @@
         getLoaderVersions,
     } from "./Api";
 
+    let anchor: HTMLAnchorElement;
+    let url: string;
+
     function handleSelectChange(event: any, project: any) {
         const selectedVersion = event.target.value;
 
@@ -87,14 +90,14 @@
 {:then data}
     {#each data as project}
         <div class="javadoc-selector">
-                    <select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
-                        <option>Select {project.name} Version</option>
-                            {#each project.versions as version}
-                                    <option value={version}>{version}</option>
-                            {/each}
-                    </select>
-                    <a bind:this={anchor} href={url} target="_blank">
-                </div>
+            <select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
+                <option>Select {project.name} Version</option>
+                    {#each project.versions as version}
+                            <option value={version}>{version}</option>
+                    {/each}
+            </select>
+            <a bind:this={anchor} href={url} target="_blank">
+        </div>
     {/each}
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
