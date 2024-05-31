@@ -88,14 +88,16 @@
 {:then data}
     {#each data as project}
         <div class="javadoc-selector">
-                    <select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
-                        <option>Select {project.name} Version</option>
-                            {#each project.versions as version}
-                                    <option value={version}>{version}</option>
-                            {/each}
-                    </select>
-                    <a class="button secondary" href={url} target="_blank">Open in a new tab</a>
-                </div>
+            <select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
+                <option>Select {project.name} Version</option>
+                    {#each project.versions as version}
+                            <option value={version}>{version}</option>
+                    {/each}
+            </select>
+            {#if url !== ""}
+                <a class="button secondary" href={url} target="_blank">Open in a new tab</a>
+            {/if}
+        </div>
     {/each}
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
