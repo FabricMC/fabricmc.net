@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.21 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.21" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers." />
+<meta property="og:description" content="Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers." />
+<link rel="canonical" href="https://fabricmc.net/2024/05/31/121.html" />
+<meta property="og:url" content="https://fabricmc.net/2024/05/31/121.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.21" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.21","dateModified":"2024-05-31T00:00:00+00:00","datePublished":"2024-05-31T00:00:00+00:00","description":"Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers.","url":"https://fabricmc.net/2024/05/31/121.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/05/31/121.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1717170853">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1717170853"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">Download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">Blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">Develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">Discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.21</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-05-31T00:00:00+00:00" itemprop="datePublished">May 31, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers.</p>
+
+<p>It’s been only a month and a half since we last released a blogpost. Yet, this update is nothing small - some changes are likely to affect most, if not all, mods.</p>
+
+<p>As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We ask everyone kindly not to pester them. <strong>We also recommend all players to make a backup of their worlds.</strong></p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.6 (at the time of writing) to develop mods for Minecraft 1.21. Players should install the latest stable version of Fabric Loader (currently 0.15.11).</p>
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+<p>With the help of many contributors, Fabric API has received some new features since the last update blog post:</p>
+
+<ul>
+  <li>Conventional Tags: Default English Translations for <code class="language-plaintext highlighter-rouge">c</code> namespaced tags (TelepathicGrunt)</li>
+  <li>Data Generation: Support extending dynamic registries in datagen (SquidDev)</li>
+  <li>Item API: Add API to modify default item components (modmuss50)</li>
+  <li>Resource Conditions: Support loading a single resource condition instead of array (Apollo)</li>
+  <li>Resource Conditions: Registry resource conditions (SquidDev)</li>
+  <li>Removed Herobrine (Tiny Potato)</li>
+</ul>
+
+<h4 id="tag-translation">Tag translation</h4>
+<p>Mods are now strongly encouraged to provide an English translation for item tags it provides. For example, the translation for <code class="language-plaintext highlighter-rouge">test:potatoes</code> should be declared like this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"tag.item.test.potatoes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Potatoes"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Although these are not used by the API itself, other mods (such as recipe viewers) rely on them for proper display.</p>
+
+<h3 id="breaking-changes">Breaking Changes</h3>
+<p><em>Note: breaking changes related to vanilla changes are addressed separately below.</em></p>
+
+<p>One deprecated module was removed: <code class="language-plaintext highlighter-rouge">fabric-models-v0</code>.</p>
+
+<p>In Item API, <code class="language-plaintext highlighter-rouge">EquipmentSlotProvider#getPreferredEquipmentSlot</code> is now passed a <code class="language-plaintext highlighter-rouge">LivingEntity</code>. Implementations are expected to check themselves whether the slot is available, using <code class="language-plaintext highlighter-rouge">entity.canUseSlot(EquipmentSlot)</code>. <code class="language-plaintext highlighter-rouge">FabricItem#getAttributeModifiers</code> was removed; use Default Components API instead.</p>
+
+<p>Registry Sync now freezes the registry at an earlier point. This does not affect mods that register things in their <code class="language-plaintext highlighter-rouge">ModInitializer</code>s, but might affect more complex mods. Make sure to register everything during <code class="language-plaintext highlighter-rouge">ModInitializer</code>.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+<p>This version brought many breaking changes, including data-driven Enchantments. Data pack structures also changed, using singular nouns (instead of plurals) in many places.</p>
+
+<h3 id="identifier">Identifier</h3>
+<p><code class="language-plaintext highlighter-rouge">Identifier</code> constructor is now <code class="language-plaintext highlighter-rouge">protected</code>. Use the static method <code class="language-plaintext highlighter-rouge">of</code> or <code class="language-plaintext highlighter-rouge">ofVanilla</code> to construct <code class="language-plaintext highlighter-rouge">Identifier</code>. Replacing <code class="language-plaintext highlighter-rouge">new Identifier</code> with <code class="language-plaintext highlighter-rouge">Identifier.of</code> using text editors or IDEs should be sufficient.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- var id = new Identifier("example", "foo_bar");
+- var id2 = new Identifier("test:single_argument");
+- var creeper = new Identifier("minecraft", "creeper");
+- @Nullable var customId = Identifier.of("namespace", unsanitizedInput);
+</span><span class="gi">+ var id = Identifier.of("example", "foo_bar");
++ var id2 = Identifier.of("test:single_argument");
++ var creeper = Identifier.ofVanilla("creeper"); // very slightly improved performance
++ @Nullable var customId = Identifier.tryParse("namespace", unsanitizedInput);
+</span></code></pre></div></div>
+
+<p>Pro tip: make a method to construct <code class="language-plaintext highlighter-rouge">Identifier</code> for your mod’s namespace; this can be imported later using <code class="language-plaintext highlighter-rouge">import static</code> to shorten your code.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">Identifier</span> <span class="nf">id</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"mod_namespace"</span><span class="o">,</span> <span class="n">path</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="enchantments">Enchantments</h3>
+<p>Enchantments are now data-driven. This means that they are no longer hardcoded - instead, they’re part of data packs. Consequentially, there are several important changes in how mods handle enchantments.</p>
+
+<ul>
+  <li>Generally, enchantments either “do something” (like causing an explosion), or “modify a value” (like attack damage).
+Example: Instead of checking if the player has Thorns and applying damage to the attacker, a mod should now call <code class="language-plaintext highlighter-rouge">EnchantmentHelper#onTargetDamaged</code> which should automatically handle this.
+Example 2: Instead of checking the level of Knockback, a mod should now call <code class="language-plaintext highlighter-rouge">EnchantmentHelper#modifyKnockback</code> with the original knockback.</li>
+  <li>Sometimes, a code needs to check if an item has certain enchantments. Because enchantments are no longer hard-coded, this is done using enchantment tags.
+Example 3: Breaking a beehive with Silk Touch prevents bees from getting released. Previously, this was done by checking for the Silk Touch enchantment. Now, this is done by calling <code class="language-plaintext highlighter-rouge">EnchantmentHelper#hasAnyEnchantmentsIn(stack, EnchantmentTags#PREVENTS_BEE_SPAWNS_WHEN_MINING)</code>.</li>
+</ul>
+
+<h3 id="enchantment-code-structures">Enchantment Code Structures</h3>
+<p>An <code class="language-plaintext highlighter-rouge">Enchantment</code> is, well, an enchantment. Because it is now defined by a dynamic registry, it is often handled as <code class="language-plaintext highlighter-rouge">RegistryEntry&lt;Enchantment&gt;</code>. These can be obtained from the dynamic registry, i.e. <code class="language-plaintext highlighter-rouge">world.getRegistryManager()</code> or the <code class="language-plaintext highlighter-rouge">registryLookup</code> passed to various methods.</p>
+
+<p>An enchantment has effect components, which is a map of effect types to list of effects. Effect types are pre-defined keys that enchantments can define behaviors for. For example, an enchantment may want to add “multiply by 2” behavior for <code class="language-plaintext highlighter-rouge">DAMAGE</code> effect type, or “explode” behavior for <code class="language-plaintext highlighter-rouge">POST_ATTACK</code> effect type. These are defined in <code class="language-plaintext highlighter-rouge">EnchantmentEffectComponentTypes</code>.</p>
+
+<p>The values of effect components are <code class="language-plaintext highlighter-rouge">EnchantmentEffectEntry</code>. This is a pair of the effect and an optional condition. <code class="language-plaintext highlighter-rouge">LootCondition</code> is reused for this purpose.</p>
+
+<p>Enchantment effects can be categorized into three categories:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">EnchantmentValueEffect</code>. When given a value, the effect calculates the modified value. Examples include Protection (which modifies <code class="language-plaintext highlighter-rouge">DAMAGE_PROTECTION</code>), Lure (<code class="language-plaintext highlighter-rouge">FISHING_LUCK_BONUS</code>), Unbreaking (<code class="language-plaintext highlighter-rouge">ITEM_DAMAGE</code>), and Multishot (<code class="language-plaintext highlighter-rouge">PROJECTILE_COUNT</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">EnchantmentEntityEffect</code>. This effect does something when triggered. Examples include Thorns and Channeling (<code class="language-plaintext highlighter-rouge">POST_ATTACK</code>) and Flame (<code class="language-plaintext highlighter-rouge">PROJECTILE_SPAWNED</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">AttributeEnchantmentEffect</code>, which adds an attribute to the entity. Unlike entity effects, attributes persist until the enchantment becomes inapplicable.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">EnchantmentLocationBasedEffect</code> is an interface implemented by <code class="language-plaintext highlighter-rouge">EnchantmentEntityEffect</code> and <code class="language-plaintext highlighter-rouge">AttributeEnchantmentEffect</code>. In addition, some enchantment effect types simply require effective values to be specified directly - like <code class="language-plaintext highlighter-rouge">CROSSBOW_CHARGING_SOUNDS</code>, which is a list of sounds. Some effects, like <code class="language-plaintext highlighter-rouge">PREVENT_ARMOR_CHANGE</code>, cannot be configured further.</p>
+
+<h3 id="using-vanilla-enchantments">Using Vanilla Enchantments</h3>
+<p><code class="language-plaintext highlighter-rouge">EnchantmentHelper</code> methods can be used to handle vanilla enchantments.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Example of modifying a value</span>
+<span class="kt">float</span> <span class="n">newDamage</span> <span class="o">=</span> <span class="nc">EnchantmentHelper</span><span class="o">.</span><span class="na">getDamage</span><span class="o">(</span>
+    <span class="n">world</span><span class="o">,</span>
+    <span class="n">stack</span><span class="o">,</span>
+    <span class="n">attackTarget</span><span class="o">,</span>
+    <span class="n">damageSource</span><span class="o">,</span>
+    <span class="n">baseDamage</span>
+<span class="o">);</span>
+
+<span class="c1">// For values with no base value (such as Protection)</span>
+<span class="kt">float</span> <span class="n">protection</span> <span class="o">=</span> <span class="nc">EnchantmentHelper</span><span class="o">.</span><span class="na">getProtectionAmount</span><span class="o">(</span>
+    <span class="n">world</span><span class="o">,</span>
+    <span class="n">user</span><span class="o">,</span>
+    <span class="n">damageSource</span>
+<span class="o">);</span>
+
+<span class="c1">// Entity-based effect</span>
+<span class="nc">EnchantmentHelper</span><span class="o">.</span><span class="na">onTargetDamaged</span><span class="o">(</span>
+    <span class="n">world</span><span class="o">,</span>
+    <span class="n">attackTarget</span><span class="o">,</span>
+    <span class="n">damageSource</span><span class="o">,</span>
+    <span class="n">weapon</span>
+<span class="o">);</span>
+
+<span class="c1">// Checking if an ItemStack is enchanted with certain enchantments</span>
+<span class="k">if</span> <span class="o">(</span><span class="nc">EnchantmentHelper</span><span class="o">.</span><span class="na">hasAnyEnchantmentsIn</span><span class="o">(</span>
+    <span class="n">stack</span><span class="o">,</span>
+    <span class="nc">EnchantmentTags</span><span class="o">.</span><span class="na">PREVENTS_BEE_SPAWNS_WHEN_MINING</span>
+<span class="o">))</span> <span class="o">{</span>
+    <span class="k">return</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="c1">// Checking for nonconfigurable effects</span>
+<span class="c1">// e.g. checking for Curse of Binding</span>
+<span class="k">if</span> <span class="o">(</span><span class="nc">EnchantmentHelper</span><span class="o">.</span><span class="na">hasAnyEnchantmentsWith</span><span class="o">(</span>
+    <span class="n">stack</span><span class="o">,</span>
+    <span class="nc">EnchantmentEffectComponentTypes</span><span class="o">.</span><span class="na">PREVENT_ARMOR_CHANGE</span>
+<span class="o">))</span> <span class="o">{</span>
+    <span class="k">return</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="adding-a-new-enchantment">Adding a new Enchantment</h3>
+<p>Adding a new enchantment is now done by writing JSON files. You can use Data Generation to generate enchantments easily.</p>
+
+<p>An enchantment can perform many tasks, like applying attributes, replacing blocks or summoning an entity. However, not all things are possible. To add a custom <strong>effect type</strong>, a new effect class must be created and its codec registered. <strong>An effect type must exist in both the client and the server.</strong></p>
+
+<p>Enchantment tags are used to specify exclusive enchantments (e.g. Fortune and Silk Touch) and where the enchantments can be obtained. Make sure to add your enchantments to those tags.</p>
+
+<h3 id="enchantment-related-fabric-api-changes">Enchantment-related Fabric API changes</h3>
+<p>The following event callbacks now pass <code class="language-plaintext highlighter-rouge">RegistryEntry&lt;Enchantment&gt;</code> instead of <code class="language-plaintext highlighter-rouge">Enchantment</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">EnchantmentEvents.AllowEnchanting#allowEnchanting</code></li>
+  <li><code class="language-plaintext highlighter-rouge">FabricItem#canBeEnchantedWith</code></li>
+  <li><code class="language-plaintext highlighter-rouge">FabricItemStack#canBeEnchantedWith</code></li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">EnchantmentContext</code> was reworked. Previously, a context was one of <code class="language-plaintext highlighter-rouge">RANDOM_ENCHANTMENT</code>, <code class="language-plaintext highlighter-rouge">ANVIL</code>, <code class="language-plaintext highlighter-rouge">ENCHANT_COMMAND</code>, or <code class="language-plaintext highlighter-rouge">LOOT_RANDOM_ENCHANTMENT</code>. To clarify its purpose, they are now one of <code class="language-plaintext highlighter-rouge">ACCEPTABLE</code> (e.g. anvils) or <code class="language-plaintext highlighter-rouge">PRIMARY</code> (e.g. enchanting tables). For example, a helmet can be enchanted with Thorns using anvils but not in enchanting tables, because only chestplates are <code class="language-plaintext highlighter-rouge">PRIMARY</code> in case of Thorns.</p>
+
+<h3 id="teleportation">Teleportation</h3>
+<p>Both intra-dimensional and cross-dimensional teleportation can now be performed using <code class="language-plaintext highlighter-rouge">Entity#teleportTo</code> (previously known as <code class="language-plaintext highlighter-rouge">moveToWorld</code>). <code class="language-plaintext highlighter-rouge">TeleportTarget</code> now contains the destination world and position.</p>
+
+<p><code class="language-plaintext highlighter-rouge">FabricDimensions</code> was removed, because its only API, <code class="language-plaintext highlighter-rouge">teleport</code>, is effectively superseded with <code class="language-plaintext highlighter-rouge">Entity#teleportTo</code>.</p>
+
+<h3 id="data-pack-paths">Data Pack Paths</h3>
+<p>Data packs now use singular nouns in the following paths:</p>
+
+<ul>
+  <li>Tag subdirectories such as <code class="language-plaintext highlighter-rouge">tags/blocks</code>, <code class="language-plaintext highlighter-rouge">tags/entity_types</code>, <code class="language-plaintext highlighter-rouge">tags/functions</code>. They are now <code class="language-plaintext highlighter-rouge">tags/block</code>, <code class="language-plaintext highlighter-rouge">tags/entity_type</code>, and <code class="language-plaintext highlighter-rouge">tags/function</code>, respectively. <strong>The <code class="language-plaintext highlighter-rouge">tags</code> directory itself remains plural.</strong></li>
+  <li>Advancements (previously <code class="language-plaintext highlighter-rouge">advancements</code>, now <code class="language-plaintext highlighter-rouge">advancement</code>).</li>
+  <li>Functions (<code class="language-plaintext highlighter-rouge">functions</code> to <code class="language-plaintext highlighter-rouge">function</code>).</li>
+  <li>Item modifiers/loot functions (<code class="language-plaintext highlighter-rouge">item_modifiers</code> to <code class="language-plaintext highlighter-rouge">item_modifier</code>).</li>
+  <li>Loot tables (<code class="language-plaintext highlighter-rouge">loot_tables</code> to <code class="language-plaintext highlighter-rouge">loot_table</code>).</li>
+  <li>Predicates/loot conditions (<code class="language-plaintext highlighter-rouge">predicates</code> to <code class="language-plaintext highlighter-rouge">predicate</code>).</li>
+  <li>Recipes (<code class="language-plaintext highlighter-rouge">recipes</code> to <code class="language-plaintext highlighter-rouge">recipe</code>).</li>
+  <li>Structures (<code class="language-plaintext highlighter-rouge">structures</code> to <code class="language-plaintext highlighter-rouge">structure</code>).</li>
+</ul>
+
+<p>In Fabric API news, GameTest structure directories are now singular as well; instead of <code class="language-plaintext highlighter-rouge">gametest/structures</code>, they are now placed in <code class="language-plaintext highlighter-rouge">gametest/structure</code>.</p>
+
+<h3 id="rendering-changes">Rendering Changes</h3>
+<p>In the Fabric Rendering API, <code class="language-plaintext highlighter-rouge">HudRenderCallback</code> now passes <code class="language-plaintext highlighter-rouge">RenderTickCounter</code> instead of <code class="language-plaintext highlighter-rouge">tickDelta</code>. <code class="language-plaintext highlighter-rouge">tickDelta</code> can be obtained from the counter. <code class="language-plaintext highlighter-rouge">WorldRenderContext</code>’s <code class="language-plaintext highlighter-rouge">tickDelta</code> and <code class="language-plaintext highlighter-rouge">limitTime</code> methods are also replaced with <code class="language-plaintext highlighter-rouge">tickCounter</code>.</p>
+
+<p>There are some other, significant internal refactors to rendering. For example, <code class="language-plaintext highlighter-rouge">BufferBuilder#next()</code> was removed, and the methods for beginning or ending the building process has changed:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- BufferBuilder builder = tessellator.getBuffer();
+- builder.begin(...);
+</span><span class="gi">+ BufferBuilder builder = tessellator.begin(...);
+</span><span class="gd">- builder.vertex(...).texture(...).color(...).next();
+</span><span class="gi">+ builder.vertex(...).texture(...).color(...)
+</span><span class="gd">- tessellator.draw();
+</span><span class="gi">+ BufferRenderer.drawWithGlobalProgram(builder.end());
+</span></code></pre></div></div>
+
+<h3 id="miscellaneous">Miscellaneous</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">FabricCodecProvider</code> now has a new constructor that takes <code class="language-plaintext highlighter-rouge">RegistryKey</code> instead of directory name. This can be used with, for example, item modifier providers. The old constructor can still be used for non-registered codecs.</li>
+</ul>
+
+  </div><a class="u-url" href="/2024/05/31/121.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
