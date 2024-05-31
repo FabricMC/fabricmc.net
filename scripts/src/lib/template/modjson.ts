@@ -52,7 +52,7 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
   if (config.kotlin) {
     fabricModJson.depends = {
       ...fabricModJson.depends,
-      "fabric-language-kotlin": ">=" + config.kotlin.kotlinVersion
+      "fabric-language-kotlin": "*"
     }
   }
 
