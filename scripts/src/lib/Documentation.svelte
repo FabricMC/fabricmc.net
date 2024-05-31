@@ -5,13 +5,15 @@
         getLoaderVersions,
     } from "./Api";
 
-		function handleSelectChange(event: any, project: any) {
-				const selectedVersion = event.target.value;
+    let url = "";
 
-				if (selectedVersion.includes("Select")) return;
+    function handleSelectChange(event: any, project: any) {
+            const selectedVersion = event.target.value;
 
-				window.open(`https://maven.fabricmc.net/docs/${project.prefix}${selectedVersion}/`, '_blank');
-		}
+            if (selectedVersion.includes("Select")) return;
+
+            url = `https://maven.fabricmc.net/docs/${project.prefix}${selectedVersion}/`;
+    }
 
     function filterAndSortVersions(
         versions: string[],
@@ -86,13 +88,14 @@
 {:then data}
     {#each data as project}
         <div class="javadoc-selector">
-					<select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
-						<option>Select {project.name} Version</option>
-							{#each project.versions as version}
-									<option value={version}>{version}</option>
-							{/each}
-					</select>
-				</div>
+                    <select value="Select {project.name} Version" on:change={(event) => handleSelectChange(event, project)}>
+                        <option>Select {project.name} Version</option>
+                            {#each project.versions as version}
+                                    <option value={version}>{version}</option>
+                            {/each}
+                    </select>
+                    <a class="button secondary" href={url} target="_blank">Open in a new tab</a>
+                </div>
     {/each}
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
