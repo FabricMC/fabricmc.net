@@ -10,7 +10,7 @@
 
 				if (selectedVersion.includes("Select")) return;
 
-				window.open(`https://maven.fabricmc.net/docs/${project.prefix}${selectedVersion}/`, '_blank');
+                window.location.assign(`https://maven.fabricmc.net/docs/${project.prefix}${selectedVersion}/`);
 		}
 
     function filterAndSortVersions(
