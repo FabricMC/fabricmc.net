@@ -2783,7 +2783,7 @@ const Ze = `#!/bin/sh
 #       Darwin, MinGW, and NonStop.
 #
 #   (3) This script is generated from the Groovy template
-#       https://github.com/gradle/gradle/blob/HEAD/subprojects/plugins/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
+#       https://github.com/gradle/gradle/blob/HEAD/platforms/jvm/plugins-application/src/main/resources/org/gradle/api/internal/plugins/unixStartScript.txt
 #       within the Gradle project.
 #
 #       You can find Gradle at https://github.com/gradle/gradle/.
@@ -3069,7 +3069,7 @@ if "%OS%"=="Windows_NT" endlocal\r
 :omega\r
 `, Ye = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.7-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.8-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
@@ -3467,10 +3467,10 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_version=<%= it.fabricVersion %>`, tn = `plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
-  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
+	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
   <%_ } %>
 }
 
@@ -3490,7 +3490,7 @@ repositories {
 }
 <% if (it.splitSources) { %>
 loom {
-<% if (it.splitSources) { %>    splitEnvironmentSourceSets()
+<% if (it.splitSources) { %>	splitEnvironmentSourceSets()
 
 	mods {
 		"<%= it.modid %>" {

@@ -184,7 +184,7 @@ function ye(l) {
     s
   ), {
     c() {
-      s.block.c(), t = k(), p = c("hr"), f = k(), _ = c("h2"), _.textContent = "Loom", d = k(), v = c("p"), v.innerHTML = "The recommended loom version is <strong>1.6-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
+      s.block.c(), t = k(), p = c("hr"), f = k(), _ = c("h2"), _.textContent = "Loom", d = k(), v = c("p"), v.innerHTML = "The recommended loom version is <strong>1.7-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
     },
     m(i, m) {
       s.block.m(i, s.anchor = m), s.mount = () => t.parentNode, s.anchor = t, o(i, t, m), o(i, p, m), o(i, f, m), o(i, _, m), o(i, d, m), o(i, v, m);
