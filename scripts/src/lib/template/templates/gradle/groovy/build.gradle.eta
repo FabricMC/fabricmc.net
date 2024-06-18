@@ -1,8 +1,8 @@
 plugins {
-	id 'fabric-loom' version '1.6-SNAPSHOT'
+	id 'fabric-loom' version '1.7-SNAPSHOT'
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
-  id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
+	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
   <%_ } %>
 }
 
@@ -22,7 +22,7 @@ repositories {
 }
 <% if (it.splitSources) { %>
 loom {
-<% if (it.splitSources) { %>    splitEnvironmentSourceSets()
+<% if (it.splitSources) { %>	splitEnvironmentSourceSets()
 
 	mods {
 		"<%= it.modid %>" {
