@@ -47,7 +47,7 @@ layout: default
       <li><a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Language Kotlin</a> This is a mod that enables usage of the Kotlin programming language for Fabric mods.</li>
       <li><a href="https://github.com/FabricMC/intermediary">Intermediary</a> Intermediary contains match information between different versions of Minecraft, enabling cross version mods.</li>
       <li><a href="https://github.com/FabricMC/tiny-remapper">Tiny Remapper</a> A tiny, efficient tool for remapping JAR files.</li>
-      <li><a href="https://github.com/FabricMC/mapping-io">Mapping IO</a> A library for reading, manipulating and writing mapping files, with support a wide range fo formats.</li>
+      <li><a href="https://github.com/FabricMC/mapping-io">Mapping IO</a> A library for reading, manipulating and writing mapping files, with support for a wide range of formats.</li>
    </ul>
    </section>
    <hr>
