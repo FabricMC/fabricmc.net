@@ -83,6 +83,10 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
         return false;
     }
 
+    if (mcVersion == "1.18") {
+        return apiVersion == "0.44.0+1.18";
+    }
+
     let branch = mcVersion;
 
     let versionBranches = ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"]
@@ -96,8 +100,10 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
     // Very dumb but idk of a better (easy) way.
     if (mcVersion.startsWith("22w13oneblockatatime")) {
         branch = "22w13oneblockatatime"
+    } else if (mcVersion.startsWith("24w")) {
+        branch = "1.21"
     } else if (mcVersion.startsWith("23w")) {
-        branch = "1.20.3"
+        branch = "1.20.5"
     } else if (mcVersion.startsWith("22w")) {
         branch = "1.19.3"
     } else if (mcVersion.startsWith("1.18.2")) {
@@ -116,6 +122,14 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
         branch = "1.20.2"
     } else if (mcVersion.startsWith("1.20.3")) {
         branch = "1.20.3"
+    } else if (mcVersion.startsWith("1.20.4")) {
+        branch = "1.20.4"
+    } else if (mcVersion.startsWith("1.20.5")) {
+        branch = "1.20.5"
+    } else if (mcVersion.startsWith("1.20.6")) {
+        branch = "1.20.6"
+    } else if (mcVersion.startsWith("1.21")) {
+        branch = "1.21"
     } else if (mcVersion.startsWith("21w")) {
         branch = "1.18"
     } else if (mcVersion.startsWith("20w")) {

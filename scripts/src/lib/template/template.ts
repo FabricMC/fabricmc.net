@@ -4,6 +4,8 @@ import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions,
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
 
+export const ICON_FONT = "Comic Relief";
+
 export interface Options {
 	/**
 	 * The configuration of the project we'd like to generate.
@@ -13,7 +15,8 @@ export interface Options {
 	 * An interface we can write the generated files to, depending on the platform we're running
 	 * this might be directly to the filesystem or to a zip file.
 	 */
-	writer: TemplateWriter,
+	writer: TemplateWriter;
+	canvas: CanvasAdaptorFactory;
 }
 
 export interface Configuration {
@@ -21,9 +24,11 @@ export interface Configuration {
 	minecraftVersion: string,
 	projectName: string,
 	packageName: string,
+	mojmap: boolean,
 	useKotlin: boolean,
 	dataGeneration: boolean,
 	splitSources: boolean,
+	uniqueModIcon: boolean
 }
 
 export interface KotlinConfiguration {
@@ -52,23 +57,46 @@ export interface TemplateWriter {
 	write(path: string, content: string | ArrayBufferLike, options?: FileOptions): Promise<void>
 }
 
+export interface CanvasAdaptorFactory {
+	create(width: number, height: number): CanvasAdaptor | null
+}
+
+export interface CanvasAdaptor {
+  getContext(contextId: "2d"): unknown
+	getPng(): ArrayBufferLike
+	measureText(ctx: unknown, text: string): TextMetricsAdaptor
+}
+
+export interface TextMetricsAdaptor {
+	width: number
+	ascent: number
+	descent: number
+}
+
 export async function generateTemplate(options: Options) {
 	const computedConfig = await computeConfig(options.config);
 
 	await addGradleWrapper(options);
 	await addGroovyGradle(options.writer, computedConfig);
-	await addModJson(options.writer, computedConfig);
+	await addModJson(options.writer, options.canvas, computedConfig);
 	await addGitFiles(options.writer, computedConfig);
 }
 
 export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 	let versions = await getGameVersions()
-	return versions.filter((v) => v.stable).filter((v) => {
+	return versions.filter((v) => {
 		const version = v.version;
 
 		if (version.startsWith("1.14") && version != "1.14.4") {
 			// Hide pre 1.14.4 MC versions as they require using V1 yarn.
 			return false;
+		}
+
+		if (!v.stable) {
+			// Hide unstable versions, other than the latest -pre or -rc version.
+			const isLatest = versions[0].version == version;
+			const isPre = version.includes("-pre") || version.includes("-rc");
+			return isLatest && isPre;
 		}
 
 		return true;

@@ -4,6 +4,7 @@
 
   const win32 = navigator.platform == "Win32"
 
+  let showVersionSelection = false;
   let expertOptions = false;
   let selectedVersion = "";
   let versions = getDownloads();
@@ -11,6 +12,7 @@
   async function getDownloads() {
     const downloads = await getInstallerVersions();
     selectedVersion = downloads.find(v => v.stable)?.url ?? "";
+    showVersionSelection = downloads[0].stable == false;
     return downloads;
   }
 
@@ -38,13 +40,13 @@
 
       <br />
       <br />
-    {:else}
+    {:else if showVersionSelection}
       {#await getVersion() then latest}
         <p>
           {#if latest?.stable}Installer Version: {latest.version} (Latest){/if}
           {#if !expertOptions}
             <a href={'#'} on:click|preventDefault={showExpertOptions}>
-              Show other versions
+              Show beta versions
             </a>
           {/if}
         </p>
@@ -83,7 +85,7 @@
     <p style="color: red">Error: {error.message}</p>
     <p>
       For support please visit one of our
-      <a href="/discuss">community discussion</a>
+      <a href="/discuss/">community discussion</a>
       groups.
     </p>
   {/await}

@@ -7,58 +7,157 @@ import {
   Input,
   Select,
 } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
+import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
 import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
+import fontData from "../font.ts";
+import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
+import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
+import * as pureimage from "https://esm.sh/pureimage@0.4.13";
+// @deno-types="https://esm.sh/v135/@types/opentype.js@1.3.8/index.d.ts"
+import * as opentype from "https://esm.sh/opentype.js@0.4.11";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
 const success = colors.bold.green;
 
+const MOJMAP_ADVANCED_OPTION = "Mojang Mappings";
+const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
+
+const ADVANCED_OPTIONS: Map<string, string> = new Map([
+  ["kotlin", KOTLIN_ADVANCED_OPTION],
+  ["datagen", DATAGEN_ADVANCED_OPTION],
+  ["splitSources", SPLIT_ADVANCED_OPTION],
+]);
+
+interface CliOptions {
+  defaultOptions?: true;
+  name?: string;
+  modid?: string;
+  packageName?: string;
+  version?: string;
+  option?: (string | true)[];
+}
+
+const optionArg = {
+  conflicts: ["defaultOptions"],
+  // TODO hidden for now, as these are in beta and may change.
+  hidden: true,
+};
 
 export function initCommand() {
   return new Command()
     .name("init")
     .description("Generate a new fabric project")
     .option("-y, --defaultOptions", "Generate a mod with default options")
+    .option("-n, --name <name:string>", "The name of the mod", optionArg)
+    .option("-m, --modid <modid:string>", "The modid of the mod", optionArg)
+    .option(
+      "-p, --packageName <packageName:string>",
+      "The package name of the mod",
+      optionArg,
+    )
+    .option(
+      "-v, --version <version:string>",
+      "The minecraft version",
+      optionArg,
+    )
+    .option(
+      "-o, --option [advancedOption:string]",
+      "Specify an advanced option, one of" +
+        Object.keys(ADVANCED_OPTIONS).join(","),
+      {
+        ...optionArg,
+        collect: true,
+      },
+    )
     .arguments("[dir:file]")
-    .action(async ({ defaultOptions }, dir: string | undefined) => {
-      await generate(defaultOptions == true, dir);
+    .action(async (options, dir: string | undefined) => {
+      await generate(options, dir);
     });
 }
 
-async function generate(
-  useDefaultOptions: boolean,
-  outputDirName: string | undefined,
-) {
-  const outputDir = await getAndPrepareOutputDir(outputDirName);
+// Set the XML parser as we do not have DomParser here.
+generator.setXmlVersionParser((xml) => {
+  const document = parseXml(xml) as any;
+  return document.metadata.versioning.versions.version;
+});
 
-  const isTargetEmpty = await utils.isDirEmpty(outputDir);
-  if (!isTargetEmpty) {
-    console.error(error("The target directory must be empty"));
-    Deno.exit(1);
-  }
+const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
+fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
+fontLoader.loaded = true;
 
-  const config =
-    await (useDefaultOptions
-      ? defaultOptions(path.basename(outputDir))
-      : promptUser(path.basename(outputDir)));
-
-  const options: generator.Options = {
+export function getGeneratorOptions(
+  outputDir: string,
+  config: generator.Configuration,
+): generator.Options {
+  return {
     config,
     writer: {
       write: async (contentPath, content, options) => {
         await writeFile(outputDir, contentPath, content, options);
       },
     },
+    canvas: {
+      create(width, height) {
+        const bitmap = pureimage.make(width, height);
+
+        return {
+          getContext: (id) => bitmap.getContext(id),
+          getPng: () => png.encode(bitmap.data, bitmap.width, bitmap.height),
+          measureText(ctx: pureimage.Context, text) {
+            const font = fontLoader.font;
+            const fontSize = ctx._font.size!;
+
+            let advance = 0;
+            let ascent = 0;
+            let descent = 0;
+
+            const glyphs = font.stringToGlyphs(text);
+
+            for (const glyph of glyphs) {
+              const metrics = glyph.getMetrics();
+              advance += glyph.advanceWidth!;
+              ascent = Math.max(ascent, metrics.yMax);
+              descent = Math.min(descent, metrics.yMin);
+            }
+
+            return {
+              width: (advance / font.unitsPerEm) * fontSize,
+              ascent: Math.abs((ascent / font.unitsPerEm) * fontSize),
+              descent: Math.abs((descent / font.unitsPerEm) * fontSize),
+            };
+          },
+        };
+      },
+    },
   };
+}
+
+async function generate(
+  cli: CliOptions,
+  outputDirName: string | undefined,
+) {
+  const outputDir = await getAndPrepareOutputDir(outputDirName);
+
+  const isTargetEmpty = await utils.isDirEmpty(outputDir);
+  if (!isTargetEmpty) {
+    fatalError("The target directory must be empty");
+  }
+
+  const config =
+    await (cli.defaultOptions
+      ? defaultOptions(path.basename(outputDir))
+      : promptUser(path.basename(outputDir), cli));
 
   console.log(progress("Generating mod template..."));
-  await generator.generateTemplate(options);
+
+  await generator.generateTemplate(getGeneratorOptions(outputDir, config));
   console.log(success("Done!"));
 }
 
@@ -80,17 +179,20 @@ async function getAndPrepareOutputDir(
 
 async function promptUser(
   startingName: string,
+  cli: CliOptions,
 ): Promise<generator.Configuration> {
   // Store a promise for now, so the request can be made while taking the other inputs.
   const minecraftVersionsPromise = generator.getTemplateGameVersions();
 
-  const modName: string = await Input.prompt({
+  validateCliOptions(cli);
+
+  const modName: string = cli.name ?? await Input.prompt({
     message: "Choose a name",
     default: startingName,
     minLength: 2,
   });
 
-  const modId: string = await Input.prompt({
+  const modId: string = cli.modid ?? await Input.prompt({
     message: "Choose a unique modid",
     default: generator.nameToModId(modName),
     minLength: 2,
@@ -105,22 +207,62 @@ async function promptUser(
     },
   });
 
-  const packageName: string = await Input.prompt({
+  const packageName: string = cli.packageName ?? await Input.prompt({
     message: "Choose a package name",
-    default: modId,
+    default: generator.formatPackageName(modId),
     transform: (value) => {
       return generator.formatPackageName(value);
     },
+    validate: (value) => {
+      const errors = generator.computePackageNameErrors(value);
+
+      if (errors.length == 0) {
+        return true;
+      }
+
+      return errors.join(", ");
+    },
   });
 
-  const minecraftVersion: string = await Select.prompt({
-    message: "Select the minecraft version",
-    options: (await minecraftVersionsPromise).map((v) => v.version),
+  const minecraftVersions = await minecraftVersionsPromise;
+  let minecraftVersion: string;
+
+  if (cli.version != undefined) {
+    minecraftVersion = cli.version;
+
+    if (!minecraftVersions.map((v) => v.version).includes(minecraftVersion)) {
+      fatalError(`The minecraft version ${minecraftVersion} does not exist.`);
+    }
+  } else {
+    minecraftVersion = await Select.prompt({
+      message: "Select the minecraft version",
+      options: minecraftVersions.map((v) => v.version),
+      default: minecraftVersions.find((v) => v.stable)?.version,
+    });
+  }
+
+  const cliOptions = cli.option?.map((o): string => {
+    if (o === true) {
+      fatalError("Advanced options must be specified with a value");
+      return "unreachable";
+    }
+
+    const option = o as string;
+
+    if (!ADVANCED_OPTIONS.has(option)) {
+      fatalError(
+        `Unknown option ${o} must be one of: ${
+          Array.from(ADVANCED_OPTIONS.keys()).join(", ")
+        }`,
+      );
+    }
+
+    return ADVANCED_OPTIONS.get(option)!;
   });
 
-  const advancedOptions = await Checkbox.prompt({
+  const advancedOptions = cliOptions ?? await Checkbox.prompt({
     message: "Advanced options",
-    options: getAdancedOptions(minecraftVersion),
+    options: getAdvancedOptions(minecraftVersion),
   });
 
   return {
@@ -128,17 +270,35 @@ async function promptUser(
     minecraftVersion: minecraftVersion,
     projectName: modName,
     packageName: packageName,
+    mojmap: advancedOptions.includes(MOJMAP_ADVANCED_OPTION),
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
+    uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
   };
+}
+
+function validateCliOptions(cli: CliOptions) {
+  if (cli.modid != undefined) {
+    const errors = generator.computeCustomModIdErrors(cli.modid);
+    if (errors != undefined) {
+      fatalError(errors.join(", "));
+    }
+  }
+
+  if (cli.packageName != undefined) {
+    const errors = generator.computePackageNameErrors(cli.packageName);
+    if (errors.length > 0) {
+      fatalError(errors.join(", "));
+    }
+  }
 }
 
 async function defaultOptions(
   startingName: string,
 ): Promise<generator.Configuration> {
   const minecraftVersions = await generator.getTemplateGameVersions();
-  const minecraftVersion = minecraftVersions[0]!.version;
+  const minecraftVersion = minecraftVersions.find((v) => v.stable)!.version;
 
   return {
     modid: generator.nameToModId(startingName),
@@ -147,16 +307,20 @@ async function defaultOptions(
     packageName: generator.formatPackageName(
       generator.nameToModId(startingName),
     ),
+    mojmap: false,
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
+    uniqueModIcon: true,
   };
 }
 
-function getAdancedOptions(minecraftVersion: string): CheckboxValueOptions {
-  const options: CheckboxValueOptions = [
-    { value: KOTLIN_ADVANCED_OPTION },
-  ];
+function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
+  const options: CheckboxValueOptions = [];
+
+  options.push({ value: ICON_ADVANCED_OPTION, checked: true });
+  options.push({ value: KOTLIN_ADVANCED_OPTION });
+  options.push({ value: MOJMAP_ADVANCED_OPTION });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
@@ -188,7 +352,7 @@ async function writeFile(
   };
 
   // is there a cleaner way to do this?
-  if (content instanceof ArrayBuffer) {
+  if (content instanceof ArrayBuffer || content instanceof Uint8Array) {
     const data = new Uint8Array(content);
     await Deno.writeFile(output, data, writeOptions);
   } else {
@@ -240,8 +404,12 @@ async function requestPermissions(outputDir: string) {
     const status = await Deno.permissions.request(permission);
 
     if (status.state != "granted") {
-      console.error(error("Permission not granted"));
-      Deno.exit(1);
+      fatalError("Permission not granted");
     }
   }
+}
+
+function fatalError(message: string) {
+  console.error(error(message));
+  Deno.exit(1);
 }

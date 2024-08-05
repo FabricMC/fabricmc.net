@@ -2,13 +2,16 @@
     import JSZip from "jszip";
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
-    import { getTemplateGameVersions } from "./template/template";
+    import { ICON_FONT, getTemplateGameVersions, type Configuration } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
+    import { computePackageNameErrors } from "./template/java"
+    import { decode64 } from "./template/utils";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
+    let mojmap = false;
     let dataGeneration = false;
     let splitSources = true;
 
@@ -18,10 +21,9 @@
     $: modid = nameToModId(projectName);
 
     const versions = Promise.all([getTemplateGameVersions()]).then(([gameVersions]) => {
-        const game = gameVersions;
-        minecraftVersion = game[0].version;
+        minecraftVersion = gameVersions.find((version) => version.stable)!.version;
         return {
-            game,
+            game: gameVersions,
         };
     });
 
@@ -30,6 +32,7 @@
 
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
+    $: packageNameErrors = computePackageNameErrors(packageName);
 
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
       if (id === undefined) {
@@ -40,21 +43,23 @@
     }
 
     async function generate() {
-        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined)) {
+        if (modIdErrors !== undefined || (customModId !== undefined && customIdErrors !== undefined) || packageNameErrors.length > 0) {
             return;
         }
 
         loading = true;
 
         const generator = await import("./template/template");
-        const config = {
+        const config: Configuration = {
             modid: customModId ?? modid,
             minecraftVersion,
             projectName,
             packageName,
             useKotlin,
+            mojmap,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
+            uniqueModIcon: true
         };
 
         const zip = new JSZip();
@@ -68,6 +73,26 @@
                     });
                 },
             },
+            canvas: {
+                create(width, height) {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    return {
+                        getContext: (id) => canvas.getContext(id),
+                        getPng: () => decode64(canvas.toDataURL().split(";base64,")[1]),
+                        measureText(ctx: CanvasRenderingContext2D, text) {
+                            const metrics = ctx.measureText(text);
+                            return {
+                                width: metrics.width,
+                                ascent: metrics.actualBoundingBoxAscent,
+                                descent: metrics.actualBoundingBoxDescent
+                            }
+                        }
+                    };
+                },
+            }
         });
 
         FileSaver.saveAs(
@@ -96,7 +121,12 @@
 </script>
 
 {#await versions}
-    <p>Loading data..</p>
+    <p>
+        Loading data
+    
+        <!-- Force the icon fonts to be loaded, https://stackoverflow.com/questions/2756575 -->
+        <span style="font-family: {ICON_FONT};">...</span>
+    </p>
 {:then data}
     <div class="template">
         <div class="form-line">
@@ -109,14 +139,14 @@
                 <p>Choose a name for your new mod. The mod ID will be <code>{modid}</code>. <a href={""} on:click|preventDefault={useCustomModId}>Use custom id</a></p>
             {/if}
 
-            <input id="project-name" bind:value={projectName} on:keyup={doFormatProjectName} />
+            <input id="project-name" bind:value={projectName} on:blur={doFormatProjectName} />
 
             {#if modIdErrors != undefined}
-            {#each modIdErrors as error}
-                <li style="color: red">{error}</li>
-            {/each}
-            <br>
-        {/if}
+                {#each modIdErrors as error}
+                    <li style="color: red">{error}</li>
+                {/each}
+                <br>
+            {/if}
         </div>
 
         {#if customModId != undefined}
@@ -143,6 +173,10 @@
                 should be unique to you. If you are unsure about this use <code>name.modid</code>.
             </p>
             <input id="package-name" on:keyup={doFormatPackageName} bind:value={packageName} />
+
+            {#each packageNameErrors as error}
+                <li style="color: red">{error}</li>
+            {/each}
         </div>
 
         <div class="form-line">
@@ -176,6 +210,16 @@
             <p class="option-body">
                 <a href="https://kotlinlang.org/">Kotlin</a> is a alternative programming language that can be used to develop mods.
                 The <a href="https://github.com/FabricMC/fabric-language-kotlin">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.
+            </p>
+        </div>
+
+        <div>
+            <div class="option-container">
+                <input id="mojmap" type="checkbox" class="option-input" bind:checked={mojmap} />
+                <label for="mojmap" class="option-label">Mojang Mappings</label>
+            </div>
+            <p class="option-body">
+                Use Mojang's official mappings rather than Yarn. Note that Mojang's mappings come with a usable yet more restrictive license than Yarn. Use them at your own risk.
             </p>
         </div>
 
@@ -213,7 +257,7 @@
             </a>
         {:else}
             <a
-                class="button primary download-button"
+                class="button primary large download-button"
                 href={""}
                 on:click|preventDefault={generate}
             >
@@ -225,12 +269,17 @@
     <p style="color: red">Error: {error.message}</p>
     <p>
         For support please visit one of our
-        <a href="/discuss">community discussion</a>
+        <a href="/discuss/">community discussion</a>
         groups.
     </p>
 {/await}
 
 <style lang="scss">
+    @font-face {
+    	font-family: "Comic Relief";
+	    src: url("/assets/fonts/ComicRelief-Regular.woff2");
+    }
+    
     .template {
         * {
             text-align: left;

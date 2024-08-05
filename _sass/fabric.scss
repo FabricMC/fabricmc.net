@@ -64,6 +64,19 @@ button, .button {
 		font-size: 20px;
 		font-weight: 700;
 	}
+	&.warning {
+		border: 2px solid $warning-color;
+
+		&:hover, &:focus {
+			background-color: darken($warning-color, 10%);
+			border-color: darken($warning-color, 10%);
+		}
+
+		&:active {
+			background-color: lighten($warning-color, 5%);
+			border-color: lighten($warning-color, 5%);
+		}
+	}
 
 	border-radius: 5px;
 	color: white !important;
@@ -143,7 +156,47 @@ p {
 
 		section {
 			padding-bottom: 12px;
-			margin-bottom: auto;
+		}
+
+		.button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+		.javadoc-selector {
+			position: relative;
+			margin-bottom: 6px;
+
+			select {
+				max-width: 100%; width: 100%;
+
+				border: 2px solid $button-color;
+				color: $text-color !important;
+				padding: 8px 8px;
+				text-align: center;
+				display: inline-block;
+				box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+				font-size: 16px;
+				background-color: transparent;
+
+				// Remove default styling, especially on Safari
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+
+				option {
+					background-color: $grey-color-very-dark;
+				}
+			}
+		}
+
+		.javadoc-selector::after {
+			content: "▼";
+			position: absolute;
+			right: 1rem;
+			top: 0.5rem;
+			pointer-events: none; 
 		}
 	}
 

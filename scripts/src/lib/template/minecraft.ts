@@ -7,7 +7,17 @@ export function minecraftSupportsSplitSources(minecraftVersion: string): boolean
 }
 
 export function getMinorMinecraftVersion(minecraftVersion: string): number {
-	return Number(minecraftVersion.split(".")[1]);
+	return getVersionParts(minecraftVersion)[1];
+}
+
+export function getPathMinecraftVersion(minecraftVersion: string): number {
+	return getVersionParts(minecraftVersion)[2];
+}
+
+function getVersionParts(minecraftVersion: String): number[] {
+	// Remove any snapshot or pre-release suffix
+	const targetVersion = minecraftVersion.split("-")[0];
+	return targetVersion.split(".").map((v) => parseInt(v));
 }
 
 export function sharedModIdChecks(id: string, isId: boolean): string[] | undefined {
@@ -20,6 +30,10 @@ export function sharedModIdChecks(id: string, isId: boolean): string[] | undefin
 		errorList.push(`${type} is only a single character! (It must be at least 2 characters long)!`);
 	} else if (id.length > 64) {
 		errorList.push(`${type} has more than 64 characters!`);
+	}
+
+	if (id.toLocaleLowerCase().startsWith("fabric")) {
+		errorList.push("Mod id starts with 'fabric', which is generally reserved for Fabric itself.")
 	}
 
 	return errorList.length === 0 ? undefined : errorList;
