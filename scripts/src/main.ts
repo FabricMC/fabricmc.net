@@ -10,7 +10,7 @@ function lazy(name: string): () => Promise<Module> {
     return (() => import(`./lib/${name}.svelte`)) as any as () => Promise<Module>;
 }
 
-const Installer = lazy("Installer");
+const Download = lazy("Download");
 const MCUpdater = lazy("MCUpdater");
 const Technic = lazy("Technic");
 const Server = lazy("Server");
@@ -19,7 +19,7 @@ const Documentation = lazy("Documentation");
 const Template = lazy("Template");
 
 let Components: Record<string, () => Promise<Module>> = {
-    Installer,
+    Download,
     MCUpdater,
     Technic,
     Server,

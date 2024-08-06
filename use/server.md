@@ -2,5 +2,8 @@
 layout: use
 title: "Download Minecraft Server Launcher"
 permalink: /use/server/
-svelte_component: Server
 ---
+
+<script>
+window.location.href = '/download#server';
+</script>

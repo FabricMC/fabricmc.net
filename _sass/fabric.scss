@@ -87,6 +87,16 @@ button, .button {
 	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
+img.button-icon {
+	width: 24px;
+	height: 24px;
+	margin-right: 4px;
+}
+
+.button span {
+	vertical-align: middle;
+}
+
 button {
 	font-size: inherit;
 	line-height: inherit;
@@ -207,4 +217,12 @@ p {
 			object-fit: cover;
 		}
 	}
+}
+
+.container {
+	background-color: #161B22;
+	width: 100%;
+	padding: 24px;
+
+	border-radius: 10px;
 }
