@@ -27,13 +27,12 @@ These third-party launchers have their own installation process for Fabric Loade
 <!-- Todo: link to our own guides. -->
 
 <div class="button-group horizontal">
-	<a class="button secondary" href="https://support.modrinth.com/en/articles/8827653-installing-updating-mod-loaders-and-game-versions" target="_blank"><img class="button-icon" src="/assets/external/modrinth-app.png"><span>Modrinth App</span></a>
-	<a class="button secondary" href="https://support.curseforge.com/en/support/solutions/articles/9000196904-creating-a-custom-profile" target="_blank"><img class="button-icon" src="/assets/external/cf_app_icon.png"><span>CurseForge App</span></a>
-	<a class="button secondary" href="https://prismlauncher.org/wiki/getting-started/download-mods/" target="_blank"><img class="button-icon" src="/assets/external/prism_launcher.png"><span>Prism Launcher</span></a>
-	<a class="button secondary" href="https://gdlauncher.com/docs/" target="_blank"><img class="button-icon" src="/assets/external/gdlauncher.png"><span>GDLauncher Carbon</span></a>
-	<!-- <a class="button secondary" href="https://github.com/MultiMC/Launcher/wiki/Instance-Version#install" target="_blank"><img class="button-icon" src="/assets/external/multimc.png"><span>MultiMC</span></a> -->
-	<a class="button secondary" href="https://atlauncher.com/help" target="_blank"><img class="button-icon" src="/assets/external/ATLauncher.png"><span>ATLauncher</span></a>
-	<a class="button secondary" href="https://docs.feed-the-beast.com/docs/app/" target="_blank"><img class="button-icon" src="/assets/external/ftb.png"><span>FTB App</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:modrinth" target="_blank"><img class="button-icon" src="/assets/external/modrinth-app.png"><span>Modrinth App</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:curseforge" target="_blank"><img class="button-icon" src="/assets/external/cf_app_icon.png"><span>CurseForge App</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:prism" target="_blank"><img class="button-icon" src="/assets/external/prism_launcher.png"><span>Prism Launcher</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:gdlauncher" target="_blank"><img class="button-icon" src="/assets/external/gdlauncher.png"><span>GDLauncher Carbon</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:atlauncher" target="_blank"><img class="button-icon" src="/assets/external/ATLauncher.png"><span>ATLauncher</span></a>
+	<a class="button secondary" href="https://fabricmc.net/wiki/player:tutorials:third-party:ftb" target="_blank"><img class="button-icon" src="/assets/external/ftb.png"><span>FTB App</span></a>
 </div>
 <br />
 _Is your Launcher not in this list? Consider adding it to the website's [GitHub Repository.](https://github.com/FabricMC/fabricmc.net)_
