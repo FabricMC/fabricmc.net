@@ -53,3 +53,10 @@ For a portable version, you can use [PortableMC](https://github.com/mindstorm38/
 To use Fabric with PortableMC, you can simply run the `portablemc start fabric:` command to install and start a Fabric instance using the latest version of Fabric Loader and Minecraft.
 
 For more information, you should consult the [PortableMC repository](https://github.com/mindstorm38/portablemc).
+
+### Legacy Tools {#legacy}
+
+<!-- TODO: These will be removed eventually. -->
+
+- [MCUpdater](/use/mcupdater.md)
+- [Technic](/use/technic.md)
