@@ -7,7 +7,7 @@ topnav: true
 
 # Download Fabric Loader
 
-You can select the Minecraft and Fabric Loader versions in the installer, which works for all supported versions; it will install Fabric Loader and add it as a profile to your Minecraft Launcher. For more details, see the [Fabric Documentation - Installing Fabric page](https://docs.fabricmc.net/players/installing-fabric).
+You can select the Minecraft and Fabric Loader versions in the installer, which works for all supported versions; it will install Fabric Loader and add it as a profile to your Minecraft Launcher.
 
 <noscript style="color:red">You need Javascript to show the Download button.</noscript>
 <div class="fabric-component" data-component="Download"></div>
@@ -16,9 +16,15 @@ You can select the Minecraft and Fabric Loader versions in the installer, which 
 <script type="text/javascript" src="{{ "/scripts/main.js" | relative_url | append: cacheBust }}"></script>
 <link href="{{ "/scripts/style.css" | relative_url | append: cacheBust }}" rel="stylesheet">
 
+<div style="text-align: center;">
+	<b>Make sure to follow the <a href="https://docs.fabricmc.net/players/installing-fabric">installation instructions!</a></b>
+</div>
+
 ## Using a Third-Party Launcher? {#third-party-launcher}
 
 These third-party launchers have their own installation process for Fabric Loader, consider checking out the relevant documentation for the launcher you are using:
+
+<!-- Todo: link to our own guides. -->
 
 <div class="button-group horizontal">
 	<a class="button secondary" href="https://support.modrinth.com/en/articles/8827653-installing-updating-mod-loaders-and-game-versions" target="_blank"><img class="button-icon" src="/assets/external/modrinth-app.png"><span>Modrinth App</span></a>
@@ -36,8 +42,7 @@ _Is your Launcher not in this list? Consider adding it to the website's [GitHub 
 
 ### Minecraft Server {#server}
 
-To create a Minecraft server with Fabric mods, use the universal jar installer above to install a server instance on your current system, or use the Fabric Server Launcher, which wraps the vanilla server jar with Fabric Loader - useful for dedicated servers.
+To create a Minecraft server with Fabric mods, use the universal jar installer to set up a server on your system, or the Fabric Server Launcher, which wraps the vanilla server jar with Fabric Loader for dedicated servers. The executable jar is a small launcher that starts the Fabric-enabled Minecraft server using the specified versions, eliminating the need for an installer.
 
-<div class="container">
-
-</div>
+<noscript style="color:red">You need Javascript to show the Server Executable Download button.</noscript>
+<div class="fabric-component" data-component="Server"></div>
