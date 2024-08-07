@@ -30,3 +30,7 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
 gem "webrick", "~> 1.7"
 gem 'jekyll-sitemap'
+
+# Used to produce accurate redirects for the /use/ pages. 
+# Instead of using windows.location.href, create valid 3XX redirects that can be recognized by Google and other search engines.
+gem 'jekyll-redirect-from'
