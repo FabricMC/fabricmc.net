@@ -60,7 +60,14 @@ export function getJavaVersion(minecraftVersion: string): JavaVersion {
 	return JAVA_21;
 }
 
-const JAVA_PACKAGE_REGEX = /^[a-z][a-z0-9_]*(\.[a-z0-9_]+)+[0-9a-z_]$/;
+const JAVA_PACKAGE_REGEX = /^[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)*$/;
+const JAVA_RESERVED_WORDS = `
+	abstract continue for new switch assert default goto package synchronized
+	boolean do if private this break double implements protected throw byte else
+	import public throws case enum instanceof return transient catch extends int
+	short try char final interface static void class finally long strictfp
+	volatile const float native super while _ true false null
+`.trim().split(/\s+/);
 const RESERVED_PACKAGE_PREFIXES = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
 
 export function computePackageNameErrors(packageName: string): string[] {
@@ -68,6 +75,11 @@ export function computePackageNameErrors(packageName: string): string[] {
 
 	if (!JAVA_PACKAGE_REGEX.test(packageName.toLowerCase())) {
 		errorList.push("Package name is not a valid Java package name!");
+	}
+
+	const reservedWordsFound = packageName.split('.').filter(c => JAVA_RESERVED_WORDS.includes(c));
+	if (reservedWordsFound.length != 0) {
+		errorList.push(`Package name contains illegal component: '${reservedWordsFound[0]}'`);
 	}
 
 	for (let prefix of RESERVED_PACKAGE_PREFIXES) {
