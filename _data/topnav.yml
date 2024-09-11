@@ -1,12 +1,12 @@
 
 links:
-  - title: download
-    page: use/installer.md
-  - title: blog
+  - title: Download
+    page: download.md
+  - title: Blog
     page: blog.md
-  - title: develop
+  - title: Develop
     page: develop.md
-  - title: discuss
+  - title: Discuss
     page: discuss.md
-  - title: wiki
+  - title: Wiki
     url: https://fabricmc.net/wiki/
