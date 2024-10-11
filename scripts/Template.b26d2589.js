@@ -3074,7 +3074,7 @@ if "%OS%"=="Windows_NT" endlocal\r
 :omega\r
 `, He = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.10-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.10.2-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
@@ -3472,7 +3472,7 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_version=<%= it.fabricVersion %>`, tn = `plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
+	id 'fabric-loom' version '1.8-SNAPSHOT'
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
 	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
