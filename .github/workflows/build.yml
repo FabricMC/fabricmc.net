@@ -37,7 +37,7 @@ jobs:
       - run: rm -rf ./_site/cli && cp ./cli/bundled.ts ./_site/cli
       # Upload the static content as a workflow artifact when not publishing the site (non-main branches)
       - name: Archive site
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: site
           path: _site
