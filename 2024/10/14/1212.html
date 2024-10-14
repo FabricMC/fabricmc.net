@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.21.2 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.21.2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers." />
+<meta property="og:description" content="Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers." />
+<link rel="canonical" href="https://fabricmc.net/2024/10/14/1212.html" />
+<meta property="og:url" content="https://fabricmc.net/2024/10/14/1212.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-10-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.21.2" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.21.2","dateModified":"2024-10-14T00:00:00+00:00","datePublished":"2024-10-14T00:00:00+00:00","description":"Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.","url":"https://fabricmc.net/2024/10/14/1212.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/10/14/1212.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1728925997">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1728925997"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">Download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">Blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">Develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">Discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.21.2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-10-14T00:00:00+00:00" itemprop="datePublished">Oct 14, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently <a href="https://www.minecraft.net/en-us/article/the-future-of-minecrafts-development">announced</a> that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.</p>
+
+<p>As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We ask everyone kindly not to pester them. <strong>We also recommend all players to make a backup of their worlds.</strong></p>
+
+<p>Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+
+<p>Developers should use Loom 1.8 (at the time of writing) to develop mods for Minecraft 1.21.2. Players should install the latest stable version of Fabric Loader (currently 0.16.7).</p>
+
+<h3 id="fabric-loader-changes">Fabric Loader changes</h3>
+
+<p>Fabric Loader 0.16.0 was released some time ago.  Most notably, this release updates the bundled MixinExtras to 0.4.0.</p>
+
+<p>In addition, Fabric Loader 0.16.7 added support for Java 23. However, you should continue to use Java 21 for mod development and gameplay.</p>
+
+<h4 id="mixinextras-additions">MixinExtras additions</h4>
+
+<p>The following new features have been added:</p>
+
+<ul>
+  <li><a href="https://github.com/LlamaLad7/MixinExtras/wiki/WrapMethod"><code class="language-plaintext highlighter-rouge">@WrapMethod</code></a>, which allows wrapping the entire method</li>
+  <li><a href="https://github.com/LlamaLad7/MixinExtras/wiki/Cancellable"><code class="language-plaintext highlighter-rouge">@Cancellable</code></a>, which allows cancellation from all injectors.</li>
+  <li><code class="language-plaintext highlighter-rouge">namespace</code> parameter in <a href="https://github.com/LlamaLad7/MixinExtras/wiki/Share"><code class="language-plaintext highlighter-rouge">@Share</code></a> to share values between Mixins</li>
+</ul>
+
+<h3 id="loom-18">Loom 1.8</h3>
+
+<p>Loom 1.8 adds support for configuration caches, Gradle 8.10, and other changes and fixes.</p>
+
+<p>Configuration cache is an opt-in Gradle performance enhancement feature that will be enabled by default in Gradle 9. Because this may break existing setup, we only recommend using this if you are familiar with Gradle buildscripts. To support this change, multi-project optimization has been removed.</p>
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+
+<p>With the help of many contributors, Fabric API has received some new features since the last update blog post:</p>
+
+<ul>
+  <li>Convention Tags: Add more tags (TelepathicGrunt, Juuz)</li>
+  <li>Crash Report Info: Print the full stack trace from the dedicated server watchdog (TelepathicGrunt)</li>
+  <li>Entity Events: Add after damage event (TheDeathlyCow)</li>
+  <li>Item API: Modify enchantment and add component map builder extensions (TheDeathlyCow)</li>
+  <li>Item Group API: Add API to control creative inventory screen (modmuss50)</li>
+  <li>Loot API: Loot API v3 (modmuss50)</li>
+  <li>Networking: Add MinecraftClient/Server instances to networking contexts (modmuss50)</li>
+  <li>Networking: Add <code class="language-plaintext highlighter-rouge">ClientConfigurationConnectionEvents#START</code> (modmuss50)</li>
+  <li>Networking: Add access to ClientConfigurationNetworkHandler in context (Earthcomputer)</li>
+  <li>Object Builder: Add an API to add additional supported blocks to block entity types (modmuss50)</li>
+  <li>Renderer API: Add <code class="language-plaintext highlighter-rouge">ShadeMode</code> (PepperCode1)</li>
+  <li>Renderer API: Quads overloads for joml interfaces (SHsuperCM)</li>
+  <li>Resource Conditions: Allow conditions inside pack overlays (Apollo)</li>
+  <li>Resource Loader: Add API to create reload listeners with a registry lookup (modmuss50)</li>
+  <li>Removed Herobrine (Tiny Potato)</li>
+  <li>Transfer API: Crafter support (modmuss50)</li>
+  <li>Transfer API: Add <code class="language-plaintext highlighter-rouge">ItemVariant#withComponentChanges</code> (BasiqueEvangelist)</li>
+</ul>
+
+<h3 id="breaking-changes-and-deprecations">Breaking changes and deprecations</h3>
+
+<p><em>Note: breaking changes related to vanilla changes are addressed separately below.</em></p>
+
+<p>One deprecated module was removed: <code class="language-plaintext highlighter-rouge">fabric-renderer-registries-v1</code>.</p>
+
+<p>In Resource Condition, the <code class="language-plaintext highlighter-rouge">test</code> method now takes <code class="language-plaintext highlighter-rouge">RegistryOps.RegistryInfoGetter</code>. Tags can no longer have resource conditions. Similarly, in Resource Loader, <code class="language-plaintext highlighter-rouge">ResourceReloadListenerKeys#TAGS</code> was removed.</p>
+
+<p>The following deprecations were made since the last blogpost:</p>
+
+<ul>
+  <li>Content Registries: <code class="language-plaintext highlighter-rouge">VillagerInteractionRegistries#registerCollectable</code> was deprecated. Use the vanilla tag, <code class="language-plaintext highlighter-rouge">minecraft:villager_picks_up</code>, instead.</li>
+  <li>Loot API: Loot API v2 was deprecated. Use Loot API v3, which passes registry contexts, instead.</li>
+  <li>Networking:<code class="language-plaintext highlighter-rouge">ClientConfigurationConnectionEvents#READY</code> was renamed to <code class="language-plaintext highlighter-rouge">COMPLETE</code>. (This was done during the 1.21 update cycle, but after we published the last blogpost.)</li>
+</ul>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+
+<h3 id="serverworld-parameters"><code class="language-plaintext highlighter-rouge">ServerWorld</code> parameters</h3>
+
+<p>Many methods that must be executed on the server side only now require <code class="language-plaintext highlighter-rouge">ServerWorld</code> to be passed explicitly. <strong>Do not cast just to fix a type error;</strong> many events and overridden method are still called on both the client side and the server side.</p>
+
+<p>Instead, wrap all logic that must be run only on the server side with <code class="language-plaintext highlighter-rouge">if (world instanceof ServerWorld serverWorld)</code>. The <code class="language-plaintext highlighter-rouge">serverWorld</code> can be passed to those methods.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">Entity#damage</code> now requires <code class="language-plaintext highlighter-rouge">ServerWorld</code>, and is therefore only called on the server side. There is an additional method, <code class="language-plaintext highlighter-rouge">clientDamage</code>, which is called only on the client side.</p>
+
+<h3 id="block-and-item-settings">Block and item settings</h3>
+
+<p>Minecraft 1.21.2 uses registry keys to pre-compute certain block or item settings. This allows referencing them in default item components. For example, rather than computing a default name based on an item’s registry key inside <code class="language-plaintext highlighter-rouge">getName</code> method if the <code class="language-plaintext highlighter-rouge">minecraft:item_name</code> component is not present, every item now contains the <code class="language-plaintext highlighter-rouge">minecraft:item_name</code> component.</p>
+
+<p>Because of this, you must <strong>manually set registry keys in the settings of every block and item</strong>. Failure to do so will result in crashes such as:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">NullPointerException: Block id not set</code></li>
+  <li><code class="language-plaintext highlighter-rouge">NullPointerException: Item id not set</code></li>
+</ul>
+
+<p>Both settings classes provide a simple method which should be called for every item or block with their respective registry key:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Identifier</span> <span class="n">id</span> <span class="o">=</span> <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"mymod"</span><span class="o">,</span> <span class="s">"test_item"</span><span class="o">);</span>
+<span class="nc">RegistryKey</span><span class="o">&lt;</span><span class="nc">Item</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="nc">RegistryKey</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nc">RegistryKeys</span><span class="o">.</span><span class="na">ITEM</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+<span class="nc">Item</span><span class="o">.</span><span class="na">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Item</span><span class="o">.</span><span class="na">Settings</span><span class="o">()</span>
+    <span class="c1">// If your item is based on a block</span>
+    <span class="o">.</span><span class="na">useBlockPrefixedTranslationKey</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">registryKey</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+
+<span class="nc">Registry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">Registries</span><span class="o">.</span><span class="na">ITEM</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Item</span><span class="o">(</span><span class="n">settings</span><span class="o">));</span>
+</code></pre></div></div>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Identifier</span> <span class="n">id</span> <span class="o">=</span> <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"mymod"</span><span class="o">,</span> <span class="s">"test_block"</span><span class="o">);</span>
+<span class="nc">RegistryKey</span><span class="o">&lt;</span><span class="nc">Block</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="nc">RegistryKey</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nc">RegistryKeys</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+<span class="nc">Block</span><span class="o">.</span><span class="na">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Block</span><span class="o">.</span><span class="na">Settings</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">registryKey</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+
+<span class="nc">Registry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">Registries</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="k">new</span> <span class="nc">Block</span><span class="o">(</span><span class="n">settings</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>Make sure to call the <code class="language-plaintext highlighter-rouge">Item.Settings#useBlockPrefixedTranslationKey</code> method for block items so that they use the <code class="language-plaintext highlighter-rouge">block.&lt;namespace&gt;.&lt;path&gt;</code> translation key format.</p>
+
+<p>This change affects the following traits:</p>
+
+<ul>
+  <li>Item names (<code class="language-plaintext highlighter-rouge">minecraft:item_name</code> component)</li>
+  <li>Item models (<code class="language-plaintext highlighter-rouge">minecraft:item_model</code> component)</li>
+  <li>Block models</li>
+  <li>Block loot table key</li>
+</ul>
+
+<p>Some traits, such as the cooldown group of items with cooldowns, still dynamically look up a registry key, but this pattern should be avoided as much as possible.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Block#getLootTableKey</code> now returns <code class="language-plaintext highlighter-rouge">Optional&lt;RegistryKey&gt;</code>. A block without a corresponding loot table now returns an empty optional instead of the <code class="language-plaintext highlighter-rouge">minecraft:empty</code> loot table registry key.</p>
+
+<p>In Fabric API, the previously-deprecated <code class="language-plaintext highlighter-rouge">FabricBlockSettings</code> class was removed. Use the vanilla <code class="language-plaintext highlighter-rouge">AbstractBlock.Settings</code> class instead.</p>
+
+<h3 id="furnace-fuels">Furnace fuels</h3>
+
+<p>Furnace fuels are now registered through an event, which allows access to new parameters:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- FuelRegistry.INSTANCE.add(ModItems.TEST_ITEM, 50);
+</span><span class="gi">+ FuelRegistryEvents.BUILD.register((builder, context) -&gt; {
++     builder.add(ModItems.TEST_ITEM, context.baseSmeltTime() / 4);
++ });
+</span></code></pre></div></div>
+
+<p>The base smelt time can be used to express a fuel’s smelt time in terms of a ratio. The default base smelt time is 200 ticks, or 10 seconds.</p>
+
+<h3 id="entities">Entities</h3>
+
+<p><code class="language-plaintext highlighter-rouge">EntityType</code> received a registry key change similar to the block and item one described above. When building an <code class="language-plaintext highlighter-rouge">EntityType</code>, pass a <code class="language-plaintext highlighter-rouge">RegistryKey</code> for the entity type. The no-argument version of the <code class="language-plaintext highlighter-rouge">EntityType.Builder#build</code> method, injected by <code class="language-plaintext highlighter-rouge">FabricEntityTypeBuilder</code>, has been removed. For example:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Identifier</span> <span class="n">id</span> <span class="o">=</span> <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"mymod"</span><span class="o">,</span> <span class="s">"test_entity_type"</span><span class="o">);</span>
+<span class="nc">RegistryKey</span><span class="o">&lt;</span><span class="nc">EntityType</span><span class="o">&lt;?&gt;&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="nc">RegistryKey</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="nc">RegistryKeys</span><span class="o">.</span><span class="na">ENTITY_TYPE</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+
+<span class="nc">EntityType</span><span class="o">&lt;</span><span class="nc">TestEntity</span><span class="o">&gt;</span> <span class="n">entityType</span> <span class="o">=</span> <span class="nc">EntityType</span><span class="o">.</span><span class="na">Builder</span><span class="o">.&lt;</span><span class="nc">TestEntity</span><span class="o">&gt;</span><span class="n">create</span><span class="o">(</span><span class="nl">TestEntity:</span><span class="o">:</span><span class="k">new</span><span class="o">,</span> <span class="nc">SpawnGroup</span><span class="o">.</span><span class="na">MISC</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">key</span><span class="o">);</span>
+
+<span class="nc">Registry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">Registries</span><span class="o">.</span><span class="na">ENTITY_TYPE</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">entityType</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>Mob conversion (such as zombie villager curing or slimes splitting on death) was overhauled. The exact behavior of conversion is now handled by methods implemented by values of the <code class="language-plaintext highlighter-rouge">EntityConversionType</code> enum. When using the <code class="language-plaintext highlighter-rouge">MobEntity#convertTo</code> method to convert a mob, an <code class="language-plaintext highlighter-rouge">EntityConversionContext</code> is now required. This context is also now passed to Fabric API’s <code class="language-plaintext highlighter-rouge">ServerLivingEntityEvents#MOB_CONVERSION</code> event.</p>
+
+<p>When creating an entity, a spawn reason is now required:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- Entity pig = EntityType.PIG.create(overworld);
+</span><span class="gi">+ Entity pig = EntityType.PIG.create(overworld, SpawnReason.SPAWN_ITEM_USE);
+</span></code></pre></div></div>
+
+<p>The prefixes of attributes in <code class="language-plaintext highlighter-rouge">EntityAttributes</code>, like <code class="language-plaintext highlighter-rouge">GENERIC</code>, have been dropped. This matches a change in the identifiers of attributes:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public static final RegistryEntry&lt;EntityAttribute&gt; GENERIC_ATTACK_KNOCKBACK = register(
+-    "generic.attack_knockback",
+-    new ClampedEntityAttribute("attribute.name.generic.attack_knockback", 0, 0, 5)
+</span><span class="err">);</span>
++ public static final RegistryEntry&lt;EntityAttribute&gt; ATTACK_KNOCKBACK = register(
+    "attack_knockback",
+    new ClampedEntityAttribute("attribute.name.attack_knockback", 0, 0, 5)
+<span class="err">);</span>
+</code></pre></div></div>
+
+<h3 id="data-generation">Data generation</h3>
+
+<p>A recipe provider must now override <code class="language-plaintext highlighter-rouge">getRecipeGenerator</code> instead of <code class="language-plaintext highlighter-rouge">generate</code>. The new method takes the registries and <code class="language-plaintext highlighter-rouge">exporter</code>, and returns a new instance of <code class="language-plaintext highlighter-rouge">RecipeGenerator</code> that actually generates the recipes.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- public void generate(RecipeExporter exporter) {
+-    offerPlanksRecipe2(exporter, SIMPLE_BLOCK, ItemTags.ACACIA_LOGS, 1);
+</span><span class="gi">+ protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
++    return new RecipeGenerator(registries, exporter) {
++        @Override
++        public void generate() {
++            offerPlanksRecipe2(SIMPLE_BLOCK, ItemTags.ACACIA_LOGS, 1);
+</span></code></pre></div></div>
+
+<h3 id="actionresult">ActionResult</h3>
+
+<p>Previously, action results have been represented in several ways, including the <code class="language-plaintext highlighter-rouge">ActionResult</code>, <code class="language-plaintext highlighter-rouge">ItemActionResult</code>, and <code class="language-plaintext highlighter-rouge">TypedActionResult</code> classes. In Minecraft 1.21.2, these classes have been merged into a single <code class="language-plaintext highlighter-rouge">ActionResult</code> class, which provides direct replacements for the previous methods for all three classes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Old</th>
+      <th>New</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.success(world.isClient())</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.SUCCESS</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TypedActionResult.pass(stack)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.PASS</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TypedActionResult.fail(stack)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.FAIL</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TypedActionResult.success(stack, world.isClient())</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.SUCCESS</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">TypedActionResult.consume(stack)</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ActionResult.CONSUME</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If an action replaces the hand stack with another instance of <code class="language-plaintext highlighter-rouge">ItemStack</code>, then it should be marked with the <code class="language-plaintext highlighter-rouge">ActionResult#withNewHandStack</code> method. For example, an <code class="language-plaintext highlighter-rouge">Item#use</code> implementation that replaces the hand stack might be:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">ActionResult</span> <span class="nf">use</span><span class="o">(</span><span class="nc">World</span> <span class="n">world</span><span class="o">,</span> <span class="nc">PlayerEntity</span> <span class="n">user</span><span class="o">,</span> <span class="nc">Hand</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ItemStack</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">getStackInHand</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">stack</span><span class="o">.</span><span class="na">getCount</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">ItemStack</span> <span class="n">newStack</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ItemStack</span><span class="o">(</span><span class="nc">Items</span><span class="o">.</span><span class="na">BLAZE_ROD</span><span class="o">,</span> <span class="mi">16</span><span class="o">);</span>
+        <span class="k">return</span> <span class="nc">ActionResult</span><span class="o">.</span><span class="na">SUCCESS</span><span class="o">.</span><span class="na">withNewHandStack</span><span class="o">(</span><span class="n">newStack</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="k">return</span> <span class="nc">ActionResult</span><span class="o">.</span><span class="na">PASS</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>On the other hand, if the <code class="language-plaintext highlighter-rouge">ItemStack</code> instance for the hand stack is the same as the one provided to an interaction method such as <code class="language-plaintext highlighter-rouge">Item#use</code>, the <code class="language-plaintext highlighter-rouge">ActionResult#withNewHandStack</code> method should not be called.</p>
+
+<p>This change affects all places where <code class="language-plaintext highlighter-rouge">TypedActionResult</code> and <code class="language-plaintext highlighter-rouge">ItemActionResult</code> were previously used in Minecraft’s code. In Fabric API, the <code class="language-plaintext highlighter-rouge">UseItemCallback</code> event in the Events Interaction module now returns <code class="language-plaintext highlighter-rouge">ActionResult</code> instead of <code class="language-plaintext highlighter-rouge">TypedActionResult&lt;ItemStack&gt;</code>.</p>
+
+<h3 id="item-components">Item components</h3>
+<p>Because elytra behavior is now controlled by a new item component, <code class="language-plaintext highlighter-rouge">minecraft:glider</code>, <code class="language-plaintext highlighter-rouge">FabricElytraItem</code> was removed. Add the component to your elytra item instead.</p>
+
+<h3 id="block-entities">Block entities</h3>
+
+<p>In Minecraft 1.21.1 (released in August), a change was made that required mods to add all supported blocks to block entities. For example, a mod with a new sign block must add the block to <code class="language-plaintext highlighter-rouge">BlockEntityType#SIGN</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">BlockEntityType</span><span class="o">.</span><span class="na">SIGN</span><span class="o">.</span><span class="na">addSupportedBlock</span><span class="o">(</span><span class="nc">ModBlocks</span><span class="o">.</span><span class="na">TEAL_SIGN</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>In Minecraft 1.21.2, block entity types are no longer constructed using builders. Therefore, <code class="language-plaintext highlighter-rouge">FabricBlockEntityType.Builder</code> was removed, while <code class="language-plaintext highlighter-rouge">FabricBlockEntityTypeBuilder</code> is no longer deprecated.</p>
+
+<h3 id="registries">Registries</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Registry</code> now implements <code class="language-plaintext highlighter-rouge">RegistryEntryLookup</code>. This resulted in several name changes. To query a <code class="language-plaintext highlighter-rouge">RegistryEntry</code> from <code class="language-plaintext highlighter-rouge">RegistryKey</code>, use <code class="language-plaintext highlighter-rouge">getOptional</code> or <code class="language-plaintext highlighter-rouge">getOrThrow</code>. (Same applies to <code class="language-plaintext highlighter-rouge">RegistryEntryList</code> from <code class="language-plaintext highlighter-rouge">TagKey</code>.) If you want to query the registry value, use <code class="language-plaintext highlighter-rouge">getValueOrThrow</code>. See the table below for all changes.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Old</th>
+      <th>New</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getEntry</code></td>
+      <td><code class="language-plaintext highlighter-rouge">getOptional</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">entryOf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">getOrThrow</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getOrThrow</code></td>
+      <td><code class="language-plaintext highlighter-rouge">getValueOrThrow</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getOrEmpty</code></td>
+      <td><code class="language-plaintext highlighter-rouge">getOptionalValue</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">getEntryList</code></td>
+      <td><code class="language-plaintext highlighter-rouge">getOptional</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Similarly, <code class="language-plaintext highlighter-rouge">DynamicRegistryManager#get</code> and <code class="language-plaintext highlighter-rouge">RegistryWrapper.WrapperLookup#getWrapperOrThrow</code> has been renamed to <code class="language-plaintext highlighter-rouge">getOrThrow</code>. <code class="language-plaintext highlighter-rouge">getOptionalWrapper</code> was renamed tp <code class="language-plaintext highlighter-rouge">getOptional</code>.</p>
+
+<h3 id="rendering">Rendering</h3>
+<h4 id="entity-rendering">Entity rendering</h4>
+<p>Entity rendering has received a large refactor that decouples the <code class="language-plaintext highlighter-rouge">Entity</code> instance from its respective rendering calls. <code class="language-plaintext highlighter-rouge">EntityRenderer</code> now has an additional type parameter, <code class="language-plaintext highlighter-rouge">S extends EntityRenderState</code>, which represents a ‘render state’, which is a mutable class containing only the parameters of the entity that are used in rendering.</p>
+
+<p>Previously, renderer methods accessed the entity instance directly. However, accessing entity information now happens in three steps.</p>
+
+<p>First, the <code class="language-plaintext highlighter-rouge">EntityRenderer#createRenderState</code> method is called to construct an instance of <code class="language-plaintext highlighter-rouge">S</code> for the given entity with placeholder values:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="no">T</span> <span class="nf">createRenderState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">T</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Next, the <code class="language-plaintext highlighter-rouge">EntityRenderer#updateRenderState</code> method performs the operation of copying information from the entity to its render state:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">updateRenderState</span><span class="o">(</span><span class="no">T</span> <span class="n">entity</span><span class="o">,</span> <span class="no">S</span> <span class="n">state</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tickDelta</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">updateRenderState</span><span class="o">(</span><span class="n">entity</span><span class="o">,</span> <span class="n">state</span><span class="o">,</span> <span class="n">tickDelta</span><span class="o">);</span>
+
+    <span class="c1">// Example: entity has an 'is saddled' field</span>
+    <span class="n">state</span><span class="o">.</span><span class="na">isSaddled</span> <span class="o">=</span> <span class="n">entity</span><span class="o">.</span><span class="na">isSaddled</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Finally, the <code class="language-plaintext highlighter-rouge">EntityRenderer#render</code> method (as well as other renderer methods) accesses information from the entity’s render state:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(</span><span class="no">S</span> <span class="n">state</span><span class="o">,</span> <span class="nc">MatrixStack</span> <span class="n">matrices</span><span class="o">,</span> <span class="nc">VertexConsumerProvider</span> <span class="n">vertexConsumers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">light</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">render</span><span class="o">(</span><span class="n">state</span><span class="o">,</span> <span class="n">matrices</span><span class="o">,</span> <span class="n">vertexConsumers</span><span class="o">,</span> <span class="n">light</span><span class="o">);</span>
+    
+    <span class="k">if</span> <span class="o">(</span><span class="n">state</span><span class="o">.</span><span class="na">isSaddled</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// Render the saddle</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="shaders">Shaders</h4>
+<p>In Fabric Rendering API, <code class="language-plaintext highlighter-rouge">CoreShaderRegistrationCallback</code> was removed. Vanilla resource pack now allows loading modded core shaders.</p>
+
+<h4 id="other-changes">Other changes</h4>
+<p><code class="language-plaintext highlighter-rouge">WorldRenderer</code> methods for rendering certain vertices (like a box) were transferred to <code class="language-plaintext highlighter-rouge">VertexRendering</code>.</p>
+
+<!-- TODO Shader changes. Models. -->
+
+<h3 id="recipes">Recipes</h3>
+<p>The recipe system was reworked. To summerize:</p>
+
+<ul>
+  <li>Recipes are now identified using <code class="language-plaintext highlighter-rouge">RegistryKey&lt;? extends Recipe&gt;</code>, not <code class="language-plaintext highlighter-rouge">Identifier</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Recipe</code> and the recipe ID is now server-side only. It cannot be accessed from the client.</li>
+  <li>Instead, clients receive <code class="language-plaintext highlighter-rouge">RecipeDisplayEntry</code>. It contains all information needed to display and run the recipe book. Recipes are identified using an integer (<code class="language-plaintext highlighter-rouge">NetworkRecipeId</code>) on the client. A recipe can have multiple display entries.</li>
+  <li><code class="language-plaintext highlighter-rouge">IngredientPlacement</code> controls the placement of ingredients on the crafting table, while <code class="language-plaintext highlighter-rouge">RecipeMatcher</code> handles recipe matching.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">Ingredient</code> is now internally a list of items, not item stacks.</p>
+
+<p>In Fabric API, <code class="language-plaintext highlighter-rouge">CustomIngredientSerializer#getCodec</code>: <code class="language-plaintext highlighter-rouge">allowEmpty</code> param removed, empty now always disallowed.</p>
+
+<h3 id="biome">Biome</h3>
+
+<p>Water cave carvers (which, before 1.18, were seen in seabeds) were removed, along with <code class="language-plaintext highlighter-rouge">GenerationStep.Carver</code>.</p>
+
+<p>In Fabric Biome API, biome modification methods like <code class="language-plaintext highlighter-rouge">addCarver</code> and <code class="language-plaintext highlighter-rouge">removeCarver</code> no longer takes <code class="language-plaintext highlighter-rouge">GenerationStep.Carver</code> argument.</p>
+
+<h3 id="profiler">Profiler</h3>
+<p>Profiles are now accessed using <code class="language-plaintext highlighter-rouge">Profilers#get</code>.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- world.getProfiler().push("tinyPotato");
+</span><span class="gi">+ Profilers.get().push("tinyPotato");
+</span></code></pre></div></div>
+
+<h3 id="loot-tables">Loot tables</h3>
+<p><code class="language-plaintext highlighter-rouge">LootTables#EMPTY</code> was removed. The game uses <code class="language-plaintext highlighter-rouge">Optional</code> to mark the lack of loot tables.</p>
+
+<p>Some loot context-related logics are now shared with recipes, resulting in name changes. <code class="language-plaintext highlighter-rouge">LootContextParameter</code> is now <code class="language-plaintext highlighter-rouge">ContextParameter</code>, and <code class="language-plaintext highlighter-rouge">LootContextType</code> is now <code class="language-plaintext highlighter-rouge">ContextType</code>.</p>
+
+<h3 id="yarn-renames">Yarn renames</h3>
+<p><em>This section only affects those using the Yarn mapping.</em></p>
+
+<p>As part of regular Yarn maintainace, the following changes were made. These should be a simple replacement:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ModelTransformationMode</code> is transferred to <code class="language-plaintext highlighter-rouge">net.minecraft.item</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">RealmsLoadingWidget</code> is renamed to <code class="language-plaintext highlighter-rouge">LoadingWidget</code> and transferred to <code class="language-plaintext highlighter-rouge">client.gui.widget</code>.</li>
+  <li>Several <code class="language-plaintext highlighter-rouge">Brain</code> and <code class="language-plaintext highlighter-rouge">Task</code>-related names: see <a href="https://github.com/FabricMC/yarn/pull/3992">the pull request</a> for details.</li>
+  <li><code class="language-plaintext highlighter-rouge">registryLookupFuture</code> is renamed to <code class="language-plaintext highlighter-rouge">registriesFuture</code> in several locations.</li>
+  <li><code class="language-plaintext highlighter-rouge">Codecs#NONNEGATIVE_INT</code> is renamed to <code class="language-plaintext highlighter-rouge">NON_NEGATIVE_INT</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">QUATERNIONF</code> and <code class="language-plaintext highlighter-rouge">VECTOR3F</code> are renamed to <code class="language-plaintext highlighter-rouge">QUATERNION_F</code> and <code class="language-plaintext highlighter-rouge">VECTOR_3F</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">Screen#initTabNavigation</code> is renamed to <code class="language-plaintext highlighter-rouge">refreshWidgetPositions</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ComponentMapImpl</code> is renamed to <code class="language-plaintext highlighter-rouge">MergedComponentMap</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ContainerComponentModifier#create</code> is renamed to <code class="language-plaintext highlighter-rouge">apply</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">ItemStack#encode</code> is renamed to <code class="language-plaintext highlighter-rouge">toNbt</code>.</li>
+</ul>
+
+  </div><a class="u-url" href="/2024/10/14/1212.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
