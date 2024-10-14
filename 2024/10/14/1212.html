@@ -20,8 +20,8 @@
 {"headline":"Fabric for Minecraft 1.21.2","dateModified":"2024-10-14T00:00:00+00:00","datePublished":"2024-10-14T00:00:00+00:00","description":"Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.","url":"https://fabricmc.net/2024/10/14/1212.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/10/14/1212.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1728925997">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1728925997"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1728927530">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1728927530"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -408,7 +408,7 @@
 <!-- TODO Shader changes. Models. -->
 
 <h3 id="recipes">Recipes</h3>
-<p>The recipe system was reworked. To summerize:</p>
+<p>The recipe system was reworked. To summarize:</p>
 
 <ul>
   <li>Recipes are now identified using <code class="language-plaintext highlighter-rouge">RegistryKey&lt;? extends Recipe&gt;</code>, not <code class="language-plaintext highlighter-rouge">Identifier</code>.</li>
@@ -428,7 +428,7 @@
 <p>In Fabric Biome API, biome modification methods like <code class="language-plaintext highlighter-rouge">addCarver</code> and <code class="language-plaintext highlighter-rouge">removeCarver</code> no longer takes <code class="language-plaintext highlighter-rouge">GenerationStep.Carver</code> argument.</p>
 
 <h3 id="profiler">Profiler</h3>
-<p>Profiles are now accessed using <code class="language-plaintext highlighter-rouge">Profilers#get</code>.</p>
+<p>The shared profiler is now accessed using <code class="language-plaintext highlighter-rouge">Profilers#get</code>.</p>
 
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- world.getProfiler().push("tinyPotato");
 </span><span class="gi">+ Profilers.get().push("tinyPotato");

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2024-10-14T17:13:17+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.21.2</title><link href="https://fabricmc.net/2024/10/14/1212.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.21.2" /><published>2024-10-14T00:00:00+00:00</published><updated>2024-10-14T00:00:00+00:00</updated><id>https://fabricmc.net/2024/10/14/1212</id><content type="html" xml:base="https://fabricmc.net/2024/10/14/1212.html">&lt;p&gt;Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently &lt;a href=&quot;https://www.minecraft.net/en-us/article/the-future-of-minecrafts-development&quot;&gt;announced&lt;/a&gt; that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2024-10-14T17:38:50+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 1.21.2</title><link href="https://fabricmc.net/2024/10/14/1212.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.21.2" /><published>2024-10-14T00:00:00+00:00</published><updated>2024-10-14T00:00:00+00:00</updated><id>https://fabricmc.net/2024/10/14/1212</id><content type="html" xml:base="https://fabricmc.net/2024/10/14/1212.html">&lt;p&gt;Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently &lt;a href=&quot;https://www.minecraft.net/en-us/article/the-future-of-minecrafts-development&quot;&gt;announced&lt;/a&gt; that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.&lt;/p&gt;
 
 &lt;p&gt;As always, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version.&lt;/strong&gt; We ask everyone kindly not to pester them. &lt;strong&gt;We also recommend all players to make a backup of their worlds.&lt;/strong&gt;&lt;/p&gt;
 
@@ -332,7 +332,7 @@
 &lt;!-- TODO Shader changes. Models. --&gt;
 
 &lt;h3 id=&quot;recipes&quot;&gt;Recipes&lt;/h3&gt;
-&lt;p&gt;The recipe system was reworked. To summerize:&lt;/p&gt;
+&lt;p&gt;The recipe system was reworked. To summarize:&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Recipes are now identified using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey&amp;lt;? extends Recipe&amp;gt;&lt;/code&gt;, not &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt;.&lt;/li&gt;
@@ -352,7 +352,7 @@
 &lt;p&gt;In Fabric Biome API, biome modification methods like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCarver&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeCarver&lt;/code&gt; no longer takes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GenerationStep.Carver&lt;/code&gt; argument.&lt;/p&gt;
 
 &lt;h3 id=&quot;profiler&quot;&gt;Profiler&lt;/h3&gt;
-&lt;p&gt;Profiles are now accessed using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Profilers#get&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The shared profiler is now accessed using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Profilers#get&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- world.getProfiler().push(&quot;tinyPotato&quot;);
 &lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ Profilers.get().push(&quot;tinyPotato&quot;);
