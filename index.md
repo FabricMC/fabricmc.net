@@ -8,7 +8,7 @@ layout: default
          <h1>Fabric Loader</h1>
          <p>Fabric is a modular, lightweight mod loader for Minecraft</p>
          <br>
-         <a class="button primary large" href="/use/">Download</a>
+         <a class="button primary large" href="/download/">Download</a>
       </div>
    </header>
    <hr>
