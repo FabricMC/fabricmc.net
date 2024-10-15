@@ -2722,7 +2722,7 @@ var we = { exports: {} };
 var Je = we.exports;
 const Qe = /* @__PURE__ */ be(Je);
 function Qt(E) {
-  for (var d = window.atob(E), e = d.length, p = new Uint8Array(e), c = 0; c < e; c++)
+  for (var d = globalThis.atob(E), e = d.length, p = new Uint8Array(e), c = 0; c < e; c++)
     p[c] = d.charCodeAt(c);
   return p.buffer;
 }
