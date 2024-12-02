@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.21.4 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.21.4" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Minecraft 1.21.4, the Garden Awakens drop, releases December 3rd. Like with other updates, this drop contains some significant changes affecting mod makers." />
+<meta property="og:description" content="Minecraft 1.21.4, the Garden Awakens drop, releases December 3rd. Like with other updates, this drop contains some significant changes affecting mod makers." />
+<link rel="canonical" href="https://fabricmc.net/2024/12/02/1214.html" />
+<meta property="og:url" content="https://fabricmc.net/2024/12/02/1214.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.21.4" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.21.4","dateModified":"2024-12-02T00:00:00+00:00","datePublished":"2024-12-02T00:00:00+00:00","description":"Minecraft 1.21.4, the Garden Awakens drop, releases December 3rd. Like with other updates, this drop contains some significant changes affecting mod makers.","url":"https://fabricmc.net/2024/12/02/1214.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2024/12/02/1214.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1733169674">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1733169674"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">Download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">Blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">Develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">Discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.21.4</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2024-12-02T00:00:00+00:00" itemprop="datePublished">Dec 2, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Minecraft 1.21.4, the Garden Awakens drop, releases December 3rd. Like with other updates, this drop contains some significant changes affecting mod makers.</p>
+
+<p>As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We kindly ask everyone not to pester them. <strong>We also recommend all players make backups of their worlds.</strong></p>
+
+<p>Here is a list of several major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+
+<p>Developers should use Loom 1.9 (at the time of writing) to develop mods for Minecraft 1.21.4. Players should install the latest stable version of Fabric Loader (currently 0.16.9).</p>
+
+<h3 id="deprecations-and-removals">Deprecations and removals</h3>
+<p>The following deprecated module was removed: <code class="language-plaintext highlighter-rouge">fabric-rendering-v0</code>. <code class="language-plaintext highlighter-rouge">FabricModelPredicateProviderRegistry</code>, which was previously deprecated, was also removed.</p>
+
+<p><code class="language-plaintext highlighter-rouge">BuiltinItemRenderer</code> and <code class="language-plaintext highlighter-rouge">BuiltinItemRendererRegistry</code> from the Rendering v1 module were removed and have been replaced by a transitive access widener to <code class="language-plaintext highlighter-rouge">SpecialModelTypes.ID_MAPPER</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">AttachmentRegistry#builder</code> was deprecated in favor of <code class="language-plaintext highlighter-rouge">create</code> methods. The old method is inconvenient, as it requires explicit type parameters. (See the “Data Attachment Syncing” section for an example.)</p>
+
+<p><code class="language-plaintext highlighter-rouge">BlockPickInteractionAware</code> was removed, the new pick item events should be used instead.</p>
+
+<h3 id="breaking-change">Breaking change</h3>
+<p><code class="language-plaintext highlighter-rouge">CustomIngredient#getMatchingStacks</code> must now return a stream, not a list.</p>
+
+<!-- NOTE: despite what the semver suggests, Biome API DID NOT receive a breaking change in 24w44a. -->
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+
+<p>With the help of many contributors, Fabric API has received some new features since the last update blog post:</p>
+
+<ul>
+  <li>Convention Tags: Add more tags (JT122406, TelepathicGrunt, IThundxr)</li>
+  <li>Data Attachments: Registration enhancements (forgetmenot13579)</li>
+  <li>Data Attachments: Sync API (Syst3ms)</li>
+  <li>Lifecycle Events: Add <code class="language-plaintext highlighter-rouge">ServerChunkEvents.Generate</code> (jpenilla)</li>
+  <li>Lifecycle Events: Add <code class="language-plaintext highlighter-rouge">AFTER_CLIENT_WORLD_CHANGE</code> (fishshi)</li>
+  <li>Transfer API: Add support for Item-containing Items (BasiqueEvangelist)</li>
+</ul>
+
+<p>In addition, a longstanding bug that caused language files to not load after overriding <code class="language-plaintext highlighter-rouge">assets/minecraft/lang/en_us.json</code> in a dedicated server mod was fixed.</p>
+
+<h4 id="data-attachment-syncing">Data Attachment Syncing</h4>
+<p>Fabric API can now sync data attachments. To make a syncable attachment, call <code class="language-plaintext highlighter-rouge">syncWith</code> inside the builder. The passed packet codec is used to serialize the attached data. Here is how a thirst attachment would look like:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">AttachmentType</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="no">THIRST</span> <span class="o">=</span> <span class="nc">AttachmentRegistry</span><span class="o">.</span><span class="na">create</span><span class="o">(</span>
+    <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"modid"</span><span class="o">,</span> <span class="s">"thirst"</span><span class="o">),</span>
+    <span class="n">builder</span> <span class="o">-&gt;</span> <span class="n">builder</span> 
+        <span class="o">.</span><span class="na">initializer</span><span class="o">(()</span> <span class="o">-&gt;</span> <span class="mi">20</span><span class="o">)</span> <span class="c1">// start with a default value like hunger</span>
+        <span class="o">.</span><span class="na">persistent</span><span class="o">(</span><span class="nc">Codec</span><span class="o">.</span><span class="na">INT</span><span class="o">)</span> <span class="c1">// persist across restarts</span>
+        <span class="o">.</span><span class="na">syncWith</span><span class="o">(</span><span class="nc">PacketCodecs</span><span class="o">.</span><span class="na">VAR_INT</span><span class="o">,</span> <span class="nc">AttachmentSyncPredicate</span><span class="o">.</span><span class="na">targetOnly</span><span class="o">())</span> <span class="c1">// only the player's own client needs the value for rendering</span>
+    <span class="o">);</span>
+</code></pre></div></div>
+
+<p>The sync predicate (<code class="language-plaintext highlighter-rouge">AttachmentSyncPredicate</code>) controls who gets the synced data. For example, global data can be synced using <code class="language-plaintext highlighter-rouge">all()</code>. For more granular control, you can also pass a custom predicate.</p>
+
+<h4 id="pick-item-events">Pick item events</h4>
+
+<p>Minecraft 1.21.4 moves the ‘Pick Block’ functionality from the client to the logical server. As such, the existing client events have been replaced with new, server-side ones. This replaces <code class="language-plaintext highlighter-rouge">ClientPickBlockApplyCallback</code>, <code class="language-plaintext highlighter-rouge">ClientPickBlockCallback</code>, and <code class="language-plaintext highlighter-rouge">ClientPickBlockGatherCallback</code>. This change also applies to entities (<code class="language-plaintext highlighter-rouge">EntityPickInteractionAware</code>).</p>
+
+<p>The new events are <code class="language-plaintext highlighter-rouge">PlayerPickItemEvents#BLOCK</code> for picking a block and <code class="language-plaintext highlighter-rouge">PlayerPickItemEvents#ENTITY</code> for picking an entity(‘s spawn egg). Return <code class="language-plaintext highlighter-rouge">ItemStack.EMPTY</code> to stop the picking, and return <code class="language-plaintext highlighter-rouge">null</code> to use the default behavior.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">PlayerPickItemEvents</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">player</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">state</span><span class="o">,</span> <span class="n">requestIncludeData</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">state</span><span class="o">.</span><span class="na">isIn</span><span class="o">(</span><span class="nc">MyTags</span><span class="o">.</span><span class="na">NOT_PICKABLE</span><span class="o">))</span> <span class="k">return</span> <span class="nc">ItemStack</span><span class="o">.</span><span class="na">EMPTY</span><span class="o">;</span>
+
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// use default behavior</span>
+<span class="o">})</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">requestIncludeData</code> is <code class="language-plaintext highlighter-rouge">true</code> if the client requests NBT to be included in the returned item stack (by holding <code class="language-plaintext highlighter-rouge">Ctrl</code> while picking block). This parameter is also available to the entity pick item event, even though vanilla does not use this functionality (spawn eggs do not include the picked entity’s NBT).</p>
+
+<p>Note that this only checks if the client is asking NBT data, and does not check game mode or permission level. In vanilla, NBT data is only included for Creative mode players.</p>
+
+<h4 id="client-data-generation">Client Data Generation</h4>
+
+<p>Starting with Minecraft 1.21.4, Mojang has moved a number of data generation classes to the client. Loom 1.9 adds a new option that allows you to run your data generation against the client. See the following example if you are using the <code class="language-plaintext highlighter-rouge">fabricApi</code> utility to set up data generation:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  fabricApi {
+<span class="gd">-     configureDataGeneration()
+</span><span class="gi">+     configureDataGeneration {
++       client = true
++     }
+</span>  }
+</code></pre></div></div>
+
+<p>If you are using the <code class="language-plaintext highlighter-rouge">createSourceSet</code> option, your <code class="language-plaintext highlighter-rouge">datagen</code> source set will now have access to Minecraft’s client-only classes and classes in your <code class="language-plaintext highlighter-rouge">client</code> source set. Other than updating the data generators themselves, no other changes will be necessary.</p>
+
+<p>If you are using the <code class="language-plaintext highlighter-rouge">splitEnvironmentSourceSets</code> option but not the <code class="language-plaintext highlighter-rouge">createSourceSet</code> option, you should move your <code class="language-plaintext highlighter-rouge">DataGeneratorEntrypoint</code> implementation from the <code class="language-plaintext highlighter-rouge">main</code> source set to the <code class="language-plaintext highlighter-rouge">client</code> source set.</p>
+
+<h4 id="model-loading-api">Model Loading API</h4>
+
+<p><code class="language-plaintext highlighter-rouge">ModelModifier</code> events and callbacks have been split; there is now one set for static models and one set for block models. This was necessary because static models use <code class="language-plaintext highlighter-rouge">UnbakedModel</code> and are baked with settings while block models use <code class="language-plaintext highlighter-rouge">GroupableModel</code> (which no longer extends <code class="language-plaintext highlighter-rouge">UnbakedModel</code>) and are not baked with settings. It also allowed cleaning up the identifier getters and providing the <code class="language-plaintext highlighter-rouge">BlockState</code> directly to <code class="language-plaintext highlighter-rouge">ModelModifier.OnLoadBlock</code>.</p>
+
+<p>However, all <code class="language-plaintext highlighter-rouge">BeforeBake</code> and <code class="language-plaintext highlighter-rouge">AfterBake</code> events were removed. This is because their behavior can now be achieved using the <code class="language-plaintext highlighter-rouge">OnLoad</code> events, by wrapping the given model and overriding the <code class="language-plaintext highlighter-rouge">bake</code> method to replace the unbaked model passed to <code class="language-plaintext highlighter-rouge">super.bake</code> (to replicate <code class="language-plaintext highlighter-rouge">BeforeBake</code>) or replace the result of <code class="language-plaintext highlighter-rouge">super.bake</code> (to replicate <code class="language-plaintext highlighter-rouge">AfterBake</code>). This is possible because 1.21.4 made it so the parent of a <code class="language-plaintext highlighter-rouge">JsonUnbakedModel</code> no longer has to be another <code class="language-plaintext highlighter-rouge">JsonUnbakedModel</code>. To make this easier, the utility classes <code class="language-plaintext highlighter-rouge">WrapperUnbakedModel</code> and <code class="language-plaintext highlighter-rouge">WrapperGroupableModel</code> were added, which forward all method calls to a <code class="language-plaintext highlighter-rouge">wrapper</code> field. There were also some minor fundamental issues with <code class="language-plaintext highlighter-rouge">BeforeBake</code> and <code class="language-plaintext highlighter-rouge">AfterBake</code> events, which prompted their removal.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ModelModifier.OnLoad</code> can now accept a <code class="language-plaintext highlighter-rouge">null</code> model, which is a model that was requested during resolution but does not have a corresponding JSON file. With this change, <code class="language-plaintext highlighter-rouge">ModelResolver</code> was removed as its behavior could now be achieved with <code class="language-plaintext highlighter-rouge">ModelModifier.OnLoad</code> with <code class="language-plaintext highlighter-rouge">OVERRIDE_PHASE</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">DelegatingUnbakedModel</code> was removed as <code class="language-plaintext highlighter-rouge">GroupableModel</code> no longer extends <code class="language-plaintext highlighter-rouge">UnbakedModel</code>, so <code class="language-plaintext highlighter-rouge">BlockModelResolver</code>s can no longer use it, which was its original purpose.</p>
+
+<p><code class="language-plaintext highlighter-rouge">textureGetter</code> was removed from <code class="language-plaintext highlighter-rouge">ModelModifier</code> callback contexts as it is now accessible through <code class="language-plaintext highlighter-rouge">Baker#getSpriteGetter</code>.</p>
+
+<p>FRAPI’s <code class="language-plaintext highlighter-rouge">WrapperBakedModel</code> was moved to Model Loading API and was renamed to <code class="language-plaintext highlighter-rouge">UnwrappableBakedModel</code> to avoid conflicts with vanilla’s new <code class="language-plaintext highlighter-rouge">WrapperBakedModel</code>. <code class="language-plaintext highlighter-rouge">UnwrappableBakedModel</code> is also implemented and interface injected on vanilla’s <code class="language-plaintext highlighter-rouge">WrapperBakedModel</code>. A new static <code class="language-plaintext highlighter-rouge">UnwrappableBakedModel#unwrap</code> method was added which accepts a <code class="language-plaintext highlighter-rouge">Predicate</code> saying when to stop unwrapping. See the documentation for more details.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+
+<h3 id="block-models">Block Models</h3>
+
+<p>Previously, block entities could choose whether they rendered their block model in addition to any custom block entity rendering. This method has been removed, as now all block entities render their block models:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- @Override
+- protected BlockRenderType getRenderType(BlockState state) {
+-     return BlockRenderType.ENTITYBLOCK_ANIMATED;
+- }
+</span></code></pre></div></div>
+
+<p>While block models were already used to provide particle textures in these cases, mods should still ensure their block entities’ block models are correct.</p>
+
+<h3 id="item-models">Item Models</h3>
+
+<p>Similar to the blockstate definition json files found in <code class="language-plaintext highlighter-rouge">assets/&lt;namespace&gt;/blockstates</code>, items now utilize new item model definition json files in <code class="language-plaintext highlighter-rouge">assets/&lt;namespace&gt;/items</code> to determine which models to use.</p>
+
+<p>These can be quite simple…</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:model"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modid:item/my_item"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>or more complex…</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:condition"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"property"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:fishing_rod/cast"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"on_false"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:model"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modid:item/netherite_fishing_rod"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"on_true"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:model"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"modid:item/netherite_fishing_rod_cast"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>utilising conditions and other logic to determine which model to use.</p>
+
+<p>They also control applying color tints to item textures.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:model"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:item/template_spawn_egg"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"tints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:constant"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6925483</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minecraft:constant"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">12238402</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>These tints can be constant or based on other factors such as potion contents, map colors, etc.</p>
+
+<p>As a result of these files being introduced, blocks whose item models previously simply referred to their block model no longer require a separate item model file, as the block model is referred to in the model definition file instead. For example,</p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- {
+-  "parent": "modid:block/maple_planks"
+- }
+</span></code></pre></div></div>
+<p>at <code class="language-plaintext highlighter-rouge">assets/modid/models/item/maple_planks.json</code> can be removed, in favor of</p>
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gi">+ {
++  "model": {
++    "type": "minecraft:model",
++    "model": "modid:block/maple_planks"
++  }
++ }
+</span></code></pre></div></div>
+<p>in <code class="language-plaintext highlighter-rouge">assets/modid/items/maple_planks.json</code>.</p>
+
+<p>Additionally, <code class="language-plaintext highlighter-rouge">ItemColors</code> and related APIs for tinting items have been removed, as item color tints are now controlled by these files.</p>
+
+<p>For further information, these jsons are well documented on <a href="https://minecraft.wiki/w/Items_model_definition">the vanilla Minecraft wiki here</a> and all the ones used by vanilla items can be easily found in the game files.</p>
+
+<p>For modders using data generation, these can be generated much like any other JSON asset.</p>
+
+<h3 id="miscellaneous">Miscellaneous</h3>
+
+<ul>
+  <li>Resource Metadata files now use Codec serializers</li>
+  <li>Equipment assets were moved from <code class="language-plaintext highlighter-rouge">assets/&lt;namespace&gt;/models/equipment</code> to <code class="language-plaintext highlighter-rouge">assets/&lt;namespace&gt;/equipment</code></li>
+  <li>The <code class="language-plaintext highlighter-rouge">minecraft:tall_flowers</code> block tag was removed</li>
+  <li>The <code class="language-plaintext highlighter-rouge">minecraft:flowers</code>, <code class="language-plaintext highlighter-rouge">minecraft:tall_flowers</code>, and <code class="language-plaintext highlighter-rouge">minecraft:trim_templates</code> item tags were removed</li>
+  <li>The <code class="language-plaintext highlighter-rouge">minecraft:herobrine</code> entity was removed</li>
+  <li>Trim Material jsons no longer specify an item model index, as trimmed items now use separate item models for each material</li>
+  <li>Textures for item outlines shown in empty slots in certain GUIs are now located in <code class="language-plaintext highlighter-rouge">assets/&lt;namespace&gt;/textures/gui/sprites/container/slot</code></li>
+</ul>
+
+<h2 id="yarn-changes">Yarn changes</h2>
+
+<p>There have been many changes to Yarn mappings to reflect refactors to the vanilla game, fix issues with the mappings, or to otherwise improve them.</p>
+
+<p>Some notable examples include:</p>
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">net/minecraft/data/client</code> package got moved to <code class="language-plaintext highlighter-rouge">net/minecraft/client/data</code>, to reflect the classes now being client-only</li>
+  <li>To match this, the <code class="language-plaintext highlighter-rouge">net/minecraft/data/server</code> package was removed and its contents moved down to <code class="language-plaintext highlighter-rouge">net/minecraft/data</code></li>
+  <li>All references to <code class="language-plaintext highlighter-rouge">xp</code> got changed to <code class="language-plaintext highlighter-rouge">experience</code></li>
+  <li><code class="language-plaintext highlighter-rouge">BlockStateModelGenerator.TintType</code> was changed to <code class="language-plaintext highlighter-rouge">BlockStateModelGenerator.CrossType</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CherryLeavesBlock</code> was changed to <code class="language-plaintext highlighter-rouge">ParticleLeavesBlock</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CherryLeavesParticle</code> was changed to <code class="language-plaintext highlighter-rouge">LeavesParticle</code></li>
+  <li><code class="language-plaintext highlighter-rouge">LichenGrower</code> was changed to <code class="language-plaintext highlighter-rouge">MultifaceGrower</code></li>
+  <li><code class="language-plaintext highlighter-rouge">EntityModelLoader</code> was changed to <code class="language-plaintext highlighter-rouge">LoadedEntityModels</code></li>
+  <li><code class="language-plaintext highlighter-rouge">CocoaBeansTreeDecorator</code> was changed to <code class="language-plaintext highlighter-rouge">CocoaTreeDecorator</code></li>
+  <li><code class="language-plaintext highlighter-rouge">BakedQuad#colorIndex</code> was changed to <code class="language-plaintext highlighter-rouge">tintIndex</code></li>
+</ul>
+
+  </div><a class="u-url" href="/2024/12/02/1214.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+<p>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" width="80" height="15"/></a><br />The contents of this website, unless otherwise indicated, are licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+</p>
+
+<p style="font-size: 10px;">
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+</p>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
