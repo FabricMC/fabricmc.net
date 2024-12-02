@@ -54,11 +54,6 @@
     {/if}
 
     <div class="download">
-      <p>
-        The Minecraft and Fabric Loader versions can be selected in the installer, this download
-        works for every version we support.
-      </p>
-
       {#if win32}
       <p>
         <a class="button primary large" href={selectedVersion.replace('.jar', '.exe')}>
@@ -66,13 +61,13 @@
         </a>
         <br>
         <a href={selectedVersion}>
-          Download universal jar
+          Download Universal JAR
         </a>
       </p>
     {:else}
       <p>
         <a class="button primary large" href={selectedVersion}>
-          <DownloadIcon/> Download installer (Universal/.JAR)
+          <DownloadIcon/> Download Installer (Universal/.JAR)
         </a>
         <br>
         <a href={selectedVersion.replace('.jar', '.exe')}>
