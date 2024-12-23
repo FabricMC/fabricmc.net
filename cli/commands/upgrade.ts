@@ -32,6 +32,7 @@ class UpdateProvider extends Provider {
       "--force",
       "--reload",
       "--quiet",
+      "--global",
       "-A",
       "--name",
       COMMAND_NAME,
