@@ -5,7 +5,7 @@ permalink: /discuss/
 topnav: true
 ---
 
-> ⚠️ We are aware of several scams currently circulating that link to fraudulent Discord servers claming to be FabricMC. These servers are known to be malicious and are not affiliated with us in any way. We will **never** ask you to enter your Microsoft or Minecraft login details. The official Discord invite URL is: [https://discord.gg/v6v4pM](https://discord.gg/v6v4pM)
+> ⚠️ We are aware of several scams currently circulating that link to fraudulent Discord servers claming to be FabricMC. These servers are known to be malicious and are not affiliated with us in any way. We will **never** ask you to enter your Microsoft or Minecraft login details. The official Discord invite URL is: [https://discord.gg/v6v4pMv](https://discord.gg/v6v4pMv)
 
 ### users, modders
 
