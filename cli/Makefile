@@ -17,7 +17,7 @@ test: fontgen check
 	deno test --allow-env --allow-read --allow-net --allow-write --allow-run test.ts
 
 build: fontgen check
-	deno run --allow-env --allow-read --allow-net --allow-write --allow-run --lock --frozen bundle.ts
+	deno run --allow-env --allow-read --allow-net --allow-write --allow-run bundle.ts
 
 install: build
 	deno install $(DENO_PERMISSIONS) -f -n fabric bundled.ts

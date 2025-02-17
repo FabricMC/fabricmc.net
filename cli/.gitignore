@@ -9,4 +9,5 @@
 !fontgen.ts
 !test.ts
 !utils.ts
+!deno.json
 !deno.lock
