@@ -15,9 +15,9 @@ import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
 import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
-import * as pureimage from "https://esm.sh/pureimage@0.4.13";
-// @deno-types="https://esm.sh/v135/@types/opentype.js@1.3.8/index.d.ts"
-import * as opentype from "https://esm.sh/opentype.js@0.4.11";
+import * as pureimage from "npm:pureimage@0.4.18";
+// @deno-types="npm:@types/opentype.js@1.3.8/index.d.ts"
+import * as opentype from "npm:opentype.js@1.3.4";
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
