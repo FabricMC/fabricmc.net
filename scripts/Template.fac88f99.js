@@ -2814,8 +2814,7 @@ done
 # shellcheck disable=SC2034
 APP_BASE_NAME=\${0##*/}
 # Discard cd standard output in case $CDPATH is set (https://github.com/gradle/gradle/issues/25036)
-APP_HOME=$( cd -P "\${APP_HOME:-./}" > /dev/null && printf '%s
-' "$PWD" ) || exit
+APP_HOME=$( cd -P "\${APP_HOME:-./}" > /dev/null && printf '%s\\n' "$PWD" ) || exit
 
 # Use the maximum available, or set MAX_FD != -1 to use that value.
 MAX_FD=maximum
@@ -3074,7 +3073,7 @@ if "%OS%"=="Windows_NT" endlocal\r
 :omega\r
 `, He = `distributionBase=GRADLE_USER_HOME
 distributionPath=wrapper/dists
-distributionUrl=https\\://services.gradle.org/distributions/gradle-8.11.1-bin.zip
+distributionUrl=https\\://services.gradle.org/distributions/gradle-8.12.1-bin.zip
 networkTimeout=10000
 validateDistributionUrl=true
 zipStoreBase=GRADLE_USER_HOME
@@ -3129,29 +3128,22 @@ on: [pull_request, push]
 
 jobs:
   build:
-    strategy:
-      matrix:
-        # Use these Java versions
-        java: [
-          21,    # Current Java LTS
-        ]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
       - name: validate gradle wrapper
         uses: gradle/actions/wrapper-validation@v4
-      - name: setup jdk \${{ matrix.java }}
+      - name: setup jdk
         uses: actions/setup-java@v4
         with:
-          java-version: \${{ matrix.java }}
+          java-version: '21'
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
         run: ./gradlew build
       - name: capture build artifacts
-        if: \${{ matrix.java == '21' }} # Only upload artifacts built from latest java
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
@@ -3472,7 +3464,7 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_version=<%= it.fabricVersion %>`, tn = `plugins {
-	id 'fabric-loom' version '1.9-SNAPSHOT'
+	id 'fabric-loom' version '1.10-SNAPSHOT'
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
 	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
@@ -3527,7 +3519,7 @@ processResources {
 	inputs.property "version", project.version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": project.version
+		expand "version": inputs.properties.version
 	}
 }
 
@@ -3552,8 +3544,10 @@ java {
 }
 
 jar {
+	inputs.property "archivesName", project.base.archivesName
+
 	from("LICENSE") {
-		rename { "\${it}_\${project.base.archivesName.get()}"}
+		rename { "\${it}_\${inputs.properties.archivesName}"}
 	}
 }
 
