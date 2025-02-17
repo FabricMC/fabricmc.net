@@ -17,18 +17,18 @@ test: fontgen check
 	deno test --allow-env --allow-read --allow-net --allow-write --allow-run test.ts
 
 build: fontgen check
-	deno run --allow-env --allow-read --allow-net --allow-write --allow-run bundle.ts
+	deno run --allow-env --allow-read --allow-net --allow-write --allow-run --lock --frozen bundle.ts
 
 install: build
 	deno install $(DENO_PERMISSIONS) -f -n fabric bundled.ts
 
-install-stable: build
+install-bundled: build
 	deno install $(DENO_PERMISSIONS) -f -n fabric bundled.ts
 
 init:
 	rm -rf ./test
 	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) init ./test
 
-init-stable:
+init-bundled: build
 	rm -rf ./test
-	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) init ./test
+	deno run $(DENO_PERMISSIONS) bundled.ts init ./test
