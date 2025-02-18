@@ -12,11 +12,16 @@ import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
 import * as utils from "../utils.ts";
 import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
+
+/* TODO fix icon generation
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
 import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
 import * as pureimage from "https://esm.sh/pureimage@0.4.13";
 import * as opentype from "https://esm.sh/opentype.js@0.4.11";
+*/
+
+const ENABLE_ICON_GENERATION = false;
 
 const error = colors.bold.red;
 const progress = colors.bold.yellow;
@@ -87,9 +92,11 @@ generator.setXmlVersionParser((xml) => {
   return document.metadata.versioning.versions.version;
 });
 
+/*
 const fontLoader = pureimage.registerFont("", generator.ICON_FONT);
 fontLoader.font = opentype.parse(decodeBase64(fontData).buffer);
 fontLoader.loaded = true;
+*/
 
 export function getGeneratorOptions(
   outputDir: string,
@@ -104,6 +111,7 @@ export function getGeneratorOptions(
     },
     canvas: {
       create(width, height) {
+        /*
         const bitmap = pureimage.make(width, height);
 
         return {
@@ -133,6 +141,9 @@ export function getGeneratorOptions(
             };
           },
         };
+        */
+
+        return null;
       },
     },
   };
@@ -273,7 +284,8 @@ async function promptUser(
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
-    uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
+    uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION) &&
+      ENABLE_ICON_GENERATION,
   };
 }
 
@@ -310,14 +322,17 @@ async function defaultOptions(
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
-    uniqueModIcon: true,
+    uniqueModIcon: ENABLE_ICON_GENERATION,
   };
 }
 
 function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
   const options: CheckboxValueOptions = [];
 
-  options.push({ value: ICON_ADVANCED_OPTION, checked: true });
+  if (ENABLE_ICON_GENERATION) {
+    options.push({ value: ICON_ADVANCED_OPTION, checked: true });
+  }
+
   options.push({ value: KOTLIN_ADVANCED_OPTION });
   options.push({ value: MOJMAP_ADVANCED_OPTION });
 
