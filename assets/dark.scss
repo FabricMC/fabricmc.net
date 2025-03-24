@@ -42,3 +42,14 @@ code, select, pre, input {
 a, a:visited {
     color: #58a6ff;
 }
+
+table {
+    tr {
+        &:nth-child(even) {
+            background-color: #151b23;
+        }
+    }
+    th {
+        background-color: #151b23;
+      }
+}

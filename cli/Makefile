@@ -22,13 +22,13 @@ build: fontgen check
 install: build
 	deno install $(DENO_PERMISSIONS) -f -n fabric bundled.ts
 
-install-stable: build
+install-bundled: build
 	deno install $(DENO_PERMISSIONS) -f -n fabric bundled.ts
 
 init:
 	rm -rf ./test
 	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) init ./test
 
-init-stable:
+init-bundled: build
 	rm -rf ./test
-	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) init ./test
+	deno run $(DENO_PERMISSIONS) bundled.ts init ./test

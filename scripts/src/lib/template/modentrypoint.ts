@@ -69,7 +69,8 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
     }
 
     if (options.dataEntrypoint) {
-        await writer.write(`src/main/java/${options.path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
+        const sourceSet = options.clientEntrypoint ? "client" : "main";
+        await writer.write(`src/${sourceSet}/java/${options.path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
 
         entrypoints = {
             ...entrypoints,
@@ -109,7 +110,8 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
     }
 
     if (options.dataEntrypoint) {
-        await writer.write(`src/main/kotlin/${options.path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
+        const sourceSet = options.clientEntrypoint ? "client" : "main";
+        await writer.write(`src/${sourceSet}/kotlin/${options.path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
 
         entrypoints = {
             ...entrypoints,
