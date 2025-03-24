@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.21.5 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.21.5" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<meta property="og:description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<link rel="canonical" href="https://fabricmc.net/2025/03/24/1215.html" />
+<meta property="og:url" content="https://fabricmc.net/2025/03/24/1215.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-03-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.21.5" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.21.5","dateModified":"2025-03-24T00:00:00+00:00","datePublished":"2025-03-24T00:00:00+00:00","description":"A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds.","url":"https://fabricmc.net/2025/03/24/1215.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2025/03/24/1215.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1742814973">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1742814973"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">Download</a>
+            
+          
+            
+              <a class="page-link" href="/blog/">Blog</a>
+            
+          
+            
+              <a class="page-link" href="/develop/">Develop</a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">Discuss</a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.21.5</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-03-24T00:00:00+00:00" itemprop="datePublished">Mar 24, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We kindly ask everyone not to pester them. <strong>We also recommend all players make backups of their worlds.</strong></p>
+
+<p>Here is a list of several major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.10 (at the time of writing) to develop mods for Minecraft 1.21.5. Players should install the latest stable version of Fabric Loader (currently 0.16.10).</p>
+
+<h3 id="loom-110">Loom 1.10</h3>
+<p>Loom 1.10 requires Gradle 8.12, and comes with performance improvements and enhanced testing setup support. You can checkout the new Loom documentation <a href="https://docs.fabricmc.net/develop/loom/">here</a>.</p>
+
+<h3 id="deprecations-and-removals">Deprecations and removals</h3>
+<p>In Content Registries, <code class="language-plaintext highlighter-rouge">VillagerInteractionsRegistries#registerGiftLootTable</code> overload that takes an <code class="language-plaintext highlighter-rouge">Identifier</code> was removed. This method was previously deprecated.</p>
+
+<p>In Object Builder, two deprecated classes, namely <code class="language-plaintext highlighter-rouge">VillagerProfessionBuilder</code> and <code class="language-plaintext highlighter-rouge">VillagerTypeHelper</code>, have been removed. Use the <code class="language-plaintext highlighter-rouge">VillagerProfession</code> constructor and <code class="language-plaintext highlighter-rouge">VillagerType#create</code> instead. <code class="language-plaintext highlighter-rouge">TradeOfferHelper#refreshOffers</code>, which had been deprecated and did nothing, was also removed.</p>
+
+<p><code class="language-plaintext highlighter-rouge">HudRenderCallback</code> has been deprecated in favor of newly added <code class="language-plaintext highlighter-rouge">HudLayerRegistrationCallback</code>.</p>
+
+<h3 id="breaking-changes">Breaking changes</h3>
+<p>When a mod creates a new dynamic registry, the data pack JSON files for the registry must now be placed inside namespaced directories. For example, if the new registry is <code class="language-plaintext highlighter-rouge">example:potato_variant</code>, the file for variant <code class="language-plaintext highlighter-rouge">test:tiny</code> will be placed in <code class="language-plaintext highlighter-rouge">data/test/example/potato_variant/tiny.json</code>.<!-- https://github.com/FabricMC/fabric/pull/4180 --></p>
+
+<p><code class="language-plaintext highlighter-rouge">BiomeModificationContext#addSpawn</code> has a new parameter, <code class="language-plaintext highlighter-rouge">weight</code>. This was previously part of <code class="language-plaintext highlighter-rouge">SpawnEntry</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">TradeOfferHelper</code> now takes a <code class="language-plaintext highlighter-rouge">RegistryKey</code> of the profession instead of <code class="language-plaintext highlighter-rouge">VillagerProfession</code>. Wandering trader trades must now be added via the builder, which was previously used for the Rebalance experiment. (The rebalanced trades are now used in all worlds.)</p>
+
+<h3 id="new-fabric-api-changes">New Fabric API changes</h3>
+<p>With the help of many contributors, Fabric API has received some new features since the last update blog post:</p>
+
+<ul>
+  <li>New module: Client Game Test API, which can be used to automatically test client rendering and GUI (Earthcomputer)</li>
+  <li>New module: Fabric Tag API, which currently handles tag aliases (Juxxel)</li>
+  <li>Convention Tags: Sync remaining <code class="language-plaintext highlighter-rouge">c</code> tags with NeoForge (TelepathicGrunt)</li>
+  <li>Convention Tags: Add <code class="language-plaintext highlighter-rouge">c:flowers</code>, <code class="language-plaintext highlighter-rouge">c:flowers/tall</code>, and <code class="language-plaintext highlighter-rouge">c:flowers/small</code> block and item tags (TelepathicGrunt)</li>
+  <li>Convention Tags: Add <code class="language-plaintext highlighter-rouge">TagKey</code> for <code class="language-plaintext highlighter-rouge">c:tools/wrench</code> (TelepathicGrunt)</li>
+  <li>Convention Tags: Convention Drink Tags (TheDeathlyCow)</li>
+  <li>Convention Tags: Add Pumpkin Block and Item Tags (JT122406)</li>
+  <li>Data Generation: Add vararg helper methods for multi-tag support in <code class="language-plaintext highlighter-rouge">FabricTagBuilder</code> (Starexify)</li>
+  <li>Data Generation: Add <code class="language-plaintext highlighter-rouge">FabricEntityLootTableProvider</code> (Antikyth)</li>
+  <li>Item API: Add a method for overriding modelId in item settings (Patbox)</li>
+  <li>Item API: Add <code class="language-plaintext highlighter-rouge">contains</code> method to <code class="language-plaintext highlighter-rouge">FabricComponentMapBuilder</code> (TheDeathlyCow)</li>
+  <li>Item Group API: Change Creative Buttons Texture (matthewperiut)</li>
+  <li>Item Group API: Use page up/down to change creative inventory pages (modmuss50)</li>
+  <li>Model Loading API: Allow retrieving model loading plugins (PepperCode1)</li>
+  <li>Networking API: Add <code class="language-plaintext highlighter-rouge">ServerPlayNetworking.reconfigure</code> (modmuss50)</li>
+  <li>Object Builder: Allow setting <code class="language-plaintext highlighter-rouge">canPotentiallyExecuteCommands</code> in builders (PepperCode1)</li>
+  <li>Recipe API: Add <code class="language-plaintext highlighter-rouge">getAllMatches</code> and <code class="language-plaintext highlighter-rouge">getAllOfType</code> methods to <code class="language-plaintext highlighter-rouge">ServerRecipeManager</code> (Patbox)</li>
+  <li>Registry Sync: Add <code class="language-plaintext highlighter-rouge">RegistryAttribute#OPTIONAL</code> that can be used to not disconnect clients lacking an entire registry; note that optional registry values are still unsupported (modmuss50)</li>
+  <li>Registry Sync: Registry aliasing (Syst3ms)</li>
+  <li>Rendering: Add <code class="language-plaintext highlighter-rouge">SpecialBlockRendererRegistry</code> (PepperCode1)</li>
+  <li>Rendering: Add HUD Render Events (kevinthegreat1)</li>
+  <li>Resource Loader: Implement builtin mod resource/data pack sorting (Apollo)</li>
+</ul>
+
+<h3 id="tag-and-registry-aliases">Tag and registry aliases</h3>
+<p>The new tag and registry alias APIs allow for mods to seemlessly migrate their tags and registry aliases to new names. Thanks to Juuxel and Syst3ms respectively for implementing these new APIs.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Registries</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">.</span><span class="na">addAlias</span><span class="o">(</span><span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"my_mod"</span><span class="o">,</span> <span class="s">"old"</span><span class="o">),</span> <span class="nc">Registries</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"my_mod"</span><span class="o">,</span> <span class="s">"new"</span><span class="o">)));</span>
+</code></pre></div></div>
+<p>Registry aliases are really simple; with the code above, any access to the old ID in the registry is redirected to the new ID. This allows worlds to be upgraded to use the new ID; for example, a block with the old ID becomes the one with the new ID.</p>
+
+<p>Tag aliases are defined in data packs like tags. For example, a block tag alias group for fences would be located at <code class="language-plaintext highlighter-rouge">data/my_mod/fabric/tag_aliases/block/fences.json</code> with the contents:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"minecraft:fences"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"c:fences"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="client-gametest">Client GameTest</h3>
+<p>For a long time, Fabric has had an internal client test framework that was used for testing that Fabric API was working correctly on the client. In a series of PRs, Earthcomputer has worked to expand and expose this framework to mod developers. The new experimental API has the following features:</p>
+<ul>
+  <li>World creation API, for specifying options used to generate the test world.</li>
+  <li>Screenshot API, with support for comparing against golden images.</li>
+  <li>Input API, to simulate a user interacting with the game.</li>
+  <li>Advanced threading setup, to make the tests more repoducible.</li>
+  <li>Network synchronization, to ensure packets are handled consistently.</li>
+  <li>Herobrine removal, to bring peace to the Kingdom of Tiny Potato.</li>
+</ul>
+
+<p>For more information checkout the full documentation <a href="https://maven.fabricmc.net/docs/fabric-api-0.119.2+1.21.5/net/fabricmc/fabric/api/client/gametest/v1/package-summary.html">here</a>.</p>
+
+<h3 id="hud-render-events">HUD Render Events</h3>
+<p>Fabric API 0.116.0 added <code class="language-plaintext highlighter-rouge">HudLayerRegistrationCallback</code> event, providing full control over the HUD rendering process. The new API assigns idenftifiers to each layer that can be used to specify where things will be rendered. The new API also allows replacing or removing existing layers. A big thanks to kevinthegreat1 and many other people for making this happen!</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+<h3 id="nbt">NBT</h3>
+<p>Significant changes to NBT handling code have been made.</p>
+
+<p><code class="language-plaintext highlighter-rouge">NbtCompound</code> methods now return <code class="language-plaintext highlighter-rouge">Optional</code> instead of the value. If the key is not in the compound or if the value is not of the correct type, an empty optional is now returned instead of that type’s default value.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- int value = nbt.getInt("value");
+</span><span class="gi">+ Optional&lt;Integer&gt; value = nbt.getInt("value"); // not OptionalInt
+</span></code></pre></div></div>
+
+<p>For primitives (numbers and strings), instead of checking for the existence of a key and handling a fallback, the fallback can now be passed to <code class="language-plaintext highlighter-rouge">get</code> methods:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- int value;
+- if (nbt.contains("value", NbtElement.NUMBER_TYPE)) {
+-   value = nbt.getInt("value");
+- } else {
+-   value = 1000;
+- }
+</span><span class="gi">+ int value = nbt.getInt("value", 1000);
+</span></code></pre></div></div>
+
+<p>Also note that <code class="language-plaintext highlighter-rouge">NbtElement#NUMBER_TYPE</code> and type-aware <code class="language-plaintext highlighter-rouge">contains</code> have been removed. There is no fallback method for <code class="language-plaintext highlighter-rouge">getIntArray</code>, <code class="language-plaintext highlighter-rouge">getLongArray</code>, and <code class="language-plaintext highlighter-rouge">getByteArray</code>. (Use <code class="language-plaintext highlighter-rouge">Optional#orElse</code>.)</p>
+
+<p>For <code class="language-plaintext highlighter-rouge">getCompound</code> and <code class="language-plaintext highlighter-rouge">getList</code> methods, methods with the previous behavior (returning empty objects) are provided with <code class="language-plaintext highlighter-rouge">OrEmpty</code> suffix.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- NbtCompound config = nbt.getCompound("config");
+</span><span class="gi">+ NbtCompound config = nbt.getCompoundOrEmpty("config");
+</span></code></pre></div></div>
+
+<p>Finally, for those who want to encode/decode codec-based values (such as <code class="language-plaintext highlighter-rouge">Identifier</code>) stored in a <code class="language-plaintext highlighter-rouge">NbtCompound</code> field, new methods simplify the process:</p>
+
+<pre><code class="language-java=">NbtCompound nbt = new NbtCompound();
+nbt.put("Id", Identifier.CODEC, id);
+// for reading
+Optional&lt;Identifier&gt; id = nbt.get("Id", Identifier.CODEC);
+</code></pre>
+
+<p>And if there is a codec for the whole object:</p>
+<pre><code class="language-java=">NbtCompound nbt = new NbtCompound();
+// have to use the RegistryOps since an item is a registry entry
+nbt.copyFromCodec(ItemStack.MAP_CODEC, wrapperLookup.getOps(NbtOps.INSTANCE), stack);
+// for reading
+Optional&lt;ItemStack&gt; stack = nbt.decode(ItemStack.MAP_CODEC, wrapperLookup.getOps(NbtOps.INSTANCE));
+</code></pre>
+
+<p>Typed arrays (<code class="language-plaintext highlighter-rouge">ByteArray</code>, <code class="language-plaintext highlighter-rouge">IntArray</code>, and <code class="language-plaintext highlighter-rouge">LongArray</code>) are no longer <code class="language-plaintext highlighter-rouge">List</code>s. They can be converted to a list using <code class="language-plaintext highlighter-rouge">.stream().toList()</code>, but this is usually not necessary. <code class="language-plaintext highlighter-rouge">NbtList</code> can now contain values of differing types, but this should be a transparent change unless you work with binary data.</p>
+
+<h3 id="gametest">GameTest</h3>
+
+<p>In Minecraft <a href="https://www.minecraft.net/en-us/article/minecraft-snapshot-25w03a">25w03a</a>, Mojang totally refactored the vanilla testing framework, exposing it to datapack developers. Unfortunately, the new API is a little bit cumbersome for mod developers. Fabric API now provides its own <code class="language-plaintext highlighter-rouge">@GameTest</code> annotation that functions similarly to the old one. The options in the new Fabric-provided <code class="language-plaintext highlighter-rouge">@GameTest</code> annotation directly map the vanilla data-driven options, removing the need to have a JSON file for each test function. Data driven tests will still work if you wish to use the vanilla system.</p>
+
+<h3 id="miscellaneous">Miscellaneous</h3>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">DataPool</code> has been replaced with <code class="language-plaintext highlighter-rouge">Pool</code>.</li>
+</ul>
+
+  </div><a class="u-url" href="/2025/03/24/1215.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <p>
+      The contents of this website, unless otherwise indicated, are licensed under a <a rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike
+        4.0 International License</a>.
+    </p>
+
+    <p style="font-size: 10px;">
+      NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+    </p>
+
+  </div>
+
+</footer></body>
+
+</html>
