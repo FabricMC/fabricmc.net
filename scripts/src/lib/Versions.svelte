@@ -49,6 +49,7 @@
 minecraft_version={minecraftVersion}
 yarn_mappings={yarnVersion}
 loader_version={loaderVersion}
+loom_version=1.10-SNAPSHOT
 
 # Fabric API
 fabric_version={apiVersion}
