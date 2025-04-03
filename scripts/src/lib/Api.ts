@@ -98,7 +98,9 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
     })
 
     // Very dumb but idk of a better (easy) way.
-    if (mcVersion.startsWith("22w13oneblockatatime")) {
+    if (mcVersion.startsWith("25w14craftmine")) {
+        branch = "25w14craftmine"
+    } else if (mcVersion.startsWith("22w13oneblockatatime")) {
         branch = "22w13oneblockatatime"
     } else if (mcVersion.startsWith("25w")) {
         branch = "1.21.5"
