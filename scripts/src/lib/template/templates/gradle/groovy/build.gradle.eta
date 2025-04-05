@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
 	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
