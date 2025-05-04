@@ -3455,6 +3455,7 @@ org.gradle.parallel=true
 minecraft_version=<%= it.minecraftVersion %>
 <% if (!it.mojmap) { %>yarn_mappings=<%= it.yarnVersion %>
 <% } %>loader_version=<%= it.loaderVersion %>
+loom_version=1.10-SNAPSHOT
 <% if (it.kotlin) { %>fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } %>
 # Mod Properties
@@ -3464,7 +3465,7 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_version=<%= it.fabricVersion %>`, tn = `plugins {
-	id 'fabric-loom' version '1.10-SNAPSHOT'
+	id 'fabric-loom' version "\${loom_version}"
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
 	id "org.jetbrains.kotlin.jvm" version "<%= it.kotlin.kotlinVersion %>"
