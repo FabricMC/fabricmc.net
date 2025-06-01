@@ -100,7 +100,7 @@ fabric_version = "${apiVersion}"
     <h2>Latest Versions</h2>
     <p>
         Select a Minecraft version to get the recommended versions of Fabric
-        Loader, Yarn, and Fabric API for your <code>{selectedTab}</code> file.
+        Loader, Yarn, Loom and Fabric API to use in your project.
     </p>
     <p>
         Minecraft Version:
