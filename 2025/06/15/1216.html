@@ -20,8 +20,8 @@
 {"headline":"Fabric for Minecraft 1.21.6","dateModified":"2025-06-15T00:00:00+00:00","datePublished":"2025-06-15T00:00:00+00:00","description":"A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds.","url":"https://fabricmc.net/2025/06/15/1216.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2025/06/15/1216.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1749996955">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1749996955"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1749997628">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1749997628"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -226,8 +226,6 @@ The <code class="language-plaintext highlighter-rouge">ServerChunkEvents.CHUNK_L
 </ol>
 
 <p>This process began in 1.21.2, and is still incomplete as of this update. Chunk rendering, GUI rendering and HUD rendering have all been converted to use the new separate rendering style. The ultimate goal of this separation is to enable the game to render one frame while the next is being extracted.</p>
-
-<p>In order to facilitate this, the blaze3d rendering api is being reworked. (Almost everything changed… fill in more)</p>
 
 <p>Many methods in <code class="language-plaintext highlighter-rouge">RenderSystem</code> have been removed without direct replacement.  In most cases, there isn’t a one-to-one translation from the old code to the new, but the same capabilities exist by combining the new <code class="language-plaintext highlighter-rouge">RenderPipline</code>s with <code class="language-plaintext highlighter-rouge">RenderLayer</code>s</p>
 
