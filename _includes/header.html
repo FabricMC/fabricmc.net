@@ -20,9 +20,20 @@
         <div class="trigger">
           {% for link in site.data.topnav.links %}
             {% if link.page %}
-              <a class="page-link" href="{% link {{ link.page }} %}">{{ link.title | escape | capitalize }}</a>
+              <a class="page-link" href="{% link {{ link.page }} %}">
+                {% if link.icon %}
+                  <img src="{{ link.icon }}" width="20" />
+                {% endif %}
+                {{ link.title | escape | capitalize }}
+              </a>
             {% else %}
-              <a class="page-link" href="{{ link.url }}">{{ link.title | escape | capitalize }}</a>
+              <a class="page-link" href="{{ link.url }}">
+                {% if link.icon %}
+                  <img src="{{ link.icon }}" width="20" />
+                {% endif %}
+
+                {{ link.title | escape | capitalize }}
+              </a>
             {% endif %}
           {% endfor %}
         </div>

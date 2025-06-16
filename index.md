@@ -19,7 +19,31 @@ layout: default
             <section>
                <p class="component-body">The Fabric Loader download above is the bare minimum. Combine it with Fabric API to get all the important extra APIs mods use. It has to be put into the mods folder like any other mod.</p>
             </section>
-            <a class="button secondary" href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">Download Fabric API</a>
+            <div class="download-api-container">
+                <a class="button secondary" href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">
+                    <img alt="CurseForge logo" src="/assets/icons/curseforge-logo.svg" width="20" />
+                    Download Fabric API
+                </a>
+                <div class="download-api" tabindex="-1">
+                    <div class="button secondary">
+                        <span>▼</span>
+                    </div>
+                    <div class="download-api-dropdown">
+                        <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">
+                            <img alt="CurseForge logo" src="/assets/icons/curseforge-logo.svg" width="20" />
+                            CurseForge
+                        </a>
+                        <a href="https://modrinth.com/mod/fabric-api/versions">
+                            <img alt="Modrinth logo" src="/assets/icons/modrinth-logo.svg" width="20" />
+                            Modrinth
+                        </a>
+                        <a href="https://github.com/FabricMC/fabric/releases">
+                            <img alt="Github logo" src="/assets/icons/github-logo.svg" width="20" />
+                            Github
+                        </a>
+                    </div>
+                </div>
+            </div>
          </article>
          <article class="column">
             <h3>Develop</h3>
