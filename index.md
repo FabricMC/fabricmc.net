@@ -39,7 +39,7 @@ layout: default
                         </a>
                         <a href="https://github.com/FabricMC/fabric/releases">
                             <img alt="Github logo" src="/assets/icons/github-logo.svg" width="20" />
-                            Github
+                            GitHub
                         </a>
                     </div>
                 </div>

@@ -8,8 +8,7 @@ links:
     page: develop.md
   - title: discuss
     page: discuss.md
+  - title: Docs
+    url: https://docs.fabricmc.net/
   - title: wiki
     url: https://fabricmc.net/wiki/
-  - title:
-    icon: /assets/icons/github-logo.svg
-    url: https://github.com/fabricmc
