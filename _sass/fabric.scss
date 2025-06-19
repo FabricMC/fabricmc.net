@@ -217,6 +217,12 @@ p {
 	display: flex;
 	position: relative;
 
+	@media (prefers-color-scheme: light) {
+		img {
+			filter: invert(1);
+		}
+	}
+
 	> a {
 		flex: 1;
 		border-radius: 5px 0 0 5px;
