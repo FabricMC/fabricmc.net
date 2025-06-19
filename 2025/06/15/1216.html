@@ -20,8 +20,8 @@
 {"headline":"Fabric for Minecraft 1.21.6","dateModified":"2025-06-15T00:00:00+00:00","datePublished":"2025-06-15T00:00:00+00:00","description":"A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds.","url":"https://fabricmc.net/2025/06/15/1216.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2025/06/15/1216.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1750171490">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1750171490"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1750355280">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1750355280"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -40,23 +40,39 @@
         <div class="trigger">
           
             
-              <a class="page-link" href="/use/installer/">Download</a>
+              <a class="page-link" href="/use/installer/">
+                Download
+              </a>
             
           
             
-              <a class="page-link" href="/blog/">Blog</a>
+              <a class="page-link" href="/blog/">
+                Blog
+              </a>
             
           
             
-              <a class="page-link" href="/develop/">Develop</a>
+              <a class="page-link" href="/develop/">
+                Develop
+              </a>
             
           
             
-              <a class="page-link" href="/discuss/">Discuss</a>
+              <a class="page-link" href="/discuss/">
+                Discuss
+              </a>
             
           
             
-              <a class="page-link" href="https://fabricmc.net/wiki/">Wiki</a>
+              <a class="page-link" href="https://docs.fabricmc.net/">
+                Docs
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">
+                Wiki
+              </a>
             
           
         </div>
@@ -109,9 +125,9 @@ Players should install the latest stable version of Fabric Loader (currently 0.1
 <p>In addition to being relocated, the <code class="language-plaintext highlighter-rouge">BlockRenderLayerMap</code> API was also updated to be more consistent out current API style:</p>
 <div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 </span><span class="gi">+ import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-</span><span class="err">//...</span>
-- BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MY_EPIC_BLOCK, BlockRenderLayer.CUTOUT)
-<span class="gi">+ BlockRenderLayerMap.putBlock(ModBlocks.MY_EPIC_BLOCK, BlockRenderLayer.CUTOUT)
+</span> ...
+<span class="gd">- BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MY_EPIC_BLOCK, BlockRenderLayer.CUTOUT)
+</span><span class="gi">+ BlockRenderLayerMap.putBlock(ModBlocks.MY_EPIC_BLOCK, BlockRenderLayer.CUTOUT)
 </span></code></pre></div></div>
 <p>See (<a href="https://github.com/FabricMC/fabric/pull/4664">#4664</a>) for more info.</p>
 <h3 id="breaking-changes">Breaking changes</h3>
