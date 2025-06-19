@@ -12,6 +12,10 @@
 
 .site-nav {
 	margin-top: 12px;
+
+	.page-link img {
+		vertical-align: center;
+	}
 }
 
 .page-content {
@@ -205,6 +209,65 @@ p {
 
 		&.cover {
 			object-fit: cover;
+		}
+	}
+}
+
+.download-api-container {
+	display: flex;
+	position: relative;
+
+	@media (prefers-color-scheme: light) {
+		img {
+			filter: invert(1);
+		}
+	}
+
+	> a {
+		flex: 1;
+		border-radius: 5px 0 0 5px;
+	}
+
+	.download-api {
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+
+		.button {
+			border-left: none;
+			border-radius: 0 5px 5px 0;
+		}
+
+		&:focus-within .download-api-dropdown {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+
+		.download-api-dropdown {
+			position: absolute;
+			width: calc(100% - 2rem - 4px);
+			background: $background-color;
+			border: 2px solid $button-color;
+			border-radius: 5px;
+			top: calc(100% + 1rem); // Match gapping on the button row
+			right: 0;
+			display: flex;
+			flex-direction: column;
+			gap: .5rem;
+			padding: 1rem;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(1rem);
+			transition: visibility .25s ease-in-out,
+			transform .25s ease-in-out,
+			opacity .25s ease-in-out;
+
+			a {
+				display: flex;
+				gap: .75rem;
+				align-items: center;
+			}
 		}
 	}
 }
