@@ -21,6 +21,9 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
         ],
         "injectors": {
             "defaultRequire": 1
+        },
+        "overwrites": {
+            "requireAnnotations": true
         }
     };
 
