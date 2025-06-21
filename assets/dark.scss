@@ -15,7 +15,7 @@ $content-width: 1024px;
 @import "{{ site.theme }}";
 @import "fabric";
 
-code, select, pre, input {
+code, select, pre, input, textarea {
     background-color: $background-color;
     color: $text-color;
 }
