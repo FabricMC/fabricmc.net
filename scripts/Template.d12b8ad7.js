@@ -3691,6 +3691,9 @@ async function gn(E, f) {
     ],
     injectors: {
       defaultRequire: 1
+    },
+    overwrites: {
+      requireAnnotations: !0
     }
   }, o = `${f.modid}.mixins.json`;
   return await E.write(`src/main/resources/${o}`, JSON.stringify(n, null, "	")), await E.write(`src/main/java/${e.replaceAll(".", "/")}/${h}.java`, Tt(Se, {
