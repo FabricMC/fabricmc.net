@@ -28,8 +28,8 @@ export interface YarnVersion {
 }
 
 // Do not use these fallback servers to interact with our web services. They can and will be unavailable at times and only support limited throughput.
-const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"];
-const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
+const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net", "https://meta3.fabricmc.net"];
+const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net", "https://maven3.fabricmc.net"];
 
 export async function getInstallerVersions() {
     return getJson<InstallerVersion[]>(META, "/v2/versions/installer");
