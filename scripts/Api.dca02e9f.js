@@ -1,11 +1,11 @@
-const r = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net"], f = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net"];
-async function w() {
+const r = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net", "https://meta3.fabricmc.net"], f = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net", "https://maven3.fabricmc.net"];
+async function p() {
   return i(r, "/v2/versions/installer");
 }
-async function p() {
+async function v() {
   return i(r, "/v2/versions/game");
 }
-async function v() {
+async function w() {
   return i(r, "/v2/versions/loader");
 }
 async function g() {
@@ -74,9 +74,9 @@ async function h(s, t) {
 }
 export {
   g as a,
-  v as b,
-  w as c,
-  p as d,
+  w as b,
+  p as c,
+  v as d,
   d as e,
   x as f,
   b as g,
