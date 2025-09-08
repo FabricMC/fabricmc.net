@@ -24,7 +24,7 @@ jobs:
       # Jekyll 4 fails to create the .jekyll-cache directory, but if we pre-create it, it works
       - run: mkdir -p .jekyll-cache
       - run: bundler install --deployment && bundler exec jekyll build
-      - run: npm i
+      - run: npm ci
         working-directory: ./scripts
       - run: npm run check
         working-directory: ./scripts
