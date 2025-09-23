@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 1.21.9 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 1.21.9" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<meta property="og:description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<link rel="canonical" href="https://fabricmc.net/2025/09/23/1219.html" />
+<meta property="og:url" content="https://fabricmc.net/2025/09/23/1219.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-09-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 1.21.9" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 1.21.9","dateModified":"2025-09-23T00:00:00+00:00","datePublished":"2025-09-23T00:00:00+00:00","description":"A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds.","url":"https://fabricmc.net/2025/09/23/1219.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2025/09/23/1219.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1758642096">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1758642096"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">
+                Download
+              </a>
+            
+          
+            
+              <a class="page-link" href="/blog/">
+                Blog
+              </a>
+            
+          
+            
+              <a class="page-link" href="/develop/">
+                Develop
+              </a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">
+                Discuss
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://docs.fabricmc.net/">
+                Docs
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">
+                Wiki
+              </a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 1.21.9</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-09-23T00:00:00+00:00" itemprop="datePublished">Sep 23, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version.</strong> We kindly ask everyone not to pester them. <strong>We also recommend all players make backups of their worlds.</strong></p>
+
+<p>Here is a list of several major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+<p>Developers should use Loom 1.11 (at the time of writing) to develop mods for Minecraft 1.21.9.
+Players should install the latest stable version of Fabric Loader (currently 0.17.2).</p>
+
+<h3 id="yarn-mappings">Yarn Mappings</h3>
+<p>In this update, several mapping name changes were forced by changes in the vanilla class hierarchy. While a full diff may be found <a href="https://github.com/FabricMC/yarn/compare/d9167974e1fc83c980cf3be9fb567b1ab67d1153..6f9f183d2908d05e67a89aa3558caf9fee207dc0">here</a>, there is one major change affecting almost all mods: <code class="language-plaintext highlighter-rouge">Entity#getWorld</code> was renamed to <code class="language-plaintext highlighter-rouge">Entity#getEntityWorld</code>.</p>
+
+<h3 id="world-render-events">World Render Events</h3>
+<p>The current event suite for rendering in the world has been removed. A suitable replacement is planned asap, but not ready yet. In the meantime, please use mixins to implement what your mod needs.</p>
+
+<h3 id="resource-loader-api-v1">Resource Loader API v1</h3>
+
+<p>A major rework of the resource loader API is present in the 1.21.9 version of Fabric API. This will make current functionality easier to acomplish, as well as opening doors for features like runtime resource generation in the future.</p>
+
+<p>The first part of this rework has just landed with the focus being on <code class="language-plaintext highlighter-rouge">ResourceReloader</code>.
+Historically this API based itself on the <code class="language-plaintext highlighter-rouge">IdentifiableResourceReloadListener</code> interface which allowed <code class="language-plaintext highlighter-rouge">ResourceReloader</code> to both be identifiable and specify dependencies.
+However this API had limits, which prevented to run before another <code class="language-plaintext highlighter-rouge">ResourceReloader</code> or was difficult to use in multiloader environments.
+This has been fixed with this new iteration of the API.</p>
+
+<p>From now on, <code class="language-plaintext highlighter-rouge">ResourceReloader</code> do not need to implement a Fabric-provided interface, instead they can be registered with an identifier directly:</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gd">- ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new CustomResourceReloader())
+</span><span class="gi">+ ResourceLoader.get(ResourceType.SERVER_DATA).registerReloader(Identifier.of("modid", "custom_resource_reloader"), new CustomResourceReloader());
+</span></code></pre></div></div>
+
+<p>Ordering is now specified akin to events:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ResourceLoader</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="nc">ResourceType</span><span class="o">.</span><span class="na">SERVER_DATA</span><span class="o">).</span><span class="na">addReloaderOrdering</span><span class="o">(</span>
+    <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"other"</span><span class="o">,</span> <span class="s">"other_reloader_to_depend"</span><span class="o">),</span> <span class="c1">// Triggers first</span>
+    <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"modid"</span><span class="o">,</span> <span class="s">"custom_resource_reloader"</span><span class="o">)</span> <span class="c1">// Triggers second</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<p>You can also order based on Vanilla reloaders thanks to <code class="language-plaintext highlighter-rouge">ResourceReloaderKeys</code>, which provides both per-resource-reloader an identifier, and two global keys: before and after vanilla.</p>
+
+<p>Thanks to 1.21.9 Vanilla changes the way to register reloaders which need registry access has been simplified, instead of using a specialized registration method, now you can get registries and feature flags in <code class="language-plaintext highlighter-rouge">ResourceType.SERVER_DATA</code> reloaders via the shared state <code class="language-plaintext highlighter-rouge">Store</code>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">DataReloader</span> <span class="kd">implements</span> <span class="nc">ResourceReloader</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">&gt;</span> <span class="nf">reload</span><span class="o">(</span>
+        <span class="nc">Store</span> <span class="n">store</span><span class="o">,</span>
+        <span class="nc">Executor</span> <span class="n">prepareExecutor</span><span class="o">,</span>
+        <span class="nc">Synchronizer</span> <span class="n">reloadSynchronizer</span><span class="o">,</span>
+        <span class="nc">Executor</span> <span class="n">applyExecutor</span>
+    <span class="o">)</span> <span class="o">{</span>
+        <span class="nc">RegistryWrapper</span><span class="o">.</span><span class="na">WrapperLookup</span> <span class="n">registries</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="na">getOrThrow</span><span class="o">(</span><span class="nc">ResourceLoader</span><span class="o">.</span><span class="na">RELOADER_REGISTRY_LOOKUP_KEY</span><span class="o">);</span>
+        <span class="nc">FeatureSet</span> <span class="n">featureSet</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="na">getOrThrow</span><span class="o">(</span><span class="nc">ResourceLoader</span><span class="o">.</span><span class="na">RELOADER_FEATURE_SET_KEY</span><span class="o">);</span>
+        <span class="c1">// Code</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>This change also allows for <code class="language-plaintext highlighter-rouge">ResourceReloader</code>s to communicate data between them.</p>
+
+<p>See <a href="https://github.com/FabricMC/fabric/issues/4574">#4574</a> for more details about what else is planned and the current progress.</p>
+
+<h3 id="enchantments">Enchantments</h3>
+<p>Transitive access wideners have been added for all of the utility methods in <code class="language-plaintext highlighter-rouge">EnchantmentHelper</code> and <code class="language-plaintext highlighter-rouge">Enchantment</code>. We hope that this will make it easier for developers to implement custom enchantment effect components.
+See <a href="https://github.com/FabricMC/fabric/pull/4819">#4819</a> for more details.</p>
+
+<h3 id="serialization">Serialization</h3>
+<p>We have added a new module for utilities related to serialization. Currently, this module includes additional methods in <code class="language-plaintext highlighter-rouge">ReadView</code> and <code class="language-plaintext highlighter-rouge">WriteView</code>, and provides <code class="language-plaintext highlighter-rouge">Codec</code>s for some types that base vanilla doesn’t. Please feel free to suggest anything else that may be useful in this area.
+See <a href="https://github.com/FabricMC/fabric/pull/4745">#4745</a> for more details.</p>
+
+<h3 id="block-conversions">Block Conversions</h3>
+<p>To closer align with vanilla code flow, <code class="language-plaintext highlighter-rouge">OxidizableBlocksRegistry</code> now supports registering a <code class="language-plaintext highlighter-rouge">CopperBlockSet</code> direclty. Simply call <code class="language-plaintext highlighter-rouge">OxidizableBlocksRegistry.registerCopperBlockSet(set)</code> to register. The prior methods for block pairs are still avalible for those that prefer them.
+See <a href="https://github.com/FabricMC/fabric/pull/4807">#4807</a> for more details.</p>
+
+<p><code class="language-plaintext highlighter-rouge">StrippableBlockRegistry</code> now provides multiple overloads to satisfy all your stripping needs. As before, simple conversions can be registered by calling <code class="language-plaintext highlighter-rouge">StrippableBlockRegistry.register(Block, Block)</code>.  You may also call <code class="language-plaintext highlighter-rouge">StrippableBlockRegistry.registerCopyState(Block, Block)</code> to register a stripping conversion that automatically copies all properties from the previous state, or <code class="language-plaintext highlighter-rouge">register(Block, Block, StrippingTransformer)</code> to have full control over the stripping process.
+See <a href="https://github.com/FabricMC/fabric/pull/4829">#4829</a> for more details.</p>
+
+<h3 id="gui-rendering">GUI Rendering</h3>
+<p>When using a custom <code class="language-plaintext highlighter-rouge">RenderPipeline</code> to render in the GUI, vanilla may assume that the <code class="language-plaintext highlighter-rouge">VertexFormat</code> being used is <code class="language-plaintext highlighter-rouge">QUADS</code>. Fabric now provides a way to override this behavior with <code class="language-plaintext highlighter-rouge">RenderPipeline.Builder.withUsePipelineDrawModeForGui</code>.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">var</span> <span class="n">pipeline</span> <span class="o">=</span> <span class="nc">RenderPipeline</span><span class="o">.</span><span class="na">builder</span><span class="o">(</span>
+        <span class="n">snippet1</span><span class="o">,</span> 
+        <span class="n">snippet1</span>
+    <span class="o">)</span>
+    <span class="o">.</span><span class="na">withUsePipelineDrawModeForGui</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="c1">// ...</span>
+<span class="n">fictionalRenderInGuiInNonGuads</span><span class="o">(</span><span class="n">pipeline</span><span class="o">);</span> <span class="c1">// will respect the VertexFormat set in the pipeline</span>
+</code></pre></div></div>
+<p>See <a href="https://github.com/FabricMC/fabric/pull/4824">#4824</a> for more details.</p>
+
+<h3 id="mixin--mixinextras">Mixin &amp; MixinExtras</h3>
+<p>With version 0.17.0 of Fabric Loader, MixinExtras 5.0.0 and Fabric Mixin 0.16.3+mixin.0.8.7 are now bundled.</p>
+<ul>
+  <li>MixinExtras 5.0.0 brings expressions, a new way to discribe mixins to java code in a syntax that mirrors the target, leading to mixins that are easier to maintain, more expressive, and potentially even more compatible with other mixins. See the <a href="https://github.com/LlamaLad7/MixinExtras/releases/tag/0.5.0">release notes</a> and <a href="https://github.com/LlamaLad7/MixinExtras/wiki/Expressions">wiki pages</a> for more details.</li>
+  <li>Fabric Mixin 0.16.3 brings many bug fixes, along with scaffolding in mixin for potential widespread performance increases.</li>
+</ul>
+
+<h3 id="screen-key-events">Screen Key Events</h3>
+
+<p>With many breaking changes from mojang regarding keybindings, we’ve taken the opportunity to improve our events. Most parameters in the event have been consolidated into a context object known as a <code class="language-plaintext highlighter-rouge">KeyInput</code>. The <em>afterMouseX</em> style events now also take and return a <code class="language-plaintext highlighter-rouge">boolean</code> representing whether the event has been consumed. Returning <code class="language-plaintext highlighter-rouge">true</code> from these events will prevent further vanilla handling.</p>
+
+<p>See <a href="https://github.com/FabricMC/fabric/pull/4846/">#4846</a> and <a href="https://github.com/FabricMC/fabric/pull/4620">#4620</a> for more details.</p>
+
+<h2 id="minecraft-changes">Minecraft Changes</h2>
+
+<h3 id="rendering">Rendering</h3>
+<p>Almost all world rendering has been reworked to group objects with similar rendering requirements together. Most places now use <code class="language-plaintext highlighter-rouge">OrderedRenderCommandQueue</code> to submit things to be drawn later, when all objects of a similar type have been rendered.</p>
+
+<h4 id="block-entities">Block Entities</h4>
+<p>Block entities now use <code class="language-plaintext highlighter-rouge">OrderedRenderCommandQueue</code>. The following example shows rendering text on the block using the queue.</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBlockEntityRenderer</span> <span class="kd">implements</span> <span class="nc">BlockEntityRenderer</span><span class="o">&lt;</span><span class="nc">TestBlockEntity</span><span class="o">,</span> <span class="nc">BlockEntityRenderState</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">TestBlockEntityRenderer</span><span class="o">(</span><span class="nc">BlockEntityRendererFactory</span><span class="o">.</span><span class="na">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">BlockEntityRenderState</span> <span class="nf">createRenderState</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">BlockEntityRenderState</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(</span><span class="nc">BlockEntityRenderState</span> <span class="n">state</span><span class="o">,</span> <span class="nc">MatrixStack</span> <span class="n">matrices</span><span class="o">,</span> <span class="nc">OrderedRenderCommandQueue</span> <span class="n">queue</span><span class="o">,</span> <span class="nc">CameraRenderState</span> <span class="n">cameraRenderState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">queue</span><span class="o">.</span><span class="na">submitText</span><span class="o">(</span>
+                <span class="n">matrices</span><span class="o">,</span>
+                <span class="mi">0</span><span class="o">,</span>
+                <span class="mi">0</span><span class="o">,</span>
+                <span class="nc">Text</span><span class="o">.</span><span class="na">literal</span><span class="o">(</span><span class="s">"Hello, world!"</span><span class="o">).</span><span class="na">asOrderedText</span><span class="o">(),</span>
+                <span class="kc">false</span><span class="o">,</span>
+                <span class="nc">TextRenderer</span><span class="o">.</span><span class="na">TextLayerType</span><span class="o">.</span><span class="na">NORMAL</span><span class="o">,</span>
+                <span class="n">state</span><span class="o">.</span><span class="na">lightmapCoordinates</span><span class="o">,</span>
+                <span class="nc">Colors</span><span class="o">.</span><span class="na">WHITE</span><span class="o">,</span>
+                <span class="mi">0</span><span class="o">,</span>
+                <span class="nc">Colors</span><span class="o">.</span><span class="na">BLACK</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<!-- this looks like the old way of doing this, should probably mention that -->
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestBlockEntityRenderer</span> <span class="kd">implements</span> <span class="nc">BlockEntityRenderer</span><span class="o">&lt;</span><span class="nc">TestBlockEntity</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">TestBlockEntityRenderer</span><span class="o">(</span><span class="nc">BlockEntityRendererFactory</span><span class="o">.</span><span class="na">Context</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(</span><span class="nc">TestBlockEntity</span> <span class="n">entity</span><span class="o">,</span> <span class="kt">float</span> <span class="n">tickProgress</span><span class="o">,</span> <span class="nc">MatrixStack</span> <span class="n">matrices</span><span class="o">,</span> <span class="nc">VertexConsumerProvider</span> <span class="n">vertexConsumers</span><span class="o">,</span> <span class="kt">int</span> <span class="n">light</span><span class="o">,</span> <span class="kt">int</span> <span class="n">overlay</span><span class="o">,</span> <span class="nc">Vec3d</span> <span class="n">cameraPos</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">MinecraftClient</span><span class="o">.</span><span class="na">getInstance</span><span class="o">().</span><span class="na">textRenderer</span><span class="o">.</span><span class="na">drawWithOutline</span><span class="o">(</span>
+                <span class="nc">Text</span><span class="o">.</span><span class="na">literal</span><span class="o">(</span><span class="s">"Hello, world!"</span><span class="o">).</span><span class="na">asOrderedText</span><span class="o">(),</span>
+                <span class="mi">0</span><span class="o">,</span>
+                <span class="mi">0</span><span class="o">,</span>
+                <span class="nc">Colors</span><span class="o">.</span><span class="na">WHITE</span><span class="o">,</span>
+                <span class="nc">Colors</span><span class="o">.</span><span class="na">BLACK</span><span class="o">,</span>
+                <span class="n">matrices</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">getPositionMatrix</span><span class="o">(),</span>
+                <span class="n">vertexConsumers</span><span class="o">,</span>
+                <span class="n">light</span>
+        <span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="particles">Particles</h4>
+<p>Particle rendering has been changed to use the same queue system as above. Many good examples for implementing custom rendering via the queue can be found in the vanilla particle classes.
+<!-- no examples, I'm not awake enough to be trusted with a buffer. --></p>
+
+<h4 id="entities">Entities</h4>
+<p>Entity rendering has changed to use the same queue as shown above. Changes will be similar.</p>
+
+<h3 id="keybinding-changes">Keybinding Changes</h3>
+<p>Keybinding categories have become more structured. You could do the following before:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModKeybindings</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">KeyBinding</span> <span class="no">RANDOM_KEYBIND</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">KeyBinding</span><span class="o">(</span>
+    <span class="s">"key.test.random_keybind"</span><span class="o">,</span>
+    <span class="nc">InputUtil</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">KEYSYM</span><span class="o">,</span>
+    <span class="nc">InputUtil</span><span class="o">.</span><span class="na">UNKNOWN_KEY</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span>
+    <span class="s">"key.category.test.main"</span>
+  <span class="o">);</span>
+
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">tickKeybindings</span><span class="o">(</span><span class="nc">MinecraftClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">while</span> <span class="o">(</span><span class="no">RANDOM_KEYBIND</span><span class="o">.</span><span class="na">wasPressed</span><span class="o">())</span> <span class="o">{</span>
+      <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Random keybind pressed!"</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">ClientTickEvents</span><span class="o">.</span><span class="na">END_CLIENT_TICK</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nl">ModKeybindings:</span><span class="o">:</span><span class="n">tickKeybindings</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Now you could do:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ModKeybindings</span> <span class="o">{</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">KeyBinding</span><span class="o">.</span><span class="na">Category</span> <span class="no">TEST_CATEGORY</span> <span class="o">=</span> <span class="nc">KeyBinding</span><span class="o">.</span><span class="na">Category</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"test"</span><span class="o">,</span> <span class="s">"main"</span><span class="o">));</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">KeyBinding</span> <span class="no">RANDOM_KEYBIND</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">KeyBinding</span><span class="o">(</span>
+    <span class="s">"key.test.random_keybind"</span><span class="o">,</span>
+    <span class="nc">InputUtil</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">KEYSYM</span><span class="o">,</span>
+    <span class="nc">InputUtil</span><span class="o">.</span><span class="na">UNKNOWN_KEY</span><span class="o">.</span><span class="na">getCode</span><span class="o">(),</span>
+    <span class="no">TEST_CATEGORY</span>
+  <span class="o">);</span>
+  <span class="c1">// ...</span>
+<span class="o">}</span>
+</code></pre></div></div>
+<p>Each category may only be registered once; Registering a category twice, or two categories with the same id will lead to an exception.</p>
+
+<p>When Fabric API is installed, mod-provided categories will be sorted by alphabetically according to their identifiers, first by namespace, and then by path. All vanilla categories will remain in their natural order.</p>
+
+<h3 id="debug-text-api">Debug Text API</h3>
+<p>It is now possible to register debug HUD entries to be added to the debug (F3) overlay. The debug overlay is now also available outside of a world. Use <code class="language-plaintext highlighter-rouge">DebugHudEntries</code> to register entries to be rendered as follows:</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">DebugHudEntries</span><span class="o">.</span><span class="na">register</span><span class="o">(</span>
+  <span class="nc">Identifier</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"test"</span><span class="o">,</span> <span class="s">"example"</span><span class="o">),</span> 
+  <span class="k">new</span> <span class="nf">DebugHudEntry</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">render</span><span class="o">(</span>
+      <span class="nc">DebugHudLines</span> <span class="n">lines</span><span class="o">,</span> 
+      <span class="nd">@Nullable</span> <span class="nc">World</span> <span class="n">world</span><span class="o">,</span> 
+      <span class="nd">@Nullable</span> <span class="nc">WorldChunk</span> <span class="n">clientChunk</span><span class="o">,</span> 
+      <span class="nd">@Nullable</span> <span class="nc">WorldChunk</span> <span class="n">chunk</span>
+    <span class="o">)</span> <span class="o">{</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">world</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">lines</span><span class="o">.</span><span class="na">addLine</span><span class="o">(</span><span class="s">"Example in-world line :)"</span><span class="o">);</span>
+      <span class="k">else</span> <span class="n">lines</span><span class="o">.</span><span class="na">addLine</span><span class="o">(</span><span class="s">"Example out-of-world line :("</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canShow</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">reducedDebugInfo</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// return false if your debug text </span>
+      <span class="c1">// is not applicable with reduced debug info</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">);</span>
+</code></pre></div></div>
+
+<h3 id="misc">Misc</h3>
+<h4 id="macos">MacOS</h4>
+<p><code class="language-plaintext highlighter-rouge">MinecraftClient.IS_SYSTEM_MAC</code> has been replaced by <code class="language-plaintext highlighter-rouge">SystemKeycodes.IS_MAC_OS</code>.</p>
+
+  </div><a class="u-url" href="/2025/09/23/1219.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <p>
+      The contents of this website, unless otherwise indicated, are licensed under a <a rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike
+        4.0 International License</a>.
+    </p>
+
+    <p style="font-size: 10px;">
+      NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+    </p>
+
+  </div>
+
+</footer></body>
+
+</html>
