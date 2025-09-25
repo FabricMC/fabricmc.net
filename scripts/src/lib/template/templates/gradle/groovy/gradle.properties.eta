@@ -2,7 +2,7 @@
 org.gradle.jvmargs=-Xmx1G
 org.gradle.parallel=true
 
-# Intelij IDEA is not yet fully compatible with configuration cache, see: https://github.com/FabricMC/fabric-loom/issues/1349
+# IntelliJ IDEA is not yet fully compatible with configuration cache, see: https://github.com/FabricMC/fabric-loom/issues/1349
 org.gradle.configuration-cache=false
 
 # Fabric Properties
