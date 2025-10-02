@@ -18,7 +18,7 @@ async function d(s, t) {
   return i(r, `/v2/versions/loader/${s}/${t}/profile/json`);
 }
 async function b() {
-  return o(f, "/jdlist.txt").then((s) => s.split(`
+  return h(f, "/jdlist.txt").then((s) => s.split(`
 `));
 }
 async function x(s) {
@@ -44,23 +44,23 @@ function u(s, t) {
   let e = t;
   return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"].forEach((n) => {
     t.startsWith(n) && (e = n);
-  }), t.startsWith("25w14craftmine") ? e = "25w14craftmine" : t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("25w") ? e = "1.21.9" : t.startsWith("24w") ? e = "1.21.4" : t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("1.21.6") ? e = "1.21.6" : t.startsWith("1.21.7") ? e = "1.21.7" : t.startsWith("1.21.8") ? e = "1.21.8" : t.startsWith("1.21.9") ? e = "1.21.9" : t.startsWith("1.21.5") ? e = "1.21.5" : t.startsWith("1.21.4") ? e = "1.21.4" : t.startsWith("1.21.3") ? e = "1.21.3" : t.startsWith("1.21.2") ? e = "1.21.2" : t.startsWith("1.21.1") ? e = "1.21.1" : t.startsWith("1.21") ? e = "1.21" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
+  }), t.startsWith("25w14craftmine") ? e = "25w14craftmine" : t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("25w") ? e = "1.21.9" : t.startsWith("24w") ? e = "1.21.4" : t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("1.21.6") ? e = "1.21.6" : t.startsWith("1.21.7") ? e = "1.21.7" : t.startsWith("1.21.8") ? e = "1.21.8" : t.startsWith("1.21.9") ? e = "1.21.9" : t.startsWith("1.21.10") ? e = "1.21.10" : t.startsWith("1.21.5") ? e = "1.21.5" : t.startsWith("1.21.4") ? e = "1.21.4" : t.startsWith("1.21.3") ? e = "1.21.3" : t.startsWith("1.21.2") ? e = "1.21.2" : t.startsWith("1.21.1") ? e = "1.21.1" : t.startsWith("1.21") ? e = "1.21" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
 }
 let W = (s) => {
   let e = new DOMParser().parseFromString(s, "text/xml");
   return Array.from(e.getElementsByTagName("version")).map((a) => a.childNodes[0].nodeValue);
 };
 async function l(s) {
-  let t = await o(f, s);
+  let t = await h(f, s);
   return W(t);
 }
 async function i(s, t) {
-  return await (await h(s, t)).json();
-}
-async function o(s, t) {
-  return await (await h(s, t)).text();
+  return await (await o(s, t)).json();
 }
 async function h(s, t) {
+  return await (await o(s, t)).text();
+}
+async function o(s, t) {
   for (var e of s)
     try {
       const a = await fetch(e + t);
