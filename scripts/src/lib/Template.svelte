@@ -11,7 +11,7 @@
     let projectName = "Template Mod";
     let packageName = "com.example";
     let useKotlin = false;
-    let mojmap = false;
+    let mojmap = true;
     let dataGeneration = false;
     let splitSources = true;
 

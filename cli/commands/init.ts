@@ -318,7 +318,7 @@ async function defaultOptions(
     packageName: generator.formatPackageName(
       generator.nameToModId(startingName),
     ),
-    mojmap: false,
+    mojmap: true,
     useKotlin: false,
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
