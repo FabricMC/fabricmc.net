@@ -4769,7 +4769,7 @@ function Yn(E) {
   };
 }
 function Hn(E, f, e) {
-  let h, c, r, a, n, o, p, m = "Template Mod", b = "com.example", y = !1, l = !1, g = !1, s = !0, d, u = !1;
+  let h, c, r, a, n, o, p, m = "Template Mod", b = "com.example", y = !1, l = !0, g = !1, s = !0, d, u = !1;
   const w = Promise.all([Se()]).then(([x]) => (e(0, p = x.find((O) => O.stable).version), { game: x }));
   function C(x) {
     if (x !== void 0)
