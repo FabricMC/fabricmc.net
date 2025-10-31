@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Removing Obfuscation from Fabric | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Removing Obfuscation from Fabric" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Mojang recently published a blog post announcing that they will be removing obfuscation from Minecraft: Java Edition starting with the first snapshot after the Mounts of Mayhem launch later this year. There will also be supplimentary “experimental” releases starting with next Tuesday’s snapshot to allow us time to prepare and migrate." />
+<meta property="og:description" content="Mojang recently published a blog post announcing that they will be removing obfuscation from Minecraft: Java Edition starting with the first snapshot after the Mounts of Mayhem launch later this year. There will also be supplimentary “experimental” releases starting with next Tuesday’s snapshot to allow us time to prepare and migrate." />
+<link rel="canonical" href="https://fabricmc.net/2025/10/31/obfuscation.html" />
+<meta property="og:url" content="https://fabricmc.net/2025/10/31/obfuscation.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-10-31T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Removing Obfuscation from Fabric" />
+<script type="application/ld+json">
+{"headline":"Removing Obfuscation from Fabric","dateModified":"2025-10-31T00:00:00+00:00","datePublished":"2025-10-31T00:00:00+00:00","description":"Mojang recently published a blog post announcing that they will be removing obfuscation from Minecraft: Java Edition starting with the first snapshot after the Mounts of Mayhem launch later this year. There will also be supplimentary “experimental” releases starting with next Tuesday’s snapshot to allow us time to prepare and migrate.","url":"https://fabricmc.net/2025/10/31/obfuscation.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2025/10/31/obfuscation.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1761915536">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1761915536"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">
+                Download
+              </a>
+            
+          
+            
+              <a class="page-link" href="/blog/">
+                Blog
+              </a>
+            
+          
+            
+              <a class="page-link" href="/develop/">
+                Develop
+              </a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">
+                Discuss
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://docs.fabricmc.net/">
+                Docs
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://fabricmc.net/wiki/">
+                Wiki
+              </a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Removing Obfuscation from Fabric</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2025-10-31T00:00:00+00:00" itemprop="datePublished">Oct 31, 2025
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Mojang recently published <a href="https://www.minecraft.net/en-us/article/removing-obfuscation-in-java-edition">a blog post</a> announcing that they will be removing obfuscation from Minecraft: Java Edition starting with the first snapshot after the <em>Mounts of Mayhem</em> launch later this year. There will also be supplimentary “experimental” releases starting with next Tuesday’s snapshot to allow us time to prepare and migrate.</p>
+
+<p>This is a major change that will affect the entire modding community. This blog post will attempt to give a run down of how the Fabric toolchain will be affected, and what this means for Fabric mod developers.</p>
+
+<h2 id="what-is-obfuscation">What is obfuscation?</h2>
+<p>Obfuscation is a practice by which the names of classes, methods, fields, etc. in the code of the game are hidden by changing them into meaningless sequences of letters that change every version. So, as an example, the class for Creepers may have been changed from <code class="language-plaintext highlighter-rouge">Creeper</code> to something like <code class="language-plaintext highlighter-rouge">brc</code>.</p>
+
+<p>This has been a practice used for practically the entire time Minecraft has existed, and has meant that people who want to mod the game needed to figure out what each part of the code did, and use tools to apply readable names back to the code.</p>
+
+<h3 id="what-has-been-done-about-obfuscation-before">What has been done about obfuscation before?</h3>
+<p>In the Fabric world, we have had projects called Intermediary and Yarn.
+Intermediary would take the obfuscated names and give them stable numbers - so <code class="language-plaintext highlighter-rouge">brc</code> might become <code class="language-plaintext highlighter-rouge">class_1548</code>.
+Yarn would then apply readable names to those numbers - so <code class="language-plaintext highlighter-rouge">class_1548</code> might become <code class="language-plaintext highlighter-rouge">CreeperEntity</code>.
+These Yarn names were created and determined by our community by analysing the code. (If you’ve seen things in the code named with the Intermediary numbers - those are things we didn’t get around to naming in Yarn!)</p>
+
+<p>Since 2019, while the code of the game itself has still used the scrambled letters, Mojang has released their own official set of readable names, colloquially known as ‘Mojmap’, which are the names they themselves use when developing the game.
+This set of names was different to Yarn, and many developers embraced them, though some continued using Yarn names out of preference.
+Fabric has supported the option to use either set of names.</p>
+
+<h3 id="what-does-it-mean-that-obfuscation-is-being-removed">What does it mean that obfuscation is being removed?</h3>
+<p>Now, the names in the actual code of the game will match those that Mojang has been releasing since 2019. What’s more, for the first time, mod developers will now be able to see official names for method parameters and local variables, which were previously missing from those names.</p>
+
+<p>However, as the Fabric toolchain has been built around the need to apply our own names, this means a lot of work will have to go into supporting this change.</p>
+
+<h2 id="what-is-fabric-going-to-do">What is Fabric going to do?</h2>
+<p>We have plans in place to update our toolchain, but there’s a lot to do, and this may take some time.</p>
+
+<h3 id="the-future-of-fabric-api">The future of Fabric API</h3>
+<p>Fabric API will <strong>not</strong> undergo major rewrites as a result of this, and all of your favourite APIs will stay on course.
+However, the naming of the APIs and their associated methods and javadoc will change to accurately reflect the official Mojang names.</p>
+
+<p>The first stage of this will be to migrate Fabric API to use the official Mojang names in a non API-breaking way. This will happen fairly quickly as it can be done with no impact to modders and players.</p>
+
+<p>When the new fully deobfuscated version is released, we will rename Fabric’s own API functions to match those of the official names.</p>
+
+<h3 id="loom">Loom</h3>
+<p>Development of a new Loom version has begun. The initial goal is to provide a solution for mod developers to begin using the new experimental releases for testing. This will likely take the form of Loom 1.13.</p>
+
+<p>In the long run we may look into making a totally new version of loom that is more modular. Loom 2.0 may provide a slim version that contains no support for remapping. This will likely take some time, and is still in the design phase so please be patient.</p>
+
+<p>Support for modding older game versions with the latest Loom is a very high priority and something that we wish to continue to provide as we have done previously. We also understand that not everyone wishes to use the new official names, we hope to provide a remapping solution for those advanced users who wish to use their own names.</p>
+
+<h3 id="the-future-of-yarn">The future of Yarn</h3>
+
+<p align="center">
+  <img src="/assets/rip_yarn.png" alt="Example Image" />
+</p>
+
+<p>The Fabric community as a whole thanks all 261 Yarn contributors for their 9 years, 2 months, and 17 days of <code class="language-plaintext highlighter-rouge">Identifier</code> glory. Your contributions have been and continue to be greatly appreciated.</p>
+
+<p>Unfortunately, given the current circumstances we can’t see a way to justify maintaining Yarn in its current state.</p>
+
+<p>Yarn for existing Minecraft versions will continue to welcome contributions.</p>
+
+<p>If you are a mod developer using Yarn mappings, you will likely need to migrate to Mojang’s names. See the ‘For mod developers’ section below.</p>
+
+<h2 id="what-do-i-need-to-do">What do I need to do?</h2>
+<h3 id="for-players">For players</h3>
+<p>Very little! This is largely only going to affect developers. We aim to keep supporting all existing launchers.</p>
+
+<p>In good news, this also means once all this is sorted, updates for some things like Fabric API will likely be quicker in the future, and crash logs might be slightly easier to read. Rejoice!</p>
+
+<p>And as always, we ask all players to be patient, and give mod developers time to update. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds before updating to any new version.</p>
+
+<h3 id="for-mod-developers">For mod developers</h3>
+
+<p>This is going to be a large change, especially for those that are using Yarn. There is no expection to update your mods right away, but you may wish to prepare. Nothing will change untill after the Mounts of Mayhem (1.21.11) drop.</p>
+
+<p>We recommend that all new mods should be created using the official Mojang mappings, this will provide an easier upgrade path in the future.</p>
+
+<p>If you have a mod using Yarn dont worry! Loom has existing automated tooling that will help you to rename your code. We are actively looking at ways to improve this tooling and plan to provide some resources in the future to help you.</p>
+
+<p>Once you have upgraded, you will benefit from a much simpler and faster toolchain, improved logs/crash reports and new debugging options.</p>
+
+<h2 id="tldr-what-will-affect-you">TL;DR: What will affect you</h2>
+
+<h3 id="players">Players</h3>
+<ul>
+  <li>Be patient while mods update.</li>
+  <li>Crash logs may be slightly easier to read.</li>
+</ul>
+
+<h3 id="modders">Modders</h3>
+<ul>
+  <li>Don’t worry! There is no rush.</li>
+  <li>Most Yarn users will need to migrate to the official names.</li>
+  <li>Your build script will require some changes.</li>
+  <li>Production crash logs may be slightly easier to debug.</li>
+  <li>Intermediary will no longer exist, the game will use Mojang’s names at runtime.</li>
+</ul>
+
+
+  </div><a class="u-url" href="/2025/10/31/obfuscation.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <p>
+      The contents of this website, unless otherwise indicated, are licensed under a <a rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike
+        4.0 International License</a>.
+    </p>
+
+    <p style="font-size: 10px;">
+      NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+    </p>
+
+  </div>
+
+</footer></body>
+
+</html>
