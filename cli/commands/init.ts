@@ -37,6 +37,7 @@ const ADVANCED_OPTIONS: Map<string, string> = new Map([
   ["kotlin", KOTLIN_ADVANCED_OPTION],
   ["datagen", DATAGEN_ADVANCED_OPTION],
   ["splitSources", SPLIT_ADVANCED_OPTION],
+  ["mojangMappings", MOJMAP_ADVANCED_OPTION],
 ]);
 
 interface CliOptions {
@@ -50,8 +51,6 @@ interface CliOptions {
 
 const optionArg = {
   conflicts: ["defaultOptions"],
-  // TODO hidden for now, as these are in beta and may change.
-  hidden: true,
 };
 
 export function initCommand() {
@@ -78,6 +77,7 @@ export function initCommand() {
       {
         ...optionArg,
         collect: true,
+        hidden: true,
       },
     )
     .arguments("[dir:file]")
@@ -334,7 +334,7 @@ function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
   }
 
   options.push({ value: KOTLIN_ADVANCED_OPTION });
-  options.push({ value: MOJMAP_ADVANCED_OPTION });
+  options.push({ value: MOJMAP_ADVANCED_OPTION, checked: true });
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
