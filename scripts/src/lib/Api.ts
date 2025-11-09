@@ -31,8 +31,16 @@ export interface YarnVersion {
 const META = ["https://meta.fabricmc.net", "https://meta2.fabricmc.net", "https://meta3.fabricmc.net"];
 const MAVEN = ["https://maven.fabricmc.net", "https://maven2.fabricmc.net", "https://maven3.fabricmc.net"];
 
+var activeServiceIndex = 0;
+
 export async function getInstallerVersions() {
-    return getJson<InstallerVersion[]>(META, "/v2/versions/installer");
+    var versions = await getJson<InstallerVersion[]>(META, "/v2/versions/installer");
+
+    if (activeServiceIndex != 0) {
+        versions.forEach(v => v.url = v.url.replace(MAVEN[0], MAVEN[activeServiceIndex]));
+    }
+
+    return versions;
 }
 
 export async function getGameVersions() {
@@ -193,17 +201,22 @@ async function getText(hostnames: string[], path: string): Promise<string> {
 }
 
 async function fetchFallback(hostnames: string[], path: string) : Promise<Response> {
-    for (var hostname of hostnames) {
-        try {
-            const response = await fetch(hostname + path);
+    // First try to make a request within 5 seconds to any of the hostnames.
+    // If that fails, try again with a 30 second timeout.
+    for (var timeout of [5000, 30000]) {
+        for (var hostname of hostnames) {
+            try {
+                const response = await fetch(hostname + path, { signal: AbortSignal.timeout(timeout) });
 
-            if (response.ok) {
-                return response;
+                if (response.ok) {
+                    activeServiceIndex = hostnames.indexOf(hostname);
+                    return response;
+                }
+
+                console.error(await response.text());
+            } catch (e) {
+                console.error(e);
             }
-
-            console.error(await response.text());
-        } catch (e) {
-            console.error(e);
         }
     }
 
