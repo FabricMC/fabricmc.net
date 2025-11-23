@@ -51,7 +51,7 @@ You can optionally pass a directory path, if the directory does not exist it wil
 fabric init MyCoolMod
 </code>
 
-If you wish to accept all of the default values you can pass the `-y` argument. The directory name is then used to infulence the mod name.
+If you wish to accept all of the default values you can pass the `-y` argument. The directory name is then used to influence the mod name.
 
 <code class="command">
 fabric init MyCoolMod -y
