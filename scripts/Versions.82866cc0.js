@@ -50,7 +50,7 @@ loader_version=`), P = h(
         /*loaderVersion*/
         o[2]
       ), Q = h(`
-loom_version=1.13-SNAPSHOT
+loom_version=1.14-SNAPSHOT
 
 # Fabric API
 fabric_version=`), N = h(
