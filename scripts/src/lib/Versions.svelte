@@ -83,7 +83,7 @@ fabric_version={apiVersion}
 
 <h2>Loom</h2>
 
-<p>The recommended loom version is <strong>1.13-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
+<p>The recommended loom version is <strong>1.14-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
 
 <style>
     .copy-code {
