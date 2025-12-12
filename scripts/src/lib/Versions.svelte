@@ -58,18 +58,6 @@ fabric_version={apiVersion}
 				<p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p>
 				<p>If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.</p> 
       </div>
-			
-			<hr />
-
-      <h2>Automatically Update Mappings</h2>
-			<p>Keep your project up-to-date with the correct Yarn mappings using this automatic update command:</p>
-
-			<code class="copy-code">
-				gradlew migrateMappings --mappings "{yarnVersion}"
-			</code>
-
-			<p>For more information on this command, you should refer to the <a href="https://fabricmc.net/wiki/tutorial:migratemappings">Updating Yarn Mappings</a> wiki page.</p>
-
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
     <p>
