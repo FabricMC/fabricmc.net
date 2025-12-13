@@ -4195,13 +4195,13 @@ function Mn(k) {
   }
   let Q = I(k), W = Q(k), _ = (
     /*modIdErrors*/
-    k[14] != null && ne(k)
+    k[15] != null && ne(k)
   ), j = (
     /*customModId*/
     k[3] != null && ie(k)
   ), q = (
     /*packageNameErrors*/
-    k[12]
+    k[13]
   ), M = [];
   for (let et = 0; et < q.length; et += 1)
     M[et] = oe($t(k, q, et));
@@ -4212,7 +4212,7 @@ function Mn(k) {
   for (let et = 0; et < tt.length; et += 1)
     lt[et] = le(qt(k, tt, et));
   let at = !/*isUnobfuscated*/
-  k[15] && ce(k), ft = (
+  k[12] && ce(k), ft = (
     /*supportsDataGen*/
     k[11] && ue(k)
   ), kt = (
@@ -4311,7 +4311,7 @@ function Mn(k) {
         /*projectName*/
         et[1]
       ), /*modIdErrors*/
-      et[14] != null ? _ ? _.p(et, bt) : (_ = ne(et), _.c(), _.m(e, null)) : _ && (_.d(1), _ = null), /*customModId*/
+      et[15] != null ? _ ? _.p(et, bt) : (_ = ne(et), _.c(), _.m(e, null)) : _ && (_.d(1), _ = null), /*customModId*/
       et[3] != null ? j ? j.p(et, bt) : (j = ie(et), j.c(), j.m(d, g)) : j && (j.d(1), j = null), bt[0] & /*packageName*/
       4 && C.value !== /*packageName*/
       et[2] && Tt(
@@ -4319,9 +4319,9 @@ function Mn(k) {
         /*packageName*/
         et[2]
       ), bt[0] & /*packageNameErrors*/
-      4096) {
+      8192) {
         q = /*packageNameErrors*/
-        et[12];
+        et[13];
         let dt;
         for (dt = 0; dt < q.length; dt += 1) {
           const Rt = $t(et, q, dt);
@@ -4352,7 +4352,7 @@ function Mn(k) {
       ), bt[0] & /*useKotlin*/
       32 && (K.checked = /*useKotlin*/
       et[5]), /*isUnobfuscated*/
-      et[15] ? at && (at.d(1), at = null) : at ? at.p(et, bt) : (at = ce(et), at.c(), at.m(d, st)), /*supportsDataGen*/
+      et[12] ? at && (at.d(1), at = null) : at ? at.p(et, bt) : (at = ce(et), at.c(), at.m(d, st)), /*supportsDataGen*/
       et[11] ? ft ? ft.p(et, bt) : (ft = ue(et), ft.c(), ft.m(d, mt)) : ft && (ft.d(1), ft = null), /*supportsSplitSources*/
       et[10] ? kt ? kt.p(et, bt) : (kt = he(et), kt.c(), kt.m(d, ht)) : kt && (kt.d(1), kt = null);
       let vt = t;
@@ -4417,7 +4417,7 @@ function Pn(k) {
 function ne(k) {
   let d, e, h = (
     /*modIdErrors*/
-    k[14]
+    k[15]
   ), c = [];
   for (let n = 0; n < h.length; n += 1)
     c[n] = re(ee(k, h, n));
@@ -4434,9 +4434,9 @@ function ne(k) {
     },
     p(n, a) {
       if (a[0] & /*modIdErrors*/
-      16384) {
+      32768) {
         h = /*modIdErrors*/
-        n[14];
+        n[15];
         let r;
         for (r = 0; r < h.length; r += 1) {
           const o = ee(n, h, r);
@@ -4466,7 +4466,7 @@ function re(k) {
     },
     p(c, n) {
       n[0] & /*modIdErrors*/
-      16384 && e !== (e = /*error*/
+      32768 && e !== (e = /*error*/
       c[35] + "") && Qt(h, e);
     },
     d(c) {
@@ -4477,7 +4477,7 @@ function re(k) {
 function ie(k) {
   let d, e, h, c, n, a, r, o, p, m, g, v, l, b = (
     /*customIdErrors*/
-    k[13] != null && ae(k)
+    k[14] != null && ae(k)
   );
   return {
     c() {
@@ -4503,7 +4503,7 @@ function ie(k) {
     },
     p(s, f) {
       /*customIdErrors*/
-      s[13] != null ? b ? b.p(s, f) : (b = ae(s), b.c(), b.m(d, m)) : b && (b.d(1), b = null), f[0] & /*customModId*/
+      s[14] != null ? b ? b.p(s, f) : (b = ae(s), b.c(), b.m(d, m)) : b && (b.d(1), b = null), f[0] & /*customModId*/
       8 && g.value !== /*customModId*/
       s[3] && Tt(
         g,
@@ -4519,7 +4519,7 @@ function ie(k) {
 function ae(k) {
   let d, e, h = (
     /*customIdErrors*/
-    k[13]
+    k[14]
   ), c = [];
   for (let n = 0; n < h.length; n += 1)
     c[n] = se(te(k, h, n));
@@ -4536,9 +4536,9 @@ function ae(k) {
     },
     p(n, a) {
       if (a[0] & /*customIdErrors*/
-      8192) {
+      16384) {
         h = /*customIdErrors*/
-        n[13];
+        n[14];
         let r;
         for (r = 0; r < h.length; r += 1) {
           const o = te(n, h, r);
@@ -4568,7 +4568,7 @@ function se(k) {
     },
     p(c, n) {
       n[0] & /*customIdErrors*/
-      8192 && e !== (e = /*error*/
+      16384 && e !== (e = /*error*/
       c[35] + "") && Qt(h, e);
     },
     d(c) {
@@ -4590,7 +4590,7 @@ function oe(k) {
     },
     p(c, n) {
       n[0] & /*packageNameErrors*/
-      4096 && e !== (e = /*error*/
+      8192 && e !== (e = /*error*/
       c[35] + "") && Qt(h, e);
     },
     d(c) {
@@ -4818,7 +4818,7 @@ function Hn(k, d, e) {
       projectName: g,
       packageName: v,
       useKotlin: l,
-      mojmap: b,
+      mojmap: b || a,
       dataGeneration: s && c,
       splitSources: f && n,
       uniqueModIcon: !0
@@ -4892,10 +4892,10 @@ function Hn(k, d, e) {
     2 && e(4, h = un(g)), k.$$.dirty[0] & /*minecraftVersion*/
     1 && e(11, c = rn(m || "1.99")), k.$$.dirty[0] & /*minecraftVersion*/
     1 && e(10, n = an(m || "1.99")), k.$$.dirty[0] & /*minecraftVersion*/
-    1 && e(15, a = ke(m || "1.99")), k.$$.dirty[0] & /*modid*/
-    16 && e(14, r = T(h)), k.$$.dirty[0] & /*customModId*/
-    8 && e(13, o = ln(u)), k.$$.dirty[0] & /*packageName*/
-    4 && e(12, p = gn(v));
+    1 && e(12, a = ke(m || "1.99")), k.$$.dirty[0] & /*modid*/
+    16 && e(15, r = T(h)), k.$$.dirty[0] & /*customModId*/
+    8 && e(14, o = ln(u)), k.$$.dirty[0] & /*packageName*/
+    4 && e(13, p = gn(v));
   }, [
     m,
     g,
@@ -4909,10 +4909,10 @@ function Hn(k, d, e) {
     w,
     n,
     c,
+    a,
     p,
     o,
     r,
-    a,
     C,
     R,
     O,
