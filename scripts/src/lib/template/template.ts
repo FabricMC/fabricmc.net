@@ -3,6 +3,7 @@ import { addGroovyGradle } from './gradlegroovy';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
+import { minecraftIsUnobfuscated } from './minecraft';
 
 export const ICON_FONT = "Comic Relief";
 
@@ -41,8 +42,9 @@ export interface ComputedConfiguration extends Configuration {
 	modid: string,
 	loaderVersion: string,
 	fabricVersion: string,
-	yarnVersion: string,
+	yarnVersion: string | undefined,
 	kotlin: KotlinConfiguration | undefined
+	unobfuscated: boolean
 }
 
 export interface TemplateOptions {
@@ -83,8 +85,8 @@ export async function generateTemplate(options: Options) {
 }
 
 export async function getTemplateGameVersions(): Promise<GameVersion[]> {
-	let versions = await getGameVersions()
-	return versions.filter((v) => {
+	const versions = await getGameVersions()
+	let templateVersions = versions.filter((v) => {
 		const version = v.version;
 
 		if (version.startsWith("1.14") && version != "1.14.4") {
@@ -101,15 +103,25 @@ export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 
 		return true;
 	});
+
+	// For testing
+	templateVersions.push({
+		version: "1.21.11_unobfuscated",
+		stable: false
+	});
+
+	return templateVersions;
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {
+	const unobfuscated = minecraftIsUnobfuscated(options.minecraftVersion);
 	return {
 		...options,
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
 		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
-		yarnVersion: (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
-		kotlin: await computeKotlinOptions(options)
+		yarnVersion: unobfuscated ? undefined : (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
+		kotlin: await computeKotlinOptions(options),
+		unobfuscated
 	};
 }
 

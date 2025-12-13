@@ -2,7 +2,6 @@ import type { CanvasAdaptorFactory, ComputedConfiguration, TemplateWriter } from
 import { generateClientMixin, generateMixin } from "./mixin";
 import { generateEntrypoint } from "./modentrypoint";
 import { getJavaVersion } from "./java"
-import { getMinorMinecraftVersion } from "./minecraft"
 import { generateModIcon } from "./icon";
 
 function usesNewModid(fabricVersion: string) : boolean {
@@ -17,7 +16,11 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
 
   // Format the minecraft version with any pre3, or rc1, etc. suffixes
   const index = config.minecraftVersion.indexOf("-");
-  const minecraftVersion = config.minecraftVersion.substring(0, index === -1 ? config.minecraftVersion.length : index + 1);
+  var minecraftVersion = config.minecraftVersion.substring(0, index === -1 ? config.minecraftVersion.length : index + 1);
+
+  if (minecraftVersion.endsWith("_unobfuscated")) {
+    minecraftVersion = "1.21.11";
+  }
 
   const fabricModJson : any = {
     "schemaVersion": 1,

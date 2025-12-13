@@ -3,7 +3,7 @@
     import FileSaver from "file-saver";
     import DownloadIcon from "./DownloadIcon.svelte";
     import { ICON_FONT, getTemplateGameVersions, type Configuration } from "./template/template";
-    import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId} from "./template/minecraft";
+    import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, formatPackageName, nameToModId, minecraftIsUnobfuscated} from "./template/minecraft";
     import { computePackageNameErrors } from "./template/java"
     import { decode64 } from "./template/utils";
 
@@ -29,6 +29,7 @@
 
     $: supportsDataGen = minecraftSupportsDataGen(minecraftVersion || "1.99");
     $: supportsSplitSources = minecraftSupportsSplitSources(minecraftVersion || "1.99");
+    $: isUnobfuscated = minecraftIsUnobfuscated(minecraftVersion || "1.99");
 
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
@@ -213,6 +214,7 @@
             </p>
         </div>
 
+        {#if !isUnobfuscated}
         <div>
             <div class="option-container">
                 <input id="mojmap" type="checkbox" class="option-input" bind:checked={mojmap} />
@@ -222,6 +224,7 @@
                 Use Mojang's official mappings rather than Yarn. Note that Mojang's mappings come with a usable yet more restrictive license than Yarn. Use them at your own risk.
             </p>
         </div>
+        {/if}
 
         {#if supportsDataGen}
         <div>

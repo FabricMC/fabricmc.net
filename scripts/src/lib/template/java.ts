@@ -1,4 +1,4 @@
-import { getMinorMinecraftVersion, getPathMinecraftVersion } from "./minecraft";
+import { getMinorMinecraftVersion, getPatchMinecraftVersion } from "./minecraft";
 
 export interface JavaVersion {
 	compatibility: string,
@@ -48,7 +48,7 @@ export function getJavaVersion(minecraftVersion: string): JavaVersion {
 		// Minecraft 1.18 and 1.19 use all Java 17
 		return JAVA_17;
 	} else if (minor == 20) {
-		const patch = getPathMinecraftVersion(minecraftVersion);
+		const patch = getPatchMinecraftVersion(minecraftVersion);
 
 		if (patch <= 4) {
 			// Minecraft 1.20.0 -> 1.20.4 use Java 17

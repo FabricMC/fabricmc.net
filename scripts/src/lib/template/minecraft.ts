@@ -6,11 +6,19 @@ export function minecraftSupportsSplitSources(minecraftVersion: string): boolean
 	return getMinorMinecraftVersion(minecraftVersion) >= 19;
 }
 
+export function minecraftIsUnobfuscated(minecraftVersion: string): boolean {
+	return getMajorMinecraftVersion(minecraftVersion) >= 26 || minecraftVersion.endsWith("_unobfuscated");
+}
+
+export function getMajorMinecraftVersion(minecraftVersion: string): number {
+	return getVersionParts(minecraftVersion)[1];
+}
+
 export function getMinorMinecraftVersion(minecraftVersion: string): number {
 	return getVersionParts(minecraftVersion)[1];
 }
 
-export function getPathMinecraftVersion(minecraftVersion: string): number {
+export function getPatchMinecraftVersion(minecraftVersion: string): number {
 	return getVersionParts(minecraftVersion)[2];
 }
 

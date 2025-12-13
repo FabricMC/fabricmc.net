@@ -334,7 +334,10 @@ function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
   }
 
   options.push({ value: KOTLIN_ADVANCED_OPTION });
-  options.push({ value: MOJMAP_ADVANCED_OPTION, checked: true });
+  
+  if (!generator.minecraftIsUnobfuscated(minecraftVersion)) {
+    options.push({ value: MOJMAP_ADVANCED_OPTION, checked: true });
+  }
 
   if (generator.minecraftSupportsDataGen(minecraftVersion)) {
     options.push({
