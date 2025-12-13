@@ -57,7 +57,7 @@
             projectName,
             packageName,
             useKotlin,
-            mojmap,
+            mojmap: mojmap || isUnobfuscated,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
             uniqueModIcon: true

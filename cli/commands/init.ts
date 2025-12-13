@@ -280,7 +280,7 @@ async function promptUser(
     minecraftVersion: minecraftVersion,
     projectName: modName,
     packageName: packageName,
-    mojmap: advancedOptions.includes(MOJMAP_ADVANCED_OPTION),
+    mojmap: generator.minecraftIsUnobfuscated(minecraftVersion) || advancedOptions.includes(MOJMAP_ADVANCED_OPTION),
     useKotlin: advancedOptions.includes(KOTLIN_ADVANCED_OPTION),
     dataGeneration: advancedOptions.includes(DATAGEN_ADVANCED_OPTION),
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
