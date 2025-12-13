@@ -13,10 +13,10 @@ async function g() {
 async function d() {
   return i(r, "/v2/versions/yarn");
 }
-async function y(s) {
+async function b(s) {
   return i(r, "/v2/versions/yarn/" + s);
 }
-async function b(s, t) {
+async function y(s, t) {
   return i(r, `/v2/versions/loader/${s}/${t}/profile/json`);
 }
 async function x() {
@@ -46,7 +46,7 @@ function W(s, t) {
   let e = t;
   return ["1.14", "1.15", "1.16", "1.17", "1.18", "1.19", "1.20", "20w14infinite", "1.18_experimental"].forEach((a) => {
     t.startsWith(a) && (e = a);
-  }), t.startsWith("25w14craftmine") ? e = "25w14craftmine" : t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("25w") ? e = "1.21.11" : t.startsWith("24w") ? e = "1.21.4" : t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("1.21.6") ? e = "1.21.6" : t.startsWith("1.21.7") ? e = "1.21.7" : t.startsWith("1.21.8") ? e = "1.21.8" : t.startsWith("1.21.9") ? e = "1.21.9" : t.startsWith("1.21.10") ? e = "1.21.10" : t.startsWith("1.21.11") ? e = "1.21.11" : t.startsWith("1.21.5") ? e = "1.21.5" : t.startsWith("1.21.4") ? e = "1.21.4" : t.startsWith("1.21.3") ? e = "1.21.3" : t.startsWith("1.21.2") ? e = "1.21.2" : t.startsWith("1.21.1") ? e = "1.21.1" : t.startsWith("1.21") ? e = "1.21" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
+  }), t.endsWith("_unobfuscated") ? e = "1.21.11_unobfuscated" : t.startsWith("25w14craftmine") ? e = "25w14craftmine" : t.startsWith("22w13oneblockatatime") ? e = "22w13oneblockatatime" : t.startsWith("25w") ? e = "1.21.11" : t.startsWith("24w") ? e = "1.21.4" : t.startsWith("23w") ? e = "1.20.5" : t.startsWith("22w") ? e = "1.19.3" : t.startsWith("1.18.2") ? e = "1.18.2" : t.startsWith("1.19.1") ? e = "1.19.1" : t.startsWith("1.19.2") ? e = "1.19.2" : t.startsWith("1.19.3") ? e = "1.19.3" : t.startsWith("1.19.4") ? e = "1.19.4" : t.startsWith("1.20.1") ? e = "1.20.1" : t.startsWith("1.20.2") ? e = "1.20.2" : t.startsWith("1.20.3") ? e = "1.20.3" : t.startsWith("1.20.4") ? e = "1.20.4" : t.startsWith("1.20.5") ? e = "1.20.5" : t.startsWith("1.20.6") ? e = "1.20.6" : t.startsWith("1.21.6") ? e = "1.21.6" : t.startsWith("1.21.7") ? e = "1.21.7" : t.startsWith("1.21.8") ? e = "1.21.8" : t.startsWith("1.21.9") ? e = "1.21.9" : t.startsWith("1.21.10") ? e = "1.21.10" : t.startsWith("1.21.11") ? e = "1.21.11" : t.startsWith("1.21.5") ? e = "1.21.5" : t.startsWith("1.21.4") ? e = "1.21.4" : t.startsWith("1.21.3") ? e = "1.21.3" : t.startsWith("1.21.2") ? e = "1.21.2" : t.startsWith("1.21.1") ? e = "1.21.1" : t.startsWith("1.21") ? e = "1.21" : t.startsWith("21w") ? e = "1.18" : t.startsWith("20w") ? e = "1.17" : (t.startsWith("19w") || t.startsWith("18w")) && (e = "1.14"), s.endsWith("-" + e) || s.endsWith("+" + e);
 }
 let v = (s) => {
   let e = new DOMParser().parseFromString(s, "text/xml");
@@ -80,11 +80,11 @@ export {
   g as b,
   p as c,
   w as d,
-  b as e,
+  y as e,
   A as f,
   x as g,
   k as h,
-  y as i,
+  b as i,
   M as j,
   u as k,
   W as l
