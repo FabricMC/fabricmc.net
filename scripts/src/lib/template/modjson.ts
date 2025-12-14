@@ -44,9 +44,6 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
       "fabricloader": ">=" + config.loaderVersion,
       "minecraft": "~" + minecraftVersion,
       "java": ">=" + getJavaVersion(config.minecraftVersion).release
-    },
-    "suggests": {
-      "another-mod": "*"
     }
   }
 
