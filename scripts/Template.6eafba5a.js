@@ -3956,9 +3956,6 @@ async function Vn(k, d, e) {
       fabricloader: ">=" + e.loaderVersion,
       minecraft: "~" + n,
       java: ">=" + jt(e.minecraftVersion).release
-    },
-    suggests: {
-      "another-mod": "*"
     }
   };
   a.depends[Un(e.fabricVersion) ? "fabric-api" : "fabric"] = "*", e.kotlin && (a.depends = {
