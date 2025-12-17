@@ -14,13 +14,9 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
     ...(config.splitSources ? await generateClientMixin(writer, config) : [])
   ];
 
-  // Format the minecraft version with any pre3, or rc1, etc. suffixes
+  // Format the minecraft version without any pre3, or rc1, etc. suffixes
   const index = config.minecraftVersion.indexOf("-");
   var minecraftVersion = config.minecraftVersion.substring(0, index === -1 ? config.minecraftVersion.length : index + 1);
-
-  if (minecraftVersion.endsWith("_unobfuscated")) {
-    minecraftVersion = "1.21.11";
-  }
 
   const fabricModJson : any = {
     "schemaVersion": 1,

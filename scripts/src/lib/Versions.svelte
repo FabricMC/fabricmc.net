@@ -1,5 +1,6 @@
 <script lang="ts">
- import {
+    import { minecraftIsUnobfuscated } from "./template/minecraft";
+    import {
         getGameVersions,
         getYarnVersions,
         getLoaderVersions,
@@ -28,6 +29,7 @@
 
     $: yarnVersions.then(versions => yarnVersion = versions.find(v => v.gameVersion == minecraftVersion)?.version || "unknown")
     $: apiVersions.then(versions => apiVersion = versions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop()!)
+    $: isUnobfuscated = minecraftIsUnobfuscated(minecraftVersion || "1.99");
 </script>
 
 {#await gameVersions}
@@ -47,8 +49,8 @@
     <div style="margin-bottom: 15px;">
         <pre><code>
 minecraft_version={minecraftVersion}
-yarn_mappings={yarnVersion}
-loader_version={loaderVersion}
+{#if !isUnobfuscated}yarn_mappings={yarnVersion}
+{/if}loader_version={loaderVersion}
 loom_version=1.14-SNAPSHOT
 
 # Fabric API

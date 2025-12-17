@@ -86,7 +86,7 @@ export async function generateTemplate(options: Options) {
 
 export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 	const versions = await getGameVersions()
-	let templateVersions = versions.filter((v) => {
+	return versions.filter((v) => {
 		const version = v.version;
 
 		if (version.startsWith("1.14") && version != "1.14.4") {
@@ -95,22 +95,13 @@ export async function getTemplateGameVersions(): Promise<GameVersion[]> {
 		}
 
 		if (!v.stable) {
-			// Hide unstable versions, other than the latest -pre or -rc version.
+			// Hide unstable versions, other than the latest snapshot.
 			const isLatest = versions[0].version == version;
-			const isPre = version.includes("-pre") || version.includes("-rc");
-			return isLatest && isPre;
+			return isLatest;
 		}
 
 		return true;
 	});
-
-	// For testing
-	templateVersions.push({
-		version: "1.21.11_unobfuscated",
-		stable: false
-	});
-
-	return templateVersions;
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {

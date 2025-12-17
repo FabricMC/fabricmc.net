@@ -1,4 +1,4 @@
-import { getMinorMinecraftVersion, getPatchMinecraftVersion } from "./minecraft";
+import { getMajorMinecraftVersion, getMinorMinecraftVersion, getPatchMinecraftVersion } from "./minecraft";
 
 export interface JavaVersion {
 	compatibility: string,
@@ -35,10 +35,20 @@ const JAVA_21 : JavaVersion = {
     kotlinRelease: "21"
 }
 
+const JAVA_25 : JavaVersion = {
+	compatibility: "VERSION_25",
+	mixin: "JAVA_25",
+	release: 25,
+    kotlinRelease: "25"
+}
+
 export function getJavaVersion(minecraftVersion: string): JavaVersion {
+	const major = getMajorMinecraftVersion(minecraftVersion);
 	const minor = getMinorMinecraftVersion(minecraftVersion);
 
-	if (minor <= 16) {
+	if (major >= 26) {
+		return JAVA_25;
+	} else if (minor <= 16) {
 		// Minecraft 1.16 and below use Java 8
 		return JAVA_8;
 	} else if (minor == 17) {

@@ -86,6 +86,16 @@ export async function getApiVersionForMinecraft(minecraftVersion: string): Promi
     return apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop()!;
 }
 
+function getMajorMinecraftVersion(minecraftVersion: string): number {
+    return getVersionParts(minecraftVersion)[0];
+}
+
+function getVersionParts(minecraftVersion: String): number[] {
+	// Remove any snapshot or pre-release suffix
+	const targetVersion = minecraftVersion.split("-")[0];
+	return targetVersion.split(".").map((v) => parseInt(v));
+}
+
 export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: string | undefined) : boolean {
     if (!mcVersion) {
         return false;
@@ -104,6 +114,13 @@ export function isApiVersionvalidForMcVersion(apiVersion: string, mcVersion: str
             branch = v;
         }
     })
+
+    const majorVersion = getMajorMinecraftVersion(mcVersion);
+    if (majorVersion >= 26) {
+        const index = mcVersion.indexOf("-");
+        var release = mcVersion.substring(0, index === -1 ? mcVersion.length : index);
+        branch = release;
+    }
 
     // Very dumb but idk of a better (easy) way.
     if (mcVersion.endsWith("_unobfuscated")) {
