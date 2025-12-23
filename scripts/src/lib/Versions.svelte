@@ -54,7 +54,7 @@ minecraft_version={minecraftVersion}
 loom_version=1.14-SNAPSHOT
 
 # Fabric API
-fabric_version={apiVersion}
+fabric_api_version={apiVersion}
         </code></pre>
 
 				<p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p>

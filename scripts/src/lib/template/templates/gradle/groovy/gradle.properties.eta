@@ -19,4 +19,4 @@ maven_group=<%= it.packageName %>
 archives_base_name=<%= it.modid %>
 
 # Dependencies
-fabric_version=<%= it.fabricVersion %>
+fabric_api_version=<%= it.fabricVersion %>
