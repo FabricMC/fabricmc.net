@@ -1,4 +1,4 @@
-import { S as K, i as Q, s as R, h as W, a as T, e as d, c as p, u as X, n as H, d as u, q as Z, t as v, f as j, g as c, r as $, l as z, m as x, A as I, j as ee } from "./index.4deac2e0.js";
+import { S as K, i as Q, s as R, h as W, a as T, e as _, c as p, u as X, n as H, d as u, q as Z, t as v, f as j, g as c, r as $, l as z, m as x, A as I, j as ee } from "./index.4deac2e0.js";
 import { m as te } from "./minecraft.b5a6e8aa.js";
 import { d as ne, b as oe, a as se, k as le, l as ie } from "./Api.3a6c4b44.js";
 function B(o, e, s) {
@@ -9,24 +9,24 @@ function re(o) {
   let e, s, r = (
     /*error*/
     o[13].message + ""
-  ), n, f, _;
+  ), n, f, d;
   return {
     c() {
-      e = d("p"), s = v("Error: "), n = v(r), f = T(), _ = d("p"), _.innerHTML = `For support please visit one of our
+      e = _("p"), s = v("Error: "), n = v(r), f = T(), d = _("p"), d.innerHTML = `For support please visit one of our
         <a href="/discuss/">community discussion</a>
         groups.`, j(e, "color", "red");
     },
     m(l, i) {
-      p(l, e, i), c(e, s), c(e, n), p(l, f, i), p(l, _, i);
+      p(l, e, i), c(e, s), c(e, n), p(l, f, i), p(l, d, i);
     },
     p: H,
     d(l) {
-      l && u(e), l && u(f), l && u(_);
+      l && u(e), l && u(f), l && u(d);
     }
   };
 }
 function fe(o) {
-  let e, s, r, n, f, _, l, i, a, F, V, L, M, y, S, C, q, P, O, U, w, Y, N, g, E, A = (
+  let e, s, r, n, f, d, l, i, a, F, V, L, M, y, S, C, q, P, O, U, w, Y, N, g, E, A = (
     /*gameVersions*/
     o[5]
   ), b = [];
@@ -36,11 +36,11 @@ function fe(o) {
   o[4] && J(o);
   return {
     c() {
-      e = d("h2"), e.textContent = "Latest Versions", s = T(), r = d("p"), r.innerHTML = "Select a Minecraft version to get the recommended versions of Fabric Loader, Yarn, and Fabric API for your <code>gradle.properties</code> file.", n = T(), f = d("p"), _ = v(`Minecraft Version:
-        `), l = d("select");
+      e = _("h2"), e.textContent = "Latest Versions", s = T(), r = _("p"), r.innerHTML = "Select a Minecraft version to get the recommended versions of Fabric Loader, Yarn, and Fabric API for your <code>gradle.properties</code> file.", n = T(), f = _("p"), d = v(`Minecraft Version:
+        `), l = _("select");
       for (let t = 0; t < b.length; t += 1)
         b[t].c();
-      i = T(), a = d("div"), F = d("pre"), V = d("code"), L = v(`
+      i = T(), a = _("div"), F = _("pre"), V = _("code"), L = v(`
 minecraft_version=`), M = v(
         /*minecraftVersion*/
         o[0]
@@ -52,18 +52,18 @@ minecraft_version=`), M = v(
 loom_version=1.14-SNAPSHOT
 
 # Fabric API
-fabric_version=`), P = v(
+fabric_api_version=`), P = v(
         /*apiVersion*/
         o[3]
       ), O = v(`
-        `), U = T(), w = d("p"), w.innerHTML = "<strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.", Y = T(), N = d("p"), N.innerHTML = 'If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.', j(l, "min-width", "200px"), /*minecraftVersion*/
+        `), U = T(), w = _("p"), w.innerHTML = "<strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.", Y = T(), N = _("p"), N.innerHTML = 'If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.', j(l, "min-width", "200px"), /*minecraftVersion*/
       o[0] === void 0 && $(() => (
         /*select_change_handler*/
         o[6].call(l)
       )), j(a, "margin-bottom", "15px");
     },
     m(t, h) {
-      p(t, e, h), p(t, s, h), p(t, r, h), p(t, n, h), p(t, f, h), c(f, _), c(f, l);
+      p(t, e, h), p(t, s, h), p(t, r, h), p(t, n, h), p(t, f, h), c(f, d), c(f, l);
       for (let m = 0; m < b.length; m += 1)
         b[m] && b[m].m(l, null);
       z(
@@ -127,7 +127,7 @@ function D(o) {
   ), r;
   return {
     c() {
-      e = d("option"), r = v(s), e.__value = /*version*/
+      e = _("option"), r = v(s), e.__value = /*version*/
       o[10], e.value = e.__value;
     },
     m(n, f) {
@@ -169,7 +169,7 @@ function ae(o) {
   let e;
   return {
     c() {
-      e = d("p"), e.textContent = "Loading versions...";
+      e = _("p"), e.textContent = "Loading versions...";
     },
     m(s, r) {
       p(s, e, r);
@@ -181,7 +181,7 @@ function ae(o) {
   };
 }
 function pe(o) {
-  let e, s, r, n, f, _, l = {
+  let e, s, r, n, f, d, l = {
     ctx: o,
     current: null,
     token: null,
@@ -198,10 +198,10 @@ function pe(o) {
     l
   ), {
     c() {
-      l.block.c(), e = T(), s = d("hr"), r = T(), n = d("h2"), n.textContent = "Loom", f = T(), _ = d("p"), _.innerHTML = "The recommended loom version is <strong>1.14-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
+      l.block.c(), e = T(), s = _("hr"), r = T(), n = _("h2"), n.textContent = "Loom", f = T(), d = _("p"), d.innerHTML = "The recommended loom version is <strong>1.14-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
     },
     m(i, a) {
-      l.block.m(i, l.anchor = a), l.mount = () => e.parentNode, l.anchor = e, p(i, e, a), p(i, s, a), p(i, r, a), p(i, n, a), p(i, f, a), p(i, _, a);
+      l.block.m(i, l.anchor = a), l.mount = () => e.parentNode, l.anchor = e, p(i, e, a), p(i, s, a), p(i, r, a), p(i, n, a), p(i, f, a), p(i, d, a);
     },
     p(i, [a]) {
       o = i, X(l, o, a);
@@ -209,17 +209,17 @@ function pe(o) {
     i: H,
     o: H,
     d(i) {
-      l.block.d(i), l.token = null, l = null, i && u(e), i && u(s), i && u(r), i && u(n), i && u(f), i && u(_);
+      l.block.d(i), l.token = null, l = null, i && u(e), i && u(s), i && u(r), i && u(n), i && u(f), i && u(d);
     }
   };
 }
 function ue(o, e, s) {
-  let r, n, f, _, l, i = ne().then((L) => {
+  let r, n, f, d, l, i = ne().then((L) => {
     s(0, n = L.find((y) => y.stable).version);
     const M = L[0];
     return L.filter((y) => y.stable || y == M).map((y) => y.version);
   });
-  oe().then((L) => (s(2, _ = L.find((M) => M.stable).version), L));
+  oe().then((L) => (s(2, d = L.find((M) => M.stable).version), L));
   const a = se(), F = le();
   function V() {
     n = Z(this), s(0, n), s(5, i);
@@ -235,18 +235,18 @@ function ue(o, e, s) {
   }, [
     n,
     f,
-    _,
+    d,
     l,
     r,
     i,
     V
   ];
 }
-class _e extends K {
+class de extends K {
   constructor(e) {
     super(), Q(this, e, ue, pe, R, {});
   }
 }
 export {
-  _e as default
+  de as default
 };

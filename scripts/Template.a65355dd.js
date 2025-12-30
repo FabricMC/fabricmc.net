@@ -3464,7 +3464,7 @@ maven_group=<%= it.packageName %>
 archives_base_name=<%= it.modid %>
 
 # Dependencies
-fabric_version=<%= it.fabricVersion %>`, ln = `plugins {
+fabric_api_version=<%= it.fabricVersion %>`, ln = `plugins {
 	id '<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>' version "\${loom_version}"
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
@@ -3512,7 +3512,7 @@ dependencies {
 	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc:fabric-loader:\${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc.fabric-api:fabric-api:\${project.fabric_version}"
+	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc.fabric-api:fabric-api:\${project.fabric_api_version}"
 	<% if (it.kotlin) { %><% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc:fabric-language-kotlin:\${project.fabric_kotlin_version}"<% } %>
 }
 
