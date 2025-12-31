@@ -1,4 +1,4 @@
-function l(t) {
+function u(t) {
   return o(t) >= 26 || c(t) >= 17;
 }
 function f(t) {
@@ -19,7 +19,7 @@ function p(t) {
 function i(t) {
   return t.split("-")[0].split(".").map((e) => parseInt(e));
 }
-function u(t, n) {
+function l(t, n) {
   let e = [];
   const r = n ? "Modid" : "Mod Name";
   return t.length == 0 ? [`${r} is empty!`] : (t.length == 1 ? e.push(`${r} is only a single character! (It must be at least 2 characters long)!`) : t.length > 64 && e.push(`${r} has more than 64 characters!`), t.toLocaleLowerCase().startsWith("fabric") && e.push("Mod id starts with 'fabric', which is generally reserved for Fabric itself."), e.length === 0 ? void 0 : e);
@@ -27,7 +27,7 @@ function u(t, n) {
 function d(t) {
   if (t === void 0)
     return;
-  let n = u(t, !0) ?? [];
+  let n = l(t, !0) ?? [];
   const e = t.charAt(0);
   (e < "a" || e > "z") && n.push("Modid starts with an invalid character '" + e + "' (it must belowercase a-z)");
   let r = null;
@@ -43,7 +43,7 @@ function d(t) {
     return n;
 }
 function g(t) {
-  return t.toLocaleLowerCase().replace(/\s+/g, ".").replace(/[^a-za-z0-9_\.]/, "");
+  return t.toLocaleLowerCase().replaceAll(/\s+/g, ".").replaceAll(/[^a-za-z0-9_\.]/, "");
 }
 function m(t) {
   return t.toLowerCase().replaceAll(/\s+/g, "-").replaceAll(/[^a-za-z0-9-_]/g, "");
@@ -51,12 +51,12 @@ function m(t) {
 export {
   c as a,
   p as b,
-  l as c,
+  u as c,
   f as d,
   d as e,
   g as f,
   o as g,
   h as m,
   m as n,
-  u as s
+  l as s
 };
