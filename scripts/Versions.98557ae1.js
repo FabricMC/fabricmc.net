@@ -1,5 +1,5 @@
 import { S as K, i as Q, s as R, h as W, a as T, e as _, c as p, u as X, n as H, d as u, q as Z, t as v, f as j, g as c, r as $, l as z, m as x, A as I, j as ee } from "./index.4deac2e0.js";
-import { m as te } from "./minecraft.358dc340.js";
+import { m as te } from "./minecraft.b5a6e8aa.js";
 import { d as ne, b as oe, a as se, k as le, l as ie } from "./Api.3a6c4b44.js";
 function B(o, e, s) {
   const r = o.slice();

@@ -1,6 +1,6 @@
 import { S as xe, i as Ie, s as Be, h as Fe, b as Re, c as yt, u as _e, o as zt, p as Dt, d as wt, q as Te, e as nt, t as St, a as ut, f as Ut, g as Y, n as Ft, k as $, r as Ue, C as Tt, l as Zt, m as It, D as Ve, E as Ne, j as Wt, B as ue, A as Qt, y as Jt, v as he, w as Ae, x as de } from "./index.4deac2e0.js";
 import fe from "./DownloadIcon.39c279f6.js";
-import { g as ze, a as pe, b as De, m as me, n as Ge, c as Oe, d as We, e as Le, s as Qe, f as Me } from "./minecraft.358dc340.js";
+import { g as ze, a as pe, b as De, m as me, n as Ge, c as Oe, d as We, e as Le, s as Qe, f as Me } from "./minecraft.b5a6e8aa.js";
 import { d as je, b as Je, h as Pe, i as Ze, j as Ye } from "./Api.3a6c4b44.js";
 var Bt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function ge(B) {
