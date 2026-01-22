@@ -49,7 +49,7 @@ minecraft_version=`), M = v(
         /*loaderVersion*/
         o[2]
       ), q = v(`
-loom_version=1.14-SNAPSHOT
+loom_version=1.15-SNAPSHOT
 
 # Fabric API
 fabric_api_version=`), P = v(
@@ -198,7 +198,7 @@ function pe(o) {
     l
   ), {
     c() {
-      l.block.c(), e = T(), s = _("hr"), r = T(), n = _("h2"), n.textContent = "Loom", f = T(), d = _("p"), d.innerHTML = "The recommended loom version is <strong>1.14-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
+      l.block.c(), e = T(), s = _("hr"), r = T(), n = _("h2"), n.textContent = "Loom", f = T(), d = _("p"), d.innerHTML = "The recommended loom version is <strong>1.15-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
     },
     m(i, a) {
       l.block.m(i, l.anchor = a), l.mount = () => e.parentNode, l.anchor = e, p(i, e, a), p(i, s, a), p(i, r, a), p(i, n, a), p(i, f, a), p(i, d, a);
