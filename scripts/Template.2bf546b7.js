@@ -3134,7 +3134,7 @@ jobs:
       - name: setup jdk
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '25'
           distribution: 'microsoft'
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
@@ -3144,7 +3144,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Artifacts
-          path: build/libs/`;
+          path: build/libs/
+`;
 async function rn({ writer: B }) {
   await B.write("gradlew", $e, {
     executable: !0
