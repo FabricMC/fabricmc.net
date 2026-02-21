@@ -1,0 +1,114 @@
+plugins {
+	id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>")
+	`maven-publish`
+	<%_ if (it.kotlin) { %>
+	id("org.jetbrains.kotlin.jvm") version "<%= it.kotlin.kotlinVersion %>"
+	<%_ } %>
+}
+
+val modVersion: String by project
+val mavenGroup: String by project
+val archivesBaseName: String by project
+val minecraftVersion: String by project
+<% if (!it.unobfuscated) { %>val yarnMappings: String by project<% } %>
+val loaderVersion: String by project
+val fabricApiVersion: String by project
+val fabricKotlinVersion: String by project
+
+version = modVersion
+group = mavenGroup
+
+base {
+	archivesName = archivesBaseName
+}
+
+repositories {
+	// Add repositories to retrieve artifacts from in here.
+	// You should only use this when depending on other mods because
+	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
+	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
+	// for more information about repositories.
+}
+<% if (it.splitSources) { %>
+loom {
+	splitEnvironmentSourceSets()
+
+	mods {
+		register("<%= it.modid %>") {
+			sourceSet(sourceSets.main.get())
+			sourceSet(sourceSets.getByName("client"))
+		}
+	}
+}
+<% } %><% if (it.dataGeneration) { %>
+fabricApi {
+	configureDataGeneration {
+		client = true
+	}
+}
+<% } %>
+
+dependencies {
+	// To change the versions see the gradle.properties file
+	minecraft("com.mojang:minecraft:$minecraftVersion")
+	<% if (!it.unobfuscated) { %>mappings(<% if(it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:$yarnMappings:v2"<% } %>)<% } %>
+	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-loader:$loaderVersion")
+
+	// Fabric API. This is technically optional, but you probably want it anyway.
+	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
+	<% if (it.kotlin) { %><% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")<% } %>
+}
+
+tasks.processResources {
+	inputs.property("version", modVersion)
+
+	filesMatching("fabric.mod.json") {
+		expand("version" to modVersion)
+	}
+}
+
+tasks.withType<JavaCompile>().configureEach {
+	options.release = <%= it.java.release %>
+}
+<% if (it.kotlin) { %>
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+	kotlinOptions {
+		jvmTarget = <%= it.java.kotlinRelease %>
+	}
+}
+<% } %>
+java {
+	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+	// if it is present.
+	// If you remove this line, sources will not be generated.
+	withSourcesJar()
+
+	sourceCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
+	targetCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
+}
+
+tasks.jar {
+	inputs.property("archivesBaseName", archivesBaseName)
+
+	from("LICENSE") {
+		rename { "${it}_$archivesBaseName" }
+	}
+}
+
+// configure the maven publication
+publishing {
+	publications {
+		register<MavenPublication>("mavenJava") {
+			artifactId = archivesBaseName
+			from(components["java"])
+		}
+	}
+
+	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+	repositories {
+		// Add repositories to publish to here.
+		// Notice: This block does NOT have the same function as the block in the top level.
+		// The repositories here will be used for publishing your artifact, not for
+		// retrieving dependencies.
+	}
+}
