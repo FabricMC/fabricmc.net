@@ -259,7 +259,7 @@
                 <label for="gradleKotlin" class="option-label">Kotlin Build Script</label>
             </div>
             <p class="option-body">
-                Provides a build script written in Kotlin instead of one written in Groovy. Kotlin build scripts often have better IDE support, with autocomplete and less erroneous warnings.
+                The Gradle build script will use the Kotlin programming language instead of Groovy.
             </p>
         </div>
 
