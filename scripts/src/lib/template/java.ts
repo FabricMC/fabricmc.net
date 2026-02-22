@@ -3,37 +3,43 @@ import { getMajorMinecraftVersion, getMinorMinecraftVersion, getPatchMinecraftVe
 export interface JavaVersion {
 	compatibility: string,
 	mixin: string,
-	release: number
+	release: number,
+    kotlinRelease: string,
 }
 
 const JAVA_8 : JavaVersion = {
-	compatibility: "1_8",
+	compatibility: "VERSION_1_8",
 	mixin: "JAVA_8",
-	release: 8
+	release: 8,
+    kotlinRelease: "1.8"
 }
 
 const JAVA_16 : JavaVersion = {
-	compatibility: "16",
+	compatibility: "VERSION_16",
 	mixin: "JAVA_16",
-	release: 16
+	release: 16,
+    kotlinRelease: "16"
 }
 
 const JAVA_17 : JavaVersion = {
-	compatibility: "17",
+	compatibility: "VERSION_17",
 	mixin: "JAVA_17",
-	release: 17
+	release: 17,
+    kotlinRelease: "17"
 }
 
 const JAVA_21 : JavaVersion = {
-	compatibility: "21",
+	compatibility: "VERSION_21",
 	mixin: "JAVA_21",
-	release: 21
+	release: 21,
+    kotlinRelease: "21"
 }
 
 const JAVA_25 : JavaVersion = {
-	compatibility: "25",
+	compatibility: "VERSION_25",
 	mixin: "JAVA_25",
-	release: 25
+	release: 25,
+    kotlinRelease: "25"
 }
 
 export function getJavaVersion(minecraftVersion: string): JavaVersion {
