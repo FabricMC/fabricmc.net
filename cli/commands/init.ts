@@ -32,12 +32,14 @@ const ICON_ADVANCED_OPTION = "Generate Unique Mod Icon";
 const KOTLIN_ADVANCED_OPTION = "Kotlin Programming Language";
 const DATAGEN_ADVANCED_OPTION = "Data Generation";
 const SPLIT_ADVANCED_OPTION = "Split client and common sources";
+const KOTLIN_DSL_ADVANCED_OPTION = "Gradle Kotlin DSL";
 
 const ADVANCED_OPTIONS: Map<string, string> = new Map([
   ["kotlin", KOTLIN_ADVANCED_OPTION],
   ["datagen", DATAGEN_ADVANCED_OPTION],
   ["splitSources", SPLIT_ADVANCED_OPTION],
   ["mojangMappings", MOJMAP_ADVANCED_OPTION],
+  ["gradleKotlin", KOTLIN_DSL_ADVANCED_OPTION],
 ]);
 
 interface CliOptions {
@@ -286,6 +288,7 @@ async function promptUser(
     splitSources: advancedOptions.includes(SPLIT_ADVANCED_OPTION),
     uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION) &&
       ENABLE_ICON_GENERATION,
+    gradleKotlin: advancedOptions.includes(KOTLIN_DSL_ADVANCED_OPTION),
   };
 }
 
