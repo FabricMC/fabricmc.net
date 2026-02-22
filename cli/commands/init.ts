@@ -356,6 +356,8 @@ function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
     });
   }
 
+  options.push({ value: KOTLIN_DSL_ADVANCED_OPTION });
+
   return options;
 }
 
