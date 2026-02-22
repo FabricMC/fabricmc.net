@@ -326,6 +326,7 @@ async function defaultOptions(
     dataGeneration: false,
     splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
     uniqueModIcon: ENABLE_ICON_GENERATION,
+    gradleKotlin: false
   };
 }
 
