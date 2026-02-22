@@ -7,7 +7,7 @@ import settingsGradle from './templates/gradle/kotlin/settings.gradle.kts.eta?ra
 import { getJavaVersion } from './java';
 
 export async function addKotlinGradle(writer: TemplateWriter, config: ComputedConfiguration) {
-    await writer.write('gradle.properties', renderTemplate(gradlePropertiesTemplate, config));
-    await writer.write('build.gradle.kts', renderTemplate(buildGradleTemplate, {...config, java: getJavaVersion(config.minecraftVersion)}));
-    await writer.write('settings.gradle.kts', renderTemplate(settingsGradle, config));
+	await writer.write('gradle.properties', renderTemplate(gradlePropertiesTemplate, config));
+	await writer.write('build.gradle.kts', renderTemplate(buildGradleTemplate, {...config, java: getJavaVersion(config.minecraftVersion)}));
+	await writer.write('settings.gradle.kts', renderTemplate(settingsGradle, config));
 }
