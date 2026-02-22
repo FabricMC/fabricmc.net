@@ -9,17 +9,12 @@ plugins {
 
 val modVersion: String by project
 val mavenGroup: String by project
-val archivesBaseName: String by project
-val minecraftVersion: String by project
-<% if (!it.unobfuscated) { %>val yarnMappings: String by project<% } %>
-val loaderVersion: String by project
-val fabricApiVersion: String by project
-val fabricKotlinVersion: String by project
 
 version = modVersion
 group = mavenGroup
 
 base {
+	val archivesBaseName: String by project
 	archivesName = archivesBaseName
 }
 
@@ -49,6 +44,11 @@ fabricApi {
 }
 <% } %>
 dependencies {
+	val minecraftVersion: String by project
+	<% if (!(it.unobfuscated || it.mojmap)) { %>val yarnMappings: String by project<% } %>
+	val loaderVersion: String by project
+	val fabricApiVersion: String by project
+	<% if (it.kotlin) { %>val fabricKotlinVersion: String by project<% } %>
 	// To change the versions see the gradle.properties file
 	minecraft("com.mojang:minecraft:$minecraftVersion")
 	<% if (!it.unobfuscated) { %>mappings(<% if(it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:$yarnMappings:v2"<% } %>)<% } %>
