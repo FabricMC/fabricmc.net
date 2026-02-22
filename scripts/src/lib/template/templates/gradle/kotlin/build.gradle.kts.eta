@@ -82,8 +82,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
-	targetCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
+	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
+	targetCompatibility = JavaVersion.<%= it.java.compatibility %>
 }
 
 tasks.jar {
