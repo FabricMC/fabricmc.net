@@ -60,10 +60,10 @@ dependencies {
 }
 
 tasks.processResources {
-	inputs.property("version", modVersion)
+	inputs.property("version", version)
 
 	filesMatching("fabric.mod.json") {
-		expand("version" to modVersion)
+		expand("version" to version)
 	}
 }
 
@@ -84,10 +84,10 @@ java {
 }
 
 tasks.jar {
-	inputs.property("archivesBaseName", archivesBaseName)
+	inputs.property("archivesName", base.archivesName)
 
 	from("LICENSE") {
-		rename { "${it}_$archivesBaseName" }
+		rename { "${it}_${base.archivesName}" }
 	}
 }
 
