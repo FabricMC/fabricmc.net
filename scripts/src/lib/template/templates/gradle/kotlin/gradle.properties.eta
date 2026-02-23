@@ -7,16 +7,16 @@ org.gradle.configuration-cache=false
 
 # Fabric Properties
 # check these on https://fabricmc.net/develop
-minecraftVersion=<%= it.minecraftVersion %>
-<% if (!it.mojmap && !it.unobfuscated) { %>yarnMappings=<%= it.yarnVersion %>
-<% } %>loaderVersion=<%= it.loaderVersion %>
-loomVersion=1.15-SNAPSHOT
-<% if (it.kotlin) { %>fabricKotlinVersion=<%= it.kotlin.fabricKotlinAdapterVersion %>
+minecraft_version=<%= it.minecraftVersion %>
+<% if (!it.mojmap && !it.unobfuscated) { %>yarn_mappings=<%= it.yarnVersion %>
+<% } %>loader_version=<%= it.loaderVersion %>
+loom_version=1.15-SNAPSHOT
+<% if (it.kotlin) { %>fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } %>
 # Mod Properties
-modVersion=1.0.0
-mavenGroup=<%= it.packageName %>
-archivesBaseName=<%= it.modid %>
+mod_version=1.0.0
+maven_group=<%= it.packageName %>
+archives_base_name=<%= it.modid %>
 
 # Dependencies
-fabricApiVersion=<%= it.fabricVersion %>
+fabric_api_version=<%= it.fabricVersion %>

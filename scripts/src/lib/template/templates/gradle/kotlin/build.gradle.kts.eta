@@ -6,15 +6,12 @@ plugins {
 	<%_ } %>
 }
 
-val modVersion: String by project
-val mavenGroup: String by project
-val archivesBaseName: String by project
 
-version = modVersion
-group = mavenGroup
+version = providers.gradleProperty("mod_version").get()
+group = providers.gradleProperty("maven_group").get()
 
 base {
-	archivesName = archivesBaseName
+	archivesName = providers.gradleProperty("archives_base_name")
 }
 
 repositories {
@@ -43,19 +40,14 @@ fabricApi {
 }
 <% } %>
 dependencies {
-	val minecraftVersion: String by project
-	<% if (!(it.unobfuscated || it.mojmap)) { %>val yarnMappings: String by project<% } %>
-	val loaderVersion: String by project
-	val fabricApiVersion: String by project
-	<% if (it.kotlin) { %>val fabricKotlinVersion: String by project<% } %>
 	// To change the versions see the gradle.properties file
-	minecraft("com.mojang:minecraft:$minecraftVersion")
-	<% if (!it.unobfuscated) { %>mappings(<% if(it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:$yarnMappings:v2"<% } %>)<% } %>
-	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-loader:$loaderVersion")
+	minecraft("com.mojang:minecraft:${providers.gradleProperty("minecraft_version").get()}")
+	<% if (!it.unobfuscated) { %>mappings(<% if(it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:${providers.gradleProperty("yarn_mappings").get()}:v2"<% } %>)<% } %>
+	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
-	<% if (it.kotlin) { %><% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-language-kotlin:$fabricKotlinVersion")<% } %>
+	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
+	<% if (it.kotlin) { %><% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %>("net.fabricmc:fabric-language-kotlin:${providers.gradleProperty("fabric_kotlin_version").get()}")<% } %>
 }
 
 tasks.processResources {
@@ -90,7 +82,7 @@ tasks.jar {
 	inputs.property("archivesName", base.archivesName)
 
 	from("LICENSE") {
-		rename { "${it}_${base.archivesName}" }
+		rename { "${it}_${base.archivesName.get()}" }
 	}
 }
 
@@ -98,7 +90,7 @@ tasks.jar {
 publishing {
 	publications {
 		register<MavenPublication>("mavenJava") {
-			artifactId = archivesBaseName
+			artifactId = base.archivesName.get()
 			from(components["java"])
 		}
 	}

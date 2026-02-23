@@ -8,7 +8,6 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 	plugins {
-		val loomVersion: String by settings
-		id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>") version loomVersion
+		id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>") version providers.gradleProperty("loom_version")
 	}
 }
