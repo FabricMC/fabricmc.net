@@ -3465,7 +3465,9 @@ maven_group=<%= it.packageName %>
 archives_base_name=<%= it.modid %>
 
 # Dependencies
-fabric_api_version=<%= it.fabricVersion %>`, ln = `plugins {
+fabric_api_version=<%= it.fabricVersion %>`, ln = `<% if (it.kotlin) { %>import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+<% } %>plugins {
 	id '<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>' version "\${loom_version}"
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
@@ -3529,9 +3531,9 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = <%= it.java.release %>
 }
 <% if (it.kotlin) { %>
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-	kotlinOptions {
-		jvmTarget = <%= it.java.kotlinRelease %>
+kotlin {
+	compilerOptions {
+		jvmTarget = JvmTarget.JVM_<%= it.java.compatibility %>
 	}
 }
 <% } %>
@@ -3541,8 +3543,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.<%= it.java.compatibility %>
-	targetCompatibility = JavaVersion.<%= it.java.compatibility %>
+	sourceCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
+	targetCompatibility = JavaVersion.VERSION_<%= it.java.compatibility %>
 }
 
 jar {
@@ -3579,30 +3581,25 @@ publishing {
 		gradlePluginPortal()
 	}
 }`, un = {
-  compatibility: "VERSION_1_8",
+  compatibility: "1_8",
   mixin: "JAVA_8",
-  release: 8,
-  kotlinRelease: "1.8"
+  release: 8
 }, hn = {
-  compatibility: "VERSION_16",
+  compatibility: "16",
   mixin: "JAVA_16",
-  release: 16,
-  kotlinRelease: "16"
+  release: 16
 }, Yt = {
-  compatibility: "VERSION_17",
+  compatibility: "17",
   mixin: "JAVA_17",
-  release: 17,
-  kotlinRelease: "17"
+  release: 17
 }, An = {
-  compatibility: "VERSION_21",
+  compatibility: "21",
   mixin: "JAVA_21",
-  release: 21,
-  kotlinRelease: "21"
+  release: 21
 }, dn = {
-  compatibility: "VERSION_25",
+  compatibility: "25",
   mixin: "JAVA_25",
-  release: 25,
-  kotlinRelease: "25"
+  release: 25
 };
 function Mt(B) {
   const d = De(B), e = pe(B);
