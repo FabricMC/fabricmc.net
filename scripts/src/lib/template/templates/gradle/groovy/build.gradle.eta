@@ -1,5 +1,6 @@
-<% if (it.kotlin) { %>import org.jetbrains.kotlin.gradle.dsl.JvmTarget<% } %>
-plugins {
+<% if (it.kotlin) { %>import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+<% } %>plugins {
 	id '<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>' version "${loom_version}"
 	id 'maven-publish'
 	<%_ if (it.kotlin) { %>
@@ -63,7 +64,11 @@ tasks.withType(JavaCompile).configureEach {
 	it.options.release = <%= it.java.release %>
 }
 <% if (it.kotlin) { %>
-kotlin.compilerOptions.jvmTarget = JvmTarget.JVM_<%= it.java.compatibility %>
+kotlin {
+	compilerOptions {
+		jvmTarget = JvmTarget.JVM_<%= it.java.compatibility %>
+	}
+}
 <% } %>
 java {
 	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
