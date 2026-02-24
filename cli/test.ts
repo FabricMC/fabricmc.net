@@ -3,6 +3,7 @@ import {
   generateTemplate,
   getTemplateGameVersions,
   minecraftSupportsSplitSources,
+  minecraftIsUnobfuscated
 } from "../scripts/dist/fabric-template-generator.js";
 import { getGeneratorOptions } from "./commands/init.ts";
 import { assert } from "https://deno.land/std@0.221.0/assert/mod.ts";
@@ -23,6 +24,11 @@ const minecraftVersions = await getTemplateGameVersions();
 
 for (const { version } of minecraftVersions) {
   for (const mapping of ["yarn", "mojmap"]) {
+
+	if (mapping === "yarn" && minecraftIsUnobfuscated(version)) {
+	  continue;
+	}
+
     for (const language of ["java", "kotlin"]) {
       const testId = `${version}_${mapping}_${language}`;
       const outDir = `${rootDir}/${testId}`;
