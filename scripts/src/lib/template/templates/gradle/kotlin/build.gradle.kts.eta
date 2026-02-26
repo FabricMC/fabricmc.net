@@ -8,7 +8,6 @@
 	<%_ } %>
 }
 
-
 version = providers.gradleProperty("mod_version").get()
 group = providers.gradleProperty("maven_group").get()
 

@@ -7,6 +7,7 @@ pluginManagement {
 		mavenCentral()
 		gradlePluginPortal()
 	}
+
 	plugins {
 		id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>") version providers.gradleProperty("loom_version")
 	}
