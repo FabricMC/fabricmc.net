@@ -7,7 +7,7 @@ import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoin
 import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
 import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
-import { getMinorMinecraftVersion } from "./minecraft";
+import { minecraftSupportsSlf4j } from "./minecraft";
 
 interface ClassOptions {
     package: string, // com.example
@@ -29,7 +29,7 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         classFullName: options.packageName + "." + className,
         path: options.packageName.replaceAll(".", "/") + "/" + className,
         modid: options.modid,
-        slf4j: getMinorMinecraftVersion(options.minecraftVersion) >= 18,
+        slf4j: minecraftSupportsSlf4j(options.minecraftVersion),
         clientEntrypoint: options.splitSources,
         dataEntrypoint: options.dataGeneration
     }

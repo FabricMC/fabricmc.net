@@ -2,6 +2,10 @@ export function minecraftSupportsDataGen(minecraftVersion: string): boolean {
 	return getMajorMinecraftVersion(minecraftVersion) >= 26 || getMinorMinecraftVersion(minecraftVersion) >= 17;
 }
 
+export function minecraftSupportsSlf4j(minecraftVersion: string): boolean {
+	return getMajorMinecraftVersion(minecraftVersion) >= 26 || getMinorMinecraftVersion(minecraftVersion) >= 18;
+}
+
 export function minecraftSupportsSplitSources(minecraftVersion: string): boolean {
 	return getMajorMinecraftVersion(minecraftVersion) >= 26 || getMinorMinecraftVersion(minecraftVersion) >= 19;
 }
