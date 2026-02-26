@@ -1,22 +1,25 @@
 function l(t) {
-  return o(t) >= 26 || c(t) >= 17;
+  return o(t) >= 26 || i(t) >= 17;
 }
 function f(t) {
-  return o(t) >= 26 || c(t) >= 19;
+  return o(t) >= 26 || i(t) >= 18;
 }
 function h(t) {
+  return o(t) >= 26 || i(t) >= 19;
+}
+function p(t) {
   return o(t) >= 26 || t.endsWith("_unobfuscated");
 }
 function o(t) {
-  return i(t)[0];
-}
-function c(t) {
-  return i(t)[1];
-}
-function p(t) {
-  return i(t)[2];
+  return c(t)[0];
 }
 function i(t) {
+  return c(t)[1];
+}
+function d(t) {
+  return c(t)[2];
+}
+function c(t) {
   return t.split("-")[0].split(".").map((e) => parseInt(e));
 }
 function u(t, n) {
@@ -24,7 +27,7 @@ function u(t, n) {
   const r = n ? "Modid" : "Mod Name";
   return t.length == 0 ? [`${r} is empty!`] : (t.length == 1 ? e.push(`${r} is only a single character! (It must be at least 2 characters long)!`) : t.length > 64 && e.push(`${r} has more than 64 characters!`), t.toLocaleLowerCase().startsWith("fabric") && e.push("Mod id starts with 'fabric', which is generally reserved for Fabric itself."), e.length === 0 ? void 0 : e);
 }
-function d(t) {
+function g(t) {
   if (t === void 0)
     return;
   let n = u(t, !0) ?? [];
@@ -42,21 +45,22 @@ function d(t) {
   if (n.length != 0)
     return n;
 }
-function g(t) {
+function m(t) {
   return t.toLocaleLowerCase().replace(/\s+/g, ".").replace(/[^a-za-z0-9_\.]/, "");
 }
-function m(t) {
+function M(t) {
   return t.toLowerCase().replaceAll(/\s+/g, "-").replaceAll(/[^a-za-z0-9-_]/g, "");
 }
 export {
-  c as a,
-  p as b,
-  l as c,
-  f as d,
-  d as e,
+  i as a,
+  d as b,
+  p as c,
+  l as d,
+  h as e,
   g as f,
   o as g,
-  h as m,
-  m as n,
+  m as h,
+  f as m,
+  M as n,
   u as s
 };
