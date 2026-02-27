@@ -10,3 +10,6 @@ javascript/public/build/
 vendor
 
 .DS_Store
+
+scripts/src/lib/mappings/mapping-io.wasm
+scripts/src/lib/mappings/mapping-io.wasm-runtime.js
