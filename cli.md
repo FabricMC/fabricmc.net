@@ -33,7 +33,7 @@ fabric upgrade
 If you wish to remove the Fabric CLI tools run:
 
 <code class="command">
-deno uninstall fabric
+deno uninstall -g fabric
 </code>
 
 ## Usage
