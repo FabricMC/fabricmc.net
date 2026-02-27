@@ -12,3 +12,6 @@ pluginManagement {
 		id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>") version providers.gradleProperty("loom_version")
 	}
 }
+
+// Should match your modid, but with _ converted to -
+rootProject.name = "<%= it.modid %>"

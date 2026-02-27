@@ -8,3 +8,6 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
+
+// Should match your modid, but with _ converted to -
+rootProject.name = '<%= it.modid %>'
