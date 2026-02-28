@@ -16,7 +16,6 @@ loom_version=1.15-SNAPSHOT
 # Mod Properties
 mod_version=1.0.0
 maven_group=<%= it.packageName %>
-archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_api_version=<%= it.fabricVersion %>
