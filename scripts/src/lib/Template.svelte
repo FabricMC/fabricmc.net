@@ -14,6 +14,7 @@
     let mojmap = true;
     let dataGeneration = false;
     let splitSources = true;
+    let gradleKotlin = false;
 
     let customModId: string | undefined;
     let loading = false;
@@ -60,7 +61,8 @@
             mojmap: mojmap || isUnobfuscated,
             dataGeneration: dataGeneration && supportsDataGen,
             splitSources: splitSources && supportsSplitSources,
-            uniqueModIcon: true
+            uniqueModIcon: true,
+            gradleKotlin
         };
 
         const zip = new JSZip();
@@ -251,6 +253,15 @@
             </p>
         </div>
         {/if}
+        <div>
+            <div class="option-container">
+                <input id="gradleKotlin" type="checkbox" class="option-input" bind:checked={gradleKotlin} />
+                <label for="gradleKotlin" class="option-label">Kotlin Build Script</label>
+            </div>
+            <p class="option-body">
+                The Gradle build script will use the Kotlin programming language instead of Groovy.
+            </p>
+        </div>
 
         <br>
 

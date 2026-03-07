@@ -1,0 +1,11 @@
+import type { ComputedConfiguration, TemplateWriter } from './template';
+import { renderTemplate } from './eta';
+
+import buildGradleTemplate from './templates/gradle/kotlin/build.gradle.kts.eta?raw';
+import settingsGradle from './templates/gradle/kotlin/settings.gradle.kts.eta?raw';
+import { getJavaVersion } from './java';
+
+export async function addKotlinGradle(writer: TemplateWriter, config: ComputedConfiguration) {
+	await writer.write('build.gradle.kts', renderTemplate(buildGradleTemplate, {...config, java: getJavaVersion(config.minecraftVersion)}));
+	await writer.write('settings.gradle.kts', renderTemplate(settingsGradle, config));
+}
