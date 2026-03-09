@@ -1,4 +1,4 @@
-import { addGradle } from './gradle';
+import { addGradle, toProjectName } from './gradle';
 import { addGradleWrapper } from './gradlewrapper';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
@@ -112,7 +112,7 @@ async function computeConfig(options: Configuration): Promise<ComputedConfigurat
 	const unobfuscated = minecraftIsUnobfuscated(options.minecraftVersion);
 	return {
 		...options,
-		projectName: options.modid.replaceAll('_', '-'),
+		projectName: toProjectName(options.modid),
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
 		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: unobfuscated ? undefined : (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
