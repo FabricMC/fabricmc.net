@@ -77,7 +77,7 @@ java {
 }
 
 jar {
-	inputs.property "project.name", project.name
+	inputs.property "projectName", project.name
 
 	from("LICENSE") {
 		rename { "${it}_${project.name}"}
