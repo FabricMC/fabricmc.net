@@ -18,12 +18,6 @@ topnav: true
         case "server":
             window.location.href = '{{ "/use/server/" | relative_url }}';
             break;
-        case "mcupdater":
-            window.location.href = '{{ "/use/mcupdater/" | relative_url }}';
-            break;
-        case "technic":
-            window.location.href = '{{ "/use/installer/" | relative_url }}';
-            break;
         case "atlauncher":
             window.location.href = '{{ "/use/installer/" | relative_url }}';
             break;
