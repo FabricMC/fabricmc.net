@@ -20,8 +20,8 @@
 {"headline":"Fabric for Minecraft 26.1","dateModified":"2026-03-14T00:00:00+00:00","datePublished":"2026-03-14T00:00:00+00:00","description":"A new version of Minecraft is coming soon with changes that will affect all mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds, especially due to the major changes to world storage in this version.","url":"https://fabricmc.net/2026/03/14/261.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2026/03/14/261.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1773504513">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1773504513"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1773506123">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1773506123"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -96,7 +96,7 @@
   <img src="/assets/forklift.png" style="max-width: 400px; height: auto;" alt="Tiny Potato in a fork lift, by Superkat32" />
 </p>
 
-<p>Preparing Fabric to support and full embrace the changes in 26.1 has been a major focus for the last several months by many contributors. The changes in the tooling and API are the largest we have ever made for a single release. There are still some rough edges and missing features however the changes put us in a great position to contiune to update and improve Fabric for the foreseeable future. We are excited to see what the community will create with the new possibilities that 26.1 opens up.</p>
+<p>Preparing Fabric to support and full embrace the changes in 26.1 has been a major focus for the last several months by many contributors. The changes in the tooling and API are the largest we have ever made for a single release. There are still some rough edges and missing features however the changes put us in a great position to continue to update and improve Fabric for the foreseeable future. We are excited to see what the community will create with the new possibilities that 26.1 opens up.</p>
 
 <p><a href="https://fabricmc.net/2025/10/31/obfuscation.html">26.1 is the first version of Minecraft to not be obfuscated</a>. Because of that, <strong>no mods from 1.21.11 or before will work without, at a minimum, recompilation.</strong> If you have not yet <a href="https://docs.fabricmc.net/develop/migrating-mappings/">transitioned your mods to Mojang’s mappings</a>, now is the time to do so, as Yarn is no longer officially supported by Fabric.</p>
 
@@ -106,7 +106,7 @@
 
 <h2 id="fabric-changes">Fabric changes</h2>
 
-<p>Developers should use Loom 1.15 and Gradle 9.3.0 (at the time of writing) to develop mods for Minecraft 26.1. Players should install the latest stable version of Fabric Loader (currently 0.18.4).</p>
+<p>Developers should use Loom 1.15 and Gradle 9.4.0 (at the time of writing) to develop mods for Minecraft 26.1. Players should install the latest stable version of Fabric Loader (currently 0.18.4).</p>
 
 <p>Minecraft 26.1 requires <strong>Java 25</strong> minimum for the Gradle JVM. You can configure this in your IDE’s Gradle Settings. Additionally, if you are using IntelliJ IDEA, version <strong>2025.3</strong> or above is required for mixins to work correctly.</p>
 
@@ -165,11 +165,13 @@ Compared to the existing <code class="language-plaintext highlighter-rouge">UseB
 <p>As <code class="language-plaintext highlighter-rouge">ColorProviderRegistry</code> has solely been used for blocks since 1.21.4, its implementation has been simplified in 26.1 to the new <code class="language-plaintext highlighter-rouge">BlockColorRegistry</code>.</p>
 
 <p>Old code:</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ColorProviderRegistry</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">state</span><span class="o">,</span> <span class="n">level</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">tintIndex</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">[...]</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ColorProviderRegistry</span><span class="o">.</span><span class="na">BLOCK</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">state</span><span class="o">,</span> <span class="n">level</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">tintIndex</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">[...],</span> <span class="nc">ModBlocks</span><span class="o">.</span><span class="na">EXAMPLE_BLOCK</span><span class="o">)</span>
 </code></pre></div></div>
 
 <p>New code:</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">BlockColorRegistry</span><span class="o">.</span><span class="na">register</span><span class="o">((</span><span class="n">state</span><span class="o">,</span> <span class="n">level</span><span class="o">,</span> <span class="n">pos</span><span class="o">,</span> <span class="n">tintIndex</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">[...]</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">BlockColorRegistry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">List</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="k">new</span> <span class="nc">BlockTintSource</span><span class="o">()</span> <span class="o">{</span>
+   <span class="o">[...]</span>
+  <span class="o">}),</span> <span class="nc">ModBlocks</span><span class="o">.</span><span class="na">EXAMPLE_BLOCK</span><span class="o">)</span>
 </code></pre></div></div>
 
 <h2 id="minecraft-changes">Minecraft changes</h2>
