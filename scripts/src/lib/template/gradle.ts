@@ -13,3 +13,7 @@ export async function addGradle(writer: TemplateWriter, config: ComputedConfigur
 		await addGroovyGradle(writer, config);
 	}
 }
+
+export function toProjectName(modid: string): string {
+	return modid.replaceAll('_', '-');
+}
