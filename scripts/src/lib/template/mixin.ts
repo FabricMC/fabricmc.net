@@ -57,6 +57,9 @@ export async function generateClientMixin(writer: TemplateWriter, options: Compu
         ],
         "injectors": {
             "defaultRequire": 1
+        },
+        "overwrites": {
+            "requireAnnotations": true
         }
     };
 
