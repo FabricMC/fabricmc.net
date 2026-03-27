@@ -15,7 +15,7 @@ const VERSION = typeof __VERSION__ !== "undefined" ? __VERSION__ : "dev";
 
 if (import.meta.main) {
   const cmd = new Command()
-    .name("Fabric CLI tools")
+    .name("fabric")
     .version(VERSION)
     .description("A set of command line tools to aid Fabric mod development")
     .action(() => {
