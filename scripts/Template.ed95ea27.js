@@ -3800,6 +3800,9 @@ async function Bn(C, h) {
     ],
     injectors: {
       defaultRequire: 1
+    },
+    overwrites: {
+      requireAnnotations: !0
     }
   }, o = `${h.modid}.client.mixins.json`;
   return await C.write(`src/client/resources/${o}`, JSON.stringify(n, null, "	")), await C.write(`src/client/java/${e.replaceAll(".", "/")}/${d}.java`, Ot(Se, {
