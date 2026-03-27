@@ -14,4 +14,4 @@ pluginManagement {
 }
 
 // Should match your modid, but with _ converted to -
-rootProject.name = "<%= it.projectName %>"
+rootProject.name = "<%= it.modid %>"
