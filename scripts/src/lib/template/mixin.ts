@@ -41,7 +41,7 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
 }
 
 export async function generateClientMixin(writer: TemplateWriter, options: ComputedConfiguration) : Promise<unknown[]> {
-    const packageName = options.packageName + ".mixin.client";
+    const packageName = options.packageName + ".client.mixin";
     const className = "ExampleClientMixin"
 
     const targetClass = options.mojmap ? "Minecraft" : "MinecraftClient";
