@@ -1,4 +1,4 @@
-import { addGradle, toProjectName } from './gradle';
+import { addGradle } from './gradle';
 import { addGradleWrapper } from './gradlewrapper';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
