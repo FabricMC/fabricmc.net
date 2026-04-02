@@ -1,8 +1,8 @@
-import { S as Be, i as Fe, s as _e, h as Re, b as Oe, c as kt, u as Te, o as jt, p as Mt, d as Et, q as Ve, e as et, t as Ft, a as ot, f as Qt, g as Z, n as Dt, k as q, r as Ne, C as Ut, l as Kt, m as Bt, D as De, E as Ue, j as Jt, B as pe, A as Xt, y as qt, v as me, w as ge, x as be } from "./index.4deac2e0.js";
+import { S as Be, i as Fe, s as _e, h as Re, b as Oe, c as kt, u as Te, o as jt, p as Mt, d as Et, q as Ne, e as et, t as Ft, a as ot, f as Qt, g as Z, n as Dt, k as q, r as Ve, C as Ut, l as Kt, m as Bt, D as De, E as Ue, j as Jt, B as pe, A as Xt, y as qt, v as me, w as ge, x as be } from "./index.4deac2e0.js";
 import ve from "./DownloadIcon.39c279f6.js";
 import { g as Qe, a as ze, b as Ge, m as Le, c as ye, n as je, d as Me, e as We, f as Ze, s as Pe, h as Je } from "./minecraft.d027b357.js";
 import { d as Ye, b as Xe, h as He, i as qe, j as Ke } from "./Api.3a6c4b44.js";
-var Nt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+var Vt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function we(C) {
   return C && C.__esModule && Object.prototype.hasOwnProperty.call(C, "default") ? C.default : C;
 }
@@ -21,7 +21,7 @@ Dual licenced under the MIT license or GPLv3. See https://raw.github.com/Stuk/js
 JSZip uses the library pako released under the MIT license :
 https://github.com/nodeca/pako/blob/main/LICENSE
 */
-(function(C, h) {
+(function(C, u) {
   (function(e) {
     C.exports = e();
   })(function() {
@@ -51,12 +51,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
     }({ 1: [function(e, d, c) {
       var r = e("./utils"), a = e("./support"), n = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
       c.encode = function(o) {
-        for (var p, m, g, v, l, b, s, f = [], u = 0, w = o.length, E = w, O = r.getTypeOf(o) !== "string"; u < o.length; )
-          E = w - u, g = O ? (p = o[u++], m = u < w ? o[u++] : 0, u < w ? o[u++] : 0) : (p = o.charCodeAt(u++), m = u < w ? o.charCodeAt(u++) : 0, u < w ? o.charCodeAt(u++) : 0), v = p >> 2, l = (3 & p) << 4 | m >> 4, b = 1 < E ? (15 & m) << 2 | g >> 6 : 64, s = 2 < E ? 63 & g : 64, f.push(n.charAt(v) + n.charAt(l) + n.charAt(b) + n.charAt(s));
+        for (var p, m, g, v, l, b, s, f = [], h = 0, w = o.length, E = w, O = r.getTypeOf(o) !== "string"; h < o.length; )
+          E = w - h, g = O ? (p = o[h++], m = h < w ? o[h++] : 0, h < w ? o[h++] : 0) : (p = o.charCodeAt(h++), m = h < w ? o.charCodeAt(h++) : 0, h < w ? o.charCodeAt(h++) : 0), v = p >> 2, l = (3 & p) << 4 | m >> 4, b = 1 < E ? (15 & m) << 2 | g >> 6 : 64, s = 2 < E ? 63 & g : 64, f.push(n.charAt(v) + n.charAt(l) + n.charAt(b) + n.charAt(s));
         return f.join("");
       }, c.decode = function(o) {
-        var p, m, g, v, l, b, s = 0, f = 0, u = "data:";
-        if (o.substr(0, u.length) === u)
+        var p, m, g, v, l, b, s = 0, f = 0, h = "data:";
+        if (o.substr(0, h.length) === h)
           throw new Error("Invalid base64 input, it looks like a data url.");
         var w, E = 3 * (o = o.replace(/[^A-Za-z0-9+/=]/g, "")).length / 4;
         if (o.charAt(o.length - 1) === n.charAt(64) && E--, o.charAt(o.length - 2) === n.charAt(64) && E--, E % 1 != 0)
@@ -147,18 +147,18 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           f += String.fromCharCode(255 & l), l >>>= 8;
         return f;
       }
-      function a(l, b, s, f, u, w) {
-        var E, O, _ = l.file, Q = l.compression, D = w !== p.utf8encode, Y = n.transformTo("string", w(_.name)), N = n.transformTo("string", p.utf8encode(_.name)), H = _.comment, rt = n.transformTo("string", w(H)), k = n.transformTo("string", p.utf8encode(H)), V = N.length !== _.name.length, i = k.length !== H.length, G = "", it = "", S = "", U = _.dir, F = _.date, M = { crc32: 0, compressedSize: 0, uncompressedSize: 0 };
+      function a(l, b, s, f, h, w) {
+        var E, O, _ = l.file, Q = l.compression, D = w !== p.utf8encode, Y = n.transformTo("string", w(_.name)), V = n.transformTo("string", p.utf8encode(_.name)), H = _.comment, rt = n.transformTo("string", w(H)), k = n.transformTo("string", p.utf8encode(H)), N = V.length !== _.name.length, i = k.length !== H.length, G = "", it = "", S = "", U = _.dir, F = _.date, M = { crc32: 0, compressedSize: 0, uncompressedSize: 0 };
         b && !s || (M.crc32 = l.crc32, M.compressedSize = l.compressedSize, M.uncompressedSize = l.uncompressedSize);
         var x = 0;
-        b && (x |= 8), D || !V && !i || (x |= 2048);
+        b && (x |= 8), D || !N && !i || (x |= 2048);
         var B = 0, K = 0;
-        U && (B |= 16), u === "UNIX" ? (K = 798, B |= function(X, lt) {
+        U && (B |= 16), h === "UNIX" ? (K = 798, B |= function(X, lt) {
           var ft = X;
           return X || (ft = lt ? 16893 : 33204), (65535 & ft) << 16;
         }(_.unixPermissions, U)) : (K = 20, B |= function(X) {
           return 63 & (X || 0);
-        }(_.dosPermissions)), E = F.getUTCHours(), E <<= 6, E |= F.getUTCMinutes(), E <<= 5, E |= F.getUTCSeconds() / 2, O = F.getUTCFullYear() - 1980, O <<= 4, O |= F.getUTCMonth() + 1, O <<= 5, O |= F.getUTCDate(), V && (it = r(1, 1) + r(m(Y), 4) + N, G += "up" + r(it.length, 2) + it), i && (S = r(1, 1) + r(m(rt), 4) + k, G += "uc" + r(S.length, 2) + S);
+        }(_.dosPermissions)), E = F.getUTCHours(), E <<= 6, E |= F.getUTCMinutes(), E <<= 5, E |= F.getUTCSeconds() / 2, O = F.getUTCFullYear() - 1980, O <<= 4, O |= F.getUTCMonth() + 1, O <<= 5, O |= F.getUTCDate(), N && (it = r(1, 1) + r(m(Y), 4) + V, G += "up" + r(it.length, 2) + it), i && (S = r(1, 1) + r(m(rt), 4) + k, G += "uc" + r(S.length, 2) + S);
         var P = "";
         return P += `
 \0`, P += r(x, 2), P += Q.magic, P += r(E, 2), P += r(O, 2), P += r(M.crc32, 4), P += r(M.compressedSize, 4), P += r(M.uncompressedSize, 4), P += r(Y.length, 2), P += r(G.length, 2), { fileRecord: g.LOCAL_FILE_HEADER + P + Y + G, dirRecord: g.CENTRAL_FILE_HEADER + r(K, 2) + P + r(rt.length, 2) + "\0\0\0\0" + r(B, 4) + r(f, 4) + Y + G + rt };
@@ -192,9 +192,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       }, v.prototype.flush = function() {
         for (var l = this.bytesWritten, b = 0; b < this.dirRecords.length; b++)
           this.push({ data: this.dirRecords[b], meta: { percent: 100 } });
-        var s = this.bytesWritten - l, f = function(u, w, E, O, _) {
+        var s = this.bytesWritten - l, f = function(h, w, E, O, _) {
           var Q = n.transformTo("string", _(O));
-          return g.CENTRAL_DIRECTORY_END + "\0\0\0\0" + r(u, 2) + r(u, 2) + r(w, 4) + r(E, 4) + r(Q.length, 2) + Q;
+          return g.CENTRAL_DIRECTORY_END + "\0\0\0\0" + r(h, 2) + r(h, 2) + r(w, 4) + r(E, 4) + r(Q.length, 2) + Q;
         }(this.dirRecords.length, s, l, this.zipComment, this.encodeFileName);
         this.push({ data: f, meta: { percent: 100 } });
       }, v.prototype.prepareNextSource = function() {
@@ -238,8 +238,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
               if (!_)
                 throw new Error(O + " is not a valid compression method !");
               return _;
-            }(l.options.compression, o.compression), s = l.options.compressionOptions || o.compressionOptions || {}, f = l.dir, u = l.date;
-            l._compressWorker(b, s).withStreamInfo("file", { name: v, dir: f, date: u, comment: l.comment || "", unixPermissions: l.unixPermissions, dosPermissions: l.dosPermissions }).pipe(m);
+            }(l.options.compression, o.compression), s = l.options.compressionOptions || o.compressionOptions || {}, f = l.dir, h = l.date;
+            l._compressWorker(b, s).withStreamInfo("file", { name: v, dir: f, date: h, comment: l.comment || "", unixPermissions: l.unixPermissions, dosPermissions: l.dosPermissions }).pipe(m);
           }), m.entriesCount = g;
         } catch (v) {
           m.error(v);
@@ -280,14 +280,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           var f = new o(l);
           return f.load(s), f;
         }).then(function(s) {
-          var f = [a.Promise.resolve(s)], u = s.files;
+          var f = [a.Promise.resolve(s)], h = s.files;
           if (l.checkCRC32)
-            for (var w = 0; w < u.length; w++)
-              f.push(g(u[w]));
+            for (var w = 0; w < h.length; w++)
+              f.push(g(h[w]));
           return a.Promise.all(f);
         }).then(function(s) {
-          for (var f = s.shift(), u = f.files, w = 0; w < u.length; w++) {
-            var E = u[w], O = E.fileNameStr, _ = r.resolve(E.fileNameStr);
+          for (var f = s.shift(), h = f.files, w = 0; w < h.length; w++) {
+            var E = h[w], O = E.fileNameStr, _ = r.resolve(E.fileNameStr);
             b.file(_, E.decompressed, { binary: !0, optimizedBinaryString: !0, date: E.date, dir: E.dir, comment: E.fileCommentStr.length ? E.fileCommentStr : null, unixPermissions: E.unixPermissions, dosPermissions: E.dosPermissions, createFolders: l.createFolders }), E.dir || (b.file(_).unsafeOriginalName = O);
           }
           return f.zipComment.length && (b.comment = f.zipComment), b;
@@ -347,23 +347,23 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       } };
     }, {}], 15: [function(e, d, c) {
       function r(_, Q, D) {
-        var Y, N = n.getTypeOf(Q), H = n.extend(D || {}, m);
-        H.date = H.date || /* @__PURE__ */ new Date(), H.compression !== null && (H.compression = H.compression.toUpperCase()), typeof H.unixPermissions == "string" && (H.unixPermissions = parseInt(H.unixPermissions, 8)), H.unixPermissions && 16384 & H.unixPermissions && (H.dir = !0), H.dosPermissions && 16 & H.dosPermissions && (H.dir = !0), H.dir && (_ = u(_)), H.createFolders && (Y = f(_)) && w.call(this, Y, !0);
-        var rt = N === "string" && H.binary === !1 && H.base64 === !1;
-        D && D.binary !== void 0 || (H.binary = !rt), (Q instanceof g && Q.uncompressedSize === 0 || H.dir || !Q || Q.length === 0) && (H.base64 = !1, H.binary = !0, Q = "", H.compression = "STORE", N = "string");
+        var Y, V = n.getTypeOf(Q), H = n.extend(D || {}, m);
+        H.date = H.date || /* @__PURE__ */ new Date(), H.compression !== null && (H.compression = H.compression.toUpperCase()), typeof H.unixPermissions == "string" && (H.unixPermissions = parseInt(H.unixPermissions, 8)), H.unixPermissions && 16384 & H.unixPermissions && (H.dir = !0), H.dosPermissions && 16 & H.dosPermissions && (H.dir = !0), H.dir && (_ = h(_)), H.createFolders && (Y = f(_)) && w.call(this, Y, !0);
+        var rt = V === "string" && H.binary === !1 && H.base64 === !1;
+        D && D.binary !== void 0 || (H.binary = !rt), (Q instanceof g && Q.uncompressedSize === 0 || H.dir || !Q || Q.length === 0) && (H.base64 = !1, H.binary = !0, Q = "", H.compression = "STORE", V = "string");
         var k = null;
         k = Q instanceof g || Q instanceof o ? Q : b.isNode && b.isStream(Q) ? new s(_, Q) : n.prepareContent(_, Q, H.binary, H.optimizedBinaryString, H.base64);
-        var V = new v(_, k, H);
-        this.files[_] = V;
+        var N = new v(_, k, H);
+        this.files[_] = N;
       }
       var a = e("./utf8"), n = e("./utils"), o = e("./stream/GenericWorker"), p = e("./stream/StreamHelper"), m = e("./defaults"), g = e("./compressedObject"), v = e("./zipObject"), l = e("./generate"), b = e("./nodejsUtils"), s = e("./nodejs/NodejsStreamInputAdapter"), f = function(_) {
         _.slice(-1) === "/" && (_ = _.substring(0, _.length - 1));
         var Q = _.lastIndexOf("/");
         return 0 < Q ? _.substring(0, Q) : "";
-      }, u = function(_) {
+      }, h = function(_) {
         return _.slice(-1) !== "/" && (_ += "/"), _;
       }, w = function(_, Q) {
-        return Q = Q !== void 0 ? Q : m.createFolders, _ = u(_), this.files[_] || r.call(this, _, null, { dir: !0, createFolders: Q }), this.files[_];
+        return Q = Q !== void 0 ? Q : m.createFolders, _ = h(_), this.files[_] || r.call(this, _, null, { dir: !0, createFolders: Q }), this.files[_];
       };
       function E(_) {
         return Object.prototype.toString.call(_) === "[object RegExp]";
@@ -388,14 +388,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             return !rt.dir && Y.test(H);
           });
         }
-        var N = this.files[this.root + _];
-        return N && !N.dir ? N : null;
+        var V = this.files[this.root + _];
+        return V && !V.dir ? V : null;
       }, folder: function(_) {
         if (!_)
           return this;
         if (E(_))
-          return this.filter(function(N, H) {
-            return H.dir && _.test(N);
+          return this.filter(function(V, H) {
+            return H.dir && _.test(V);
           });
         var Q = this.root + _, D = w.call(this, Q), Y = this.clone();
         return Y.root = D.name, Y;
@@ -405,7 +405,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         if (Q || (_.slice(-1) !== "/" && (_ += "/"), Q = this.files[_]), Q && !Q.dir)
           delete this.files[_];
         else
-          for (var D = this.filter(function(N, H) {
+          for (var D = this.filter(function(V, H) {
             return H.name.slice(0, _.length) === _;
           }), Y = 0; Y < D.length; Y++)
             delete this.files[D[Y].name];
@@ -420,8 +420,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           n.checkSupport(D.type), D.platform !== "darwin" && D.platform !== "freebsd" && D.platform !== "linux" && D.platform !== "sunos" || (D.platform = "UNIX"), D.platform === "win32" && (D.platform = "DOS");
           var Y = D.comment || this.comment || "";
           Q = l.generateWorker(this, D, Y);
-        } catch (N) {
-          (Q = new o("error")).error(N);
+        } catch (V) {
+          (Q = new o("error")).error(V);
         }
         return new p(Q, D.type || "string", D.mimeType);
       }, generateAsync: function(_, Q) {
@@ -664,35 +664,35 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         } catch {
         }
       function v(b, s) {
-        return new m.Promise(function(f, u) {
+        return new m.Promise(function(f, h) {
           var w = [], E = b._internalType, O = b._outputType, _ = b._mimeType;
           b.on("data", function(Q, D) {
             w.push(Q), s && s(D);
           }).on("error", function(Q) {
-            w = [], u(Q);
+            w = [], h(Q);
           }).on("end", function() {
             try {
-              var Q = function(D, Y, N) {
+              var Q = function(D, Y, V) {
                 switch (D) {
                   case "blob":
-                    return r.newBlob(r.transformTo("arraybuffer", Y), N);
+                    return r.newBlob(r.transformTo("arraybuffer", Y), V);
                   case "base64":
                     return o.encode(Y);
                   default:
                     return r.transformTo(D, Y);
                 }
               }(O, function(D, Y) {
-                var N, H = 0, rt = null, k = 0;
-                for (N = 0; N < Y.length; N++)
-                  k += Y[N].length;
+                var V, H = 0, rt = null, k = 0;
+                for (V = 0; V < Y.length; V++)
+                  k += Y[V].length;
                 switch (D) {
                   case "string":
                     return Y.join("");
                   case "array":
                     return Array.prototype.concat.apply([], Y);
                   case "uint8array":
-                    for (rt = new Uint8Array(k), N = 0; N < Y.length; N++)
-                      rt.set(Y[N], H), H += Y[N].length;
+                    for (rt = new Uint8Array(k), V = 0; V < Y.length; V++)
+                      rt.set(Y[V], H), H += Y[V].length;
                     return rt;
                   case "nodebuffer":
                     return Buffer.concat(Y);
@@ -702,24 +702,24 @@ https://github.com/nodeca/pako/blob/main/LICENSE
               }(E, w), _);
               f(Q);
             } catch (D) {
-              u(D);
+              h(D);
             }
             w = [];
           }).resume();
         });
       }
       function l(b, s, f) {
-        var u = s;
+        var h = s;
         switch (s) {
           case "blob":
           case "arraybuffer":
-            u = "uint8array";
+            h = "uint8array";
             break;
           case "base64":
-            u = "string";
+            h = "string";
         }
         try {
-          this._internalType = u, this._outputType = s, this._mimeType = f, r.checkSupport(u), this._worker = b.pipe(new a(u)), b.lock();
+          this._internalType = h, this._outputType = s, this._mimeType = f, r.checkSupport(h), this._worker = b.pipe(new a(h)), b.lock();
         } catch (w) {
           this._worker = new n("error"), this._worker.error(w);
         }
@@ -728,8 +728,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         return v(this, b);
       }, on: function(b, s) {
         var f = this;
-        return b === "data" ? this._worker.on(b, function(u) {
-          s.call(f, u.data, u.meta);
+        return b === "data" ? this._worker.on(b, function(h) {
+          s.call(f, h.data, h.meta);
         }) : this._worker.on(b, function() {
           r.delay(s, arguments, f);
         }), this;
@@ -775,25 +775,25 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       }
       c.utf8encode = function(l) {
         return a.nodebuffer ? n.newBufferFrom(l, "utf-8") : function(b) {
-          var s, f, u, w, E, O = b.length, _ = 0;
+          var s, f, h, w, E, O = b.length, _ = 0;
           for (w = 0; w < O; w++)
-            (64512 & (f = b.charCodeAt(w))) == 55296 && w + 1 < O && (64512 & (u = b.charCodeAt(w + 1))) == 56320 && (f = 65536 + (f - 55296 << 10) + (u - 56320), w++), _ += f < 128 ? 1 : f < 2048 ? 2 : f < 65536 ? 3 : 4;
+            (64512 & (f = b.charCodeAt(w))) == 55296 && w + 1 < O && (64512 & (h = b.charCodeAt(w + 1))) == 56320 && (f = 65536 + (f - 55296 << 10) + (h - 56320), w++), _ += f < 128 ? 1 : f < 2048 ? 2 : f < 65536 ? 3 : 4;
           for (s = a.uint8array ? new Uint8Array(_) : new Array(_), w = E = 0; E < _; w++)
-            (64512 & (f = b.charCodeAt(w))) == 55296 && w + 1 < O && (64512 & (u = b.charCodeAt(w + 1))) == 56320 && (f = 65536 + (f - 55296 << 10) + (u - 56320), w++), f < 128 ? s[E++] = f : (f < 2048 ? s[E++] = 192 | f >>> 6 : (f < 65536 ? s[E++] = 224 | f >>> 12 : (s[E++] = 240 | f >>> 18, s[E++] = 128 | f >>> 12 & 63), s[E++] = 128 | f >>> 6 & 63), s[E++] = 128 | 63 & f);
+            (64512 & (f = b.charCodeAt(w))) == 55296 && w + 1 < O && (64512 & (h = b.charCodeAt(w + 1))) == 56320 && (f = 65536 + (f - 55296 << 10) + (h - 56320), w++), f < 128 ? s[E++] = f : (f < 2048 ? s[E++] = 192 | f >>> 6 : (f < 65536 ? s[E++] = 224 | f >>> 12 : (s[E++] = 240 | f >>> 18, s[E++] = 128 | f >>> 12 & 63), s[E++] = 128 | f >>> 6 & 63), s[E++] = 128 | 63 & f);
           return s;
         }(l);
       }, c.utf8decode = function(l) {
         return a.nodebuffer ? r.transformTo("nodebuffer", l).toString("utf-8") : function(b) {
-          var s, f, u, w, E = b.length, O = new Array(2 * E);
+          var s, f, h, w, E = b.length, O = new Array(2 * E);
           for (s = f = 0; s < E; )
-            if ((u = b[s++]) < 128)
-              O[f++] = u;
-            else if (4 < (w = p[u]))
+            if ((h = b[s++]) < 128)
+              O[f++] = h;
+            else if (4 < (w = p[h]))
               O[f++] = 65533, s += w - 1;
             else {
-              for (u &= w === 2 ? 31 : w === 3 ? 15 : 7; 1 < w && s < E; )
-                u = u << 6 | 63 & b[s++], w--;
-              1 < w ? O[f++] = 65533 : u < 65536 ? O[f++] = u : (u -= 65536, O[f++] = 55296 | u >> 10 & 1023, O[f++] = 56320 | 1023 & u);
+              for (h &= w === 2 ? 31 : w === 3 ? 15 : 7; 1 < w && s < E; )
+                h = h << 6 | 63 & b[s++], w--;
+              1 < w ? O[f++] = 65533 : h < 65536 ? O[f++] = h : (h -= 65536, O[f++] = 55296 | h >> 10 & 1023, O[f++] = 56320 | 1023 & h);
             }
           return O.length !== f && (O.subarray ? O = O.subarray(0, f) : O.length = f), r.applyFromCharCode(O);
         }(l = r.transformTo(a.uint8array ? "uint8array" : "array", l));
@@ -812,8 +812,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           for ((E = E || w.length) > w.length && (E = w.length), O = E - 1; 0 <= O && (192 & w[O]) == 128; )
             O--;
           return O < 0 || O === 0 ? E : O + p[w[O]] > E ? O : E;
-        }(b), u = b;
-        f !== b.length && (a.uint8array ? (u = b.subarray(0, f), this.leftOver = b.subarray(f, b.length)) : (u = b.slice(0, f), this.leftOver = b.slice(f, b.length))), this.push({ data: c.utf8decode(u), meta: l.meta });
+        }(b), h = b;
+        f !== b.length && (a.uint8array ? (h = b.subarray(0, f), this.leftOver = b.subarray(f, b.length)) : (h = b.slice(0, f), this.leftOver = b.slice(f, b.length))), this.push({ data: c.utf8decode(h), meta: l.meta });
       }, g.prototype.flush = function() {
         this.leftOver && this.leftOver.length && (this.push({ data: c.utf8decode(this.leftOver), meta: {} }), this.leftOver = null);
       }, c.Utf8DecodeWorker = g, r.inherits(v, o), v.prototype.processChunk = function(l) {
@@ -825,8 +825,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         return s;
       }
       function m(s, f) {
-        for (var u = 0; u < s.length; ++u)
-          f[u] = 255 & s.charCodeAt(u);
+        for (var h = 0; h < s.length; ++h)
+          f[h] = 255 & s.charCodeAt(h);
         return f;
       }
       e("setimmediate"), c.newBlob = function(s, f) {
@@ -835,23 +835,23 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           return new Blob([s], { type: f });
         } catch {
           try {
-            var u = new (self.BlobBuilder || self.WebKitBlobBuilder || self.MozBlobBuilder || self.MSBlobBuilder)();
-            return u.append(s), u.getBlob(f);
+            var h = new (self.BlobBuilder || self.WebKitBlobBuilder || self.MozBlobBuilder || self.MSBlobBuilder)();
+            return h.append(s), h.getBlob(f);
           } catch {
             throw new Error("Bug : can't construct the Blob.");
           }
         }
       };
-      var g = { stringifyByChunk: function(s, f, u) {
+      var g = { stringifyByChunk: function(s, f, h) {
         var w = [], E = 0, O = s.length;
-        if (O <= u)
+        if (O <= h)
           return String.fromCharCode.apply(null, s);
         for (; E < O; )
-          f === "array" || f === "nodebuffer" ? w.push(String.fromCharCode.apply(null, s.slice(E, Math.min(E + u, O)))) : w.push(String.fromCharCode.apply(null, s.subarray(E, Math.min(E + u, O)))), E += u;
+          f === "array" || f === "nodebuffer" ? w.push(String.fromCharCode.apply(null, s.slice(E, Math.min(E + h, O)))) : w.push(String.fromCharCode.apply(null, s.subarray(E, Math.min(E + h, O)))), E += h;
         return w.join("");
       }, stringifyByChar: function(s) {
-        for (var f = "", u = 0; u < s.length; u++)
-          f += String.fromCharCode(s[u]);
+        for (var f = "", h = 0; h < s.length; h++)
+          f += String.fromCharCode(s[h]);
         return f;
       }, applyCanBeUsed: { uint8array: function() {
         try {
@@ -867,19 +867,19 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         }
       }() } };
       function v(s) {
-        var f = 65536, u = c.getTypeOf(s), w = !0;
-        if (u === "uint8array" ? w = g.applyCanBeUsed.uint8array : u === "nodebuffer" && (w = g.applyCanBeUsed.nodebuffer), w)
+        var f = 65536, h = c.getTypeOf(s), w = !0;
+        if (h === "uint8array" ? w = g.applyCanBeUsed.uint8array : h === "nodebuffer" && (w = g.applyCanBeUsed.nodebuffer), w)
           for (; 1 < f; )
             try {
-              return g.stringifyByChunk(s, u, f);
+              return g.stringifyByChunk(s, h, f);
             } catch {
               f = Math.floor(f / 2);
             }
         return g.stringifyByChar(s);
       }
       function l(s, f) {
-        for (var u = 0; u < s.length; u++)
-          f[u] = s[u];
+        for (var h = 0; h < s.length; h++)
+          f[h] = s[h];
         return f;
       }
       c.applyFromCharCode = v;
@@ -922,39 +922,39 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         if (f = f || "", !s)
           return f;
         c.checkSupport(s);
-        var u = c.getTypeOf(f);
-        return b[u][s](f);
+        var h = c.getTypeOf(f);
+        return b[h][s](f);
       }, c.resolve = function(s) {
-        for (var f = s.split("/"), u = [], w = 0; w < f.length; w++) {
+        for (var f = s.split("/"), h = [], w = 0; w < f.length; w++) {
           var E = f[w];
-          E === "." || E === "" && w !== 0 && w !== f.length - 1 || (E === ".." ? u.pop() : u.push(E));
+          E === "." || E === "" && w !== 0 && w !== f.length - 1 || (E === ".." ? h.pop() : h.push(E));
         }
-        return u.join("/");
+        return h.join("/");
       }, c.getTypeOf = function(s) {
         return typeof s == "string" ? "string" : Object.prototype.toString.call(s) === "[object Array]" ? "array" : r.nodebuffer && n.isBuffer(s) ? "nodebuffer" : r.uint8array && s instanceof Uint8Array ? "uint8array" : r.arraybuffer && s instanceof ArrayBuffer ? "arraybuffer" : void 0;
       }, c.checkSupport = function(s) {
         if (!r[s.toLowerCase()])
           throw new Error(s + " is not supported by this platform");
       }, c.MAX_VALUE_16BITS = 65535, c.MAX_VALUE_32BITS = -1, c.pretty = function(s) {
-        var f, u, w = "";
-        for (u = 0; u < (s || "").length; u++)
-          w += "\\x" + ((f = s.charCodeAt(u)) < 16 ? "0" : "") + f.toString(16).toUpperCase();
+        var f, h, w = "";
+        for (h = 0; h < (s || "").length; h++)
+          w += "\\x" + ((f = s.charCodeAt(h)) < 16 ? "0" : "") + f.toString(16).toUpperCase();
         return w;
-      }, c.delay = function(s, f, u) {
+      }, c.delay = function(s, f, h) {
         setImmediate(function() {
-          s.apply(u || null, f || []);
+          s.apply(h || null, f || []);
         });
       }, c.inherits = function(s, f) {
-        function u() {
+        function h() {
         }
-        u.prototype = f.prototype, s.prototype = new u();
+        h.prototype = f.prototype, s.prototype = new h();
       }, c.extend = function() {
-        var s, f, u = {};
+        var s, f, h = {};
         for (s = 0; s < arguments.length; s++)
           for (f in arguments[s])
-            Object.prototype.hasOwnProperty.call(arguments[s], f) && u[f] === void 0 && (u[f] = arguments[s][f]);
-        return u;
-      }, c.prepareContent = function(s, f, u, w, E) {
+            Object.prototype.hasOwnProperty.call(arguments[s], f) && h[f] === void 0 && (h[f] = arguments[s][f]);
+        return h;
+      }, c.prepareContent = function(s, f, h, w, E) {
         return o.Promise.resolve(f).then(function(O) {
           return r.blob && (O instanceof Blob || ["[object File]", "[object Blob]"].indexOf(Object.prototype.toString.call(O)) !== -1) && typeof FileReader < "u" ? new o.Promise(function(_, Q) {
             var D = new FileReader();
@@ -966,7 +966,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           }) : O;
         }).then(function(O) {
           var _ = c.getTypeOf(O);
-          return _ ? (_ === "arraybuffer" ? O = c.transformTo("uint8array", O) : _ === "string" && (E ? O = a.decode(O) : u && w !== !0 && (O = function(Q) {
+          return _ ? (_ === "arraybuffer" ? O = c.transformTo("uint8array", O) : _ === "string" && (E ? O = a.decode(O) : h && w !== !0 && (O = function(Q) {
             return m(Q, r.uint8array ? new Uint8Array(Q.length) : new Array(Q.length));
           }(O))), O) : o.Promise.reject(new Error("Can't read the data of '" + s + "'. Is it in a supported JavaScript type (String, Blob, ArrayBuffer, etc) ?"));
         });
@@ -1047,9 +1047,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         if (l.skip(22), this.fileNameLength = l.readInt(2), s = l.readInt(2), this.fileName = l.readData(this.fileNameLength), l.skip(s), this.compressedSize === -1 || this.uncompressedSize === -1)
           throw new Error("Bug or corrupted zip : didn't get enough information from the central directory (compressedSize === -1 || uncompressedSize === -1)");
         if ((b = function(f) {
-          for (var u in m)
-            if (Object.prototype.hasOwnProperty.call(m, u) && m[u].magic === f)
-              return m[u];
+          for (var h in m)
+            if (Object.prototype.hasOwnProperty.call(m, h) && m[h].magic === f)
+              return m[h];
           return null;
         }(this.compressionMethod)) === null)
           throw new Error("Corrupted zip : compression " + a.pretty(this.compressionMethod) + " unknown (inner file : " + a.transformTo("string", this.fileName) + ")");
@@ -1070,10 +1070,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           this.uncompressedSize === a.MAX_VALUE_32BITS && (this.uncompressedSize = l.readInt(8)), this.compressedSize === a.MAX_VALUE_32BITS && (this.compressedSize = l.readInt(8)), this.localHeaderOffset === a.MAX_VALUE_32BITS && (this.localHeaderOffset = l.readInt(8)), this.diskNumberStart === a.MAX_VALUE_32BITS && (this.diskNumberStart = l.readInt(4));
         }
       }, readExtraFields: function(l) {
-        var b, s, f, u = l.index + this.extraFieldsLength;
-        for (this.extraFields || (this.extraFields = {}); l.index + 4 < u; )
+        var b, s, f, h = l.index + this.extraFieldsLength;
+        for (this.extraFields || (this.extraFields = {}); l.index + 4 < h; )
           b = l.readInt(2), s = l.readInt(2), f = l.readData(s), this.extraFields[b] = { id: b, length: s, value: f };
-        l.setIndex(u);
+        l.setIndex(h);
       }, handleUTF8: function() {
         var l = g.uint8array ? "uint8array" : "array";
         if (this.useUTF8())
@@ -1090,8 +1090,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           if (f !== null)
             this.fileCommentStr = f;
           else {
-            var u = a.transformTo(l, this.fileComment);
-            this.fileCommentStr = this.loadOptions.decodeFileName(u);
+            var h = a.transformTo(l, this.fileComment);
+            this.fileCommentStr = this.loadOptions.decodeFileName(h);
           }
         }
       }, findExtraFieldUnicodePath: function() {
@@ -1119,10 +1119,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         try {
           if (!b)
             throw new Error("No output type specified.");
-          var u = (f = b.toLowerCase()) === "string" || f === "text";
+          var h = (f = b.toLowerCase()) === "string" || f === "text";
           f !== "binarystring" && f !== "text" || (f = "string"), s = this._decompressWorker();
           var w = !this._dataBinary;
-          w && !u && (s = s.pipe(new o.Utf8EncodeWorker())), !w && u && (s = s.pipe(new o.Utf8DecodeWorker()));
+          w && !h && (s = s.pipe(new o.Utf8EncodeWorker())), !w && h && (s = s.pipe(new o.Utf8DecodeWorker()));
         } catch (E) {
           (s = new m("error")).error(E);
         }
@@ -1171,147 +1171,147 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         function b() {
           var s, f;
           n = !0;
-          for (var u = l.length; u; ) {
-            for (f = l, l = [], s = -1; ++s < u; )
+          for (var h = l.length; h; ) {
+            for (f = l, l = [], s = -1; ++s < h; )
               f[s]();
-            u = l.length;
+            h = l.length;
           }
           n = !1;
         }
         d.exports = function(s) {
           l.push(s) !== 1 || n || a();
         };
-      }).call(this, typeof Nt < "u" ? Nt : typeof self < "u" ? self : typeof window < "u" ? window : {});
+      }).call(this, typeof Vt < "u" ? Vt : typeof self < "u" ? self : typeof window < "u" ? window : {});
     }, {}], 37: [function(e, d, c) {
       var r = e("immediate");
       function a() {
       }
       var n = {}, o = ["REJECTED"], p = ["FULFILLED"], m = ["PENDING"];
-      function g(u) {
-        if (typeof u != "function")
+      function g(h) {
+        if (typeof h != "function")
           throw new TypeError("resolver must be a function");
-        this.state = m, this.queue = [], this.outcome = void 0, u !== a && s(this, u);
+        this.state = m, this.queue = [], this.outcome = void 0, h !== a && s(this, h);
       }
-      function v(u, w, E) {
-        this.promise = u, typeof w == "function" && (this.onFulfilled = w, this.callFulfilled = this.otherCallFulfilled), typeof E == "function" && (this.onRejected = E, this.callRejected = this.otherCallRejected);
+      function v(h, w, E) {
+        this.promise = h, typeof w == "function" && (this.onFulfilled = w, this.callFulfilled = this.otherCallFulfilled), typeof E == "function" && (this.onRejected = E, this.callRejected = this.otherCallRejected);
       }
-      function l(u, w, E) {
+      function l(h, w, E) {
         r(function() {
           var O;
           try {
             O = w(E);
           } catch (_) {
-            return n.reject(u, _);
+            return n.reject(h, _);
           }
-          O === u ? n.reject(u, new TypeError("Cannot resolve promise with itself")) : n.resolve(u, O);
+          O === h ? n.reject(h, new TypeError("Cannot resolve promise with itself")) : n.resolve(h, O);
         });
       }
-      function b(u) {
-        var w = u && u.then;
-        if (u && (typeof u == "object" || typeof u == "function") && typeof w == "function")
+      function b(h) {
+        var w = h && h.then;
+        if (h && (typeof h == "object" || typeof h == "function") && typeof w == "function")
           return function() {
-            w.apply(u, arguments);
+            w.apply(h, arguments);
           };
       }
-      function s(u, w) {
+      function s(h, w) {
         var E = !1;
         function O(D) {
-          E || (E = !0, n.reject(u, D));
+          E || (E = !0, n.reject(h, D));
         }
         function _(D) {
-          E || (E = !0, n.resolve(u, D));
+          E || (E = !0, n.resolve(h, D));
         }
         var Q = f(function() {
           w(_, O);
         });
         Q.status === "error" && O(Q.value);
       }
-      function f(u, w) {
+      function f(h, w) {
         var E = {};
         try {
-          E.value = u(w), E.status = "success";
+          E.value = h(w), E.status = "success";
         } catch (O) {
           E.status = "error", E.value = O;
         }
         return E;
       }
-      (d.exports = g).prototype.finally = function(u) {
-        if (typeof u != "function")
+      (d.exports = g).prototype.finally = function(h) {
+        if (typeof h != "function")
           return this;
         var w = this.constructor;
         return this.then(function(E) {
-          return w.resolve(u()).then(function() {
+          return w.resolve(h()).then(function() {
             return E;
           });
         }, function(E) {
-          return w.resolve(u()).then(function() {
+          return w.resolve(h()).then(function() {
             throw E;
           });
         });
-      }, g.prototype.catch = function(u) {
-        return this.then(null, u);
-      }, g.prototype.then = function(u, w) {
-        if (typeof u != "function" && this.state === p || typeof w != "function" && this.state === o)
+      }, g.prototype.catch = function(h) {
+        return this.then(null, h);
+      }, g.prototype.then = function(h, w) {
+        if (typeof h != "function" && this.state === p || typeof w != "function" && this.state === o)
           return this;
         var E = new this.constructor(a);
-        return this.state !== m ? l(E, this.state === p ? u : w, this.outcome) : this.queue.push(new v(E, u, w)), E;
-      }, v.prototype.callFulfilled = function(u) {
-        n.resolve(this.promise, u);
-      }, v.prototype.otherCallFulfilled = function(u) {
-        l(this.promise, this.onFulfilled, u);
-      }, v.prototype.callRejected = function(u) {
-        n.reject(this.promise, u);
-      }, v.prototype.otherCallRejected = function(u) {
-        l(this.promise, this.onRejected, u);
-      }, n.resolve = function(u, w) {
+        return this.state !== m ? l(E, this.state === p ? h : w, this.outcome) : this.queue.push(new v(E, h, w)), E;
+      }, v.prototype.callFulfilled = function(h) {
+        n.resolve(this.promise, h);
+      }, v.prototype.otherCallFulfilled = function(h) {
+        l(this.promise, this.onFulfilled, h);
+      }, v.prototype.callRejected = function(h) {
+        n.reject(this.promise, h);
+      }, v.prototype.otherCallRejected = function(h) {
+        l(this.promise, this.onRejected, h);
+      }, n.resolve = function(h, w) {
         var E = f(b, w);
         if (E.status === "error")
-          return n.reject(u, E.value);
+          return n.reject(h, E.value);
         var O = E.value;
         if (O)
-          s(u, O);
+          s(h, O);
         else {
-          u.state = p, u.outcome = w;
-          for (var _ = -1, Q = u.queue.length; ++_ < Q; )
-            u.queue[_].callFulfilled(w);
+          h.state = p, h.outcome = w;
+          for (var _ = -1, Q = h.queue.length; ++_ < Q; )
+            h.queue[_].callFulfilled(w);
         }
-        return u;
-      }, n.reject = function(u, w) {
-        u.state = o, u.outcome = w;
-        for (var E = -1, O = u.queue.length; ++E < O; )
-          u.queue[E].callRejected(w);
-        return u;
-      }, g.resolve = function(u) {
-        return u instanceof this ? u : n.resolve(new this(a), u);
-      }, g.reject = function(u) {
+        return h;
+      }, n.reject = function(h, w) {
+        h.state = o, h.outcome = w;
+        for (var E = -1, O = h.queue.length; ++E < O; )
+          h.queue[E].callRejected(w);
+        return h;
+      }, g.resolve = function(h) {
+        return h instanceof this ? h : n.resolve(new this(a), h);
+      }, g.reject = function(h) {
         var w = new this(a);
-        return n.reject(w, u);
-      }, g.all = function(u) {
+        return n.reject(w, h);
+      }, g.all = function(h) {
         var w = this;
-        if (Object.prototype.toString.call(u) !== "[object Array]")
+        if (Object.prototype.toString.call(h) !== "[object Array]")
           return this.reject(new TypeError("must be an array"));
-        var E = u.length, O = !1;
+        var E = h.length, O = !1;
         if (!E)
           return this.resolve([]);
         for (var _ = new Array(E), Q = 0, D = -1, Y = new this(a); ++D < E; )
-          N(u[D], D);
+          V(h[D], D);
         return Y;
-        function N(H, rt) {
+        function V(H, rt) {
           w.resolve(H).then(function(k) {
             _[rt] = k, ++Q !== E || O || (O = !0, n.resolve(Y, _));
           }, function(k) {
             O || (O = !0, n.reject(Y, k));
           });
         }
-      }, g.race = function(u) {
+      }, g.race = function(h) {
         var w = this;
-        if (Object.prototype.toString.call(u) !== "[object Array]")
+        if (Object.prototype.toString.call(h) !== "[object Array]")
           return this.reject(new TypeError("must be an array"));
-        var E = u.length, O = !1;
+        var E = h.length, O = !1;
         if (!E)
           return this.resolve([]);
         for (var _ = -1, Q = new this(a); ++_ < E; )
-          D = u[_], w.resolve(D).then(function(Y) {
+          D = h[_], w.resolve(D).then(function(Y) {
             O || (O = !0, n.resolve(Q, Y));
           }, function(Y) {
             O || (O = !0, n.reject(Q, Y));
@@ -1324,10 +1324,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       (0, e("./lib/utils/common").assign)(r, e("./lib/deflate"), e("./lib/inflate"), e("./lib/zlib/constants")), d.exports = r;
     }, { "./lib/deflate": 39, "./lib/inflate": 40, "./lib/utils/common": 41, "./lib/zlib/constants": 44 }], 39: [function(e, d, c) {
       var r = e("./zlib/deflate"), a = e("./utils/common"), n = e("./utils/strings"), o = e("./zlib/messages"), p = e("./zlib/zstream"), m = Object.prototype.toString, g = 0, v = -1, l = 0, b = 8;
-      function s(u) {
+      function s(h) {
         if (!(this instanceof s))
-          return new s(u);
-        this.options = a.assign({ level: v, method: b, chunkSize: 16384, windowBits: 15, memLevel: 8, strategy: l, to: "" }, u || {});
+          return new s(h);
+        this.options = a.assign({ level: v, method: b, chunkSize: 16384, windowBits: 15, memLevel: 8, strategy: l, to: "" }, h || {});
         var w = this.options;
         w.raw && 0 < w.windowBits ? w.windowBits = -w.windowBits : w.gzip && 0 < w.windowBits && w.windowBits < 16 && (w.windowBits += 16), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new p(), this.strm.avail_out = 0;
         var E = r.deflateInit2(this.strm, w.level, w.method, w.windowBits, w.memLevel, w.strategy);
@@ -1340,31 +1340,31 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           this._dict_set = !0;
         }
       }
-      function f(u, w) {
+      function f(h, w) {
         var E = new s(w);
-        if (E.push(u, !0), E.err)
+        if (E.push(h, !0), E.err)
           throw E.msg || o[E.err];
         return E.result;
       }
-      s.prototype.push = function(u, w) {
+      s.prototype.push = function(h, w) {
         var E, O, _ = this.strm, Q = this.options.chunkSize;
         if (this.ended)
           return !1;
-        O = w === ~~w ? w : w === !0 ? 4 : 0, typeof u == "string" ? _.input = n.string2buf(u) : m.call(u) === "[object ArrayBuffer]" ? _.input = new Uint8Array(u) : _.input = u, _.next_in = 0, _.avail_in = _.input.length;
+        O = w === ~~w ? w : w === !0 ? 4 : 0, typeof h == "string" ? _.input = n.string2buf(h) : m.call(h) === "[object ArrayBuffer]" ? _.input = new Uint8Array(h) : _.input = h, _.next_in = 0, _.avail_in = _.input.length;
         do {
           if (_.avail_out === 0 && (_.output = new a.Buf8(Q), _.next_out = 0, _.avail_out = Q), (E = r.deflate(_, O)) !== 1 && E !== g)
             return this.onEnd(E), !(this.ended = !0);
           _.avail_out !== 0 && (_.avail_in !== 0 || O !== 4 && O !== 2) || (this.options.to === "string" ? this.onData(n.buf2binstring(a.shrinkBuf(_.output, _.next_out))) : this.onData(a.shrinkBuf(_.output, _.next_out)));
         } while ((0 < _.avail_in || _.avail_out === 0) && E !== 1);
         return O === 4 ? (E = r.deflateEnd(this.strm), this.onEnd(E), this.ended = !0, E === g) : O !== 2 || (this.onEnd(g), !(_.avail_out = 0));
-      }, s.prototype.onData = function(u) {
-        this.chunks.push(u);
-      }, s.prototype.onEnd = function(u) {
-        u === g && (this.options.to === "string" ? this.result = this.chunks.join("") : this.result = a.flattenChunks(this.chunks)), this.chunks = [], this.err = u, this.msg = this.strm.msg;
-      }, c.Deflate = s, c.deflate = f, c.deflateRaw = function(u, w) {
-        return (w = w || {}).raw = !0, f(u, w);
-      }, c.gzip = function(u, w) {
-        return (w = w || {}).gzip = !0, f(u, w);
+      }, s.prototype.onData = function(h) {
+        this.chunks.push(h);
+      }, s.prototype.onEnd = function(h) {
+        h === g && (this.options.to === "string" ? this.result = this.chunks.join("") : this.result = a.flattenChunks(this.chunks)), this.chunks = [], this.err = h, this.msg = this.strm.msg;
+      }, c.Deflate = s, c.deflate = f, c.deflateRaw = function(h, w) {
+        return (w = w || {}).raw = !0, f(h, w);
+      }, c.gzip = function(h, w) {
+        return (w = w || {}).gzip = !0, f(h, w);
       };
     }, { "./utils/common": 41, "./utils/strings": 42, "./zlib/deflate": 46, "./zlib/messages": 51, "./zlib/zstream": 53 }], 40: [function(e, d, c) {
       var r = e("./zlib/inflate"), a = e("./utils/common"), n = e("./utils/strings"), o = e("./zlib/constants"), p = e("./zlib/messages"), m = e("./zlib/zstream"), g = e("./zlib/gzheader"), v = Object.prototype.toString;
@@ -1374,28 +1374,28 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         this.options = a.assign({ chunkSize: 16384, windowBits: 0, to: "" }, s || {});
         var f = this.options;
         f.raw && 0 <= f.windowBits && f.windowBits < 16 && (f.windowBits = -f.windowBits, f.windowBits === 0 && (f.windowBits = -15)), !(0 <= f.windowBits && f.windowBits < 16) || s && s.windowBits || (f.windowBits += 32), 15 < f.windowBits && f.windowBits < 48 && !(15 & f.windowBits) && (f.windowBits |= 15), this.err = 0, this.msg = "", this.ended = !1, this.chunks = [], this.strm = new m(), this.strm.avail_out = 0;
-        var u = r.inflateInit2(this.strm, f.windowBits);
-        if (u !== o.Z_OK)
-          throw new Error(p[u]);
+        var h = r.inflateInit2(this.strm, f.windowBits);
+        if (h !== o.Z_OK)
+          throw new Error(p[h]);
         this.header = new g(), r.inflateGetHeader(this.strm, this.header);
       }
       function b(s, f) {
-        var u = new l(f);
-        if (u.push(s, !0), u.err)
-          throw u.msg || p[u.err];
-        return u.result;
+        var h = new l(f);
+        if (h.push(s, !0), h.err)
+          throw h.msg || p[h.err];
+        return h.result;
       }
       l.prototype.push = function(s, f) {
-        var u, w, E, O, _, Q, D = this.strm, Y = this.options.chunkSize, N = this.options.dictionary, H = !1;
+        var h, w, E, O, _, Q, D = this.strm, Y = this.options.chunkSize, V = this.options.dictionary, H = !1;
         if (this.ended)
           return !1;
         w = f === ~~f ? f : f === !0 ? o.Z_FINISH : o.Z_NO_FLUSH, typeof s == "string" ? D.input = n.binstring2buf(s) : v.call(s) === "[object ArrayBuffer]" ? D.input = new Uint8Array(s) : D.input = s, D.next_in = 0, D.avail_in = D.input.length;
         do {
-          if (D.avail_out === 0 && (D.output = new a.Buf8(Y), D.next_out = 0, D.avail_out = Y), (u = r.inflate(D, o.Z_NO_FLUSH)) === o.Z_NEED_DICT && N && (Q = typeof N == "string" ? n.string2buf(N) : v.call(N) === "[object ArrayBuffer]" ? new Uint8Array(N) : N, u = r.inflateSetDictionary(this.strm, Q)), u === o.Z_BUF_ERROR && H === !0 && (u = o.Z_OK, H = !1), u !== o.Z_STREAM_END && u !== o.Z_OK)
-            return this.onEnd(u), !(this.ended = !0);
-          D.next_out && (D.avail_out !== 0 && u !== o.Z_STREAM_END && (D.avail_in !== 0 || w !== o.Z_FINISH && w !== o.Z_SYNC_FLUSH) || (this.options.to === "string" ? (E = n.utf8border(D.output, D.next_out), O = D.next_out - E, _ = n.buf2string(D.output, E), D.next_out = O, D.avail_out = Y - O, O && a.arraySet(D.output, D.output, E, O, 0), this.onData(_)) : this.onData(a.shrinkBuf(D.output, D.next_out)))), D.avail_in === 0 && D.avail_out === 0 && (H = !0);
-        } while ((0 < D.avail_in || D.avail_out === 0) && u !== o.Z_STREAM_END);
-        return u === o.Z_STREAM_END && (w = o.Z_FINISH), w === o.Z_FINISH ? (u = r.inflateEnd(this.strm), this.onEnd(u), this.ended = !0, u === o.Z_OK) : w !== o.Z_SYNC_FLUSH || (this.onEnd(o.Z_OK), !(D.avail_out = 0));
+          if (D.avail_out === 0 && (D.output = new a.Buf8(Y), D.next_out = 0, D.avail_out = Y), (h = r.inflate(D, o.Z_NO_FLUSH)) === o.Z_NEED_DICT && V && (Q = typeof V == "string" ? n.string2buf(V) : v.call(V) === "[object ArrayBuffer]" ? new Uint8Array(V) : V, h = r.inflateSetDictionary(this.strm, Q)), h === o.Z_BUF_ERROR && H === !0 && (h = o.Z_OK, H = !1), h !== o.Z_STREAM_END && h !== o.Z_OK)
+            return this.onEnd(h), !(this.ended = !0);
+          D.next_out && (D.avail_out !== 0 && h !== o.Z_STREAM_END && (D.avail_in !== 0 || w !== o.Z_FINISH && w !== o.Z_SYNC_FLUSH) || (this.options.to === "string" ? (E = n.utf8border(D.output, D.next_out), O = D.next_out - E, _ = n.buf2string(D.output, E), D.next_out = O, D.avail_out = Y - O, O && a.arraySet(D.output, D.output, E, O, 0), this.onData(_)) : this.onData(a.shrinkBuf(D.output, D.next_out)))), D.avail_in === 0 && D.avail_out === 0 && (H = !0);
+        } while ((0 < D.avail_in || D.avail_out === 0) && h !== o.Z_STREAM_END);
+        return h === o.Z_STREAM_END && (w = o.Z_FINISH), w === o.Z_FINISH ? (h = r.inflateEnd(this.strm), this.onEnd(h), this.ended = !0, h === o.Z_OK) : w !== o.Z_SYNC_FLUSH || (this.onEnd(o.Z_OK), !(D.avail_out = 0));
       }, l.prototype.onData = function(s) {
         this.chunks.push(s);
       }, l.prototype.onEnd = function(s) {
@@ -1463,11 +1463,11 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         return l;
       }
       o[254] = o[254] = 1, c.string2buf = function(g) {
-        var v, l, b, s, f, u = g.length, w = 0;
-        for (s = 0; s < u; s++)
-          (64512 & (l = g.charCodeAt(s))) == 55296 && s + 1 < u && (64512 & (b = g.charCodeAt(s + 1))) == 56320 && (l = 65536 + (l - 55296 << 10) + (b - 56320), s++), w += l < 128 ? 1 : l < 2048 ? 2 : l < 65536 ? 3 : 4;
+        var v, l, b, s, f, h = g.length, w = 0;
+        for (s = 0; s < h; s++)
+          (64512 & (l = g.charCodeAt(s))) == 55296 && s + 1 < h && (64512 & (b = g.charCodeAt(s + 1))) == 56320 && (l = 65536 + (l - 55296 << 10) + (b - 56320), s++), w += l < 128 ? 1 : l < 2048 ? 2 : l < 65536 ? 3 : 4;
         for (v = new r.Buf8(w), s = f = 0; f < w; s++)
-          (64512 & (l = g.charCodeAt(s))) == 55296 && s + 1 < u && (64512 & (b = g.charCodeAt(s + 1))) == 56320 && (l = 65536 + (l - 55296 << 10) + (b - 56320), s++), l < 128 ? v[f++] = l : (l < 2048 ? v[f++] = 192 | l >>> 6 : (l < 65536 ? v[f++] = 224 | l >>> 12 : (v[f++] = 240 | l >>> 18, v[f++] = 128 | l >>> 12 & 63), v[f++] = 128 | l >>> 6 & 63), v[f++] = 128 | 63 & l);
+          (64512 & (l = g.charCodeAt(s))) == 55296 && s + 1 < h && (64512 & (b = g.charCodeAt(s + 1))) == 56320 && (l = 65536 + (l - 55296 << 10) + (b - 56320), s++), l < 128 ? v[f++] = l : (l < 2048 ? v[f++] = 192 | l >>> 6 : (l < 65536 ? v[f++] = 224 | l >>> 12 : (v[f++] = 240 | l >>> 18, v[f++] = 128 | l >>> 12 & 63), v[f++] = 128 | l >>> 6 & 63), v[f++] = 128 | 63 & l);
         return v;
       }, c.buf2binstring = function(g) {
         return m(g, g.length);
@@ -1476,14 +1476,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           v[l] = g.charCodeAt(l);
         return v;
       }, c.buf2string = function(g, v) {
-        var l, b, s, f, u = v || g.length, w = new Array(2 * u);
-        for (l = b = 0; l < u; )
+        var l, b, s, f, h = v || g.length, w = new Array(2 * h);
+        for (l = b = 0; l < h; )
           if ((s = g[l++]) < 128)
             w[b++] = s;
           else if (4 < (f = o[s]))
             w[b++] = 65533, l += f - 1;
           else {
-            for (s &= f === 2 ? 31 : f === 3 ? 15 : 7; 1 < f && l < u; )
+            for (s &= f === 2 ? 31 : f === 3 ? 15 : 7; 1 < f && l < h; )
               s = s << 6 | 63 & g[l++], f--;
             1 < f ? w[b++] = 65533 : s < 65536 ? w[b++] = s : (s -= 65536, w[b++] = 55296 | s >> 10 & 1023, w[b++] = 56320 | 1023 & s);
           }
@@ -1523,7 +1523,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         return -1 ^ a;
       };
     }, {}], 46: [function(e, d, c) {
-      var r, a = e("../utils/common"), n = e("./trees"), o = e("./adler32"), p = e("./crc32"), m = e("./messages"), g = 0, v = 4, l = 0, b = -2, s = -1, f = 4, u = 2, w = 8, E = 9, O = 286, _ = 30, Q = 19, D = 2 * O + 1, Y = 15, N = 3, H = 258, rt = H + N + 1, k = 42, V = 113, i = 1, G = 2, it = 3, S = 4;
+      var r, a = e("../utils/common"), n = e("./trees"), o = e("./adler32"), p = e("./crc32"), m = e("./messages"), g = 0, v = 4, l = 0, b = -2, s = -1, f = 4, h = 2, w = 8, E = 9, O = 286, _ = 30, Q = 19, D = 2 * O + 1, Y = 15, V = 3, H = 258, rt = H + V + 1, k = 42, N = 113, i = 1, G = 2, it = 3, S = 4;
       function U(t, z) {
         return t.msg = m[z], z;
       }
@@ -1577,8 +1577,8 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           }
           if (t.strm.avail_in === 0)
             break;
-          if (L = t.strm, j = t.window, R = t.strstart + t.lookahead, W = A, $ = void 0, $ = L.avail_in, W < $ && ($ = W), T = $ === 0 ? 0 : (L.avail_in -= $, a.arraySet(j, L.input, L.next_in, $, R), L.state.wrap === 1 ? L.adler = o(L.adler, j, $, R) : L.state.wrap === 2 && (L.adler = p(L.adler, j, $, R)), L.next_in += $, L.total_in += $, $), t.lookahead += T, t.lookahead + t.insert >= N)
-            for (I = t.strstart - t.insert, t.ins_h = t.window[I], t.ins_h = (t.ins_h << t.hash_shift ^ t.window[I + 1]) & t.hash_mask; t.insert && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[I + N - 1]) & t.hash_mask, t.prev[I & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = I, I++, t.insert--, !(t.lookahead + t.insert < N)); )
+          if (L = t.strm, j = t.window, R = t.strstart + t.lookahead, W = A, $ = void 0, $ = L.avail_in, W < $ && ($ = W), T = $ === 0 ? 0 : (L.avail_in -= $, a.arraySet(j, L.input, L.next_in, $, R), L.state.wrap === 1 ? L.adler = o(L.adler, j, $, R) : L.state.wrap === 2 && (L.adler = p(L.adler, j, $, R)), L.next_in += $, L.total_in += $, $), t.lookahead += T, t.lookahead + t.insert >= V)
+            for (I = t.strstart - t.insert, t.ins_h = t.window[I], t.ins_h = (t.ins_h << t.hash_shift ^ t.window[I + 1]) & t.hash_mask; t.insert && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[I + V - 1]) & t.hash_mask, t.prev[I & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = I, I++, t.insert--, !(t.lookahead + t.insert < V)); )
               ;
         } while (t.lookahead < rt && t.strm.avail_in !== 0);
       }
@@ -1590,9 +1590,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             if (t.lookahead === 0)
               break;
           }
-          if (T = 0, t.lookahead >= N && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + N - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), T !== 0 && t.strstart - T <= t.w_size - rt && (t.match_length = X(t, T)), t.match_length >= N)
-            if (y = n._tr_tally(t, t.strstart - t.match_start, t.match_length - N), t.lookahead -= t.match_length, t.match_length <= t.max_lazy_match && t.lookahead >= N) {
-              for (t.match_length--; t.strstart++, t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + N - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart, --t.match_length != 0; )
+          if (T = 0, t.lookahead >= V && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + V - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), T !== 0 && t.strstart - T <= t.w_size - rt && (t.match_length = X(t, T)), t.match_length >= V)
+            if (y = n._tr_tally(t, t.strstart - t.match_start, t.match_length - V), t.lookahead -= t.match_length, t.match_length <= t.max_lazy_match && t.lookahead >= V) {
+              for (t.match_length--; t.strstart++, t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + V - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart, --t.match_length != 0; )
                 ;
               t.strstart++;
             } else
@@ -1602,7 +1602,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           if (y && (B(t, !1), t.strm.avail_out === 0))
             return i;
         }
-        return t.insert = t.strstart < N - 1 ? t.strstart : N - 1, z === v ? (B(t, !0), t.strm.avail_out === 0 ? it : S) : t.last_lit && (B(t, !1), t.strm.avail_out === 0) ? i : G;
+        return t.insert = t.strstart < V - 1 ? t.strstart : V - 1, z === v ? (B(t, !0), t.strm.avail_out === 0 ? it : S) : t.last_lit && (B(t, !1), t.strm.avail_out === 0) ? i : G;
       }
       function at(t, z) {
         for (var T, y, A; ; ) {
@@ -1612,10 +1612,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             if (t.lookahead === 0)
               break;
           }
-          if (T = 0, t.lookahead >= N && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + N - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), t.prev_length = t.match_length, t.prev_match = t.match_start, t.match_length = N - 1, T !== 0 && t.prev_length < t.max_lazy_match && t.strstart - T <= t.w_size - rt && (t.match_length = X(t, T), t.match_length <= 5 && (t.strategy === 1 || t.match_length === N && 4096 < t.strstart - t.match_start) && (t.match_length = N - 1)), t.prev_length >= N && t.match_length <= t.prev_length) {
-            for (A = t.strstart + t.lookahead - N, y = n._tr_tally(t, t.strstart - 1 - t.prev_match, t.prev_length - N), t.lookahead -= t.prev_length - 1, t.prev_length -= 2; ++t.strstart <= A && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + N - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), --t.prev_length != 0; )
+          if (T = 0, t.lookahead >= V && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + V - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), t.prev_length = t.match_length, t.prev_match = t.match_start, t.match_length = V - 1, T !== 0 && t.prev_length < t.max_lazy_match && t.strstart - T <= t.w_size - rt && (t.match_length = X(t, T), t.match_length <= 5 && (t.strategy === 1 || t.match_length === V && 4096 < t.strstart - t.match_start) && (t.match_length = V - 1)), t.prev_length >= V && t.match_length <= t.prev_length) {
+            for (A = t.strstart + t.lookahead - V, y = n._tr_tally(t, t.strstart - 1 - t.prev_match, t.prev_length - V), t.lookahead -= t.prev_length - 1, t.prev_length -= 2; ++t.strstart <= A && (t.ins_h = (t.ins_h << t.hash_shift ^ t.window[t.strstart + V - 1]) & t.hash_mask, T = t.prev[t.strstart & t.w_mask] = t.head[t.ins_h], t.head[t.ins_h] = t.strstart), --t.prev_length != 0; )
               ;
-            if (t.match_available = 0, t.match_length = N - 1, t.strstart++, y && (B(t, !1), t.strm.avail_out === 0))
+            if (t.match_available = 0, t.match_length = V - 1, t.strstart++, y && (B(t, !1), t.strm.avail_out === 0))
               return i;
           } else if (t.match_available) {
             if ((y = n._tr_tally(t, 0, t.window[t.strstart - 1])) && B(t, !1), t.strstart++, t.lookahead--, t.strm.avail_out === 0)
@@ -1623,7 +1623,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           } else
             t.match_available = 1, t.strstart++, t.lookahead--;
         }
-        return t.match_available && (y = n._tr_tally(t, 0, t.window[t.strstart - 1]), t.match_available = 0), t.insert = t.strstart < N - 1 ? t.strstart : N - 1, z === v ? (B(t, !0), t.strm.avail_out === 0 ? it : S) : t.last_lit && (B(t, !1), t.strm.avail_out === 0) ? i : G;
+        return t.match_available && (y = n._tr_tally(t, 0, t.window[t.strstart - 1]), t.match_available = 0), t.insert = t.strstart < V - 1 ? t.strstart : V - 1, z === v ? (B(t, !0), t.strm.avail_out === 0 ? it : S) : t.last_lit && (B(t, !1), t.strm.avail_out === 0) ? i : G;
       }
       function st(t, z, T, y, A) {
         this.good_length = t, this.max_lazy = z, this.nice_length = T, this.max_chain = y, this.func = A;
@@ -1633,12 +1633,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       }
       function dt(t) {
         var z;
-        return t && t.state ? (t.total_in = t.total_out = 0, t.data_type = u, (z = t.state).pending = 0, z.pending_out = 0, z.wrap < 0 && (z.wrap = -z.wrap), z.status = z.wrap ? k : V, t.adler = z.wrap === 2 ? 0 : 1, z.last_flush = g, n._tr_init(z), l) : U(t, b);
+        return t && t.state ? (t.total_in = t.total_out = 0, t.data_type = h, (z = t.state).pending = 0, z.pending_out = 0, z.wrap < 0 && (z.wrap = -z.wrap), z.status = z.wrap ? k : N, t.adler = z.wrap === 2 ? 0 : 1, z.last_flush = g, n._tr_init(z), l) : U(t, b);
       }
       function ht(t) {
         var z = dt(t);
         return z === l && function(T) {
-          T.window_size = 2 * T.w_size, M(T.head), T.max_lazy_match = r[T.level].max_lazy, T.good_match = r[T.level].good_length, T.nice_match = r[T.level].nice_length, T.max_chain_length = r[T.level].max_chain, T.strstart = 0, T.block_start = 0, T.lookahead = 0, T.insert = 0, T.match_length = T.prev_length = N - 1, T.match_available = 0, T.ins_h = 0;
+          T.window_size = 2 * T.w_size, M(T.head), T.max_lazy_match = r[T.level].max_lazy, T.good_match = r[T.level].good_length, T.nice_match = r[T.level].nice_length, T.max_chain_length = r[T.level].max_chain, T.strstart = 0, T.block_start = 0, T.lookahead = 0, T.insert = 0, T.match_length = T.prev_length = V - 1, T.match_available = 0, T.ins_h = 0;
         }(t.state), z;
       }
       function yt(t, z, T, y, A, I) {
@@ -1649,7 +1649,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           return U(t, b);
         y === 8 && (y = 9);
         var j = new bt();
-        return (t.state = j).strm = t, j.wrap = L, j.gzhead = null, j.w_bits = y, j.w_size = 1 << j.w_bits, j.w_mask = j.w_size - 1, j.hash_bits = A + 7, j.hash_size = 1 << j.hash_bits, j.hash_mask = j.hash_size - 1, j.hash_shift = ~~((j.hash_bits + N - 1) / N), j.window = new a.Buf8(2 * j.w_size), j.head = new a.Buf16(j.hash_size), j.prev = new a.Buf16(j.w_size), j.lit_bufsize = 1 << A + 6, j.pending_buf_size = 4 * j.lit_bufsize, j.pending_buf = new a.Buf8(j.pending_buf_size), j.d_buf = 1 * j.lit_bufsize, j.l_buf = 3 * j.lit_bufsize, j.level = z, j.strategy = I, j.method = T, ht(t);
+        return (t.state = j).strm = t, j.wrap = L, j.gzhead = null, j.w_bits = y, j.w_size = 1 << j.w_bits, j.w_mask = j.w_size - 1, j.hash_bits = A + 7, j.hash_size = 1 << j.hash_bits, j.hash_mask = j.hash_size - 1, j.hash_shift = ~~((j.hash_bits + V - 1) / V), j.window = new a.Buf8(2 * j.w_size), j.head = new a.Buf16(j.hash_size), j.prev = new a.Buf16(j.w_size), j.lit_bufsize = 1 << A + 6, j.pending_buf_size = 4 * j.lit_bufsize, j.pending_buf = new a.Buf8(j.pending_buf_size), j.d_buf = 1 * j.lit_bufsize, j.l_buf = 3 * j.lit_bufsize, j.level = z, j.strategy = I, j.method = T, ht(t);
       }
       r = [new st(0, 0, 0, 0, function(t, z) {
         var T = 65535;
@@ -1678,10 +1678,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           return U(t, t.avail_out === 0 ? -5 : b);
         if (y.strm = t, T = y.last_flush, y.last_flush = z, y.status === k)
           if (y.wrap === 2)
-            t.adler = 0, K(y, 31), K(y, 139), K(y, 8), y.gzhead ? (K(y, (y.gzhead.text ? 1 : 0) + (y.gzhead.hcrc ? 2 : 0) + (y.gzhead.extra ? 4 : 0) + (y.gzhead.name ? 8 : 0) + (y.gzhead.comment ? 16 : 0)), K(y, 255 & y.gzhead.time), K(y, y.gzhead.time >> 8 & 255), K(y, y.gzhead.time >> 16 & 255), K(y, y.gzhead.time >> 24 & 255), K(y, y.level === 9 ? 2 : 2 <= y.strategy || y.level < 2 ? 4 : 0), K(y, 255 & y.gzhead.os), y.gzhead.extra && y.gzhead.extra.length && (K(y, 255 & y.gzhead.extra.length), K(y, y.gzhead.extra.length >> 8 & 255)), y.gzhead.hcrc && (t.adler = p(t.adler, y.pending_buf, y.pending, 0)), y.gzindex = 0, y.status = 69) : (K(y, 0), K(y, 0), K(y, 0), K(y, 0), K(y, 0), K(y, y.level === 9 ? 2 : 2 <= y.strategy || y.level < 2 ? 4 : 0), K(y, 3), y.status = V);
+            t.adler = 0, K(y, 31), K(y, 139), K(y, 8), y.gzhead ? (K(y, (y.gzhead.text ? 1 : 0) + (y.gzhead.hcrc ? 2 : 0) + (y.gzhead.extra ? 4 : 0) + (y.gzhead.name ? 8 : 0) + (y.gzhead.comment ? 16 : 0)), K(y, 255 & y.gzhead.time), K(y, y.gzhead.time >> 8 & 255), K(y, y.gzhead.time >> 16 & 255), K(y, y.gzhead.time >> 24 & 255), K(y, y.level === 9 ? 2 : 2 <= y.strategy || y.level < 2 ? 4 : 0), K(y, 255 & y.gzhead.os), y.gzhead.extra && y.gzhead.extra.length && (K(y, 255 & y.gzhead.extra.length), K(y, y.gzhead.extra.length >> 8 & 255)), y.gzhead.hcrc && (t.adler = p(t.adler, y.pending_buf, y.pending, 0)), y.gzindex = 0, y.status = 69) : (K(y, 0), K(y, 0), K(y, 0), K(y, 0), K(y, 0), K(y, y.level === 9 ? 2 : 2 <= y.strategy || y.level < 2 ? 4 : 0), K(y, 3), y.status = N);
           else {
             var L = w + (y.w_bits - 8 << 4) << 8;
-            L |= (2 <= y.strategy || y.level < 2 ? 0 : y.level < 6 ? 1 : y.level === 6 ? 2 : 3) << 6, y.strstart !== 0 && (L |= 32), L += 31 - L % 31, y.status = V, P(y, L), y.strstart !== 0 && (P(y, t.adler >>> 16), P(y, 65535 & t.adler)), t.adler = 1;
+            L |= (2 <= y.strategy || y.level < 2 ? 0 : y.level < 6 ? 1 : y.level === 6 ? 2 : 3) << 6, y.strstart !== 0 && (L |= 32), L += 31 - L % 31, y.status = N, P(y, L), y.strstart !== 0 && (P(y, t.adler >>> 16), P(y, 65535 & t.adler)), t.adler = 1;
           }
         if (y.status === 69)
           if (y.gzhead.extra) {
@@ -1716,7 +1716,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             y.gzhead.hcrc && y.pending > A && (t.adler = p(t.adler, y.pending_buf, y.pending - A, A)), I === 0 && (y.status = 103);
           } else
             y.status = 103;
-        if (y.status === 103 && (y.gzhead.hcrc ? (y.pending + 2 > y.pending_buf_size && x(t), y.pending + 2 <= y.pending_buf_size && (K(y, 255 & t.adler), K(y, t.adler >> 8 & 255), t.adler = 0, y.status = V)) : y.status = V), y.pending !== 0) {
+        if (y.status === 103 && (y.gzhead.hcrc ? (y.pending + 2 > y.pending_buf_size && x(t), y.pending + 2 <= y.pending_buf_size && (K(y, 255 & t.adler), K(y, t.adler >> 8 & 255), t.adler = 0, y.status = N)) : y.status = N), y.pending !== 0) {
           if (x(t), t.avail_out === 0)
             return y.last_flush = -1, l;
         } else if (t.avail_in === 0 && F(z) <= F(T) && z !== v)
@@ -1743,14 +1743,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                 if (R.lookahead === 0)
                   break;
               }
-              if (R.match_length = 0, R.lookahead >= N && 0 < R.strstart && (J = ct[nt = R.strstart - 1]) === ct[++nt] && J === ct[++nt] && J === ct[++nt]) {
+              if (R.match_length = 0, R.lookahead >= V && 0 < R.strstart && (J = ct[nt = R.strstart - 1]) === ct[++nt] && J === ct[++nt] && J === ct[++nt]) {
                 At = R.strstart + H;
                 do
                   ;
                 while (J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && J === ct[++nt] && nt < At);
                 R.match_length = H - (At - nt), R.match_length > R.lookahead && (R.match_length = R.lookahead);
               }
-              if (R.match_length >= N ? ($ = n._tr_tally(R, 1, R.match_length - N), R.lookahead -= R.match_length, R.strstart += R.match_length, R.match_length = 0) : ($ = n._tr_tally(R, 0, R.window[R.strstart]), R.lookahead--, R.strstart++), $ && (B(R, !1), R.strm.avail_out === 0))
+              if (R.match_length >= V ? ($ = n._tr_tally(R, 1, R.match_length - V), R.lookahead -= R.match_length, R.strstart += R.match_length, R.match_length = 0) : ($ = n._tr_tally(R, 0, R.window[R.strstart]), R.lookahead--, R.strstart++), $ && (B(R, !1), R.strm.avail_out === 0))
                 return i;
             }
             return R.insert = 0, W === v ? (B(R, !0), R.strm.avail_out === 0 ? it : S) : R.last_lit && (B(R, !1), R.strm.avail_out === 0) ? i : G;
@@ -1763,17 +1763,17 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         return z !== v ? l : y.wrap <= 0 ? 1 : (y.wrap === 2 ? (K(y, 255 & t.adler), K(y, t.adler >> 8 & 255), K(y, t.adler >> 16 & 255), K(y, t.adler >> 24 & 255), K(y, 255 & t.total_in), K(y, t.total_in >> 8 & 255), K(y, t.total_in >> 16 & 255), K(y, t.total_in >> 24 & 255)) : (P(y, t.adler >>> 16), P(y, 65535 & t.adler)), x(t), 0 < y.wrap && (y.wrap = -y.wrap), y.pending !== 0 ? l : 1);
       }, c.deflateEnd = function(t) {
         var z;
-        return t && t.state ? (z = t.state.status) !== k && z !== 69 && z !== 73 && z !== 91 && z !== 103 && z !== V && z !== 666 ? U(t, b) : (t.state = null, z === V ? U(t, -3) : l) : b;
+        return t && t.state ? (z = t.state.status) !== k && z !== 69 && z !== 73 && z !== 91 && z !== 103 && z !== N && z !== 666 ? U(t, b) : (t.state = null, z === N ? U(t, -3) : l) : b;
       }, c.deflateSetDictionary = function(t, z) {
         var T, y, A, I, L, j, R, W, $ = z.length;
         if (!t || !t.state || (I = (T = t.state).wrap) === 2 || I === 1 && T.status !== k || T.lookahead)
           return b;
-        for (I === 1 && (t.adler = o(t.adler, z, $, 0)), T.wrap = 0, $ >= T.w_size && (I === 0 && (M(T.head), T.strstart = 0, T.block_start = 0, T.insert = 0), W = new a.Buf8(T.w_size), a.arraySet(W, z, $ - T.w_size, T.w_size, 0), z = W, $ = T.w_size), L = t.avail_in, j = t.next_in, R = t.input, t.avail_in = $, t.next_in = 0, t.input = z, lt(T); T.lookahead >= N; ) {
-          for (y = T.strstart, A = T.lookahead - (N - 1); T.ins_h = (T.ins_h << T.hash_shift ^ T.window[y + N - 1]) & T.hash_mask, T.prev[y & T.w_mask] = T.head[T.ins_h], T.head[T.ins_h] = y, y++, --A; )
+        for (I === 1 && (t.adler = o(t.adler, z, $, 0)), T.wrap = 0, $ >= T.w_size && (I === 0 && (M(T.head), T.strstart = 0, T.block_start = 0, T.insert = 0), W = new a.Buf8(T.w_size), a.arraySet(W, z, $ - T.w_size, T.w_size, 0), z = W, $ = T.w_size), L = t.avail_in, j = t.next_in, R = t.input, t.avail_in = $, t.next_in = 0, t.input = z, lt(T); T.lookahead >= V; ) {
+          for (y = T.strstart, A = T.lookahead - (V - 1); T.ins_h = (T.ins_h << T.hash_shift ^ T.window[y + V - 1]) & T.hash_mask, T.prev[y & T.w_mask] = T.head[T.ins_h], T.head[T.ins_h] = y, y++, --A; )
             ;
-          T.strstart = y, T.lookahead = N - 1, lt(T);
+          T.strstart = y, T.lookahead = V - 1, lt(T);
         }
-        return T.strstart += T.lookahead, T.block_start = T.strstart, T.insert = T.lookahead, T.lookahead = 0, T.match_length = T.prev_length = N - 1, T.match_available = 0, t.next_in = j, t.input = R, t.avail_in = L, T.wrap = I, l;
+        return T.strstart += T.lookahead, T.block_start = T.strstart, T.insert = T.lookahead, T.lookahead = 0, T.match_length = T.prev_length = V - 1, T.match_available = 0, t.next_in = j, t.input = R, t.avail_in = L, T.wrap = I, l;
       }, c.deflateInfo = "pako deflate (from Nodeca project)";
     }, { "../utils/common": 41, "./adler32": 43, "./crc32": 45, "./messages": 51, "./trees": 52 }], 47: [function(e, d, c) {
       d.exports = function() {
@@ -1781,72 +1781,72 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       };
     }, {}], 48: [function(e, d, c) {
       d.exports = function(r, a) {
-        var n, o, p, m, g, v, l, b, s, f, u, w, E, O, _, Q, D, Y, N, H, rt, k, V, i, G;
-        n = r.state, o = r.next_in, i = r.input, p = o + (r.avail_in - 5), m = r.next_out, G = r.output, g = m - (a - r.avail_out), v = m + (r.avail_out - 257), l = n.dmax, b = n.wsize, s = n.whave, f = n.wnext, u = n.window, w = n.hold, E = n.bits, O = n.lencode, _ = n.distcode, Q = (1 << n.lenbits) - 1, D = (1 << n.distbits) - 1;
+        var n, o, p, m, g, v, l, b, s, f, h, w, E, O, _, Q, D, Y, V, H, rt, k, N, i, G;
+        n = r.state, o = r.next_in, i = r.input, p = o + (r.avail_in - 5), m = r.next_out, G = r.output, g = m - (a - r.avail_out), v = m + (r.avail_out - 257), l = n.dmax, b = n.wsize, s = n.whave, f = n.wnext, h = n.window, w = n.hold, E = n.bits, O = n.lencode, _ = n.distcode, Q = (1 << n.lenbits) - 1, D = (1 << n.distbits) - 1;
         t:
           do {
             E < 15 && (w += i[o++] << E, E += 8, w += i[o++] << E, E += 8), Y = O[w & Q];
             e:
               for (; ; ) {
-                if (w >>>= N = Y >>> 24, E -= N, (N = Y >>> 16 & 255) === 0)
+                if (w >>>= V = Y >>> 24, E -= V, (V = Y >>> 16 & 255) === 0)
                   G[m++] = 65535 & Y;
                 else {
-                  if (!(16 & N)) {
-                    if (!(64 & N)) {
-                      Y = O[(65535 & Y) + (w & (1 << N) - 1)];
+                  if (!(16 & V)) {
+                    if (!(64 & V)) {
+                      Y = O[(65535 & Y) + (w & (1 << V) - 1)];
                       continue e;
                     }
-                    if (32 & N) {
+                    if (32 & V) {
                       n.mode = 12;
                       break t;
                     }
                     r.msg = "invalid literal/length code", n.mode = 30;
                     break t;
                   }
-                  H = 65535 & Y, (N &= 15) && (E < N && (w += i[o++] << E, E += 8), H += w & (1 << N) - 1, w >>>= N, E -= N), E < 15 && (w += i[o++] << E, E += 8, w += i[o++] << E, E += 8), Y = _[w & D];
+                  H = 65535 & Y, (V &= 15) && (E < V && (w += i[o++] << E, E += 8), H += w & (1 << V) - 1, w >>>= V, E -= V), E < 15 && (w += i[o++] << E, E += 8, w += i[o++] << E, E += 8), Y = _[w & D];
                   n:
                     for (; ; ) {
-                      if (w >>>= N = Y >>> 24, E -= N, !(16 & (N = Y >>> 16 & 255))) {
-                        if (!(64 & N)) {
-                          Y = _[(65535 & Y) + (w & (1 << N) - 1)];
+                      if (w >>>= V = Y >>> 24, E -= V, !(16 & (V = Y >>> 16 & 255))) {
+                        if (!(64 & V)) {
+                          Y = _[(65535 & Y) + (w & (1 << V) - 1)];
                           continue n;
                         }
                         r.msg = "invalid distance code", n.mode = 30;
                         break t;
                       }
-                      if (rt = 65535 & Y, E < (N &= 15) && (w += i[o++] << E, (E += 8) < N && (w += i[o++] << E, E += 8)), l < (rt += w & (1 << N) - 1)) {
+                      if (rt = 65535 & Y, E < (V &= 15) && (w += i[o++] << E, (E += 8) < V && (w += i[o++] << E, E += 8)), l < (rt += w & (1 << V) - 1)) {
                         r.msg = "invalid distance too far back", n.mode = 30;
                         break t;
                       }
-                      if (w >>>= N, E -= N, (N = m - g) < rt) {
-                        if (s < (N = rt - N) && n.sane) {
+                      if (w >>>= V, E -= V, (V = m - g) < rt) {
+                        if (s < (V = rt - V) && n.sane) {
                           r.msg = "invalid distance too far back", n.mode = 30;
                           break t;
                         }
-                        if (V = u, (k = 0) === f) {
-                          if (k += b - N, N < H) {
-                            for (H -= N; G[m++] = u[k++], --N; )
+                        if (N = h, (k = 0) === f) {
+                          if (k += b - V, V < H) {
+                            for (H -= V; G[m++] = h[k++], --V; )
                               ;
-                            k = m - rt, V = G;
+                            k = m - rt, N = G;
                           }
-                        } else if (f < N) {
-                          if (k += b + f - N, (N -= f) < H) {
-                            for (H -= N; G[m++] = u[k++], --N; )
+                        } else if (f < V) {
+                          if (k += b + f - V, (V -= f) < H) {
+                            for (H -= V; G[m++] = h[k++], --V; )
                               ;
                             if (k = 0, f < H) {
-                              for (H -= N = f; G[m++] = u[k++], --N; )
+                              for (H -= V = f; G[m++] = h[k++], --V; )
                                 ;
-                              k = m - rt, V = G;
+                              k = m - rt, N = G;
                             }
                           }
-                        } else if (k += f - N, N < H) {
-                          for (H -= N; G[m++] = u[k++], --N; )
+                        } else if (k += f - V, V < H) {
+                          for (H -= V; G[m++] = h[k++], --V; )
                             ;
-                          k = m - rt, V = G;
+                          k = m - rt, N = G;
                         }
                         for (; 2 < H; )
-                          G[m++] = V[k++], G[m++] = V[k++], G[m++] = V[k++], H -= 3;
-                        H && (G[m++] = V[k++], 1 < H && (G[m++] = V[k++]));
+                          G[m++] = N[k++], G[m++] = N[k++], G[m++] = N[k++], H -= 3;
+                        H && (G[m++] = N[k++], 1 < H && (G[m++] = N[k++]));
                       } else {
                         for (k = m - rt; G[m++] = G[k++], G[m++] = G[k++], G[m++] = G[k++], 2 < (H -= 3); )
                           ;
@@ -1862,53 +1862,53 @@ https://github.com/nodeca/pako/blob/main/LICENSE
       };
     }, {}], 49: [function(e, d, c) {
       var r = e("../utils/common"), a = e("./adler32"), n = e("./crc32"), o = e("./inffast"), p = e("./inftrees"), m = 1, g = 2, v = 0, l = -2, b = 1, s = 852, f = 592;
-      function u(k) {
+      function h(k) {
         return (k >>> 24 & 255) + (k >>> 8 & 65280) + ((65280 & k) << 8) + ((255 & k) << 24);
       }
       function w() {
         this.mode = 0, this.last = !1, this.wrap = 0, this.havedict = !1, this.flags = 0, this.dmax = 0, this.check = 0, this.total = 0, this.head = null, this.wbits = 0, this.wsize = 0, this.whave = 0, this.wnext = 0, this.window = null, this.hold = 0, this.bits = 0, this.length = 0, this.offset = 0, this.extra = 0, this.lencode = null, this.distcode = null, this.lenbits = 0, this.distbits = 0, this.ncode = 0, this.nlen = 0, this.ndist = 0, this.have = 0, this.next = null, this.lens = new r.Buf16(320), this.work = new r.Buf16(288), this.lendyn = null, this.distdyn = null, this.sane = 0, this.back = 0, this.was = 0;
       }
       function E(k) {
-        var V;
-        return k && k.state ? (V = k.state, k.total_in = k.total_out = V.total = 0, k.msg = "", V.wrap && (k.adler = 1 & V.wrap), V.mode = b, V.last = 0, V.havedict = 0, V.dmax = 32768, V.head = null, V.hold = 0, V.bits = 0, V.lencode = V.lendyn = new r.Buf32(s), V.distcode = V.distdyn = new r.Buf32(f), V.sane = 1, V.back = -1, v) : l;
+        var N;
+        return k && k.state ? (N = k.state, k.total_in = k.total_out = N.total = 0, k.msg = "", N.wrap && (k.adler = 1 & N.wrap), N.mode = b, N.last = 0, N.havedict = 0, N.dmax = 32768, N.head = null, N.hold = 0, N.bits = 0, N.lencode = N.lendyn = new r.Buf32(s), N.distcode = N.distdyn = new r.Buf32(f), N.sane = 1, N.back = -1, v) : l;
       }
       function O(k) {
-        var V;
-        return k && k.state ? ((V = k.state).wsize = 0, V.whave = 0, V.wnext = 0, E(k)) : l;
+        var N;
+        return k && k.state ? ((N = k.state).wsize = 0, N.whave = 0, N.wnext = 0, E(k)) : l;
       }
-      function _(k, V) {
+      function _(k, N) {
         var i, G;
-        return k && k.state ? (G = k.state, V < 0 ? (i = 0, V = -V) : (i = 1 + (V >> 4), V < 48 && (V &= 15)), V && (V < 8 || 15 < V) ? l : (G.window !== null && G.wbits !== V && (G.window = null), G.wrap = i, G.wbits = V, O(k))) : l;
+        return k && k.state ? (G = k.state, N < 0 ? (i = 0, N = -N) : (i = 1 + (N >> 4), N < 48 && (N &= 15)), N && (N < 8 || 15 < N) ? l : (G.window !== null && G.wbits !== N && (G.window = null), G.wrap = i, G.wbits = N, O(k))) : l;
       }
-      function Q(k, V) {
+      function Q(k, N) {
         var i, G;
-        return k ? (G = new w(), (k.state = G).window = null, (i = _(k, V)) !== v && (k.state = null), i) : l;
+        return k ? (G = new w(), (k.state = G).window = null, (i = _(k, N)) !== v && (k.state = null), i) : l;
       }
-      var D, Y, N = !0;
+      var D, Y, V = !0;
       function H(k) {
-        if (N) {
-          var V;
-          for (D = new r.Buf32(512), Y = new r.Buf32(32), V = 0; V < 144; )
-            k.lens[V++] = 8;
-          for (; V < 256; )
-            k.lens[V++] = 9;
-          for (; V < 280; )
-            k.lens[V++] = 7;
-          for (; V < 288; )
-            k.lens[V++] = 8;
-          for (p(m, k.lens, 0, 288, D, 0, k.work, { bits: 9 }), V = 0; V < 32; )
-            k.lens[V++] = 5;
-          p(g, k.lens, 0, 32, Y, 0, k.work, { bits: 5 }), N = !1;
+        if (V) {
+          var N;
+          for (D = new r.Buf32(512), Y = new r.Buf32(32), N = 0; N < 144; )
+            k.lens[N++] = 8;
+          for (; N < 256; )
+            k.lens[N++] = 9;
+          for (; N < 280; )
+            k.lens[N++] = 7;
+          for (; N < 288; )
+            k.lens[N++] = 8;
+          for (p(m, k.lens, 0, 288, D, 0, k.work, { bits: 9 }), N = 0; N < 32; )
+            k.lens[N++] = 5;
+          p(g, k.lens, 0, 32, Y, 0, k.work, { bits: 5 }), V = !1;
         }
         k.lencode = D, k.lenbits = 9, k.distcode = Y, k.distbits = 5;
       }
-      function rt(k, V, i, G) {
+      function rt(k, N, i, G) {
         var it, S = k.state;
-        return S.window === null && (S.wsize = 1 << S.wbits, S.wnext = 0, S.whave = 0, S.window = new r.Buf8(S.wsize)), G >= S.wsize ? (r.arraySet(S.window, V, i - S.wsize, S.wsize, 0), S.wnext = 0, S.whave = S.wsize) : (G < (it = S.wsize - S.wnext) && (it = G), r.arraySet(S.window, V, i - G, it, S.wnext), (G -= it) ? (r.arraySet(S.window, V, i - G, G, 0), S.wnext = G, S.whave = S.wsize) : (S.wnext += it, S.wnext === S.wsize && (S.wnext = 0), S.whave < S.wsize && (S.whave += it))), 0;
+        return S.window === null && (S.wsize = 1 << S.wbits, S.wnext = 0, S.whave = 0, S.window = new r.Buf8(S.wsize)), G >= S.wsize ? (r.arraySet(S.window, N, i - S.wsize, S.wsize, 0), S.wnext = 0, S.whave = S.wsize) : (G < (it = S.wsize - S.wnext) && (it = G), r.arraySet(S.window, N, i - G, it, S.wnext), (G -= it) ? (r.arraySet(S.window, N, i - G, G, 0), S.wnext = G, S.whave = S.wsize) : (S.wnext += it, S.wnext === S.wsize && (S.wnext = 0), S.whave < S.wsize && (S.whave += it))), 0;
       }
       c.inflateReset = O, c.inflateReset2 = _, c.inflateResetKeep = E, c.inflateInit = function(k) {
         return Q(k, 15);
-      }, c.inflateInit2 = Q, c.inflate = function(k, V) {
+      }, c.inflateInit2 = Q, c.inflate = function(k, N) {
         var i, G, it, S, U, F, M, x, B, K, P, X, lt, ft, at, st, bt, dt, ht, yt, t, z, T, y, A = 0, I = new r.Buf8(4), L = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15];
         if (!k || !k.state || !k.output || !k.input && k.avail_in !== 0)
           return l;
@@ -2033,13 +2033,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                     break t;
                   F--, x += G[S++] << B, B += 8;
                 }
-                k.adler = i.check = u(x), B = x = 0, i.mode = 11;
+                k.adler = i.check = h(x), B = x = 0, i.mode = 11;
               case 11:
                 if (i.havedict === 0)
                   return k.next_out = U, k.avail_out = M, k.next_in = S, k.avail_in = F, i.hold = x, i.bits = B, 2;
                 k.adler = i.check = 1, i.mode = 12;
               case 12:
-                if (V === 5 || V === 6)
+                if (N === 5 || N === 6)
                   break t;
               case 13:
                 if (i.last) {
@@ -2056,7 +2056,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                     i.mode = 14;
                     break;
                   case 1:
-                    if (H(i), i.mode = 20, V !== 6)
+                    if (H(i), i.mode = 20, N !== 6)
                       break;
                     x >>>= 2, B -= 2;
                     break t;
@@ -2078,7 +2078,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                   k.msg = "invalid stored block lengths", i.mode = 30;
                   break;
                 }
-                if (i.length = 65535 & x, B = x = 0, i.mode = 15, V === 6)
+                if (i.length = 65535 & x, B = x = 0, i.mode = 15, N === 6)
                   break t;
               case 15:
                 i.mode = 16;
@@ -2176,7 +2176,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                   k.msg = "invalid distances set", i.mode = 30;
                   break;
                 }
-                if (i.mode = 20, V === 6)
+                if (i.mode = 20, N === 6)
                   break t;
               case 20:
                 i.mode = 21;
@@ -2281,7 +2281,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                       break t;
                     F--, x |= G[S++] << B, B += 8;
                   }
-                  if (P -= M, k.total_out += P, i.total += P, P && (k.adler = i.check = i.flags ? n(i.check, it, P, U - P) : a(i.check, it, P, U - P)), P = M, (i.flags ? x : u(x)) !== i.check) {
+                  if (P -= M, k.total_out += P, i.total += P, P && (k.adler = i.check = i.flags ? n(i.check, it, P, U - P) : a(i.check, it, P, U - P)), P = M, (i.flags ? x : h(x)) !== i.check) {
                     k.msg = "incorrect data check", i.mode = 30;
                     break;
                   }
@@ -2314,31 +2314,31 @@ https://github.com/nodeca/pako/blob/main/LICENSE
               default:
                 return l;
             }
-        return k.next_out = U, k.avail_out = M, k.next_in = S, k.avail_in = F, i.hold = x, i.bits = B, (i.wsize || P !== k.avail_out && i.mode < 30 && (i.mode < 27 || V !== 4)) && rt(k, k.output, k.next_out, P - k.avail_out) ? (i.mode = 31, -4) : (K -= k.avail_in, P -= k.avail_out, k.total_in += K, k.total_out += P, i.total += P, i.wrap && P && (k.adler = i.check = i.flags ? n(i.check, it, P, k.next_out - P) : a(i.check, it, P, k.next_out - P)), k.data_type = i.bits + (i.last ? 64 : 0) + (i.mode === 12 ? 128 : 0) + (i.mode === 20 || i.mode === 15 ? 256 : 0), (K == 0 && P === 0 || V === 4) && z === v && (z = -5), z);
+        return k.next_out = U, k.avail_out = M, k.next_in = S, k.avail_in = F, i.hold = x, i.bits = B, (i.wsize || P !== k.avail_out && i.mode < 30 && (i.mode < 27 || N !== 4)) && rt(k, k.output, k.next_out, P - k.avail_out) ? (i.mode = 31, -4) : (K -= k.avail_in, P -= k.avail_out, k.total_in += K, k.total_out += P, i.total += P, i.wrap && P && (k.adler = i.check = i.flags ? n(i.check, it, P, k.next_out - P) : a(i.check, it, P, k.next_out - P)), k.data_type = i.bits + (i.last ? 64 : 0) + (i.mode === 12 ? 128 : 0) + (i.mode === 20 || i.mode === 15 ? 256 : 0), (K == 0 && P === 0 || N === 4) && z === v && (z = -5), z);
       }, c.inflateEnd = function(k) {
         if (!k || !k.state)
           return l;
-        var V = k.state;
-        return V.window && (V.window = null), k.state = null, v;
-      }, c.inflateGetHeader = function(k, V) {
+        var N = k.state;
+        return N.window && (N.window = null), k.state = null, v;
+      }, c.inflateGetHeader = function(k, N) {
         var i;
-        return k && k.state && 2 & (i = k.state).wrap ? ((i.head = V).done = !1, v) : l;
-      }, c.inflateSetDictionary = function(k, V) {
-        var i, G = V.length;
-        return k && k.state ? (i = k.state).wrap !== 0 && i.mode !== 11 ? l : i.mode === 11 && a(1, V, G, 0) !== i.check ? -3 : rt(k, V, G, G) ? (i.mode = 31, -4) : (i.havedict = 1, v) : l;
+        return k && k.state && 2 & (i = k.state).wrap ? ((i.head = N).done = !1, v) : l;
+      }, c.inflateSetDictionary = function(k, N) {
+        var i, G = N.length;
+        return k && k.state ? (i = k.state).wrap !== 0 && i.mode !== 11 ? l : i.mode === 11 && a(1, N, G, 0) !== i.check ? -3 : rt(k, N, G, G) ? (i.mode = 31, -4) : (i.havedict = 1, v) : l;
       }, c.inflateInfo = "pako inflate (from Nodeca project)";
     }, { "../utils/common": 41, "./adler32": 43, "./crc32": 45, "./inffast": 48, "./inftrees": 50 }], 50: [function(e, d, c) {
       var r = e("../utils/common"), a = [3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 15, 17, 19, 23, 27, 31, 35, 43, 51, 59, 67, 83, 99, 115, 131, 163, 195, 227, 258, 0, 0], n = [16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 16, 72, 78], o = [1, 2, 3, 4, 5, 7, 9, 13, 17, 25, 33, 49, 65, 97, 129, 193, 257, 385, 513, 769, 1025, 1537, 2049, 3073, 4097, 6145, 8193, 12289, 16385, 24577, 0, 0], p = [16, 16, 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29, 64, 64];
-      d.exports = function(m, g, v, l, b, s, f, u) {
-        var w, E, O, _, Q, D, Y, N, H, rt = u.bits, k = 0, V = 0, i = 0, G = 0, it = 0, S = 0, U = 0, F = 0, M = 0, x = 0, B = null, K = 0, P = new r.Buf16(16), X = new r.Buf16(16), lt = null, ft = 0;
+      d.exports = function(m, g, v, l, b, s, f, h) {
+        var w, E, O, _, Q, D, Y, V, H, rt = h.bits, k = 0, N = 0, i = 0, G = 0, it = 0, S = 0, U = 0, F = 0, M = 0, x = 0, B = null, K = 0, P = new r.Buf16(16), X = new r.Buf16(16), lt = null, ft = 0;
         for (k = 0; k <= 15; k++)
           P[k] = 0;
-        for (V = 0; V < l; V++)
-          P[g[v + V]]++;
+        for (N = 0; N < l; N++)
+          P[g[v + N]]++;
         for (it = rt, G = 15; 1 <= G && P[G] === 0; G--)
           ;
         if (G < it && (it = G), G === 0)
-          return b[s++] = 20971520, b[s++] = 20971520, u.bits = 1, 0;
+          return b[s++] = 20971520, b[s++] = 20971520, h.bits = 1, 0;
         for (i = 1; i < G && P[i] === 0; i++)
           ;
         for (it < i && (it = i), k = F = 1; k <= 15; k++)
@@ -2348,19 +2348,19 @@ https://github.com/nodeca/pako/blob/main/LICENSE
           return -1;
         for (X[1] = 0, k = 1; k < 15; k++)
           X[k + 1] = X[k] + P[k];
-        for (V = 0; V < l; V++)
-          g[v + V] !== 0 && (f[X[g[v + V]]++] = V);
-        if (D = m === 0 ? (B = lt = f, 19) : m === 1 ? (B = a, K -= 257, lt = n, ft -= 257, 256) : (B = o, lt = p, -1), k = i, Q = s, U = V = x = 0, O = -1, _ = (M = 1 << (S = it)) - 1, m === 1 && 852 < M || m === 2 && 592 < M)
+        for (N = 0; N < l; N++)
+          g[v + N] !== 0 && (f[X[g[v + N]]++] = N);
+        if (D = m === 0 ? (B = lt = f, 19) : m === 1 ? (B = a, K -= 257, lt = n, ft -= 257, 256) : (B = o, lt = p, -1), k = i, Q = s, U = N = x = 0, O = -1, _ = (M = 1 << (S = it)) - 1, m === 1 && 852 < M || m === 2 && 592 < M)
           return 1;
         for (; ; ) {
-          for (Y = k - U, H = f[V] < D ? (N = 0, f[V]) : f[V] > D ? (N = lt[ft + f[V]], B[K + f[V]]) : (N = 96, 0), w = 1 << k - U, i = E = 1 << S; b[Q + (x >> U) + (E -= w)] = Y << 24 | N << 16 | H | 0, E !== 0; )
+          for (Y = k - U, H = f[N] < D ? (V = 0, f[N]) : f[N] > D ? (V = lt[ft + f[N]], B[K + f[N]]) : (V = 96, 0), w = 1 << k - U, i = E = 1 << S; b[Q + (x >> U) + (E -= w)] = Y << 24 | V << 16 | H | 0, E !== 0; )
             ;
           for (w = 1 << k - 1; x & w; )
             w >>= 1;
-          if (w !== 0 ? (x &= w - 1, x += w) : x = 0, V++, --P[k] == 0) {
+          if (w !== 0 ? (x &= w - 1, x += w) : x = 0, N++, --P[k] == 0) {
             if (k === G)
               break;
-            k = g[v + f[V]];
+            k = g[v + f[N]];
           }
           if (it < k && (x & _) !== O) {
             for (U === 0 && (U = it), Q += i, F = 1 << (S = k - U); S + U < G && !((F -= P[S + U]) <= 0); )
@@ -2370,7 +2370,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             b[O = x & _] = it << 24 | S << 16 | Q - s | 0;
           }
         }
-        return x !== 0 && (b[Q + x] = k - U << 24 | 64 << 16 | 0), u.bits = it, 0;
+        return x !== 0 && (b[Q + x] = k - U << 24 | 64 << 16 | 0), h.bits = it, 0;
       };
     }, { "../utils/common": 41 }], 51: [function(e, d, c) {
       d.exports = { 2: "need dictionary", 1: "stream end", 0: "", "-1": "file error", "-2": "stream error", "-3": "data error", "-4": "insufficient memory", "-5": "buffer error", "-6": "incompatible version" };
@@ -2380,12 +2380,12 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         for (var I = A.length; 0 <= --I; )
           A[I] = 0;
       }
-      var p = 0, m = 29, g = 256, v = g + 1 + m, l = 30, b = 19, s = 2 * v + 1, f = 15, u = 16, w = 7, E = 256, O = 16, _ = 17, Q = 18, D = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0], Y = [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13], N = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7], H = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15], rt = new Array(2 * (v + 2));
+      var p = 0, m = 29, g = 256, v = g + 1 + m, l = 30, b = 19, s = 2 * v + 1, f = 15, h = 16, w = 7, E = 256, O = 16, _ = 17, Q = 18, D = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0], Y = [0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13], V = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 7], H = [16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15], rt = new Array(2 * (v + 2));
       o(rt);
       var k = new Array(2 * l);
       o(k);
-      var V = new Array(512);
-      o(V);
+      var N = new Array(512);
+      o(N);
       var i = new Array(256);
       o(i);
       var G = new Array(m);
@@ -2398,13 +2398,13 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         this.dyn_tree = A, this.max_code = 0, this.stat_desc = I;
       }
       function B(A) {
-        return A < 256 ? V[A] : V[256 + (A >>> 7)];
+        return A < 256 ? N[A] : N[256 + (A >>> 7)];
       }
       function K(A, I) {
         A.pending_buf[A.pending++] = 255 & I, A.pending_buf[A.pending++] = I >>> 8 & 255;
       }
       function P(A, I, L) {
-        A.bi_valid > u - L ? (A.bi_buf |= I << A.bi_valid & 65535, K(A, A.bi_buf), A.bi_buf = I >> u - A.bi_valid, A.bi_valid += L - u) : (A.bi_buf |= I << A.bi_valid & 65535, A.bi_valid += L);
+        A.bi_valid > h - L ? (A.bi_buf |= I << A.bi_valid & 65535, K(A, A.bi_buf), A.bi_buf = I >> h - A.bi_valid, A.bi_valid += L - h) : (A.bi_buf |= I << A.bi_valid & 65535, A.bi_valid += L);
       }
       function X(A, I, L) {
         P(A, L[2 * I], L[2 * I + 1]);
@@ -2463,11 +2463,11 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         for (R = nt; L = A.heap[1], A.heap[1] = A.heap[A.heap_len--], dt(A, W, 1), j = A.heap[1], A.heap[--A.heap_max] = L, A.heap[--A.heap_max] = j, W[2 * R] = W[2 * L] + W[2 * j], A.depth[R] = (A.depth[L] >= A.depth[j] ? A.depth[L] : A.depth[j]) + 1, W[2 * L + 1] = W[2 * j + 1] = R, A.heap[1] = R++, dt(A, W, 1), 2 <= A.heap_len; )
           ;
         A.heap[--A.heap_max] = A.heap[1], function(ct, wt) {
-          var xt, mt, Rt, ut, Tt, Ct, vt = wt.dyn_tree, St = wt.max_code, It = wt.stat_desc.static_tree, Zt = wt.stat_desc.has_stree, Vt = wt.stat_desc.extra_bits, zt = wt.stat_desc.extra_base, tt = wt.stat_desc.max_length, pt = 0;
+          var xt, mt, Rt, ut, Tt, Ct, vt = wt.dyn_tree, St = wt.max_code, It = wt.stat_desc.static_tree, Zt = wt.stat_desc.has_stree, Nt = wt.stat_desc.extra_bits, zt = wt.stat_desc.extra_base, tt = wt.stat_desc.max_length, pt = 0;
           for (ut = 0; ut <= f; ut++)
             ct.bl_count[ut] = 0;
           for (vt[2 * ct.heap[ct.heap_max] + 1] = 0, xt = ct.heap_max + 1; xt < s; xt++)
-            tt < (ut = vt[2 * vt[2 * (mt = ct.heap[xt]) + 1] + 1] + 1) && (ut = tt, pt++), vt[2 * mt + 1] = ut, St < mt || (ct.bl_count[ut]++, Tt = 0, zt <= mt && (Tt = Vt[mt - zt]), Ct = vt[2 * mt], ct.opt_len += Ct * (ut + Tt), Zt && (ct.static_len += Ct * (It[2 * mt + 1] + Tt)));
+            tt < (ut = vt[2 * vt[2 * (mt = ct.heap[xt]) + 1] + 1] + 1) && (ut = tt, pt++), vt[2 * mt + 1] = ut, St < mt || (ct.bl_count[ut]++, Tt = 0, zt <= mt && (Tt = Nt[mt - zt]), Ct = vt[2 * mt], ct.opt_len += Ct * (ut + Tt), Zt && (ct.static_len += Ct * (It[2 * mt + 1] + Tt)));
           if (pt !== 0) {
             do {
               for (ut = tt - 1; ct.bl_count[ut] === 0; )
@@ -2512,10 +2512,10 @@ https://github.com/nodeca/pako/blob/main/LICENSE
               i[j++] = R;
           for (i[j - 1] = R, R = W = 0; R < 16; R++)
             for (F[R] = W, I = 0; I < 1 << Y[R]; I++)
-              V[W++] = R;
+              N[W++] = R;
           for (W >>= 7; R < l; R++)
             for (F[R] = W << 7, I = 0; I < 1 << Y[R] - 7; I++)
-              V[256 + W++] = R;
+              N[256 + W++] = R;
           for (L = 0; L <= f; L++)
             $[L] = 0;
           for (I = 0; I <= 143; )
@@ -2528,7 +2528,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             rt[2 * I + 1] = 8, I++, $[8]++;
           for (ft(rt, v + 1, $), I = 0; I < l; I++)
             k[2 * I + 1] = 5, k[2 * I] = lt(I, 5);
-          it = new M(rt, D, g + 1, v, f), S = new M(k, Y, 0, l, f), U = new M(new Array(0), N, 0, b, w);
+          it = new M(rt, D, g + 1, v, f), S = new M(k, Y, 0, l, f), U = new M(new Array(0), V, 0, b, w);
         }(), T = !0), A.l_desc = new x(A.dyn_ltree, it), A.d_desc = new x(A.dyn_dtree, S), A.bl_desc = new x(A.bl_tree, U), A.bi_buf = 0, A.bi_valid = 0, at(A);
       }, c._tr_stored_block = y, c._tr_flush_block = function(A, I, L, j) {
         var R, W, $ = 0;
@@ -2600,9 +2600,9 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                 _[Q] = arguments[Q + 1];
               var D = { callback: O, args: _ };
               return l[v] = D, o(v), v++;
-            }, f.clearImmediate = u;
+            }, f.clearImmediate = h;
           }
-          function u(O) {
+          function h(O) {
             delete l[O];
           }
           function w(O) {
@@ -2633,7 +2633,7 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                     }
                   })(_);
                 } finally {
-                  u(O), b = !1;
+                  h(O), b = !1;
                 }
               }
             }
@@ -2642,17 +2642,17 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             O.source === a && typeof O.data == "string" && O.data.indexOf(g) === 0 && w(+O.data.slice(g.length));
           }
         })(typeof self > "u" ? r === void 0 ? this : r : self);
-      }).call(this, typeof Nt < "u" ? Nt : typeof self < "u" ? self : typeof window < "u" ? window : {});
+      }).call(this, typeof Vt < "u" ? Vt : typeof self < "u" ? self : typeof window < "u" ? window : {});
     }, {}] }, {}, [10])(10);
   });
 })(ke);
 var $e = ke.exports;
 const tn = /* @__PURE__ */ we($e);
 var Ee = { exports: {} };
-(function(C, h) {
+(function(C, u) {
   (function(e, d) {
     d();
-  })(Nt, function() {
+  })(Vt, function() {
     function e(p, m) {
       return typeof m > "u" ? m = { autoBom: !1 } : typeof m != "object" && (console.warn("Deprecated: Expected third argument to be a object"), m = { autoBom: !m }), m.autoBom && /^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(p.type) ? new Blob(["\uFEFF", p], { type: p.type }) : p;
     }
@@ -2681,7 +2681,7 @@ var Ee = { exports: {} };
         m.initMouseEvent("click", !0, !0, window, 0, 0, 0, 80, 20, !1, !1, !1, !1, 0, null), p.dispatchEvent(m);
       }
     }
-    var a = typeof window == "object" && window.window === window ? window : typeof self == "object" && self.self === self ? self : typeof Nt == "object" && Nt.global === Nt ? Nt : void 0, n = a.navigator && /Macintosh/.test(navigator.userAgent) && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent), o = a.saveAs || (typeof window != "object" || window !== a ? function() {
+    var a = typeof window == "object" && window.window === window ? window : typeof self == "object" && self.self === self ? self : typeof Vt == "object" && Vt.global === Vt ? Vt : void 0, n = a.navigator && /Macintosh/.test(navigator.userAgent) && /AppleWebKit/.test(navigator.userAgent) && !/Safari/.test(navigator.userAgent), o = a.saveAs || (typeof window != "object" || window !== a ? function() {
     } : "download" in HTMLAnchorElement.prototype && !n ? function(p, m, g) {
       var v = a.URL || a.webkitURL, l = document.createElement("a");
       m = m || p.name || "download", l.download = m, l.rel = "noopener", typeof p == "string" ? (l.href = p, l.origin === location.origin ? r(l) : c(l.href) ? d(p, m, g) : r(l, l.target = "_blank")) : (l.href = v.createObjectURL(p), setTimeout(function() {
@@ -2711,9 +2711,9 @@ var Ee = { exports: {} };
           E = s ? E : E.replace(/^data:[^;]*;/, "data:attachment/file;"), v ? v.location.href = E : location = E, v = null;
         }, f.readAsDataURL(p);
       } else {
-        var u = a.URL || a.webkitURL, w = u.createObjectURL(p);
+        var h = a.URL || a.webkitURL, w = h.createObjectURL(p);
         v ? v.location = w : location.href = w, v = null, setTimeout(function() {
-          u.revokeObjectURL(w);
+          h.revokeObjectURL(w);
         }, 4e4);
       }
     });
@@ -2723,10 +2723,10 @@ var Ee = { exports: {} };
 var en = Ee.exports;
 const nn = /* @__PURE__ */ we(en);
 var Ht = { exports: {} };
-(function(C, h) {
+(function(C, u) {
   (function(e, d) {
-    d(h);
-  })(Nt, function(e) {
+    d(u);
+  })(Vt, function(e) {
     function d() {
       return d = Object.assign ? Object.assign.bind() : function(S) {
         for (var U = 1; U < arguments.length; U++) {
@@ -2889,9 +2889,9 @@ return __eta.res;
       }
       return x;
     }
-    var u = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+    var h = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
     function w(S) {
-      return u[S];
+      return h[S];
     }
     var E = { autoEscape: !0, autoFilter: !1, autoTrim: [!1, "nl"], cache: !1, cacheFilepaths: !0, debug: !1, escapeFunction: function(S) {
       var U = String(S);
@@ -2906,7 +2906,7 @@ return __eta.res;
       return S.slice(0, U).split(`
 `).length;
     }
-    function N(S) {
+    function V(S) {
       var U = this.config, F = [], M = !1, x = 0, B = U.parse;
       if (U.plugins)
         for (var K = 0; K < U.plugins.length; K++) {
@@ -2974,7 +2974,7 @@ return __eta.res;
       var B = M.call(this, U, x);
       return Promise.resolve(B);
     }
-    function V(S, U) {
+    function N(S, U) {
       var F = this.compile(S, { async: !1 });
       return rt.call(this, F, U);
     }
@@ -2984,7 +2984,7 @@ return __eta.res;
     }
     var G = /* @__PURE__ */ function() {
       function S(F) {
-        this.config = void 0, this.RuntimeErr = v, this.compile = b, this.compileToString = s, this.parse = N, this.render = rt, this.renderAsync = k, this.renderString = V, this.renderStringAsync = i, this.filepathCache = {}, this.templatesSync = new p({}), this.templatesAsync = new p({}), this.resolvePath = null, this.readFile = null, this.config = F ? d({}, E, F) : d({}, E);
+        this.config = void 0, this.RuntimeErr = v, this.compile = b, this.compileToString = s, this.parse = V, this.render = rt, this.renderAsync = k, this.renderString = N, this.renderStringAsync = i, this.filepathCache = {}, this.templatesSync = new p({}), this.templatesAsync = new p({}), this.resolvePath = null, this.readFile = null, this.config = F ? d({}, E, F) : d({}, E);
       }
       var U = S.prototype;
       return U.configure = function(F) {
@@ -3012,8 +3012,8 @@ var rn = Ht.exports;
 const an = new rn.Eta({
   autoTrim: !1
 });
-function Ot(C, h) {
-  return an.renderString(C, h);
+function Ot(C, u) {
+  return an.renderString(C, u);
 }
 const sn = `<% if (it.kotlin) { %>import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -3152,8 +3152,8 @@ publishing {
   release: 25
 };
 function Wt(C) {
-  const h = Qe(C), e = ze(C);
-  return h >= 26 ? hn : e <= 16 ? ln : e == 17 ? cn : e <= 19 || e == 20 && Ge(C) <= 4 ? $t : un;
+  const u = Qe(C), e = ze(C);
+  return u >= 26 ? hn : e <= 16 ? ln : e == 17 ? cn : e <= 19 || e == 20 && Ge(C) <= 4 ? $t : un;
 }
 const dn = /^[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)*$/, An = `
 	abstract continue for new switch assert default goto package synchronized
@@ -3163,16 +3163,16 @@ const dn = /^[a-z_][a-z0-9_]*(\.[a-z_][a-z0-9_]*)*$/, An = `
 	volatile const float native super while _ true false null
 `.trim().split(/\s+/), fn = ["net.minecraft.", "com.mojang.", "net.fabricmc.", "java."];
 function pn(C) {
-  let h = [];
-  dn.test(C.toLowerCase()) || h.push("Package name is not a valid Java package name!");
+  let u = [];
+  dn.test(C.toLowerCase()) || u.push("Package name is not a valid Java package name!");
   const e = C.split(".").filter((d) => An.includes(d));
-  e.length != 0 && h.push(`Package name contains illegal component: '${e[0]}'`);
+  e.length != 0 && u.push(`Package name contains illegal component: '${e[0]}'`);
   for (let d of fn)
-    C.toLowerCase().startsWith(d) ? h.push(`Package name starts with '${d}', which is reserved!`) : C.toLowerCase() + "." == d && h.push(`Package name is '${d}', which is reserved!`);
-  return h;
+    C.toLowerCase().startsWith(d) ? u.push(`Package name starts with '${d}', which is reserved!`) : C.toLowerCase() + "." == d && u.push(`Package name is '${d}', which is reserved!`);
+  return u;
 }
-async function mn(C, h) {
-  await C.write("build.gradle", Ot(sn, { ...h, java: Wt(h.minecraftVersion) })), await C.write("settings.gradle", on);
+async function mn(C, u) {
+  await C.write("build.gradle", Ot(sn, { ...u, java: Wt(u.minecraftVersion) })), await C.write("settings.gradle", on);
 }
 const gn = `<% if (it.kotlin) { %>import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -3295,8 +3295,8 @@ publishing {
 	}
 }
 `;
-async function vn(C, h) {
-  await C.write("build.gradle.kts", Ot(gn, { ...h, java: Wt(h.minecraftVersion) })), await C.write("settings.gradle.kts", Ot(bn, h));
+async function vn(C, u) {
+  await C.write("build.gradle.kts", Ot(gn, { ...u, java: Wt(u.minecraftVersion) })), await C.write("settings.gradle.kts", Ot(bn, u));
 }
 const yn = `# Done to increase the memory available to gradle.
 org.gradle.jvmargs=-Xmx1G
@@ -3320,12 +3320,12 @@ archives_base_name=<%= it.modid %>
 
 # Dependencies
 fabric_api_version=<%= it.fabricVersion %>`;
-async function wn(C, h) {
-  await C.write("gradle.properties", Ot(yn, h)), h.gradleKotlin ? await vn(C, h) : await mn(C, h);
+async function wn(C, u) {
+  await C.write("gradle.properties", Ot(yn, u)), u.gradleKotlin ? await vn(C, u) : await mn(C, u);
 }
 function Yt(C) {
-  for (var h = globalThis.atob(C), e = h.length, d = new Uint8Array(e), c = 0; c < e; c++)
-    d[c] = h.charCodeAt(c);
+  for (var u = globalThis.atob(C), e = u.length, d = new Uint8Array(e), c = 0; c < e; c++)
+    d[c] = u.charCodeAt(c);
   return d.buffer;
 }
 const kn = `#!/bin/sh
@@ -3767,11 +3767,11 @@ public class <%= it.className %> {
 		// This code is injected into the start of <%= it.targetClass %>.<%= it.targetMethod %>()V
 	}
 }`;
-async function In(C, h) {
-  const e = h.packageName + ".mixin", d = "ExampleMixin", c = "MinecraftServer", r = "net.minecraft.server.MinecraftServer", a = h.mojmap ? "loadLevel" : "loadWorld", n = {
+async function In(C, u) {
+  const e = u.packageName + ".mixin", d = "ExampleMixin", c = "MinecraftServer", r = "net.minecraft.server.MinecraftServer", a = u.mojmap ? "loadLevel" : "loadWorld", n = {
     required: !0,
     package: e,
-    compatibilityLevel: Wt(h.minecraftVersion).mixin,
+    compatibilityLevel: Wt(u.minecraftVersion).mixin,
     mixins: [
       d
     ],
@@ -3781,7 +3781,7 @@ async function In(C, h) {
     overwrites: {
       requireAnnotations: !0
     }
-  }, o = `${h.modid}.mixins.json`;
+  }, o = `${u.modid}.mixins.json`;
   return await C.write(`src/main/resources/${o}`, JSON.stringify(n, null, "	")), await C.write(`src/main/java/${e.replaceAll(".", "/")}/${d}.java`, Ot(Se, {
     className: d,
     packageName: e,
@@ -3790,11 +3790,11 @@ async function In(C, h) {
     targetMethod: a
   })), [o];
 }
-async function Bn(C, h) {
-  const e = h.packageName + ".mixin.client", d = "ExampleClientMixin", c = h.mojmap ? "Minecraft" : "MinecraftClient", r = `net.minecraft.client.${c}`, a = "run", n = {
+async function Bn(C, u) {
+  const e = u.packageName + ".client.mixin", d = "ExampleClientMixin", c = u.mojmap ? "Minecraft" : "MinecraftClient", r = `net.minecraft.client.${c}`, a = "run", n = {
     required: !0,
     package: e,
-    compatibilityLevel: Wt(h.minecraftVersion).mixin,
+    compatibilityLevel: Wt(u.minecraftVersion).mixin,
     client: [
       d
     ],
@@ -3804,7 +3804,7 @@ async function Bn(C, h) {
     overwrites: {
       requireAnnotations: !0
     }
-  }, o = `${h.modid}.client.mixins.json`;
+  }, o = `${u.modid}.client.mixins.json`;
   return await C.write(`src/client/resources/${o}`, JSON.stringify(n, null, "	")), await C.write(`src/client/java/${e.replaceAll(".", "/")}/${d}.java`, Ot(Se, {
     className: d,
     packageName: e,
@@ -3886,7 +3886,7 @@ public class <%= it.className %> implements DataGeneratorEntrypoint {
 
 	}
 }
-`, Vn = `package <%= it.package %>
+`, Nn = `package <%= it.package %>
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
@@ -3895,68 +3895,87 @@ object <%= it.className %> : DataGeneratorEntrypoint {
 	override fun onInitializeDataGenerator(fabricDataGenerator: FabricDataGenerator) {
 	}
 }`;
-async function Nn(C, h) {
-  const e = Dn(h.projectName), d = {
-    package: h.packageName,
+async function Vn(C, u) {
+  const e = Dn(u.projectName), d = {
+    package: u.packageName,
+    clientPackage: u.packageName + ".client",
     className: e,
-    classFullName: h.packageName + "." + e,
-    path: h.packageName.replaceAll(".", "/") + "/" + e,
-    modid: h.modid,
-    slf4j: Le(h.minecraftVersion),
-    clientEntrypoint: h.splitSources,
-    dataEntrypoint: h.dataGeneration
+    classFullName: u.packageName + "." + e,
+    clientClassFullName: u.packageName + ".client." + e,
+    path: u.packageName.replaceAll(".", "/") + "/" + e,
+    clientPath: u.packageName.replaceAll(".", "/") + "/client/" + e,
+    modid: u.modid,
+    slf4j: Le(u.minecraftVersion),
+    clientEntrypoint: u.splitSources,
+    dataEntrypoint: u.dataGeneration
   };
-  return h.kotlin ? await Qn(C, d) : await Un(C, d);
+  return u.kotlin ? await Qn(C, d) : await Un(C, d);
 }
 function Dn(C) {
-  return C.split(" ").map((h) => h[0].toUpperCase() + h.slice(1)).join("").replace(/\W+/g, "");
+  return C.split(" ").map((u) => u[0].toUpperCase() + u.slice(1)).join("").replace(/\W+/g, "");
 }
-async function Un(C, h) {
+async function Un(C, u) {
   var e = {
     main: [
-      h.classFullName
+      u.classFullName
     ]
   };
-  if (await C.write(`src/main/java/${h.path}.java`, Ot(Fn, h)), h.clientEntrypoint && (await C.write(`src/client/java/${h.path}Client.java`, Ot(Rn, { ...h, className: h.className + "Client" })), e = {
+  if (await C.write(`src/main/java/${u.path}.java`, Ot(Fn, u)), u.clientEntrypoint && (await C.write(`src/client/java/${u.clientPath}Client.java`, Ot(Rn, {
+    ...u,
+    className: u.className + "Client",
+    package: u.clientPackage
+  })), e = {
     ...e,
     client: [
-      h.classFullName + "Client"
+      u.clientClassFullName + "Client"
     ]
-  }), h.dataEntrypoint) {
-    const d = h.clientEntrypoint ? "client" : "main";
-    await C.write(`src/${d}/java/${h.path}DataGenerator.java`, Ot(Tn, { ...h, className: h.className + "DataGenerator" })), e = {
+  }), u.dataEntrypoint) {
+    const d = u.clientEntrypoint ? "client" : "main", c = u.clientEntrypoint ? u.clientPath : u.path, r = u.clientEntrypoint ? u.clientClassFullName : u.classFullName;
+    await C.write(`src/${d}/java/${c}DataGenerator.java`, Ot(Tn, {
+      ...u,
+      className: u.className + "DataGenerator",
+      package: u.clientEntrypoint ? u.clientPackage : u.package
+    })), e = {
       ...e,
       "fabric-datagen": [
-        h.classFullName + "DataGenerator"
+        r + "DataGenerator"
       ]
     };
   }
   return e;
 }
-async function Qn(C, h) {
+async function Qn(C, u) {
   var e = {
     main: [
       {
-        value: h.classFullName,
+        value: u.classFullName,
         adapter: "kotlin"
       }
     ]
   };
-  if (await C.write(`src/main/kotlin/${h.path}.kt`, Ot(_n, h)), h.clientEntrypoint && (await C.write(`src/client/kotlin/${h.path}Client.kt`, Ot(On, { ...h, className: h.className + "Client" })), e = {
+  if (await C.write(`src/main/kotlin/${u.path}.kt`, Ot(_n, u)), u.clientEntrypoint && (await C.write(`src/client/kotlin/${u.clientPath}Client.kt`, Ot(On, {
+    ...u,
+    className: u.className + "Client",
+    package: u.clientPackage
+  })), e = {
     ...e,
     client: [
       {
-        value: h.classFullName + "Client",
+        value: u.clientClassFullName + "Client",
         adapter: "kotlin"
       }
     ]
-  }), h.dataEntrypoint) {
-    const d = h.clientEntrypoint ? "client" : "main";
-    await C.write(`src/${d}/kotlin/${h.path}DataGenerator.kt`, Ot(Vn, { ...h, className: h.className + "DataGenerator" })), e = {
+  }), u.dataEntrypoint) {
+    const d = u.clientEntrypoint ? "client" : "main", c = u.clientEntrypoint ? u.clientPath : u.path, r = u.clientEntrypoint ? u.clientClassFullName : u.classFullName;
+    await C.write(`src/${d}/kotlin/${c}DataGenerator.kt`, Ot(Nn, {
+      ...u,
+      className: u.className + "DataGenerator",
+      package: u.clientEntrypoint ? u.clientPackage : u.package
+    })), e = {
       ...e,
       "fabric-datagen": [
         {
-          value: h.classFullName + "DataGenerator",
+          value: r + "DataGenerator",
           adapter: "kotlin"
         }
       ]
@@ -3965,18 +3984,18 @@ async function Qn(C, h) {
   return e;
 }
 const te = "iVBORw0KGgoAAAANSUhEUgAAAIAAAACAAQMAAAD58POIAAAABlBMVEUAAAD///+l2Z/dAAABeklEQVRIx9XTsW1cMQwGYAoKIlfWbaAVUroKbxSPcBtIQRaTN9EILFkI+l3ovXuSLvYZCK4wK+IrWBD/T1iGHg41fBUcygwWKY7QLGiCuoLaNoOY+1BnKFfQDUhnyGeZIZ3lNEO+LFBef01gyutlAlvOEzRb6MIDVCskDAD01MEJCTeKjWgHI1wp1A3Ui9Wg5HSHoFaDkN1BgroOzwN4ORkJuQNXX738NsKFAULpEI2wdIhAdRLTCM1JzBIHsMJZokSAkK/ApQMAbMADhCycDzASsoQObwDwR31Sn154AFJHpwPqT6NENACZOgIambYBNrCYAOSQflAcIEDCmPXEDyrQ42GP9wBuBXuAMqBENxBneCGegVNYIPsFygrqFqh2gXYDZoG+j5BuIC6QVyh8D444aPgXBKi/B9XtUD+ANkH9CsAuNz4D/wH8/Rx4gPZIsP8DDlAeHrRBXUFXkCugQ/YLUJhBiCeg3o8JsICdAKm38OhtGio2zveBd37Jm8IEWUmfAAAAAElFTkSuQmCC";
-function zn(C, h, e) {
-  if (!h)
+function zn(C, u, e) {
+  if (!u)
     return Yt(te);
   const d = e.create(128, 128);
   return d != null && Gn(d, C) ? d.getPng() : Yt(te);
 }
-function Gn(C, h) {
+function Gn(C, u) {
   const e = C.getContext("2d");
   if (e == null)
     return !1;
   e.fillStyle = "#ffffff", e.fillRect(0, 0, 128, 128);
-  const d = h.split(/\s+/);
+  const d = u.split(/\s+/);
   let c = 0, r = Array(d.length), a = 65;
   for (; ; ) {
     c = 0;
@@ -4011,7 +4030,7 @@ function Gn(C, h) {
 function Ln(C) {
   return Number(C.split(".")[1]) >= 59;
 }
-async function jn(C, h, e) {
+async function jn(C, u, e) {
   const d = [
     ...await In(C, e),
     ...e.splitSources ? await Bn(C, e) : []
@@ -4033,7 +4052,7 @@ async function jn(C, h, e) {
     license: "CC0-1.0",
     icon: `assets/${e.modid}/icon.png`,
     environment: "*",
-    entrypoints: await Nn(C, e),
+    entrypoints: await Vn(C, e),
     mixins: d,
     depends: {
       fabricloader: ">=" + e.loaderVersion,
@@ -4044,7 +4063,7 @@ async function jn(C, h, e) {
   a.depends[Ln(e.fabricVersion) ? "fabric-api" : "fabric"] = "*", e.kotlin && (a.depends = {
     ...a.depends,
     "fabric-language-kotlin": "*"
-  }), await C.write("src/main/resources/fabric.mod.json", JSON.stringify(a, null, "	")), await C.write(`src/main/resources/assets/${e.modid}/icon.png`, zn(e.projectName, e.uniqueModIcon, h));
+  }), await C.write("src/main/resources/fabric.mod.json", JSON.stringify(a, null, "	")), await C.write(`src/main/resources/assets/${e.modid}/icon.png`, zn(e.projectName, e.uniqueModIcon, u));
 }
 const Mn = `#
 # https://help.github.com/articles/dealing-with-line-endings/
@@ -4176,30 +4195,30 @@ express Statement of Purpose.
  d. Affirmer understands and acknowledges that Creative Commons is not a
     party to this document and has no duty or obligation with respect to
     this CC0 or use of the Work.`;
-async function Zn(C, h) {
+async function Zn(C, u) {
   await C.write(".gitattributes", Mn), await C.write(".gitignore", xe), await C.write(".github/workflows/build.yml", Ce), await C.write("LICENSE", Wn);
 }
 const Lt = "Comic Relief";
 async function Pn(C) {
-  const h = await Jn(C.config);
-  await Sn(C), await wn(C.writer, h), await jn(C.writer, C.canvas, h), await Zn(C.writer);
+  const u = await Jn(C.config);
+  await Sn(C), await wn(C.writer, u), await jn(C.writer, C.canvas, u), await Zn(C.writer);
 }
 async function Ie() {
   const C = await Ye();
-  return C.filter((h) => {
-    const e = h.version;
-    return e.startsWith("1.14") && e != "1.14.4" ? !1 : h.stable ? !0 : C[0].version == e;
+  return C.filter((u) => {
+    const e = u.version;
+    return e.startsWith("1.14") && e != "1.14.4" ? !1 : u.stable ? !0 : C[0].version == e;
   });
 }
 async function Jn(C) {
-  const h = ye(C.minecraftVersion);
+  const u = ye(C.minecraftVersion);
   return {
     ...C,
     loaderVersion: (await Xe()).find((e) => e.stable).version,
     fabricVersion: await He(C.minecraftVersion),
-    yarnVersion: h ? void 0 : (await qe(C.minecraftVersion))[0].version,
+    yarnVersion: u ? void 0 : (await qe(C.minecraftVersion))[0].version,
     kotlin: await Yn(C),
-    unobfuscated: h
+    unobfuscated: u
   };
 }
 async function Yn(C) {
@@ -4217,46 +4236,46 @@ const Xn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   generateTemplate: Pn,
   getTemplateGameVersions: Ie
 }, Symbol.toStringTag, { value: "Module" }));
-function ee(C, h, e) {
+function ee(C, u, e) {
   const d = C.slice();
-  return d[34] = h[e], d;
+  return d[34] = u[e], d;
 }
-function ne(C, h, e) {
+function ne(C, u, e) {
   const d = C.slice();
-  return d[37] = h[e], d;
+  return d[37] = u[e], d;
 }
-function re(C, h, e) {
+function re(C, u, e) {
   const d = C.slice();
-  return d[37] = h[e], d;
+  return d[37] = u[e], d;
 }
-function ie(C, h, e) {
+function ie(C, u, e) {
   const d = C.slice();
-  return d[37] = h[e], d;
+  return d[37] = u[e], d;
 }
 function Hn(C) {
-  let h, e, d = (
+  let u, e, d = (
     /*error*/
     C[37].message + ""
   ), c, r, a;
   return {
     c() {
-      h = et("p"), e = Ft("Error: "), c = Ft(d), r = ot(), a = et("p"), a.innerHTML = `For support please visit one of our
+      u = et("p"), e = Ft("Error: "), c = Ft(d), r = ot(), a = et("p"), a.innerHTML = `For support please visit one of our
         <a href="/discuss/">community discussion</a>
-        groups.`, Qt(h, "color", "red");
+        groups.`, Qt(u, "color", "red");
     },
     m(n, o) {
-      kt(n, h, o), Z(h, e), Z(h, c), kt(n, r, o), kt(n, a, o);
+      kt(n, u, o), Z(u, e), Z(u, c), kt(n, r, o), kt(n, a, o);
     },
     p: Dt,
     i: Dt,
     o: Dt,
     d(n) {
-      n && Et(h), n && Et(r), n && Et(a);
+      n && Et(u), n && Et(r), n && Et(a);
     }
   };
 }
 function qn(C) {
-  let h, e, d, c, r, a, n, o, p, m, g, v, l, b, s, f, u, w, E, O, _, Q, D, Y, N, H, rt, k, V, i, G, it, S, U, F, M, x, B, K, P, X, lt, ft, at, st, bt, dt, ht, yt, t, z, T, y, A, I, L, j, R, W, $, J, nt;
+  let u, e, d, c, r, a, n, o, p, m, g, v, l, b, s, f, h, w, E, O, _, Q, D, Y, V, H, rt, k, N, i, G, it, S, U, F, M, x, B, K, P, X, lt, ft, at, st, bt, dt, ht, yt, t, z, T, y, A, I, L, j, R, W, $, J, nt;
   function At(tt, pt) {
     return (
       /*customModId*/
@@ -4289,53 +4308,53 @@ function qn(C) {
     /*supportsSplitSources*/
     C[11] && fe(C)
   );
-  const Zt = [er, tr], Vt = [];
+  const Zt = [er, tr], Nt = [];
   function zt(tt, pt) {
     return (
       /*loading*/
       tt[10] ? 0 : 1
     );
   }
-  return R = zt(C), W = Vt[R] = Zt[R](C), {
+  return R = zt(C), W = Nt[R] = Zt[R](C), {
     c() {
-      h = et("div"), e = et("div"), d = et("h3"), d.textContent = "Mod Name:", c = ot(), r = et("hr"), a = ot(), wt.c(), n = ot(), o = et("input"), p = ot(), xt && xt.c(), m = ot(), mt && mt.c(), g = ot(), v = et("div"), l = et("h3"), l.textContent = "Package Name:", b = ot(), s = et("hr"), f = ot(), u = et("p"), u.innerHTML = `Choose a unique package name for your new mod. The package name
+      u = et("div"), e = et("div"), d = et("h3"), d.textContent = "Mod Name:", c = ot(), r = et("hr"), a = ot(), wt.c(), n = ot(), o = et("input"), p = ot(), xt && xt.c(), m = ot(), mt && mt.c(), g = ot(), v = et("div"), l = et("h3"), l.textContent = "Package Name:", b = ot(), s = et("hr"), f = ot(), h = et("p"), h.innerHTML = `Choose a unique package name for your new mod. The package name
                 should be unique to you. If you are unsure about this use <code class="svelte-c4460r">name.modid</code>.`, w = ot(), E = et("input"), O = ot();
       for (let tt = 0; tt < ut.length; tt += 1)
         ut[tt].c();
-      _ = ot(), Q = et("div"), D = et("h3"), D.textContent = "Minecraft Version:", Y = ot(), N = et("hr"), H = ot(), rt = et("p"), rt.textContent = `Select the version of Minecraft that you wish to use for your
-                mod.`, k = ot(), V = et("select");
+      _ = ot(), Q = et("div"), D = et("h3"), D.textContent = "Minecraft Version:", Y = ot(), V = et("hr"), H = ot(), rt = et("p"), rt.textContent = `Select the version of Minecraft that you wish to use for your
+                mod.`, k = ot(), N = et("select");
       for (let tt = 0; tt < Ct.length; tt += 1)
         Ct[tt].c();
       i = ot(), G = et("hr"), it = ot(), S = et("br"), U = ot(), F = et("h4"), F.textContent = "Advanced Options:", M = ot(), x = et("div"), B = et("div"), K = et("input"), P = ot(), X = et("label"), X.textContent = "Kotlin Programming Language", lt = ot(), ft = et("p"), ft.innerHTML = `<a href="https://kotlinlang.org/" class="svelte-c4460r">Kotlin</a> is a alternative programming language that can be used to develop mods.
-                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-c4460r">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, at = ot(), vt && vt.c(), st = ot(), St && St.c(), bt = ot(), It && It.c(), dt = ot(), ht = et("div"), yt = et("div"), t = et("input"), z = ot(), T = et("label"), T.textContent = "Kotlin Build Script", y = ot(), A = et("p"), A.textContent = "The Gradle build script will use the Kotlin programming language instead of Groovy.", I = ot(), L = et("br"), j = ot(), W.c(), q(d, "class", "svelte-c4460r"), q(r, "class", "svelte-c4460r"), q(o, "id", "project-name"), q(o, "class", "svelte-c4460r"), q(e, "class", "form-line svelte-c4460r"), q(l, "class", "svelte-c4460r"), q(s, "class", "svelte-c4460r"), q(u, "class", "svelte-c4460r"), q(E, "id", "package-name"), q(E, "class", "svelte-c4460r"), q(v, "class", "form-line svelte-c4460r"), q(D, "class", "svelte-c4460r"), q(N, "class", "svelte-c4460r"), q(rt, "class", "svelte-c4460r"), q(V, "id", "minecraft-version"), Qt(V, "min-width", "200px"), q(V, "class", "svelte-c4460r"), /*minecraftVersion*/
-      C[0] === void 0 && Ne(() => (
+                The <a href="https://github.com/FabricMC/fabric-language-kotlin" class="svelte-c4460r">Fabric Kotlin language adapter</a> is used to enable support for creating Fabric Kotlin mods.`, at = ot(), vt && vt.c(), st = ot(), St && St.c(), bt = ot(), It && It.c(), dt = ot(), ht = et("div"), yt = et("div"), t = et("input"), z = ot(), T = et("label"), T.textContent = "Kotlin Build Script", y = ot(), A = et("p"), A.textContent = "The Gradle build script will use the Kotlin programming language instead of Groovy.", I = ot(), L = et("br"), j = ot(), W.c(), q(d, "class", "svelte-c4460r"), q(r, "class", "svelte-c4460r"), q(o, "id", "project-name"), q(o, "class", "svelte-c4460r"), q(e, "class", "form-line svelte-c4460r"), q(l, "class", "svelte-c4460r"), q(s, "class", "svelte-c4460r"), q(h, "class", "svelte-c4460r"), q(E, "id", "package-name"), q(E, "class", "svelte-c4460r"), q(v, "class", "form-line svelte-c4460r"), q(D, "class", "svelte-c4460r"), q(V, "class", "svelte-c4460r"), q(rt, "class", "svelte-c4460r"), q(N, "id", "minecraft-version"), Qt(N, "min-width", "200px"), q(N, "class", "svelte-c4460r"), /*minecraftVersion*/
+      C[0] === void 0 && Ve(() => (
         /*select_change_handler*/
-        C[26].call(V)
-      )), q(Q, "class", "form-line svelte-c4460r"), q(G, "class", "svelte-c4460r"), q(S, "class", "svelte-c4460r"), q(F, "class", "svelte-c4460r"), q(K, "id", "kotlin"), q(K, "type", "checkbox"), q(K, "class", "option-input svelte-c4460r"), q(X, "for", "kotlin"), q(X, "class", "option-label svelte-c4460r"), q(B, "class", "option-container svelte-c4460r"), q(ft, "class", "option-body svelte-c4460r"), q(x, "class", "svelte-c4460r"), q(t, "id", "gradleKotlin"), q(t, "type", "checkbox"), q(t, "class", "option-input svelte-c4460r"), q(T, "for", "gradleKotlin"), q(T, "class", "option-label svelte-c4460r"), q(yt, "class", "option-container svelte-c4460r"), q(A, "class", "option-body svelte-c4460r"), q(ht, "class", "svelte-c4460r"), q(L, "class", "svelte-c4460r"), q(h, "class", "template svelte-c4460r");
+        C[26].call(N)
+      )), q(Q, "class", "form-line svelte-c4460r"), q(G, "class", "svelte-c4460r"), q(S, "class", "svelte-c4460r"), q(F, "class", "svelte-c4460r"), q(K, "id", "kotlin"), q(K, "type", "checkbox"), q(K, "class", "option-input svelte-c4460r"), q(X, "for", "kotlin"), q(X, "class", "option-label svelte-c4460r"), q(B, "class", "option-container svelte-c4460r"), q(ft, "class", "option-body svelte-c4460r"), q(x, "class", "svelte-c4460r"), q(t, "id", "gradleKotlin"), q(t, "type", "checkbox"), q(t, "class", "option-input svelte-c4460r"), q(T, "for", "gradleKotlin"), q(T, "class", "option-label svelte-c4460r"), q(yt, "class", "option-container svelte-c4460r"), q(A, "class", "option-body svelte-c4460r"), q(ht, "class", "svelte-c4460r"), q(L, "class", "svelte-c4460r"), q(u, "class", "template svelte-c4460r");
     },
     m(tt, pt) {
-      kt(tt, h, pt), Z(h, e), Z(e, d), Z(e, c), Z(e, r), Z(e, a), wt.m(e, null), Z(e, n), Z(e, o), Ut(
+      kt(tt, u, pt), Z(u, e), Z(e, d), Z(e, c), Z(e, r), Z(e, a), wt.m(e, null), Z(e, n), Z(e, o), Ut(
         o,
         /*projectName*/
         C[1]
-      ), Z(e, p), xt && xt.m(e, null), Z(h, m), mt && mt.m(h, null), Z(h, g), Z(h, v), Z(v, l), Z(v, b), Z(v, s), Z(v, f), Z(v, u), Z(v, w), Z(v, E), Ut(
+      ), Z(e, p), xt && xt.m(e, null), Z(u, m), mt && mt.m(u, null), Z(u, g), Z(u, v), Z(v, l), Z(v, b), Z(v, s), Z(v, f), Z(v, h), Z(v, w), Z(v, E), Ut(
         E,
         /*packageName*/
         C[2]
       ), Z(v, O);
       for (let _t = 0; _t < ut.length; _t += 1)
         ut[_t] && ut[_t].m(v, null);
-      Z(h, _), Z(h, Q), Z(Q, D), Z(Q, Y), Z(Q, N), Z(Q, H), Z(Q, rt), Z(Q, k), Z(Q, V);
+      Z(u, _), Z(u, Q), Z(Q, D), Z(Q, Y), Z(Q, V), Z(Q, H), Z(Q, rt), Z(Q, k), Z(Q, N);
       for (let _t = 0; _t < Ct.length; _t += 1)
-        Ct[_t] && Ct[_t].m(V, null);
+        Ct[_t] && Ct[_t].m(N, null);
       Kt(
-        V,
+        N,
         /*minecraftVersion*/
         C[0],
         !0
-      ), Z(h, i), Z(h, G), Z(h, it), Z(h, S), Z(h, U), Z(h, F), Z(h, M), Z(h, x), Z(x, B), Z(B, K), K.checked = /*useKotlin*/
-      C[5], Z(B, P), Z(B, X), Z(x, lt), Z(x, ft), Z(h, at), vt && vt.m(h, null), Z(h, st), St && St.m(h, null), Z(h, bt), It && It.m(h, null), Z(h, dt), Z(h, ht), Z(ht, yt), Z(yt, t), t.checked = /*gradleKotlin*/
-      C[9], Z(yt, z), Z(yt, T), Z(ht, y), Z(ht, A), Z(h, I), Z(h, L), Z(h, j), Vt[R].m(h, null), $ = !0, J || (nt = [
+      ), Z(u, i), Z(u, G), Z(u, it), Z(u, S), Z(u, U), Z(u, F), Z(u, M), Z(u, x), Z(x, B), Z(B, K), K.checked = /*useKotlin*/
+      C[5], Z(B, P), Z(B, X), Z(x, lt), Z(x, ft), Z(u, at), vt && vt.m(u, null), Z(u, st), St && St.m(u, null), Z(u, bt), It && It.m(u, null), Z(u, dt), Z(u, ht), Z(ht, yt), Z(yt, t), t.checked = /*gradleKotlin*/
+      C[9], Z(yt, z), Z(yt, T), Z(ht, y), Z(ht, A), Z(u, I), Z(u, L), Z(u, j), Nt[R].m(u, null), $ = !0, J || (nt = [
         Bt(
           o,
           "input",
@@ -4361,7 +4380,7 @@ function qn(C) {
           C[25]
         ),
         Bt(
-          V,
+          N,
           "change",
           /*select_change_handler*/
           C[26]
@@ -4389,7 +4408,7 @@ function qn(C) {
         tt[1]
       ), /*modIdErrors*/
       tt[16] != null ? xt ? xt.p(tt, pt) : (xt = ae(tt), xt.c(), xt.m(e, null)) : xt && (xt.d(1), xt = null), /*customModId*/
-      tt[3] != null ? mt ? mt.p(tt, pt) : (mt = oe(tt), mt.c(), mt.m(h, g)) : mt && (mt.d(1), mt = null), pt[0] & /*packageName*/
+      tt[3] != null ? mt ? mt.p(tt, pt) : (mt = oe(tt), mt.c(), mt.m(u, g)) : mt && (mt.d(1), mt = null), pt[0] & /*packageName*/
       4 && E.value !== /*packageName*/
       tt[2] && Ut(
         E,
@@ -4415,7 +4434,7 @@ function qn(C) {
         let gt;
         for (gt = 0; gt < Tt.length; gt += 1) {
           const Gt = ee(tt, Tt, gt);
-          Ct[gt] ? Ct[gt].p(Gt, pt) : (Ct[gt] = he(Gt), Ct[gt].c(), Ct[gt].m(V, null));
+          Ct[gt] ? Ct[gt].p(Gt, pt) : (Ct[gt] = he(Gt), Ct[gt].c(), Ct[gt].m(N, null));
         }
         for (; gt < Ct.length; gt += 1)
           Ct[gt].d(1);
@@ -4423,21 +4442,21 @@ function qn(C) {
       }
       pt[0] & /*minecraftVersion, versions*/
       131073 && Kt(
-        V,
+        N,
         /*minecraftVersion*/
         tt[0]
       ), pt[0] & /*useKotlin*/
       32 && (K.checked = /*useKotlin*/
       tt[5]), /*isUnobfuscated*/
-      tt[13] ? vt && (vt.d(1), vt = null) : vt ? vt.p(tt, pt) : (vt = de(tt), vt.c(), vt.m(h, st)), /*supportsDataGen*/
-      tt[12] ? St ? St.p(tt, pt) : (St = Ae(tt), St.c(), St.m(h, bt)) : St && (St.d(1), St = null), /*supportsSplitSources*/
-      tt[11] ? It ? It.p(tt, pt) : (It = fe(tt), It.c(), It.m(h, dt)) : It && (It.d(1), It = null), pt[0] & /*gradleKotlin*/
+      tt[13] ? vt && (vt.d(1), vt = null) : vt ? vt.p(tt, pt) : (vt = de(tt), vt.c(), vt.m(u, st)), /*supportsDataGen*/
+      tt[12] ? St ? St.p(tt, pt) : (St = Ae(tt), St.c(), St.m(u, bt)) : St && (St.d(1), St = null), /*supportsSplitSources*/
+      tt[11] ? It ? It.p(tt, pt) : (It = fe(tt), It.c(), It.m(u, dt)) : It && (It.d(1), It = null), pt[0] & /*gradleKotlin*/
       512 && (t.checked = /*gradleKotlin*/
       tt[9]);
       let _t = R;
-      R = zt(tt), R === _t ? Vt[R].p(tt, pt) : (De(), Mt(Vt[_t], 1, 1, () => {
-        Vt[_t] = null;
-      }), Ue(), W = Vt[R], W ? W.p(tt, pt) : (W = Vt[R] = Zt[R](tt), W.c()), jt(W, 1), W.m(h, null));
+      R = zt(tt), R === _t ? Nt[R].p(tt, pt) : (De(), Mt(Nt[_t], 1, 1, () => {
+        Nt[_t] = null;
+      }), Ue(), W = Nt[R], W ? W.p(tt, pt) : (W = Nt[R] = Zt[R](tt), W.c()), jt(W, 1), W.m(u, null));
     },
     i(tt) {
       $ || (jt(W), $ = !0);
@@ -4446,21 +4465,21 @@ function qn(C) {
       Mt(W), $ = !1;
     },
     d(tt) {
-      tt && Et(h), wt.d(), xt && xt.d(), mt && mt.d(), Jt(ut, tt), Jt(Ct, tt), vt && vt.d(), St && St.d(), It && It.d(), Vt[R].d(), J = !1, pe(nt);
+      tt && Et(u), wt.d(), xt && xt.d(), mt && mt.d(), Jt(ut, tt), Jt(Ct, tt), vt && vt.d(), St && St.d(), It && It.d(), Nt[R].d(), J = !1, pe(nt);
     }
   };
 }
 function Kn(C) {
-  let h, e, d, c, r, a, n, o;
+  let u, e, d, c, r, a, n, o;
   return {
     c() {
-      h = et("p"), e = Ft("Choose a name for your new mod. The mod ID will be "), d = et("code"), c = Ft(
+      u = et("p"), e = Ft("Choose a name for your new mod. The mod ID will be "), d = et("code"), c = Ft(
         /*modid*/
         C[4]
-      ), r = Ft(". "), a = et("a"), a.textContent = "Use custom id", q(d, "class", "svelte-c4460r"), q(a, "href", ""), q(a, "class", "svelte-c4460r"), q(h, "class", "svelte-c4460r");
+      ), r = Ft(". "), a = et("a"), a.textContent = "Use custom id", q(d, "class", "svelte-c4460r"), q(a, "href", ""), q(a, "class", "svelte-c4460r"), q(u, "class", "svelte-c4460r");
     },
     m(p, m) {
-      kt(p, h, m), Z(h, e), Z(h, d), Z(d, c), Z(h, r), Z(h, a), n || (o = Bt(a, "click", qt(
+      kt(p, u, m), Z(u, e), Z(u, d), Z(d, c), Z(u, r), Z(u, a), n || (o = Bt(a, "click", qt(
         /*useCustomModId*/
         C[21]
       )), n = !0);
@@ -4474,27 +4493,27 @@ function Kn(C) {
       );
     },
     d(p) {
-      p && Et(h), n = !1, o();
+      p && Et(u), n = !1, o();
     }
   };
 }
 function $n(C) {
-  let h;
+  let u;
   return {
     c() {
-      h = et("p"), h.textContent = "Choose a name for your new mod.", q(h, "class", "svelte-c4460r");
+      u = et("p"), u.textContent = "Choose a name for your new mod.", q(u, "class", "svelte-c4460r");
     },
     m(e, d) {
-      kt(e, h, d);
+      kt(e, u, d);
     },
     p: Dt,
     d(e) {
-      e && Et(h);
+      e && Et(u);
     }
   };
 }
 function ae(C) {
-  let h, e, d = (
+  let u, e, d = (
     /*modIdErrors*/
     C[16]
   ), c = [];
@@ -4504,12 +4523,12 @@ function ae(C) {
     c() {
       for (let r = 0; r < c.length; r += 1)
         c[r].c();
-      h = ot(), e = et("br"), q(e, "class", "svelte-c4460r");
+      u = ot(), e = et("br"), q(e, "class", "svelte-c4460r");
     },
     m(r, a) {
       for (let n = 0; n < c.length; n += 1)
         c[n] && c[n].m(r, a);
-      kt(r, h, a), kt(r, e, a);
+      kt(r, u, a), kt(r, e, a);
     },
     p(r, a) {
       if (a[0] & /*modIdErrors*/
@@ -4519,7 +4538,7 @@ function ae(C) {
         let n;
         for (n = 0; n < d.length; n += 1) {
           const o = ie(r, d, n);
-          c[n] ? c[n].p(o, a) : (c[n] = se(o), c[n].c(), c[n].m(h.parentNode, h));
+          c[n] ? c[n].p(o, a) : (c[n] = se(o), c[n].c(), c[n].m(u.parentNode, u));
         }
         for (; n < c.length; n += 1)
           c[n].d(1);
@@ -4527,21 +4546,21 @@ function ae(C) {
       }
     },
     d(r) {
-      Jt(c, r), r && Et(h), r && Et(e);
+      Jt(c, r), r && Et(u), r && Et(e);
     }
   };
 }
 function se(C) {
-  let h, e = (
+  let u, e = (
     /*error*/
     C[37] + ""
   ), d;
   return {
     c() {
-      h = et("li"), d = Ft(e), Qt(h, "color", "red"), q(h, "class", "svelte-c4460r");
+      u = et("li"), d = Ft(e), Qt(u, "color", "red"), q(u, "class", "svelte-c4460r");
     },
     m(c, r) {
-      kt(c, h, r), Z(h, d);
+      kt(c, u, r), Z(u, d);
     },
     p(c, r) {
       r[0] & /*modIdErrors*/
@@ -4549,21 +4568,21 @@ function se(C) {
       c[37] + "") && Xt(d, e);
     },
     d(c) {
-      c && Et(h);
+      c && Et(u);
     }
   };
 }
 function oe(C) {
-  let h, e, d, c, r, a, n, o, p, m, g, v, l, b = (
+  let u, e, d, c, r, a, n, o, p, m, g, v, l, b = (
     /*customIdErrors*/
     C[15] != null && le(C)
   );
   return {
     c() {
-      h = et("div"), e = et("h3"), e.textContent = "Mod ID:", d = ot(), c = et("hr"), r = ot(), a = et("p"), n = Ft("Enter the modid you wish to use for your mod. "), o = et("a"), o.textContent = "Use default", p = ot(), b && b.c(), m = ot(), g = et("input"), q(e, "class", "svelte-c4460r"), q(c, "class", "svelte-c4460r"), q(o, "href", ""), q(o, "class", "svelte-c4460r"), q(a, "class", "svelte-c4460r"), q(g, "id", "mod-id"), q(g, "class", "svelte-c4460r"), q(h, "class", "form-line svelte-c4460r");
+      u = et("div"), e = et("h3"), e.textContent = "Mod ID:", d = ot(), c = et("hr"), r = ot(), a = et("p"), n = Ft("Enter the modid you wish to use for your mod. "), o = et("a"), o.textContent = "Use default", p = ot(), b && b.c(), m = ot(), g = et("input"), q(e, "class", "svelte-c4460r"), q(c, "class", "svelte-c4460r"), q(o, "href", ""), q(o, "class", "svelte-c4460r"), q(a, "class", "svelte-c4460r"), q(g, "id", "mod-id"), q(g, "class", "svelte-c4460r"), q(u, "class", "form-line svelte-c4460r");
     },
     m(s, f) {
-      kt(s, h, f), Z(h, e), Z(h, d), Z(h, c), Z(h, r), Z(h, a), Z(a, n), Z(a, o), Z(h, p), b && b.m(h, null), Z(h, m), Z(h, g), Ut(
+      kt(s, u, f), Z(u, e), Z(u, d), Z(u, c), Z(u, r), Z(u, a), Z(a, n), Z(a, o), Z(u, p), b && b.m(u, null), Z(u, m), Z(u, g), Ut(
         g,
         /*customModId*/
         C[3]
@@ -4582,7 +4601,7 @@ function oe(C) {
     },
     p(s, f) {
       /*customIdErrors*/
-      s[15] != null ? b ? b.p(s, f) : (b = le(s), b.c(), b.m(h, m)) : b && (b.d(1), b = null), f[0] & /*customModId*/
+      s[15] != null ? b ? b.p(s, f) : (b = le(s), b.c(), b.m(u, m)) : b && (b.d(1), b = null), f[0] & /*customModId*/
       8 && g.value !== /*customModId*/
       s[3] && Ut(
         g,
@@ -4591,12 +4610,12 @@ function oe(C) {
       );
     },
     d(s) {
-      s && Et(h), b && b.d(), v = !1, pe(l);
+      s && Et(u), b && b.d(), v = !1, pe(l);
     }
   };
 }
 function le(C) {
-  let h, e, d = (
+  let u, e, d = (
     /*customIdErrors*/
     C[15]
   ), c = [];
@@ -4606,12 +4625,12 @@ function le(C) {
     c() {
       for (let r = 0; r < c.length; r += 1)
         c[r].c();
-      h = ot(), e = et("br"), q(e, "class", "svelte-c4460r");
+      u = ot(), e = et("br"), q(e, "class", "svelte-c4460r");
     },
     m(r, a) {
       for (let n = 0; n < c.length; n += 1)
         c[n] && c[n].m(r, a);
-      kt(r, h, a), kt(r, e, a);
+      kt(r, u, a), kt(r, e, a);
     },
     p(r, a) {
       if (a[0] & /*customIdErrors*/
@@ -4621,7 +4640,7 @@ function le(C) {
         let n;
         for (n = 0; n < d.length; n += 1) {
           const o = re(r, d, n);
-          c[n] ? c[n].p(o, a) : (c[n] = ce(o), c[n].c(), c[n].m(h.parentNode, h));
+          c[n] ? c[n].p(o, a) : (c[n] = ce(o), c[n].c(), c[n].m(u.parentNode, u));
         }
         for (; n < c.length; n += 1)
           c[n].d(1);
@@ -4629,21 +4648,21 @@ function le(C) {
       }
     },
     d(r) {
-      Jt(c, r), r && Et(h), r && Et(e);
+      Jt(c, r), r && Et(u), r && Et(e);
     }
   };
 }
 function ce(C) {
-  let h, e = (
+  let u, e = (
     /*error*/
     C[37] + ""
   ), d;
   return {
     c() {
-      h = et("li"), d = Ft(e), Qt(h, "color", "red"), q(h, "class", "svelte-c4460r");
+      u = et("li"), d = Ft(e), Qt(u, "color", "red"), q(u, "class", "svelte-c4460r");
     },
     m(c, r) {
-      kt(c, h, r), Z(h, d);
+      kt(c, u, r), Z(u, d);
     },
     p(c, r) {
       r[0] & /*customIdErrors*/
@@ -4651,21 +4670,21 @@ function ce(C) {
       c[37] + "") && Xt(d, e);
     },
     d(c) {
-      c && Et(h);
+      c && Et(u);
     }
   };
 }
 function ue(C) {
-  let h, e = (
+  let u, e = (
     /*error*/
     C[37] + ""
   ), d;
   return {
     c() {
-      h = et("li"), d = Ft(e), Qt(h, "color", "red"), q(h, "class", "svelte-c4460r");
+      u = et("li"), d = Ft(e), Qt(u, "color", "red"), q(u, "class", "svelte-c4460r");
     },
     m(c, r) {
-      kt(c, h, r), Z(h, d);
+      kt(c, u, r), Z(u, d);
     },
     p(c, r) {
       r[0] & /*packageNameErrors*/
@@ -4673,38 +4692,38 @@ function ue(C) {
       c[37] + "") && Xt(d, e);
     },
     d(c) {
-      c && Et(h);
+      c && Et(u);
     }
   };
 }
 function he(C) {
-  let h, e = (
+  let u, e = (
     /*version*/
     C[34].version + ""
   ), d;
   return {
     c() {
-      h = et("option"), d = Ft(e), h.__value = /*version*/
-      C[34].version, h.value = h.__value, q(h, "class", "svelte-c4460r");
+      u = et("option"), d = Ft(e), u.__value = /*version*/
+      C[34].version, u.value = u.__value, q(u, "class", "svelte-c4460r");
     },
     m(c, r) {
-      kt(c, h, r), Z(h, d);
+      kt(c, u, r), Z(u, d);
     },
     p: Dt,
     d(c) {
-      c && Et(h);
+      c && Et(u);
     }
   };
 }
 function de(C) {
-  let h, e, d, c, r, a, n, o, p;
+  let u, e, d, c, r, a, n, o, p;
   return {
     c() {
-      h = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Mojang Mappings", a = ot(), n = et("p"), n.textContent = "Use Mojang's official mappings rather than Yarn. Note that Mojang's mappings come with a usable yet more restrictive license than Yarn. Use them at your own risk.", q(d, "id", "mojmap"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "mojmap"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(h, "class", "svelte-c4460r");
+      u = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Mojang Mappings", a = ot(), n = et("p"), n.textContent = "Use Mojang's official mappings rather than Yarn. Note that Mojang's mappings come with a usable yet more restrictive license than Yarn. Use them at your own risk.", q(d, "id", "mojmap"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "mojmap"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(u, "class", "svelte-c4460r");
     },
     m(m, g) {
-      kt(m, h, g), Z(h, e), Z(e, d), d.checked = /*mojmap*/
-      C[6], Z(e, c), Z(e, r), Z(h, a), Z(h, n), o || (p = Bt(
+      kt(m, u, g), Z(u, e), Z(e, d), d.checked = /*mojmap*/
+      C[6], Z(e, c), Z(e, r), Z(u, a), Z(u, n), o || (p = Bt(
         d,
         "change",
         /*input_change_handler*/
@@ -4717,19 +4736,19 @@ function de(C) {
       m[6]);
     },
     d(m) {
-      m && Et(h), o = !1, p();
+      m && Et(u), o = !1, p();
     }
   };
 }
 function Ae(C) {
-  let h, e, d, c, r, a, n, o, p;
+  let u, e, d, c, r, a, n, o, p;
   return {
     c() {
-      h = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Data Generation", a = ot(), n = et("p"), n.innerHTML = 'This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup" class="svelte-c4460r">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.', q(d, "id", "datagen"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "datagen"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(h, "class", "svelte-c4460r");
+      u = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Data Generation", a = ot(), n = et("p"), n.innerHTML = 'This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup" class="svelte-c4460r">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.', q(d, "id", "datagen"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "datagen"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(u, "class", "svelte-c4460r");
     },
     m(m, g) {
-      kt(m, h, g), Z(h, e), Z(e, d), d.checked = /*dataGeneration*/
-      C[7], Z(e, c), Z(e, r), Z(h, a), Z(h, n), o || (p = Bt(
+      kt(m, u, g), Z(u, e), Z(e, d), d.checked = /*dataGeneration*/
+      C[7], Z(e, c), Z(e, r), Z(u, a), Z(u, n), o || (p = Bt(
         d,
         "change",
         /*input_change_handler_1*/
@@ -4742,21 +4761,21 @@ function Ae(C) {
       m[7]);
     },
     d(m) {
-      m && Et(h), o = !1, p();
+      m && Et(u), o = !1, p();
     }
   };
 }
 function fe(C) {
-  let h, e, d, c, r, a, n, o, p;
+  let u, e, d, c, r, a, n, o, p;
   return {
     c() {
-      h = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Split client and common sources", a = ot(), n = et("p"), n.textContent = `A common source of server crashes comes from calling client only code when installed on a server.
+      u = et("div"), e = et("div"), d = et("input"), c = ot(), r = et("label"), r.textContent = "Split client and common sources", a = ot(), n = et("p"), n.textContent = `A common source of server crashes comes from calling client only code when installed on a server.
                 This option configures your mod to be built from two source sets, client and main.
-                This enforces a clear separation between the client and server code.`, q(d, "id", "splitSources"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "splitSources"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(h, "class", "svelte-c4460r");
+                This enforces a clear separation between the client and server code.`, q(d, "id", "splitSources"), q(d, "type", "checkbox"), q(d, "class", "option-input svelte-c4460r"), q(r, "for", "splitSources"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(u, "class", "svelte-c4460r");
     },
     m(m, g) {
-      kt(m, h, g), Z(h, e), Z(e, d), d.checked = /*splitSources*/
-      C[8], Z(e, c), Z(e, r), Z(h, a), Z(h, n), o || (p = Bt(
+      kt(m, u, g), Z(u, e), Z(e, d), d.checked = /*splitSources*/
+      C[8], Z(e, c), Z(e, r), Z(u, a), Z(u, n), o || (p = Bt(
         d,
         "change",
         /*input_change_handler_2*/
@@ -4769,18 +4788,18 @@ function fe(C) {
       m[8]);
     },
     d(m) {
-      m && Et(h), o = !1, p();
+      m && Et(u), o = !1, p();
     }
   };
 }
 function tr(C) {
-  let h, e, d, c, r, a;
+  let u, e, d, c, r, a;
   return e = new ve({}), {
     c() {
-      h = et("a"), me(e.$$.fragment), d = Ft(" Download Template (.ZIP)"), q(h, "class", "button primary large download-button svelte-c4460r"), q(h, "href", "");
+      u = et("a"), me(e.$$.fragment), d = Ft(" Download Template (.ZIP)"), q(u, "class", "button primary large download-button svelte-c4460r"), q(u, "href", "");
     },
     m(n, o) {
-      kt(n, h, o), ge(e, h, null), Z(h, d), c = !0, r || (a = Bt(h, "click", qt(
+      kt(n, u, o), ge(e, u, null), Z(u, d), c = !0, r || (a = Bt(u, "click", qt(
         /*generate*/
         C[18]
       )), r = !0);
@@ -4793,18 +4812,18 @@ function tr(C) {
       Mt(e.$$.fragment, n), c = !1;
     },
     d(n) {
-      n && Et(h), be(e), r = !1, a();
+      n && Et(u), be(e), r = !1, a();
     }
   };
 }
 function er(C) {
-  let h, e, d, c;
+  let u, e, d, c;
   return e = new ve({}), {
     c() {
-      h = et("a"), me(e.$$.fragment), d = Ft(" Generating..."), q(h, "class", "button primary download-button svelte-c4460r"), q(h, "href", "");
+      u = et("a"), me(e.$$.fragment), d = Ft(" Generating..."), q(u, "class", "button primary download-button svelte-c4460r"), q(u, "href", "");
     },
     m(r, a) {
-      kt(r, h, a), ge(e, h, null), Z(h, d), c = !0;
+      kt(r, u, a), ge(e, u, null), Z(u, d), c = !0;
     },
     p: Dt,
     i(r) {
@@ -4814,32 +4833,32 @@ function er(C) {
       Mt(e.$$.fragment, r), c = !1;
     },
     d(r) {
-      r && Et(h), be(e);
+      r && Et(u), be(e);
     }
   };
 }
 function nr(C) {
-  let h, e, d, c;
+  let u, e, d, c;
   return {
     c() {
-      h = et("p"), e = Ft(`Loading data
+      u = et("p"), e = Ft(`Loading data
     
         
         `), d = et("span"), c = Ft("..."), Qt(d, "font-family", Lt);
     },
     m(r, a) {
-      kt(r, h, a), Z(h, e), Z(h, d), Z(d, c);
+      kt(r, u, a), Z(u, e), Z(u, d), Z(d, c);
     },
     p: Dt,
     i: Dt,
     o: Dt,
     d(r) {
-      r && Et(h);
+      r && Et(u);
     }
   };
 }
 function rr(C) {
-  let h, e, d = {
+  let u, e, d = {
     ctx: C,
     current: null,
     token: null,
@@ -4857,10 +4876,10 @@ function rr(C) {
     d
   ), {
     c() {
-      h = Oe(), d.block.c();
+      u = Oe(), d.block.c();
     },
     m(c, r) {
-      kt(c, h, r), d.block.m(c, d.anchor = r), d.mount = () => h.parentNode, d.anchor = h, e = !0;
+      kt(c, u, r), d.block.m(c, d.anchor = r), d.mount = () => u.parentNode, d.anchor = u, e = !0;
     },
     p(c, r) {
       C = c, Te(d, C, r);
@@ -4876,12 +4895,12 @@ function rr(C) {
       e = !1;
     },
     d(c) {
-      c && Et(h), d.block.d(c), d.token = null, d = null;
+      c && Et(u), d.block.d(c), d.token = null, d = null;
     }
   };
 }
-function ir(C, h, e) {
-  let d, c, r, a, n, o, p, m, g = "Template Mod", v = "com.example", l = !1, b = !0, s = !1, f = !0, u = !1, w, E = !1;
+function ir(C, u, e) {
+  let d, c, r, a, n, o, p, m, g = "Template Mod", v = "com.example", l = !1, b = !0, s = !1, f = !0, h = !1, w, E = !1;
   const O = Promise.all([Ie()]).then(([M]) => (e(0, m = M.find((x) => x.stable).version), { game: M }));
   function _(M) {
     if (M !== void 0)
@@ -4901,7 +4920,7 @@ function ir(C, h, e) {
       dataGeneration: s && c,
       splitSources: f && r,
       uniqueModIcon: !0,
-      gradleKotlin: u
+      gradleKotlin: h
     }, B = new tn();
     await M.generateTemplate({
       config: x,
@@ -4937,7 +4956,7 @@ function ir(C, h, e) {
   function Y() {
     e(2, v = Je(v));
   }
-  function N() {
+  function V() {
     e(3, w = d);
   }
   function H() {
@@ -4949,11 +4968,11 @@ function ir(C, h, e) {
   function k() {
     w = this.value, e(3, w);
   }
-  function V() {
+  function N() {
     v = this.value, e(2, v);
   }
   function i() {
-    m = Ve(this), e(0, m), e(17, O);
+    m = Ne(this), e(0, m), e(17, O);
   }
   function G() {
     l = this.checked, e(5, l);
@@ -4968,7 +4987,7 @@ function ir(C, h, e) {
     f = this.checked, e(8, f);
   }
   function F() {
-    u = this.checked, e(9, u);
+    h = this.checked, e(9, h);
   }
   return C.$$.update = () => {
     C.$$.dirty[0] & /*projectName*/
@@ -4989,7 +5008,7 @@ function ir(C, h, e) {
     b,
     s,
     f,
-    u,
+    h,
     E,
     r,
     c,
@@ -5001,11 +5020,11 @@ function ir(C, h, e) {
     Q,
     D,
     Y,
-    N,
+    V,
     H,
     rt,
     k,
-    V,
+    N,
     i,
     G,
     it,
@@ -5015,8 +5034,8 @@ function ir(C, h, e) {
   ];
 }
 class cr extends Be {
-  constructor(h) {
-    super(), Fe(this, h, ir, rr, _e, {}, null, [-1, -1]);
+  constructor(u) {
+    super(), Fe(this, u, ir, rr, _e, {}, null, [-1, -1]);
   }
 }
 export {
