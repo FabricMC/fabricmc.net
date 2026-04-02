@@ -11,9 +11,12 @@ import { minecraftSupportsSlf4j } from "./minecraft";
 
 interface ClassOptions {
     package: string, // com.example
+    clientPackage: string // com.example.client
     className: string, // ExampleClass
     classFullName: string, // com.example.ExampleClass
+    clientClassFullName: string // com.example.client.ExampleClass
     path: string, // com/example/ExampleClass
+    clientPath: string, // com/example/client/ExampleClass
     modid: string,
     slf4j: boolean,
     clientEntrypoint: boolean,
@@ -25,9 +28,12 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
 
     const classOptions: ClassOptions = {
         package: options.packageName,
+        clientPackage: options.packageName + ".client",
         className,
         classFullName: options.packageName + "." + className,
+        clientClassFullName: options.packageName + ".client." + className,
         path: options.packageName.replaceAll(".", "/") + "/" + className,
+        clientPath: options.packageName.replaceAll(".", "/") + "/client/" + className,
         modid: options.modid,
         slf4j: minecraftSupportsSlf4j(options.minecraftVersion),
         clientEntrypoint: options.splitSources,
@@ -58,24 +64,35 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
     await writer.write(`src/main/java/${options.path}.java`, renderTemplate(javaEntrypointTemplate, options))
 
     if (options.clientEntrypoint) {
-        await writer.write(`src/client/java/${options.path}Client.java`, renderTemplate(javaEntrypointClientTemplate, {...options, className: options.className + "Client"}));
+        await writer.write(`src/client/java/${options.clientPath}Client.java`, renderTemplate(javaEntrypointClientTemplate, {
+            ...options,
+            className: options.className + "Client",
+            package: options.clientPackage
+        }));
 
         entrypoints = {
             ...entrypoints,
             "client": [
-                options.classFullName + "Client"
+                options.clientClassFullName + "Client"
             ]
         }
     }
 
     if (options.dataEntrypoint) {
         const sourceSet = options.clientEntrypoint ? "client" : "main";
-        await writer.write(`src/${sourceSet}/java/${options.path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}));
+        const path = options.clientEntrypoint ? options.clientPath : options.path;
+        const fullName = options.clientEntrypoint ? options.clientClassFullName : options.classFullName;
+
+        await writer.write(`src/${sourceSet}/java/${path}DataGenerator.java`, renderTemplate(javaEntrypointDataGeneratorTemplate, {
+            ...options,
+            className: options.className + "DataGenerator",
+            package: options.clientEntrypoint ? options.clientPackage : options.package
+        }));
 
         entrypoints = {
             ...entrypoints,
             "fabric-datagen": [
-                options.classFullName + "DataGenerator"
+                fullName + "DataGenerator"
             ]
         }
     }
@@ -96,13 +113,17 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
     await writer.write(`src/main/kotlin/${options.path}.kt`, renderTemplate(kotlinEntrypointTemplate, options))
 
     if (options.clientEntrypoint) {
-        await writer.write(`src/client/kotlin/${options.path}Client.kt`, renderTemplate(kotlinEntrypointClientTemplate, {...options, className: options.className + "Client"}))
+        await writer.write(`src/client/kotlin/${options.clientPath}Client.kt`, renderTemplate(kotlinEntrypointClientTemplate, {
+            ...options,
+            className: options.className + "Client",
+            package: options.clientPackage
+        }))
 
         entrypoints = {
             ...entrypoints,
             "client": [
                 {
-                    "value": options.classFullName + "Client",
+                    "value": options.clientClassFullName + "Client",
                     "adapter": "kotlin",
                 }
             ]
@@ -111,13 +132,20 @@ async function generateKotlinEntrypoint(writer: TemplateWriter, options: ClassOp
 
     if (options.dataEntrypoint) {
         const sourceSet = options.clientEntrypoint ? "client" : "main";
-        await writer.write(`src/${sourceSet}/kotlin/${options.path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {...options, className: options.className + "DataGenerator"}))
+        const path = options.clientEntrypoint ? options.clientPath : options.path;
+        const fullName = options.clientEntrypoint ? options.clientClassFullName : options.classFullName;
+
+        await writer.write(`src/${sourceSet}/kotlin/${path}DataGenerator.kt`, renderTemplate(kotlinEntrypointDataGeneratorTemplate, {
+            ...options,
+            className: options.className + "DataGenerator",
+            package: options.clientEntrypoint ? options.clientPackage : options.package
+        }))
 
         entrypoints = {
             ...entrypoints,
             "fabric-datagen": [
                 {
-                    "value": options.classFullName + "DataGenerator",
+                    "value": fullName + "DataGenerator",
                     "adapter": "kotlin",
                 }
             ]
