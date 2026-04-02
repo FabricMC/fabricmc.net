@@ -1,7 +1,7 @@
 import { S as Be, i as Fe, s as _e, h as Re, b as Oe, c as kt, u as Te, o as jt, p as Mt, d as Et, q as Ne, e as et, t as Ft, a as ot, f as Qt, g as Z, n as Dt, k as q, r as Ve, C as Ut, l as Kt, m as Bt, D as De, E as Ue, j as Jt, B as pe, A as Xt, y as qt, v as me, w as ge, x as be } from "./index.4deac2e0.js";
 import ve from "./DownloadIcon.39c279f6.js";
 import { g as Qe, a as ze, b as Ge, m as Le, c as ye, n as je, d as Me, e as We, f as Ze, s as Pe, h as Je } from "./minecraft.d027b357.js";
-import { d as Ye, b as Xe, h as He, i as qe, j as Ke } from "./Api.3a6c4b44.js";
+import { d as Ye, b as Xe, h as He, i as qe, j as Ke } from "./Api.fd2c0b6d.js";
 var Vt = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function we(C) {
   return C && C.__esModule && Object.prototype.hasOwnProperty.call(C, "default") ? C.default : C;
