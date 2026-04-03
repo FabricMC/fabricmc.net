@@ -58,7 +58,9 @@ jobs:
           ref: ${{ matrix.version.branch }}
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - run: rm -rf *
+      - run: |
+          git rm -rf .
+          git clean -fxd
         working-directory: repo
       - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}"
         working-directory: repo
