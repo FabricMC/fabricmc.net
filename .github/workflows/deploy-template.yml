@@ -25,20 +25,21 @@ jobs:
           path: cli/bundled.ts
   deploy:
     runs-on: ubuntu-24.04
-    matrix:
-      version:
-        - branch: '1.17'
-          version: '1.17.1'
-        - branch: '1.18'
-          version: '1.18.2'
-        - branch: '1.19'
-          version: '1.19.4'
-        - branch: '1.20'
-          version: '1.20.6'
-        - branch: '1.21'
-          version: '1.21.11'
-        - branch: '26.1'
-          version: '26.1.1'
+    strategy:
+      matrix:
+        version:
+          - branch: '1.17'
+            version: '1.17.1'
+          - branch: '1.18'
+            version: '1.18.2'
+          - branch: '1.19'
+            version: '1.19.4'
+          - branch: '1.20'
+            version: '1.20.6'
+          - branch: '1.21'
+            version: '1.21.11'
+          - branch: '26.1'
+            version: '26.1.1'
     steps:
       - uses: denoland/setup-deno@v2
         with:
