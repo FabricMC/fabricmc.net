@@ -25,7 +25,7 @@ jobs:
           path: cli/bundled.ts
   deploy:
     runs-on: ubuntu-24.04
-    depends: build
+    depend: build
     strategy:
       matrix:
         version:
