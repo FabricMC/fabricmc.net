@@ -58,6 +58,8 @@ jobs:
           ref: ${{ matrix.version.branch }}
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
+      - run: rm -rf *
+        working-directory: repo
       - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}"
         working-directory: repo
       - name: Set Github Actions as commit user
