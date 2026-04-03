@@ -63,7 +63,7 @@ jobs:
           git clean -fxd
         working-directory: repo
       - run: mkdir gen
-      - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}"
+      - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}" -o splitSources -o mojangMappings
         working-directory: gen
       - name: Set Github Actions as commit user
         run: |
