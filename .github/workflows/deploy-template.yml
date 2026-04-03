@@ -33,6 +33,12 @@ jobs:
     strategy:
       matrix:
         version:
+          - branch: '1.14'
+            version: '1.14.4'
+          - branch: '1.15'
+            version: '1.15.2'
+          - branch: '1.16'
+            version: '1.16.5'
           - branch: '1.17'
             version: '1.17.1'
           - branch: '1.18'
