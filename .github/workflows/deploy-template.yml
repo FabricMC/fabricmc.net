@@ -62,12 +62,15 @@ jobs:
           git rm -rf .
           git clean -fxd
         working-directory: repo
+      - run: mkdir gen
       - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}"
-        working-directory: repo
+        working-directory: gen
       - name: Set Github Actions as commit user
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Copy new template
+        run: cp -r gen/* repo
       - name: Commit changes
         run: |
           git add -A
