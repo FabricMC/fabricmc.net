@@ -3,7 +3,7 @@ import { addGradleWrapper } from './gradlewrapper';
 import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
-import { minecraftIsUnobfuscated } from './minecraft';
+import { minecraftIsUnobfuscated, minecraftSupportsSplitSources, minecraftSupportsDataGen } from './minecraft';
 
 export const ICON_FONT = "Comic Relief";
 
@@ -111,6 +111,8 @@ async function computeConfig(options: Configuration): Promise<ComputedConfigurat
 	const unobfuscated = minecraftIsUnobfuscated(options.minecraftVersion);
 	return {
 		...options,
+        splitSources: minecraftSupportsSplitSources(options.minecraftVersion) && options.splitSources,
+        dataGeneration: minecraftSupportsDataGen(options.minecraftVersion) && options.dataGeneration,
 		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
 		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: unobfuscated ? undefined : (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
