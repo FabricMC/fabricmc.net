@@ -59,11 +59,22 @@ jobs:
         with:
           name: cli
       - uses: actions/checkout@v6
+        id: existing-checkout
+        continue-on-error: true
         with:
           repository: CelDaemon/fabric-example-mod
           ref: ${{ matrix.version.branch }}
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
+      - if: steps.existing-checkout.outcome == 'failure'
+        uses: actions/checkout@v6
+        with:
+          repository: CelDaemon/fabric-example-mod
+          ref: main
+          path: repo
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+      - if: steps.existing-checkout.outcome == 'failure'
+        run: git switch -c '${{ matrix.version.branch }}'
       - run: |
           git rm -rf .
           git clean -fxd
@@ -82,6 +93,6 @@ jobs:
         run: |
           git add -A
           git diff-index --quiet HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
-          git push
+          git push -u origin '${{ matrix.version.branch }}'
         working-directory: repo
 
