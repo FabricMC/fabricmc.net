@@ -2,8 +2,8 @@ name: Deploy to Fabric Example Mod
 on:
   push:
     paths:
-      - scripts/lib/**/*
-      - cli/**/*
+      - scripts/lib/**
+      - cli/**
       - .github/workflows/deploy-template.yml
 
 jobs:
