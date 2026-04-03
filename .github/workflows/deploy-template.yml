@@ -17,6 +17,10 @@ jobs:
       - uses: denoland/setup-deno@v2
         with:
           deno-version: "2.1.10"
+      - run: npm i
+        working-directory: scripts
+      - run: npm run buildLib
+        working-directory: scripts
       - run: make build
         working-directory: cli
       - uses: actions/upload-artifact@v7
