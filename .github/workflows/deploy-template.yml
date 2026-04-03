@@ -69,6 +69,7 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+        working-directory: repo
       - name: Copy new template
         run: cp -r gen/* repo
       - name: Commit changes
@@ -76,3 +77,5 @@ jobs:
           git add -A
           git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
           git push
+        working-directory: repo
+
