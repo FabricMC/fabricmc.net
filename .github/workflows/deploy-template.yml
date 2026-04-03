@@ -75,7 +75,7 @@ jobs:
       - name: Commit changes
         run: |
           git add -A
-          git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
+          git diff-index --quiet HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
           git push
         working-directory: repo
 
