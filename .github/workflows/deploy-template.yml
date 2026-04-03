@@ -1,0 +1,64 @@
+name: Deploy to Fabric Example Mod
+on:
+  push:
+    paths:
+      - scripts/lib/**/*
+      - cli/**/*
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: "2.1.10"
+      - run: make build
+        working-directory: cli
+      - uses: actions/upload-artifact@v7
+        with:
+          name: cli
+          path: cli/bundled.ts
+  deploy:
+    runs-on: ubuntu-24.04
+    matrix:
+      version:
+        - branch: '1.17'
+          version: '1.17.1'
+        - branch: '1.18'
+          version: '1.18.2'
+        - branch: '1.19'
+          version: '1.19.4'
+        - branch: '1.20'
+          version: '1.20.6'
+        - branch: '1.21'
+          version: '1.21.11'
+        - branch: '26.1'
+          version: '26.1.1'
+    steps:
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: "2.1.10"
+      - uses: actions/download-artifact@v8
+        with:
+          name: cli
+      - uses: actions/checkout@v6
+        with:
+          repository: CelDaemon/fabric-example-mod
+          ref: ${{ matrix.version.branch }}
+          path: repo
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+      - run: deno bundled.ts init -n "Example Mod" -n modid -p "com.example" -v "${{ matrix.version.version }}"
+        working-directory: repo
+      - name: Set Github Actions as commit user
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Commit changes
+        run: |
+          git add -A
+          git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
+          git push
