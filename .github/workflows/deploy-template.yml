@@ -39,15 +39,11 @@ jobs:
             return (await getGameVersions()).filter(x => x.stable).filter(x => {
               const major = getMajorMinecraftVersion(x.version);
               const minor = getMinorMinecraftVersion(x.version);
-              return major > 1 || minor >= 14;
-            }).filter(x => {
-              const major = getMajorMinecraftVersion(x.version);
-              const minor = getMinorMinecraftVersion(x.version);
               if(major == previousMajor && minor == previousMinor)
                 return false;
               previousMajor = major;
               previousMinor = minor;
-              return true
+              return true;
             }).map(x => {
               const major = getMajorMinecraftVersion(x.version);
               const minor = getMinorMinecraftVersion(x.version);
@@ -56,7 +52,6 @@ jobs:
                 branch: `${major}.${minor}`
               };
             });
-      - run: printf "%s" '${{ steps.versions-lookup.outputs.result }}'
   deploy:
     runs-on: ubuntu-24.04
     needs: build
