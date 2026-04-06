@@ -74,10 +74,6 @@ jobs:
             git switch --orphan '${{ matrix.version.branch }}'
           fi
         working-directory: repo
-      - run: |
-          git rm -rf .
-          git clean -fxd
-        working-directory: repo
       - run: mkdir gen
       - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}" -o splitSources -o mojangMappings
         working-directory: gen
@@ -90,7 +86,7 @@ jobs:
         run: cp -RT gen repo
       - name: Commit changes
         run: |
-          git add -A
+          git --work-tree ../gen add .
           git diff-index --quiet HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
           git push -u origin '${{ matrix.version.branch }}'
         working-directory: repo
