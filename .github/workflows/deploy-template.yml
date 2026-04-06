@@ -68,6 +68,7 @@ jobs:
       - run: |
           if git ls-remote --exit-code --quiet origin '${{ matrix.version.branch }}'
           then
+            git fetch origin '${{ matrix.version.branch }}'
             git switch '${{ matrix.version.branch }}'
           else
             git switch --orphan '${{ matrix.version.branch }}'
