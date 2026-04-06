@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    outputs:
+      versions: ${{ steps.versions-lookup.outputs.result }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -60,25 +62,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        version:
-          - branch: '1.14'
-            version: '1.14.4'
-          - branch: '1.15'
-            version: '1.15.2'
-          - branch: '1.16'
-            version: '1.16.5'
-          - branch: '1.17'
-            version: '1.17.1'
-          - branch: '1.18'
-            version: '1.18.2'
-          - branch: '1.19'
-            version: '1.19.4'
-          - branch: '1.20'
-            version: '1.20.6'
-          - branch: '1.21'
-            version: '1.21.11'
-          - branch: '26.1'
-            version: '26.1.1'
+        version: ${{ fromJSON(needs.build.outputs.versions) }}
     steps:
       - uses: denoland/setup-deno@v2
         with:
