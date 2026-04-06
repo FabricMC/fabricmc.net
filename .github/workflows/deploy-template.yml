@@ -87,7 +87,7 @@ jobs:
       - name: Commit changes
         run: |
           git --work-tree ../gen add .
-          git diff-index --quiet HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
+          git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
           git push -u origin '${{ matrix.version.branch }}'
         working-directory: repo
 
