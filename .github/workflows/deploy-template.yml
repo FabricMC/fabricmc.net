@@ -60,21 +60,18 @@ jobs:
           name: cli
       - uses: actions/checkout@v6
         id: existing-checkout
-        continue-on-error: true
-        with:
-          repository: CelDaemon/fabric-example-mod
-          ref: ${{ matrix.version.branch }}
-          path: repo
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - if: steps.existing-checkout.outcome == 'failure'
-        uses: actions/checkout@v6
         with:
           repository: CelDaemon/fabric-example-mod
           ref: master
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - if: steps.existing-checkout.outcome == 'failure'
-        run: git switch -c '${{ matrix.version.branch }}'
+      - run: |
+          if git show-ref --quiet 'refs/remotes/origin/${{ matrix.version.branch }}'
+          then
+            git switch '${{ matrix.version.branch }}'
+          else
+            git switch --orphan '${{ matrix.version.branch }}'
+          fi
         working-directory: repo
       - run: |
           git rm -rf .
