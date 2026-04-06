@@ -31,8 +31,29 @@ jobs:
         id: versions-lookup
         with:
           script: |
-            const { getGameVersions } = await import('${{ github.workspace }}/scripts/dist/fabric-template-generator.js');
-            return await getGameVersions();
+            const { getGameVersions, getMajorMinecraftVersion, getMinorMinecraftVersion } = await import('${{ github.workspace }}/scripts/dist/fabric-template-generator.js');
+            let previousMajor;
+            let previousMinor;
+            return (await getGameVersions()).filter(x => x.stable).filter(x => {
+              const major = getMajorMinecraftVersion(x.version);
+              const minor = getMinorMinecraftVersion(x.version);
+              return major > 1 || minor >= 14;
+            }).filter(x => {
+              const major = getMajorMinecraftVersion(x.version);
+              const minor = getMinorMinecraftVersion(x.version);
+              if(major == previousMajor && minor == previousMinor)
+                return false;
+              previousMajor = major;
+              previousMinor = minor;
+              return true
+            }).map(x => {
+              const major = getMajorMinecraftVersion(x.version);
+              const minor = getMinorMinecraftVersion(x.version);
+              return {
+                version: x.version,
+                branch: `${major}.${minor}`
+              };
+            });
       - run: printf "%s" '${{ steps.versions-lookup.outputs.result }}'
   deploy:
     runs-on: ubuntu-24.04
