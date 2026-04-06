@@ -82,8 +82,6 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
         working-directory: repo
-      - name: Copy new template
-        run: cp -RT gen repo
       - name: Commit changes
         run: |
           git --work-tree ../gen add .
