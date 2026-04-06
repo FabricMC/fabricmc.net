@@ -27,6 +27,13 @@ jobs:
         with:
           name: cli
           path: cli/bundled.ts
+      - uses: actions/github-script@v7
+        id: versions-lookup
+        with:
+          script: |
+            const { getGameVersions } = await import('${{ github.workspace }}/scripts/dist/fabric-template-generator.js');
+            return await getGameVersions();
+      - run: printf "%s" '${{ steps.versions-lookup.outputs.result }}'
   deploy:
     runs-on: ubuntu-24.04
     needs: build
