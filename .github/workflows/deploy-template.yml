@@ -64,8 +64,7 @@ jobs:
         uses: actions/checkout@v6
         id: existing-checkout
         with:
-          repository: CelDaemon/fabric-example-mod
-          ref: master
+          repository: ${{ github.repository_owner }}/fabric-example-mod
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
       - name: Switch to versioned branch
@@ -91,7 +90,7 @@ jobs:
       - name: Commit changes
         run: |
           git --work-tree ../gen add .
-          git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
+          git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit ${{ github.repository }}@${{ github.sha }}'
         working-directory: repo
       - name: Push commit
         run: git push -u origin '${{ matrix.version.branch }}'
