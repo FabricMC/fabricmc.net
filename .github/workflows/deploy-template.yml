@@ -8,50 +8,64 @@ on:
 
 jobs:
   build:
+    name: Build Fabric CLI
     runs-on: ubuntu-24.04
     outputs:
       versions: ${{ steps.versions-lookup.outputs.result }}
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+      - name: Setup NodeJS
+        uses: actions/setup-node@v6
         with:
           node-version: 18
-      - uses: denoland/setup-deno@v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
         with:
           deno-version: "2.1.10"
-      - run: npm i
+      - name: Install NPM dependencies
+        run: npm i
         working-directory: scripts
-      - run: npm run buildLib
+      - name: Build template library
+        run: npm run buildLib
         working-directory: scripts
-      - run: make build
+      - name: Build Fabric CLI
+        run: make build
         working-directory: cli
-      - uses: actions/upload-artifact@v7
+      - name: Upload Fabric CLI
+        uses: actions/upload-artifact@v7
         with:
           name: cli
           path: cli/bundled.ts
-      - run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
+      - name: Look up template versions
+        run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
         id: versions-lookup
   deploy:
+    name: Deploy to template repository
     runs-on: ubuntu-24.04
     needs: build
     strategy:
       matrix:
         version: ${{ fromJSON(needs.build.outputs.versions) }}
     steps:
-      - uses: denoland/setup-deno@v2
+      - name: Setup Deno
+        uses: denoland/setup-deno@v2
         with:
           deno-version: "2.1.10"
-      - uses: actions/download-artifact@v8
+      - name: Download Fabric CLI
+        uses: actions/download-artifact@v8
         with:
           name: cli
-      - uses: actions/checkout@v6
+      - name: Checkout template repository
+        uses: actions/checkout@v6
         id: existing-checkout
         with:
           repository: CelDaemon/fabric-example-mod
           ref: master
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - run: |
+      - name: Switch to versioned branch
+        run: |
           if git ls-remote --exit-code --quiet origin '${{ matrix.version.branch }}'
           then
             git fetch origin '${{ matrix.version.branch }}'
@@ -60,10 +74,12 @@ jobs:
             git switch --orphan '${{ matrix.version.branch }}'
           fi
         working-directory: repo
-      - run: mkdir gen
-      - run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}" -o splitSources -o mojangMappings
+      - name: Create template directory
+        run: mkdir gen
+      - name: Generate template
+        run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}" -o splitSources -o mojangMappings
         working-directory: gen
-      - name: Set Github Actions as commit user
+      - name: Set commit user
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
@@ -72,6 +88,8 @@ jobs:
         run: |
           git --work-tree ../gen add .
           git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit CelDaemon/fabricmc.net@${{ github.sha }}'
-          git push -u origin '${{ matrix.version.branch }}'
+        working-directory: repo
+      - name: Push commit
+        run: git push -u origin '${{ matrix.version.branch }}'
         working-directory: repo
 
