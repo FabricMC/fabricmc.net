@@ -34,24 +34,14 @@ jobs:
         with:
           script: |
             const { getGameVersions, getMajorMinecraftVersion, getMinorMinecraftVersion } = await import('${{ github.workspace }}/scripts/dist/fabric-template-generator.js');
-            let previousMajor;
-            let previousMinor;
-            return (await getGameVersions()).filter(x => x.stable).filter(x => {
+            const stableVersions = (await getGameVersions()).filter(x => x.stable);
+            const latestVersions = stableVersions.reduce((acc, x) => {
               const major = getMajorMinecraftVersion(x.version);
               const minor = getMinorMinecraftVersion(x.version);
-              if(major == previousMajor && minor == previousMinor)
-                return false;
-              previousMajor = major;
-              previousMinor = minor;
-              return true;
-            }).map(x => {
-              const major = getMajorMinecraftVersion(x.version);
-              const minor = getMinorMinecraftVersion(x.version);
-              return {
-                version: x.version,
-                branch: `${major}.${minor}`
-              };
-            });
+              acc[`${major}.${minor}`] ??= x.version;
+              return acc;
+            }, {});
+            return Object.entries(latestVersions).map(([branch, version]) => ({ branch, version }));
   deploy:
     runs-on: ubuntu-24.04
     needs: build
