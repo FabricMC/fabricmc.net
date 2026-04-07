@@ -29,19 +29,8 @@ jobs:
         with:
           name: cli
           path: cli/bundled.ts
-      - uses: actions/github-script@v7
+      - run: deno run .github/scripts/template-versions.ts
         id: versions-lookup
-        with:
-          script: |
-            const { getGameVersions, getMajorMinecraftVersion, getMinorMinecraftVersion } = await import('${{ github.workspace }}/scripts/dist/fabric-template-generator.js');
-            const stableVersions = (await getGameVersions()).filter(x => x.stable);
-            const latestVersions = stableVersions.reduce((acc, x) => {
-              const major = getMajorMinecraftVersion(x.version);
-              const minor = getMinorMinecraftVersion(x.version);
-              acc[`${major}.${minor}`] ??= x.version;
-              return acc;
-            }, {});
-            return Object.entries(latestVersions).map(([branch, version]) => ({ branch, version }));
   deploy:
     runs-on: ubuntu-24.04
     needs: build
