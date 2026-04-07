@@ -29,7 +29,7 @@ jobs:
         with:
           name: cli
           path: cli/bundled.ts
-      - run: deno run -A .github/scripts/template-versions.ts
+      - run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
         id: versions-lookup
   deploy:
     runs-on: ubuntu-24.04
