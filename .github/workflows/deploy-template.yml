@@ -44,6 +44,8 @@ jobs:
     name: Deploy to template repository
     runs-on: ubuntu-24.04
     needs: build
+    concurrency:
+      group: deploy-${{ matrix.version.branch }}
     strategy:
       matrix:
         version: ${{ fromJSON(needs.build.outputs.versions) }}
