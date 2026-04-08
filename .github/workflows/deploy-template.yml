@@ -1,5 +1,6 @@
 name: Deploy to Fabric Example Mod
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
