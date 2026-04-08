@@ -87,8 +87,8 @@ jobs:
         working-directory: gen
       - name: Set commit user
         run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git config user.name 'Fabric Bot'
+          git config user.email 159731069+FabricMCBot@users.noreply.github.com
         working-directory: repo
       - name: Commit changes
         run: |
