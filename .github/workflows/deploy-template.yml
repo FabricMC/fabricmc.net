@@ -55,10 +55,6 @@ jobs:
       matrix:
         version: ${{ fromJSON(needs.build.outputs.versions) }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v6
-        with:
-          sparse-checkout: .github/scripts/README.md
       - name: Setup Deno
         uses: denoland/setup-deno@v2
         with:
@@ -89,8 +85,6 @@ jobs:
       - name: Generate ${{ matrix.version.version }} template
         run: deno run -A ../bundled.ts init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version.version }}' -o splitSources -o mojangMappings
         working-directory: gen
-      - name: Copy README into template
-        run: cp .github/scripts/README.md gen
       - name: Set commit user
         run: |
           git config user.name github-actions[bot]
