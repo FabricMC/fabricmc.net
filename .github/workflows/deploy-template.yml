@@ -62,7 +62,7 @@ jobs:
         with:
           repository: ${{ github.repository_owner }}/fabric-example-mod
           path: repo
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          ssh-key: ${{ secrets.EXAMPLE_MOD_DEPLOY_KEY }}
       - name: Switch to ${{ matrix.version }} branch
         run: |
           if git ls-remote --exit-code --quiet origin '${{ matrix.version }}'
