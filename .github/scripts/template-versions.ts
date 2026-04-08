@@ -1,7 +1,7 @@
 // @deno-types="../../scripts/dist/fabric-template-generator.d.ts"
-import { getGameVersions, getMajorMinecraftVersion, getMinorMinecraftVersion } from '../../scripts/dist/fabric-template-generator.js';
+import { getTemplateGameVersions, getMajorMinecraftVersion, getMinorMinecraftVersion } from '../../scripts/dist/fabric-template-generator.js';
 
-const stableVersions = (await getGameVersions()).filter(x => x.stable);
+const stableVersions = (await getTemplateGameVersions()).filter(x => x.stable);
 
 const latestVersions = stableVersions.reduce((acc: Record<string, string>, x) => {
     const major = getMajorMinecraftVersion(x.version);
