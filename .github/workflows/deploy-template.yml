@@ -8,6 +8,8 @@ on:
       - scripts/**
       - cli/**
       - .github/workflows/deploy-template.yml
+      - .github/scripts/README.md
+      - .github/scripts/template-versions.ts
 
 jobs:
   build:
@@ -44,7 +46,7 @@ jobs:
         run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
         id: versions-lookup
   deploy:
-    name: Deploy to template repository
+    name: Deploy ${{ matrix.version.version }} template
     runs-on: ubuntu-24.04
     needs: build
     concurrency:
@@ -72,7 +74,7 @@ jobs:
           repository: ${{ github.repository_owner }}/fabric-example-mod
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - name: Switch to versioned branch
+      - name: Switch to ${{ matrix.version.branch }} branch
         run: |
           if git ls-remote --exit-code --quiet origin '${{ matrix.version.branch }}'
           then
@@ -84,8 +86,8 @@ jobs:
         working-directory: repo
       - name: Create template directory
         run: mkdir gen
-      - name: Generate template
-        run: deno run -A ../bundled.ts init -n "Example Mod" -m modid -p "com.example" -v "${{ matrix.version.version }}" -o splitSources -o mojangMappings
+      - name: Generate ${{ matrix.version.version }} template
+        run: deno run -A ../bundled.ts init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version.version }}' -o splitSources -o mojangMappings
         working-directory: gen
       - name: Copy README into template
         run: cp .github/scripts/README.md gen
@@ -99,7 +101,7 @@ jobs:
           git --work-tree ../gen add .
           git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit ${{ github.repository }}@${{ github.sha }}'
         working-directory: repo
-      - name: Push commit
+      - name: Push to ${{ matrix.version.branch }}
         run: git push -u origin '${{ matrix.version.branch }}'
         working-directory: repo
 
