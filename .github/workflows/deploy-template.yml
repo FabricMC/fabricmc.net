@@ -39,11 +39,11 @@ jobs:
         run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
         id: versions-lookup
   deploy:
-    name: Deploy ${{ matrix.version.version }} template
+    name: Deploy ${{ matrix.version }} template
     runs-on: ubuntu-24.04
     needs: build
     concurrency:
-      group: deploy-${{ matrix.version.branch }}
+      group: deploy-${{ matrix.version }}
     strategy:
       matrix:
         version: ${{ fromJSON(needs.build.outputs.versions) }}
@@ -63,20 +63,20 @@ jobs:
           repository: ${{ github.repository_owner }}/fabric-example-mod
           path: repo
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-      - name: Switch to ${{ matrix.version.branch }} branch
+      - name: Switch to ${{ matrix.version }} branch
         run: |
-          if git ls-remote --exit-code --quiet origin '${{ matrix.version.branch }}'
+          if git ls-remote --exit-code --quiet origin '${{ matrix.version }}'
           then
-            git fetch origin '${{ matrix.version.branch }}'
-            git switch '${{ matrix.version.branch }}'
+            git fetch origin '${{ matrix.version }}'
+            git switch '${{ matrix.version }}'
           else
-            git switch --orphan '${{ matrix.version.branch }}'
+            git switch --orphan '${{ matrix.version }}'
           fi
         working-directory: repo
       - name: Create template directory
         run: mkdir gen
-      - name: Generate ${{ matrix.version.version }} template
-        run: deno run -A ../bundled.ts init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version.version }}' -o splitSources -o mojangMappings
+      - name: Generate ${{ matrix.version }} template
+        run: deno run -A ../bundled.ts init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version }}' -o splitSources -o mojangMappings
         working-directory: gen
       - name: Set commit user
         run: |
@@ -88,7 +88,7 @@ jobs:
           git --work-tree ../gen add .
           git diff-index --quiet --cached HEAD || git commit -m 'Deployment from commit ${{ github.repository }}@${{ github.sha }}'
         working-directory: repo
-      - name: Push to ${{ matrix.version.branch }}
-        run: git push -u origin '${{ matrix.version.branch }}'
+      - name: Push to ${{ matrix.version }}
+        run: git push -u origin '${{ matrix.version }}'
         working-directory: repo
 
