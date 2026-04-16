@@ -1,40 +1,34 @@
-# gradle
+# Whitelist mode
+/*
+!/
 
-.gradle/
-build/
-out/
-classes/
+# Git configurations
+!.gitignore
+!.gitattributes
 
-# eclipse
+# Github workflow etc.
+!.github/
 
-*.launch
+# Gradle
+!gradlew
+!gradlew.bat
+!gradle/
+!gradle/**
+!build.gradle
+!build.gradle.kts
+!settings.gradle
+!settings.gradle.kts
+!gradle.properties
 
-# idea
+# Sources
+!src/
+!src/**/
 
-.idea/
-*.iml
-*.ipr
-*.iws
+# Fabric
+!run/
+run/**
 
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# macos
-
-*.DS_Store
-
-# fabric
-
-run/
-
-# java
-
-hs_err_*.log
-replay_*.log
-*.hprof
-*.jfr
+# Common files
+!README.md
+!LICENSE
+!docs/
