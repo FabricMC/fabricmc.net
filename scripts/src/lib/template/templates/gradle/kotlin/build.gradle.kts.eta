@@ -48,6 +48,7 @@ dependencies {
 }
 
 tasks.processResources {
+	val version = version
 	inputs.property("version", version)
 
 	filesMatching("fabric.mod.json") {
@@ -76,10 +77,11 @@ java {
 }
 
 tasks.jar {
-	inputs.property("projectName", project.name)
+	val projectName = project.name
+	inputs.property("projectName", projectName)
 
 	from("LICENSE") {
-		rename { "${it}_${project.name}" }
+		rename { "${it}_$projectName" }
 	}
 }
 
