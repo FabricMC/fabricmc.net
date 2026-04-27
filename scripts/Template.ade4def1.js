@@ -3066,10 +3066,11 @@ dependencies {
 }
 
 processResources {
-	inputs.property "version", project.version
+	def version = project.version
+	inputs.property "version", version
 
 	filesMatching("fabric.mod.json") {
-		expand "version": inputs.properties.version
+		expand "version": version
 	}
 }
 
@@ -3094,10 +3095,11 @@ java {
 }
 
 jar {
-	inputs.property "projectName", project.name
+	def projectName = project.name
+	inputs.property "projectName", projectName
 
 	from("LICENSE") {
-		rename { "\${it}_\${project.name}"}
+		rename { "\${it}_$projectName"}
 	}
 }
 
@@ -3116,7 +3118,8 @@ publishing {
 		// The repositories here will be used for publishing your artifact, not for
 		// retrieving dependencies.
 	}
-}`, on = `pluginManagement {
+}
+`, on = `pluginManagement {
 	repositories {
 		maven {
 			name = 'Fabric'
@@ -3223,6 +3226,7 @@ dependencies {
 }
 
 tasks.processResources {
+	val version = version
 	inputs.property("version", version)
 
 	filesMatching("fabric.mod.json") {
@@ -3251,10 +3255,11 @@ java {
 }
 
 tasks.jar {
-	inputs.property("projectName", project.name)
+	val projectName = project.name
+	inputs.property("projectName", projectName)
 
 	from("LICENSE") {
-		rename { "\${it}_\${project.name}" }
+		rename { "\${it}_$projectName" }
 	}
 }
 
