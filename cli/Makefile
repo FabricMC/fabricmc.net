@@ -29,6 +29,9 @@ init:
 	rm -rf ./test
 	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) init ./test
 
+versions:
+	deno run $(DENO_PERMISSIONS) $(ENTRYPOINT) versions
+
 init-bundled: build
 	rm -rf ./test
 	deno run $(DENO_PERMISSIONS) bundled.ts init ./test

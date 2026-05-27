@@ -8,6 +8,7 @@ import {
 } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
 import { initCommand } from "./commands/init.ts";
 import { upgradeCommand } from "./commands/upgrade.ts";
+import { versionsCommand } from "./commands/versions.ts";
 
 // Replaced by esbuild.
 declare let __VERSION__: string;
@@ -25,6 +26,7 @@ if (import.meta.main) {
     })
     .command("init", initCommand())
     .command("upgrade", upgradeCommand())
+    .command("versions", versionsCommand())
     .command("completions", new CompletionsCommand());
 
   await cmd.parse();
