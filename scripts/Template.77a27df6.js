@@ -4756,7 +4756,7 @@ function de(C) {
   let u, e, h, c, r, a, n, o, p;
   return {
     c() {
-      u = et("div"), e = et("div"), h = et("input"), c = ot(), r = et("label"), r.textContent = "Data Generation", a = ot(), n = et("p"), n.innerHTML = 'This option configures the <a href="https://fabricmc.net/wiki/tutorial:datagen_setup" class="svelte-c4460r">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.', q(h, "id", "datagen"), q(h, "type", "checkbox"), q(h, "class", "option-input svelte-c4460r"), q(r, "for", "datagen"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(u, "class", "svelte-c4460r");
+      u = et("div"), e = et("div"), h = et("input"), c = ot(), r = et("label"), r.textContent = "Data Generation", a = ot(), n = et("p"), n.innerHTML = 'This option configures the <a href="https://docs.fabricmc.net/develop/data-generation/setup" class="svelte-c4460r">Fabric Data Generation API</a> in your mod. This allows you to generate resources such as recipes from code at build time.', q(h, "id", "datagen"), q(h, "type", "checkbox"), q(h, "class", "option-input svelte-c4460r"), q(r, "for", "datagen"), q(r, "class", "option-label svelte-c4460r"), q(e, "class", "option-container svelte-c4460r"), q(n, "class", "option-body svelte-c4460r"), q(u, "class", "svelte-c4460r");
     },
     m(m, g) {
       kt(m, u, g), P(u, e), P(e, h), h.checked = /*dataGeneration*/
