@@ -36,7 +36,7 @@ From then on, run Jekyll using `bundle exec jekyll <args>` to use the local vers
 
 ### Build JavaScript Assets
 
-Install the JavaScript dependencies by running `npm install` in the `javascript` subdirectory.
+Install the JavaScript dependencies by running `npm install` in the `scripts` subdirectory.
 
 Then build the JavaScript bundle using `npm run build`.
 
