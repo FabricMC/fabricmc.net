@@ -9,7 +9,8 @@ pluginManagement {
 	}
 
 	plugins {
-		id("<% if (it.unobfuscated) { %>net.fabricmc.fabric-loom<% } else { %>net.fabricmc.fabric-loom-remap<% } %>") version providers.gradleProperty("loom_version")
+<% const pluginSuffix = it.unobfuscated ? '' : '-remap' -%>
+		id("net.fabricmc.fabric-loom<%= pluginSuffix %>") version providers.gradleProperty("loom_version")
 	}
 }
 

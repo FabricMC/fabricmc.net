@@ -44,14 +44,19 @@ fabricApi {
 
 <% } -%>
 dependencies {
+<% const implementation = it.unobfuscated ? 'implementation' : 'modImplementation' -%>
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	<% if (!it.unobfuscated) { %>mappings <% if (it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:${project.yarn_mappings}:v2"<% } %><% } %>
-	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc:fabric-loader:${project.loader_version}"
+<% if (!it.unobfuscated) { -%>
+	mappings <% if (it.mojmap) { %>loom.officialMojangMappings()<% } else { %>"net.fabricmc:yarn:${project.yarn_mappings}:v2"<% } %>
+<% } -%>
+	<%= implementation %> "net.fabricmc:fabric-loader:${project.loader_version}"
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	<% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-	<% if (it.kotlin) { %><% if (it.unobfuscated) { %>implementation<% } else { %>modImplementation<% } %> "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"<% } %>
+	<%= implementation %> "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+<% if (it.kotlin) { -%>
+    <%= implementation %> "net.fabricmc:fabric-language-kotlin:${project.fabric_kotlin_version}"
+<% } -%>
 }
 
 processResources {
