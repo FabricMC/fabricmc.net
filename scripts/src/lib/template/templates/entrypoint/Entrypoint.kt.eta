@@ -2,17 +2,26 @@ package <%= it.package %>
 
 import net.fabricmc.api.ModInitializer
 import <%= it.identifier.package %>.<%= it.identifier.class %>
-<% if (it.slf4j) { %>import org.slf4j.LoggerFactory
-<% } else { %>import org.apache.logging.log4j.LogManager<% } %>
+<% if (it.slf4j) { -%>
+import org.slf4j.LoggerFactory
+<% } else { -%>
+import org.apache.logging.log4j.LogManager
+<% } -%>
+
 object <%= it.className %> : ModInitializer {
 	const val MOD_ID: String = "<%= it.modid %>"
 
-<% if (it.slf4j) { %>    private val LOGGER = LoggerFactory.getLogger(MOD_ID)
-<% } else { %>    private val LOGGER = LogManager.getLogger(MOD_ID)<% } %>
+<% if (it.slf4j) { -%>
+	private val LOGGER = LoggerFactory.getLogger(MOD_ID)
+<% } else { -%>
+	private val LOGGER = LogManager.getLogger(MOD_ID)
+<% } -%>
+
 	override fun onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
+
 		LOGGER.info("Hello Fabric world!")
 	}
 
