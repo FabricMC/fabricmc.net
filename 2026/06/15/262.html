@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Fabric for Minecraft 26.2 | Fabric</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Fabric for Minecraft 26.2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<meta property="og:description" content="A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds." />
+<link rel="canonical" href="https://fabricmc.net/2026/06/15/262.html" />
+<meta property="og:url" content="https://fabricmc.net/2026/06/15/262.html" />
+<meta property="og:site_name" content="Fabric" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-06-15T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Fabric for Minecraft 26.2" />
+<script type="application/ld+json">
+{"headline":"Fabric for Minecraft 26.2","dateModified":"2026-06-15T00:00:00+00:00","datePublished":"2026-06-15T00:00:00+00:00","description":"A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, we ask all players to be patient, and give mod developers time to update to this new version. We kindly ask everyone not to pester them. We also recommend all players make backups of their worlds.","url":"https://fabricmc.net/2026/06/15/262.html","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://fabricmc.net/2026/06/15/262.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link rel="stylesheet" href="/assets/main.css?v=1781532312">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1781532312"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><div class="site-header-logo">
+      <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
+    </div><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+              <a class="page-link" href="/use/installer/">
+                Download
+              </a>
+            
+          
+            
+              <a class="page-link" href="/blog/">
+                Blog
+              </a>
+            
+          
+            
+              <a class="page-link" href="/develop/">
+                Develop
+              </a>
+            
+          
+            
+              <a class="page-link" href="/discuss/">
+                Discuss
+              </a>
+            
+          
+            
+              <a class="page-link" href="https://docs.fabricmc.net/">
+                Docs
+              </a>
+            
+          
+        </div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Fabric for Minecraft 26.2</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2026-06-15T00:00:00+00:00" itemprop="datePublished">Jun 15, 2026
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, <strong>we ask all players to be patient, and give mod developers time to update to this new version</strong>. We kindly ask everyone not to pester them. <strong>We also recommend all players make backups of their worlds</strong>.</p>
+
+<p>26.2 introduces the ability for the backend to be changed between the default OpenGL backend and an experimental Vulkan backend, with OpenGL planned to be removed once the Vulkan backend is stable. Developers making use of raw OpenGL calls rather than going through the Blaze3D API will need to migrate for their mods to work.</p>
+
+<p>Here is a list of several major modder-facing changes in this version, using the names provided by the unobfuscated game.</p>
+
+<h2 id="fabric-changes">Fabric changes</h2>
+
+<p>Developers should use Loom 1.17 and Gradle 9.5.1 (at the time of writing) to develop mods for Minecraft 26.2. Players should install the latest stable version of Fabric Loader (currently 0.19.3).</p>
+
+<h3 id="enum-extensions">Enum extensions</h3>
+
+<p>Fabric Loader 0.19.0 and Loom 1.17 bring with them a new API for enum extensions, implemented via Fabric Mixin at runtime and classtweaking at compile time. For more information, see the <a href="https://docs.fabricmc.net/develop/class-tweakers/enum-extension">dedicated article on the Fabric Docs</a>.</p>
+
+<h3 id="tag-removal">Tag removal</h3>
+
+<p>Fabric API 0.150.1 introduced a new API for removing entries from tags, useful for both mod developers and modpack developers wishing to safely modify tags without replacing them in their entirety.</p>
+
+<p>As an example, the below will remove <code class="language-plaintext highlighter-rouge">minecraft:brick</code> from the values of this tag. Other entries within <code class="language-plaintext highlighter-rouge">#c:bricks</code> will still be added.</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"replace"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"#c:bricks"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"minecraft:snowball"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"fabric:remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"minecraft:brick"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="fluid-interaction-api">Fluid interaction API</h3>
+
+<p>Fabric API 0.150.1 also introduced the currently experimental Fluid Interaction API, allowing mod developers greater control over how their fluids interact with entities. To use it, register a fluid tag containing your mod’s fluid, and an instance of <code class="language-plaintext highlighter-rouge">FluidBehaviour</code>, which can either be created directly or via a builder.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">EntityFluidInteractionRegistry</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="nc">ModTags</span><span class="o">.</span><span class="na">ACID</span><span class="o">,</span> 
+                                        <span class="nc">FluidBehavior</span><span class="o">.</span><span class="na">simple</span><span class="o">()</span>
+                                        <span class="o">.</span><span class="na">allowBoats</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">allowSwimming</span><span class="o">(</span><span class="kc">false</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="na">build</span><span class="o">());</span>
+</code></pre></div></div>
+
+<h3 id="attended-client-commands">Attended client commands</h3>
+
+<p>Fabric API 0.152.0 introduced the ability to set <code class="language-plaintext highlighter-rouge">.requires(FabricClientCommandSource::attended)</code> on client commands, allowing mods to ensure that the user has confirmed that they expect to run the given client command. Without this, the server could provide a text component that when clicked runs a client command without the user being able to see the command.</p>
+
+<h2 id="minecraft-changes">Minecraft changes</h2>
+
+<p>26.2 is a smaller update with more minor changes than 26.1, focused primarily on rendering (as always) and registration. We have only listed a few of the major non-rendering changes here. For a more comprehensive list of changes, please see <a href="https://github.com/ChampionAsh5357/neoforged-github/blob/port%2F26.2/primers/26.2/index.md">NeoForged’s upcoming porting “primer”</a>.</p>
+
+<h3 id="registration-and-data-generation">Registration and data generation</h3>
+
+<p>The vanilla game now stores block ids and item ids seperately, in <code class="language-plaintext highlighter-rouge">BlockIds</code>, <code class="language-plaintext highlighter-rouge">BlockItemIds</code>, and <code class="language-plaintext highlighter-rouge">ItemIds</code>. These keys are used for data generation rather than the raw <code class="language-plaintext highlighter-rouge">Block</code> or <code class="language-plaintext highlighter-rouge">Item</code> instances.</p>
+
+<p>This necessitated the removal of <code class="language-plaintext highlighter-rouge">valueLookupBuilder</code>. It’s recommended to match vanilla and seperate your ids from your Blocks as well.</p>
+
+<h3 id="gui-reorganization">Gui reorganization</h3>
+
+<p>Various GUI and HUD methods have been moved to dedicated classes for the <code class="language-plaintext highlighter-rouge">Gui</code> and <code class="language-plaintext highlighter-rouge">Hud</code>, which included moving the methods for retrieving and setting the current screen out of <code class="language-plaintext highlighter-rouge">Minecraft</code>. The <code class="language-plaintext highlighter-rouge">Gui</code> and <code class="language-plaintext highlighter-rouge">Hud</code> are both available from <code class="language-plaintext highlighter-rouge">Minecraft</code>.</p>
+
+<div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">//</span> Setting the screen
+<span class="gd">- Minecraft.getInstance().setScreen()
+</span><span class="gi">+ Minecraft.getInstance().gui.setScreen()
+</span></code></pre></div></div>
+
+  </div><a class="u-url" href="/2026/06/15/262.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <p>
+      The contents of this website, unless otherwise indicated, are licensed under a <a rel="license"
+        href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike
+        4.0 International License</a>.
+    </p>
+
+    <p style="font-size: 10px;">
+      NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.
+    </p>
+
+  </div>
+
+</footer></body>
+
+</html>
