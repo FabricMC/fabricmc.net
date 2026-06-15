@@ -2,7 +2,7 @@
 import * as generator from "../../scripts/dist/fabric-template-generator.js";
 import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
 
-const LOOM_VERSION = "1.16-SNAPSHOT";
+const LOOM_VERSION = "1.17-SNAPSHOT";
 
 type GameVersion = generator.GameVersion;
 type LoaderVersion = generator.LoaderVersion;
