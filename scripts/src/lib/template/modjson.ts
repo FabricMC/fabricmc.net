@@ -23,15 +23,13 @@ export async function addModJson(writer: TemplateWriter, canvas: CanvasAdaptorFa
     "id": config.modid,
     "version": "${version}",
     "name": config.projectName,
-    "description": "This is an example description! Tell everyone what your mod is about!",
-    "authors": [
-      "Me!"
-    ],
+    "description": config.modDescription,
+    "authors": config.authorText.split(",").map(a => a.trim()).filter(a => a.length > 0),
     "contact": {
       "homepage": "https://fabricmc.net/",
       "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
-    "license": "CC0-1.0",
+    "license": config.licenseExpression,
     "icon": `assets/${config.modid}/icon.png`,
     "environment": "*",
     "entrypoints": await generateEntrypoint(writer, config),

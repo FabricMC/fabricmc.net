@@ -4,12 +4,36 @@
     import DownloadIcon from "./DownloadIcon.svelte";
     import { ICON_FONT, getTemplateGameVersions, type Configuration } from "./template/template";
     import { minecraftSupportsDataGen, minecraftSupportsSplitSources, computeCustomModIdErrors, sharedModIdChecks, nameToModId, minecraftIsUnobfuscated} from "./template/minecraft";
-    import { computePackageNameErrors, formatPackageName } from "./template/java"
+    import { computePackageNameErrors, formatPackageName } from "./template/java";
+	import { supportedLicenses, readLicenseText, readTemplateLicenseText, computeLicenseErrors, fillBoilerplate, validateSpdxExpression } from "./template/license";
     import { decode64 } from "./template/utils";
 
     let minecraftVersion: string;
     let projectName = "Template Mod";
     let packageName = "com.example";
+    let authorText = "Me, Myself, I";
+    let modDescription = "This is an example description! Tell everyone what your mod is about!";
+    let licenseExpression = "CC0-1.0";
+	let licenseTexts = [];
+	let license1 = "CC0-1.0";
+	let operator = "OR";
+	let secondLicense = false;
+	let license2 = "MIT";
+	let customLicense = false;
+	let customLicenseExpression = "SPDX expression";
+	$: if (!customLicense) {
+		licenseExpression = secondLicense
+			? `${license1} ${operator} ${license2}`
+			: license1;
+	}
+	let usedExpression: string;
+	$: if (customLicense) {
+		usedExpression = customLicenseExpression;
+	}
+	else {
+		usedExpression = licenseExpression;
+	}
+	
     let useKotlin = false;
     let mojmap = true;
     let dataGeneration = false;
@@ -35,6 +59,7 @@
     $: modIdErrors = computeModIdErrors(modid);
     $: customIdErrors = computeCustomModIdErrors(customModId);
     $: packageNameErrors = computePackageNameErrors(packageName);
+	$: licenseErrors = computeLicenseErrors(usedExpression);
 
     function computeModIdErrors(id: string | undefined) : string[] | undefined {
       if (id === undefined) {
@@ -51,12 +76,27 @@
 
         loading = true;
 
+		licenseTexts = [];
+		
+		const result = validateSpdxExpression(licenseExpression);
+
+		if (!result.valid) {
+			throw new Error(result.error);
+		}
+
+		for (const license of result.licenses) {
+			licenseTexts.push(fillBoilerplate(readLicenseText(license), authorText));
+		}
+
         const generator = await import("./template/template");
         const config: Configuration = {
             modid: customModId ?? modid,
             minecraftVersion,
             projectName,
             packageName,
+            authorText,
+            modDescription,
+            licenseExpression: usedExpression,
             useKotlin,
             mojmap: mojmap || isUnobfuscated,
             dataGeneration: dataGeneration && supportsDataGen,
@@ -121,6 +161,14 @@
     function useDefaultModId() {
         customModId = undefined;
     }
+
+	function useRawLicenseBuilder() {
+		customLicense = true;
+	}
+
+	function useDefaultLicenseBuilder() {
+		customLicense = false;
+	}
 </script>
 
 {#await versions}
@@ -181,6 +229,104 @@
                 <li style="color: red">{error}</li>
             {/each}
         </div>
+
+		<div class="form-line">
+			<h3>Authors</h3>
+			<hr />
+			<p>supportedLicenses
+				Enter the author(s) of your mod, separated by commas.
+				This will be included in the generated
+				<code>fabric.mod.json</code> file.
+			</p>
+
+			<input id="authors" bind:value={authorText} />
+		</div>
+
+		<div class="form-line">
+			<h3>Mod Description:</h3>
+			<hr />
+			<p>
+				Enter a short description for your mod. This will be included in the generated <code>fabric.mod.json</code> file and can be used by mod listing sites to display information about your mod.
+			</p>
+			supportedLicensesd="mod-description" bind:value={modDescription} />
+		</div>
+
+		<div class="form-line">
+			<h3>License:</h3>
+			<hr />
+
+			{#if !customLicense}
+				<p>
+					Select a license for your mod. The resulting SPDX expression
+					will be written into
+					<code>fabric.mod.json</code>. <a href={""} on:click|preventDefault={useRawLicenseBuilder}>Use raw license builder</a>
+				</p>
+
+				<select bind:value={license1}>
+					{#each supportedLicenses.filter(
+						license => license !== "Template"
+					) as l}
+						<option value={l}>{l}</option>
+					{/each}
+				</select>
+
+				{#if secondLicense}
+					<select bind:value={operator}>
+						<option value="OR">OR</option>
+						<option value="AND">AND</option>
+					</select>
+
+					<select bind:value={license2}>
+						{#each supportedLicenses.filter(
+							license => license !== "Template"
+						) as l}
+							<option value={l}>{l}</option>
+						{/each}
+					</select>
+				{/if}
+
+				<br />
+				<br />
+
+				{#if !secondLicense}
+					<button
+						type="button"
+						class="button primary"
+						on:click={() => secondLicense = true}
+					>
+						Add another license
+					</button>
+				{:else}
+					<button
+						type="button"
+						class="button primary"
+						on:click={() => secondLicense = false}
+					>
+						Remove second license
+					</button>
+				{/if}
+
+				<br />
+				<br />
+
+				<b>Result SPDX Expression:</b> {licenseExpression}
+			{:else}
+				<p>
+					Enter a custom license identifier. <a href={""} on:click|preventDefault={useDefaultLicenseBuilder}>Use default license builder</a>
+				</p>
+
+				<input
+					id="custom-license-name"
+					bind:value={customLicenseExpression}
+				/>
+			{/if}
+
+			{#if licenseErrors}
+				{#each licenseErrors as error}
+					<li style="color: red">{error}</li>
+				{/each}
+			{/if}
+		</div>
 
         <div class="form-line">
             <h3>Minecraft Version:</h3>
@@ -290,8 +436,8 @@
 
 <style lang="scss">
     @font-face {
-    	font-family: "Comic Relief";
-	    src: url("/assets/fonts/ComicRelief-Regular.woff2");
+        font-family: "Comic Relief";
+        src: url("/assets/fonts/ComicRelief-Regular.woff2");
     }
     
     .template {

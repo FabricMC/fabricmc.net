@@ -9,6 +9,7 @@ import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGene
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
 import { minecraftSupportsSlf4j } from "./minecraft";
 import { formatClassname } from "./java";
+import { genCopyrightNotice, genSpdxHeader } from "./license";
 
 interface ClassOptions {
     package: string, // com.example
@@ -22,6 +23,8 @@ interface ClassOptions {
     slf4j: boolean,
     clientEntrypoint: boolean,
     dataEntrypoint: boolean,
+	copyrightNotice: string,
+	spdxHeader: string
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -38,7 +41,9 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         modid: options.modid,
         slf4j: minecraftSupportsSlf4j(options.minecraftVersion),
         clientEntrypoint: options.splitSources,
-        dataEntrypoint: options.dataGeneration
+        dataEntrypoint: options.dataGeneration,
+		copyrightNotice: genCopyrightNotice(options),
+		spdxHeader: genSpdxHeader(options)
     }
 
     if (options.kotlin) {
@@ -63,7 +68,7 @@ async function generateJavaEntrypoint(writer: TemplateWriter, options: ClassOpti
         await writer.write(`src/client/java/${options.clientPath}Client.java`, renderTemplate(javaEntrypointClientTemplate, {
             ...options,
             className: options.className + "Client",
-            package: options.clientPackage
+            package: options.clientPackage,
         }));
 
         entrypoints = {

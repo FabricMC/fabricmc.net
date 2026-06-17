@@ -1,3 +1,8 @@
+/*
+	<%= it.copyrightNotice %>
+	<%= it.spdxHeader %>
+*/
+
 package <%= it.package %>
 
 import net.fabricmc.api.ClientModInitializer

@@ -3,6 +3,7 @@ import type { ComputedConfiguration, TemplateWriter } from "./template";
 
 import mixinTemplate from './templates/mixin/Mixin.java.eta?raw';
 import { getJavaVersion } from "./java";
+import { genCopyrightNotice, genSpdxHeader } from "./license";
 
 export async function generateMixin(writer: TemplateWriter, options: ComputedConfiguration) : Promise<unknown[]> {
     const packageName = options.packageName + ".mixin";
@@ -11,6 +12,8 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
     const targetClass = "MinecraftServer";
     const targetClassFull = "net.minecraft.server.MinecraftServer";
     const targetMethod = options.mojmap ? "loadLevel" : "loadWorld";
+	const spdxHeader = genSpdxHeader(options);
+	const copyrightNotice = genCopyrightNotice(options);
 
     const mixinJson = {
         "required": true,
@@ -34,7 +37,9 @@ export async function generateMixin(writer: TemplateWriter, options: ComputedCon
         packageName,
         targetClass,
         targetClassFull,
-        targetMethod
+        targetMethod,
+		copyrightNotice,
+		spdxHeader
     }));
 
     return [mixinJsonName];
@@ -47,6 +52,8 @@ export async function generateClientMixin(writer: TemplateWriter, options: Compu
     const targetClass = options.mojmap ? "Minecraft" : "MinecraftClient";
     const targetClassFull = `net.minecraft.client.${targetClass}`;
     const targetMethod = "run";
+	const spdxHeader = genSpdxHeader(options);
+	const copyrightNotice = genCopyrightNotice(options);
 
     const mixinJson = {
         "required": true,
@@ -70,7 +77,9 @@ export async function generateClientMixin(writer: TemplateWriter, options: Compu
         packageName,
         targetClass,
         targetClassFull,
-        targetMethod
+        targetMethod,
+		copyrightNotice,
+		spdxHeader
     }));
 
     return [
