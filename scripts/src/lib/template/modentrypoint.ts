@@ -11,23 +11,37 @@ import { getMajorMinecraftVersion, getMinorMinecraftVersion, getPatchMinecraftVe
 import { formatClassname } from "./java";
 
 interface IdentifierNames {
-    package: string, // net.minecraft.resources
-    class: string, // Identifier
-    factoryName: string // fromNamespaceAndPath
+    /** @example net.minecraft.resources */
+    package: string,
+    /** @example Identifier */
+    class: string,
+    /** @example fromNamespaceAndPath */
+    factoryName: string
 }
 
 interface IdentifierOptions extends IdentifierNames {
-    factory: string // Identifier.fromNamespaceAndPath / new ResourceLocation
+    /**
+     * @example Identifier.fromNamespaceAndPath
+     * @example new ResourceLocation
+     */
+    factory: string
 }
 
 interface ClassOptions {
-    package: string, // com.example
-    clientPackage: string // com.example.client
-    className: string, // ExampleClass
-    classFullName: string, // com.example.ExampleClass
-    clientClassFullName: string // com.example.client.ExampleClass
-    path: string, // com/example/ExampleClass
-    clientPath: string, // com/example/client/ExampleClass
+    /** @example com.example */
+    package: string,
+    /** @example com.example.client */
+    clientPackage: string
+    /** @example ExampleClass */
+    className: string,
+    /** @example com.example.ExampleClass */
+    classFullName: string,
+    /** @example com.example.client.ExampleClass */
+    clientClassFullName: string
+    /** @example com/example/ExampleClass */
+    path: string,
+    /** @example com/example/client/ExampleClass */
+    clientPath: string,
     modid: string,
     slf4j: boolean,
     clientEntrypoint: boolean,
