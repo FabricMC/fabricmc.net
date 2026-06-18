@@ -7,21 +7,87 @@ import javaEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoin
 import kotlinEntrypointClientTemplate from './templates/entrypoint/ClientEntrypoint.kt.eta?raw';
 import javaEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.java.eta?raw';
 import kotlinEntrypointDataGeneratorTemplate from './templates/entrypoint/DataGeneratorEntrypoint.kt.eta?raw';
-import { minecraftSupportsSlf4j } from "./minecraft";
+import { getMajorMinecraftVersion, getMinorMinecraftVersion, getPatchMinecraftVersion, minecraftSupportsSlf4j } from "./minecraft";
 import { formatClassname } from "./java";
 
+interface IdentifierNames {
+    /** @example net.minecraft.resources */
+    package: string,
+    /** @example Identifier */
+    class: string,
+    /** @example fromNamespaceAndPath */
+    factoryName: string
+}
+
+interface IdentifierOptions extends IdentifierNames {
+    /**
+     * @example Identifier.fromNamespaceAndPath
+     * @example new ResourceLocation
+     */
+    factory: string
+}
+
 interface ClassOptions {
-    package: string, // com.example
-    clientPackage: string // com.example.client
-    className: string, // ExampleClass
-    classFullName: string, // com.example.ExampleClass
-    clientClassFullName: string // com.example.client.ExampleClass
-    path: string, // com/example/ExampleClass
-    clientPath: string, // com/example/client/ExampleClass
+    /** @example com.example */
+    package: string,
+    /** @example com.example.client */
+    clientPackage: string
+    /** @example ExampleClass */
+    className: string,
+    /** @example com.example.ExampleClass */
+    classFullName: string,
+    /** @example com.example.client.ExampleClass */
+    clientClassFullName: string
+    /** @example com/example/ExampleClass */
+    path: string,
+    /** @example com/example/client/ExampleClass */
+    clientPath: string,
     modid: string,
     slf4j: boolean,
     clientEntrypoint: boolean,
     dataEntrypoint: boolean,
+    identifier: IdentifierOptions
+}
+
+function getIdentifierFactory(names: IdentifierNames, version: string): string {
+    const major = getMajorMinecraftVersion(version);
+    const minor = getMinorMinecraftVersion(version);
+
+    if(major > 1 || minor > 20)
+        return `${names.class}.${names.factoryName}`;
+
+    return `new ${names.class}`;
+}
+
+function getIdentifierNames(options: ComputedConfiguration): IdentifierNames {
+    if(!(options.unobfuscated || options.mojmap)) {
+        return {
+            package: 'net.minecraft.util',
+            class: 'Identifier',
+            factoryName: 'of'
+        };
+    }
+    const major = getMajorMinecraftVersion(options.minecraftVersion);
+    const minor = getMinorMinecraftVersion(options.minecraftVersion);
+    const patch = getPatchMinecraftVersion(options.minecraftVersion);
+
+    const clazz = (major > 1 || (minor == 21 && patch == 11)) ? 'Identifier' : 'ResourceLocation';
+
+    return {
+        package: 'net.minecraft.resources',
+        class: clazz,
+        factoryName: 'fromNamespaceAndPath'
+    };
+}
+
+function buildIdentifierOptions(options: ComputedConfiguration): IdentifierOptions {
+    const names = getIdentifierNames(options);
+    const factory = getIdentifierFactory(names, options.minecraftVersion);
+
+    return {
+        ...names,
+        factory
+    };
 }
 
 export async function generateEntrypoint(writer: TemplateWriter, options: ComputedConfiguration): Promise<unknown> {
@@ -38,7 +104,8 @@ export async function generateEntrypoint(writer: TemplateWriter, options: Comput
         modid: options.modid,
         slf4j: minecraftSupportsSlf4j(options.minecraftVersion),
         clientEntrypoint: options.splitSources,
-        dataEntrypoint: options.dataGeneration
+        dataEntrypoint: options.dataGeneration,
+        identifier: buildIdentifierOptions(options)
     }
 
     if (options.kotlin) {
