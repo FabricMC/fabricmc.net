@@ -47,15 +47,18 @@
     </p>
 
     <div style="margin-bottom: 15px;">
-        <pre><code>
-minecraft_version={minecraftVersion}
+<pre><code>minecraft_version={minecraftVersion}
 {#if !isUnobfuscated}yarn_mappings={yarnVersion}
 {/if}loader_version={loaderVersion}
 loom_version=1.17-SNAPSHOT
 
+{#if apiVersion}
 # Fabric API
 fabric_api_version={apiVersion}
-        </code></pre>
+{:else}
+# No Fabric API version available
+# fabric_api_version=
+{/if}</code></pre>
 
 				<p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p>
 				<p>If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.</p> 
