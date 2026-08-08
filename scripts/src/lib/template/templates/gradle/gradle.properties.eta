@@ -18,8 +18,8 @@ fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } -%>
 
 # Mod Properties
-mod_version=1.0.0
-maven_group=<%= it.packageName %>
+version=1.0.0
+group=<%= it.packageName %>
 
 # Dependencies
 fabric_api_version=<%= it.fabricVersion %>
