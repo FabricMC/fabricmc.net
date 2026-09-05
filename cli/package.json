@@ -1,0 +1,12 @@
+{
+  "name": "fabric-cli-local",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm --prefix ../scripts run buildLib && make build",
+    "start": "node bundled.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

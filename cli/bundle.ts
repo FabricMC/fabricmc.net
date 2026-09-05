@@ -5,20 +5,34 @@ import { format } from "https://deno.land/std@0.91.0/datetime/mod.ts";
 const header = `/**
 * Fabric Command Line tools
 * This file contains a bundled TypeScript file with the code and dependencies for the Fabric command line tools.
-* It is expected to be ran using https://deno.com/runtime. The source code for this tool can be found at: https://github.com/FabricMC/fabricmc.net
+* The source code for this tool can be found at: https://github.com/FabricMC/fabricmc.net
 */
 `;
 
-await esbuild.build({
+const options: esbuild.BuildOptions = {
   plugins: [...denoPlugins()],
   entryPoints: ["./main.ts"],
-  outfile: "./bundled.ts",
   bundle: true,
   format: "esm",
-  target: ["deno1"],
   minify: true,
+  supported: { "dynamic-import": true },
   banner: { js: header },
   define: { __VERSION__: JSON.stringify(format(new Date(), "yyyy-MM-dd HH:mm:ss")) },
-});
+};
 
-esbuild.stop();
+try {
+  await esbuild.build({ ...options, outfile: "./bundled.ts", target: ["deno1"] });
+  await esbuild.build({
+    ...options,
+    outfile: "./bundled.mjs",
+    platform: "node",
+    target: ["node22"],
+    define: { ...options.define, "import.meta.main": "true" },
+    banner: {
+      js: header +
+        'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);',
+    },
+  });
+} finally {
+  esbuild.stop();
+}

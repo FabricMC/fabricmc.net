@@ -11,3 +11,4 @@
 !utils.ts
 !deno.json
 !deno.lock
+!package.json

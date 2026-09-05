@@ -2,10 +2,9 @@
 
 // @deno-types="../scripts/dist/fabric-template-generator.d.ts"
 import * as generator from "../scripts/dist/fabric-template-generator.js";
-import {
-  Command,
-  CompletionsCommand,
-} from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
+import { exit } from "node:process";
+import { Command } from "jsr:@cliffy/command@1.2.1";
+import { CompletionsCommand } from "jsr:@cliffy/command@1.2.1/completions";
 import { initCommand } from "./commands/init.ts";
 import { upgradeCommand } from "./commands/upgrade.ts";
 import { versionsCommand } from "./commands/versions.ts";
@@ -22,10 +21,15 @@ if (import.meta.main) {
     .action(() => {
       // Show the help in the default command with no args.
       cmd.showHelp();
-      Deno.exit(0);
+      exit(0);
     })
-    .command("init", initCommand())
-    .command("upgrade", upgradeCommand())
+    .command("init", initCommand());
+
+  if (typeof Deno !== "undefined") {
+    cmd.command("upgrade", upgradeCommand());
+  }
+
+  cmd
     .command("versions", versionsCommand())
     .command("completions", new CompletionsCommand());
 
