@@ -1,6 +1,5 @@
 {
-  "name": "fabric-cli-local",
-  "private": true,
+  "name": "@fabricmc/cli",
   "type": "module",
   "scripts": {
     "build": "npm --prefix ../scripts run buildLib && make build",
@@ -8,5 +7,24 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "version": "0.1.0",
+  "description": "Command-line tools for Fabric mod development",
+  "license": "MIT",
+  "bin": {
+    "fabric": "./bundled.mjs"
+  },
+  "files": [
+    "bundled.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabricMC/fabricmc.net.git",
+    "directory": "cli"
   }
 }
