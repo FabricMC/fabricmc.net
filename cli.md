@@ -18,19 +18,43 @@ The Fabric command line tools (CLI) can be used by mod developers to generate ne
 
 ## Installation
 
-The Fabric CLI tools require the [deno runtime](https://deno.com/runtime) to be installed on your system. Deno is a cross platform JavaScript runtime that allows us to use one code base between the web and desktop. After following the [deno installation](https://deno.com/manual/getting_started/installation) instructions, run the following command to globally install the fabric CLI tools:
+The Fabric CLI tools can be installed using npm or Deno.
+
+### npm
+
+With [Node.js](https://nodejs.org/) 22 or newer and npm installed, run the following command to globally install the Fabric CLI tools:
+
+<code class="command">
+npm install -g @fabricmc/cli
+</code>
+
+To update via npm, run:
+
+<code class="command">
+npm install -g @fabricmc/cli@latest
+</code>
+
+To remove via npm, run:
+
+<code class="command">
+npm uninstall -g @fabricmc/cli
+</code>
+
+### Deno
+
+After following the [Deno installation](https://deno.com/manual/getting_started/installation) instructions, run the following command to globally install the Fabric CLI tools:
 
 <code class="command">
 deno install -A -g -n fabric https://fabricmc.net/cli
 </code>
 
-To update the Fabric command line tools run:
+To update via Deno, run:
 
 <code class="command">
 fabric upgrade
 </code>
 
-If you wish to remove the Fabric CLI tools run:
+To remove via Deno, run:
 
 <code class="command">
 deno uninstall fabric
@@ -59,7 +83,13 @@ fabric init MyCoolMod -y
 
 ### Run without installing
 
-If you do not wish to install the Fabric CLI tools to your system, you can use deno to run it directly like so:
+With Node.js and npm, you can run the CLI without installing it globally:
+
+<code class="command">
+npx @fabricmc/cli init
+</code>
+
+Alternatively, use Deno to run it directly:
 
 <code class="command">
 deno run https://fabricmc.net/cli init

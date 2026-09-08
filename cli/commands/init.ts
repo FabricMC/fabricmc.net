@@ -1,17 +1,18 @@
 // @deno-types="../../scripts/dist/fabric-template-generator.d.ts"
 import * as generator from "../../scripts/dist/fabric-template-generator.js";
-import { Command } from "https://deno.land/x/cliffy@v0.25.7/command/mod.ts";
+import { Command } from "jsr:@cliffy/command@1.2.1";
 import {
   Checkbox,
-  CheckboxValueOptions,
+  type CheckboxOption,
   Input,
   Select,
-} from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
-import { parse as parseXml } from "https://deno.land/x/xml@2.1.1/mod.ts";
-import * as path from "https://deno.land/std@0.177.1/path/mod.ts";
-import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
+} from "jsr:@cliffy/prompt@1.2.1";
+import { XMLParser } from "npm:fast-xml-parser@5.11.1";
+import * as path from "node:path";
+import { mkdir, writeFile as write } from "node:fs/promises";
+import { cwd, env, exit } from "node:process";
+import { colors } from "jsr:@cliffy/ansi@1.2.1/colors";
 import * as utils from "../utils.ts";
-import { ensureDir } from "https://deno.land/std@0.177.1/fs/ensure_dir.ts";
 import fontData from "../font.ts";
 import { decodeBase64 } from "https://deno.land/std@0.203.0/encoding/base64.ts";
 import * as png from "https://deno.land/x/pngs@0.1.1/mod.ts";
@@ -85,7 +86,10 @@ export function initCommand() {
 
 // Set the XML parser as we do not have DomParser here.
 generator.setXmlVersionParser((xml) => {
-  const document = parseXml(xml) as any;
+  const document = new XMLParser({
+    parseTagValue: false,
+    isArray: (name) => name === "version",
+  }).parse(xml);
   return document.metadata.versioning.versions.version;
 });
 
@@ -167,13 +171,13 @@ async function getAndPrepareOutputDir(
 ): Promise<string> {
   if (outputDirName == undefined) {
     await requestPermissions(".");
-    return path.resolve(Deno.cwd());
+    return path.resolve(cwd());
   }
 
   await requestPermissions(outputDirName);
   const outputDir = path.resolve(outputDirName!);
 
-  await ensureDir(outputDir);
+  await mkdir(outputDir, { recursive: true });
 
   return outputDir;
 }
@@ -210,7 +214,9 @@ async function promptUser(
 
   const packageName: string = cli.packageName ?? await Input.prompt({
     message: "Choose a package name",
-    default: generator.generatePackageName((Deno.env.get("FABRIC_MOD_GENERATOR_GLOBAL_PACKAGE_PREFIX") ?? "") + modId),
+    default: generator.generatePackageName(
+      (env.FABRIC_MOD_GENERATOR_GLOBAL_PACKAGE_PREFIX ?? "") + modId,
+    ),
     transform: (value) => {
       return generator.formatPackageName(value);
     },
@@ -318,8 +324,8 @@ async function defaultOptions(
   };
 }
 
-function getAdvancedOptions(minecraftVersion: string): CheckboxValueOptions {
-  const options: CheckboxValueOptions = [];
+function getAdvancedOptions(minecraftVersion: string): CheckboxOption<string>[] {
+  const options: CheckboxOption<string>[] = [];
 
   options.push({ value: ICON_ADVANCED_OPTION, checked: true });
   options.push({ value: KOTLIN_ADVANCED_OPTION });
@@ -353,42 +359,21 @@ async function writeFile(
   options: generator.FileOptions | undefined,
 ) {
   const output = path.join(outputPath, filePath);
-  await tryMkdirs(path.dirname(output));
-
-  const writeOptions: Deno.WriteFileOptions = {
-    mode: options?.executable ? 0o744 : undefined,
-  };
-
-  // is there a cleaner way to do this?
-  if (content instanceof ArrayBuffer || content instanceof Uint8Array) {
-    const data = new Uint8Array(content);
-    await Deno.writeFile(output, data, writeOptions);
-  } else {
-    await Deno.writeTextFile(
-      output,
-      content as string,
-      writeOptions,
-    );
-  }
-}
-
-async function tryMkdirs(path: string) {
-  try {
-    await Deno.mkdir(path, {
-      recursive: true,
-    });
-  } catch (error) {
-    if (!(error instanceof Deno.errors.AlreadyExists)) {
-      throw error;
-    }
-  }
+  await mkdir(path.dirname(output), { recursive: true });
+  await write(
+    output,
+    typeof content === "string" ? content : new Uint8Array(content),
+    { mode: options?.executable ? 0o744 : undefined },
+  );
 }
 
 async function requestPermissions(outputDir: string) {
+  if (typeof Deno === "undefined") return;
+
   const permissions: Deno.PermissionDescriptor[] = [
     {
       name: "read",
-      path: Deno.cwd(), // We need this for all operations, path.resolve requries it.
+      path: cwd(), // We need this for all operations, path.resolve requries it.
     },
     {
       name: "read",
@@ -419,5 +404,5 @@ async function requestPermissions(outputDir: string) {
 
 function fatalError(message: string) {
   console.error(error(message));
-  Deno.exit(1);
+  exit(1);
 }

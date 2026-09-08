@@ -1,9 +1,8 @@
 import {
   Provider,
   UpgradeCommand,
-  UpgradeOptions,
-} from "https://deno.land/x/cliffy@v0.25.7/command/upgrade/mod.ts";
-import { Versions } from "https://deno.land/x/cliffy@v0.25.7/command/upgrade/provider.ts";
+  type Versions,
+} from "jsr:@cliffy/command@1.2.1/upgrade";
 
 const UPGRADE_URL = "https://fabricmc.net/cli";
 const COMMAND_NAME = "fabric";
@@ -14,19 +13,26 @@ export function upgradeCommand() {
   })
     .description("Upgrade Fabric CLI tools executable to latest version");
 
-  command.removeOption("--version");
-  command.removeOption("--force");
-  command.removeOption("--list-versions");
+  command.removeOption("version");
+  command.removeOption("force");
+  command.removeOption("list-versions");
   return command;
 }
 
 class UpdateProvider extends Provider {
   name = COMMAND_NAME;
 
+  constructor() {
+    super();
+  }
+
+  override async hasRequiredPermissions(): Promise<boolean> {
+    // This provider cannot check whether a newer version is available.
+    return false;
+  }
+
   // Code edited from the default Provider
-  override async upgrade(
-    {}: UpgradeOptions,
-  ): Promise<void> {
+  override async upgrade(): Promise<void> {
     const args = [
       "install",
       "--force",

@@ -20,7 +20,7 @@ jobs:
           ruby-version: '2.7.4'
       - uses: denoland/setup-deno@v2
         with:
-          deno-version: "2.1.10"
+          deno-version: "2.9.4"
       # Jekyll 4 fails to create the .jekyll-cache directory, but if we pre-create it, it works
       - run: mkdir -p .jekyll-cache
       - run: bundler install --deployment && bundler exec jekyll build
