@@ -18,8 +18,8 @@
 {"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1788857824">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1788857824"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1788860594">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1788860594"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -90,7 +90,7 @@
   }
 </style>
 
-<p>The Fabric command line tools (CLI) can be used by mod developers to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
+<p>The Fabric command line tools (CLI) can be used by mod developers to generate new mods and find recommended Fabric versions directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
 
 <h2 id="installation">Installation</h2>
 
@@ -137,7 +137,8 @@ deno uninstall fabric
 </code></p>
 
 <h2 id="usage">Usage</h2>
-<p>The Fabric CLI tools currently offer one main sub-command, <code class="language-plaintext highlighter-rouge">init</code>.</p>
+
+<h3 id="generate-a-mod">Generate a mod</h3>
 
 <p>The <code class="language-plaintext highlighter-rouge">init</code> sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:</p>
 
@@ -155,6 +156,26 @@ fabric init MyCoolMod
 
 <p><code class="command">
 fabric init MyCoolMod -y
+</code></p>
+
+<h3 id="find-recommended-versions">Find recommended versions</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">versions</code> sub-command shows the recommended Fabric Loader, Loom and Fabric API versions for a Minecraft version, along with Yarn mappings when applicable. By default it uses the latest stable Minecraft version:</p>
+
+<p><code class="command">
+fabric versions
+</code></p>
+
+<p>You can optionally pass a Minecraft version to look up a specific version:</p>
+
+<p><code class="command">
+fabric versions 1.21.1
+</code></p>
+
+<p>Pass <code class="language-plaintext highlighter-rouge">--json</code> to get JSON output for use in scripts:</p>
+
+<p><code class="command">
+fabric versions 1.21.1 --json
 </code></p>
 
 <h3 id="run-without-installing">Run without installing</h3>
