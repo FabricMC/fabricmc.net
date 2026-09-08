@@ -14,7 +14,7 @@ permalink: /develop/cli/
   }
 </style>
 
-The Fabric command line tools (CLI) can be used by mod developers to generate new mods directly from your terminal. If you happen to find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
+The Fabric command line tools (CLI) can be used by mod developers to generate new mods and find recommended Fabric versions directly from your terminal. If you happen to find an issue please make sure to report it on our [GitHub](https://github.com/FabricMC/fabricmc.net) page.
 
 ## Installation
 
@@ -61,7 +61,8 @@ deno uninstall fabric
 </code>
 
 ## Usage
-The Fabric CLI tools currently offer one main sub-command, `init`.
+
+### Generate a mod
 
 The `init` sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:
 
@@ -79,6 +80,26 @@ If you wish to accept all of the default values you can pass the `-y` argument. 
 
 <code class="command">
 fabric init MyCoolMod -y
+</code>
+
+### Find recommended versions
+
+The `versions` sub-command shows the recommended Fabric Loader, Loom and Fabric API versions for a Minecraft version, along with Yarn mappings when applicable. By default it uses the latest stable Minecraft version:
+
+<code class="command">
+fabric versions
+</code>
+
+You can optionally pass a Minecraft version to look up a specific version:
+
+<code class="command">
+fabric versions 1.21.1
+</code>
+
+Pass `--json` to get JSON output for use in scripts:
+
+<code class="command">
+fabric versions 1.21.1 --json
 </code>
 
 ### Run without installing
