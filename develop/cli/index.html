@@ -18,8 +18,8 @@
 {"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1786350651">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1786350651"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1788857824">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1788857824"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -94,19 +94,43 @@
 
 <h2 id="installation">Installation</h2>
 
-<p>The Fabric CLI tools require the <a href="https://deno.com/runtime">deno runtime</a> to be installed on your system. Deno is a cross platform JavaScript runtime that allows us to use one code base between the web and desktop. After following the <a href="https://deno.com/manual/getting_started/installation">deno installation</a> instructions, run the following command to globally install the fabric CLI tools:</p>
+<p>The Fabric CLI tools can be installed using npm or Deno.</p>
+
+<h3 id="npm">npm</h3>
+
+<p>With <a href="https://nodejs.org/">Node.js</a> 22 or newer and npm installed, run the following command to globally install the Fabric CLI tools:</p>
+
+<p><code class="command">
+npm install -g @fabricmc/cli
+</code></p>
+
+<p>To update via npm, run:</p>
+
+<p><code class="command">
+npm install -g @fabricmc/cli@latest
+</code></p>
+
+<p>To remove via npm, run:</p>
+
+<p><code class="command">
+npm uninstall -g @fabricmc/cli
+</code></p>
+
+<h3 id="deno">Deno</h3>
+
+<p>After following the <a href="https://deno.com/manual/getting_started/installation">Deno installation</a> instructions, run the following command to globally install the Fabric CLI tools:</p>
 
 <p><code class="command">
 deno install -A -g -n fabric https://fabricmc.net/cli
 </code></p>
 
-<p>To update the Fabric command line tools run:</p>
+<p>To update via Deno, run:</p>
 
 <p><code class="command">
 fabric upgrade
 </code></p>
 
-<p>If you wish to remove the Fabric CLI tools run:</p>
+<p>To remove via Deno, run:</p>
 
 <p><code class="command">
 deno uninstall fabric
@@ -135,7 +159,13 @@ fabric init MyCoolMod -y
 
 <h3 id="run-without-installing">Run without installing</h3>
 
-<p>If you do not wish to install the Fabric CLI tools to your system, you can use deno to run it directly like so:</p>
+<p>With Node.js and npm, you can run the CLI without installing it globally:</p>
+
+<p><code class="command">
+npx @fabricmc/cli init
+</code></p>
+
+<p>Alternatively, use Deno to run it directly:</p>
 
 <p><code class="command">
 deno run https://fabricmc.net/cli init
