@@ -1,4 +1,223 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2026-09-08T09:43:14+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 26.2</title><link href="https://fabricmc.net/2026/06/15/262.html" rel="alternate" type="text/html" title="Fabric for Minecraft 26.2" /><published>2026-06-15T00:00:00+00:00</published><updated>2026-06-15T00:00:00+00:00</updated><id>https://fabricmc.net/2026/06/15/262</id><content type="html" xml:base="https://fabricmc.net/2026/06/15/262.html">&lt;p&gt;A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version&lt;/strong&gt;. We kindly ask everyone not to pester them. &lt;strong&gt;We also recommend all players make backups of their worlds&lt;/strong&gt;.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://fabricmc.net/feed.xml" rel="self" type="application/atom+xml" /><link href="https://fabricmc.net/" rel="alternate" type="text/html" /><updated>2026-09-15T07:43:58+00:00</updated><id>https://fabricmc.net/feed.xml</id><title type="html">Fabric</title><subtitle>The home of the Fabric mod development toolchain.</subtitle><entry><title type="html">Fabric for Minecraft 26.3</title><link href="https://fabricmc.net/2026/09/15/263.html" rel="alternate" type="text/html" title="Fabric for Minecraft 26.3" /><published>2026-09-15T00:00:00+00:00</published><updated>2026-09-15T00:00:00+00:00</updated><id>https://fabricmc.net/2026/09/15/263</id><content type="html" xml:base="https://fabricmc.net/2026/09/15/263.html">&lt;p&gt;Minecraft 26.3 - the Wilderness Bound game drop - releases on September 15th, with some changes that will affect most mod developers.&lt;/p&gt;
+
+&lt;p&gt;As always, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version&lt;/strong&gt;. We kindly ask everyone not to pester them. &lt;strong&gt;We also recommend all players make backups of their worlds&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Here is a list of several major modder-facing changes in this version, using the names provided by the unobfuscated game.&lt;/p&gt;
+
+&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
+
+&lt;p&gt;Developers should use Loom 1.17 and Gradle 9.6.0 (at the time of writing) to develop mods for Minecraft 26.3. Players should install the latest stable version of Fabric Loader (currently 0.19.5).&lt;/p&gt;
+
+&lt;h3 id=&quot;api-removals&quot;&gt;API removals&lt;/h3&gt;
+
+&lt;p&gt;Various APIs have been removed due to vanilla refactors. All of the functionality provided by these APIs is now available through other means, either in vanilla or in new APIs.&lt;/p&gt;
+
+&lt;p&gt;The following APIs have been removed:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompostingChanceRegistry&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FuelRegistry&lt;/code&gt;: see the &lt;em&gt;‘Fuel and compostable components’&lt;/em&gt; section under &lt;em&gt;Minecraft changes&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricPotionBrewingBuilder&lt;/code&gt;: see the &lt;em&gt;‘Brewing recipes’&lt;/em&gt; section under &lt;em&gt;Minecraft changes&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StrippableBlockRegistry&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TillableBlockRegistry&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FlattenableBlockRegistry&lt;/code&gt;: see the &lt;em&gt;‘Block transformers’&lt;/em&gt; section under &lt;em&gt;Minecraft changes&lt;/em&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;fluid-apis&quot;&gt;Fluid APIs&lt;/h3&gt;
+
+&lt;p&gt;The fluid behaviour API is no longer considered experimental, and has received additional methods for controlling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isInFluid&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFluidEntered&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFluidExited&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FluidVariantAttributes#enableColoredVanillaFluidNames&lt;/code&gt; has been removed and replaced by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FluidVariantAttributes#getColoredName&lt;/code&gt;, allowing individual mods to provide coloured fluid names in their GUIs without enabling it for an entire modpack.&lt;/p&gt;
+
+&lt;p&gt;A fluid flow API has been introduced, adding a callback triggered by the following actions:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;A flowable fluid tries to spread to a new block&lt;/li&gt;
+  &lt;li&gt;A liquid block is placed&lt;/li&gt;
+  &lt;li&gt;A liquid block has its neighbor updated&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;As an example, this can be used for modded cobblestone generators, like this one that allows a modded fluid flowing above blue ice  to create Ice.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;FluidFlowCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;EVENT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fluid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;// Check we are the test fluid&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fluid&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MODDED_FLUID_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;c1&quot;&gt;// Check we are above blue ice&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getBlockState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;below&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;is&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLUE_ICE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+	&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setBlockAndUpdate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ICE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultBlockState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+	&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playSound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SoundEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;GLASS_PLACE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SoundSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BLOCKS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;tooltipflag-extensions&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TooltipFlag&lt;/code&gt; extensions&lt;/h3&gt;
+
+&lt;p&gt;Both Fabric and NeoForge have added a method to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TooltipFlag&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shouldDisplayAllInformation&lt;/code&gt;. This method can be used to allow tooltip information, especially tooltips gated by keybinds, to be indexed by external mods like recipe viewers.&lt;/p&gt;
+
+&lt;h3 id=&quot;enchantment-power-provider-api&quot;&gt;Enchantment power provider API&lt;/h3&gt;
+
+&lt;p&gt;Fabric’s block extensions now allow modded blocks to specify how much enchantment power they provide by overriding &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Block#getProvidedEnchantmentPower&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
+
+&lt;p&gt;26.3’s technical changes are focused primarily on rendering (as always), new item components, world generation, and registries. We have only listed a few of the major non-rendering changes not covered in the previous section here. For a more comprehensive list of changes, please see NeoForged’s upcoming porting “primer”.&lt;/p&gt;
+
+&lt;h3 id=&quot;fuel-and-compostable-components&quot;&gt;Fuel and compostable components&lt;/h3&gt;
+
+&lt;p&gt;Compostables, furnace fuel, and brewing fuel are now determined via item components; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponents.COMPOSTABLE&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponents.COOKING_FUEL&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponents.BREWING_FUEL&lt;/code&gt; respectively.&lt;/p&gt;
+
+&lt;p&gt;These components can either be applied at item registration for your own items, or via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DefaultItemComponentEvents&lt;/code&gt; for items from vanilla or other mods.&lt;/p&gt;
+
+&lt;p&gt;As a result, Fabric API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CompostingChanceRegistry&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FuelRegistry&lt;/code&gt; have been removed.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;/// before&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;FuelRegistry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MODDED_ITEM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;CompostableRegistry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;INSTANCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SomeOtherMod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OTHER_MODDED_ITEM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// after, at item registration&lt;/span&gt;
+&lt;span class=&quot;no&quot;&gt;MODDED_ITEM&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Properties&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+                       &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;COOKING_FUEL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+                                  &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CookingFuel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResolvableInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResolvableFloat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;fromKey&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ContextFloatProviders&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;COOKING_DEFAULT_SPEED_MULTIPLIER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// after, using the event&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;DefaultItemComponentEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MODIFY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;modifyContext&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;modifyContext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SomeOtherMod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OTHER_MODDED_ITEM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DataComponents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;COMPOSTABLE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; 
+                        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Compostable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResolvableInt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Constant&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)))&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that these components can make use of data driven number providers to determine their values. See the &lt;em&gt;‘Number providers’&lt;/em&gt; section below for more information on those.&lt;/p&gt;
+
+&lt;h3 id=&quot;brewing-recipes&quot;&gt;Brewing recipes&lt;/h3&gt;
+
+&lt;p&gt;Brewing recipes are now data driven like other recipe types in the game, registered through json files inside data packs in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recipe&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;As a result, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricPotionBrewingBuilder&lt;/code&gt;, its &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BUILD&lt;/code&gt; event, and its methods have been removed. Addition, modification, and removal of brewing recipes should now be done like any other recipe type in the game. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://minecraft.wiki/w/Recipe_(Java_Edition)#brewing&quot;&gt;brewing section&lt;/a&gt; of the Minecraft wiki’s recipe article for more information.&lt;/p&gt;
+
+&lt;h3 id=&quot;block-transformers&quot;&gt;Block transformers&lt;/h3&gt;
+
+&lt;p&gt;Block transformers are a new vanilla data type, responsible for handling the transformation of blocks when right clicked with an item. In vanilla, this includes hoes tilling dirt into farmland, shovels flattening dirt into paths, and axes both stripping logs and scraping wax and oxidation.&lt;/p&gt;
+
+&lt;p&gt;To create new transformers, register them through JSON files inside data packs, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;block_transformer&lt;/code&gt; folder. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;A block transformer is then added to an item with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataComponents.BLOCK_TRANSFORMER&lt;/code&gt; item component. This component can either be applied at item registration for your own items, or via &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DefaultItemComponentEvents&lt;/code&gt; for items from vanilla or other mods.&lt;/p&gt;
+
+&lt;p&gt;As a result, Fabric API’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;StrippableBlockRegistry&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TillableBlockRegistry&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FlattenableBlockRegistry&lt;/code&gt; have been removed, and their functionality has been moved into the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BlockTransformerHelper&lt;/code&gt;, which has various helper methods for adding on to vanilla block transformers.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// before&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;TillableBlockRegistry&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MODDED_DIRT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;HoeItem:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;onlyIfAirAbove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HoeItem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;changeIntoState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MODDED_FARMLAND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;defaultBlockState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()));&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// after&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;BlockTransformerHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registerTilling&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;MODDED_DIRT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;MODDED_FARMLAND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A new event also exists for more advanced modification of block transformers, similar to the system used by the enchantment events.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;BlockTransformerEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;MODIFY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;register&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;transforms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;registries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;key&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SomeOtherMod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CHISEL_TRANSFORMER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// add a new transform to turn nether bricks into cracked nether bricks, with a nether bricks hit sound&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;transforms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                &lt;span class=&quot;nc&quot;&gt;BlockTransformer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BlockTransformData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+                         &lt;span class=&quot;nc&quot;&gt;BlockPredicate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;matchesBlocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NETHER_BRICKS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
+                         &lt;span class=&quot;nc&quot;&gt;Blocks&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CRACKED_NETHER_BRICKS&lt;/span&gt;
+                &lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;sound&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Holder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;direct&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;SoundEvents&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;NETHER_BRICKS_HIT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that these APIs should only be used for modifying transformers from outside sources - vanilla or other mods. Creating your own new transformers should be done via JSON files in your mods’ data pack.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://minecraft.wiki/w/Block_transformer_definition&quot;&gt;block transformer definition article&lt;/a&gt; on the Minecraft wiki for more information.&lt;/p&gt;
+
+&lt;h3 id=&quot;dynamic-registries&quot;&gt;Dynamic registries&lt;/h3&gt;
+
+&lt;p&gt;Minecraft 26.3 has made some significant changes to reloadable registries. They now include recipes and advancements and use the same registry loading path as other dynamic registries. Mods can now register their own reloadable registry as well.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;DynamicRegistries&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;registerReloadable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;RELOADABLE_REGISTRY_KEY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ReloadableRegistryObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;CODEC&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;configured-features&quot;&gt;&lt;del&gt;Configured&lt;/del&gt; features&lt;/h3&gt;
+
+&lt;p&gt;Configured features have been moved to the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worldgen/feature&lt;/code&gt; folder, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; has been combined with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FeatureConfiguration&lt;/code&gt; into a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feature&lt;/code&gt; interface.&lt;/p&gt;
+
+&lt;p&gt;Codecs of new feature types are registered to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BuiltInRegistries.FEATURE_TYPE&lt;/code&gt;, rather than &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BuiltInRegistries.FEATURE&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In data, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config&lt;/code&gt; object has been removed and configuration is part of the feature directly. &lt;a href=&quot;https://minecraft.wiki/w/Java_Edition_26.3#World_generation_2:~:text=to%20all%201%2E0%2E-,Placement%20Modifiers,-Changed%20minecraft:offset%20placement&quot;&gt;Various placement modifiers were also renamed&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can use data generation to generate the JSON files with code. Examples of how to data generate these new features will be available on the Fabric Docs shortly after release.&lt;/p&gt;
+
+&lt;h3 id=&quot;surface-material-rules&quot;&gt;&lt;del&gt;Surface&lt;/del&gt; material rules&lt;/h3&gt;
+
+&lt;p&gt;Surface rules have been renamed to material rules, and can now be registered instead of always being inlined. They are registered through JSON files inside data packs, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worldgen/material_rule&lt;/code&gt; folder. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;This allows for modification of material rules without overwriting the entire Overworld dimension, though external libraries may still be desired to safely inject into vanilla material rules.&lt;/p&gt;
+
+&lt;p&gt;Most places they were previously inlined can now optionally be a reference to a registered material rule ID.&lt;/p&gt;
+
+&lt;h3 id=&quot;material-conditions&quot;&gt;Material conditions&lt;/h3&gt;
+
+&lt;p&gt;Material conditions can now be registered instead of always being inlined. They are registered through json files inside data packs, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worldgen/material_condition&lt;/code&gt; folder. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;This allows for modification of material conditions without overwriting the entire material rule, though external libraries may still be desired to safely inject into vanilla material conditions.&lt;/p&gt;
+
+&lt;p&gt;Most places they were previously inlined can now optionally be a reference to a registered material condition ID.&lt;/p&gt;
+
+&lt;h3 id=&quot;number-providers&quot;&gt;Number providers&lt;/h3&gt;
+
+&lt;p&gt;Number providers have been split into float providers and integer providers, and many additional types have been added, mostly pertaining to mathematical functions.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, these providers can now be registered instead of always being inlined. They are registered through json files inside data packs, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;context_float_provider&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;context_int_provider&lt;/code&gt; folders. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;This allows for modification of number providers without overwriting the data they’re used in entirely, though external libraries may still be desired to safely inject into that vanilla data.&lt;/p&gt;
+
+&lt;p&gt;Number providers are used by vanilla in various item components (specifically the new ones pertaining to composting and fuel), as well as loot tables, predicates, villager trades, and the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/compute&lt;/code&gt; command. Most places they were previously inlined can now optionally be a reference to a registered number provider ID.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://minecraft.wiki/w/Number_provider&quot;&gt;number provider article&lt;/a&gt; on the Minecraft wiki for more informaton.&lt;/p&gt;
+
+&lt;h3 id=&quot;block-state-providers&quot;&gt;Block state providers&lt;/h3&gt;
+
+&lt;p&gt;Block state providers can now be registered instead of always being inlined. They are registered through JSON files inside data packs, in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;worldgen/block_state_provider&lt;/code&gt; folder. You can use data generation to generate the JSON files with code.&lt;/p&gt;
+
+&lt;p&gt;This allows for modification of block state providers without overwriting the data they’re used in entirely, though external libraries may still be desired to safely inject into that vanilla data.&lt;/p&gt;
+
+&lt;p&gt;Many types have also been slightly renamed to remove redundant suffixes.&lt;/p&gt;
+
+&lt;p&gt;Block state providers are used by vanilla in block transformers and feature generation. Most places they were previously inlined can now optionally be a reference to a registered block state provider ID.&lt;/p&gt;
+
+&lt;p&gt;See the &lt;a href=&quot;https://minecraft.wiki/w/Block_state_provider&quot;&gt;block state provider article&lt;/a&gt; on the Minecraft wiki for more information.&lt;/p&gt;
+
+&lt;h3 id=&quot;block-codecs-no-more&quot;&gt;Block codecs no more&lt;/h3&gt;
+
+&lt;p&gt;Previously, all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Block&lt;/code&gt; classes defined a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Codec&lt;/code&gt;. These Codecs went largely unused, seemingly being part of Mojang’s future plans for data driving blocks, but have now been removed entirely, along with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;block_type&lt;/code&gt; registry they were registered to.&lt;/p&gt;
+
+&lt;h3 id=&quot;sdl&quot;&gt;SDL&lt;/h3&gt;
+
+&lt;p&gt;The GLFW library used for window and keybind management has been removed in favour of SDL. SDL has many benefits including a broader API than GLFW, so modders interacting with input outside the game may wish to check &lt;a href=&quot;https://wiki.libsdl.org/SDL3/FrontPage&quot;&gt;its documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This will primarily affect developers using input constants from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GLFW&lt;/code&gt; instead of the vanilla &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;InputConstants&lt;/code&gt; class. Some of the constants used (including all mouse buttons) were also changed, so do not attempt to hardcode your inputs to avoid using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;InputConstants&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Developers creating custom text-input widgets should generally notify &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TextInputManager&lt;/code&gt; when their text-input focus changes, otherwise the SDL backend will become out of sync and character input will entirely break. An example of this is below, and more info can be found in this &lt;a href=&quot;https://github.com/FabricMC/fabric-docs/issues/730#issuecomment-5642297339&quot;&gt;GitHub issue&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;com.mojang.blaze3d.platform.TextInputManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyTextInputWidget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setFocused&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isFocused&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// Manually update the text input focus.&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;Minecraft&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;textInputManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onTextInputFocusChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isFocused&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        
+        &lt;span class=&quot;c1&quot;&gt;// If your element implements `GuiEventListener`, you can instead use this method in `Minecraft` which also handles the preedit event state&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;Minecraft&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onTextInputFocusChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isFocused&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Minecraft 26.3 - the Wilderness Bound game drop - releases on September 15th, with some changes that will affect most mod developers.</summary></entry><entry><title type="html">Fabric for Minecraft 26.2</title><link href="https://fabricmc.net/2026/06/15/262.html" rel="alternate" type="text/html" title="Fabric for Minecraft 26.2" /><published>2026-06-15T00:00:00+00:00</published><updated>2026-06-15T00:00:00+00:00</updated><id>https://fabricmc.net/2026/06/15/262</id><content type="html" xml:base="https://fabricmc.net/2026/06/15/262.html">&lt;p&gt;A new version of Minecraft is coming soon with some changes that affect most mod makers. As always, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version&lt;/strong&gt;. We kindly ask everyone not to pester them. &lt;strong&gt;We also recommend all players make backups of their worlds&lt;/strong&gt;.&lt;/p&gt;
 
 &lt;p&gt;26.2 introduces the ability for the backend to be changed between the default OpenGL backend and an experimental Vulkan backend, with OpenGL planned to be removed once the Vulkan backend is stable. Developers making use of raw OpenGL calls rather than going through the Blaze3D API will need to migrate for their mods to work.&lt;/p&gt;
 
@@ -1550,197 +1769,4 @@ Optional&amp;lt;ItemStack&amp;gt; stack = nbt.decode(ItemStack.MAP_CODEC, wrappe
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComponentMapImpl&lt;/code&gt; is renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MergedComponentMap&lt;/code&gt;.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ContainerComponentModifier#create&lt;/code&gt; is renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;apply&lt;/code&gt;.&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ItemStack#encode&lt;/code&gt; is renamed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toNbt&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.</summary></entry><entry><title type="html">Fabric for Minecraft 1.21 &amp;amp; 1.21.1</title><link href="https://fabricmc.net/2024/05/31/121.html" rel="alternate" type="text/html" title="Fabric for Minecraft 1.21 &amp;amp; 1.21.1" /><published>2024-05-31T00:00:00+00:00</published><updated>2024-05-31T00:00:00+00:00</updated><id>https://fabricmc.net/2024/05/31/121</id><content type="html" xml:base="https://fabricmc.net/2024/05/31/121.html">&lt;p&gt;Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers.&lt;/p&gt;
-
-&lt;p&gt;It’s been only a month and a half since we last released a blogpost. Yet, this update is nothing small - some changes are likely to affect most, if not all, mods.&lt;/p&gt;
-
-&lt;p&gt;As always, &lt;strong&gt;we ask all players to be patient, and give mod developers time to update to this new version.&lt;/strong&gt; We ask everyone kindly not to pester them. &lt;strong&gt;We also recommend all players to make a backup of their worlds.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Here is a list of all major modder-facing changes in this version. Note that all code references are using Yarn mappings; modders using alternative mappings may need to use different names.&lt;/p&gt;
-
-&lt;h2 id=&quot;fabric-changes&quot;&gt;Fabric changes&lt;/h2&gt;
-&lt;p&gt;Developers should use Loom 1.6 (at the time of writing) to develop mods for Minecraft 1.21. Players should install the latest stable version of Fabric Loader (currently 0.15.11).&lt;/p&gt;
-&lt;h3 id=&quot;new-fabric-api-changes&quot;&gt;New Fabric API changes&lt;/h3&gt;
-&lt;p&gt;With the help of many contributors, Fabric API has received some new features since the last update blog post:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Conventional Tags: Default English Translations for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;c&lt;/code&gt; namespaced tags (TelepathicGrunt)&lt;/li&gt;
-  &lt;li&gt;Data Generation: Support extending dynamic registries in datagen (SquidDev)&lt;/li&gt;
-  &lt;li&gt;Item API: Add API to modify default item components (modmuss50)&lt;/li&gt;
-  &lt;li&gt;Resource Conditions: Support loading a single resource condition instead of array (Apollo)&lt;/li&gt;
-  &lt;li&gt;Resource Conditions: Registry resource conditions (SquidDev)&lt;/li&gt;
-  &lt;li&gt;Removed Herobrine (Tiny Potato)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;tag-translation&quot;&gt;Tag translation&lt;/h4&gt;
-&lt;p&gt;Mods are now strongly encouraged to provide an English translation for item tags it provides. For example, the translation for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test:potatoes&lt;/code&gt; should be declared like this:&lt;/p&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;tag.item.test.potatoes&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Potatoes&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Although these are not used by the API itself, other mods (such as recipe viewers) rely on them for proper display.&lt;/p&gt;
-
-&lt;h3 id=&quot;breaking-changes&quot;&gt;Breaking Changes&lt;/h3&gt;
-&lt;p&gt;&lt;em&gt;Note: breaking changes related to vanilla changes are addressed separately below.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;One deprecated module was removed: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fabric-models-v0&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In Item API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EquipmentSlotProvider#getPreferredEquipmentSlot&lt;/code&gt; is now passed a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LivingEntity&lt;/code&gt;. Implementations are expected to check themselves whether the slot is available, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;entity.canUseSlot(EquipmentSlot)&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItem#getAttributeModifiers&lt;/code&gt; was removed; use Default Components API instead.&lt;/p&gt;
-
-&lt;p&gt;Registry Sync now freezes the registry at an earlier point. This does not affect mods that register things in their &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModInitializer&lt;/code&gt;s, but might affect more complex mods. Make sure to register everything during &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModInitializer&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id=&quot;minecraft-changes&quot;&gt;Minecraft changes&lt;/h2&gt;
-&lt;p&gt;This version brought many breaking changes, including data-driven Enchantments. Data pack structures also changed, using singular nouns (instead of plurals) in many places.&lt;/p&gt;
-
-&lt;h3 id=&quot;identifier&quot;&gt;Identifier&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt; constructor is now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt;. Use the static method &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;of&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ofVanilla&lt;/code&gt; to construct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt;. Replacing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new Identifier&lt;/code&gt; with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier.of&lt;/code&gt; using text editors or IDEs should be sufficient.&lt;/p&gt;
-
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- var id = new Identifier(&quot;example&quot;, &quot;foo_bar&quot;);
-- var id2 = new Identifier(&quot;test:single_argument&quot;);
-- var creeper = new Identifier(&quot;minecraft&quot;, &quot;creeper&quot;);
-- @Nullable var customId = Identifier.of(&quot;namespace&quot;, unsanitizedInput);
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ var id = Identifier.of(&quot;example&quot;, &quot;foo_bar&quot;);
-+ var id2 = Identifier.of(&quot;test:single_argument&quot;);
-+ var creeper = Identifier.ofVanilla(&quot;creeper&quot;); // very slightly improved performance
-+ @Nullable var customId = Identifier.tryParse(&quot;namespace&quot;, unsanitizedInput);
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Pro tip: make a method to construct &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Identifier&lt;/code&gt; for your mod’s namespace; this can be imported later using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;import static&lt;/code&gt; to shorten your code.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Identifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mod_namespace&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;enchantments&quot;&gt;Enchantments&lt;/h3&gt;
-&lt;p&gt;Enchantments are now data-driven. This means that they are no longer hardcoded - instead, they’re part of data packs. Consequentially, there are several important changes in how mods handle enchantments.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Generally, enchantments either “do something” (like causing an explosion), or “modify a value” (like attack damage).
-Example: Instead of checking if the player has Thorns and applying damage to the attacker, a mod should now call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentHelper#onTargetDamaged&lt;/code&gt; which should automatically handle this.
-Example 2: Instead of checking the level of Knockback, a mod should now call &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentHelper#modifyKnockback&lt;/code&gt; with the original knockback.&lt;/li&gt;
-  &lt;li&gt;Sometimes, a code needs to check if an item has certain enchantments. Because enchantments are no longer hard-coded, this is done using enchantment tags.
-Example 3: Breaking a beehive with Silk Touch prevents bees from getting released. Previously, this was done by checking for the Silk Touch enchantment. Now, this is done by calling &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentHelper#hasAnyEnchantmentsIn(stack, EnchantmentTags#PREVENTS_BEE_SPAWNS_WHEN_MINING)&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;enchantment-code-structures&quot;&gt;Enchantment Code Structures&lt;/h3&gt;
-&lt;p&gt;An &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enchantment&lt;/code&gt; is, well, an enchantment. Because it is now defined by a dynamic registry, it is often handled as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryEntry&amp;lt;Enchantment&amp;gt;&lt;/code&gt;. These can be obtained from the dynamic registry, i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;world.getRegistryManager()&lt;/code&gt; or the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;registryLookup&lt;/code&gt; passed to various methods.&lt;/p&gt;
-
-&lt;p&gt;An enchantment has effect components, which is a map of effect types to list of effects. Effect types are pre-defined keys that enchantments can define behaviors for. For example, an enchantment may want to add “multiply by 2” behavior for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAMAGE&lt;/code&gt; effect type, or “explode” behavior for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST_ATTACK&lt;/code&gt; effect type. These are defined in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentEffectComponentTypes&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The values of effect components are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentEffectEntry&lt;/code&gt;. This is a pair of the effect and an optional condition. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LootCondition&lt;/code&gt; is reused for this purpose.&lt;/p&gt;
-
-&lt;p&gt;Enchantment effects can be categorized into three categories:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentValueEffect&lt;/code&gt;. When given a value, the effect calculates the modified value. Examples include Protection (which modifies &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DAMAGE_PROTECTION&lt;/code&gt;), Lure (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FISHING_LUCK_BONUS&lt;/code&gt;), Unbreaking (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ITEM_DAMAGE&lt;/code&gt;), and Multishot (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PROJECTILE_COUNT&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentEntityEffect&lt;/code&gt;. This effect does something when triggered. Examples include Thorns and Channeling (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST_ATTACK&lt;/code&gt;) and Flame (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PROJECTILE_SPAWNED&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeEnchantmentEffect&lt;/code&gt;, which adds an attribute to the entity. Unlike entity effects, attributes persist until the enchantment becomes inapplicable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentLocationBasedEffect&lt;/code&gt; is an interface implemented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentEntityEffect&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeEnchantmentEffect&lt;/code&gt;. In addition, some enchantment effect types simply require effective values to be specified directly - like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CROSSBOW_CHARGING_SOUNDS&lt;/code&gt;, which is a list of sounds. Some effects, like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PREVENT_ARMOR_CHANGE&lt;/code&gt;, cannot be configured further.&lt;/p&gt;
-
-&lt;h3 id=&quot;using-vanilla-enchantments&quot;&gt;Using Vanilla Enchantments&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentHelper&lt;/code&gt; methods can be used to handle vanilla enchantments.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Example of modifying a value&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newDamage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EnchantmentHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDamage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;attackTarget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;damageSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;baseDamage&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// For values with no base value (such as Protection)&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;protection&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;EnchantmentHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getProtectionAmount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;damageSource&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Entity-based effect&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;EnchantmentHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onTargetDamaged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;world&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;attackTarget&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;damageSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;weapon&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Checking if an ItemStack is enchanted with certain enchantments&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;EnchantmentHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasAnyEnchantmentsIn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;EnchantmentTags&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PREVENTS_BEE_SPAWNS_WHEN_MINING&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Checking for nonconfigurable effects&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// e.g. checking for Curse of Binding&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;EnchantmentHelper&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasAnyEnchantmentsWith&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;stack&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;EnchantmentEffectComponentTypes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PREVENT_ARMOR_CHANGE&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;adding-a-new-enchantment&quot;&gt;Adding a new Enchantment&lt;/h3&gt;
-&lt;p&gt;Adding a new enchantment is now done by writing JSON files. You can use Data Generation to generate enchantments easily.&lt;/p&gt;
-
-&lt;p&gt;An enchantment can perform many tasks, like applying attributes, replacing blocks or summoning an entity. However, not all things are possible. To add a custom &lt;strong&gt;effect type&lt;/strong&gt;, a new effect class must be created and its codec registered. &lt;strong&gt;An effect type must exist in both the client and the server.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Enchantment tags are used to specify exclusive enchantments (e.g. Fortune and Silk Touch) and where the enchantments can be obtained. Make sure to add your enchantments to those tags.&lt;/p&gt;
-
-&lt;h3 id=&quot;enchantment-related-fabric-api-changes&quot;&gt;Enchantment-related Fabric API changes&lt;/h3&gt;
-&lt;p&gt;The following event callbacks now pass &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryEntry&amp;lt;Enchantment&amp;gt;&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enchantment&lt;/code&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentEvents.AllowEnchanting#allowEnchanting&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItem#canBeEnchantedWith&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricItemStack#canBeEnchantedWith&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EnchantmentContext&lt;/code&gt; was reworked. Previously, a context was one of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RANDOM_ENCHANTMENT&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ANVIL&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ENCHANT_COMMAND&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOOT_RANDOM_ENCHANTMENT&lt;/code&gt;. To clarify its purpose, they are now one of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACCEPTABLE&lt;/code&gt; (e.g. anvils) or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PRIMARY&lt;/code&gt; (e.g. enchanting tables). For example, a helmet can be enchanted with Thorns using anvils but not in enchanting tables, because only chestplates are &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PRIMARY&lt;/code&gt; in case of Thorns.&lt;/p&gt;
-
-&lt;h3 id=&quot;teleportation&quot;&gt;Teleportation&lt;/h3&gt;
-&lt;p&gt;Both intra-dimensional and cross-dimensional teleportation can now be performed using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Entity#teleportTo&lt;/code&gt; (previously known as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;moveToWorld&lt;/code&gt;). &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TeleportTarget&lt;/code&gt; now contains the destination world and position.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricDimensions&lt;/code&gt; was removed, because its only API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;teleport&lt;/code&gt;, is effectively superseded with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Entity#teleportTo&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;data-pack-paths&quot;&gt;Data Pack Paths&lt;/h3&gt;
-&lt;p&gt;Data packs now use singular nouns in the following paths:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Tag subdirectories such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/blocks&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/entity_types&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/functions&lt;/code&gt;. They are now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/block&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/entity_type&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags/function&lt;/code&gt;, respectively. &lt;strong&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt; directory itself remains plural.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Advancements (previously &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;advancements&lt;/code&gt;, now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;advancement&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Functions (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;functions&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;function&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Item modifiers/loot functions (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;item_modifiers&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;item_modifier&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Loot tables (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loot_tables&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;loot_table&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Predicates/loot conditions (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predicates&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;predicate&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Recipes (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recipes&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;recipe&lt;/code&gt;).&lt;/li&gt;
-  &lt;li&gt;Structures (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;structures&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;structure&lt;/code&gt;).&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In Fabric API news, GameTest structure directories are now singular as well; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gametest/structures&lt;/code&gt;, they are now placed in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gametest/structure&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h3 id=&quot;rendering-changes&quot;&gt;Rendering Changes&lt;/h3&gt;
-&lt;p&gt;In the Fabric Rendering API, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HudRenderCallback&lt;/code&gt; now passes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RenderTickCounter&lt;/code&gt; instead of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickDelta&lt;/code&gt;. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickDelta&lt;/code&gt; can be obtained from the counter. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WorldRenderContext&lt;/code&gt;’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickDelta&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;limitTime&lt;/code&gt; methods are also replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tickCounter&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;There are some other, significant internal refactors to rendering. For example, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BufferBuilder#next()&lt;/code&gt; was removed, and the methods for beginning or ending the building process has changed:&lt;/p&gt;
-
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gd&quot;&gt;- BufferBuilder builder = tessellator.getBuffer();
-- builder.begin(...);
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ BufferBuilder builder = tessellator.begin(...);
-&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;- builder.vertex(...).texture(...).color(...).next();
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ builder.vertex(...).texture(...).color(...)
-&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;- tessellator.draw();
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+ BufferRenderer.drawWithGlobalProgram(builder.end());
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;miscellaneous&quot;&gt;Miscellaneous&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FabricCodecProvider&lt;/code&gt; now has a new constructor that takes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RegistryKey&lt;/code&gt; instead of directory name. This can be used with, for example, item modifier providers. The old constructor can still be used for non-registered codecs.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Minecraft 1.21 is expected to be released on June 13, with some significant changes affecting mod makers.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Minecraft 1.21.2, the “Bundles of Bravery” drop, is expected to release soon. Mojang has recently announced that they will release these “drops” throughout the year. Like with other updates, this drop contains some significant changes affecting mod makers.</summary></entry></feed>
