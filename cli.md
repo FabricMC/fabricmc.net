@@ -57,7 +57,7 @@ fabric upgrade
 To remove via Deno, run:
 
 <code class="command">
-deno uninstall fabric
+deno uninstall -g fabric
 </code>
 
 ## Usage
