@@ -55,7 +55,7 @@ function ae(o) {
         /*loaderVersion*/
         o[2]
       ), U = _(`
-loom_version=1.17-SNAPSHOT
+loom_version=1.18-SNAPSHOT
 
 `), A.c(), Y = T(), w = b("p"), w.innerHTML = "<strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.", E = T(), j = b("p"), j.innerHTML = 'If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.', O(s, "min-width", "200px"), /*minecraftVersion*/
       o[0] === void 0 && x(() => (
@@ -238,7 +238,7 @@ function me(o) {
     s
   ), {
     c() {
-      s.block.c(), e = T(), l = b("hr"), i = T(), t = b("h2"), t.textContent = "Loom", r = T(), h = b("p"), h.innerHTML = "The recommended loom version is <strong>1.17-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
+      s.block.c(), e = T(), l = b("hr"), i = T(), t = b("h2"), t.textContent = "Loom", r = T(), h = b("p"), h.innerHTML = "The recommended loom version is <strong>1.18-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.";
     },
     m(f, c) {
       s.block.m(f, s.anchor = c), s.mount = () => e.parentNode, s.anchor = e, a(f, e, c), a(f, l, c), a(f, i, c), a(f, t, c), a(f, r, c), a(f, h, c);
