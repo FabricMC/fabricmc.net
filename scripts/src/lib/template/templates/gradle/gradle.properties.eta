@@ -1,9 +1,7 @@
 # Done to increase the memory available to gradle.
 org.gradle.jvmargs=-Xmx1G
 org.gradle.parallel=true
-
-# IntelliJ IDEA is not yet fully compatible with configuration cache, see: https://github.com/FabricMC/fabric-loom/issues/1349
-org.gradle.configuration-cache=false
+org.gradle.configuration-cache=true
 
 # Fabric Properties
 # check these on https://fabricmc.net/develop
@@ -12,7 +10,7 @@ minecraft_version=<%= it.minecraftVersion %>
 yarn_mappings=<%= it.yarnVersion %>
 <% } -%>
 loader_version=<%= it.loaderVersion %>
-loom_version=1.17-SNAPSHOT
+loom_version=1.18-SNAPSHOT
 <% if (it.kotlin) { -%>
 fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } -%>
