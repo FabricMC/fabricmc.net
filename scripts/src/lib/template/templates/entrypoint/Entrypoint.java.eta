@@ -33,7 +33,8 @@ public class <%= it.className %> implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 	}
 
+<% const idNew = it.identifier.factory.isConstructor ? "new " : "" -%>
 	public static <%= it.identifier.class %> id(String path) {
-		return <%= it.identifier.factory %>(MOD_ID, path);
+		return <%= idNew %><%= it.identifier.factory.name %>(MOD_ID, path);
 	}
 }
