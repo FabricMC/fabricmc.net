@@ -3899,8 +3899,9 @@ public class <%= it.className %> implements ModInitializer {
 		LOGGER.info("Hello Fabric world!");
 	}
 
+<% const idNew = it.identifier.factory.isConstructor ? "new " : "" -%>
 	public static <%= it.identifier.class %> id(String path) {
-		return <%= it.identifier.factory %>(MOD_ID, path);
+		return <%= idNew %><%= it.identifier.factory.name %>(MOD_ID, path);
 	}
 }
 `, _n = `package <%= it.package %>
@@ -3931,7 +3932,7 @@ object <%= it.className %> : ModInitializer {
 	}
 
 	fun id(path: String): <%= it.identifier.class %>
-		= <%= it.identifier.factory %>(MOD_ID, path)
+		= <%= it.identifier.factory.name %>(MOD_ID, path)
 }
 `, Wn = `package <%= it.package %>;
 
@@ -3972,7 +3973,13 @@ object <%= it.className %> : DataGeneratorEntrypoint {
 }`;
 function Qn(k, l) {
   const e = Kt(l), A = $t(l);
-  return e > 1 || A > 20 ? `${k.class}.${k.factoryName}` : `new ${k.class}`;
+  return e > 1 || A > 20 ? {
+    name: `${k.class}.${k.factoryName}`,
+    isConstructor: !1
+  } : {
+    name: k.class,
+    isConstructor: !0
+  };
 }
 function jn(k) {
   if (!(k.unobfuscated || k.mojmap))
