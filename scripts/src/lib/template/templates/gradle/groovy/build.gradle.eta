@@ -36,6 +36,7 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
+		modId = "<%= it.modid %>"
 	}
 }
 
