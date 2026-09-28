@@ -19,12 +19,17 @@ interface IdentifierNames {
     factoryName: string
 }
 
-interface IdentifierOptions extends IdentifierNames {
+interface IdentifierFactory {
     /**
      * @example Identifier.fromNamespaceAndPath
-     * @example new ResourceLocation
+     * @example ResourceLocation
      */
-    factory: string
+    name: string,
+    isConstructor: boolean
+}
+
+interface IdentifierOptions extends IdentifierNames {
+    factory: IdentifierFactory
 }
 
 interface ClassOptions {
@@ -49,14 +54,21 @@ interface ClassOptions {
     identifier: IdentifierOptions
 }
 
-function getIdentifierFactory(names: IdentifierNames, version: string): string {
+function getIdentifierFactory(names: IdentifierNames, version: string): IdentifierFactory {
     const major = getMajorMinecraftVersion(version);
     const minor = getMinorMinecraftVersion(version);
 
-    if(major > 1 || minor > 20)
-        return `${names.class}.${names.factoryName}`;
+    if(major > 1 || minor > 20) {
+        return {
+            name: `${names.class}.${names.factoryName}`,
+            isConstructor: false
+        };
+    }
 
-    return `new ${names.class}`;
+    return {
+        name: names.class,
+        isConstructor: true
+    };
 }
 
 function getIdentifierNames(options: ComputedConfiguration): IdentifierNames {

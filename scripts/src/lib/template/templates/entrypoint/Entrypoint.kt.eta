@@ -26,5 +26,5 @@ object <%= it.className %> : ModInitializer {
 	}
 
 	fun id(path: String): <%= it.identifier.class %>
-		= <%= it.identifier.factory %>(MOD_ID, path)
+		= <%= it.identifier.factory.name %>(MOD_ID, path)
 }
