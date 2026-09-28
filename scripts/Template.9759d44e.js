@@ -3053,6 +3053,7 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
+		modId = "<%= it.modid %>"
 	}
 }
 
@@ -3253,6 +3254,7 @@ loom {
 fabricApi {
 	configureDataGeneration {
 		client = true
+		modId = "<%= it.modid %>"
 	}
 }
 
