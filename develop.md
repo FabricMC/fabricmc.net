@@ -21,7 +21,7 @@ If you require additional help, [the Fabric Discord server](https://discord.gg/v
                <p class="component-body">If you want to learn how to create mods, you should refer to the official documentation site.</p>
             </section>
             <div class="button-group">
-							<a class="button secondary" href="https://docs.fabricmc.net/">Fabric Documentation</a>
+							<a class="button secondary" href="https://docs.fabricmc.net/develop">Fabric Documentation</a>
                      <a class="button secondary" href="https://fabricmc.net/wiki/start">Fabric Wiki (Legacy)</a>
 						</div>
          </article>
