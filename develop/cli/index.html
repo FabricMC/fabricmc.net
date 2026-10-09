@@ -18,8 +18,8 @@
 {"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  <link rel="stylesheet" href="/assets/main.css?v=1790585613">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1790585613"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="stylesheet" href="/assets/main.css?v=1791553940">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1791553940"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
@@ -94,10 +94,6 @@
 
 <h2 id="installation">Installation</h2>
 
-<p>The Fabric CLI tools can be installed using npm or Deno.</p>
-
-<h3 id="npm">npm</h3>
-
 <p>With <a href="https://nodejs.org/">Node.js</a> 22 or newer and npm installed, run the following command to globally install the Fabric CLI tools:</p>
 
 <p><code class="command">
@@ -114,26 +110,6 @@ npm install -g @fabricmc/cli@latest
 
 <p><code class="command">
 npm uninstall -g @fabricmc/cli
-</code></p>
-
-<h3 id="deno">Deno</h3>
-
-<p>After following the <a href="https://deno.com/manual/getting_started/installation">Deno installation</a> instructions, run the following command to globally install the Fabric CLI tools:</p>
-
-<p><code class="command">
-deno install -A -g -n fabric https://fabricmc.net/cli
-</code></p>
-
-<p>To update via Deno, run:</p>
-
-<p><code class="command">
-fabric upgrade
-</code></p>
-
-<p>To remove via Deno, run:</p>
-
-<p><code class="command">
-deno uninstall fabric
 </code></p>
 
 <h2 id="usage">Usage</h2>
@@ -185,14 +161,6 @@ fabric versions 1.21.1 --json
 <p><code class="command">
 npx @fabricmc/cli init
 </code></p>
-
-<p>Alternatively, use Deno to run it directly:</p>
-
-<p><code class="command">
-deno run https://fabricmc.net/cli init
-</code></p>
-
-<p>Deno is secure by default, so will ask for <a href="https://deno.land/manual/basics/permissions">permission</a> before making any changes to your system.</p>
 
   </div>
 
