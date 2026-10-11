@@ -1,6 +1,6 @@
 import { A as e, B as t, C as n, D as r, E as i, F as a, I as o, L as s, M as c, N as l, O as u, P as d, T as f, a as p, b as m, c as h, f as g, g as _, h as v, j as y, k as b, l as x, m as S, n as C, o as w, p as T, s as E, t as D, u as O, v as k, w as A, x as j, y as M, z as N } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { l as P, o as F, r as I, t as L, u as R } from "./Api-COGEoNr-.js";
+import { l as P, o as F, r as I, t as L, u as R } from "./Api-djDgWKPI.js";
 import z from "./DownloadIcon-Dx6AF_oA.js";
 import { a as B, c as V, i as H, l as U, n as W, o as G, r as K, s as q, t as ee, u as te } from "./minecraft-BzvMyynV.js";
 //#region \0rolldown/runtime.js

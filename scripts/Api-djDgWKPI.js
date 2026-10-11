@@ -86,14 +86,18 @@ async function b(e, t) {
 	return await (await x(e, t)).text();
 }
 async function x(e, t) {
-	for (var r of [5e3, 3e4]) for (var i of e) try {
-		let a = await fetch(i + t, { signal: AbortSignal.timeout(r) });
-		if (a.ok) return n = e.indexOf(i), a;
-		console.error(await a.text());
-	} catch (e) {
-		console.error(e);
+	let r;
+	for (var i of [5e3, 3e4]) for (var a of e) {
+		let o = a + t;
+		try {
+			let t = await fetch(o, { signal: AbortSignal.timeout(i) });
+			if (t.ok) return n = e.indexOf(a), t;
+			throw Error(`HTTP ${t.status} ${t.statusText}`.trim());
+		} catch (e) {
+			r ??= e instanceof Error ? e.message : String(e), console.error(e);
+		}
 	}
-	throw Error(`Failed to fetch: ${e[0] + t}`);
+	throw Error(`Failed to fetch: ${e[0] + t}. ${r}`);
 }
 //#endregion
 export { l as a, c, o as d, g as f, r as i, a as l, d as n, f as o, i as r, u as s, p as t, s as u };

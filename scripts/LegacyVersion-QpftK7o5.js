@@ -1,6 +1,6 @@
 import { A as e, B as t, F as n, I as r, L as i, M as a, N as o, P as s, T as c, a as l, b as u, g as d, h as f, i as p, j as m, k as h, l as g, m as _, p as v, s as y, t as b, u as x, v as S, x as C, y as w, z as T } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { l as E, r as D, s as O } from "./Api-COGEoNr-.js";
+import { l as E, r as D, s as O } from "./Api-djDgWKPI.js";
 //#region scripts/src/lib/LegacyVersion.svelte
 var k = C("<option> </option>"), A = C("Game version: <select style=\"min-width: 200px\"></select>", 1), j = C("<p style=\"color: red\"> </p> <p>For support please vist one of our <a href=\"/discuss/\">community discussion</a> groups.</p>", 1), M = C("<p>Loading versions..</p>"), N = C("Loader version: <select style=\"min-width: 200px\"></select>", 1), P = C("<main><label><input type=\"checkbox\"/> Show snapshot versions</label> <br/> <br/> <!> <br/> <br/> <!></main>");
 function F(C, F) {
