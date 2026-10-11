@@ -3,8 +3,7 @@
   "type": "module",
   "scripts": {
     "build": "npm run fontgen && npm run check && node bundle.ts",
-    "prestart": "npm run build",
-    "start": "node bundled.mjs",
+    "start": "npm run build && node bundled.mjs",
     "check": "tsc --noEmit",
     "test": "npm run fontgen && npm run check && node bundle.ts test && node --test test-bundled.mjs",
     "fontgen": "node fontgen.ts"
