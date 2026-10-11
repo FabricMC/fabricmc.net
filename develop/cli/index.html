@@ -2,30 +2,32 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Fabric command line tools | Fabric</title>
-<meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="Fabric command line tools" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="The home of the Fabric mod development toolchain." />
-<meta property="og:description" content="The home of the Fabric mod development toolchain." />
-<link rel="canonical" href="https://fabricmc.net/develop/cli/" />
-<meta property="og:url" content="https://fabricmc.net/develop/cli/" />
-<meta property="og:site_name" content="Fabric" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Fabric command line tools" />
-<script type="application/ld+json">
-{"headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","@type":"WebPage","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
-  <link rel="stylesheet" href="/assets/main.css?v=1791553940">
-  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark.css?v=1791553940"><link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric" /><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabric command line tools | Fabric</title>
+  <meta name="description" content="The home of the Fabric mod development toolchain.">
+  <link rel="canonical" href="https://fabricmc.net/develop/cli/">
+  <meta property="og:title" content="Fabric command line tools">
+  <meta property="og:description" content="The home of the Fabric mod development toolchain.">
+  <meta property="og:url" content="https://fabricmc.net/develop/cli/">
+  <meta property="og:site_name" content="Fabric">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta property="twitter:title" content="Fabric command line tools">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","headline":"Fabric command line tools","description":"The home of the Fabric mod development toolchain.","url":"https://fabricmc.net/develop/cli/","name":"Fabric"}</script>
+  
+  <link rel="stylesheet" href="/assets/main-00ea6662452f.css">
+  <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="/assets/dark-07b7e3c134c3.css">
+  <link type="application/atom+xml" rel="alternate" href="https://fabricmc.net/feed.xml" title="Fabric">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
 </head>
 <body><header class="site-header" role="banner">
 
-  <div class="wrapper"><div class="site-header-logo">
+  <div class="wrapper">
+    <div class="site-header-logo">
       <a class="site-title" rel="author" href="/"><img src="/assets/logo.png" style="image-rendering: pixelated;" width="52" height="56" alt="charset"></img> Fabric</a>
-    </div><nav class="site-nav">
+    </div>
+      <nav class="site-nav">
         <input type="checkbox" id="nav-trigger" class="nav-trigger" />
         <label for="nav-trigger">
           <span class="menu-icon">
@@ -37,38 +39,29 @@
 
         <div class="trigger">
           
-            
-              <a class="page-link" href="/use/installer/">
-                Download
-              </a>
-            
+            <a class="page-link" href="/use/installer/">
+              Download
+            </a>
           
-            
-              <a class="page-link" href="/blog/">
-                Blog
-              </a>
-            
+            <a class="page-link" href="/blog/">
+              Blog
+            </a>
           
-            
-              <a class="page-link" href="/develop/">
-                Develop
-              </a>
-            
+            <a class="page-link" href="/develop/">
+              Develop
+            </a>
           
-            
-              <a class="page-link" href="/discuss/">
-                Discuss
-              </a>
-            
+            <a class="page-link" href="/discuss/">
+              Discuss
+            </a>
           
-            
-              <a class="page-link" href="https://docs.fabricmc.net/">
-                Docs
-              </a>
-            
+            <a class="page-link" href="https://docs.fabricmc.net/">
+              Docs
+            </a>
           
         </div>
-      </nav></div>
+      </nav>
+  </div>
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -89,78 +82,52 @@
     user-select: all;
   }
 </style>
-
 <p>The Fabric command line tools (CLI) can be used by mod developers to generate new mods and find recommended Fabric versions directly from your terminal. If you happen to find an issue please make sure to report it on our <a href="https://github.com/FabricMC/fabricmc.net">GitHub</a> page.</p>
-
-<h2 id="installation">Installation</h2>
-
+<h2 id="installation" tabindex="-1">Installation</h2>
 <p>With <a href="https://nodejs.org/">Node.js</a> 22 or newer and npm installed, run the following command to globally install the Fabric CLI tools:</p>
-
-<p><code class="command">
+<code class="command">
 npm install -g @fabricmc/cli
-</code></p>
-
+</code>
 <p>To update via npm, run:</p>
-
-<p><code class="command">
+<code class="command">
 npm install -g @fabricmc/cli@latest
-</code></p>
-
+</code>
 <p>To remove via npm, run:</p>
-
-<p><code class="command">
+<code class="command">
 npm uninstall -g @fabricmc/cli
-</code></p>
-
-<h2 id="usage">Usage</h2>
-
-<h3 id="generate-a-mod">Generate a mod</h3>
-
-<p>The <code class="language-plaintext highlighter-rouge">init</code> sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:</p>
-
-<p><code class="command">
+</code>
+<h2 id="usage" tabindex="-1">Usage</h2>
+<h3 id="generate-a-mod" tabindex="-1">Generate a mod</h3>
+<p>The <code>init</code> sub-command can be used to generate a customised template mod. To generate a new mod in the current directory, the following command can be used:</p>
+<code class="command">
 fabric init
-</code></p>
-
+</code>
 <p>You can optionally pass a directory path, if the directory does not exist it will be created.</p>
-
-<p><code class="command">
+<code class="command">
 fabric init MyCoolMod
-</code></p>
-
-<p>If you wish to accept all of the default values you can pass the <code class="language-plaintext highlighter-rouge">-y</code> argument. The directory name is then used to influence the mod name.</p>
-
-<p><code class="command">
+</code>
+<p>If you wish to accept all of the default values you can pass the <code>-y</code> argument. The directory name is then used to influence the mod name.</p>
+<code class="command">
 fabric init MyCoolMod -y
-</code></p>
-
-<h3 id="find-recommended-versions">Find recommended versions</h3>
-
-<p>The <code class="language-plaintext highlighter-rouge">versions</code> sub-command shows the recommended Fabric Loader, Loom and Fabric API versions for a Minecraft version, along with Yarn mappings when applicable. By default it uses the latest stable Minecraft version:</p>
-
-<p><code class="command">
+</code>
+<h3 id="find-recommended-versions" tabindex="-1">Find recommended versions</h3>
+<p>The <code>versions</code> sub-command shows the recommended Fabric Loader, Loom and Fabric API versions for a Minecraft version, along with Yarn mappings when applicable. By default it uses the latest stable Minecraft version:</p>
+<code class="command">
 fabric versions
-</code></p>
-
+</code>
 <p>You can optionally pass a Minecraft version to look up a specific version:</p>
-
-<p><code class="command">
+<code class="command">
 fabric versions 1.21.1
-</code></p>
-
-<p>Pass <code class="language-plaintext highlighter-rouge">--json</code> to get JSON output for use in scripts:</p>
-
-<p><code class="command">
+</code>
+<p>Pass <code>--json</code> to get JSON output for use in scripts:</p>
+<code class="command">
 fabric versions 1.21.1 --json
-</code></p>
-
-<h3 id="run-without-installing">Run without installing</h3>
-
+</code>
+<h3 id="run-without-installing" tabindex="-1">Run without installing</h3>
 <p>With Node.js and npm, you can run the CLI without installing it globally:</p>
-
-<p><code class="command">
+<code class="command">
 npx @fabricmc/cli init
-</code></p>
+</code>
 
   </div>
 
