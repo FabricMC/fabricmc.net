@@ -15,5 +15,6 @@ Please submit any suggestions or feedback to <a href="https://github.com/FabricM
 {% include 'scripts.html' %}
 
 <br>
+
 For setup instructions please see the [fabric docs](https://docs.fabricmc.net/develop/) that relates to the IDE that you are using.
 This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.

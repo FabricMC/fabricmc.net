@@ -17,9 +17,10 @@ eleventyExcludeFromCollections: true
     <link href="{{ post.url | absolute_url }}" rel="alternate" type="text/html"/>
     <published>{{ post.date | date_to_xmlschema }}</published>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <id>{{ post.url | absolute_url }}</id>
+    <id>{{ post.url | remove: '.html' | absolute_url }}</id>
     <content type="html" xml:base="{{ post.url | absolute_url }}">{{ post.templateContent | xml_escape }}</content>
     <author><name>{{ post.data.author | default: site.title | xml_escape }}</name></author>
+    <summary type="html">{{ post.data.metadata.description | xml_escape }}</summary>
   </entry>
   {% endfor %}
 </feed>
