@@ -1,0 +1,41 @@
+$syntax-comment-color: #6e7781 !default;
+$syntax-keyword-color: #8250df !default;
+$syntax-number-color: #0550ae !default;
+$syntax-string-color: #116329 !default;
+$syntax-function-color: #a40e26 !default;
+
+code[class*="language-"] {
+  .token.comment {
+    color: $syntax-comment-color;
+    font-style: italic;
+  }
+
+  .token.keyword,
+  .token.boolean {
+    color: $syntax-keyword-color;
+  }
+
+  .token.number,
+  .token.constant,
+  .token.property {
+    color: $syntax-number-color;
+  }
+
+  .token.string,
+  .token.char {
+    color: $syntax-string-color;
+  }
+
+  .token.function,
+  .token.class-name {
+    color: $syntax-function-color;
+  }
+
+  .token.deleted {
+    background-color: rgba(248, 81, 73, 0.2);
+  }
+
+  .token.inserted {
+    background-color: rgba(46, 160, 67, 0.2);
+  }
+}

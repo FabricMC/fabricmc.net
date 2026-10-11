@@ -1,5 +1,6 @@
 ---
 layout: default
+templateEngineOverride: liquid
 ---
 
 <div class="home post-content">
@@ -78,13 +79,13 @@ layout: default
    <section>
       <h3>Latest Blog Posts</h3>
       <div class="row-2">
-         {% for post in site.posts limit: 2 %}
+         {% for post in collections.posts limit: 2 %}
          <article class="column">
             <a href="{{ post.url }}">
-               <h4>{{ post.title }}</h4>
+               <h4>{{ post.data.title }}</h4>
             </a>
             <section>
-               <p>{{ post.content | strip_html | truncate: 310 }}</p>
+               <p>{{ post.templateContent | strip_html | normalize_whitespace | truncate: 310, "..." }}</p>
             </section>
             <a class="button secondary" href="{{ post.url }}">Continue reading</a>
          </article>

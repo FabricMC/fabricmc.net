@@ -77,14 +77,3 @@ fabric_api_version={apiVersion}
 <h2>Loom</h2>
 
 <p>The recommended loom version is <strong>1.18-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
-
-<style>
-    .copy-code {
-      display: inline-block;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      user-select: all;
-    }
-  </style>

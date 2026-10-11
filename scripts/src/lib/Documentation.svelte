@@ -79,7 +79,7 @@
     });
 </script>
 
-<div />
+<div></div>
 
 {#await data}
     <p>Loading versions..</p>

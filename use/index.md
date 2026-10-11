@@ -13,19 +13,19 @@ topnav: true
     switch (match ? match[1] : "") {
         default:
         case "installer":
-            window.location.href = '{{ "/use/installer/" | relative_url }}';
+            window.location.href = '/use/installer/';
             break;
         case "server":
-            window.location.href = '{{ "/use/server/" | relative_url }}';
+            window.location.href = '/use/server/';
             break;
         case "mcupdater":
-            window.location.href = '{{ "/use/mcupdater/" | relative_url }}';
+            window.location.href = '/use/mcupdater/';
             break;
         case "technic":
-            window.location.href = '{{ "/use/installer/" | relative_url }}';
+            window.location.href = '/use/installer/';
             break;
         case "atlauncher":
-            window.location.href = '{{ "/use/installer/" | relative_url }}';
+            window.location.href = '/use/installer/';
             break;
     }
 </script>

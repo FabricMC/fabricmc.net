@@ -1,28 +1,29 @@
 {
-  "name": "typescript",
+  "name": "@fabricmc/scripts",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch -m development",
-    "build": "npm run check && vite build",
-    "buildLib": "BUILD_LIB=true vite build",
+    "dev": "npm run dev --prefix ..",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "2.4.1",
-    "@tsconfig/svelte": "^4.0.1",
-    "@types/file-saver": "^2.0.5",
-    "sass": "^1.63.4",
-    "svelte": "^3.59.1",
-    "svelte-check": "^3.4.3",
-    "svelte-preprocess": "^5.0.4",
-    "typescript": "^5.1.3",
-    "vite": "^4.3.9"
+    "@sveltejs/vite-plugin-svelte": "7.3.1",
+    "@tsconfig/svelte": "^5.0.8",
+    "@types/file-saver": "^2.0.7",
+    "sass": "^1.105.1",
+    "svelte": "^5.57.2",
+    "svelte-check": "^4.7.6",
+    "typescript": "^6.0.3",
+    "vite": "^8.3.4"
   },
   "dependencies": {
-    "eta": "^3.0.3",
+    "eta": "^4.6.0",
     "file-saver": "^2.0.5",
-    "jszip": "^3.10.1",
-    "vite-plugin-dts": "^2.3.0"
+    "jszip": "^3.10.2"
+  },
+  "private": true,
+  "exports": {
+    ".": "./src/lib.ts",
+    "./versions": "./src/lib/template/versions.ts"
   }
 }

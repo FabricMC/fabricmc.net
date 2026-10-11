@@ -1,17 +1,21 @@
 name: Generator Test
-on: 
+on:
   - workflow_dispatch
+permissions:
+  contents: read
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: devcontainers/ci@v0.3
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/setup
         with:
-          runCmd: |
-            cd cli
-            make run test
-      - uses: actions/upload-artifact@v4
+          java: 'true'
+      - run: npm test --workspace cli
+      - uses: actions/upload-artifact@v7.0.2
+        if: always()
         with:
-          path: 
-            cli/tests/1.*/**
+          name: generator-tests
+          path: |
+            cli/tests/*_yarn_*/**
+            cli/tests/*_mojmap_*/**

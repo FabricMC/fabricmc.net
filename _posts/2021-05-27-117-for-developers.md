@@ -40,7 +40,7 @@ In 1.17, Mojang no longer strips out unused code including the constant fields t
 
 *Note the hard to understand flag `26` passed into the last parameter of setBlockState*
 
-```java=
+```java
 protected boolean place(ItemPlacementContext context, BlockState state) {
    return context.getWorld().setBlockState(context.getBlockPos(), state, 26);
 }
@@ -50,7 +50,7 @@ protected boolean place(ItemPlacementContext context, BlockState state) {
 
 *In 1.17 this has been simplified to clearly show the true meaning of this flag.*
 
-```java=
+```java
 protected boolean place(ItemPlacementContext context, BlockState state) {
    return context.getWorld().setBlockState(context.getBlockPos(), state, Block.NOTIFY_LISTENERS | Block.REDRAW_ON_MAIN_THREAD | Block.FORCE_STATE);
 }

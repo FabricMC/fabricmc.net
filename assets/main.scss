@@ -1,11 +1,9 @@
----
----
-
 $button-color: #2D46B9;
 $warning-color: #b96e2d;
 $grey-color-very-dark: #c4c9cf;
 
 $content-width: 1024px;
 
-@import "{{ site.theme }}";
+@import "minima";
 @import "fabric";
+@import "syntax-highlighting";

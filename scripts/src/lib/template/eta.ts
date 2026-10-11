@@ -1,4 +1,4 @@
-import { Eta } from "eta"
+import { Eta } from "eta/core"
 
 const eta = new Eta({
 	autoTrim: false

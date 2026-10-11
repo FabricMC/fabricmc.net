@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<div class="home">
+  {%- if title -%}
+    <h1 class="page-heading">{{ title }}</h1>
+  {%- endif -%}
+
+  {{ content }}
+
+  {%- if collections.posts.size > 0 -%}
+    <h2 class="post-list-heading">{{ list_title | default: "Posts" }}</h2>
+    <ul class="post-list">
+      {%- for post in collections.posts -%}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url }}">
+            {{ post.data.title | escape }}
+          </a>
+        </h3>
+      </li>
+      {%- endfor -%}
+    </ul>
+
+    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" }}">via RSS</a></p>
+  {%- endif -%}
+
+</div>

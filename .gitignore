@@ -1,12 +1,9 @@
 _site/
+.eleventy-dev/
 
-javascript/node_modules/
+node_modules/
 javascript/public/build/
 
 .idea
-.bundle
-.jekyll-cache
-.sass-cache
-vendor
 
 .DS_Store

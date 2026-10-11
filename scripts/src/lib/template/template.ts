@@ -1,9 +1,11 @@
 import { addGradle } from './gradle';
 import { addGradleWrapper } from './gradlewrapper';
-import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, type GameVersion, getGameVersions } from '../Api';
+import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
 import { minecraftIsUnobfuscated, minecraftSupportsSplitSources, minecraftSupportsDataGen } from './minecraft';
+
+export { getTemplateGameVersions } from './versions';
 
 export const ICON_FONT = "Comic Relief";
 
@@ -85,26 +87,6 @@ export async function generateTemplate(options: Options) {
 
 	await addModJson(options.writer, options.canvas, computedConfig);
 	await addGitFiles(options.writer, computedConfig);
-}
-
-export async function getTemplateGameVersions(): Promise<GameVersion[]> {
-	const versions = await getGameVersions()
-	return versions.filter((v) => {
-		const version = v.version;
-
-		if (version.startsWith("1.14") && version != "1.14.4") {
-			// Hide pre 1.14.4 MC versions as they require using V1 yarn.
-			return false;
-		}
-
-		if (!v.stable) {
-			// Hide unstable versions, other than the latest snapshot.
-			const isLatest = versions[0].version == version;
-			return isLatest;
-		}
-
-		return true;
-	});
 }
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {

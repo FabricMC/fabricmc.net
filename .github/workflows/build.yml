@@ -1,63 +1,36 @@
 name: Build
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
   build:
-    runs-on: ubuntu-22.04
-    env:
-      ImageOS: ubuntu22
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v2
-      # Maintain timestamps of previously published files
-      - uses: actions/checkout@v2
-        with:
-          ref: static
-          path: _site
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.7.4'
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: "2.9.4"
-      # Jekyll 4 fails to create the .jekyll-cache directory, but if we pre-create it, it works
-      - run: mkdir -p .jekyll-cache
-      - run: bundler install --deployment && bundler exec jekyll build
-      - run: npm ci
-        working-directory: ./scripts
-      - run: npm run check
-        working-directory: ./scripts
+      - uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/setup
       - run: npm run build
-        working-directory: ./scripts
-      - run: npm run buildLib
-        working-directory: ./scripts
-      - run: make build
-        working-directory: ./cli
-      - run: rm -rf ./_site/cli && cp ./cli/bundled.ts ./_site/cli
-      # Upload the static content as a workflow artifact when not publishing the site (non-main branches)
       - name: Archive site
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: site
           path: _site
           retention-days: 2
 
-  # Separate job so it doesn't run inside the jekyll container
   publish:
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: write
     if: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v8.0.1
         with:
           name: site
           path: _site
       # Publish to GH pages on main branch
       - name: Push to GH pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: static
-          FOLDER: _site
-          CLEAN: true
+          branch: static
+          folder: _site

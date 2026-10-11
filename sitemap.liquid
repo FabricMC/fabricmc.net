@@ -1,0 +1,13 @@
+---
+permalink: /sitemap.xml
+layout: false
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for entry in collections.all %}
+  {% unless entry.url == '/404.html' %}
+  <url><loc>{{ entry.url | absolute_url }}</loc>{% if entry.data.layout == 'post' %}<lastmod>{{ entry.date | date_to_xmlschema }}</lastmod>{% endif %}</url>
+  {% endunless %}
+{% endfor %}
+</urlset>

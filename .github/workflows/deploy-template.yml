@@ -3,44 +3,32 @@ on:
   workflow_dispatch:
   schedule:
     - cron: 37 7 * * SAT
+permissions:
+  contents: read
 
 jobs:
   build:
     name: Build Fabric CLI
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     outputs:
       versions: ${{ steps.versions-lookup.outputs.result }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
-      - name: Setup NodeJS
-        uses: actions/setup-node@v6
-        with:
-          node-version: 18
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: "2.9.4"
-      - name: Install NPM dependencies
-        run: npm i
-        working-directory: scripts
-      - name: Build template library
-        run: npm run buildLib
-        working-directory: scripts
+        uses: actions/checkout@v7.0.1
+      - uses: ./.github/actions/setup
       - name: Build Fabric CLI
-        run: make build
-        working-directory: cli
+        run: npm run build --workspace cli
       - name: Upload Fabric CLI
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.2
         with:
           name: cli
-          path: cli/bundled.ts
+          path: cli/bundled.mjs
       - name: Look up template versions
-        run: echo "result=$(deno run --allow-net .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
+        run: echo "result=$(node .github/scripts/template-versions.ts)" >> "$GITHUB_OUTPUT"
         id: versions-lookup
   deploy:
     name: Deploy ${{ matrix.version }} template
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     needs: build
     concurrency:
       group: deploy-${{ matrix.version }}
@@ -48,17 +36,22 @@ jobs:
       matrix:
         version: ${{ fromJSON(needs.build.outputs.versions) }}
     steps:
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
+      - name: Checkout CI setup
+        uses: actions/checkout@v7.0.1
         with:
-          deno-version: "2.9.4"
+          sparse-checkout: |
+            .nvmrc
+            .github/actions/setup
+          sparse-checkout-cone-mode: false
+      - uses: ./.github/actions/setup
+        with:
+          install-dependencies: 'false'
       - name: Download Fabric CLI
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           name: cli
       - name: Checkout template repository
-        uses: actions/checkout@v6
-        id: existing-checkout
+        uses: actions/checkout@v7.0.1
         with:
           repository: ${{ github.repository_owner }}/fabric-example-mod
           path: repo
@@ -76,7 +69,7 @@ jobs:
       - name: Create template directory
         run: mkdir gen
       - name: Generate ${{ matrix.version }} template
-        run: deno run -A ../bundled.ts init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version }}' -o splitSources -o mojangMappings
+        run: node ../bundled.mjs init -n 'Example Mod' -m modid -p 'com.example' -v '${{ matrix.version }}' -o splitSources -o mojangMappings
         working-directory: gen
       - name: Set commit user
         run: |

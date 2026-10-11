@@ -1,0 +1,28 @@
+{
+  "name": "fabricmc-net",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "scripts",
+    "cli"
+  ],
+  "scripts": {
+    "cli": "npm start --workspace cli --",
+    "dev": "eleventy --config=eleventy.config.ts --serve",
+    "preview": "vite preview --outDir _site",
+    "build": "npm run build:site && npm run build --workspace cli",
+    "check": "npm run check --workspaces",
+    "build:site": "npm run check --workspace scripts && eleventy --config=eleventy.config.ts"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@types/markdown-it": "^14.2.0",
+    "@types/prismjs": "^1.26.6",
+    "markdown-it": "^15.0.2",
+    "markdown-it-anchor": "^10.0.0",
+    "prismjs": "^1.30.0",
+    "sass": "^1.105.1",
+    "vite": "^8.3.4",
+    "yaml": "^2.9.1"
+  }
+}

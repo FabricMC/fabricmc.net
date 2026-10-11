@@ -1,40 +1,37 @@
-// @deno-types="../scripts/dist/fabric-template-generator.d.ts"
 import {
   generateTemplate,
   getTemplateGameVersions,
   minecraftSupportsSplitSources,
-  minecraftIsUnobfuscated
-} from "../scripts/dist/fabric-template-generator.js";
+  minecraftIsUnobfuscated,
+} from "@fabricmc/scripts";
 import { getGeneratorOptions } from "./commands/init.ts";
-import { assert } from "https://deno.land/std@0.221.0/assert/mod.ts";
-import * as fs from "https://deno.land/std@0.221.0/fs/mod.ts";
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { spawn } from "node:child_process";
+import * as fs from "node:fs/promises";
 
 const rootDir = "./tests";
-if (await fs.exists(rootDir)) {
-  await Deno.remove(rootDir, { recursive: true });
-}
-await Deno.mkdir(rootDir);
+await fs.rm(rootDir, { recursive: true, force: true });
+await fs.mkdir(rootDir);
 
-const cwd = await Deno.realPath(Deno.cwd());
 const inDir = `${rootDir}/_in`;
 const runDir = `${rootDir}/_run`;
-await Deno.mkdir(runDir);
+await fs.mkdir(runDir);
 
 const minecraftVersions = await getTemplateGameVersions();
 
 for (const { version } of minecraftVersions) {
   for (const mapping of ["yarn", "mojmap"]) {
-
-	if (mapping === "yarn" && minecraftIsUnobfuscated(version)) {
-	  continue;
-	}
+    if (mapping === "yarn" && minecraftIsUnobfuscated(version)) {
+      continue;
+    }
 
     for (const language of ["java", "kotlin"]) {
       for (const dsl of ["groovy", "kotlin"]) {
         const testId = `${version}_${mapping}_${language}_${dsl}`;
         const outDir = `${rootDir}/${testId}`;
 
-        Deno.test(testId, async () => {
+        test(testId, async () => {
           let success = false;
 
           // try rebuilding if it fail, usual gradle stuff
@@ -57,26 +54,29 @@ for (const { version } of minecraftVersions) {
 
             // build in the same directory for all test
             // to make it use only one daemon and build cache
-            for await (const { name } of Deno.readDir(inDir)) {
-              await fs.copy(`${inDir}/${name}`, `${runDir}/${name}`);
+            for (const name of await fs.readdir(inDir)) {
+              await fs.cp(`${inDir}/${name}`, `${runDir}/${name}`, {
+                recursive: true,
+              });
             }
 
-            Deno.chdir(runDir);
-            const gradle = new Deno.Command("./gradlew", {
-              args: ["build"],
-            }).spawn();
-            Deno.chdir(cwd);
+            const exitCode = await new Promise<number | null>((resolve, reject) => {
+              const gradle = spawn("./gradlew", ["build"], {
+                cwd: runDir,
+                stdio: "inherit",
+              });
+              gradle.on("error", reject);
+              gradle.on("close", resolve);
+            });
 
-            const output = await gradle.output();
-
-            for await (const { name } of Deno.readDir(inDir)) {
-              await Deno.remove(`${runDir}/${name}`, { recursive: true });
+            for (const name of await fs.readdir(inDir)) {
+              await fs.rm(`${runDir}/${name}`, { recursive: true });
             }
 
-            await Deno.remove(inDir, { recursive: true });
+            await fs.rm(inDir, { recursive: true });
 
-            if (output.success) {
-              await fs.move(`${runDir}/build/libs`, `${outDir}`);
+            if (exitCode === 0) {
+              await fs.rename(`${runDir}/build/libs`, outDir);
               success = true;
               break;
             }
