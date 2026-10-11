@@ -226,24 +226,28 @@ async function getText(hostnames: string[], path: string): Promise<string> {
 }
 
 async function fetchFallback(hostnames: string[], path: string) : Promise<Response> {
+    let firstErrorMessage: string | undefined;
+
     // First try to make a request within 5 seconds to any of the hostnames.
     // If that fails, try again with a 30 second timeout.
     for (var timeout of [5000, 30000]) {
         for (var hostname of hostnames) {
+            const url = hostname + path;
             try {
-                const response = await fetch(hostname + path, { signal: AbortSignal.timeout(timeout) });
+                const response = await fetch(url, { signal: AbortSignal.timeout(timeout) });
 
                 if (response.ok) {
                     activeServiceIndex = hostnames.indexOf(hostname);
                     return response;
                 }
 
-                console.error(await response.text());
-            } catch (e) {
-                console.error(e);
+                throw new Error(`HTTP ${response.status} ${response.statusText}`.trim());
+            } catch (error) {
+                firstErrorMessage ??= error instanceof Error ? error.message : String(error);
+                console.error(error);
             }
         }
     }
 
-    throw new Error(`Failed to fetch: ${hostnames[0] + path}`);
+    throw new Error(`Failed to fetch: ${hostnames[0] + path}. ${firstErrorMessage}`);
 }
