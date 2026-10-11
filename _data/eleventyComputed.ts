@@ -3,8 +3,30 @@ import MarkdownIt from "markdown-it";
 
 const markdown = new MarkdownIt({ html: true, typographer: true });
 
+interface PageData {
+    layout?: string;
+    title?: string;
+    description?: string;
+    page: {
+        rawInput: string;
+        url: string;
+        date: Date;
+    };
+}
+
+interface PageSchema {
+    "@context": string;
+    "@type": "WebPage" | "BlogPosting" | "WebSite";
+    headline: string;
+    description: string;
+    url: string;
+    datePublished?: string;
+    dateModified?: string;
+    name?: string;
+}
+
 export default {
-    metadata(data) {
+    metadata(data: PageData) {
         const isPost = data.layout === "post";
         const title = data.title || site.title;
         let excerpt = "";
@@ -16,13 +38,13 @@ export default {
         }
         const description = data.description || excerpt || site.description;
         const url = new URL(data.page.url, site.url).href;
-        let schemaType = "WebPage";
+        let schemaType: PageSchema["@type"] = "WebPage";
         if (isPost) {
             schemaType = "BlogPosting";
         } else if (data.page.url === "/") {
             schemaType = "WebSite";
         }
-        const schema = {
+        const schema: PageSchema = {
             "@context": "https://schema.org",
             "@type": schemaType,
             headline: title,

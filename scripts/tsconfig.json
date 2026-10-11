@@ -14,8 +14,9 @@
      * of JS in `.svelte` files.
      */
     "allowJs": true,
+    "maxNodeModuleJsDepth": 1,
     "checkJs": true,
     "strict": true
   },
-  "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
+  "include": ["*.ts", "../eleventy.config.ts", "../_data/**/*.ts", "src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

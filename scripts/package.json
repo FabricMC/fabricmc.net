@@ -4,7 +4,6 @@
   "type": "module",
   "scripts": {
     "dev": "npm run dev --prefix ..",
-    "build": "npm run check && vite build",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
