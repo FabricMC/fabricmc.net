@@ -33,6 +33,7 @@ const ADVANCED_OPTIONS: Map<string, string> = new Map([
 ]);
 
 interface CliOptions {
+  allowNonEmptyDir?: boolean;
   defaultOptions?: boolean;
   name?: string;
   modid?: string;
@@ -46,6 +47,7 @@ export function initCommand() {
     .name("init")
     .description("Generate a new fabric project")
     .option("-y, --defaultOptions", "Generate a mod with default options")
+    .option("--allow-non-empty-dir","Allow generating into a directory that already contains files. Existing files with the same path will be overwritten",)
     .addOption(
       new Option("-n, --name <name>", "The name of the mod")
         .conflicts("defaultOptions"),
@@ -152,9 +154,13 @@ async function generate(
 ) {
   const outputDir = await getAndPrepareOutputDir(outputDirName);
 
-  const isTargetEmpty = await utils.isDirEmpty(outputDir);
-  if (!isTargetEmpty) {
-    fatalError("The target directory must be empty");
+  if (!cli.allowNonEmptyDir) {
+      const isTargetEmpty = await utils.isDirEmpty(outputDir);
+      if (!isTargetEmpty) {
+        fatalError(
+          "The target directory must be empty (use --allow-non-empty-dir to generate into it anyway)",
+        );
+      }
   }
 
   const config =
