@@ -12,6 +12,8 @@ yarn_mappings=<%= it.yarnVersion %>
 loader_version=<%= it.loaderVersion %>
 loom_version=1.18-SNAPSHOT
 <% if (it.kotlin) { -%>
+
+kotlin_version=<%= it.kotlin.kotlinVersion %>
 fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } -%>
 

@@ -11,6 +11,9 @@ pluginManagement {
 	plugins {
 <% const pluginSuffix = it.unobfuscated ? '' : '-remap' -%>
 		id("net.fabricmc.fabric-loom<%= pluginSuffix %>") version providers.gradleProperty("loom_version")
+<% if (it.kotlin) { -%>
+		id("org.jetbrains.kotlin.jvm") version providers.gradleProperty("kotlin_version")
+<% } -%>
 	}
 }
 
