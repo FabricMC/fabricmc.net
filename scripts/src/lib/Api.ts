@@ -81,6 +81,10 @@ export function getKotlinAdapterVersions(): Promise<string[]> {
     return getMavenVersions("/net/fabricmc/fabric-language-kotlin/maven-metadata.xml");
 }
 
+export async function getMixinVersions() {
+    return getMavenVersions("/net/fabricmc/sponge-mixin/maven-metadata.xml");
+}
+
 export async function getApiVersionForMinecraft(minecraftVersion: string): Promise<string> {
     const apiVersions = await getApiVersions();
     const resolvedVersion = apiVersions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop();
