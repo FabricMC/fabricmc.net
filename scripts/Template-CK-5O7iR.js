@@ -1,6 +1,6 @@
 import { A as e, B as t, C as n, D as r, E as i, F as a, I as o, L as s, M as c, N as l, O as u, P as d, T as f, a as p, b as m, c as h, f as g, g as _, h as v, j as y, k as b, l as x, m as S, n as C, o as w, p as T, s as E, t as D, u as O, v as k, w as A, x as j, y as M, z as N } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { l as P, o as F, r as I, t as L, u as R } from "./Api-djDgWKPI.js";
+import { c as P, l as F, o as I, r as L, t as R } from "./Api-D_d2Iuos.js";
 import z from "./DownloadIcon-Dx6AF_oA.js";
 import { a as B, c as V, i as H, l as U, n as W, o as G, r as K, s as q, t as ee, u as te } from "./minecraft-BzvMyynV.js";
 //#region \0rolldown/runtime.js
@@ -3749,7 +3749,7 @@ async function Bt(e, t) {
 //#endregion
 //#region scripts/src/lib/template/versions.ts
 async function Vt() {
-	let e = await I();
+	let e = await L();
 	return e.filter((t) => {
 		let n = t.version;
 		return n.startsWith("1.14") && n != "1.14.4" ? !1 : t.stable ? !0 : e[0].version == n;
@@ -3769,15 +3769,15 @@ async function Wt(e) {
 		splitSources: V(e.minecraftVersion) && e.splitSources,
 		dataGeneration: G(e.minecraftVersion) && e.dataGeneration,
 		loaderVersion: (await P()).find((e) => e.stable).version,
-		fabricVersion: await L(e.minecraftVersion),
-		yarnVersion: t ? void 0 : (await R(e.minecraftVersion))[0].version,
+		fabricVersion: await R(e.minecraftVersion),
+		yarnVersion: t ? void 0 : (await F(e.minecraftVersion))[0].version,
 		kotlin: await Gt(e),
 		unobfuscated: t
 	};
 }
 async function Gt(e) {
 	if (!e.useKotlin) return;
-	let t = (await F()).pop();
+	let t = (await I()).pop();
 	return {
 		fabricKotlinAdapterVersion: t,
 		kotlinVersion: t.split("+kotlin.")[1]
