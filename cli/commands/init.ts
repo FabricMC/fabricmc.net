@@ -46,23 +46,19 @@ export function initCommand() {
   return new Command()
     .name("init")
     .description("Generate a new fabric project")
-    .option("-y, --defaultOptions", "Generate a mod with default options")
+    .option("-y, --defaultOptions", "Use defaults for options that are not specified")
     .option("--allow-non-empty-dir","Allow generating into a directory that already contains files. Existing files with the same path will be overwritten",)
     .addOption(
-      new Option("-n, --name <name>", "The name of the mod")
-        .conflicts("defaultOptions"),
+      new Option("-n, --name <name>", "The name of the mod"),
     )
     .addOption(
-      new Option("-m, --modid <modid>", "The modid of the mod")
-        .conflicts("defaultOptions"),
+      new Option("-m, --modid <modid>", "The modid of the mod"),
     )
     .addOption(
-      new Option("-p, --packageName <packageName>", "The package name of the mod")
-        .conflicts("defaultOptions"),
+      new Option("-p, --packageName <packageName>", "The package name of the mod"),
     )
     .addOption(
-      new Option("-v, --version <version>", "The minecraft version")
-        .conflicts("defaultOptions"),
+      new Option("-v, --version <version>", "The minecraft version"),
     )
     .addOption(
       new Option(
@@ -70,7 +66,6 @@ export function initCommand() {
         "Specify an advanced option, one of: " +
           Array.from(ADVANCED_OPTIONS.keys()).join(", "),
       )
-        .conflicts("defaultOptions")
         .argParser((value: string, previous: string[] = []) => [
           ...previous,
           value,
@@ -163,10 +158,7 @@ async function generate(
       }
   }
 
-  const config =
-    await (cli.defaultOptions
-      ? defaultOptions(path.basename(outputDir))
-      : promptUser(path.basename(outputDir), cli));
+  const config = await resolveConfiguration(path.basename(outputDir), cli);
 
   console.log(progress("Generating mod template..."));
 
@@ -188,7 +180,7 @@ async function getAndPrepareOutputDir(
   return outputDir;
 }
 
-async function promptUser(
+async function resolveConfiguration(
   startingName: string,
   cli: CliOptions,
 ): Promise<generator.Configuration> {
@@ -197,50 +189,56 @@ async function promptUser(
 
   validateCliOptions(cli);
 
-  const modName = cli.name ?? await prompt<string>({
-    type: "text",
-    message: "Choose a name",
-    initial: startingName,
-    validate: (value: string) =>
-      value.length >= 2 || "The name must have at least 2 characters",
-  });
+  const modName = cli.name ?? (cli.defaultOptions
+    ? startingName
+    : await prompt<string>({
+      type: "text",
+      message: "Choose a name",
+      initial: startingName,
+      validate: (value: string) =>
+        value.length >= 2 || "The name must have at least 2 characters",
+    }));
 
-  const modId = cli.modid ?? await prompt<string>({
-    type: "text",
-    message: "Choose a unique modid",
-    initial: generator.nameToModId(modName),
-    validate: (value: string) => {
-      if (value.length < 2 || value.length > 64) {
-        return "The modid must have between 2 and 64 characters";
-      }
+  const modId = cli.modid ?? (cli.defaultOptions
+    ? generator.nameToModId(modName)
+    : await prompt<string>({
+      type: "text",
+      message: "Choose a unique modid",
+      initial: generator.nameToModId(modName),
+      validate: (value: string) => {
+        if (value.length < 2 || value.length > 64) {
+          return "The modid must have between 2 and 64 characters";
+        }
 
-      const errors = generator.computeCustomModIdErrors(value);
-      if (errors == undefined) {
-        return true;
-      }
+        const errors = generator.computeCustomModIdErrors(value);
+        if (errors == undefined) {
+          return true;
+        }
 
-      return errors.join(", ");
-    },
-  });
+        return errors.join(", ");
+      },
+    }));
 
-  const packageName = cli.packageName ?? await prompt<string>({
-    type: "text",
-    message: "Choose a package name",
-    initial: generator.generatePackageName(
-      (env.FABRIC_MOD_GENERATOR_GLOBAL_PACKAGE_PREFIX ?? "") + modId,
-    ),
-    format: (value: string) => generator.formatPackageName(value),
-    validate: (value: string) => {
-      const formatted = generator.formatPackageName(value);
-      const errors = generator.computePackageNameErrors(formatted);
+  const packageName = cli.packageName ?? (cli.defaultOptions
+    ? generator.formatPackageName(modId)
+    : await prompt<string>({
+      type: "text",
+      message: "Choose a package name",
+      initial: generator.generatePackageName(
+        (env.FABRIC_MOD_GENERATOR_GLOBAL_PACKAGE_PREFIX ?? "") + modId,
+      ),
+      format: (value: string) => generator.formatPackageName(value),
+      validate: (value: string) => {
+        const formatted = generator.formatPackageName(value);
+        const errors = generator.computePackageNameErrors(formatted);
 
-      if (errors.length == 0) {
-        return true;
-      }
+        if (errors.length == 0) {
+          return true;
+        }
 
-      return errors.join(", ");
-    },
-  });
+        return errors.join(", ");
+      },
+    }));
 
   const minecraftVersions = await minecraftVersionsPromise;
   let minecraftVersion: string;
@@ -251,6 +249,8 @@ async function promptUser(
     if (!minecraftVersions.map((v) => v.version).includes(minecraftVersion)) {
       fatalError(`The minecraft version ${minecraftVersion} does not exist.`);
     }
+  } else if (cli.defaultOptions) {
+    minecraftVersion = minecraftVersions.find((v) => v.stable)!.version;
   } else {
     minecraftVersion = await prompt<string>({
       type: "select",
@@ -275,11 +275,17 @@ async function promptUser(
     return ADVANCED_OPTIONS.get(o)!;
   });
 
-  const advancedOptions = cliOptions ?? await prompt<string[]>({
-    type: "multiselect",
-    message: "Advanced options",
-    choices: getAdvancedOptions(minecraftVersion),
-  });
+  const defaultAdvancedOptions = getAdvancedOptions(minecraftVersion)
+    .filter((option) => option.selected)
+    .map((option) => option.value as string);
+
+  const advancedOptions = cliOptions ?? (cli.defaultOptions
+    ? defaultAdvancedOptions
+    : await prompt<string[]>({
+      type: "multiselect",
+      message: "Advanced options",
+      choices: getAdvancedOptions(minecraftVersion),
+    }));
 
   return {
     modid: modId,
@@ -309,28 +315,6 @@ function validateCliOptions(cli: CliOptions) {
       fatalError(errors.join(", "));
     }
   }
-}
-
-async function defaultOptions(
-  startingName: string,
-): Promise<generator.Configuration> {
-  const minecraftVersions = await generator.getTemplateGameVersions();
-  const minecraftVersion = minecraftVersions.find((v) => v.stable)!.version;
-
-  return {
-    modid: generator.nameToModId(startingName),
-    minecraftVersion: minecraftVersion,
-    projectName: startingName,
-    packageName: generator.formatPackageName(
-      generator.nameToModId(startingName),
-    ),
-    mojmap: true,
-    useKotlin: false,
-    dataGeneration: false,
-    splitSources: generator.minecraftSupportsSplitSources(minecraftVersion),
-    gradleKotlin: false,
-    uniqueModIcon: true,
-  };
 }
 
 async function prompt<T>(
