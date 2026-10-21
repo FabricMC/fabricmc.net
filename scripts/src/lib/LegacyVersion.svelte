@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {getGameVersions, getLatestYarnVersion, getLoaderVersions} from "./Api";
+  import {getGameVersions, getLoaderVersions} from "./Api";
 
   let listSnapshots = false;
 
@@ -21,11 +21,8 @@
     return versions;
   });
 
-  export async function getSelectedVersions() {
-    //Get the latest yarn version for the provided game version, used for legacy support
-    const yarnVersion = (await getLatestYarnVersion(selectedGameVersion))?.version ?? "";
-
-    return {yarnVersion, loaderVersion: selectedLoaderVersion, selectedGameVersion};
+  export function getSelectedVersions() {
+    return {loaderVersion: selectedLoaderVersion, selectedGameVersion};
   }
 </script>
 

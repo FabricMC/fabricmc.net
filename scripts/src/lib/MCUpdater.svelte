@@ -4,13 +4,13 @@
   let legacyVersion: LegacyVersion;
 
   async function copyImportEntry() {
-    const {yarnVersion, loaderVersion} = await legacyVersion.getSelectedVersions();
-    const url = getImportURL(yarnVersion, loaderVersion);
+    const {selectedGameVersion, loaderVersion} = legacyVersion.getSelectedVersions();
+    const url = getImportURL(selectedGameVersion, loaderVersion);
     return navigator.clipboard.writeText(url);
   }
 
-  function getImportURL(yarnVersion: string, loaderVersion: string) {
-    const url = `https://fabricmc.net/download/mcupdater?yarn=${encodeURIComponent(yarnVersion)}&amp;loader=${encodeURIComponent(loaderVersion)}`;
+  function getImportURL(minecraftVersion: string, loaderVersion: string) {
+    const url = `https://meta.fabricmc.net/misc/data/mcupdater/${encodeURIComponent(minecraftVersion)}/${encodeURIComponent(loaderVersion)}`;
 
     return `<Import url="${url}">fabric</Import>`;
   }
