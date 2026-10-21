@@ -279,13 +279,13 @@ async function resolveConfiguration(
     .filter((option) => option.selected)
     .map((option) => option.value as string);
 
-  const advancedOptions = cliOptions ?? (cli.defaultOptions
-    ? defaultAdvancedOptions
-    : await prompt<string[]>({
+  const advancedOptions = cli.defaultOptions
+    ? [...defaultAdvancedOptions, ...(cliOptions ?? [])]
+    : cliOptions ?? await prompt<string[]>({
       type: "multiselect",
       message: "Advanced options",
       choices: getAdvancedOptions(minecraftVersion),
-    }));
+    });
 
   return {
     modid: modId,
