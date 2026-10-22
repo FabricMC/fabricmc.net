@@ -19,7 +19,7 @@ async function a() {
 	return y(e, "/v2/versions/loader");
 }
 function o(e, t) {
-	return t.find((t) => !e.stable || t.stable).version;
+	return e.stable ? t.find((e) => e.stable).version : t[0].version;
 }
 async function s() {
 	return y(e, "/v2/versions/yarn");
