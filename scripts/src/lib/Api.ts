@@ -52,7 +52,11 @@ export async function getLoaderVersions() {
 }
 
 export function getRecommendedLoaderVersion(gameVersion: GameVersion, loaderVersions: LoaderVersion[]): string {
-    return loaderVersions.find((version) => !gameVersion.stable || version.stable)!.version;
+    if (gameVersion.stable) {
+        return loaderVersions.find((version) => version.stable)!.version;
+    }
+
+    return loaderVersions[0].version;
 }
 
 export async function getYarnVersions() {
