@@ -4,6 +4,7 @@
         getGameVersions,
         getYarnVersions,
         getLoaderVersions,
+        getRecommendedLoaderVersion,
         getApiVersions,
         isApiVersionvalidForMcVersion
     } from "./Api";
@@ -16,17 +17,18 @@
     let gameVersions = getGameVersions().then((versions) => {
         minecraftVersion = versions.find((v) => v.stable)!.version
         const latestVersion = versions[0];
-        return versions.filter((v) => v.stable || v == latestVersion).map((v) => v.version);
+        return versions.filter((v) => v.stable || v == latestVersion);
     });
 
-    const loaderVersions = getLoaderVersions().then((versions) => {
-        loaderVersion = versions.find((v) => v.stable)!.version
-        return versions;
-    });
+    const loaderVersions = getLoaderVersions();
 
     const yarnVersions = getYarnVersions()
     const apiVersions = getApiVersions();
 
+    $: Promise.all([gameVersions, loaderVersions]).then(([gameVersions, loaderVersions]) => {
+        const gameVersion = gameVersions.find((version) => version.version === minecraftVersion)!;
+        loaderVersion = getRecommendedLoaderVersion(gameVersion, loaderVersions);
+    });
     $: yarnVersions.then(versions => yarnVersion = versions.find(v => v.gameVersion == minecraftVersion)?.version || "unknown")
     $: apiVersions.then(versions => apiVersion = versions.filter(v => isApiVersionvalidForMcVersion(v, minecraftVersion)).pop()!)
     $: isUnobfuscated = minecraftIsUnobfuscated(minecraftVersion || "1.99");
@@ -41,7 +43,7 @@
         Minecraft Version:
         <select bind:value={minecraftVersion} style="min-width: 200px">
             {#each gameVersions as version}
-                <option value={version}>{version}</option>
+                <option value={version.version}>{version.version}</option>
             {/each}
         </select>
     </p>

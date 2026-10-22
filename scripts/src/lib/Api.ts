@@ -51,6 +51,10 @@ export async function getLoaderVersions() {
     return getJson<LoaderVersion[]>(META, "/v2/versions/loader");
 }
 
+export function getRecommendedLoaderVersion(gameVersion: GameVersion, loaderVersions: LoaderVersion[]): string {
+    return loaderVersions.find((version) => !gameVersion.stable || version.stable)!.version;
+}
+
 export async function getYarnVersions() {
     return getJson<YarnVersion[]>(META, "/v2/versions/yarn");
 }

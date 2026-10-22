@@ -1,6 +1,6 @@
 import { addGradle } from './gradle';
 import { addGradleWrapper } from './gradlewrapper';
-import { getApiVersionForMinecraft, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions } from '../Api';
+import { getApiVersionForMinecraft, getGameVersions, getKotlinAdapterVersions, getLoaderVersions, getMinecraftYarnVersions, getRecommendedLoaderVersion } from '../Api';
 import { addModJson } from './modjson';
 import { addGitFiles } from './git';
 import { minecraftIsUnobfuscated, minecraftSupportsSplitSources, minecraftSupportsDataGen } from './minecraft';
@@ -91,11 +91,13 @@ export async function generateTemplate(options: Options) {
 
 async function computeConfig(options: Configuration): Promise<ComputedConfiguration> {
 	const unobfuscated = minecraftIsUnobfuscated(options.minecraftVersion);
+	const [gameVersions, loaderVersions] = await Promise.all([getGameVersions(), getLoaderVersions()]);
+	const gameVersion = gameVersions.find((version) => version.version === options.minecraftVersion)!;
 	return {
 		...options,
         splitSources: minecraftSupportsSplitSources(options.minecraftVersion) && options.splitSources,
         dataGeneration: minecraftSupportsDataGen(options.minecraftVersion) && options.dataGeneration,
-		loaderVersion: (await getLoaderVersions()).find((v) => v.stable)!.version,
+		loaderVersion: getRecommendedLoaderVersion(gameVersion, loaderVersions),
 		fabricVersion: await getApiVersionForMinecraft(options.minecraftVersion),
 		yarnVersion: unobfuscated ? undefined : (await getMinecraftYarnVersions(options.minecraftVersion))[0].version,
 		kotlin: await computeKotlinOptions(options),
