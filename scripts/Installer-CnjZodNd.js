@@ -1,6 +1,6 @@
 import { A as e, B as t, C as n, F as r, I as i, L as a, M as o, N as s, P as c, S as l, T as u, b as d, c as f, g as p, h as m, j as h, k as g, l as _, m as v, n as y, p as b, t as x, u as S, v as C, x as w, y as T, z as E } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { i as D } from "./Api-D_d2Iuos.js";
+import { i as D } from "./Api-DPClkCUo.js";
 import O from "./DownloadIcon-Dx6AF_oA.js";
 //#region scripts/src/lib/Installer.svelte
 var k = w("<option> </option>"), A = w("Installer Version: <select style=\"min-width: 200px\"></select> <br/> <br/>", 1), j = w("<a>Show beta versions</a>"), M = w("<p><!> <!></p>"), N = w("<p><a class=\"button primary large\"><!> Download for Windows</a> <br/> <a>Download universal jar</a></p>"), P = w("<p><a class=\"button primary large\"><!> Download installer (Universal/.JAR)</a> <br/> <a>Download for Windows</a></p>"), F = w("<!> <div class=\"download\"><p>The Minecraft and Fabric Loader versions can be selected in the installer, this download\n        works for every version we support.</p> <!></div>", 1), I = w("<p style=\"color: red\"> </p> <p>For support please visit one of our <a href=\"/discuss/\">community discussion</a> groups.</p>", 1), L = w("<p>Loading versions..</p>"), R = w("<main><!></main>");

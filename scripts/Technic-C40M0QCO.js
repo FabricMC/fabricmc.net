@@ -1,7 +1,7 @@
 import { A as e, B as t, C as n, F as r, I as i, L as a, N as o, P as s, T as c, r as l, t as u, x as d, y as f } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { s as p } from "./Api-D_d2Iuos.js";
-import m from "./LegacyVersion-B7qZjq2E.js";
+import { s as p } from "./Api-DPClkCUo.js";
+import m from "./LegacyVersion--A859wU6.js";
 //#region scripts/src/lib/Technic.svelte
 var h = d("<main><!> <br/> <button class=\"button primary large\">Download bin/version.json file</button></main>");
 function g(d, g) {
