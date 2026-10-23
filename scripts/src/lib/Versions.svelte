@@ -52,7 +52,7 @@
 <pre><code>minecraft_version={minecraftVersion}
 {#if !isUnobfuscated}yarn_mappings={yarnVersion}
 {/if}loader_version={loaderVersion}
-loom_version=1.18-SNAPSHOT
+loom_version=1.19-SNAPSHOT
 
 {#if apiVersion}
 # Fabric API
@@ -78,4 +78,4 @@ fabric_api_version={apiVersion}
 
 <h2>Loom</h2>
 
-<p>The recommended loom version is <strong>1.18-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>
+<p>The recommended loom version is <strong>1.19-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>

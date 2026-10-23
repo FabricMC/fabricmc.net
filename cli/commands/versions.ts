@@ -1,7 +1,7 @@
 import * as generator from "@fabricmc/scripts";
 import { Command } from "commander";
 
-const LOOM_VERSION = "1.18-SNAPSHOT";
+const LOOM_VERSION = "1.19-SNAPSHOT";
 
 type GameVersion = generator.GameVersion;
 type LoaderVersion = generator.LoaderVersion;

@@ -10,7 +10,7 @@ minecraft_version=<%= it.minecraftVersion %>
 yarn_mappings=<%= it.yarnVersion %>
 <% } -%>
 loader_version=<%= it.loaderVersion %>
-loom_version=1.18-SNAPSHOT
+loom_version=1.19-SNAPSHOT
 <% if (it.kotlin) { -%>
 fabric_kotlin_version=<%= it.kotlin.fabricKotlinAdapterVersion %>
 <% } -%>
