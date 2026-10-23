@@ -17,8 +17,8 @@ function n(e) {
 		"./lib/MCUpdater.svelte": () => import("./MCUpdater-PfTB3nqO.js"),
 		"./lib/Server.svelte": () => import("./Server-Bz_mlv7H.js"),
 		"./lib/Technic.svelte": () => import("./Technic-BcXtAuCP.js"),
-		"./lib/Template.svelte": () => import("./Template-Dh9EGhfV.js"),
-		"./lib/Versions.svelte": () => import("./Versions-BqzfHbya.js")
+		"./lib/Template.svelte": () => import("./Template--sktmG65.js"),
+		"./lib/Versions.svelte": () => import("./Versions-BspJw1QW.js")
 	}), `./lib/${e}.svelte`, 3));
 }
 var r = {

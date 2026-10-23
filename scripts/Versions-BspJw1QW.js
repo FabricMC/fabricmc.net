@@ -3,7 +3,7 @@ import "./legacy-BXS2B6ev.js";
 import { c as D, d as O, f as k, n as A, r as j, u as M } from "./Api-DQbTMgo_.js";
 import { a as N } from "./minecraft-BzvMyynV.js";
 //#region scripts/src/lib/Versions.svelte
-var P = w("<option> </option>"), F = w("<h2>Latest Versions</h2> <p>Select a Minecraft version to get the recommended versions of Fabric Loader, Yarn, and Fabric API for your <code>gradle.properties</code> file.</p> <p>Minecraft Version: <select style=\"min-width: 200px\"></select></p> <div style=\"margin-bottom: 15px;\"><pre><code> <!> <!></code></pre> <p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p> <p>If you encounter issues, double-check the latest release of Fabric API on <a href=\"https://modrinth.com/mod/fabric-api\">Modrinth</a> or <a href=\"https://minecraft.curseforge.com/projects/fabric/files\">CurseForge</a>.</p></div>", 1), I = w("<p style=\"color: red\"> </p> <p>For support please visit one of our <a href=\"/discuss/\">community discussion</a> groups.</p>", 1), L = w("<p>Loading versions...</p>"), R = w("<!> <hr/> <h2>Loom</h2> <p>The recommended loom version is <strong>1.18-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>", 1);
+var P = w("<option> </option>"), F = w("<h2>Latest Versions</h2> <p>Select a Minecraft version to get the recommended versions of Fabric Loader, Yarn, and Fabric API for your <code>gradle.properties</code> file.</p> <p>Minecraft Version: <select style=\"min-width: 200px\"></select></p> <div style=\"margin-bottom: 15px;\"><pre><code> <!> <!></code></pre> <p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p> <p>If you encounter issues, double-check the latest release of Fabric API on <a href=\"https://modrinth.com/mod/fabric-api\">Modrinth</a> or <a href=\"https://minecraft.curseforge.com/projects/fabric/files\">CurseForge</a>.</p></div>", 1), I = w("<p style=\"color: red\"> </p> <p>For support please visit one of our <a href=\"/discuss/\">community discussion</a> groups.</p>", 1), L = w("<p>Loading versions...</p>"), R = w("<!> <hr/> <h2>Loom</h2> <p>The recommended loom version is <strong>1.19-SNAPSHOT</strong>. This is usually defined near the top of your build.gradle file.</p>", 1);
 function z(w, z) {
 	o(z, !1);
 	let B = u(), V = u(), H = u(), U = u(), W = u(), G = j().then((e) => {
@@ -58,7 +58,7 @@ fabric_api_version=${f(W) ?? ""}
 		}), t(C), t(b), E(4), t(p), g(() => {
 			S(w, `minecraft_version=${f(V) ?? ""}
 `), S(k, `loader_version=${f(U) ?? ""}
-loom_version=1.18-SNAPSHOT
+loom_version=1.19-SNAPSHOT
 
 `);
 		}), _(u, () => f(V), (e) => i(V, e)), T(n, o);
