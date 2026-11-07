@@ -1,6 +1,6 @@
 import { A as e, B as t, C as n, D as r, E as i, F as a, I as o, L as s, M as c, N as l, O as u, P as d, T as f, a as p, b as m, c as h, f as g, g as _, h as v, j as y, k as b, l as x, m as S, n as C, o as w, p as T, s as E, t as D, u as O, v as k, w as A, x as j, y as M, z as N } from "./index-client-C1cRk3Js.js";
 import "./legacy-BXS2B6ev.js";
-import { c as P, l as F, o as I, r as L, t as R, u as z } from "./Api-DQbTMgo_.js";
+import { c as P, d as F, l as I, o as L, r as R, t as z } from "./Api-00IyWCtj.js";
 import B from "./DownloadIcon-Dx6AF_oA.js";
 import { a as V, c as H, i as U, l as W, n as G, o as K, r as q, s as J, t as ee, u as te } from "./minecraft-BzvMyynV.js";
 //#region \0rolldown/runtime.js
@@ -3749,7 +3749,7 @@ async function Vt(e, t) {
 //#endregion
 //#region scripts/src/lib/template/versions.ts
 async function Ht() {
-	let e = await L();
+	let e = await R();
 	return e.filter((t) => {
 		let n = t.version;
 		return n.startsWith("1.14") && n != "1.14.4" ? !1 : t.stable ? !0 : e[0].version == n;
@@ -3763,21 +3763,21 @@ async function Wt(e) {
 	await _t(e), await lt(e.writer, t), await Lt(e.writer, e.canvas, t), await Vt(e.writer, t);
 }
 async function Gt(e) {
-	let t = V(e.minecraftVersion), [n, r] = await Promise.all([L(), P()]), i = n.find((t) => t.version === e.minecraftVersion);
+	let t = V(e.minecraftVersion), [n, r] = await Promise.all([R(), P()]), i = n.find((t) => t.version === e.minecraftVersion);
 	return {
 		...e,
 		splitSources: H(e.minecraftVersion) && e.splitSources,
 		dataGeneration: K(e.minecraftVersion) && e.dataGeneration,
-		loaderVersion: z(i, r),
-		fabricVersion: await R(e.minecraftVersion),
-		yarnVersion: t ? void 0 : (await F(e.minecraftVersion))[0].version,
+		loaderVersion: F(i, r),
+		fabricVersion: await z(e.minecraftVersion),
+		yarnVersion: t ? void 0 : (await I(e.minecraftVersion))[0].version,
 		kotlin: await Kt(e),
 		unobfuscated: t
 	};
 }
 async function Kt(e) {
 	if (!e.useKotlin) return;
-	let t = (await I()).pop();
+	let t = (await L()).pop();
 	return {
 		fabricKotlinAdapterVersion: t,
 		kotlinVersion: t.split("+kotlin.")[1]
