@@ -3,6 +3,7 @@
         getJavadocList,
         getYarnVersions,
         getLoaderVersions,
+        getMixinVersions
     } from "./Api";
 
 		function handleSelectChange(event: any, project: any) {
@@ -30,7 +31,8 @@
         getJavadocList(),
         getYarnVersions(),
         getLoaderVersions(),
-    ]).then(([jdList, yarnVersions, loaderVersions]) => {
+        getMixinVersions()
+    ]).then(([jdList, yarnVersions, loaderVersions, mixinVersions]) => {
         const apiVersions = filterAndSortVersions(
             jdList,
             "fabric-api-",
@@ -40,41 +42,36 @@
         return [
             {
                 name: "Minecraft (Yarn)",
-                desc: "Javadoc documentation for Minecraft generated from the comments in the yarn mappings.",
                 prefix: "yarn-",
                 versions: filterAndSortVersions(
                     jdList,
                     "yarn-",
                     yarnVersions.map((v) => v.version)
                 ),
-                selected: "Select Version",
             },
             {
                 name: "Fabric API",
-                desc: "Javadoc documentation for Fabric API",
                 prefix: "fabric-api-",
                 versions: apiVersions,
-                selected: "Select Version",
             },
             {
                 name: "Fabric Loader",
-                desc: "Javadoc documentation for Fabric API",
                 prefix: "fabric-loader-",
                 versions: filterAndSortVersions(
                     jdList,
                     "fabric-loader-",
                     loaderVersions.map((v) => v.version)
                 ),
-                selected: "Select Version",
             },
-            // Disabled for now as the mixin JD css seems broken
-            // {
-            //     name: "Mixin (Fabric's fork)",
-            //     desc: "Javadoc documentation for Fabric's mixin fork",
-            //     prefix: "sponge-mixin-",
-            //     versions: mixinVersions,
-            //     selected: mixinVersions[0],
-            // },
+            {
+                name: "Mixin",
+                prefix: "sponge-mixin-",
+                versions: filterAndSortVersions(
+                    jdList,
+                    "sponge-mixin-",
+                    mixinVersions.reverse()
+                ),
+            },
         ];
     });
 </script>
