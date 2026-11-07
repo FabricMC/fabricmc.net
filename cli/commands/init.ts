@@ -63,7 +63,7 @@ export function initCommand() {
     .addOption(
       new Option(
         "-o, --option <advancedOption>",
-        "Specify an advanced option, one of: " +
+        "Enable or disable an advanced option using <option> or <option>=<true|false>, one of: " +
           Array.from(ADVANCED_OPTIONS.keys()).join(", "),
       )
         .argParser((value: string, previous: string[] = []) => [
@@ -263,25 +263,22 @@ async function resolveConfiguration(
     });
   }
 
-  const cliOptions = cli.option?.map((o): string => {
-    if (!ADVANCED_OPTIONS.has(o)) {
-      fatalError(
-        `Unknown option ${o} must be one of: ${
-          Array.from(ADVANCED_OPTIONS.keys()).join(", ")
-        }`,
-      );
-    }
-
-    return ADVANCED_OPTIONS.get(o)!;
-  });
+  const cliOptions = cli.option?.map(parseAdvancedOption);
+  const enabledCliOptions = cliOptions
+    ?.filter((o) => o.enabled)
+    .map((o) => o.option);
+  const disabledCliOptions = cliOptions
+    ?.filter((o) => !o.enabled)
+    .map((o) => o.option) ?? [];
 
   const defaultAdvancedOptions = getAdvancedOptions(minecraftVersion)
     .filter((option) => option.selected)
     .map((option) => option.value as string);
 
   const advancedOptions = cli.defaultOptions
-    ? [...defaultAdvancedOptions, ...(cliOptions ?? [])]
-    : cliOptions ?? await prompt<string[]>({
+    ? [...defaultAdvancedOptions, ...(enabledCliOptions ?? [])]
+      .filter((option) => !disabledCliOptions.includes(option))
+    : enabledCliOptions ?? await prompt<string[]>({
       type: "multiselect",
       message: "Advanced options",
       choices: getAdvancedOptions(minecraftVersion),
@@ -299,6 +296,27 @@ async function resolveConfiguration(
     gradleKotlin: advancedOptions.includes(KOTLIN_DSL_ADVANCED_OPTION),
     uniqueModIcon: advancedOptions.includes(ICON_ADVANCED_OPTION),
   };
+}
+
+// Parses "<option>" or "<option>=<true|false>", e.g. "kotlin" or "splitSources=false".
+function parseAdvancedOption(
+  value: string,
+): { option: string; enabled: boolean } {
+  const [key, state] = value.split("=", 2);
+
+  if (!ADVANCED_OPTIONS.has(key)) {
+    fatalError(
+      `Unknown option ${key} must be one of: ${
+        Array.from(ADVANCED_OPTIONS.keys()).join(", ")
+      }`,
+    );
+  }
+
+  if (state != undefined && state != "true" && state != "false") {
+    fatalError(`Invalid value ${state} for option ${key} must be true or false`);
+  }
+
+  return { option: ADVANCED_OPTIONS.get(key)!, enabled: state != "false" };
 }
 
 function validateCliOptions(cli: CliOptions) {
