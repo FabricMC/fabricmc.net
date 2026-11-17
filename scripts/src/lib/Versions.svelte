@@ -63,7 +63,7 @@ fabric_api_version={apiVersion}
 {/if}</code></pre>
 
 				<p><strong>Important Note:</strong> In some cases, such as snapshots or special releases, the <code>fabric-api</code> version might not align perfectly with your Minecraft version.</p>
-				<p>If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://minecraft.curseforge.com/projects/fabric/files">CurseForge</a>.</p> 
+				<p>If you encounter issues, double-check the latest release of Fabric API on <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api/files">CurseForge</a>.</p> 
       </div>
 {:catch error}
     <p style="color: red">Error: {error.message}</p>
