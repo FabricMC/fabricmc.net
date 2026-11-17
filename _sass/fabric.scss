@@ -217,6 +217,17 @@ code {
 	}
 }
 
+.download-options {
+	p {
+		hyphens: none;
+		text-align: justify;
+	}
+
+	.column > .button {
+		margin-top: auto;
+	}
+}
+
 .download-api-container {
 	display: flex;
 	position: relative;
