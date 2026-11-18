@@ -7,7 +7,7 @@ plugins {
 	id("net.fabricmc.fabric-loom<%= pluginSuffix %>")
 	`maven-publish`
 <% if (it.kotlin) { -%>
-	id("org.jetbrains.kotlin.jvm") version "<%= it.kotlin.kotlinVersion %>"
+	id("org.jetbrains.kotlin.jvm")
 <% } -%>
 }
 
